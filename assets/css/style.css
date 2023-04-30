@@ -12,12 +12,12 @@ body {
 }
 
 a {
-  color: #0563bb;
+  color: #f3015a;
   text-decoration: none;
 }
 
 a:hover {
-  color: #067ded;
+  color: #a80742;
   text-decoration: none;
 }
 
@@ -735,11 +735,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #0563bb;
+  border: 1px solid #f3015a;
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #0563bb;
+  background-color: #f3015a;
 }
 
 .portfolio-details .portfolio-info {
