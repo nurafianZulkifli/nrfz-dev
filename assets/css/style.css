@@ -61,7 +61,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #0678e3;
+  background: #a80742;
   color: #fff;
 }
 
@@ -606,7 +606,7 @@ section {
 
 .portfolio .portfolio-wrap::before {
   content: "";
-  background: rgba(255, 255, 255, 0.7);
+  background: #9c013aaf;
   position: absolute;
   left: 30px;
   right: 30px;
@@ -663,12 +663,12 @@ section {
 
 .portfolio .portfolio-wrap .portfolio-info h4 {
   font-size: 20px;
-  color: #45505b;
+  color: #fff;
   font-weight: 600;
 }
 
 .portfolio .portfolio-wrap .portfolio-info p {
-  color: #45505b;
+  color: #fff;
   font-size: 14px;
   text-transform: uppercase;
   padding: 0;
@@ -681,7 +681,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a {
-  color: #45505b;
+  color: #fff;
   margin: 0 2px;
   font-size: 28px;
   display: inline-block;
@@ -689,7 +689,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  color: #148af9;
+  color: #f3015a;
 }
 
 .portfolio .portfolio-wrap:hover::before {
@@ -779,6 +779,19 @@ section {
   padding: 0;
 }
 
+.glightbox-clean .gslide-description {
+  background: #18191a;
+}
+
+.glightbox-clean .gslide-title {
+  font-size: 1em;
+  font-weight: 400;
+  font-family: "DM Sans";
+  color: #fff;
+  margin-bottom: 19px;
+  line-height: 1.4em;
+}
+
 
 /*--------------------------------------------------------------
 # Contact
@@ -825,7 +838,7 @@ section {
 .contact .info .email:hover i,
 .contact .info .address:hover i,
 .contact .info .phone:hover i {
-  background: #0563bb;
+  background: #f3015a;
   color: #fff;
 }
 
