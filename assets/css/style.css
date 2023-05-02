@@ -246,8 +246,8 @@ h6 {
   top: 10px;
   z-index: 9998;
   border: 0;
-  background: none;
-  font-size: 28px;
+  background: #494042;
+  font-size: 30px;
   transition: all 0.4s;
   outline: none !important;
   line-height: 0;
@@ -257,8 +257,9 @@ h6 {
 }
 
 .mobile-nav-toggle i {
-  color: #45505b;
+  color: #000;
 }
+
 
 .mobile-nav-active {
   overflow: hidden;
