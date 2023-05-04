@@ -380,6 +380,7 @@ section {
   padding-bottom: 20px;
   position: relative;
   color: #fff;
+  cursor: default;
 }
 
 .section-title h2::after {
@@ -396,6 +397,7 @@ section {
 
 .section-title p {
   margin-bottom: 0;
+  cursor: default;
 }
 
 /*--------------------------------------------------------------
@@ -405,6 +407,12 @@ section {
   font-weight: 700;
   font-size: 26px;
   color: #f3015a;
+  cursor: default;
+}
+
+.about .fst-italic {
+  font-style: italic!important;
+  cursor: default;
 }
 
 .about .content ul {
@@ -417,6 +425,7 @@ section {
   display: flex;
   align-items: center;
   display: block;
+  cursor: default;
 }
 
 .about .content ul strong {
@@ -428,6 +437,7 @@ section {
   margin-right: 5px;
   color: #f3015a;
   line-height: 0;
+  cursor: default;
 }
 
 .about .content p:last-child {
@@ -455,7 +465,7 @@ section {
 
 
 /*--------------------------------------------------------------
-# Akills
+# Skills
 --------------------------------------------------------------*/
 .skills .progress {
   height: 60px;
@@ -472,11 +482,13 @@ section {
   font-weight: 600;
   font-family: "DM Sans", sans-serif;
   color: #fff;
+  cursor: default;
 }
 
 .skills .progress .skill .val {
   float: right;
   font-style: normal;
+  cursor: default;
 }
 
 .skills .progress-bar-wrap {
@@ -494,6 +506,7 @@ section {
   font-size: 20px;
   font-weight: bold;
   padding-top: 26px;
+  cursor: default;
 }
 
 /*--------------------------------------------------------------
@@ -505,6 +518,7 @@ section {
   margin-top: 20px;
   margin-bottom: 20px;
   color: #fff;
+  cursor: default;
 }
 
 .resume .resume-item {
@@ -512,16 +526,18 @@ section {
   margin-top: -2px;
   border-left: 2px solid #f3015a;
   position: relative;
+  cursor: default;
 }
 
 .resume .resume-item h4 {
   line-height: 18px;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: bolder;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: "DM Sans", sans-serif;
   color: #f3015a;
   margin-bottom: 10px;
+  cursor: default;
 }
 
 .resume .resume-item h5 {
@@ -532,6 +548,7 @@ section {
   font-weight: 600;
   margin-bottom: 10px;
   border-radius: 20px;
+  cursor: default;
 }
 
 .resume .resume-item ul {
@@ -556,6 +573,7 @@ section {
   top: 0;
   background: #18191a;
   border: 2px solid #f3015a;
+  cursor: default;
 }
 
 /*--------------------------------------------------------------
@@ -667,6 +685,7 @@ section {
   font-size: 20px;
   color: #fff;
   font-weight: 600;
+  cursor: default;
 }
 
 .portfolio .portfolio-wrap .portfolio-info p {
@@ -675,6 +694,7 @@ section {
   text-transform: uppercase;
   padding: 0;
   margin: 0;
+  cursor: default;
 }
 
 .portfolio .portfolio-wrap .portfolio-links {
@@ -1040,7 +1060,7 @@ section {
   font-size: 36px;
   font-weight: 700;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: "DM Sans", sans-serif;
   padding: 0;
   margin: 0 0 15px 0;
 }
@@ -1080,4 +1100,5 @@ section {
 #footer .copyright,
 #footer .modified {
   margin: 0 0 5px 0;
+  cursor: default;
 }
