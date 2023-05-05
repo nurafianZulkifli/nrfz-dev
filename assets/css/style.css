@@ -56,12 +56,12 @@ h6 {
 
 .back-to-top i {
   font-size: 28px;
-  color: #fff;
+  color: #000;
   line-height: 0;
 }
 
 .back-to-top:hover {
-  background: #a80742;
+  background: #695e27;
   color: #fff;
 }
 
@@ -215,7 +215,7 @@ h6 {
 .nav-menu .active,
 .nav-menu .active:focus,
 .nav-menu li:hover>a {
-  color: #fff;
+  color: #000;
   background: #e0bc00;
 }
 
@@ -223,13 +223,13 @@ h6 {
 .nav-menu .active span,
 .nav-menu .active:focus span,
 .nav-menu li:hover>a span {
-  color: #fff;
+  color: #000;
 }
 
 .nav-menu a:hover,
 .nav-menu li:hover>a {
   width: 100%;
-  color: #fff;
+  color: #000;
 }
 
 .nav-menu a:hover span,
@@ -601,7 +601,7 @@ section {
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
-  color: #fff;
+  color: #000;
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
 }
@@ -626,7 +626,7 @@ section {
 
 .portfolio .portfolio-wrap::before {
   content: "";
-  background: #9c013aaf;
+  background: #e0bb00e3;
   position: absolute;
   left: 30px;
   right: 30px;
@@ -661,8 +661,8 @@ section {
   position: absolute;
   top: 35px;
   left: 35px;
-  border-top: 3px solid #d7dce1;
-  border-left: 3px solid #d7dce1;
+  border-top: 3px solid #000;
+  border-left: 3px solid #000;
   transition: all 0.5s ease 0s;
   z-index: 9994;
 }
@@ -675,21 +675,21 @@ section {
   position: absolute;
   bottom: 35px;
   right: 35px;
-  border-bottom: 3px solid #d7dce1;
-  border-right: 3px solid #d7dce1;
+  border-bottom: 3px solid #000;
+  border-right: 3px solid #000;
   transition: all 0.5s ease 0s;
   z-index: 9994;
 }
 
 .portfolio .portfolio-wrap .portfolio-info h4 {
   font-size: 20px;
-  color: #fff;
+  color: #000;
   font-weight: 600;
   cursor: default;
 }
 
 .portfolio .portfolio-wrap .portfolio-info p {
-  color: #fff;
+  color: #000;
   font-size: 14px;
   text-transform: uppercase;
   padding: 0;
@@ -703,7 +703,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a {
-  color: #fff;
+  color: #000;
   margin: 0 2px;
   font-size: 28px;
   display: inline-block;
@@ -711,7 +711,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  color: #e0bc00;
+  color: #695e27;
 }
 
 .portfolio .portfolio-wrap:hover::before {
