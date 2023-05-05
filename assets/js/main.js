@@ -145,9 +145,9 @@
     typed_strings = typed_strings.split(',')
     new Typed('.typed', {
       strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
+      loop: false,
+      typeSpeed: 50,
+      backSpeed: 20,
       backDelay: 2000
     });
   }
