@@ -36,6 +36,11 @@ h6 {
   margin-right: auto;
 }
 
+.col-lg-12 {
+  width: 90%;
+  flex: 0 0 auto;
+}
+
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -411,7 +416,7 @@ section {
 }
 
 .about .fst-italic {
-  font-style: italic!important;
+  font-style: italic !important;
   cursor: default;
 }
 
@@ -953,6 +958,149 @@ section {
 }
 
 
+
+
+
+/*--------------------------------------------------------------
+# Timelines Section
+--------------------------------------------------------------*/
+
+.col {
+  flex: 1 0 0%;
+}
+
+
+p.summary {
+  color: #fff;
+  font-size: 1.0em;
+  cursor: default;
+  margin-bottom: 3rem;
+}
+
+span#more {
+  display: none;
+}
+
+p.summary-norm {
+  color: #fff;
+  font-size: 1.0em;
+  cursor: default;
+}
+
+p.contextImg-caption {
+  color: #fff;
+  margin-bottom: 3rem;
+}
+
+blockquote {
+  background-color: #313131;
+  padding: 2em;
+  color: #fff;
+  border-radius: 1em;
+}
+
+.timelines .nav-link.active {
+  transition: 0.3s;
+  background: #e0bc00;
+  border-color: var(--color-primary);
+}
+
+.timelines .nav-link.active h4 {
+  color: #2c2a25;
+}
+
+.timelines .nav-link.active i {
+  color: #2c2a25 !important;
+}
+
+.timelines .tab-content {
+  margin-top: 30px;
+}
+
+.timelines .tab-pane.active {
+  -webkit-animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.timelines .tab-pane h3 {
+  font-weight: bold;
+  font-size: 30px;
+  color: #fff;
+}
+
+.timelines .tab-pane ul {
+  list-style: none;
+  padding: 0;
+}
+
+.timelines .tab-pane ul li {
+  padding-bottom: 10px;
+  color: #fff;
+  cursor: default;
+}
+
+.timelines .tab-pane ul i {
+  font-size: 21px;
+  margin-right: 4px;
+  color: #a83f3f;
+}
+
+h3.summary-tit {
+  margin-bottom: 0;
+  margin: 3%;
+  margin-left: 0%;
+  font-weight: 700;
+}
+
+
+.img-fluid-portfolio {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+@media only screen and (min-width: 1201px) {
+  .row-tpts {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    width: 93%;
+  }
+}
+
+
+@media only screen and (min-width: 990px) and (max-width: 1200px) {
+  .row-tpts {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*--------------------------------------------------------------
 # Connect Section
 --------------------------------------------------------------*/
@@ -1032,7 +1180,8 @@ section {
   color: #a80742;
 }
 
-.connect .service-item:hover .details .icon, .socials .service-item:hover .details .icon  {
+.connect .service-item:hover .details .icon,
+.socials .service-item:hover .details .icon {
   background-color: #a80742;
   border: 2px solid #6d032a;
 }
