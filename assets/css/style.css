@@ -1064,12 +1064,13 @@ blockquote {
   }
 
   h3.summary-tit {
-    margin-left: 1%;
+    margin-left: -0.5%;
     font-size: 28px;
   }
 
   p.summary {
     font-size: 16px;
+    margin-left: -0.5%;
   }
 }
 
