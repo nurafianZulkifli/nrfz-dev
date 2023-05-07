@@ -970,7 +970,7 @@ p.summary {
   margin-bottom: 3rem;
 }
 
-mark.figure {
+mark.yellow {
   color: #e0bc00;
   background: none;
 }
@@ -1002,8 +1002,16 @@ h3.summary-tit {
   margin-bottom: 0;
   margin: 3%;
   margin-left: 0%;
+  font-weight: 700;
+}
+
+h3.main-tit {
+  margin-bottom: 0;
+  margin: 3%;
+  margin-left: -1%;
   margin-top: 5%;
   font-weight: 700;
+  font-size: 40px;
 }
 
 
