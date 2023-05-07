@@ -39,6 +39,7 @@ h6 {
 .col-lg-12 {
   width: 90%;
   flex: 0 0 auto;
+  margin-left: 20px;
 }
 
 
@@ -352,14 +353,14 @@ h6 {
   }
 
   #hero h1 {
-    font-size: 52px;
+    font-size: 44px;
     line-height: 55px;
   }
 
   #hero p {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 24px;
   }
 }
@@ -687,7 +688,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-info h4 {
-  font-size: 20px;
+  font-size: 30px;
   color: #000;
   font-weight: 600;
   cursor: default;
@@ -975,6 +976,11 @@ p.summary {
   font-size: 1.1em;
   cursor: default;
   margin-bottom: 3rem;
+}
+
+mark.figure {
+  color: #e0bc00;
+  background: none;
 }
 
 span#more {
