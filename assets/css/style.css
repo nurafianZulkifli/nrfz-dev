@@ -955,19 +955,11 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Timelines Section
+# Content Section
 --------------------------------------------------------------*/
 
 .col {
   flex: 1 0 0%;
-}
-
-
-p.summary {
-  color: #fff;
-  font-size: 1.1em;
-  cursor: default;
-  margin-bottom: 3rem;
 }
 
 mark.yellow {
@@ -997,54 +989,100 @@ blockquote {
   border-radius: 1em;
 }
 
-
-h3.summary-tit {
-  margin-bottom: 0;
-  margin: 3%;
-  margin-left: 0%;
-  font-weight: 700;
-}
-
-h3.main-tit {
-  margin-bottom: 0;
-  margin: 3%;
-  margin-left: -1%;
-  margin-top: 5%;
-  font-weight: 700;
-  font-size: 40px;
-}
-
-
 .img-fluid-portfolio {
   max-width: 100%;
   height: auto;
 }
 
 
-
-@media only screen and (min-width: 1201px) {
+@media screen and (min-width: 320px) {
   .row-tpts {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
     display: flex;
     flex-wrap: wrap;
-    margin-top: calc(-1 * var(--bs-gutter-y));
-    margin-right: calc(-.5 * var(--bs-gutter-x));
-    margin-left: calc(-.5 * var(--bs-gutter-x));
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
     width: 93%;
+  }
+
+  h3.main-tit {
+    margin-bottom: 0;
+    margin: 3%;
+    margin-left: 0%;
+    margin-top: 7%;
+    font-weight: 700;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  h3.summary-tit {
+    margin-bottom: 0;
+    margin: 4%;
+    margin-left: 3%;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  p.summary {
+    color: #fff;
+    font-size: 15px;
+    cursor: default;
+    margin-bottom: 3rem;
+  }
+
+}
+
+@media screen and (min-width: 375px) {
+  h3.main-tit {
+    margin-bottom: 5px;
+    margin: 3%;
+    margin-left: 0%;
+    margin-top: 7%;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  h3.summary-tit {
+    margin-bottom: 0;
+    margin: 3%;
+    margin-left: 3%;
+    font-weight: 700;
+    font-size: 20px;
   }
 }
 
+@media screen and (min-width: 425px) {
+  h3.main-tit {
+    font-size: 35px;
+  }
+}
 
-@media only screen and (min-width: 990px) and (max-width: 1200px) {
-  .row-tpts {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: calc(-1 * var(--bs-gutter-y));
-    margin-right: calc(-.5 * var(--bs-gutter-x));
-    margin-left: calc(-.5 * var(--bs-gutter-x));
+@media screen and (min-width: 768px) {
+  h3.main-tit {
+    font-size: 45px;
+  }
+
+  h3.summary-tit {
+    margin-left: 1%;
+    font-size: 28px;
+  }
+
+  p.summary {
+    font-size: 16px;
+  }
+}
+
+/* @media screen and (min-width: 1024px) {} */
+
+@media screen and (min-width: 1440px) {
+  h3.summary-tit {
+    margin-left: 1%;
+    font-size: 28px;
+  }
+
+  p.summary {
+    font-size: 18px;
   }
 }
 
