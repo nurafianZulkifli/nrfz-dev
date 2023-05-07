@@ -1002,7 +1002,7 @@ blockquote {
     margin-top: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    width: 93%;
+    width: 100%;
   }
 
   h3.main-tit {
@@ -1059,6 +1059,15 @@ blockquote {
 }
 
 @media screen and (min-width: 768px) {
+    .row-tpts {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 93%;
+  }
+
   h3.main-tit {
     font-size: 45px;
   }
