@@ -1128,7 +1128,7 @@ h3.summary-tit {
 }
 
 .connect .service-item:hover .details .icon i {
-  color: #fff;
+  color: #000;
 }
 
 .connect .service-item:hover .img img {
