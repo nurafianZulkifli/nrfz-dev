@@ -1034,6 +1034,7 @@ blockquote {
   .return-to {
     padding-top: 20px;
     color: #e0bc00;
+    cursor: pointer;
   }
 
   .return-to:hover {
