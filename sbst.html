@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Train Delays Checker | SBS Transit</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
+  <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        <li><a href="index.html" class="nav-link-smrt nav-link scrollto"><i class="fa-solid fa-train"></i> <span>SMRT
+              Trains</span></a></li>
+        <li><a href="" class="nav-link-sbst nav-link scrollto active"><i class="fa-solid fa-train"></i> <span>SBS
+              Transit</span></a></li>
+    </nav><!-- .nav-menu -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero-sbst" class="d-flex flex-column justify-content-center">
+    <div class="container" data-aos="zoom-in" data-aos-delay="100">
+      <h1><i class="fa-solid fa-clock-rotate-left"></i> Train Delays Checker</h1>
+      <p>Overview of the days since last reported delays across Singapore's train network.</p>
+      <div class="cr-links">
+        <a href="https://www.straitstimes.com/singapore/north-east-line-to-get-new-trains-from-july-28-ahead-new-extension-in-2024"
+          class="credits"><i class='bx bxs-camera'></i> &nbsp;Photo Credits: The Straits Times</a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+
+
+  <section id="lrd" class="d-flex flex-column justify-content-center">
+    <!-- Last Reported Delays -->
+    <div class="section-title">
+      <h2><img src="assets/img/sbstl.png" alt="smrt" width="250px"></h2>
+      <p>(Data as of 17 November)</p>
+    </div>
+
+    <div class="row">
+      <!-- NEL -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-nel shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="line text-xs font-weight-bold text-nel text-uppercase mb-1">
+                  North East Line</div>
+                <!-- Days -->
+                <div class="h5 days mb-0 font-weight-bold text-white">232 Days</div>
+                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                  since last reported delay</div>
+              </div>
+              <div class="col-auto">
+                <img src="assets/caplets/NELCap.png" alt="NEL" width="55px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DTL -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-dtl shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="line text-xs font-weight-bold text-dtl text-uppercase mb-1">
+                  Downtown Line</div>
+                <!-- Days -->
+                <div class="h5 days mb-0 font-weight-bold text-white">192 Days</div>
+                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                  since last reported delay</div>
+              </div>
+              <div class="col-auto">
+                <img src="assets/caplets/DTLCap.png" alt="EWL" width="55px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKPGLRT -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-lrt shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
+                  Sengkang-Puggol LRT</div>
+                <!-- Days -->
+                <div class="h5 days mb-0 font-weight-bold text-white">238 Days</div>
+                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                  since last reported delay</div>
+              </div>
+              <div class="col-auto">
+                <img src="assets/caplets/SKPGCap.png" alt="BPLRT" width="55px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Delays Overview (≥ 10 mins) -->
+    <div class="row">
+      <div class="chart col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-white">Delays Overview (≥ 10 mins)</h6>
+          </div>
+          <!-- Card Body -->
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="delays-overview"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Incidents -->
+    <div class="row">
+      <div class="del-o col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-white">Recent Incidents</h6>
+          </div>
+          <div class="card-body">
+            <p class="mb-0">
+              <b>No Incidents Available</b>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="section-title">
+      <h2>Past Records</h2>
+    </div>
+
+    <!-- Recent Incidents -->
+    <div class="row">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              2023
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <!--  -->
+              <p class="accord-p"><u>Oct 2023</u></p>
+              <p class="accord-lrd">NEL: 215 Days <br>
+                DTL: 175 Days <br>
+                SKPGLRT: 221 Days <br></p>
+              <p class="accord-p"><b> Number of Delays (≥ 10 mins): 0</b></p>
+
+              <p class="accord-twt">-
+                <b>No Incidents Available</b>
+              </p>
+
+              <br>
+
+              <!--  -->
+              <p class="accord-p"><u>Sep 2023</u></p>
+              <p class="accord-lrd">NEL: 184 Days <br>
+                DTL: 144 Days <br>
+                SKPGLRT: 190 Days <br></p>
+              <p class="accord-p"> Number of Delays (≥ 10 mins): 0</p>
+
+              <p class="accord-twt">-
+                <b>No Incidents Available</b>
+              </p>
+
+              <br>
+
+              <!--  -->
+              <p class="accord-p"><u>Aug 2023</u></p>
+              <p class="accord-lrd">NEL: 154 Days* <br>
+                DTL: 114 Days <br>
+                SKPGLRT: 160 Days <br></p>
+              <p class="accord-p"> Number of Delays (≥ 10 mins): 0</p>
+
+              <p class="accord-twt">- <a href="">Aug 2:</a>
+                Due to a Train fault, additional travel time of 5 minutes may be expected in both directions. Recovery
+                work is in progress. We are sorry for the inconvenience caused. [< 5 mins]</p>
+
+                  <br>
+
+                  <!--  -->
+                  <p class="accord-p"><u>Jul 2023</u></p>
+                  <p class="accord-lrd">NEL: 123 Days <br>
+                    DTL: 83 Days <br>
+                    SKPGLRT: 129 Days <br></p>
+                  <p class="accord-p"> Number of Delays (≥ 10 mins): 0</p>
+
+                  <p class="accord-twt">-
+                    <b>No Incidents Available</b>
+                  </p>
+
+                  <br>
+
+                  <!--  -->
+                  <p class="accord-p"><u>Jun 2023</u></p>
+                  <p class="accord-lrd">NEL: 92 Days <br>
+                    DTL: 51 Days <br>
+                    SKPGLRT: 98 Days <br></p>
+                  <p class="accord-p"> Number of Delays (≥ 10 mins): 0</p>
+
+                  <p class="accord-twt">-
+                    <b>No Incidents Available</b>
+                  </p>
+
+                  <br>
+
+                  <!--  -->
+                  <p class="accord-p"><u>May 2023</u></p>
+                  <p class="accord-lrd">NEL: 61 Days <br>
+                    DTL: 20 Days <br>
+                    SKPGLRT: 67 Days <br></p>
+                  <p class="accord-p"> Number of Delays (≥ 10 mins): 1</p>
+
+                  <p class="accord-twt">- <a href="https://twitter.com/SBSTransit_Ltd/status/1656237948411727873">Oct
+                      27:</a>
+                    DTL service from DT35 Expo to DT29 Bedok North is delayed due to a train fault. Free regular bus
+                    services are available at designated stops. Additional travel time of about 15 minutes may be
+                    expected. We are sorry.</p>
+
+                  <br>
+
+                  <!--  -->
+                  <p class="accord-p"><u>Apr 2023</u></p>
+                  <p class="accord-lrd">NEL: 31 Days <br>
+                    DTL: 88 Days <br>
+                    SKPGLRT: 37 Days <br></p>
+                  <p class="accord-p"> Number of Delays (≥ 10 mins): 0</p>
+
+                  <p class="accord-twt">-
+                    <b>No Incidents Available</b>
+                  </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+
+
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        <span>A product from <a href="https://www.nurafianzulkifli.com">Works By NRFZ</a>.
+          Information is obtained through each operator's Twitter page</span>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="assets/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="assets/js/charts-sbst/2023.js"></script>
+
+</body>
+
+</html>
