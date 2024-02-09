@@ -59,7 +59,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #a80742;
+  background: #407edb;
   color: #fff;
 }
 
@@ -305,7 +305,7 @@ h6 {
 
 #position {
   font-size: 20px;
-  color: #37619e;
+  color: #407edb;
   text-align: center;
   display: block;
 }
@@ -388,9 +388,6 @@ h6 {
   transition: 0.3s;
 }
 
-#hero .social-links a:hover {
-  color: #8b0537;
-}
 
 @media (max-width: 992px) {
   #hero {
@@ -677,7 +674,7 @@ section {
 
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
-  color: #37619e;
+  color: #407edb;
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -689,13 +686,13 @@ section {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  background: rgba(69, 80, 91, 0.8);
+  background: rgba(43, 60, 77, 0.863);
   border-radius: 8px;
 }
 
 .portfolio .portfolio-wrap::before {
   content: "";
-  background: #9c013aaf;
+  background: #223255bb;
   position: absolute;
   left: 30px;
   right: 30px;
@@ -780,7 +777,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  color: #37619e;
+  color: #407edb;
 }
 
 .portfolio .portfolio-wrap:hover::before {
@@ -935,12 +932,6 @@ section {
   width: 36px;
   height: 36px;
   transition: 0.3s;
-}
-
-#footer .social-links a:hover {
-  background: #a80742;
-  color: #fff;
-  text-decoration: none;
 }
 
 #footer .copyright,
