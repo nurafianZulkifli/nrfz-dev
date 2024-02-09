@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  color: #a80742;
+  color: #407edb;
   text-decoration: none;
 }
 
@@ -471,31 +471,15 @@ h6 {
   cursor: default;
 }
 
-.about-me .details p {
-  line-height: 24px;
-  font-size: 14px;
-  margin-bottom: 0;
-  color: #fff;
-}
 
-.about-me p.socials a {
-  line-height: 24px;
-  font-size: 20px;
-  margin-bottom: 0;
-  color: #fff;
-}
-
-.about-me p.socials a:hover {
-  color: #2861b8;
-}
 
 .about-me .service-item:hover .details h3 {
-  color: #2861b8;
+  color: #407edb;
 }
 
 .about-me .service-item:hover .details .icon, .socials .service-item:hover .details .icon  {
-  background-color: #2861b8;
-  border: 2px solid #2861b8;
+  background-color: #407edb;
+  border: 2px solid #407edb;
 }
 
 .about-me .service-item:hover .details .icon i {
