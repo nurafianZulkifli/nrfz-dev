@@ -33,6 +33,8 @@ h6 {
 }
 
 
+
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -273,6 +275,61 @@ h6 {
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
+#centered-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#profile-picture {
+  background-image: url(/assets/img/about.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 110px;
+  width: 270px;
+  height: 270px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#title {
+  margin-top: 24px;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+}
+
+#position {
+  font-size: 20px;
+  color: #6aadb2;
+  text-align: center;
+  display: block;
+}
+
+#media {
+  margin-top: 60px;
+  width: 370px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.media_link {
+  color: #ffffff;
+  transition: all .083s ease-in-out;
+}
+
+.media_link:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+
+
+
 #hero {
   width: 100%;
   height: 100vh;
