@@ -34,7 +34,6 @@ h6 {
 
 
 
-
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -139,7 +138,8 @@ h6 {
 
 @media (min-width: 991px) {
   #main {
-    margin-left: 100px;
+    margin-left: 90px;
+    margin-right: 60px;
   }
 
 
@@ -171,12 +171,14 @@ h6 {
 .nav-menu a:focus {
   display: flex;
   align-items: center;
+  justify-content: center;
   color: #fff;
-  padding: 10px 18px;
+  padding: 17px;
+  padding-left: 17px;
   margin-bottom: 8px;
   transition: 0.3s;
   font-size: 15px;
-  border-radius: 50px;
+  border-radius: 30px;
   background: #131c29;
   height: 56px;
   width: 100%;
@@ -244,7 +246,7 @@ h6 {
   top: 10px;
   z-index: 9998;
   border: 0;
-  background: #494042;
+  background: #131c29;
   font-size: 30px;
   transition: all 0.4s;
   outline: none !important;
@@ -439,7 +441,7 @@ h6 {
 }
 
 
-.about-me .details .icon  {
+.about-me .details .icon {
   margin: 0;
   width: 72px;
   height: 72px;
@@ -473,7 +475,8 @@ h6 {
   color: #407edb;
 }
 
-.about-me .service-item:hover .details .icon, .socials .service-item:hover .details .icon  {
+.about-me .service-item:hover .details .icon,
+.socials .service-item:hover .details .icon {
   background-color: #407edb;
   border: 2px solid #407edb;
 }
@@ -669,6 +672,7 @@ section {
   color: #fff;
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
+  white-space: nowrap
 }
 
 .portfolio #portfolio-flters li:hover,
