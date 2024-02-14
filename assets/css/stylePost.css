@@ -484,7 +484,7 @@ h6 {
   margin-left: 23px;
   transition: all ease-in-out 0.3s;
   position: relative;
-  background-color: #18191a;
+  background-color: #181818f1;
   text-align: center;
   border-radius: 8px;
   box-shadow: 0px 0 25px rgba(var(--color-black-rgb), 0.1);
