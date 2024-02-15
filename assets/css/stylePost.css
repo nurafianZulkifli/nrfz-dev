@@ -10,6 +10,7 @@ body {
 a {
   color: #37619e;
   text-decoration: none;
+  font-size: 20px;
 }
 
 a:hover {
@@ -276,58 +277,6 @@ h6 {
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-#centered-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#profile-picture {
-  background-image: url("../img/t1.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 110px;
-  width: 270px;
-  height: 270px;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-#title {
-  margin-top: 24px;
-  font-size: 40px;
-  font-weight: 600;
-  text-align: center;
-  display: block;
-}
-
-#position {
-  font-size: 20px;
-  color: #407edb;
-  text-align: center;
-  display: block;
-}
-
-#media {
-  margin-top: 60px;
-  width: 415px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.media_link {
-  color: #ffffff;
-  transition: all .083s ease-in-out;
-}
-
-.media_link:hover {
-  transform: translateY(-2px);
-  opacity: 1;
-}
-
 
 #hero {
   width: 100%;
@@ -464,16 +413,16 @@ h6 {
   margin-top: 6em;
 }
 
-.about-me .img {
+.about-project .img {
   border-radius: 8px;
   overflow: hidden;
 }
 
-.about-me .img img {
+.about-project .img img {
   transition: 0.6s;
 }
 
-.about-me .details {
+.about-project .details {
   padding-top: 34px;
   padding-right: 30px;
   padding-bottom: 9px;
@@ -484,14 +433,14 @@ h6 {
   margin-left: 23px;
   transition: all ease-in-out 0.3s;
   position: relative;
-  background-color: #181818f1;
+  /* background-color: #181818f1; */
   text-align: center;
   border-radius: 8px;
   box-shadow: 0px 0 25px rgba(var(--color-black-rgb), 0.1);
 }
 
 
-.about-me .details .icon {
+.about-project .details .icon {
   margin: 0;
   width: 72px;
   height: 72px;
@@ -510,7 +459,7 @@ h6 {
   border: 6px solid #37619e;
 }
 
-.about-me .details h3 {
+.about-project .details h3 {
   color: #fff;
   font-weight: 700;
   margin: 10px 0 15px 0;
@@ -519,23 +468,37 @@ h6 {
   cursor: default;
 }
 
+.about-project .details h3 {
+  font-size: 22px;
+}
 
+.about-project .details p {
+  font-size: 22px;
+}
 
-.about-me .service-item:hover .details h3 {
+.about-project .service-item:hover .details a {
   color: #407edb;
 }
 
-.about-me .service-item:hover .details .icon,
-.socials .service-item:hover .details .icon {
-  background-color: #407edb;
-  border: 2px solid #407edb;
-}
-
-.about-me .service-item:hover .details .icon i {
+.about-project .service-item .details a {
   color: #fff;
 }
 
-.about-me .service-item:hover .img img {
+.portfolio-description a {
+  color: #fff;
+  font-size: 18px;
+}
+
+.portfolio-description a:hover {
+  color: #407edb;
+}
+
+
+.about-project .service-item:hover .details .icon i {
+  color: #fff;
+}
+
+.about-project .service-item:hover .img img {
   transform: scale(1.2);
 }
 
