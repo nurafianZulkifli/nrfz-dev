@@ -137,10 +137,10 @@ h6 {
 }
 
 @media (min-width: 991px) {
-  #main {
+  /* #main {
     margin-left: 90px;
     margin-right: 60px;
-  }
+  } */
 
 
 }
@@ -337,6 +337,14 @@ h6 {
   background: url("../img/hero-bg.jpg") top right no-repeat;
   background-size: cover;
   position: relative;
+}
+
+#hero-works {
+  width: 100%;
+  height: 50vh;
+  background-size: cover;
+  position: relative;
+  padding: 0;
 }
 
 @media (min-width: 992px) {
@@ -870,9 +878,15 @@ section {
 }
 
 .portfolio-details .portfolio-description h2 {
-  font-size: 26px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 20px;
+}
+
+.portfolio-details .portfolio-description h6 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 30px;
 }
 
 .portfolio-details .portfolio-description p {
