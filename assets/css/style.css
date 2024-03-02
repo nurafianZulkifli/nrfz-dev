@@ -907,6 +907,11 @@ section {
 
 
 /*  */
+
+h6 a {
+  color: #fff;
+}
+
 .port-cover.overlay:before {
   background: rgba(0, 0, 0, 0.748);
   position: absolute;
