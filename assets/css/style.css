@@ -334,9 +334,10 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top right no-repeat;
+  background: url("../img/hero-bg.png") top right no-repeat;
   background-size: cover;
   position: relative;
+  backdrop-filter: blur(5px);
 }
 
 
@@ -557,6 +558,7 @@ section {
 
 .skills .progress-bar-wrap {
   background: #413a3b;
+  border-radius: 10px;
 }
 
 .skills .progress-bar {
@@ -564,6 +566,7 @@ section {
   height: 10px;
   transition: 0.9s;
   background-color: #37619e;
+  border-radius: 10px;
 }
 
 .skills-category {
@@ -634,8 +637,21 @@ section {
   height: 16px;
   border-radius: 50px;
   left: -9px;
-  top: 0;
+  top: 5px;
   background: #18191a;
+  border: 2px solid #37619e;
+  cursor: default;
+}
+
+.resume .resume-item-present::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  left: -9px;
+  top: 5px;
+  background: #37619e;
   border: 2px solid #37619e;
   cursor: default;
 }
@@ -838,7 +854,7 @@ section {
 }
 
 .portfolio-details .portfolio-description h3 {
-  font-size: 28px;
+  font-size: 25px;
   font-weight: 700;
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -910,6 +926,7 @@ section {
 
 h6 a {
   color: #fff;
+  font-size: 24px;
 }
 
 .port-cover.overlay:before {
@@ -921,6 +938,7 @@ h6 a {
   right: 0;
   bottom: 0;
   z-index: 1;
+  backdrop-filter: blur(5px);
 }
 
 .port-cover > .container {
@@ -963,13 +981,13 @@ h6 a {
 }
 
 .sidebar-box .heading {
-  font-size: 28px;
+  font-size: 25px;
   color: #fff;
-  font-weight: 400;
+  font-weight: 700;
   margin: 20px;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #eee;
   cursor: default;
 }
 
