@@ -315,8 +315,9 @@ h6 {
 
 #media {
   margin-top: 60px;
-  width: 390px;
+  width: 380px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
