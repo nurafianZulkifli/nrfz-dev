@@ -3415,6 +3415,11 @@ background-color: #5b7ed4;
   color: #407edb;
 }
 
+.block-21 .text .meta {
+  margin-left: 20px;
+}
+
+
 .block-21 .text .meta>div {
   display: inline-block;
   font-size: 12px;
@@ -3594,7 +3599,7 @@ h3.heading {
   position: relative;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #a6a6a6;
+  border-bottom: 1px solid #373737;
   list-style: none;
 }
 
