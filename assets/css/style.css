@@ -86,9 +86,9 @@ h6 {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #1d2434;
-  border-top-color: #fff;
-  border-bottom-color: #fff;
+  border: 6px solid #5b7ed4;
+  border-top-color: #3f3a3b;
+  border-bottom-color: #3f3a3b;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -442,7 +442,7 @@ h6 {
   margin: 0;
   width: 72px;
   height: 72px;
-  background: #1d2434;
+  background: #407edb;
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -454,7 +454,7 @@ h6 {
   position: absolute;
   top: -36px;
   left: calc(50% - 36px);
-  border: 6px solid #1d2434;
+  border: 6px solid #407edb;
 }
 
 .about-me .details h3 {
@@ -517,7 +517,7 @@ section {
   display: block;
   width: 40px;
   height: 3px;
-  background: #1d2434;
+  background: #407edb;
   bottom: 0;
   left: calc(50% - 20px);
   border-radius: 20px;
@@ -565,7 +565,7 @@ section {
   width: 1px;
   height: 10px;
   transition: 0.9s;
-  background-color: #1d2434;
+  background-color: #407edb;
   border-radius: 10px;
 }
 
@@ -591,7 +591,7 @@ section {
 .resume .resume-item {
   padding: 0 0 20px 20px;
   margin-top: -2px;
-  border-left: 2px solid #1d2434;
+  border-left: 2px solid #407edb;
   position: relative;
   cursor: default;
 }
@@ -602,7 +602,7 @@ section {
   font-weight: bolder;
   text-transform: uppercase;
   font-family: 'Inter', sans-serif;
-  color: #1d2434;
+  color: #407edb;
   margin-bottom: 10px;
   cursor: default;
 }
@@ -639,7 +639,7 @@ section {
   left: -9px;
   top: 5px;
   background: #18191a;
-  border: 2px solid #1d2434;
+  border: 2px solid #407edb;
   cursor: default;
 }
 
@@ -651,8 +651,8 @@ section {
   border-radius: 50px;
   left: -9px;
   top: 5px;
-  background: #1d2434;
-  border: 2px solid #1d2434;
+  background: #407edb;
+  border: 2px solid #407edb;
   cursor: default;
 }
 
