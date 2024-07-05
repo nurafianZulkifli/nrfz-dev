@@ -3636,6 +3636,13 @@ h3.heading {
   color: #407edb;
 }
 
+.categories-mob {
+  position: relative; /* or relative */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #ftco-loader {
   position: fixed;
   width: 96px;
