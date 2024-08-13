@@ -491,7 +491,7 @@ section.follow-area.clearfix {
     line-height: 40px;
     width: 40px;
     height: 40px;
-    bottom: 63px;
+    bottom: 54px;
     background-color: #898a77;
     color: #ffffff;
     text-align: center;
@@ -501,7 +501,7 @@ section.follow-area.clearfix {
     border-radius: 50%;
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
-    z-index: 15962536;
+    z-index: 12345111212;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1137,6 +1137,7 @@ section.follow-area.clearfix {
 /* :: 9.0 Footer CSS */
 .footer-content {
     padding: 20px 0;
+    padding-right: 57px;
 }
 
 .footer-content .copywrite-text {
