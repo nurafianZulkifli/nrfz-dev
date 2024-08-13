@@ -122,6 +122,11 @@ ul li {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
 
 
 .bg-img {
@@ -185,7 +190,7 @@ button.mfp-arrow {
 }
 
 .bg-gray {
-    background-color: #f7f7f7 !important;
+    background-color: #f3f4ef !important;
 }
 
 textarea:focus,
@@ -807,7 +812,7 @@ section.follow-area.clearfix {
 }
 
 .main-header-area.sticky {
-    background-color: #000000;
+    background-color: #161714f8;
 }
 
 .classy-navbar-toggler .navbarToggler span {

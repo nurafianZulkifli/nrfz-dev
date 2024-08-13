@@ -36,6 +36,167 @@ footer {
 }
   
 
+
+.owl-carousel.owl-loaded {
+    display: block;
+    scale: 0.65;
+}
+
+.skill-ara {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.skill-ara .single-skill {
+    margin-bottom: 25px;
+  }
+  
+  .skill-ara .single-skill .progress-count {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .skill-ara .single-skill .progress-count p {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #000d21;
+    margin-bottom: 10px;
+  }
+  
+  .skill-ara .single-skill .progress-count span {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #898a77;
+    margin: 0;
+  }
+  
+  .skill-ara .single-skill .progress {
+    height: 4px;
+    border-radius: 0;
+    background: #eff3cf;
+    border-radius: 4px;
+  }
+  
+  .skill-ara .single-skill .progress-bar {
+    background-color: #898a77;
+    border-radius: 7px;
+  }
+  
+  .gallery-area {
+    position: relative;
+  }
+  
+  .gallery-area.gallery-area2::before {
+    position: unset;
+  }
+  
+  .gallery-area::before {
+    position: absolute;
+    content: "";
+    width: 74%;
+    height: 70%;
+    background: #F8F8F8;
+    border-radius: 90px 0px 0px 90px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  @media only screen and (min-width: 2100px) and (max-width: 2600px) {
+    .gallery-area::before {
+      width: 68%;
+    }
+  }
+  
+  .gallery-area .box {
+    position: relative;
+    border-radius: 10px;
+  }
+  
+  .gallery-area .box .gallery-img {
+    height: 565px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .gallery-area .box .small-img {
+    height: 400px;
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .gallery-area .box .small-img {
+      height: 380px;
+    }
+  }
+  
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .gallery-area .box .small-img {
+      height: 335px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .gallery-area .box .small-img {
+      height: 335px;
+    }
+  }
+  
+  .gallery-area .box .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 133, 83, 0.3);
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+  }
+  
+  .gallery-area .box .overlay .overlay-content {
+    position: absolute;
+    left: 10%;
+    bottom: 37px;
+  }
+  
+  .gallery-area .box .overlay .overlay-content a {
+    color: #000000;
+    display: inline-block;
+    font-size: 26px;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    transform: scale(1);
+  }
+  
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .gallery-area .box .overlay .overlay-content a {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .gallery-area .box .overlay .overlay-content a {
+      font-size: 22px;
+    }
+  }
+  
+  .gallery-area .box .overlay .overlay-content a:hover {
+    transform: scale(1.08);
+  }
+  
+  .gallery-area .box.snake {
+    position: relative;
+    overflow: hidden;
+  }
+
+
+
+
+
+/*  */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     img.profile-pic {
         width: 310px;
