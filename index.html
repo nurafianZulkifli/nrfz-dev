@@ -374,42 +374,15 @@
         </div>
     </footer>
 
-    <div id="gdpr-thing">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="footer-content d-flex align-items-center justify-content-between">
-
-                    <div class="copywrite-text">
-                        <p class="gdpr-txt">We use cookies to offer you a better browsing experience and analyze site
-                            traffic. If you continue to use this site, you consent to our use of cookies <a href="#">Learn more</a></p>
-                    </div>
-
-                    <div class="social-info">
-                        <a class="btn gdpr-btn btn-2 mt-15" id="consent-button" href="#">Accept</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-    <script type="text/javascript">
-        // On page load
-        window.addEventListener('load', (event) => {
-            // Check if already accepted before, hide banner
-            if (localStorage.getItem('gdpr-accept') === 'ok') {
-                document.getElementById("gdpr-thing").style.display = 'none';
-            }
-
-            // If accept, hide banner and remeber choice
-            document.getElementById("consent-button").onclick = function () {
-                document.getElementById("gdpr-thing").style.display = 'none';
-                localStorage.setItem('gdpr-accept', 'ok');
-            };
-        });
-    </script>
+    <script type="text/javascript" id="cookiebanner"
+        src="js/cookies-banner.js" 
+        data-position="bottom"
+        data-padding="17px 16px"
+        data-bg="#f2f3e5"
+        data-fg="#000"
+        data-font-family="Poppins, sans-serif"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
 
     <script src="js/jquery.min.js"></script>
 

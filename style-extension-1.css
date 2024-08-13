@@ -34,43 +34,6 @@ img.profile-pic {
 footer {
     padding-bottom: 30px;
 }
-
-#gdpr-thing {
-    background-color: #d3d3d3;
-    padding-left: 1em;
-    padding-right: 3em;
-    display: flex;
-}
-
-p.gdpr-txt {
-    padding-left: 1em;
-    padding-right: 2em;
-    color: #8e4848;
-    margin-bottom: 0rem;
-}
-
-.gdpr-btn {
-    position: relative;
-    z-index: 1;
-    min-width: 160px;
-    height: 46px;
-    line-height: 42px;
-    font-size: 16px;
-    font-weight: 500;
-    display: inline-block;
-    padding: 0 30px;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid #898a77;
-    border-radius: 60px;
-    -webkit-transition-duration: 500ms;
-    -o-transition-duration: 500ms;
-    transition-duration: 500ms;
-    margin-left: 20px;
-    margin-bottom: 11px;
-}
   
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
