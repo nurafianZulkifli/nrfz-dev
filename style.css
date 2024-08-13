@@ -827,7 +827,7 @@ section.follow-area.clearfix {
 }
 
 #profile-picture {
-    background-image: url("https://i.imgur.com/CtRVYoU.png");
+    background-image: url("../img/bg-img/about.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -879,7 +879,7 @@ section.follow-area.clearfix {
 #hero {
     width: 100%;
     height: 100vh;
-    background: url("../img/bg-img/hero-bg.png") top right no-repeat;
+    background: url("img/bg-img/hero-bg.png") top right no-repeat;
     background-size: cover;
     position: relative;
     backdrop-filter: blur(5px);
