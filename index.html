@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-extension-1.css">
 
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 
 </head>
 
@@ -347,7 +348,6 @@
         </div>
     </section>
 
-
     <footer class="footer-area">
         <div class="container">
             <div class="row">
@@ -374,6 +374,42 @@
         </div>
     </footer>
 
+    <div id="gdpr-thing">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-content d-flex align-items-center justify-content-between">
+
+                    <div class="copywrite-text">
+                        <p class="gdpr-txt">We use cookies to offer you a better browsing experience and analyze site
+                            traffic. If you continue to use this site, you consent to our use of cookies <a href="#">Learn more</a></p>
+                    </div>
+
+                    <div class="social-info">
+                        <a class="btn gdpr-btn btn-2 mt-15" id="consent-button" href="#">Accept</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script type="text/javascript">
+        // On page load
+        window.addEventListener('load', (event) => {
+            // Check if already accepted before, hide banner
+            if (localStorage.getItem('gdpr-accept') === 'ok') {
+                document.getElementById("gdpr-thing").style.display = 'none';
+            }
+
+            // If accept, hide banner and remeber choice
+            document.getElementById("consent-button").onclick = function () {
+                document.getElementById("gdpr-thing").style.display = 'none';
+                localStorage.setItem('gdpr-accept', 'ok');
+            };
+        });
+    </script>
 
     <script src="js/jquery.min.js"></script>
 
@@ -385,23 +421,6 @@
 
     <script src="js/default-assets/active.js"></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-    
-    <script>
-    window.cookieconsent.initialise({
-     cookie: {
-        domain : "/",
-        name: "cookie_consent",
-      },
-      palette:{
-        popup:  { background: "#e8ecf7"  },
-        button: { background: "#181818"},
-      },
-      content:{
-        message: "We use cookies to offer you a better browsing experience and analyze site traffic. If you continue to use this site, you consent to our use of cookies",
-      },
-    });
-    </script>
 
 </body>
 
