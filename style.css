@@ -1715,7 +1715,7 @@ section.follow-area.clearfix {
 
 .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
 .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
-    color: #fc6060;
+    color: #80a8cc;
 }
 
 .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
