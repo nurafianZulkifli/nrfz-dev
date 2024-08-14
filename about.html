@@ -14,6 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-extension-1.css">
 </head>
 
 <body>
@@ -22,26 +23,6 @@
         <div class="loader"></div>
     </div>
 
-
-    <div class="top-search-area">
-        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-
-                        <button type="button" class="btn close-btn" data-dismiss="modal"><i
-                                class="ti-close"></i></button>
-
-                        <form action="index.html" method="post">
-                            <input type="search" name="top-search-bar" class="form-control"
-                                placeholder="Search and hit enter...">
-                            <button type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <header class="header-area">
 
@@ -71,9 +52,6 @@
                                     <li><a href="./blog.html">Blog</a></li>
 
                                 </ul>
-
-                                <!--                                 <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i
-                                        class="ti-search"></i></div> -->
                             </div>
 
                         </div>
@@ -84,7 +62,8 @@
     </header>
 
 
-    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(img/bg-img/38.jpg);">
+    <section class="breadcrumb-area bg-img bg-overlay jarallax"
+        style="background-image: url(img/bg-img/hero-bg-small.png);">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -96,7 +75,7 @@
                                 <li class="breadcrumb-item active" aria-current="page">About</li>
                             </ol>
                         </nav>
-                        <h2 class="page-title">About Us</h2>
+                        <h2 class="page-title">About Me</h2>
                     </div>
                 </div>
             </div>
@@ -104,166 +83,355 @@
     </section>
 
 
-    <div class="about-us-area section-padding-80-0 clearfix">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-6">
-                    <div class="about-us-content mb-80">
-                        <h3 class="wow fadeInUp" data-wow-delay="100ms">We Live For Passion</h3>
-                        <div class="line wow fadeInUp" data-wow-delay="200ms"></div>
-                        <p class="wow fadeInUp" data-wow-delay="300ms">Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et do sunt explicabo. Nemo enim
-                            ipsam et dolore magnam aliquam quaerat voluptatem.</p>
-                        <p class="wow fadeInUp" data-wow-delay="400ms">Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et do sunt explicabo. Nemo enim
-                            ipsam et dolore magnam aliquam quaerat voluptatem.</p>
-                        <a class="btn alime-btn btn-2 mt-30 wow fadeInUp" data-wow-delay="500ms" href="#">Contact Us</a>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="about-video-area mb-80 wow fadeInUp" data-wow-delay="100ms">
-                        <img src="img/bg-img/17.jpg" alt>
-                        <div class="video-icon">
-                            <a href="https://www.youtube.com/watch?v=sSakBz_eYzQ" class="video-play-btn"><i
-                                    class="arrow_triangle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <section class="why-choose-us-area bg-gray section-padding-80-0 clearfix">
+    <section class="about-me-summ section-padding-80-0 clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
-                        <h2>Why Choose Us</h2>
+                        <h2>Summary</h2>
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
-                        <h1>Why Choose Us</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-me-summary text-center mb-80 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="summ-icon">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Birthday</h3>
+                        <h4 style="font-size: 15px;">04 March 2000</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-me-summary text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="summ-icon">
+                            <i class="fa-solid fa-earth-asia"></i>
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Country</h3>
+                        <h4 style="font-size: 15px;">Singapore</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-me-summary text-center mb-80 wow fadeInUp" data-wow-delay="700ms">
+                        <div class="summ-icon">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Age</h3>
+                        <h4 style="font-size: 15px;">24 years old</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-me-summary text-center mb-80 wow fadeInUp" data-wow-delay="900ms">
+                        <div class="summ-icon">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Highest Education</h3>
+                        <h4 style="font-size: 15px;">Poly Diploma (Diploma in IT)</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-lg-8">
+                    <div class="about-me-summary text-center mb-80 wow fadeInUp" data-wow-delay="900ms">
+                        <div class="summ-icon">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Likes & Interests</h3>
+                        <h4 style="font-size: 15px;">Wayfinding Signage Designs, UI Designs, UX Design Research</h4>
                     </div>
                 </div>
             </div>
-            <div class="row">
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-choose-us-content text-center mb-80 wow fadeInUp" data-wow-delay="100ms">
-                        <div class="chosse-us-icon">
-                            <i class="fa fa-film" aria-hidden="true"></i>
-                        </div>
-                        <h4>High Quality Images</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur isicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut elit, sed do eiusmod te</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-choose-us-content text-center mb-80 wow fadeInUp" data-wow-delay="300ms">
-                        <div class="chosse-us-icon">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </div>
-                        <h4>Abundant Experience</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur isicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut elit, sed do eiusmod te</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-choose-us-content text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
-                        <div class="chosse-us-icon">
-                            <i class="fa fa-camera" aria-hidden="true"></i>
-                        </div>
-                        <h4>Modern Equipments</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur isicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut elit, sed do eiusmod te</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
 
-    <section class="our-team-area section-padding-80-50">
+    <section class="about-me-area bg-gray section-padding-80-0 clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
-                        <h2>Our Team</h2>
+                        <h2>Timelines</h2>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                        <h1 style="text-align: left; margin-bottom: -45px;">Education</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-
-                <div class="col-md-6 col-xl-3">
-                    <div class="team-content-area text-center mb-30 wow fadeInUp" data-wow-delay="100ms">
-                        <div class="member-thumb">
-                            <img src="img/bg-img/19.jpg" alt>
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="period-date-edu">
+                            2019 - 2022
                         </div>
-                        <h5>Andrew Dean</h5>
-                        <span>Photographer</span>
-                        <div class="member-social-info">
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-twitter-alt"></i></a>
-                            <a href="#"><i class="ti-linkedin"></i></a>
-                            <a href="#"><i class="ti-pinterest"></i></a>
-                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Diploma in Information Technology</h3>
+                        <h4 style="font-size: 15px;">Singapore Polytechnic (SP)</h4>
+                        <p>Tertiary Education (2)</p>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
-                    <div class="team-content-area text-center mb-30 wow fadeInUp" data-wow-delay="300ms">
-                        <div class="member-thumb">
-                            <img src="img/bg-img/20.jpg" alt>
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="period-date-edu">
+                            2017 - 2018
                         </div>
-                        <h5>Tommy Kim</h5>
-                        <span>Photographer</span>
-                        <div class="member-social-info">
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-twitter-alt"></i></a>
-                            <a href="#"><i class="ti-linkedin"></i></a>
-                            <a href="#"><i class="ti-pinterest"></i></a>
-                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">NITEC in Information Technlogy</h3>
+                        <h4 style="font-size: 15px;">Institute of Technical Education (ITE)</h4>
+                        <p>Tertiary Education (1)</p>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
-                    <div class="team-content-area text-center mb-30 wow fadeInUp" data-wow-delay="500ms">
-                        <div class="member-thumb">
-                            <img src="img/bg-img/21.jpg" alt>
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="700ms">
+                        <div class="period-date-edu">
+                            2013 - 2016
                         </div>
-                        <h5>Max McCormick</h5>
-                        <span>Photographer</span>
-                        <div class="member-social-info">
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-twitter-alt"></i></a>
-                            <a href="#"><i class="ti-linkedin"></i></a>
-                            <a href="#"><i class="ti-pinterest"></i></a>
-                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">N Levels</h3>
+                        <h4 style="font-size: 15px;">Chua Chu Kang Secondary School</h4>
+                        <p>Secondary Education</p> <br>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
-                    <div class="team-content-area text-center mb-30 wow fadeInUp" data-wow-delay="700ms">
-                        <div class="member-thumb">
-                            <img src="img/bg-img/22.jpg" alt>
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="period-date-edu">
+                            2007 - 2012
                         </div>
-                        <h5>Robert Ward</h5>
-                        <span>Photographer</span>
-                        <div class="member-social-info">
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-twitter-alt"></i></a>
-                            <a href="#"><i class="ti-linkedin"></i></a>
-                            <a href="#"><i class="ti-pinterest"></i></a>
+                        <h3 style="font-size: 20px; font-weight: bolder;">PSLE</h3>
+                        <h4 style="font-size: 15px;">Unity Primary School</h4>
+                        <p>Primary Education</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                        <h1 style="text-align: left; margin-bottom: -45px;">Awards & Achievements</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="period-date-aa">
+                            2023
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Singapore Armed Forces (SAF)</h4>
+                            <p style="font-size: 15px; text-align: left;">
+                                - Base Sergeant Major Coin (Supply Base Central)
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="period-date-aa">
+                            2019
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Institute of Technical Education (ITE)</h4>
+                            <p style="font-size: 15px; text-align: left;">
+                                - Graduated from ITE <br>
+                                - ITE Gold Course Medal/Graduation Ceremony <br>
+                                - Anugerah Mendaki - 2019 <br>
+                                - Bestari Award <br>(Academic Performance) - 4PM <br>
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="700ms">
+                        <div class="period-date-aa">
+                            2018
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Institute of Technical Education (ITE)</h4>
+                            <p style="font-size: 15px; text-align: left;">
+                                - Service Star Award (Gold) <br>
+                                - Director's List (Year 2) <br>
+                                - Edusave Character Award <br>
+                                - Appointment (Vice President – Mobile Apps & Services Club) <br>
+                                - CDC & CCC ITE Scholarship
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="period-date-aa">
+                            2017
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Institute of Technical Education (ITE)</h4>
+                            <p style="font-size: 15px; text-align: justify;">
+                                - Director's List (Year 1) <br>
+                                - Edusave Character Award <br>
+                                - CDC & CCC ITE Scholarship
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                        <h1 style="text-align: left; margin-bottom: -45px;">Experiences</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="period-date-exp">
+                            Dec 2022 - Jul 2024
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Singapore Armed Forces (SAF)</h4>
+                            <p style="font-size: 15px; text-align: left;">
+                                - Supply Assistant (GE) (2) - SBC CP ASA <br> <b>Sep 2023 - Jul 2024</b><br>
+                                - Supply Assistant (GE) (1) - SBC CP GE Store - SBC CP ASA <br> <b>Dec 2022 - Sep
+                                    2023</b>
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="period-date-exp">
+                            Oct 2021 - Feb 2022
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">HatchDev Asia</h4>
+                            <p style="font-size: 15px; text-align: left;">
+                                - Front-End Developer/UX Designer - Full-Time/Final-Year Project
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="700ms">
+                        <div class="period-date-exp">
+                            Mar 2021 - Aug 2021
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">Housing & Development Board</h4>
+                            <p style="font-size: 15px; text-align: left;">
+                                - Intern, Information Services Group <br>
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="timeline-content text-center mb-80 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="period-date-exp">
+                            Jan 2019 - Feb 2019
+                        </div>
+                        <h3 style="font-size: 20px; font-weight: bolder;">TTS Group of Companies</h4>
+                            <p style="font-size: 15px; text-align: justify;">
+                                - Public Transport Surveyor - Part-Time
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </section>
+
+
+    <section class="follow-area clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                        <h2>Language Proficiency</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-ara wow fadeInUp" data-wow-delay="100ms">
+                <div class="skill">
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>English</p><span>98%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".5s"
+                                aria-valuenow="25" role="progressbar" style="width: 98%" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>Malay</p><span>98%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s"
+                                role="progressbar" style="width: 98%" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                        <h2>Programming Languages</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-ara wow fadeInUp" data-wow-delay="100ms">
+                <div class="skill">
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>HTML</p><span>90%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".5s"
+                                aria-valuenow="25" role="progressbar" style="width: 90%" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>CSS</p><span>90%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s"
+                                role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>JavaScript (Basic)</p><span>50%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s"
+                                role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
 
@@ -278,22 +446,15 @@
                         <div class="copywrite-text">
                             <p>
                                 Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                                template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved</a>
                             </p>
                         </div>
 
-                        <div class="footer-logo">
-                            <a href="#"><img src="img/core-img/logo2.png" alt></a>
-                        </div>
-
                         <div class="social-info">
-                            <a href="#"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="https://github.com/nurafianZulkifli"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/nrfzlkf_"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/Nrfnzlkf/"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/nrfz._/"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -301,7 +462,11 @@
         </div>
     </footer>
 
-
+    <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom"
+        data-bg="#f2f3e5" data-fg="#000" data-font-family="Poppins, sans-serif"
+        data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
 
     <script src="js/jquery.min.js"></script>
 
@@ -313,19 +478,7 @@
 
     <script src="js/default-assets/active.js"></script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
 
-        gtag('config', 'UA-23581568-13');
-    </script>
-    <script defer
-        src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
-        integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
-        data-cf-beacon='{"rayId":"8b1925217e2389b2","serverTiming":{"name":{"cfL4":true}},"version":"2024.7.0","token":"cd0b4b3a733644fc843ef0b185f98241"}'
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

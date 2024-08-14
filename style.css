@@ -119,7 +119,7 @@ ul li {
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.773)
 }
 
 .row {
@@ -190,7 +190,7 @@ button.mfp-arrow {
 }
 
 .bg-gray {
-    background-color: #f3f4ef !important;
+    background-color: #e9eae5 !important;
 }
 
 textarea:focus,
@@ -368,6 +368,7 @@ input:required {
 section.follow-area.clearfix {
     padding-top: 80px;
     padding-bottom: 80px;
+    background-color: #f6f7f2;
 }
 
 /* :: 3.0 Preloader CSS */
@@ -1201,7 +1202,7 @@ section.follow-area.clearfix {
 }
 
 /* :: 10.0 Follow CSS */
-.single-instagram-item {
+.single-software-item {
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -1210,14 +1211,14 @@ section.follow-area.clearfix {
     transition-duration: 500ms;
 }
 
-.single-instagram-item img {
+.single-software-item img {
     width: 100%;
     -webkit-transition-duration: 1500ms;
     -o-transition-duration: 1500ms;
     transition-duration: 1500ms;
 }
 
-.single-instagram-item .instagram-hover-content {
+.single-software-item .instagram-hover-content {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -1233,48 +1234,48 @@ section.follow-area.clearfix {
     transition-duration: 500ms;
 }
 
-.single-instagram-item .instagram-hover-content a {
+.single-software-item .instagram-hover-content a {
     text-align: center;
 }
 
-.single-instagram-item .instagram-hover-content a i {
+.single-software-item .instagram-hover-content a i {
     color: #ffffff;
     font-size: 32px;
     display: block;
     margin-bottom: 15px;
 }
 
-.single-instagram-item .instagram-hover-content a span {
+.single-software-item .instagram-hover-content a span {
     font-size: 14px;
     margin-bottom: 0;
     color: #ffffff;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .single-instagram-item .instagram-hover-content a span {
+    .single-software-item .instagram-hover-content a span {
         font-size: 12px;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .single-instagram-item .instagram-hover-content a span {
+    .single-software-item .instagram-hover-content a span {
         font-size: 12px;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    .single-instagram-item .instagram-hover-content a span {
+    .single-software-item .instagram-hover-content a span {
         font-size: 12px;
     }
 }
 
-.single-instagram-item:hover img {
+.single-software-item:hover img {
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
 }
 
-.single-instagram-item:hover .instagram-hover-content {
+.single-software-item:hover .instagram-hover-content {
     opacity: 1;
     visibility: visible;
 }
@@ -1404,7 +1405,8 @@ section.follow-area.clearfix {
     }
 }
 
-.why-choose-us-content {
+
+.about-me-content {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
@@ -1417,7 +1419,7 @@ section.follow-area.clearfix {
     margin-top: 50px;
 }
 
-.why-choose-us-content .wsd-icon {
+.about-me-content .wsd-icon {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
@@ -1436,7 +1438,7 @@ section.follow-area.clearfix {
     margin-left: -38px;
 }
 
-.why-choose-us-content .ui-icon {
+.about-me-content .ui-icon {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
@@ -1455,7 +1457,7 @@ section.follow-area.clearfix {
     margin-left: -38px;
 }
 
-.why-choose-us-content .ux-icon {
+.about-me-content .ux-icon {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
@@ -1470,11 +1472,11 @@ section.follow-area.clearfix {
     font-size: 30px;
     position: absolute;
     top: -38px;
-    left: 50%;
+    left: 17%;
     margin-left: -38px;
 }
 
-.why-choose-us-content h4 {
+.about-me-content h4 {
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 15px;
@@ -1483,7 +1485,7 @@ section.follow-area.clearfix {
     transition-duration: 800ms;
 }
 
-.why-choose-us-content p {
+.about-me-content p {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
@@ -1491,23 +1493,131 @@ section.follow-area.clearfix {
     margin-bottom: 0;
 }
 
-.why-choose-us-content:hover,
-.why-choose-us-content:focus {
+.about-me-content:hover,
+.about-me-content:focus {
     background-color: #c7e3fb;
 }
 
-.why-choose-us-content:hover .chosse-us-icon,
-.why-choose-us-content:focus .chosse-us-icon {
+.about-me-content:hover .chosse-us-icon,
+.about-me-content:focus .chosse-us-icon {
     background-color: #000000;
     box-shadow: 0 5px 15px 2px rgba(255, 255, 255, 0.15);
 }
 
-.why-choose-us-content:hover h4,
-.why-choose-us-content:hover p,
-.why-choose-us-content:focus h4,
-.why-choose-us-content:focus p {
+.about-me-content:hover h4,
+.about-me-content:hover p,
+.about-me-content:focus h4,
+.about-me-content:focus p {
     color: #000;
 }
+
+/*  */
+.timeline-content {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    background-color: #ffffff;
+    padding: 36px 17px 20px;
+    border-radius: 10px;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+}
+
+.timeline-content .period-date-edu {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 48px;
+    width: 131px;
+    background-color: #898a77;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 30px;
+    color: #ffffff;
+    font-size: 19px;
+    position: absolute;
+    top: -26px;
+    left: 40%;
+    margin-left: -38px;
+}
+
+.timeline-content .period-date-aa {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 48px;
+    width: 131px;
+    background-color: #df7d4d;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 30px;
+    color: #ffffff;
+    font-size: 19px;
+    position: absolute;
+    top: -26px;
+    left: 40%;
+    margin-left: -38px;
+}
+
+.timeline-content .period-date-exp {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 48px;
+    width: 208px;
+    background-color: #80a8cc;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 30px;
+    color: #ffffff;
+    font-size: 19px;
+    position: absolute;
+    top: -26px;
+    left: 32%;
+    margin-left: -38px;
+}
+
+.about-me-summary {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    background-color: #ffffff;
+    padding: 46px 36px 13px;
+    border-radius: 10px;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+}
+
+.about-me-summary .summ-icon {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 76px;
+    width: 76px;
+    background-color: #898a77;
+    display: inline-block;
+    text-align: center;
+    line-height: 76px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 30px;
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -38px;
+}
+
+.about-me-summ {
+    background-color: #f5f6f2;
+}
+
 
 /* :: 12.0 Breadcrumb CSS */
 .breadcrumb-area {
@@ -1545,7 +1655,7 @@ section.follow-area.clearfix {
 }
 
 .breadcrumb-content .breadcrumb .breadcrumb-item {
-    color: #fc6060;
+    color: #898a77;
     font-weight: 400;
     font-size: 16px;
 }
@@ -2316,11 +2426,13 @@ section.follow-area.clearfix {
 .alime-portfolio-area {
     position: relative;
     z-index: 1;
+    background-color: #f5f6f2;  
 }
 
 .alime-portfolio-area .container-fluid {
     padding-right: 10%;
     padding-left: 10%;
+    background-color: #f5f6f2;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
