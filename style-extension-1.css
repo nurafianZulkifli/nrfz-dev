@@ -22,19 +22,12 @@ img.profile-pic {
 }
 
 .profile-link a {
-  padding: 1.3em;
+  padding: 1.0em;
 }
 
 .profile-link a:hover {
   color: #80a8cc;
 }
-
-
-/*  */
-/* footer {
-  padding-bottom: 30px;
-} */
-
 
 
 .owl-carousel.owl-loaded {
@@ -209,7 +202,7 @@ img.profile-pic {
   }
 
   .profile-link a {
-    padding: 1.5em;
+    padding: 1.0em;
     font-size: 10px;
   }
 }
@@ -226,7 +219,7 @@ img.profile-pic {
   }
 
   .profile-link a {
-    padding: 1.5em;
+    padding: 1.0em;
     font-size: 10px;
   }
 
@@ -244,7 +237,7 @@ img.profile-pic {
   }
 
   .profile-link a {
-    padding: 1.5em;
+    padding: 1.0em;
     font-size: 10px;
   }
 
@@ -267,7 +260,7 @@ img.profile-pic {
   }
 
   .profile-link a {
-    padding: 1em;
+    padding: 1.0em;
     font-size: 10px;
   }
 
