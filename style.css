@@ -65,6 +65,7 @@ h6 {
     color: #252525;
     line-height: 1.3;
     font-weight: 600;
+    cursor: default;
 }
 
 a,
@@ -89,6 +90,7 @@ p {
     color: #636363;
     font-size: 16px;
     font-weight: 400;
+    cursor: default;
 }
 
 img {
@@ -472,6 +474,7 @@ section.follow-area.clearfix {
     margin-bottom: 5px;
     display: block;
     line-height: 1.2;
+    cursor: default;
 }
 
 @media only screen and (max-width: 767px) {
@@ -701,12 +704,17 @@ section.follow-area.clearfix {
     }
 }
 
+.classynav {
+    cursor: default;
+}
+
 .classy-nav-container .classy-navbar .classynav ul li a {
     font-size: 16px;
     text-transform: capitalize;
     color: #ffffff;
     font-weight: 500;
     padding: 0 20px;
+    cursor: default;
 }
 
 .classy-nav-container .classy-navbar .classynav ul li a:hover,
@@ -1184,6 +1192,7 @@ section.follow-area.clearfix {
 .footer-content .copywrite-text p {
     margin-bottom: 0;
     color: #252525;
+    cursor: default;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1209,10 +1218,15 @@ section.follow-area.clearfix {
     }
 }
 
+.footer-content .social-info {
+    cursor: default;
+}
+
 .footer-content .social-info a {
     color: #252525;
     font-size: 16px;
     margin-right: 20px;
+    cursor: default;
 }
 
 .footer-content .social-info a:last-child {
@@ -1228,7 +1242,7 @@ section.follow-area.clearfix {
 
 .footer-content .social-info a:hover,
 .footer-content .social-info a:focus {
-    color: #fc6060;
+    color: #80a8cc;
 }
 
 /* :: 10.0 Follow CSS */
@@ -1513,6 +1527,7 @@ section.follow-area.clearfix {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
+    cursor: default;
 }
 
 .about-me-content p {
@@ -1521,6 +1536,7 @@ section.follow-area.clearfix {
     transition-duration: 800ms;
     font-size: 14px;
     margin-bottom: 0;
+    cursor: default;
 }
 
 .about-me-content:hover,
@@ -1627,6 +1643,7 @@ section.follow-area.clearfix {
     left: 30%;
     right: 30%;
     margin-left: -38px;
+    cursor: default;
 }
 
 .about-me-summary {
@@ -1684,6 +1701,7 @@ section.follow-area.clearfix {
 .breadcrumb-area .page-title {
     color: #ffffff;
     font-size: 36px;
+    cursor: default;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1707,6 +1725,7 @@ section.follow-area.clearfix {
     color: #898a77;
     font-weight: 400;
     font-size: 16px;
+    cursor: default;
 }
 
 .breadcrumb-content .breadcrumb .breadcrumb-item a {
@@ -2327,7 +2346,7 @@ section.follow-area.clearfix {
 
 .single-post-area .post-content .post-meta a:hover,
 .single-post-area .post-content .post-meta a:focus {
-    color: #fc6060;
+    color: #80a8cc;
 }
 
 .single-post-area .post-content .post-meta a:hover::after,

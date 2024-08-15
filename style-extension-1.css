@@ -13,12 +13,14 @@ img.profile-pic {
   color: #fff;
   font-size: 35px;
   padding-top: 1em;
+  cursor: default;
 }
 
 .profile-desc {
   color: #898a77;
   font-size: 20px;
   font-weight: normal;
+  cursor: default;
 }
 
 .profile-link a {
@@ -56,6 +58,7 @@ img.profile-pic {
   text-transform: capitalize;
   color: #000d21;
   margin-bottom: 10px;
+  cursor: default;
 }
 
 .skill-ara .single-skill .progress-count span {
