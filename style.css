@@ -2281,7 +2281,7 @@ section.follow-area.clearfix {
     font-size: 12px;
     text-transform: uppercase;
     color: #ffffff;
-    background-color: #fc6060;
+    background-color: #898a77;
     top: 15px;
     right: 15px;
     z-index: 20;
@@ -2291,7 +2291,7 @@ section.follow-area.clearfix {
 .single-post-area .post-catagory:hover,
 .single-post-area .post-catagory:focus {
     font-weight: 500;
-    background-color: #000000;
+    background-color: #80a8cc;
 }
 
 .single-post-area .post-content {
@@ -2317,13 +2317,13 @@ section.follow-area.clearfix {
     margin-right: 21px;
 }
 
-.single-post-area .post-content .post-meta a:last-child::after {
+/* .single-post-area .post-content .post-meta a:last-child::after {
     content: '|';
     position: absolute;
     top: 0;
     left: -11px;
     z-index: 1;
-}
+} */
 
 .single-post-area .post-content .post-meta a:hover,
 .single-post-area .post-content .post-meta a:focus {
@@ -2349,7 +2349,7 @@ section.follow-area.clearfix {
 
 .single-post-area .post-content .post-title:hover,
 .single-post-area .post-content .post-title:focus {
-    color: #fc6060;
+    color: #80a8cc;
 }
 
 .single-post-area:hover .post-thumbnail img,
