@@ -70,7 +70,7 @@ img.profile-pic {
 }
 
 .skill-ara .single-skill .progress {
-  height: 4px;
+  height: 8px;
   border-radius: 0;
   background-color: #dbe3e9;
   border-radius: 4px;
@@ -245,6 +245,7 @@ img.profile-pic {
 }
 
 .mb-3 {
+  margin-top: 1.2rem !important;
   margin-bottom: 1rem !important;
 }
 
@@ -410,6 +411,10 @@ blockquote {
   color: #000;
   border-radius: 1em;
   cursor: default;
+}
+
+.befaft-slider {
+  padding-top: 3em;
 }
 
 
