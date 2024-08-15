@@ -236,10 +236,12 @@ img.profile-pic {
 }
 
 
-/*  */
+/*--------------------------------------------------------------
+# Blog Posts
+--------------------------------------------------------------*/
 .breadcrumb-area .page-title-blog {
   color: #ffffff;
-  font-size: 70px;
+  font-size: 65px;
 }
 
 .mb-3 {
@@ -330,9 +332,11 @@ figcaption p {
   margin-bottom: 30px;
   padding-bottom: 2px;
 }
+
 .p-4 {
   padding: 1.5rem !important;
 }
+
 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -398,6 +402,14 @@ h3.heading {
   padding-right: calc(var(--bs-gutter-x)* .5);
   padding-left: calc(var(--bs-gutter-x)* .5);
   margin-top: var(--bs-gutter-y);
+}
+
+blockquote {
+  background-color: #e9eae5;
+  padding: 2em;
+  color: #000;
+  border-radius: 1em;
+  cursor: default;
 }
 
 

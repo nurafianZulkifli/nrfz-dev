@@ -714,7 +714,7 @@ section.follow-area.clearfix {
     color: #ffffff;
     font-weight: 500;
     padding: 0 20px;
-    cursor: default;
+    cursor: pointer;
 }
 
 .classy-nav-container .classy-navbar .classynav ul li a:hover,
