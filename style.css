@@ -1,7 +1,7 @@
 /* ------------------------------------------
 [Master Stylesheet]
 
-Template Name: Alime - Photography HTML Template
+Template Name: pw - Photography HTML Template
 Template Author: Colorlib
 Template Author URL: http://colorlib.com
 Version: 1.0.0
@@ -531,13 +531,13 @@ section.follow-area.clearfix {
     box-shadow: none;
 }
 
-.alime-btn {
+.pw-btn {
     position: relative;
     z-index: 1;
     min-width: 160px;
     height: 46px;
     line-height: 42px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     display: inline-block;
     padding: 0 30px;
@@ -551,12 +551,12 @@ section.follow-area.clearfix {
     transition-duration: 500ms;
 }
 
-.alime-btn.btn-2 {
+.pw-btn.btn-2 {
     color: #252525;
 }
 
-.alime-btn:focus,
-.alime-btn:hover {
+.pw-btn:focus,
+.pw-btn:hover {
     font-weight: 500;
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
@@ -1842,7 +1842,7 @@ section.follow-area.clearfix {
     margin-bottom: 20px;
 }
 
-.alime-blockquote {
+.pw-blockquote {
     position: relative;
     z-index: 1;
     margin-bottom: 30px;
@@ -1851,7 +1851,7 @@ section.follow-area.clearfix {
     padding-left: 30px;
 }
 
-.alime-blockquote h4 {
+.pw-blockquote h4 {
     margin-bottom: 15px;
     font-size: 24px;
     color: #161715;
@@ -1860,12 +1860,12 @@ section.follow-area.clearfix {
 }
 
 @media only screen and (max-width: 767px) {
-    .alime-blockquote h4 {
+    .pw-blockquote h4 {
         font-size: 18px;
     }
 }
 
-.alime-blockquote h6 {
+.pw-blockquote h6 {
     font-size: 18px;
     color: #fc6060;
     text-transform: uppercase;
@@ -1873,7 +1873,7 @@ section.follow-area.clearfix {
 }
 
 @media only screen and (max-width: 767px) {
-    .alime-blockquote h6 {
+    .pw-blockquote h6 {
         font-size: 14px;
     }
 }
@@ -1939,13 +1939,13 @@ section.follow-area.clearfix {
     color: #fc6060;
 }
 
-.alime-pager-area {
+.pw-pager-area {
     position: relative;
     z-index: 1;
 }
 
-.alime-pager-area .previous,
-.alime-pager-area .next {
+.pw-pager-area .previous,
+.pw-pager-area .next {
     width: 100%;
     position: relative;
     z-index: 1;
@@ -1954,14 +1954,14 @@ section.follow-area.clearfix {
 
 @media only screen and (max-width: 767px) {
 
-    .alime-pager-area .previous,
-    .alime-pager-area .next {
+    .pw-pager-area .previous,
+    .pw-pager-area .next {
         height: 180px;
     }
 }
 
-.alime-pager-area .previous::after,
-.alime-pager-area .next::after {
+.pw-pager-area .previous::after,
+.pw-pager-area .next::after {
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
     transition-duration: 500ms;
@@ -1977,8 +1977,8 @@ section.follow-area.clearfix {
     visibility: hidden;
 }
 
-.alime-pager-area .previous .overlay-content,
-.alime-pager-area .next .overlay-content {
+.pw-pager-area .previous .overlay-content,
+.pw-pager-area .next .overlay-content {
     position: absolute;
     width: 70%;
     height: 100%;
@@ -1988,8 +1988,8 @@ section.follow-area.clearfix {
     z-index: 100;
 }
 
-.alime-pager-area .previous .overlay-content .post-title,
-.alime-pager-area .next .overlay-content .post-title {
+.pw-pager-area .previous .overlay-content .post-title,
+.pw-pager-area .next .overlay-content .post-title {
     font-size: 24px;
     color: #ffffff;
     margin-bottom: 0;
@@ -1997,23 +1997,23 @@ section.follow-area.clearfix {
 
 @media only screen and (max-width: 767px) {
 
-    .alime-pager-area .previous .overlay-content .post-title,
-    .alime-pager-area .next .overlay-content .post-title {
+    .pw-pager-area .previous .overlay-content .post-title,
+    .pw-pager-area .next .overlay-content .post-title {
         font-size: 14px;
     }
 }
 
-.alime-pager-area .previous .overlay-content .post-title:hover,
-.alime-pager-area .previous .overlay-content .post-title:focus,
-.alime-pager-area .next .overlay-content .post-title:hover,
-.alime-pager-area .next .overlay-content .post-title:focus {
+.pw-pager-area .previous .overlay-content .post-title:hover,
+.pw-pager-area .previous .overlay-content .post-title:focus,
+.pw-pager-area .next .overlay-content .post-title:hover,
+.pw-pager-area .next .overlay-content .post-title:focus {
     color: #fc6060;
 }
 
-.alime-pager-area .previous .overlay-content .previous-link,
-.alime-pager-area .previous .overlay-content .next-link,
-.alime-pager-area .next .overlay-content .previous-link,
-.alime-pager-area .next .overlay-content .next-link {
+.pw-pager-area .previous .overlay-content .previous-link,
+.pw-pager-area .previous .overlay-content .next-link,
+.pw-pager-area .next .overlay-content .previous-link,
+.pw-pager-area .next .overlay-content .next-link {
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
     transition-duration: 500ms;
@@ -2030,37 +2030,37 @@ section.follow-area.clearfix {
     opacity: 0;
 }
 
-.alime-pager-area .previous .overlay-content .previous-link:hover,
-.alime-pager-area .previous .overlay-content .previous-link:focus,
-.alime-pager-area .previous .overlay-content .next-link:hover,
-.alime-pager-area .previous .overlay-content .next-link:focus,
-.alime-pager-area .next .overlay-content .previous-link:hover,
-.alime-pager-area .next .overlay-content .previous-link:focus,
-.alime-pager-area .next .overlay-content .next-link:hover,
-.alime-pager-area .next .overlay-content .next-link:focus {
+.pw-pager-area .previous .overlay-content .previous-link:hover,
+.pw-pager-area .previous .overlay-content .previous-link:focus,
+.pw-pager-area .previous .overlay-content .next-link:hover,
+.pw-pager-area .previous .overlay-content .next-link:focus,
+.pw-pager-area .next .overlay-content .previous-link:hover,
+.pw-pager-area .next .overlay-content .previous-link:focus,
+.pw-pager-area .next .overlay-content .next-link:hover,
+.pw-pager-area .next .overlay-content .next-link:focus {
     color: #fc6060;
 }
 
-.alime-pager-area .previous:hover::after,
-.alime-pager-area .previous:focus::after,
-.alime-pager-area .next:hover::after,
-.alime-pager-area .next:focus::after {
+.pw-pager-area .previous:hover::after,
+.pw-pager-area .previous:focus::after,
+.pw-pager-area .next:hover::after,
+.pw-pager-area .next:focus::after {
     opacity: 1;
     visibility: visible;
 }
 
-.alime-pager-area .previous:hover .previous-link,
-.alime-pager-area .previous:hover .next-link,
-.alime-pager-area .previous:focus .previous-link,
-.alime-pager-area .previous:focus .next-link,
-.alime-pager-area .next:hover .previous-link,
-.alime-pager-area .next:hover .next-link,
-.alime-pager-area .next:focus .previous-link,
-.alime-pager-area .next:focus .next-link {
+.pw-pager-area .previous:hover .previous-link,
+.pw-pager-area .previous:hover .next-link,
+.pw-pager-area .previous:focus .previous-link,
+.pw-pager-area .previous:focus .next-link,
+.pw-pager-area .next:hover .previous-link,
+.pw-pager-area .next:hover .next-link,
+.pw-pager-area .next:focus .previous-link,
+.pw-pager-area .next:focus .next-link {
     opacity: 1;
 }
 
-.alime-pager-area .next .overlay-content .next-link {
+.pw-pager-area .next .overlay-content .next-link {
     left: auto;
     right: -10%;
 }
@@ -2246,17 +2246,17 @@ section.follow-area.clearfix {
     }
 }
 
-.alime-blog-area {
+.pw-blog-area {
     position: relative;
     z-index: 1;
 }
 
-.alime-blog-area .row {
+.pw-blog-area .row {
     margin-right: -5px;
     margin-left: -5px;
 }
 
-.alime-blog-area .row .col-12 {
+.pw-blog-area .row .col-12 {
     padding-right: 5px;
     padding-left: 5px;
 }
@@ -2491,40 +2491,40 @@ section.follow-area.clearfix {
 }
 
 /* :: 15.0 Gallery CSS */
-.alime-portfolio-area {
+.pw-portfolio-area {
     position: relative;
     z-index: 1;
     background-color: #f5f6f2;  
 }
 
-.alime-portfolio-area .container-fluid {
+.pw-portfolio-area .container-fluid {
     padding-right: 10%;
     padding-left: 10%;
     background-color: #f5f6f2;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .alime-portfolio-area .container-fluid {
+    .pw-portfolio-area .container-fluid {
         padding-right: 5%;
         padding-left: 5%;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .alime-portfolio-area .container-fluid {
+    .pw-portfolio-area .container-fluid {
         padding-right: 5%;
         padding-left: 5%;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    .alime-portfolio-area .container-fluid {
+    .pw-portfolio-area .container-fluid {
         padding-right: 5%;
         padding-left: 5%;
     }
 }
 
-.alime-projects-menu {
+.pw-projects-menu {
     position: relative;
     z-index: 1;
     margin-bottom: 40px;
@@ -2535,7 +2535,7 @@ section.follow-area.clearfix {
     border-radius: 20px;
 } */
 
-.alime-projects-menu .portfolio-menu .btn {
+.pw-projects-menu .portfolio-menu .btn {
     position: relative;
     z-index: 1;
     border: 0;
@@ -2552,19 +2552,19 @@ section.follow-area.clearfix {
 }
 
 @media only screen and (max-width: 767px) {
-    .alime-projects-menu .portfolio-menu .btn {
+    .pw-projects-menu .portfolio-menu .btn {
         font-size: 15px;
         margin: 7px 5px;
     }
 }
 
 
-.alime-projects-menu .portfolio-menu .btn.active {
+.pw-projects-menu .portfolio-menu .btn.active {
     background-color: #898a77;
     color: #fff;
 }
 
-.alime-projects-menu .portfolio-menu .btn:hover {
+.pw-projects-menu .portfolio-menu .btn:hover {
     background-color: #80a8cc;
     color: #fff;
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);

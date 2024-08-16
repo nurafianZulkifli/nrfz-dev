@@ -1,13 +1,13 @@
 (function ($) {
     'use strict';
 
-    var alime_window = $(window);
+    var pw_window = $(window);
 
     // ****************************
     // :: 1.0 Preloader Active Code
     // ****************************
 
-    alime_window.on('load', function () {
+    pw_window.on('load', function () {
         $('#preloader').fadeOut('1000', function () {
             $(this).remove();
         });
@@ -18,7 +18,7 @@
     // ****************************
 
     if ($.fn.classyNav) {
-        $('#alimeNav').classyNav();
+        $('#pwNav').classyNav();
     }
 
     // *********************************
@@ -101,7 +101,7 @@
     // *********************************
 
     if ($.fn.imagesLoaded) {
-        $('.alime-portfolio').imagesLoaded(function () {
+        $('.pw-portfolio').imagesLoaded(function () {
             // filter items on button click
             $('.portfolio-menu').on('click', 'button', function () {
                 var filterValue = $(this).attr('data-filter');
@@ -110,7 +110,7 @@
                 });
             });
             // init Isotope
-            var $grid = $('.alime-portfolio').isotope({
+            var $grid = $('.pw-portfolio').isotope({
                 itemSelector: '.single_gallery_item',
                 percentPosition: true,
                 masonry: {
@@ -140,8 +140,8 @@
     // :: 8.0 Stick Active Code
     // ************************
 
-    alime_window.on('scroll', function () {
-        if (alime_window.scrollTop() > 0) {
+    pw_window.on('scroll', function () {
+        if (pw_window.scrollTop() > 0) {
             $('.main-header-area').addClass('sticky');
         } else {
             $('.main-header-area').removeClass('sticky');
@@ -177,7 +177,7 @@
     // ***********************
     // :: 11.0 WOW Active Code
     // ***********************
-    if (alime_window.width() > 767) {
+    if (pw_window.width() > 767) {
         new WOW().init();
     }
 
@@ -194,7 +194,7 @@
     // :: 13.0 Scrollup Active Code
     // ****************************
     if ($.fn.scrollUp) {
-        alime_window.scrollUp({
+        pw_window.scrollUp({
             scrollSpeed: 1000,
             scrollText: '<i class="fa-solid fa-arrow-up"</i>'
         });

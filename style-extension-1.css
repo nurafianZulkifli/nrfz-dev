@@ -267,6 +267,12 @@ img.profile-pic {
   padding: 10px !important;
 }
 
+.column-pic-single {
+  float: left;
+  width: 100% !important;
+  padding: 10px !important;
+}
+
 figcaption p {
   margin-top: 10px;
   font-size: 15px;
@@ -505,6 +511,11 @@ blockquote {
   .breadcrumb-area .page-title-blog {
     color: #ffffff;
     font-size: 35px;
+  }
+
+  .pw-btn {
+    font-size: 12px;
+    padding: 0 20px;
   }
 }
 
