@@ -517,6 +517,11 @@ blockquote {
     font-size: 12px;
     padding: 0 20px;
   }
+
+  .footer-content {
+    padding: 20px 0;
+    padding-right: 10px;
+}
 }
 
 
