@@ -335,36 +335,43 @@ input:required {
 .section-padding-80 {
     padding-top: 80px;
     padding-bottom: 80px;
+    background-color: #f6f7f2;
 }
 
 .section-padding-0-80 {
     padding-top: 0;
     padding-bottom: 80px;
+    background-color: #f6f7f2;
 }
 
 .section-padding-80-0 {
     padding-top: 80px;
     padding-bottom: 80px;
+    background-color: #f6f7f2;
 }
 
 .section-padding-80-50 {
     padding-top: 80px;
     padding-bottom: 50px;
+    background-color: #f6f7f2;
 }
 
 .section-padding-100 {
     padding-top: 100px;
     padding-bottom: 100px;
+    background-color: #f6f7f2;
 }
 
 .section-padding-0-100 {
     padding-top: 0;
     padding-bottom: 100px;
+    background-color: #f6f7f2;
 }
 
 .section-padding-100-0 {
     padding-top: 100px;
     padding-bottom: 0;
+    background-color: #f6f7f2;
 }
 
 section.follow-area.clearfix {
@@ -544,7 +551,7 @@ section.follow-area.clearfix {
     text-align: center;
     text-transform: capitalize;
     background-color: #e4e6cf;
-    color: #ffffff;
+    color: #252525;
     border-radius: 60px;
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
@@ -2249,6 +2256,7 @@ section.follow-area.clearfix {
 .pw-blog-area {
     position: relative;
     z-index: 1;
+    background-color: #f6f7f2;
 }
 
 .pw-blog-area .row {
@@ -2296,11 +2304,11 @@ section.follow-area.clearfix {
 .single-post-area .post-catagory {
     position: absolute;
     padding: 2px 15px;
-    border-radius: 2px;
+    border-radius: 20px;
     font-size: 12px;
     text-transform: uppercase;
-    color: #ffffff;
-    background-color: #898a77;
+    color: #252525;
+    background-color: #e4e6cf;
     top: 15px;
     right: 15px;
     z-index: 20;

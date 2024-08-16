@@ -323,13 +323,16 @@ figcaption p {
   margin-bottom: 7px;
   margin-right: 4px;
   border-radius: 4px;
-  color: #000;
-  border: 1px solid #ccc;
+  color: #252525;
+  background-color: #e4e6cf;
   font-size: 11px;
 }
 
 .tagcloud a:hover {
-  border: 1px solid #000;
+  -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+  box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+  background-color: #80a8cc;
+  color: #ffffff;
 }
 
 .bg-light {
@@ -428,6 +431,11 @@ hr {
   margin-bottom: 1rem;
   border: 0;
   border-top: 1px solid #6364576e;
+}
+
+.ftco-section {
+  background-color: #f6f7f2;
+  padding-bottom: 10px;
 }
 
 
