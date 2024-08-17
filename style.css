@@ -2280,9 +2280,10 @@ section.follow-area.clearfix {
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
     transition-duration: 500ms;
+    border-radius: 20px;
 }
 
-.single-post-area::after {
+/* .single-post-area::after {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -2291,11 +2292,13 @@ section.follow-area.clearfix {
     background-color: rgba(0, 0, 0, 0.5);
     content: '';
     z-index: 1;
-}
+    border-radius: 20px;
+} */
 
 .single-post-area .post-thumbnail {
     display: block;
     overflow: hidden;
+    border-radius: 20px;
 }
 
 .single-post-area .post-thumbnail img {
