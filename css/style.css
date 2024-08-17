@@ -74,6 +74,10 @@ a:hover {
     font-weight: 500;
 }
 
+a:hover {
+    color: #80a8cc;
+}
+
 li {
     list-style: none;
 }
