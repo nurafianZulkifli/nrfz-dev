@@ -342,6 +342,10 @@ hr {
   padding-bottom: 10px;
 }
 
+#proposal {
+  scroll-margin-top: 8vh;
+}
+
 
 
 /* :: 21.0 Responsive_Extension CSS - Width */
