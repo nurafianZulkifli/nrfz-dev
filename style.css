@@ -1010,19 +1010,23 @@ section.follow-area.clearfix {
 
 @keyframes fadeInUp {
     0% {
-        transform: translateY(5%);
-        opacity: 0;
+      opacity: 0;
+      -webkit-transform: translate3d(0, 20%, 0);
+      transform: translate3d(0, 20%, 0)
     }
-
+  
     100% {
-        transform: translateY(0%);
-        opacity: 1;
+      opacity: 1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0)
     }
-}
-
-.fadeInUp-animation {
-    animation: 1.0s fadeInUp;
-}
+  }
+  
+  .fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp
+  }
+  
 
 @keyframes slideInLeft {
     0% {
@@ -1688,7 +1692,7 @@ section.follow-area.clearfix {
 .about-me-summ {
     background-color: #f5f6f2;
     padding-top: 30px;
-    padding-bottom: 50px;
+    padding-bottom: 83px;
 }
 
 
