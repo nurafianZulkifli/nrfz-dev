@@ -1017,7 +1017,7 @@ section.follow-area.clearfix {
     color: #252525;
     font-size: 16px;
     margin-right: 20px;
-    cursor: default;
+    cursor: pointer;
 }
 
 .footer-content .social-info a:last-child {
