@@ -1728,11 +1728,11 @@ section.follow-area.clearfix {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background-color: #df7d4d;
+    background-color: #898a77;
     text-align: center;
     line-height: 52px;
     font-size: 30px;
-    color: #ffffff;
+    color: #fff;
 }
 
 
@@ -1759,7 +1759,7 @@ section.follow-area.clearfix {
 
 .single-portfolio-content .hover-content a:hover,
 .single-portfolio-content .hover-content a:focus {
-    background-color: #000000;
+    background-color: #80a8cc;
 }
 
 .single-portfolio-content:hover img,
