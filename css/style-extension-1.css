@@ -387,6 +387,10 @@ hr {
     font-size: 40px;
   }
 
+  .about-me-content {
+    padding: 56px 15px 20px;
+  }
+
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -444,7 +448,19 @@ hr {
   .footer-content {
     padding: 20px 0;
     padding-right: 10px;
-}
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .section-heading h1 a {
+    font-size: 15px !important;
+  }
+
+  .about-me-content {
+    padding: 56px 32px 20px;
+  }
 }
 
 
