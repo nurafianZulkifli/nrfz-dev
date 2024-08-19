@@ -931,8 +931,8 @@ section.follow-area.clearfix {
 @keyframes fadeInUp {
     0% {
       opacity: 0;
-      -webkit-transform: translate3d(0, 20%, 0);
-      transform: translate3d(0, 20%, 0)
+      -webkit-transform: translate3d(0, 8%, 0);
+      transform: translate3d(0, 8%, 0)
     }
   
     100% {
@@ -1746,8 +1746,8 @@ section.follow-area.clearfix {
     margin-top: 2em;
     display: -webkit-box;
     max-width: 450px;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1777,5 +1777,5 @@ section.follow-area.clearfix {
 
 .single-portfolio-content:hover .hover-content a,
 .single-portfolio-content:focus .hover-content a {
-    margin-top: -26px;
+    margin-top: -12px;
 }
