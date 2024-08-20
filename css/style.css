@@ -1269,6 +1269,10 @@ section.follow-area.clearfix {
     margin-top: 50px;
 }
 
+.timeline-content:hover {
+    background-color: #c7e3fb;
+}
+
 .timeline-content .period-date-edu {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
@@ -1341,6 +1345,10 @@ section.follow-area.clearfix {
     position: relative;
     z-index: 1;
     margin-top: 50px;
+}
+
+.about-me-summary:hover {
+    background-color: #c7e3fb;
 }
 
 .about-me-summary .summ-icon {
