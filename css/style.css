@@ -1513,6 +1513,10 @@ section.follow-area.clearfix {
     color: #ffffff;
 }
 
+li.breadcrumb-item.active a {
+    color: #80a8cc !important;
+}
+
 /* :: 15.0 Blog CSS */
 .single-post-area {
     position: relative;
