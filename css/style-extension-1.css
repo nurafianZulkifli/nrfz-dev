@@ -346,6 +346,10 @@ hr {
   scroll-margin-top: 8vh;
 }
 
+.img-logo {
+  scale: 0.3;
+}
+
 
 
 /* :: 21.0 Responsive_Extension CSS - Width */
