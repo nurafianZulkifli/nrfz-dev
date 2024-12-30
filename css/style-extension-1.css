@@ -1091,7 +1091,7 @@ h2.page-title {
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   img.profile-pic {
     width: 280px;
-    height: 280px;
+    height: 178px;
   }
 
   .profile-det {
