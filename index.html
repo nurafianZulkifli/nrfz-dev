@@ -37,7 +37,6 @@
 
 
     <header class="header-area">
-
         <div class="main-header-area">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
@@ -60,7 +59,6 @@
                                 <ul id="nav">
                                     <li><a href="statistics/statistics.html">Statistics</a></li>
                                     <li><a href="past-records/past-records.html">Past Records</a></li>
-                                    <!-- <li><a href="fault-overview.html">Faults Overview</a></li> -->
                                     <li><a href="our-networks.html">Networks</a></li>
                                 </ul>
                             </div>
@@ -113,31 +111,14 @@
             </div>
         </div>
 
+        <!-- Days Overview -->
         <div w3-include-html="overview/days-overview.html"></div>
 
         <br>
         <br>
 
         <!-- Delays Overview (≥ 10 mins) -->
-        <div class="row row-do">
-            <div class="chart col-xl-12 col-lg-12 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card h-100 py-2" style="background-color: #f6f7f2;">
-                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-black">
-                            <span data-title="Delays not more or equal to 10 mins won't be reflected in this chart.">
-                                Delays Overview (≥ 10 mins)
-                            </span>
-                        </h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="delays-overview-sm-24"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div w3-include-html="overview/delays-overview.html"></div>
 
         <br>
         <br>

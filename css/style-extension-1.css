@@ -316,7 +316,7 @@ p.accord-twt {
 }
 
 .accordion-button.collapsed {
-  background-color: #e0e1dc;
+  background-color: #fff;
   color: #000;
 }
 
@@ -998,6 +998,10 @@ canvas#delays-overview-sb-24,
 canvas#delays-overview-sm-23,
 canvas#delays-overview-sb-23 {
   height: 231px !important;
+}
+
+h2.page-title {
+  margin-bottom: 1em;
 }
 
 /* :: 21.0 Responsive_Extension CSS - Width */
