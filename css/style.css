@@ -24,7 +24,7 @@
 --------------------------------------------- */
 
 /* Import Fonts & All CSS */
-@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700");
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
 @import url(bootstrap.min.css);
 @import url(animate.css);
 @import url(default-assets/classy-nav.css);
@@ -41,7 +41,7 @@
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Onest", sans-serif;
     font-weight: 400;
     font-size: 16px;
     position: relative;
@@ -54,7 +54,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Poppins", sans-serif;
+    font-family: "Onest", sans-serif;
     color: #252525;
     line-height: 1.3;
     font-weight: 600;
@@ -333,6 +333,12 @@ input:required {
 
 .pt-50 {
     padding-top: 50px !important;
+}
+
+.section-padding-50 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #f6f7f2;
 }
 
 .section-padding-80 {
@@ -1152,7 +1158,7 @@ section.follow-area.clearfix {
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
     background-color: #ffffff;
-    padding: 80px 30px 50px;
+    padding: 47px 20px 17px;
     border-radius: 10px;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
     position: relative;
@@ -1341,8 +1347,8 @@ section.follow-area.clearfix {
     font-size: 19px;
     position: absolute;
     top: -26px;
-    left: 30%;
-    right: 30%;
+    left: 34%;
+    right: 34%;
     margin-left: -38px;
     cursor: default;
 }
@@ -1414,7 +1420,8 @@ section.follow-area.clearfix {
     }
 }
 
-.breadcrumb-area .page-title, .breadcrumb-area-subp .page-title {
+.breadcrumb-area .page-title,
+.breadcrumb-area-subp .page-title {
     color: #ffffff;
     font-size: 36px;
     cursor: default;
@@ -1651,8 +1658,8 @@ li.breadcrumb-item.active a {
 }
 
 .pw-portfolio-area .container-fluid {
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 5%;
+    padding-left: 5%;
     background-color: #f5f6f2;
 }
 
