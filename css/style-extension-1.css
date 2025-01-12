@@ -661,6 +661,10 @@ footer {
     padding: 0px;
  }
 
+ .blog-entry .category {
+  font-size: 12px;
+}
+
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -696,6 +700,10 @@ footer {
 
   .container-blogList {
     padding: 0px;
+  }
+
+  .blog-entry .category {
+    font-size: 11px;
   }
 
 }
@@ -768,6 +776,18 @@ footer {
 
   .container-blogList {
     padding: 0px;
+  }
+
+  .blog-entry a {
+    font-size: 18px;
+  }
+
+  .blog-entry a.blog-date {
+    font-size: 14px;
+  }
+
+  .blog-entry .category {
+    font-size: 11px;
   }
 
 }
