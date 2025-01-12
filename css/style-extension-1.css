@@ -403,7 +403,7 @@ hr {
 }
 
 .wbnrfz_details .details_info {
-  margin-bottom: 70px;
+  margin-bottom: 20px;
   text-align: justify;
 }
 
@@ -616,6 +616,16 @@ hr {
 
 .wbnrfz_details .banner img {
   width: 80%;
+}
+
+.dropdown-item:focus {
+  background-color: #80a8cc;
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: #80a8cc;
+  color: #fff;
 }
 
 
