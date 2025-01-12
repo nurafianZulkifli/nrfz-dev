@@ -7,25 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Line Overview | TDC</title>
+    <title>NRFZ | Home</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
+    <meta property="og:image" content="https://i.imgur.com/kMi3VsK.png" />
 
     <link rel="icon" href="./img/core-img/favicon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-extension-1.css">
 
     <link rel="stylesheet" type="text/css"
         href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-
-    <script src="https://www.w3schools.com/lib/w3data.js"></script>
 
 </head>
 
@@ -37,13 +32,15 @@
 
 
     <header class="header-area">
+
         <div class="main-header-area">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
 
                     <nav class="classy-navbar justify-content-between" id="pwNav">
 
-                        <a class="nav-brand img-logo" href="./index.html"><img src="./img/core-img/logo.png" alt></a>
+                        <a class="nav-brand img-logo" href="./index.html"><img class="logo-img"
+                                src="./img/core-img/logo.png" alt></a>
 
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -57,9 +54,11 @@
 
                             <div class="classynav">
                                 <ul id="nav">
-                                    <li><a href="statistics/statistics.html">Statistics</a></li>
-                                    <li><a href="past-records/past-records.html">Past Records</a></li>
-                                    <li><a href="our-networks.html">Networks</a></li>
+                                    <li class="active"><a href="./index.html">Home</a></li>
+                                    <li><a href="./about.html">About</a></li>
+                                    <li><a href="./works-by-nrfz.html">Works By NRFZ</a></li>
+                                    <li><a href="./blog.html">Blog</a></li>
+
                                 </ul>
                             </div>
 
@@ -72,17 +71,44 @@
 
 
     <!-- ============================================= Hero Section ============================================= -->
-    <section id="hero-smrt" class="flex-column justify-content-center">
+    <section id="hero" class="d-flex flex-column justify-content-center">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content text-center">
-                        <img class="profile-pic wow fadeInUp" data-wow-delay="100ms" src="img/core-img/logo_big.png"
+                        <img class="profile-pic wow fadeInUp" data-wow-delay="100ms" src="img/bg-img/about.png"
                             alt="profile-pic">
                         <div class="profile-det wow fadeInUp" data-wow-delay="200ms">
-                            <h2 class="profile-name wow fadeInUp" data-wow-delay="400ms">Train Delays Checker</h2>
-                            <h2 class="profile-desc wow fadeInUp" data-wow-delay="400ms">Overview of the days since last
-                                reported delays across Singapore's train network.
+                            <h2 class="profile-name wow fadeInUp" data-wow-delay="400ms">Nurafian Zulkifli</h2>
+                            <h2 class="profile-desc wow fadeInUp" data-wow-delay="400ms">Passionate about UI/UX, and
+                                everything else Design
+                            </h2>
+                        </div>
+
+                        <div class="profile-link wow fadeInUp" data-wow-delay="700ms">
+                            <a href="https://github.com/nurafianZulkifli" target="_blank" class="media_link"
+                                title="GitHub">
+                                <div class="fa-brands fa-github" style="font-size: 30px; padding-bottom: 25px;"></div>
+                            </a>
+                            <a href="https://twitter.com/nrfzlkf_" target="_blank" class="media_link"
+                                title="X (Twitter)">
+                                <div class="fa-brands fa-x-twitter" style="font-size: 30px"></div>
+                            </a>
+                            <a href="https://www.facebook.com/Nrfnzlkf/" target="_blank" class="media_link"
+                                title="Facebook">
+                                <div class="fa-brands fa-facebook" style="font-size: 30px"></div>
+                            </a>
+                            <a href="https://www.instagram.com/zrfn_lkf/" target="_blank" class="media_link"
+                                title="Instagram">
+                                <div class="fa-brands fa-instagram" style="font-size: 30px"></div>
+                            </a>
+                            <a href="https://www.linkedin.com/in/nurafian-zulkifli/" target="_blank" class="media_link"
+                                title="LinkedIn">
+                                <div class="fa-brands fa-linkedin" style="font-size: 30px"></div>
+                            </a>
+                            <a href="mailto:nurafian.bz33@gmail.com" class="media_link" title="Email Me">
+                                <div class="fa-solid fa-envelope-open" style="font-size: 30px"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -93,62 +119,277 @@
     </section><!-- End Hero -->
 
 
-    <section id="lrd" class="d-flex flex-column justify-content-center">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
+    <div class="pw-portfolio-area section-padding-80 clearfix">
+        <div class="container-fluid">
+            <div class="row">
                 <div class="col-12">
-                    <div class="breadcrumb-content text-center">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item-aag">Home
-                                </li>
-                                <li class="breadcrumb-item-aag active" aria-current="page">At a glance</li>
-                            </ol>
-                        </nav>
-                        <h2 class="page-title">Line Overview</h2>
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                        <h2>Featured Works</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row pw-portfolio">
+
+                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mb-30 wow fadeInUp"
+                    data-wow-delay="100ms">
+                    <div class="single-portfolio-content">
+                        <img src="https://i.imgur.com/EiaJAoM.png" alt>
+                        <div class="hover-content">
+                            <h4>EICW - Implementation Brainstorming</h4>
+                            <a class="info" href="worksbynrfz/improve-wf.html" class="portfolio-img"><i
+                                    class="fa-solid fa-circle-info"></i></a>
+                            <a href="https://i.imgur.com/EiaJAoM.png" class="portfolio-img"><i
+                                    class="fa-solid fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mb-30 wow fadeInUp"
+                    data-wow-delay="300ms">
+                    <div class="single-portfolio-content">
+                        <img src="https://i.imgur.com/4baefCu.png" alt>
+                        <div class="hover-content">
+                            <h4>Train Delays Checker V3</h4>
+                            <a class="info" href="worksbynrfz/delays-checker.html" class="portfolio-img"><i
+                                    class="fa-solid fa-circle-info"></i></a>
+                            <a href="https://i.imgur.com/4baefCu.png" class="portfolio-img"><i
+                                    class="fa-solid fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mb-30 wow fadeInUp"
+                    data-wow-delay="500ms">
+                    <div class="single-portfolio-content">
+                        <img src="https://i.imgur.com/FC4fSsG.png" alt>
+                        <div class="hover-content">
+                            <h4>Bus Replications</h4>
+                            <a class="info" href="worksbynrfz/bus-rep.html" class="portfolio-img"><i
+                                    class="fa-solid fa-circle-info"></i></a>
+                            <a href="https://i.imgur.com/FC4fSsG.png" class="portfolio-img"><i
+                                    class="fa-solid fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mb-30 wow fadeInUp"
+                    data-wow-delay="700ms">
+                    <div class="single-portfolio-content">
+                        <img src="https://i.imgur.com/03mFKk0.png" alt>
+                        <div class="hover-content">
+                            <h4>MyTransport.SG App Redesign</h4>
+                            <a class="info" href="worksbynrfz/myts-app.html" class="portfolio-img"><i
+                                    class="fa-solid fa-circle-info"></i></a>
+                            <a href="https://i.imgur.com/03mFKk0.png" class="portfolio-img"><i
+                                    class="fa-solid fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mb-30 wow fadeInUp"
+                    data-wow-delay="300ms">
+                    <div class="single-portfolio-content">
+                        <img src="https://i.imgur.com/6oNoqnp.png" alt="man-a22-mascot">
+                        <div class="hover-content">
+                            <h4>MAN A22 Lion Mascot Replication</h4>
+                            <a class="info" href="worksbynrfz/man-a22-masc.html" class="portfolio-img"><i
+                                    class="fa-solid fa-circle-info"></i></a>
+                            <a href="https://i.imgur.com/6oNoqnp.png" class="portfolio-img"><i
+                                    class="fa-solid fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mb-30 wow fadeInUp"
+                    data-wow-delay="500ms">
+                    <div class="single-portfolio-content">
+                        <img src="https://i.imgur.com/kstN8gT.png" alt>
+                        <div class="hover-content">
+                            <h4>How To Use TimeTree Infographic</h4>
+                            <a class="info" href="worksbynrfz/igra3.html" class="portfolio-img"><i
+                                    class="fa-solid fa-circle-info"></i></a>
+                            <a href="https://i.imgur.com/kstN8gT.png" class="portfolio-img"><i
+                                    class="fa-solid fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
+                    <a href="./works-by-nrfz.html" class="btn pw-btn btn-2 mt-15">View All &nbsp;<i
+                            class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="about-me-area bg-gray section-padding-80-0 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms"
+                        style="margin-bottom: 18px;">
+                        <h2>Likes & Interests</h2>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                        <h1><a href="https://en.wikipedia.org/wiki/Jack_of_all_trades"
+                                style="font-size: 20px; color: #5f6051;">"Jack of all trades, master of
+                                none"</a></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-me-content text-center mb-80 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="wsd-icon">
+                            <i class="fa-solid fa-signs-post"></i>
+                        </div>
+                        <h4>Wayfinding Signage Designs</h4>
+                        <p>Great Wayfinding Signage guides people smoothly while enhancing their overall experience.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-me-content text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="ui-icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+                        <h4>User Interface (UI)<br>Designs</h4>
+                        <p>Involves designing attractive, practical and user-friendly interfaces.</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-me-content text-center mb-80 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="ux-icon">
+                            <i class="fa-regular fa-face-smile-beam"></i>
+                        </div>
+                        <h4>User Experience (UX) Design Research</h4>
+                        <p> Involves carefully studying the target users and each of their
+                            needs.</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="follow-area clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center">
+                        <h2>Skills & Software Proficiency</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-ara wow fadeInUp" data-wow-delay="100ms">
+                <div class="skill">
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>User Interface Design</p><span>70%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".5s"
+                                aria-valuenow="25" role="progressbar" style="width: 70%" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>User Experience</p><span>95%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s"
+                                role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="progress-count">
+                            <p>Illustration</p><span>85%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".6s"
+                                role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Days Overview -->
-        <div w3-include-html="overview/days-overview.html"></div>
+        <div class="instragram-feed-area owl-carousel wow fadeInUp" data-wow-delay="300ms">
 
-        <br>
-        <br>
+            <div class="single-software-item">
+                <img src="img/gallery/brand1.png" alt="inkscape">
+            </div>
 
-        <!-- Delays Overview (≥ 10 mins) -->
-        <div w3-include-html="overview/delays-overview.html"></div>
+            <div class="single-software-item">
+                <img src="img/gallery/brand2.png" alt="sketchup">
+            </div>
 
-        <br>
-        <br>
+            <div class="single-software-item">
+                <img src="img/gallery/brand3.png" alt="illustrator">
+            </div>
 
+            <div class="single-software-item">
+                <img src="img/gallery/brand4.png" alt="xd">
+            </div>
 
-        <div w3-include-html="overview/recent-incidents.html"></div>
+            <div class="single-software-item">
+                <img src="img/gallery/brand5.png" alt="office-365">
+            </div>
 
-    </section><!-- End Hero -->
+            <div class="single-software-item">
+                <img src="img/gallery/brand6.png" alt="windows">
+            </div>
+        </div>
 
-
+        <div class="row">
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
+                <a href="./about.html" class="btn pw-btn btn-2 mt-15">About Me &nbsp;<i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
 
     <footer class="footer-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="footer-content d-flex align-items-center justify-content-center">
+                    <div class="footer-content d-flex align-items-center justify-content-between">
 
                         <div class="copywrite-text">
                             <p>
-                                Data is obtained through each operator's X/Facebook page
+                                &copy;
+                                <script>document.write(new Date().getFullYear());</script> Nurafian Zulkifli</a>
                             </p>
+                        </div>
+
+                        <div class="social-info">
+                            <a href="https://github.com/nurafianZulkifli"><i class="fa-brands fa-github"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/nrfzlkf_"><i class="fa-brands fa-x-twitter"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/Nrfnzlkf/"><i class="fa-brands fa-facebook"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/zrfn_lkf/"><i class="fa-brands fa-instagram"
+                                    aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Modular DIVs -->
-    <script> w3IncludeHTML(); </script>
 
     <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
         data-fg="#000" data-font-family="Poppins, sans-serif" data-zindex="12345111111"
@@ -157,23 +398,13 @@
 
     <script src="js/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+    <script src="js/popper.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <script src="js/pw.bundle.js"></script>
 
     <script src="js/default-assets/active.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="overview/delays-overview-both.js"></script>
 
 
 </body>
