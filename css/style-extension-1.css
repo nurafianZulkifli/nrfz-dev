@@ -610,6 +610,10 @@ hr {
   max-width: 100%;
 }
 
+footer {
+  z-index: 999;
+}
+
 /* :: 21.0 Responsive_Extension CSS - Width */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   img.profile-pic {
@@ -653,6 +657,10 @@ hr {
     padding: 56px 15px 20px;
   }
 
+  .container-blogList {
+    padding: 0px;
+ }
+
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -684,6 +692,10 @@ hr {
 
   .wbnrfz_btn {
     min-width: 100%;
+  }
+
+  .container-blogList {
+    padding: 0px;
   }
 
 }
@@ -752,6 +764,10 @@ hr {
 
   .wbnrfz_btn {
     min-width: 100%;
+  }
+
+  .container-blogList {
+    padding: 0px;
   }
 
 }
