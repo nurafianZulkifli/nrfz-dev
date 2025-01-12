@@ -13,8 +13,8 @@
 
 /* :: 17.0 Hero Details CSS */
 img.profile-pic {
-  width: 320px;
-  height: 320px;
+  width: 220px;
+  height: 220px;
 }
 
 .profile-det {
@@ -26,7 +26,7 @@ img.profile-pic {
 .profile-name {
   color: #fff;
   font-size: 35px;
-  padding-top: 1em;
+  padding-top: 0.5em;
   cursor: default;
 }
 
@@ -371,12 +371,12 @@ hr {
 .wbnrfz_details .details_catagory_wrap {
   display: flex;
   justify-content: space-between;
+  max-width: 1400px;
 }
 
 .wbnrfz_details .details_catagory_wrap .single_catagory .social_links a {
   font-size: 16px;
   color: #000;
-  margin-right: 20px;
 }
 
 .wbnrfz_details .details_catagory_wrap .single_catagory {
@@ -400,6 +400,10 @@ hr {
 
 .wbnrfz_details .banner {
   margin-bottom: 30px;
+}
+
+.wbnrfz_details .banner img {
+  width: 80%;
 }
 
 .wbnrfz_details .details_info {
