@@ -350,6 +350,11 @@ hr {
   scale: 0.3;
 }
 
+.img-blog-profile {
+  width: 60%;
+  height: auto;
+}
+
 .progress-bar {
   height: 7px;
   background: #b9683f;
@@ -655,11 +660,11 @@ hr {
 
   .container-blogList {
     padding: 0px;
- }
+  }
 
- .blog-entry .category {
-  font-size: 12px;
-}
+  .blog-entry .category {
+    font-size: 12px;
+  }
 
 }
 
@@ -700,6 +705,11 @@ hr {
 
   .blog-entry .category {
     font-size: 11px;
+  }
+
+  .img-blog-profile {
+    width: 100%;
+    height: auto;
   }
 
 }
@@ -785,6 +795,11 @@ hr {
 
   .blog-entry .category {
     font-size: 11px;
+  }
+
+  .img-blog-profile {
+    width: 100%;
+    height: auto;
   }
 
 }
