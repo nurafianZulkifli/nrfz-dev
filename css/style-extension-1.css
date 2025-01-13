@@ -377,6 +377,11 @@ hr {
 .wbnrfz_details .details_catagory_wrap .single_catagory .social_links a {
   font-size: 16px;
   color: #000;
+  margin-right: 10px;
+}
+
+.wbnrfz_details .details_catagory_wrap .single_catagory .social_links a:hover {
+  color: #80a8cc;
 }
 
 .wbnrfz_details .details_catagory_wrap .single_catagory {
@@ -434,7 +439,7 @@ hr {
 }
 
 .wbnrfz_details .col-lg-6, .wbnrfz_details .col-lg-4 {
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
 .container-xxl {

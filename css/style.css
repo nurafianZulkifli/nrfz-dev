@@ -1305,6 +1305,7 @@ section.follow-area.clearfix {
     left: 1.5em;
     right: 1.5em;
     font-weight: 500;
+    cursor: default;
 }
 
 .timeline-content .period-date-aa {
@@ -1318,6 +1319,7 @@ section.follow-area.clearfix {
     left: 1.5em;
     right: 1.5em;
     font-weight: 500;
+    cursor: default;
 }
 
 .timeline-content .period-date-exp {
@@ -1331,6 +1333,7 @@ section.follow-area.clearfix {
     left: 1.5em;
     right: 1.5em;
     font-weight: 500;
+    cursor: default;
 }
 
 .about-me-summary {
