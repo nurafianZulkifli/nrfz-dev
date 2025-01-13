@@ -1295,64 +1295,42 @@ section.follow-area.clearfix {
 }
 
 .timeline-content .period-date-edu {
-    -webkit-transition-duration: 800ms;
-    -o-transition-duration: 800ms;
-    transition-duration: 800ms;
-    height: 48px;
-    width: 131px;
-    background-color: #898a77;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 30px;
-    color: #ffffff;
-    font-size: 19px;
     position: absolute;
-    top: -26px;
-    left: 43%;
-    right: 43%;
-    margin-left: -38px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #898a77;
+    top: 15px;
+    left: 1.5em;
+    right: 1.5em;
+    font-weight: 500;
 }
 
 .timeline-content .period-date-aa {
-    -webkit-transition-duration: 800ms;
-    -o-transition-duration: 800ms;
-    transition-duration: 800ms;
-    height: 48px;
-    width: 131px;
-    background-color: #df7d4d;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 30px;
-    color: #ffffff;
-    font-size: 19px;
     position: absolute;
-    top: -26px;
-    left: 43%;
-    right: 43%;
-    margin-left: -38px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #df7d4d;
+    top: 15px;
+    left: 1.5em;
+    right: 1.5em;
+    font-weight: 500;
 }
 
 .timeline-content .period-date-exp {
-    -webkit-transition-duration: 800ms;
-    -o-transition-duration: 800ms;
-    transition-duration: 800ms;
-    height: 48px;
-    width: 208px;
-    background-color: #80a8cc;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 30px;
-    color: #ffffff;
-    font-size: 19px;
     position: absolute;
-    top: -26px;
-    left: 34%;
-    right: 34%;
-    margin-left: -38px;
-    cursor: default;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #80a8cc;
+    top: 15px;
+    left: 1.5em;
+    right: 1.5em;
+    font-weight: 500;
 }
 
 .about-me-summary {
