@@ -433,12 +433,16 @@ hr {
   margin-top: 5px;
 }
 
-.wbnrfz_details .col-lg-6 {
-  padding-top: 15px;
+.wbnrfz_details .col-lg-6, .wbnrfz_details .col-lg-4 {
+  padding-top: 20px;
 }
 
 .container-xxl {
   max-width: 1450px;
+}
+
+.mfp-arrow {
+  top: 75%;
 }
 
 /*  */

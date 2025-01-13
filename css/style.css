@@ -179,7 +179,9 @@ img.mfp-img {
 
 button.mfp-close,
 button.mfp-arrow {
-    background: #898a77;
+    background: #000;
+    height: 7em;
+    border-radius: 20px;
 }
 
 .mfp-bottom-bar {
