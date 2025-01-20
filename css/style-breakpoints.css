@@ -18,7 +18,139 @@
                 
 --------------------------------------------- */
 
-/* ------------------------------------------ 1.0 Width Breakpoints ------------------------------------------ */
+/* ------------------------------------------ 1.0 Specific Breakpoints ------------------------------------------ */
+@media (max-width: 992px) {
+    #hero {
+        text-align: center;
+    }
+
+    #hero h1 {
+        font-size: 52px;
+        line-height: 55px;
+    }
+
+    #hero p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 25px;
+        line-height: 24px;
+    }
+
+    #media {
+        margin-top: 60px;
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    #centered-container {
+        top: 55%;
+    }
+
+    #profile-picture {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    #media {
+        margin-top: 40px;
+        width: 300px;
+        display: flex;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .section-heading h2 {
+        font-size: 24px;
+    }
+
+    #scrollUp {
+        right: 20px;
+        bottom: 50px;
+    }
+
+    .classy-nav-container .classy-navbar .nav-brand {
+        max-width: 174px;
+        margin-left: -63px;
+    }
+
+    .classy-nav-container .classy-navbar .classynav ul li a {
+        font-size: 14px;
+        color: #252525;
+    }
+
+    .classy-nav-container .classy-navbar .classynav ul li a:hover,
+    .classy-nav-container .classy-navbar .classynav ul li a:focus {
+        color: #80a8cc;
+    }
+
+    .classynav ul li.active a::before {
+        display: none;
+    }
+
+    .footer-content .copywrite-text p {
+        font-size: 12px;
+    }
+
+    .footer-content .copywrite-text p a {
+        font-size: 12px;
+    }
+
+    .footer-content .footer-logo a img {
+        max-width: 50px;
+    }
+
+    .footer-content .social-info a {
+        margin-right: 5px;
+        font-size: 12px;
+    }
+
+    .single-software-item .instagram-hover-content a span {
+        font-size: 12px;
+    }
+
+    .about-us-content h3 {
+        font-size: 24px;
+    }
+
+    .breadcrumb-area {
+        height: 240px;
+    }
+
+    .breadcrumb-area .page-title {
+        font-size: 24px;
+    }
+
+    .breadcrumb-area.blog .breadcrumb-content .page-title {
+        font-size: 30px;
+    }
+
+    .breadcrumb-area.blog .breadcrumb-content .post-meta a {
+        font-size: 13px;
+    }
+
+    .pw-portfolio-area .container-fluid {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+    .pw-projects-menu .portfolio-menu .btn {
+        font-size: 15px;
+        margin: 7px 5px;
+    }
+}
+
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 2.0 Width Breakpoints ------------------------------------------ */
 /* ---- 1.0.1 Min Width: 992px Max Width: 1199px */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     img.profile-pic {
@@ -43,9 +175,22 @@
     .classy-nav-container .classy-navbar .classynav ul li a {
         font-size: 14px;
     }
+
+    .single-software-item .instagram-hover-content a span {
+        font-size: 12px;
+    }
+
+    .single-post-area .post-content .post-title {
+        font-size: 16px;
+    }
+
+    .pw-portfolio-area .container-fluid {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 /* 2.0 Min Width: 768px Max Width: 991px */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -57,6 +202,10 @@
     .classy-nav-container .classy-navbar .classynav ul li a:hover,
     .classy-nav-container .classy-navbar .classynav ul li a:focus {
         color: #80a8cc;
+    }
+
+    .classynav ul li.active a::before {
+        display: none;
     }
 
     img.profile-pic {
@@ -95,9 +244,17 @@
         width: 100% !important;
     }
 
+    .single-software-item .instagram-hover-content a span {
+        font-size: 12px;
+    }
+
+    .pw-portfolio-area .container-fluid {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 /* 3.0 Min Width: 576px Max Width: 767px */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -114,6 +271,10 @@
     .classy-nav-container .classy-navbar .classynav ul li a:hover,
     .classy-nav-container .classy-navbar .classynav ul li a:focus {
         color: #80a8cc;
+    }
+
+    .classynav ul li.active a::before {
+        display: none;
     }
 
     .section-heading h2 {
@@ -181,9 +342,68 @@
         width: 100%;
     }
 
+    .footer-content .copywrite-text p {
+        font-size: 12px;
+    }
+
+    .footer-content .copywrite-text p a {
+        color: #fc6060;
+    }
+
+    .footer-content .copywrite-text p a {
+        font-size: 12px;
+    }
+
+    .footer-content .footer-logo a img {
+        max-width: 50px;
+    }
+
+    .footer-content .social-info a {
+        margin-right: 5px;
+        font-size: 12px;
+    }
+
+    .footer-content .social-info a:hover,
+    .footer-content .social-info a:focus {
+        color: #80a8cc;
+    }
+
+    .single-software-item .instagram-hover-content a span {
+        font-size: 12px;
+    }
+
+    .about-us-content h3 {
+        font-size: 24px;
+    }
+
+    .breadcrumb-area {
+        height: 240px;
+    }
+
+    .breadcrumb-area .page-title {
+        font-size: 24px;
+    }
+
+    .breadcrumb-area.blog .breadcrumb-content .page-title {
+        font-size: 30px;
+    }
+    
+    .breadcrumb-area.blog .breadcrumb-content .post-meta a {
+        font-size: 13px;
+    }
+
+    .pw-portfolio-area .container-fluid {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+    .pw-projects-menu .portfolio-menu .btn {
+        font-size: 15px;
+        margin: 7px 5px;
+    }
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 /* 4.0 Min Width: 320px Max Width: 575px */
 @media only screen and (min-width: 320px) and (max-width: 575px) {
@@ -280,10 +500,10 @@
 
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 
-/* ------------------------------------------ 2.0 Height Breakpoints ------------------------------------------ */
+/* ------------------------------------------ 3.0 Height Breakpoints ------------------------------------------ */
 /* ---- 2.0.1 Min Height: 531px Max Height: 620px */
 @media (min-height: 531px) and (max-height: 620px) {
     .breadcrumb-content {
@@ -297,7 +517,7 @@
     }
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 /* ---- 2.0.2 Min Height: 510px Max Height: 530px */
 @media (min-height: 510px) and (max-height: 530px) {
@@ -317,7 +537,7 @@
     }
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 /* ---- 2.0.3 Min Height: 400px Max Height: 529px */
 @media (min-height: 400px) and (max-height: 529px) {
@@ -338,7 +558,7 @@
     }
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 /* ---- 2.0.4 Min Height: 320px Max Height: 399px */
 @media (min-height: 320px) and (max-height: 399px) {
@@ -367,7 +587,7 @@
     }
 }
 
-/* ----*/
+/* ------------------------------------------ */
 
 /* ---- 2.0.5 Min Height: 319px */
 @media (max-height: 319px) {
@@ -392,4 +612,4 @@
     }
 }
 
-/* ----*/
+/* ------------------------------------------ */
