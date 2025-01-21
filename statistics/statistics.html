@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>MDTBD | TDC</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
+
+    <link rel="icon" href="../img/core-img/favicon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-extension-1.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+
+    <header class="header-area">
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container container-xxl">
+
+                    <nav class="classy-navbar justify-content-between" id="pwNav">
+
+                        <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
+
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <div class="classy-menu">
+
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href="../statistics/statistics.html">Statistics</a></li>
+                                    <li><a href="../past-records/past-records.html">Past Records</a></li>
+                                    <li><a href="../our-networks.html">Networks</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ============================================= Hero Section ============================================= -->
+    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/hero.png);">
+        <div class="container h-100" style="margin-top: 2em;">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content breadcrumb-content-subp text-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="../index.html">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">Statistics</li>
+                            </ol>
+                        </nav>
+                        <h2 class="page-title">Mean Distance Travelled Between Delays</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="lrd" class="flex-column justify-content-center">
+
+        <div class="row row-ri">
+            <div class="alert alert-primary wow fadeInUp" data-wow-delay="100ms" role="alert"
+                style="margin-bottom: 2em;">
+                <i class="fa-solid fa-circle-info"></i>&nbsp; <b>Data as of 22 November 2024 </b>
+            </div>
+
+            <div class="container h-100 wow fadeInUp" data-wow-delay="100ms">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12" style="margin-bottom:2em ;">
+                        <h6>Our Train Network's Service Reliability is measured using the industry-wide standard of Mean
+                            Kilometres Between Failure (MKBF). This means we track the
+                            mean distance that a train travels before a delay of more than 5 minutes.</h6>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion" id="accordMKBF">
+
+                <div class="accordion-item wow fadeInUp"  data-wow-delay="100ms">
+                    <h2 class="accordion-header " id="headingSMRT">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSMRT" aria-expanded="false" aria-controls="collapseSMRT">
+                            <h2><img src="../img/core-img/stl.png" alt="SMRTT" width="150px"></h2>
+                        </button>
+                    </h2>
+                    <div id="collapseSMRT" class="accordion-collapse collapse" aria-labelledby="headingSMRT"
+                        data-bs-parent="#accordMKBF">
+                        <div class="accordion-body">
+
+                            <div class="chart chart-mkbf col-xl-12 col-lg-12">
+                                <div class="card h-100 py-2" style="background-color: #f6f7f2;">
+                                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-black">
+                                            <a href="./our-networks.html#mrt">
+                                                MRT Lines
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <canvas id="mkbf-smrt-mrt"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="chart chart-mkbf col-xl-12 col-lg-12">
+                                <div class="card h-100 py-2" style="background-color: #f6f7f2;">
+                                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-black">
+                                            <a href="./our-networks.html#lrt">
+                                                LRT Lines
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <canvas id="mkbf-smrt-lrt"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item wow fadeInUp"  data-wow-delay="300ms">
+                    <h2 class="accordion-header " id="headingSBST">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSBST" aria-expanded="false" aria-controls="collapseSBST">
+                            <h2><img src="../img/core-img/sbstl.png" alt="sbstl" width="150px"></h2>
+                        </button>
+                    </h2>
+                    <div id="collapseSBST" class="accordion-collapse collapse" aria-labelledby="headingSBST"
+                        data-bs-parent="#accordMKBF">
+                        <div class="accordion-body">
+
+                            <div class="chart chart-mkbf col-xl-12 col-lg-12">
+                                <div class="card h-100 py-2" style="background-color: #f6f7f2;">
+                                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-black">
+                                            <a href="./our-networks.html#mrt">
+                                                MRT Lines
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <canvas id="mkbf-sbst-mrt"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="chart chart-mkbf col-xl-12 col-lg-12">
+                                <div class="card h-100 py-2" style="background-color: #f6f7f2;">
+                                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-black">
+                                            <a href="../our-networks.html#lrt">
+                                                LRT Lines
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <canvas id="mkbf-sbst-lrt"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section><!-- End Hero -->
+
+
+
+    <footer class="footer-area">
+        <div class="container container-xxl">
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-content d-flex align-items-center justify-content-center">
+
+                        <div class="copywrite-text">
+                            <p>
+                                Data is obtained from <a
+                                    href="https://www.lta.gov.sg/content/ltagov/en/who_we_are/statistics_and_publications/statistics.html">LTA's
+                                    Rail Reliability Statistics</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
+        data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
+
+    <script src="../js/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <script src="../js/pw.bundle.js"></script>
+
+    <script src="../js/default-assets/active.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="./mkbf/smrt-mrt.js"></script>
+    <script src="./mkbf/smrt-lrt.js"></script>
+    <script src="./mkbf/sbst-mrt.js"></script>
+    <script src="./mkbf/sbst-lrt.js"></script>
+
+
+</body>
+
+</html>
