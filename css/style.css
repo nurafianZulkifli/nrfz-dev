@@ -18,10 +18,10 @@
     - 13.0 Timelines/Summary
     - 14.0 Breadcrumb
     - 15.0 Blog
-    - 16.0 Works by NRFZ
+    - 16.0 Works By NRFZ
     - 17.0 Hero Details
     - 18.0 Skills Section
-    - 19.0 Works by NRFZ_Details Section
+    - 19.0 Works By NRFZ_Details Section
     - 20.0 Blog Post Section
     - 21.0 Theme Function
 
@@ -1457,7 +1457,7 @@ li.breadcrumb-item.active a {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 16.0 Works by NRFZ ------------------------------------------ */
+/* ------------------------------------------ 16.0 Works By NRFZ ------------------------------------------ */
 /* .pw-portfolio-area {
     position: relative;
     z-index: 1;
@@ -1692,7 +1692,7 @@ img.profile-pic {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 19.0 Works by NRFZ_Details Section ------------------------------------------ */
+/* ------------------------------------------ 19.0 Works By NRFZ_Details Section ------------------------------------------ */
 .wbnrfz_details .details_catagory_wrap {
     display: flex;
     justify-content: space-between;
