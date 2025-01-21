@@ -1,0 +1,91 @@
+/* ------------------------------------------ 21.0 Theme Function------------------------------------------ */
+.wbnrfz_btn_theme {
+    position: relative;
+    z-index: 1;
+    min-width: auto;
+    height: 46px;
+    line-height: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0 30px;
+    margin-left: 5px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #444;
+    color: #fff;
+    border-radius: 60px;
+    transition-duration: 500ms;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: none;
+}
+
+body.dark-mode .wbnrfz_btn_theme {
+    background-color: #898a77;
+    color: #fff;
+}
+
+
+body.dark-mode #featured {
+    background-color: #18191a;
+    color: #ffffff;
+}
+
+body.dark-mode h2 {
+    color: #ffffff;
+}
+
+body.dark-mode h2.profile-desc {
+    color: #898a77;
+    font-size: 20px;
+    font-weight: normal;
+    cursor: default;
+}
+
+
+/*  */
+body.dark-mode .about-me-area {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+body.dark-mode .about-me-area a {
+    color: #bb86fc;
+}
+
+body.dark-mode .about-me-content {
+    background-color: #2e2e2e;
+    border-color: #444;
+}
+
+body.dark-mode .about-me-content h4,
+body.dark-mode .about-me-content p {
+    color: #ffffff;
+}
+
+
+/*  */
+body.dark-mode .follow-area {
+    background-color: #18191a;
+    color: #ffffff;
+}
+
+body.dark-mode .skill-ara .single-skill .progress-count p {
+    color: #ffffff;
+}
+
+/*  */
+body.dark-mode .footer-area {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+body.dark-mode .footer-content .copywrite-text p {
+    color: #ffffff;
+}
+
+body.dark-mode .footer-content .social-info a {
+    color: #ffffff;
+}
+

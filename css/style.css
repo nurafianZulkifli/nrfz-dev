@@ -381,10 +381,9 @@ input:required {
     background-color: #f6f7f2;
 }
 
-section.follow-area.clearfix {
+.follow-area.clearfix {
     padding-top: 80px;
     padding-bottom: 80px;
-    background-color: #f6f7f2;
 }
 
 /* ------------------------------------------ */
@@ -1461,13 +1460,15 @@ li.breadcrumb-item.active a {
 .pw-portfolio-area {
     position: relative;
     z-index: 1;
-    background-color: #f5f6f2;
+    /* background-color: #f5f6f2; */
+    background-color: var(--color-bg);
 }
 
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
-    background-color: #f5f6f2;
+    /* background-color: #f5f6f2; */
+    background-color: var(--color-bg);
 }
 
 .pw-projects-menu {
@@ -2005,25 +2006,25 @@ hr {
 
 .container-blogList {
     max-width: 1450px;
-  }
-  
-  .blog-entry {
+}
+
+.blog-entry {
     background: #ffffff;
     margin-bottom: 30px;
     border-radius: 20px;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
-  }
-  
-  
-  .blog-entry .col-md-6 {
+}
+
+
+.blog-entry .col-md-6 {
     position: relative;
     width: 100%;
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
-  }
-  
-  .blog-entry .block-20 {
+}
+
+.blog-entry .block-20 {
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2032,30 +2033,30 @@ hr {
     position: relative;
     display: block;
     border-radius: 20px;
-  }
-  
-  .order-md-last {
+}
+
+.order-md-last {
     -webkit-box-ordinal-group: 14;
     -ms-flex-order: 13;
     order: 13;
-  }
-  
-  .blog-entry .text {
+}
+
+.blog-entry .text {
     position: relative;
     border-top: 0;
     border-radius: 2px;
     width: 55%;
-  }
-  
-  .blog-entry a {
+}
+
+.blog-entry a {
     position: relative;
     border-top: 0;
     border-radius: 20px;
     width: 55%;
     color: #000;
-  }
-  
-  .blog-entry .category {
+}
+
+.blog-entry .category {
     position: absolute;
     padding: 2px 15px;
     border-radius: 20px;
@@ -2066,14 +2067,14 @@ hr {
     top: 15px;
     left: 15px;
     font-weight: 500;
-  }
-  
-  .blog-entry .text .heading {
+}
+
+.blog-entry .text .heading {
     font-size: 20px;
     margin-bottom: 16px;
-  }
-  
-  .blog-entry .icon {
+}
+
+.blog-entry .icon {
     width: 60px;
     height: 60px;
     background: rgba(255, 255, 255, 0.8);
@@ -2082,40 +2083,40 @@ hr {
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
-  }
-  
-  .blog-entry:hover .icon {
+}
+
+.blog-entry:hover .icon {
     opacity: 1;
-  }
-  
-  .blog-entry a.blog-date {
+}
+
+.blog-entry a.blog-date {
     color: #6d7072
-  }
-  
-  .blog-entry .blog-date-div {
+}
+
+.blog-entry .blog-date-div {
     margin-top: 2em;
     font-size: 14px;
     color: #80a8cc;
-  }
-  
-  .p-4 {
+}
+
+.p-4 {
     padding: 1.5rem !important;
-  }
-  
-  .d-block {
+}
+
+.d-block {
     display: block !important;
-  }
-  
-  .ftco-section-blog {
+}
+
+.ftco-section-blog {
     padding: 7em 0;
     background-color: #f6f7f2;
-  }
-  
-  .mt-5 {
+}
+
+.mt-5 {
     margin-top: 3rem !important;
-  }
-  
-  .block-20 {
+}
+
+.block-20 {
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2123,10 +2124,10 @@ hr {
     width: 45%;
     position: relative;
     display: block;
-  }
-  
-  .block-27 ul li a,
-  .block-27 ul li span {
+}
+
+.block-27 ul li a,
+.block-27 ul li span {
     text-align: center;
     display: inline-block;
     width: 40px;
@@ -2134,20 +2135,20 @@ hr {
     line-height: 40px;
     color: #4a5562;
     border: 1px solid #dee2e6;
-  }
-  
-  .block-27 ul {
+}
+
+.block-27 ul {
     padding: 0;
     margin: 0;
-  }
-  
-  .block-27 ul li {
+}
+
+.block-27 ul li {
     display: inline-block;
     margin-bottom: 4px;
-  }
-  
-  .block-27 ul li a,
-  .block-27 ul li span {
+}
+
+.block-27 ul li a,
+.block-27 ul li span {
     text-align: center;
     display: inline-block;
     width: 40px;
@@ -2156,26 +2157,15 @@ hr {
     color: #4a5562;
     border: 1px solid #dee2e6;
     border-radius: 20px;
-  }
-  
-  .block-27 ul li.active a,
-  .block-27 ul li.active span {
+}
+
+.block-27 ul li.active a,
+.block-27 ul li.active span {
     background: #898a77;
     color: #fff;
     border: 1px solid transparent;
     border-radius: 20px;
-  }
+}
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 21.0 Theme Function------------------------------------------ */
-[data-theme="light"] {
-    --color-bg: #ffffff;
-    --color-fg: #000000;
- }
- 
- [data-theme="dark"] {
-    --color-bg: #000000;
-    --color-fg: #ffffff;
- }
- 
