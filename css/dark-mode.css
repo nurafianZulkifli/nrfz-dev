@@ -152,6 +152,10 @@ body.dark-mode .timeline-content {
     background-color: #2e2e2e;
 }
 
+body.dark-mode .timeline-content:hover {
+    background-color: #52718d;
+}
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 3.0 Indiv Pages ------------------------------------------ */
