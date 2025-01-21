@@ -1,4 +1,16 @@
-/* ------------------------------------------ 21.0 Theme Function------------------------------------------ */
+/* ------------------------------------------
+[Tables of Content]
+
+> style
+> style-breakpoints
+> dark theme (this)
+    - General
+    - 1.0 Home Page
+    - 2.0 About Page
+--------------------------------------------- */
+
+/* ------------------------------------------ General ------------------------------------------ */
+/* ---- Button */
 .wbnrfz_btn_theme {
     position: relative;
     z-index: 1;
@@ -26,14 +38,49 @@ body.dark-mode .wbnrfz_btn_theme {
     color: #fff;
 }
 
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p {
+    color: #fff;
+}
 
+/* ---- */
+
+/* ---- Footer */
+body.dark-mode .footer-area {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+body.dark-mode .footer-content .copywrite-text p {
+    color: #fff;
+}
+
+body.dark-mode .footer-content .social-info a {
+    color: #fff;
+}
+
+/* ---- */
+
+/* ---- Progress Bar */
+body.dark-mode .single-skill .progress {
+    background-color: #2e2e2e;
+}
+
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 1.0 Home Page ------------------------------------------ */
 body.dark-mode #featured {
     background-color: #18191a;
-    color: #ffffff;
+    color: #fff;
 }
 
 body.dark-mode h2 {
-    color: #ffffff;
+    color: #fff;
 }
 
 body.dark-mode h2.profile-desc {
@@ -43,49 +90,55 @@ body.dark-mode h2.profile-desc {
     cursor: default;
 }
 
-
-/*  */
 body.dark-mode .about-me-area {
     background-color: #1e1e1e;
-    color: #ffffff;
-}
-
-body.dark-mode .about-me-area a {
-    color: #bb86fc;
+    color: #fff;
 }
 
 body.dark-mode .about-me-content {
     background-color: #2e2e2e;
-    border-color: #444;
 }
 
 body.dark-mode .about-me-content h4,
 body.dark-mode .about-me-content p {
-    color: #ffffff;
+    color: #fff;
 }
 
+body.dark-mode .about-me-content:hover {
+    background-color: #52718d;
+}
 
-/*  */
 body.dark-mode .follow-area {
     background-color: #18191a;
-    color: #ffffff;
+    color: #fff;
 }
 
 body.dark-mode .skill-ara .single-skill .progress-count p {
-    color: #ffffff;
+    color: #fff;
 }
 
-/*  */
-body.dark-mode .footer-area {
-    background-color: #1e1e1e;
-    color: #ffffff;
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 2.0 About Page ------------------------------------------ */
+body.dark-mode .about-me-summ {
+    background-color: #18191a;
 }
 
-body.dark-mode .footer-content .copywrite-text p {
-    color: #ffffff;
+body.dark-mode .about-me-summary {
+    background-color: #2e2e2e;
+    color: #fff;
 }
 
-body.dark-mode .footer-content .social-info a {
-    color: #ffffff;
+body.dark-mode .about-me-summary:hover {
+    background-color: #52718d;
 }
 
+body.dark-mode .about-me-area {
+    background-color: #1e1e1e !important;
+}
+
+body.dark-mode .timeline-content {
+    background-color: #2e2e2e;
+}
+
+/* ------------------------------------------ */
