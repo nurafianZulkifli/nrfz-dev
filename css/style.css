@@ -1,7 +1,7 @@
 /* ------------------------------------------
 [Tables of Content]
 
-> style-main (this)
+> style (this)
     - Import
     - 1.0 Body/Main Styling
     - 2.0 Spacing
@@ -33,7 +33,6 @@
 @import url(owl.carousel.min.css);
 @import url(magnific-popup.css);
 @import url(default-assets/themify-icons.css);
-@import url(style.css);
 
 /* ------------------------------------------ 1.0 Body/Main Styling ------------------------------------------ */
 * {
