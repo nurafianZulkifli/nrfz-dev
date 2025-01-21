@@ -7,6 +7,8 @@
     - General
     - 1.0 Home Page
     - 2.0 About Page
+    - 3.0 Indiv Pages
+    - 4.0 Blog Page(s)
 --------------------------------------------- */
 
 /* ------------------------------------------ General ------------------------------------------ */
@@ -48,6 +50,10 @@ body.dark-mode p {
     color: #fff;
 }
 
+body.dark-mode hr {
+    border-color: #fff;
+}
+
 /* ---- */
 
 /* ---- Footer */
@@ -74,10 +80,15 @@ body.dark-mode .single-skill .progress {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 1.0 Home Page ------------------------------------------ */
-body.dark-mode #featured {
+body.dark-mode .pw-portfolio-area {
+    background-color: #18191a;
+}
+
+body.dark-mode .pw-portfolio-area .container-fluid {
     background-color: #18191a;
     color: #fff;
 }
+
 
 body.dark-mode h2 {
     color: #fff;
@@ -139,6 +150,39 @@ body.dark-mode .about-me-area {
 
 body.dark-mode .timeline-content {
     background-color: #2e2e2e;
+}
+
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 3.0 Indiv Pages ------------------------------------------ */
+body.dark-mode .wbnrfz-summ {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode span,
+body.dark-mode .wbnrfz_details .details_catagory_wrap .single_catagory h4,
+body.dark-mode .wbnrfz_details .details_catagory_wrap .single_catagory .social_links a {
+    color: #fff;
+}
+
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 4.0 Blog Page(s) ------------------------------------------ */
+body.dark-mode .ftco-section-blog {
+    background-color: #18191a;
+}
+
+body.dark-mode .block-27 ul li a {
+    border: 1px solid #666666;
+    color: #fff;
+}
+
+body.dark-mode .ftco-section {
+    background-color: #18191a;
+}
+
+body.dark-mode .about-author {
+    background-color: #6e6f5d;
 }
 
 /* ------------------------------------------ */

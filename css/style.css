@@ -1458,18 +1458,16 @@ li.breadcrumb-item.active a {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 16.0 Works by NRFZ ------------------------------------------ */
-.pw-portfolio-area {
+/* .pw-portfolio-area {
     position: relative;
     z-index: 1;
-    /* background-color: #f5f6f2; */
-    background-color: var(--color-bg);
-}
+    background-color: #f5f6f2;
+} */
 
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
-    /* background-color: #f5f6f2; */
-    background-color: var(--color-bg);
+    background-color: #f5f6f2;
 }
 
 .pw-projects-menu {
@@ -1891,7 +1889,7 @@ figcaption p {
 }
 
 .about-author {
-    background-color: #e4e6cf !important;
+    background-color: #e4e6cf;
     box-shadow: 0px 0 30px rgba(69, 80, 91, 0.08);
     border-radius: 20px;
     padding-bottom: 2px;
