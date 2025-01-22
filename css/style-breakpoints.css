@@ -12,6 +12,7 @@
         - 2.0.2 Min Width: 768px Max Width: 991px
         - 2.0.3 Min Width: 576px Max Width: 767px
         - 2.0.4 Min Width: 320px Max Width: 575px
+        - 2.0.5 Max Width: 319px
 
     - 3.0 Height Breakpoints
         - 3.0.1 Min Height: 531px Max Height: 620px
@@ -275,7 +276,8 @@
         width: 50%;
     }
 
-    .wbnrfz_btn_theme, body.dark-mode .wbnrfz_btn_theme {
+    .wbnrfz_btn_theme,
+    body.dark-mode .wbnrfz_btn_theme {
         margin-left: 15px !important;
         margin-top: 15px !important;
     }
@@ -419,7 +421,7 @@
     .breadcrumb-area.blog .breadcrumb-content .page-title {
         font-size: 30px;
     }
-    
+
     .breadcrumb-area.blog .breadcrumb-content .post-meta a {
         font-size: 13px;
     }
@@ -437,6 +439,11 @@
     .col-sm-4 {
         flex: 0 0 auto;
         width: 100%;
+    }
+
+    body.dark-mode .classy-nav-container .classy-navbar .classynav ul li a {
+        background-color: #1f2022;
+        color: #fff;
     }
 }
 
@@ -535,9 +542,21 @@
         width: 100%;
     }
 
+    body.dark-mode .classy-nav-container .classy-navbar .classynav ul li a {
+        background-color: #1f2022;
+        color: #fff;
+    }
 }
 
 /* ---- */
+
+/* 2.0.5 Max Width: 319px */
+@media only screen and (max-width: 319px) {
+    body.dark-mode .classy-nav-container .classy-navbar .classynav ul li a {
+        background-color: #1f2022;
+        color: #fff;
+    }
+}
 
 
 /* ------------------------------------------ 3.0 Height Breakpoints ------------------------------------------ */
