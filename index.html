@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
 
     <link rel="stylesheet" type="text/css"
         href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
@@ -60,6 +61,9 @@
                                     <li><a href="statistics/statistics.html">Statistics</a></li>
                                     <li><a href="past-records/past-records.html">Past Records</a></li>
                                     <li><a href="our-networks.html">Networks</a></li>
+                                    <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
+                                            title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -120,7 +124,7 @@
         <!-- Delays Overview (≥ 10 mins) -->
         <div class="row row-do">
             <div class="chart col-xl-12 col-lg-12 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card h-100 py-2" style="background-color: #f5f6f2;">
+                <div class="card card-do h-100 py-2">
                     <div class="card-header py-3 d-flex align-items-center justify-content-between"
                         style="background-color: #c4cbe7;">
                         <h6 class="m-0 font-weight-bold text-black">
@@ -129,7 +133,7 @@
                         </h6>
                     </div>
                     <!-- Card Body -->
-                    <div class="card-body">
+                    <div class="card-body card-body-do">
                         <div class="chart-area">
                             <canvas id="delays-overview-sm-24"></canvas>
                         </div>
@@ -172,6 +176,8 @@
         data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
+
+    <script src="js/theme.js"></script>
 
     <script src="js/jquery.min.js"></script>
 

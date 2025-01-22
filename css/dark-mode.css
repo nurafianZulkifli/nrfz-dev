@@ -1,0 +1,133 @@
+/* ------------------------------------------
+[Tables of Content]
+
+> style
+> style-breakpoints
+> dark theme (this)
+    - General
+    - 1.0 Home Page
+    - 2.0 About Page
+    - 3.0 Indiv Pages
+    - 4.0 Blog Page(s)
+--------------------------------------------- */
+
+/* ------------------------------------------ General ------------------------------------------ */
+/* ---- Preloader */
+body.dark-mode #preloader {
+    background-color: #1f2022;
+}
+
+/* ---- Button */
+.wbnrfz_btn_theme {
+    position: relative;
+    z-index: 1;
+    min-width: auto;
+    height: 46px;
+    line-height: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0 30px;
+    margin-left: 5px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #444;
+    color: #fff;
+    border-radius: 60px;
+    transition-duration: 500ms;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: none;
+}
+
+body.dark-mode .wbnrfz_btn_theme {
+    background-color: #b4c5e6;
+    color: #000;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p {
+    color: #fff;
+}
+
+body.dark-mode hr {
+    border-color: #fff;
+}
+
+/* ---- */
+
+/* ---- Footer */
+body.dark-mode .footer-area {
+    background-color: #1e1e1e;
+    color: #fff;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .footer-content .copywrite-text p {
+    color: #fff;
+}
+
+body.dark-mode .footer-content .social-info a {
+    color: #fff;
+}
+
+/* ---- */
+
+/* ---- Mobile Nav Bar */
+body.dark-mode .breakpoint-on .classy-navbar .classy-menu {
+    background-color: #1f2022;
+    transition: all 0.5s ease;
+}
+
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 1.0 Home Page ------------------------------------------ */
+body.dark-mode #lrd {
+    background-color: #18191a;
+    padding-top: 50px;
+}
+
+body.dark-mode .alert-primary {
+background-color: #082249;
+color: #5294e4;
+border-color: #084298;
+}
+
+body.dark-mode .dataraw_btn {
+    color: #5294e4;
+}
+
+body.dark-mode .breadcrumb-content .breadcrumb .breadcrumb-item-aag {
+    color: #fff;
+}
+
+body.dark-mode .breadcrumb-content .breadcrumb .breadcrumb-item-aag+.breadcrumb-item-aag::before {
+    color: #fff;
+}
+
+body.dark-mode .breadcrumb-content .breadcrumb .breadcrumb-item-aag.active {
+    color: #6d8fad;
+}
+
+/* Days Overview */
+body.dark-mode .card-body-nsl, body.dark-mode .card-nsl {
+    background-color: #471418;
+}
+
+body.dark-mode .card-body-ewl, body.dark-mode .card-ewl {
+    background-color: #0b3220;
+}
+
+body.dark-mode .days, body.dark-mode .slrd {
+    color: #fff;
+}
+
+/* Cards */
+body.dark-mode .card-body-do, body.dark-mode .card-do {
+    background-color: #242526;
+}

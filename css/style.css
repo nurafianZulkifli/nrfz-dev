@@ -1925,6 +1925,17 @@ canvas#delays-overview-sb-23 {
     color: #80a8cc;
 }
 
+.card-body-nsl, .card-nsl {
+    background-color: #ff9e97;
+}
+
+.card-body-ewl, .card-ewl {
+    background-color: #afe9ca;
+}
+
+.card-do {
+    background-color: #f5f6f2;
+}
 
 /* ------------------------------------------ */
 
