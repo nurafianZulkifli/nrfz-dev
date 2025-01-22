@@ -445,6 +445,12 @@
         background-color: #1f2022;
         color: #fff;
     }
+
+    .wbnrfz_btn_theme,
+    body.dark-mode .wbnrfz_btn_theme {
+        margin-left: 15px !important;
+        margin-top: 15px !important;
+    }
 }
 
 /* ---- */
@@ -546,6 +552,12 @@
         background-color: #1f2022;
         color: #fff;
     }
+
+    .wbnrfz_btn_theme,
+    body.dark-mode .wbnrfz_btn_theme {
+        margin-left: 15px !important;
+        margin-top: 15px !important;
+    }
 }
 
 /* ---- */
@@ -555,6 +567,12 @@
     body.dark-mode .classy-nav-container .classy-navbar .classynav ul li a {
         background-color: #1f2022;
         color: #fff;
+    }
+
+    .wbnrfz_btn_theme,
+    body.dark-mode .wbnrfz_btn_theme {
+        margin-left: 15px !important;
+        margin-top: 15px !important;
     }
 }
 
