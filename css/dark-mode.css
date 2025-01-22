@@ -12,6 +12,11 @@
 --------------------------------------------- */
 
 /* ------------------------------------------ General ------------------------------------------ */
+/* ---- Preloader */
+body.dark-mode #preloader {
+    background-color: #1f2022;
+}
+
 /* ---- Button */
 .wbnrfz_btn_theme {
     position: relative;
@@ -60,6 +65,7 @@ body.dark-mode hr {
 body.dark-mode .footer-area {
     background-color: #1e1e1e;
     color: #fff;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .footer-content .copywrite-text p {
@@ -75,6 +81,15 @@ body.dark-mode .footer-content .social-info a {
 /* ---- Progress Bar */
 body.dark-mode .single-skill .progress {
     background-color: #2e2e2e;
+    transition: all 0.5s ease;
+}
+
+/* ---- */
+
+/* ---- Mobile Nav Bar */
+body.dark-mode .breakpoint-on .classy-navbar .classy-menu {
+    background-color: #1f2022;
+    transition: all 0.5s ease;
 }
 
 /* ------------------------------------------ */
@@ -82,11 +97,13 @@ body.dark-mode .single-skill .progress {
 /* ------------------------------------------ 1.0 Home Page ------------------------------------------ */
 body.dark-mode .pw-portfolio-area {
     background-color: #18191a;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .pw-portfolio-area .container-fluid {
     background-color: #18191a;
     color: #fff;
+    transition: all 0.5s ease;
 }
 
 
@@ -104,10 +121,12 @@ body.dark-mode h2.profile-desc {
 body.dark-mode .about-me-area {
     background-color: #1e1e1e;
     color: #fff;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .about-me-content {
     background-color: #2e2e2e;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .about-me-content h4,
@@ -122,6 +141,7 @@ body.dark-mode .about-me-content:hover {
 body.dark-mode .follow-area {
     background-color: #18191a;
     color: #fff;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .skill-ara .single-skill .progress-count p {
@@ -133,11 +153,13 @@ body.dark-mode .skill-ara .single-skill .progress-count p {
 /* ------------------------------------------ 2.0 About Page ------------------------------------------ */
 body.dark-mode .about-me-summ {
     background-color: #18191a;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .about-me-summary {
     background-color: #2e2e2e;
     color: #fff;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .about-me-summary:hover {
@@ -146,10 +168,12 @@ body.dark-mode .about-me-summary:hover {
 
 body.dark-mode .about-me-area {
     background-color: #1e1e1e !important;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .timeline-content {
     background-color: #2e2e2e;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .timeline-content:hover {
@@ -161,6 +185,7 @@ body.dark-mode .timeline-content:hover {
 /* ------------------------------------------ 3.0 Indiv Pages ------------------------------------------ */
 body.dark-mode .wbnrfz-summ {
     background-color: #1e1e1e;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode span,
@@ -174,6 +199,7 @@ body.dark-mode .wbnrfz_details .details_catagory_wrap .single_catagory .social_l
 /* ------------------------------------------ 4.0 Blog Page(s) ------------------------------------------ */
 body.dark-mode .ftco-section-blog {
     background-color: #18191a;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .block-27 ul li a {
@@ -183,10 +209,12 @@ body.dark-mode .block-27 ul li a {
 
 body.dark-mode .ftco-section {
     background-color: #18191a;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .about-author {
     background-color: #6e6f5d;
+    transition: all 0.5s ease;
 }
 
 /* ------------------------------------------ */

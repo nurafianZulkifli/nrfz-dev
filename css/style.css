@@ -524,10 +524,14 @@ input:required {
     color: #ffffff;
 }
 
-.progress-bar {
-    height: 7px;
-    background: #b9683f;
+#scrollIndicator {
+    height: 5px;
+    background: linear-gradient(90deg,
+            #de650f 0%,
+            #fd1d1d 50%,
+            #df9e43 100%);
     width: 0%;
+    filter: drop-shadow(0 0 5px);
 }
 
 .scroll-bar {
@@ -1172,7 +1176,7 @@ classynav ul li.has-down>a::after,
     border-radius: 20px;
     font-size: 18px;
     color: #fff;
-    background-color: #80a8cc;
+    background-color: #708ea8;
     top: 15px;
     left: 1.5em;
     right: 1.5em;
@@ -1217,7 +1221,7 @@ classynav ul li.has-down>a::after,
 }
 
 .about-me-summ {
-    background-color: #f5f6f2;
+    background-color: #e9eae5;
     padding-top: 50px;
     padding-bottom: 83px;
 }
@@ -1679,15 +1683,17 @@ img.profile-pic {
 }
 
 .skill-ara .single-skill .progress {
-    height: 8px;
+    height: 5px;
     border-radius: 0;
     background-color: #dbe3e9;
     border-radius: 4px;
 }
 
 .skill-ara .single-skill .progress-bar {
-    background-color: #80a8cc;
-    border-radius: 7px;
+    background: linear-gradient(90deg, #708ea8 0%, #619bcd 45%, #72a7d6 100%);
+    width: 0%;
+    filter: drop-shadow(0 0 5px);
+    border-radius: 5px;
 }
 
 /* ------------------------------------------ */
@@ -1723,7 +1729,7 @@ img.profile-pic {
     font-size: 12px;
     color: #828793;
     font-weight: 400;
-    font-family: "Roboto", sans-serif;
+    font-family: "Onest", sans-serif;
     display: block;
     margin-bottom: 6px;
 }
@@ -2167,4 +2173,3 @@ hr {
 }
 
 /* ------------------------------------------ */
-
