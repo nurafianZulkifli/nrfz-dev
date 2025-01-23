@@ -2459,4 +2459,8 @@ h4.stn:hover {
     margin-right: 5px;
 }
 
+#line-nsl {
+    content: url('../img/networks/nsl-diag.png');
+}
+
 /* ------------------------------------------ */

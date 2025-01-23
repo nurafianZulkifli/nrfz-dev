@@ -243,7 +243,7 @@ body.dark-mode [data-title] {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 2.0 Statistics Page ------------------------------------------ */
+/* ------------------------------------------ 2.0 Statistics/Past Records Page ------------------------------------------ */
 body.dark-mode .card-header {
     background-color: #484a4b;
 }
@@ -252,8 +252,52 @@ body.dark-mode a {
     color: #fff;
 }
 
+body.dark-mode .accordion-button::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+body.dark-mode .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
 body.dark-mode .card-body-acc,
 body.dark-mode .card-acc {
     background-color: #2f3132;
     transition: all 0.5s ease;
 }
+
+body.dark-mode .lrd-year,
+body.dark-mode .pagination a.active {
+    background-color: #5f7cb4;
+    color: #fff;
+}
+
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 3.0 Networks Page/Section ------------------------------------------ */
+body.dark-mode .section-padding-80-0 {
+    background-color: #18191a;
+}
+
+body.dark-mode .wbnrfz-summ {
+    background-color: #1e1e1e;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode span,
+body.dark-mode .wbnrfz_details .details_catagory_wrap .single_catagory h4,
+body.dark-mode .wbnrfz_details .details_catagory_wrap .single_catagory .social_links a {
+    color: #fff;
+}
+
+body.dark-mode .about-me-stations {
+    background-color: #242526;
+}
+
+@media (prefers-color-scheme: dark) {
+    body.dark-mode #line-nsl {
+        content: url('../img/networks/nsl-diag-dark.png');
+    }
+}
+
+/* ------------------------------------------ */
