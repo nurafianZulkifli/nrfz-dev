@@ -298,6 +298,10 @@ h6 {
     margin-right: 100px;
 }
 
+.mb-0 {
+    color: #000;
+}
+
 .mb-10 {
     margin-bottom: 10px;
 }
@@ -1573,8 +1577,11 @@ img.profile-pic {
 .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: #e0e1dc;
     border-bottom: 0;
+}
+
+.card-header-active {
+    background-color: #b4c5e6;
 }
 
 .card-header:first-child {
@@ -1728,34 +1735,6 @@ p.accord-twt {
     font-size: 18px;
 }
 
-.accordion-item {
-    border-radius: 0.35rem;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
-    margin-bottom: 10px;
-}
-
-.accordion-body {
-    background-color: #f5f6f2;
-    color: #000;
-}
-
-.accordion-button.collapsed {
-    background-color: #f5f6f2;
-    color: #000;
-}
-
-.accordion-item .accordion-button.collapsed {
-    border-bottom-right-radius: 0rem;
-    border-bottom-left-radius: 0rem;
-    border: none;
-}
-
-.accordion-item .accordion-button {
-    border-top-left-radius: 0.35rem;
-    border-top-right-radius: 0.35rem;
-    border: none;
-}
-
 :focus {
     outline: 0 !important;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
@@ -1774,14 +1753,16 @@ p.accord-twt {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
-.accordion-button:not(.collapsed) {
-    background-color: #c4cbe7;
-    background-clip: border-box;
-    border: none;
-    border-top-right-radius: 0.35rem;
-    border-top-left-radius: 0.35rem;
-    color: #000;
+.accordion-item:last-of-type {
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
 }
+
+.accordion-body:last-of-type {
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+}
+
 
 .line {
     font-size: 18px;
@@ -1933,9 +1914,38 @@ canvas#delays-overview-sb-23 {
     background-color: #afe9ca;
 }
 
+.card-body-ccl, .card-ccl {
+    background-color: #fdd79b;
+}
+
+.card-body-lrt, .card-lrt {
+    background-color: #e7e7e7;
+}
+
+.card-body-tel, .card-tel {
+    background-color: #e8ccb0;
+}
+
+.card-body-dtl, .card-dtl {
+    background-color: #b0cce8;
+}
+
+.card-body-nel, .card-nel {
+    background-color: #dbb0e8;
+}
+
 .card-do {
     background-color: #f5f6f2;
 }
+
+#ops-smrt {
+    content: url('../img/core-img/stl.png');
+}
+
+#ops-sbst {
+    content: url('../img/core-img/sbstl.png');
+}
+
 
 /* ------------------------------------------ */
 

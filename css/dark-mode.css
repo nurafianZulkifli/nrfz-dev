@@ -40,9 +40,14 @@ body.dark-mode #preloader {
     border: none;
 }
 
+body.dark-mode #scrollUp {
+    background-color: #5f7cb4;
+    color: #fff;
+}
+
 body.dark-mode .wbnrfz_btn_theme {
-    background-color: #b4c5e6;
-    color: #000;
+    background-color: #5f7cb4;
+    color: #fff;
 }
 
 body.dark-mode h1,
@@ -52,6 +57,11 @@ body.dark-mode h4,
 body.dark-mode h5,
 body.dark-mode h6,
 body.dark-mode p {
+    color: #fff;
+}
+
+body.dark-mode .mb-0,
+body.dark-mode .mb-0 a {
     color: #fff;
 }
 
@@ -90,12 +100,14 @@ body.dark-mode .breakpoint-on .classy-navbar .classy-menu {
 body.dark-mode #lrd {
     background-color: #18191a;
     padding-top: 50px;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .alert-primary {
-background-color: #082249;
-color: #5294e4;
-border-color: #084298;
+    background-color: #082249;
+    color: #5294e4;
+    border-color: #084298;
+    transition: all 0.5s ease;
 }
 
 body.dark-mode .dataraw_btn {
@@ -115,19 +127,133 @@ body.dark-mode .breadcrumb-content .breadcrumb .breadcrumb-item-aag.active {
 }
 
 /* Days Overview */
-body.dark-mode .card-body-nsl, body.dark-mode .card-nsl {
+body.dark-mode .card-body-nsl,
+body.dark-mode .card-nsl {
     background-color: #471418;
+    transition: all 0.5s ease;
 }
 
-body.dark-mode .card-body-ewl, body.dark-mode .card-ewl {
+body.dark-mode .card-body-ewl,
+body.dark-mode .card-ewl {
     background-color: #0b3220;
+    transition: all 0.5s ease;
 }
 
-body.dark-mode .days, body.dark-mode .slrd {
+body.dark-mode .card-body-ccl,
+body.dark-mode .card-ccl {
+    background-color: #332701;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .card-body-lrt,
+body.dark-mode .card-lrt {
+    background-color: #313731;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .card-body-tel,
+body.dark-mode .card-tel {
+    background-color: #2a1806;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .card-body-dtl,
+body.dark-mode .card-dtl {
+    background-color: #012243;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .card-body-nel,
+body.dark-mode .card-nel {
+    background-color: #2e1a35;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .days,
+body.dark-mode .slrd {
     color: #fff;
 }
 
 /* Cards */
-body.dark-mode .card-body-do, body.dark-mode .card-do {
+body.dark-mode .card-body-do,
+body.dark-mode .card-do {
     background-color: #242526;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .accordion-button {
+    background-color: #3a3b3c;
+}
+
+body.dark-mode .accordion-body,
+body.dark-mode .accordion-item {
+    background-color: #242526;
+    transition: all 0.5s ease;
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border-color: #000;
+}
+
+body.dark-mode .accordion-item:first-of-type {
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border-color: #000;
+}
+
+body.dark-mode .accordion-item:last-of-type {
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border-color: #000;
+}
+
+body.dark-mode .accordion-item:last-of-type {
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border-color: #000;
+}
+
+body.dark-mode .accordion-body:last-of-type {
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border-color: #000;
+}
+
+body.dark-mode .accordion-button:not(.collapsed) {
+    background-color: #5f7cb4;
+}
+
+@media (prefers-color-scheme: dark) {
+    body.dark-mode #ops-smrt {
+        content: url('../img/core-img/stl-dark.png');
+    }
+
+    body.dark-mode #ops-sbst {
+        content: url('../img/core-img/sbstl-dark.png');
+    }
+}
+
+body.dark-mode .card-header-active {
+    background-color: #5f7cb4;
+}
+
+body.dark-mode [data-title] {
+    color: #fff;
+    border-bottom: 1px dotted #fff;
+}
+
+/* ------------------------------------------ */
+
+/* ------------------------------------------ 2.0 Statistics Page ------------------------------------------ */
+body.dark-mode .card-header {
+    background-color: #484a4b;
+}
+
+body.dark-mode a {
+    color: #fff;
+}
+
+body.dark-mode .card-body-acc,
+body.dark-mode .card-acc {
+    background-color: #2f3132;
+    transition: all 0.5s ease;
 }
