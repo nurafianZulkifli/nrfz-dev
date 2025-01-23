@@ -324,6 +324,36 @@ body.dark-mode .about-me-stations {
         content: url('../img/networks/ccl-diag-dark.png');
         transition: all 0.5s ease;
     }
+
+    body.dark-mode #line-nel,
+    body.dark-mode #line-nel-img {
+        content: url('../img/networks/nel-diag-dark.png');
+        transition: all 0.5s ease;
+    }
+
+    body.dark-mode #line-tel,
+    body.dark-mode #line-tel-img {
+        content: url('../img/networks/tel-diag-dark.png');
+        transition: all 0.5s ease;
+    }
+
+    body.dark-mode #line-pg,
+    body.dark-mode #line-pg-img {
+        content: url('../img/networks/pg-diag-dark.png');
+        transition: all 0.5s ease;
+    }
+
+    body.dark-mode #line-dtl,
+    body.dark-mode #line-dtl-img {
+        content: url('../img/networks/dtl-diag-dark.png');
+        transition: all 0.5s ease;
+    }
+
+    body.dark-mode #line-bp,
+    body.dark-mode #line-bp-img {
+        content: url('../img/networks/bp-diag-dark.png');
+        transition: all 0.5s ease;
+    }
 }
 
 /* ------------------------------------------ */

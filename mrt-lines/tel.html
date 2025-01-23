@@ -16,8 +16,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
 
   <link rel="stylesheet" href="../css/swiper-bundle.min.css">
   <link rel="stylesheet" href="../css/glightbox.min.css">
@@ -32,36 +33,39 @@
 
   <header class="header-area">
     <div class="main-header-area">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container container-xxl">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container container-xxl">
 
-                <nav class="classy-navbar justify-content-between" id="pwNav">
+          <nav class="classy-navbar justify-content-between" id="pwNav">
 
-                    <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
+            <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
 
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <div class="classy-menu">
-
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-                        <div class="classynav">
-                            <ul id="nav">
-                                <li><a href="../statistics/statistics.html">Statistics</a></li>
-                                <li><a href="../past-records/past-records.html">Past Records</a></li>
-                                <li class="active"><a href="../our-networks.html">Networks</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </nav>
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
             </div>
+
+            <div class="classy-menu">
+
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+              <div class="classynav">
+                <ul id="nav">
+                  <li><a href="../statistics/statistics.html">Statistics</a></li>
+                  <li><a href="../past-records/past-records.html">Past Records</a></li>
+                  <li class="active"><a href="../our-networks.html">Networks</a></li>
+                  <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!"><i
+                        class="fa-solid fa-moon"></i></button>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </nav>
         </div>
+      </div>
     </div>
-</header>
+  </header>
 
 
   <section class="breadcrumb-area-lines bg-img bg-overlay" style="background-image: url(../img/networks/telA.png)">
@@ -90,7 +94,7 @@
       <div class="container container-summary">
         <div class="col-lg-12">
           <div class="main-title">
-            <span style="color: #b70e0e; cursor: default;" >SMRT Trains</span>
+            <span style="color: #ea1c2d; cursor: default;">SMRT Trains</span>
             <h1 style="cursor: default;">
               Thomson-East Coast Line</h1>
           </div>
@@ -108,7 +112,7 @@
 
           <div class="col-sm-3 single_catagory">
             <span>Operated By</span>
-            <img class="logo-operator" src="../img/core-img/stl.png" alt="smrt" width="170px">
+            <img class="logo-operator" src="../img/core-img/stl.png" id="ops-smrt" alt="smrt" width="170px">
           </div>
         </div>
       </div>
@@ -116,7 +120,7 @@
     </div>
   </section>
 
-  <section class="about-me-summ bg-gray section-padding-80-0 clearfix">
+  <section class="about-me-summ section-padding-80-0 clearfix">
     <div class="wbnrfz_details wow fadeInUp" data-wow-delay="300ms">
       <div class="container container-xxl">
 
@@ -127,15 +131,21 @@
                 <div class="col-lg-12">
                   <div class="info justify-content-center">
                     <p style="text-align: center;">The Thomson-East Coast Line (TEL) will
-                      bring residents in the east and along the North-South Corridor closer to a train station and hence giving
-                      them faster access to the city. Commuters can expect travel time savings of up to 50 per cent when using
+                      bring residents in the east and along the North-South Corridor closer to a train station and hence
+                      giving
+                      them faster access to the city. Commuters can expect travel time savings of up to 50 per cent when
+                      using
                       TEL.
                       <br><br>
-                      Look forward to more route options with eight interchanges that connect to all the major lines: the
-                      East-West Line (EWL), North-South Line (NSL), North East Line (NEL), Circle Line (CCL), Downtown Line
-                      (DTL) and the Cross Island Line (CRL). When fully completed, the line will bring convenience to about 1
+                      Look forward to more route options with eight interchanges that connect to all the major lines:
+                      the
+                      East-West Line (EWL), North-South Line (NSL), North East Line (NEL), Circle Line (CCL), Downtown
+                      Line
+                      (DTL) and the Cross Island Line (CRL). When fully completed, the line will bring convenience to
+                      about 1
                       million commuters daily and relieve crowding on the East-West and North-South Lines.
-                      Along its route are eight interchanges that connect the NSL to the East-West Line (EWL), Circle Line
+                      Along its route are eight interchanges that connect the NSL to the East-West Line (EWL), Circle
+                      Line
                       (CCL), Downtown Line, North East Line (NEL) and Bukit Panjang LRT. <br><br> (Source: <a
                         href="https://www.lta.gov.sg/content/ltagov/en/upcoming_projects/rail_expansion/thomson_east_coast_line.html">LTA)</a>
                     </p>
@@ -148,9 +158,10 @@
 
               <h3 class="ld-s-title">Line Diagram</h3>
               <div class="row row-line-diag justify-content-center">
-                <a href="../img/networks/nsl-diag.png" class="portfolio-img"><img src="../img/networks/tel-diag.png"
-                  class="img-fluid" alt="cover-page"></a>
-                </div>
+                <a href="../img/networks/tel-diag.png" id="line-tel" class="portfolio-img">
+                  <img src="../img/networks/tel-diag.png" id="line-tel-img" class="img-fluid" alt="cover-page">
+                </a>
+              </div>
             </div>
 
 
@@ -291,7 +302,7 @@
                           <div class="station-pill-round-single" style="background-color: #9D5B25; color: #FFF;">
                             TE 15
                           </div>
-                          <h4 class="stn" style=" width: 119px;">Great World</h4>
+                          <h4 class="stn" style=" width: 111px;">Great World</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/havelock-station/" target="_blank">
@@ -331,7 +342,7 @@
                           <div class="station-pill-round-single" style="background-color: #9D5B25; color: #FFF;">
                             TE 19
                           </div>
-                          <h4 class="stn" style=" width: 130px;">Shenton Way</h4>
+                          <h4 class="stn" style=" width: 125px;">Shenton Way</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/marina-bay-station/" target="_blank">
@@ -379,7 +390,7 @@
                           <div class="station-pill-round-single" style="background-color: #9D5B25; color: #FFF;">
                             TE 25
                           </div>
-                          <h4 class="stn" style=" width: 148px;">Tanjong Katong</h4>
+                          <h4 class="stn" style=" width: 138px;">Tanjong Katong</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/marine-parade-station/" target="_blank">
@@ -387,7 +398,7 @@
                           <div class="station-pill-round-single" style="background-color: #9D5B25; color: #FFF;">
                             TE 26
                           </div>
-                          <h4 class="stn" style=" width: 139px;">Marine Parade</h4>
+                          <h4 class="stn" style=" width: 129px;">Marine Parade</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/marine-terrace-station/" target="_blank">
@@ -414,27 +425,27 @@
                           <h4 class="stn" style=" width: 98px;">Bayshore</h4>
                         </div>
                       </a>
-                      <a href="https://landtransportguru.net/bedok-south-station/" target="_blank">
+                      <!-- <a href="https://landtransportguru.net/bedok-south-station/" target="_blank">
                         <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #ede1d7; color: #FFF;">
+                          <div class="station-pill-round-single" style="background-color: #9D5B25; color: #FFF;">
                             TE 30
                           </div>
-                          <h4 class="stn" style=" width: 174px; color: #d1d1d1;">Bedok South (U/C)</h4>
+                          <h4 class="stn" style=" width: 121px;">Bedok South</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/sungei-bedok-station/" target="_blank">
                         <div class="stationBlockChildItem">
                           <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #ede1d7; color: #FFF;">
+                            <div class="station-pill-round" style="background-color: #9D5B25; color: #FFF;">
                               TE 31
                             </div>
-                            <div class="station-pill-round" style="background-color: #d1dfef; color: #FFF;">
+                            <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
                               DT 37
                             </div>
                           </div>
-                          <h4 class="stn" style=" width: 170px; color: #d1d1d1;">Sungei Bedok (U/C)</h4>
+                          <h4 class="stn" style=" width: 124px;">Sungei Bedok</h4>
                         </div>
-                      </a>
+                      </a> -->
                     </div>
                   </div>
                 </div>
@@ -473,6 +484,41 @@
     data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
+
+  <!-- Dark Mode Functionality for Individual Pages -->
+  <script>
+    // Check localStorage for dark mode preference
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      updateHrefForDarkMode();
+    }
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      // Save the preference in localStorage
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+      } else {
+        localStorage.setItem('dark-mode', 'disabled');
+      }
+      updateHrefForDarkMode();
+    });
+
+    function updateHrefForDarkMode() {
+      const link = document.getElementById('line-tel');
+      const img = document.getElementById('line-tel-img');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+
+      if (isDarkMode) {
+        link.href = '../img/networks/tel-diag-dark.png';
+        img.src = '../img/networks/tel-diag-dark.png';
+      } else {
+        link.href = '../img/networks/tel-diag.png';
+        img.src = '../img/networks/tel-diag.png';
+      }
+    }
+  </script>
 
   <script src="../js/jquery.min.js"></script>
 

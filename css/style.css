@@ -1911,31 +1911,38 @@ canvas#delays-overview-sb-23 {
     color: #80a8cc;
 }
 
-.card-body-nsl, .card-nsl {
+.card-body-nsl,
+.card-nsl {
     background-color: #ff9e97;
 }
 
-.card-body-ewl, .card-ewl {
+.card-body-ewl,
+.card-ewl {
     background-color: #afe9ca;
 }
 
-.card-body-ccl, .card-ccl {
+.card-body-ccl,
+.card-ccl {
     background-color: #fdd79b;
 }
 
-.card-body-lrt, .card-lrt {
+.card-body-lrt,
+.card-lrt {
     background-color: #e7e7e7;
 }
 
-.card-body-tel, .card-tel {
+.card-body-tel,
+.card-tel {
     background-color: #e8ccb0;
 }
 
-.card-body-dtl, .card-dtl {
+.card-body-dtl,
+.card-dtl {
     background-color: #b0cce8;
 }
 
-.card-body-nel, .card-nel {
+.card-body-nel,
+.card-nel {
     background-color: #dbb0e8;
 }
 
@@ -2458,16 +2465,49 @@ h4.stn:hover {
     margin-right: 5px;
 }
 
-#line-nsl, #line-nsl-img  {
+#line-nsl,
+#line-nsl-img {
     content: url('../img/networks/nsl-diag.png');
 }
 
-#line-ewl, #line-ewl-img  {
+#line-ewl,
+#line-ewl-img {
     content: url('../img/networks/ewl-diag.png');
 }
 
-#line-sk, #line-sk-img  {
+#line-sk,
+#line-sk-img {
     content: url('../img/networks/sk-diag.png');
+}
+
+#line-ccl,
+#line-ccl-img {
+    content: url('../img/networks/ccl-diag.png');
+}
+
+#line-nel,
+#line-nel-img {
+    content: url('../img/networks/nel-diag.png');
+}
+
+#line-tel,
+#line-tel-img {
+    content: url('../img/networks/tel-diag.png');
+}
+
+#line-pg,
+#line-pg-img {
+    content: url('../img/networks/pg-diag.png');
+}
+
+#line-dtl,
+#line-dtl-img {
+    content: url('../img/networks/dtl-diag.png');
+}
+
+#line-bp,
+#line-bp-img {
+    content: url('../img/networks/bp-diag.png');
 }
 
 /* ------------------------------------------ */

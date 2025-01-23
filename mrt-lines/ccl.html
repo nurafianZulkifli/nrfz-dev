@@ -567,53 +567,53 @@
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
 
- <!-- Chimes -->
- <script>
-  var ccl = document.getElementById("chimes");
+  <!-- Chimes -->
+  <script>
+    var ccl = document.getElementById("chimes");
 
-  function playAudio() {
-    ccl.play();
-  }
-
-  function pauseAudio() {
-    ccl.pause();
-  }
-</script>
-
-<!-- Dark Mode Functionality for Individual Pages -->
-<script>
-  // Check localStorage for dark mode preference
-  if (localStorage.getItem('dark-mode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    updateHrefForDarkMode();
-  }
-
-  const toggleButton = document.getElementById('dark-mode-toggle');
-  toggleButton.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    // Save the preference in localStorage
-    if (document.body.classList.contains('dark-mode')) {
-      localStorage.setItem('dark-mode', 'enabled');
-    } else {
-      localStorage.setItem('dark-mode', 'disabled');
+    function playAudio() {
+      ccl.play();
     }
-    updateHrefForDarkMode();
-  });
 
-  function updateHrefForDarkMode() {
-    const link = document.getElementById('line-ccl');
-    const img = document.getElementById('line-ccl-img');
-    const isDarkMode = document.body.classList.contains('dark-mode');
-
-    if (isDarkMode) {
-      link.href = '../img/networks/ccl-diag-dark.png';
-      img.src = '../img/networks/ccl-diag-dark.png';
-    } else {
-      link.href = '../img/networks/ccl-diag.png';
-      img.src = '../img/networks/ccl-diag.png';
+    function pauseAudio() {
+      ccl.pause();
     }
-  }
-</script>
+  </script>
+
+  <!-- Dark Mode Functionality for Individual Pages -->
+  <script>
+    // Check localStorage for dark mode preference
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      updateHrefForDarkMode();
+    }
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      // Save the preference in localStorage
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+      } else {
+        localStorage.setItem('dark-mode', 'disabled');
+      }
+      updateHrefForDarkMode();
+    });
+
+    function updateHrefForDarkMode() {
+      const link = document.getElementById('line-ccl');
+      const img = document.getElementById('line-ccl-img');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+
+      if (isDarkMode) {
+        link.href = '../img/networks/ccl-diag-dark.png';
+        img.src = '../img/networks/ccl-diag-dark.png';
+      } else {
+        link.href = '../img/networks/ccl-diag.png';
+        img.src = '../img/networks/ccl-diag.png';
+      }
+    }
+  </script>
 
   <script src="../js/jquery.min.js"></script>
 

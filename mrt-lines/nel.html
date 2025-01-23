@@ -16,8 +16,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
 
   <link rel="stylesheet" href="../css/swiper-bundle.min.css">
   <link rel="stylesheet" href="../css/glightbox.min.css">
@@ -32,36 +33,39 @@
 
   <header class="header-area">
     <div class="main-header-area">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container container-xxl">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container container-xxl">
 
-                <nav class="classy-navbar justify-content-between" id="pwNav">
+          <nav class="classy-navbar justify-content-between" id="pwNav">
 
-                    <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
+            <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
 
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <div class="classy-menu">
-
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-                        <div class="classynav">
-                            <ul id="nav">
-                                <li><a href="../statistics/statistics.html">Statistics</a></li>
-                                <li><a href="../past-records/past-records.html">Past Records</a></li>
-                                <li class="active"><a href="../our-networks.html">Networks</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </nav>
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
             </div>
+
+            <div class="classy-menu">
+
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+              <div class="classynav">
+                <ul id="nav">
+                  <li><a href="../statistics/statistics.html">Statistics</a></li>
+                  <li><a href="../past-records/past-records.html">Past Records</a></li>
+                  <li class="active"><a href="../our-networks.html">Networks</a></li>
+                  <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!"><i
+                        class="fa-solid fa-moon"></i></button>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </nav>
         </div>
+      </div>
     </div>
-</header>
+  </header>
 
 
   <section class="breadcrumb-area-lines bg-img bg-overlay" style="background-image: url(../img/networks/nelA.png)">
@@ -90,7 +94,7 @@
       <div class="container container-summary">
         <div class="col-lg-12">
           <div class="main-title">
-            <span style="color: #682970; cursor: default;" >SBS Transit</span>
+            <span style="color: #9648a0; cursor: default;">SBS Transit</span>
             <h1 style="cursor: default;">
               North East Line</h1>
           </div>
@@ -108,16 +112,16 @@
 
           <div class="col-sm-3 single_catagory">
             <span>Operated By</span>
-            <img class="logo-operator" src="../img/core-img/sbstl.png" alt="sbst" width="170px">
+            <img class="logo-operator" src="../img/core-img/sbstl.png" id="ops-sbst" alt="sbst" width="170px">
           </div>
-          
+
         </div>
       </div>
       <div style="background-color: #8F4199; width: 100%; height: 20px;"></div>
     </div>
   </section>
 
-  <section class="about-me-summ bg-gray section-padding-80-0 clearfix">
+  <section class="about-me-summ section-padding-80-0 clearfix">
     <div class="wbnrfz_details wow fadeInUp" data-wow-delay="300ms">
       <div class="container container-xxl">
 
@@ -128,15 +132,18 @@
                 <div class="col-lg-12">
                   <div class="info justify-content-center">
                     <p style="text-align: center;">Built using the latest technology and
-                      engineering techniques of its time, NEL heralded an era of automated and driverless mass rapid transit
-                      systems, an enhanced commuter experience and the beginning of our multi-modal, integrated public transport
+                      engineering techniques of its time, NEL heralded an era of automated and driverless mass rapid
+                      transit
+                      systems, an enhanced commuter experience and the beginning of our multi-modal, integrated public
+                      transport
                       model.
                       <br><br>
-                      Connecting residential areas in the north-east to Singapore’s heritage areas and the city fringe, its
+                      Connecting residential areas in the north-east to Singapore’s heritage areas and the city fringe,
+                      its
                       development was aimed at serving growing neighbourhoods in these regions.
                       <br><br>
                       The 20km line has 16 stations, and connects to six interchanges.<br><br> (Source: <a
-                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_east_line.html">LTA)</a>
+                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_east_line.html">LTA</a>)
                     </p>
                   </div>
                 </div>
@@ -147,9 +154,10 @@
 
               <h3 class="ld-s-title">Line Diagram</h3>
               <div class="row row-line-diag justify-content-center">
-                <a href="../img/networks/nel-diag.png" class="portfolio-img"><img src="../img/networks/nel-diag.png"
-                  class="img-fluid" alt="cover-page"></a>
-                </div>
+                <a href="../img/networks/nel-diag.png" id="line-nel" class="portfolio-img">
+                  <img src="../img/networks/nel-diag.png" id="line-nel-img" class="img-fluid" alt="cover-page">
+                </a>
+              </div>
             </div>
 
 
@@ -381,6 +389,41 @@
     data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
+
+  <!-- Dark Mode Functionality for Individual Pages -->
+  <script>
+    // Check localStorage for dark mode preference
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      updateHrefForDarkMode();
+    }
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      // Save the preference in localStorage
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+      } else {
+        localStorage.setItem('dark-mode', 'disabled');
+      }
+      updateHrefForDarkMode();
+    });
+
+    function updateHrefForDarkMode() {
+      const link = document.getElementById('line-nel');
+      const img = document.getElementById('line-nel-img');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+
+      if (isDarkMode) {
+        link.href = '../img/networks/nel-diag-dark.png';
+        img.src = '../img/networks/nel-diag-dark.png';
+      } else {
+        link.href = '../img/networks/nel-diag.png';
+        img.src = '../img/networks/nel-diag.png';
+      }
+    }
+  </script>
 
   <script src="../js/jquery.min.js"></script>
 
