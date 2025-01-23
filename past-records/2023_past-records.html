@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
     
     <link rel="stylesheet" type="text/css"
         href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
@@ -56,6 +57,9 @@
                                     <li><a href="../statistics/statistics.html">Statistics</a></li>
                                     <li class="active"><a href="past-records.html">Past Records</a></li>
                                     <li><a href="../our-networks.html">Networks</a></li>
+                                    <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
+                                        title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button>
+                                </li>
                                 </ul>
                             </div>
 
@@ -115,7 +119,7 @@
                     <h2 class="accordion-header " id="headingSMRT23">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSMRT23" aria-expanded="false" aria-controls="collapseSMRT23">
-                            <h2><img src="../img/core-img/stl.png" alt="SMRTT" width="150px"></h2>
+                            <h2><img src="../img/core-img/stl.png" id="ops-smrt" alt="SMRTT" width="150px"></h2>
                         </button>
                     </h2>
                     <div id="collapseSMRT23" class="accordion-collapse collapse" aria-labelledby="headingSMRT23"
@@ -123,9 +127,9 @@
                         <div class="accordion-body">
         
                             <div class="chart col-xl-12 col-lg-12">
-                                <div class="card h-100 py-2" style="background-color: #f5f6f2;">
+                                <div class="card card-acc h-100 py-2">
                                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-black">
+                                        <h6 class="m-0 font-weight-bold">
                                             <span
                                                 data-title="Delays less than 10 mins won't be reflected in this chart.">
                                                 Delays Overview (≥ 10 mins)
@@ -133,7 +137,7 @@
                                         </h6>
                                     </div>
                                     <!-- Card Body -->
-                                    <div class="card-body">
+                                    <div class="card-body card-body-acc">
                                         <div class="chart-area">
                                             <canvas id="delays-overview-sm-23"></canvas>
                                         </div>
@@ -147,9 +151,8 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="heading-ai-2023">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#ai-2023" aria-expanded="false" aria-controls="ai-2023"
-                                            style="background-color: #e0e1dc;">
-                                            <h6 class="m-0 font-weight-bold text-black">Past Incidents</h6>
+                                            data-bs-target="#ai-2023" aria-expanded="false" aria-controls="ai-2023">
+                                            <h6 class="m-0 font-weight-bold">Past Incidents</h6>
                                         </button>
                                     </h2>
                                     <div id="ai-2023" class="accordion-collapse collapse" aria-labelledby="heading-ai-2023"
@@ -157,7 +160,7 @@
                                         <div class="accordion-body">
                                             <p class="ai-year">December</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="#">Dec 10:</a></b><br>
                                                 Due to System Fault on Thomson East Coast Line, additional travel time of 10
                                                 minutes
@@ -168,7 +171,7 @@
                                                 work is in progress. (*Unreported Delay, via Discord)
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a
                                                         href="https://www.facebook.com/SMRTCorpSG/posts/pfbid0s8Yr93KYGT7X7uBueqnVaSRB6ntB5CVkyobXQMqH2HxapUgq6GySa6vSDK9RJn9Rl">Dec
                                                         8:</a></b><br>
@@ -181,7 +184,7 @@
         
                                             <p class="ai-year">November</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1721461668671373543">
                                                         Nov 6:</a></b><br>
                                                 [TEL]: Due to a Signaling Fault, there will be an additional travelling time of
@@ -193,7 +196,7 @@
                                                 on alternate lines.
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1721017939200184521">
                                                         Nov 5:</a></b><br>
                                                 [NSL]: Due to a train fault, pls add 25mins train travel time from #AngMoKio to
@@ -205,7 +208,7 @@
         
                                             <p class="ai-year">October</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://x.com/SMRT_Singapore/status/1717845436948791310">
                                                         Oct 27:</a></b><br>
                                                 [NSL]: Due to an incident, Novena station is closed. All trains will not stop at
@@ -220,7 +223,7 @@
         
                                             <p class="ai-year">September</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://x.com/SMRT_Singapore/status/1707500662345683016">
                                                         Sep 29:</a></b><br>
                                                 [CCL]: Due to a track fault, train services between #DhobyGhaut / #MarinaBayand
@@ -237,7 +240,7 @@
         
                                             <p class="ai-year">August</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1690337384842579968">
                                                         Aug 12:</a></b><br>
                                                 [TEL]: Due to a track signal fault, trains are moving slower from Woodlands
@@ -252,7 +255,7 @@
         
                                             <p class="ai-year">July</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1676343191845613573">
                                                         Jul 5:</a></b><br>
                                                 [EWL]: Due to a factory fire near #TuasLink, there is no train svc btwn
@@ -266,7 +269,7 @@
         
                                             <p class="ai-year">June</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1673813447539294209">Jun
                                                         28:</a></b><br>
                                                 [EWL]: Due to a track point fault, pls add 15mins train travel time btwn
@@ -276,7 +279,7 @@
                                                 assist.
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1672256730573737985">Jun
                                                         23:</a></b><br>
                                                 [CCL] UPDATE : No train service between #Esplanade / #Bayfront and #Mountbatten.
@@ -295,7 +298,7 @@
         
                                             <p class="ai-year">May</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1654045602450391040">May
                                                         4:</a></b><br>
                                                 [BPLRT] Due to a train fault, normal train service is affected. Shuttle train
@@ -310,7 +313,7 @@
         
                                             <p class="ai-year">April</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1650815429043195904">Apr
                                                         25:</a></b><br>
                                                 [BPLRT] Due to a trackside switch fault, please use Service B for your journey
@@ -319,7 +322,7 @@
                                                 revenue hours.
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1648240598703562754">Apr
                                                         18:</a></b><br>
                                                 [CCL] Due to a power fault, please add 20 minutes additional train travel time
@@ -329,7 +332,7 @@
                                                 #Harbourfront.
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1645574954535235585">Apr
                                                         11:</a></b><br>
                                                 [TEL] UPDATE: Please allow for additional 10 mins travel time between Woodlands
@@ -338,7 +341,7 @@
                                                 Gardens by the Bay in both directions due to a signal fault.
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1644203251154436098">Apr
                                                         7:</a></b><br>
                                                 [CCL]: Additional 30mins train travel time between #DhobyGhaut/#MarinaBay and
@@ -351,7 +354,7 @@
         
                                             <p class="ai-year">March</p>
         
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1633442482506842113">Mar
                                                         8:</a></b><br>
                                                 [BPLRT]: Due to a power fault between Choa Chua Kang and Keat Hong Station,
@@ -362,7 +365,7 @@
                                                 available for loopside.
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1654045602450391040">Mar
                                                         7:</a></b><br>
                                                 [TEL]: Due to a train fault, please expect an additional travelling time of
@@ -378,7 +381,7 @@
                                                 bus services available between Caldecott and Gardens by the Bay. (1/3)
                                             </p>
                                             <br>
-                                            <p class="mb-0" style="color: #000;">
+                                            <p class="mb-0">
                                                 <b>- <a href="https://twitter.com/SMRT_Singapore/status/1632229493774618624">Mar
                                                         5:</a></b><br>
                                                 [EWL]: Due to a train fault, please add 25mins train travel time from
@@ -402,7 +405,7 @@
                     <h2 class="accordion-header " id="headingSBST23">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSBST23" aria-expanded="false" aria-controls="collapseSBST23">
-                            <h2><img src="../img/core-img/sbstl.png" alt="sbstl" width="150px"></h2>
+                            <h2><img src="../img/core-img/sbstl.png" id="ops-sbst" alt="sbstl" width="150px"></h2>
                         </button>
                     </h2>
                     <div id="collapseSBST23" class="accordion-collapse collapse" aria-labelledby="headingSBST23"
@@ -410,9 +413,9 @@
                         <div class="accordion-body">
         
                             <div class="chart col-xl-12 col-lg-12">
-                                <div class="card h-100 py-2" style="background-color: #f5f6f2;">
+                                <div class="card card-acc h-100 py-2">
                                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-black">
+                                        <h6 class="m-0 font-weight-bold">
                                             <span
                                                 data-title="Delays less than 10 mins won't be reflected in this chart.">
                                                 Delays Overview (≥ 10 mins)
@@ -420,7 +423,7 @@
                                         </h6>
                                     </div>
                                     <!-- Card Body -->
-                                    <div class="card-body">
+                                    <div class="card-body card-body-acc">
                                         <div class="chart-area">
                                             <canvas id="delays-overview-sb-23"></canvas>
                                         </div>
@@ -434,9 +437,8 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading-ai-2023">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#ai-2023" aria-expanded="false" aria-controls="ai-2023"
-                                                style="background-color: #e0e1dc;">
-                                                <h6 class="m-0 font-weight-bold text-black">Past Incidents</h6>
+                                                data-bs-target="#ai-2023" aria-expanded="false" aria-controls="ai-2023">
+                                                <h6 class="m-0 font-weight-bold">Past Incidents</h6>
                                             </button>
                                         </h2>
                                         <div id="ai-2023" class="accordion-collapse collapse" aria-labelledby="heading-ai-2023"
@@ -444,7 +446,7 @@
                                             <div class="accordion-body">
                                                 <p class="ai-year">December</p>
         
-                                                <p class="mb-0" style="color: #000;">
+                                                <p class="mb-0">
                                                     <b>No Incidents Reported</b>
                                                 </p>
         
@@ -452,7 +454,7 @@
         
                                                 <p class="ai-year">November</p>
         
-                                                <p class="mb-0" style="color: #000;">
+                                                <p class="mb-0">
                                                     <b>No Incidents Reported</b>
                                                 </p>
         
@@ -460,7 +462,7 @@
         
                                                 <p class="ai-year">October</p>
         
-                                                <p class="mb-0" style="color: #000;">
+                                                <p class="mb-0">
                                                     <b>No Incidents Reported</b>
                                                 </p>
         
@@ -468,7 +470,7 @@
         
                                                 <p class="ai-year">September</p>
         
-                                                <p class="mb-0" style="color: #000;">
+                                                <p class="mb-0">
                                                     <b>No Incidents Reported</b>
                                                 </p>
         
@@ -476,7 +478,7 @@
         
                                                 <p class="ai-year">August</p>
         
-                                                <p class="mb-0" style="color: #000;">
+                                                <p class="mb-0">
                                                     <b>- <a
                                                             href="https://twitter.com/SBSTransit_Ltd/status/1656237948411727873">Aug
                                                             2:</a></b><br>
@@ -488,7 +490,7 @@
         
                                                         <p class="ai-year">July</p>
         
-                                                        <p class="mb-0" style="color: #000;">
+                                                        <p class="mb-0">
                                                             <b>No Incidents Reported</b>
                                                         </p>
         
@@ -496,7 +498,7 @@
         
                                                         <p class="ai-year">June</p>
         
-                                                        <p class="mb-0" style="color: #000;">
+                                                        <p class="mb-0">
                                                             <b>No Incidents Reported</b>
                                                         </p>
         
@@ -504,7 +506,7 @@
         
                                                         <p class="ai-year">May</p>
         
-                                                        <p class="mb-0" style="color: #000;">
+                                                        <p class="mb-0">
                                                             <b>- <a
                                                                     href="https://twitter.com/SBSTransit_Ltd/status/1656237948411727873">May
                                                                     10:</a></b><br>
@@ -523,7 +525,7 @@
         
                                                         <p class="ai-year">April</p>
         
-                                                        <p class="mb-0" style="color: #000;">
+                                                        <p class="mb-0">
                                                             <b>No Incidents Reported</b>
                                             </div>
                                         </div>
@@ -583,8 +585,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../past-records/charts-smrt/2023.js"></script>
-    <script src="../past-records/charts-sbst/2023.js"></script>
+    <script src="./2023.js"></script>
 
 
 </body>

@@ -16,8 +16,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
 
   <link rel="stylesheet" href="../css/swiper-bundle.min.css">
   <link rel="stylesheet" href="../css/glightbox.min.css">
@@ -32,36 +33,39 @@
 
   <header class="header-area">
     <div class="main-header-area">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container container-xxl">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container container-xxl">
 
-                <nav class="classy-navbar justify-content-between" id="pwNav">
+          <nav class="classy-navbar justify-content-between" id="pwNav">
 
-                    <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
+            <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
 
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <div class="classy-menu">
-
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-                        <div class="classynav">
-                            <ul id="nav">
-                                <li><a href="../statistics/statistics.html">Statistics</a></li>
-                                <li><a href="../past-records/past-records.html">Past Records</a></li>
-                                <li class="active"><a href="../our-networks.html">Networks</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </nav>
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
             </div>
+
+            <div class="classy-menu">
+
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+              <div class="classynav">
+                <ul id="nav">
+                  <li><a href="../statistics/statistics.html">Statistics</a></li>
+                  <li><a href="../past-records/past-records.html">Past Records</a></li>
+                  <li class="active"><a href="../our-networks.html">Networks</a></li>
+                  <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!"><i
+                        class="fa-solid fa-moon"></i></button>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </nav>
         </div>
+      </div>
     </div>
-</header>
+  </header>
 
 
   <section class="breadcrumb-area-lines bg-img bg-overlay" style="background-image: url(../img/networks/ewlA.png)">
@@ -90,8 +94,9 @@
       <div class="container container-summary">
         <div class="col-lg-12">
           <div class="main-title">
-            <span style="color: #b70e0e; cursor: pointer;" title="Click me to hear one of the EWL Chimes!" onclick="playAudio()" >SMRT Trains</span><br>
-          
+            <span style="color: #ea1c2d; cursor: pointer;" title="Click me to hear one of the EWL Chimes!"
+              onclick="playAudio()">SMRT Trains</span><br>
+
             <h1 style="cursor: default;">
               East-West Line</h1>
           </div>
@@ -114,16 +119,16 @@
 
           <div class="col-sm-3 single_catagory">
             <span>Operated By</span>
-            <img class="logo-operator" src="../img/core-img/stl.png" alt="smrt" width="170px">
+            <img class="logo-operator" src="../img/core-img/stl.png" id="ops-smrt" alt="smrt" width="170px">
           </div>
-          
+
         </div>
       </div>
       <div style="background-color: #34AF65; width: 100%; height: 20px;"></div>
     </div>
   </section>
 
-  <section class="about-me-summ bg-gray section-padding-80-0 clearfix">
+  <section class="about-me-summ section-padding-80-0 clearfix">
     <div class="wbnrfz_details wow fadeInUp" data-wow-delay="300ms">
       <div class="container container-xxl">
 
@@ -134,19 +139,26 @@
                 <div class="col-lg-12">
                   <div class="info justify-content-center">
                     <p style="text-align: center;">Crossing the island from Tuas Link to
-                      Pasir Ris, and measuring about 57km, the East-West Line (EWL) is the longest train line in operation in
-                      Singapore. It started as part of the North-South Line (NSL) and was expanded southwards towards Outram in
+                      Pasir Ris, and measuring about 57km, the East-West Line (EWL) is the longest train line in
+                      operation in
+                      Singapore. It started as part of the North-South Line (NSL) and was expanded southwards towards
+                      Outram in
                       1987.
                       <br><br>
-                      The ‘original’ line, ending at Boon Lay MRT station, was completed in 1990. Today, the line will take you
-                      from Changi Airport to recreational spots in Pasir Ris or towards the famous food enclaves of Geylang and
-                      Tiong Bahru. A few stops at major interchanges in the city fringe and Central Business District later, the
-                      line heads west through the ‘school district’ of polytechnics and universities at Dover and Clementi
+                      The ‘original’ line, ending at Boon Lay MRT station, was completed in 1990. Today, the line will
+                      take you
+                      from Changi Airport to recreational spots in Pasir Ris or towards the famous food enclaves of
+                      Geylang and
+                      Tiong Bahru. A few stops at major interchanges in the city fringe and Central Business District
+                      later, the
+                      line heads west through the ‘school district’ of polytechnics and universities at Dover and
+                      Clementi
                       before it heads into the sprawling Jurong township and Tuas industrial estate.
                       <br><br>
-                      In all, there are 35 stations on the EWL, with Jurong East MRT station being one of the busiest rail
+                      In all, there are 35 stations on the EWL, with Jurong East MRT station being one of the busiest
+                      rail
                       interchanges/terminal stations on the EW and NS Lines.<br><br> (Source: <a
-                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/east_west_line.html">LTA)</a>
+                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/east_west_line.html">LTA</a>)
                     </p>
                   </div>
                 </div>
@@ -157,9 +169,10 @@
 
               <h3 class="ld-s-title">Line Diagram</h3>
               <div class="row row-line-diag justify-content-center">
-                <a href="../img/networks/ewl-diag.png" class="portfolio-img"><img src="../img/networks/ewl-diag.png"
-                  class="img-fluid" alt="cover-page"></a>
-                </div>
+                <a href="../img/networks/ewl-diag.png" id="line-ewl" class="portfolio-img">
+                  <img src="../img/networks/ewl-diag.png" id="line-ewl-img" class="img-fluid" alt="cover-page">
+                </a>
+              </div>
             </div>
 
 
@@ -562,6 +575,7 @@
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
 
+  <!-- Chimes -->
   <script>
     var ewl = document.getElementById("chimes");
 
@@ -571,6 +585,41 @@
 
     function pauseAudio() {
       ewl.pause();
+    }
+  </script>
+
+  <!-- Dark Mode Functionality for Individual Pages -->
+  <script>
+    // Check localStorage for dark mode preference
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      updateHrefForDarkMode();
+    }
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      // Save the preference in localStorage
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+      } else {
+        localStorage.setItem('dark-mode', 'disabled');
+      }
+      updateHrefForDarkMode();
+    });
+
+    function updateHrefForDarkMode() {
+      const link = document.getElementById('line-ewl');
+      const img = document.getElementById('line-ewl-img');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+
+      if (isDarkMode) {
+        link.href = '../img/networks/ewl-diag-dark.png';
+        img.src = '../img/networks/ewl-diag-dark.png';
+      } else {
+        link.href = '../img/networks/ewl-diag.png';
+        img.src = '../img/networks/ewl-diag.png';
+      }
     }
   </script>
 

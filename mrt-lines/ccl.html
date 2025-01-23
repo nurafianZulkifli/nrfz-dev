@@ -16,8 +16,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style-breakpoints.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
 
   <link rel="stylesheet" href="../css/swiper-bundle.min.css">
   <link rel="stylesheet" href="../css/glightbox.min.css">
@@ -32,36 +33,39 @@
 
   <header class="header-area">
     <div class="main-header-area">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container container-xxl">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container container-xxl">
 
-                <nav class="classy-navbar justify-content-between" id="pwNav">
+          <nav class="classy-navbar justify-content-between" id="pwNav">
 
-                    <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
+            <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
 
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <div class="classy-menu">
-
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-                        <div class="classynav">
-                            <ul id="nav">
-                                <li><a href="../statistics/statistics.html">Statistics</a></li>
-                                <li><a href="../past-records/past-records.html">Past Records</a></li>
-                                <li class="active"><a href="../our-networks.html">Networks</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </nav>
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
             </div>
+
+            <div class="classy-menu">
+
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+              <div class="classynav">
+                <ul id="nav">
+                  <li><a href="../statistics/statistics.html">Statistics</a></li>
+                  <li><a href="../past-records/past-records.html">Past Records</a></li>
+                  <li class="active"><a href="../our-networks.html">Networks</a></li>
+                  <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!"><i
+                        class="fa-solid fa-moon"></i></button>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </nav>
         </div>
+      </div>
     </div>
-</header>
+  </header>
 
 
   <section class="breadcrumb-area-lines bg-img bg-overlay" style="background-image: url(../img/networks/cclA.png)">
@@ -90,7 +94,8 @@
       <div class="container container-summary">
         <div class="col-lg-12">
           <div class="main-title">
-            <span style="color: #b70e0e; cursor: pointer;" title="Click me to hear one of the CCL Chimes!" onclick="playAudio()" >SMRT Trains</span>
+            <span style="color: #ea1c2d; cursor: pointer;" title="Click me to hear one of the CCL Chimes!"
+              onclick="playAudio()">SMRT Trains</span>
             <h1 style="cursor: default;">
               Circle Line</h1>
           </div>
@@ -113,16 +118,16 @@
 
           <div class="col-sm-3 single_catagory">
             <span>Operated By</span>
-            <img class="logo-operator" src="../img/core-img/stl.png" alt="smrt" width="170px">
+            <img class="logo-operator" src="../img/core-img/stl.png" id="ops-smrt" alt="smrt" width="170px">
           </div>
-          
+
         </div>
       </div>
       <div style="background-color: #FC9B24; width: 100%; height: 20px;"></div>
     </div>
   </section>
 
-  <section class="about-me-summ bg-gray section-padding-80-0 clearfix">
+  <section class="about-me-summ section-padding-80-0 clearfix">
     <div class="wbnrfz_details wow fadeInUp" data-wow-delay="300ms">
       <div class="container container-xxl">
 
@@ -133,8 +138,10 @@
                 <div class="col-lg-12">
                   <div class="info justify-content-center">
                     <p style="text-align: center;">Building the Circle Line (CCL) was a
-                      feat that required innovations in design, engineering and construction. It took place in challenging soil
-                      conditions, a maze of underground structures, and under a densely packed surface of roads, expressways and
+                      feat that required innovations in design, engineering and construction. It took place in
+                      challenging soil
+                      conditions, a maze of underground structures, and under a densely packed surface of roads,
+                      expressways and
                       buildings.
                       <br><br>
                       Proposals for the line began in the 1990s, and plans for the CCL evolved to:
@@ -143,9 +150,10 @@
                       - distribute commuter traffic away from busy interchanges, and<br>
                       - create a greater number of connections and faster journeys.
                       <br><br>
-                      As its name suggests, the 30-station CCL is a circular rail line linking the North-South, East-West and
+                      As its name suggests, the 30-station CCL is a circular rail line linking the North-South,
+                      East-West and
                       North East Lines to the city.<br><br> (Source: <a
-                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/circle_line.html">LTA)</a>
+                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/circle_line.html">LTA</a>)
                     </p>
                   </div>
                 </div>
@@ -156,9 +164,10 @@
 
               <h3 class="ld-s-title">Line Diagram</h3>
               <div class="row row-line-diag justify-content-center">
-                <a href="../img/networks/ccl-diag.png" class="portfolio-img"><img src="../img/networks/ccl-diag.png"
-                  class="img-fluid" alt="cover-page"></a>
-                </div>
+                <a href="../img/networks/ccl-diag.png" id="line-ccl" class="portfolio-img">
+                  <img src="../img/networks/ccl-diag.png" id="line-ccl-img" class="img-fluid" alt="cover-page">
+                </a>
+              </div>
             </div>
 
 
@@ -199,7 +208,7 @@
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 3
                           </div>
-                          <h4 class="stn" style=" width: 104px;">Esplanade</h4>
+                          <h4 class="stn" style=" width: 100px;">Esplanade</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/promenade-station/" target="_blank">
@@ -212,7 +221,7 @@
                               DT 15
                             </div>
                           </div>
-                          <h4 class="stn" style=" width: 112px;">Promenade</h4>
+                          <h4 class="stn" style=" width: 106px;">Promenade</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/nicoll-highway-station/" target="_blank">
@@ -228,7 +237,7 @@
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 6
                           </div>
-                          <h4 class="stn" style=" width: 91px;">Stadium</h4>
+                          <h4 class="stn" style=" width: 83px;">Stadium</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/mountbatten-station/" target="_blank">
@@ -236,7 +245,7 @@
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 7
                           </div>
-                          <h4 class="stn" style=" width: 127px;">Mountbatten</h4>
+                          <h4 class="stn" style=" width: 123px;">Mountbatten</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/dakota-station/" target="_blank">
@@ -328,7 +337,7 @@
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 16
                           </div>
-                          <h4 class="stn" style=" width: 112px;">Marymount</h4>
+                          <h4 class="stn" style=" width: 106px;">Marymount</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/caldecott-station/">
@@ -370,7 +379,7 @@
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 21
                           </div>
-                          <h4 class="stn" style=" width: 144px;">Holland Village</h4>
+                          <h4 class="stn" style=" width: 133px;">Holland Village</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/buona-vista-station/" target="_blank">
@@ -415,7 +424,7 @@
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 26
                           </div>
-                          <h4 class="stn" style=" width: 126px;">Pasir Panjang</h4>
+                          <h4 class="stn" style=" width: 118px;">Pasir Panjang</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/labrador-park-station/" target="_blank">
@@ -423,7 +432,7 @@
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 27
                           </div>
-                          <h4 class="stn" style=" width: 134px;">Labrador Park</h4>
+                          <h4 class="stn" style=" width: 127px;">Labrador Park</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/telok-blangah-station/" target="_blank">
@@ -447,30 +456,30 @@
                           <h4 class="stn" style=" width: 127px;">HarbourFront</h4>
                         </div>
                       </a>
-                      <a href="https://landtransportguru.net/keppel-station/" target="_blank">
+                      <!-- <a href="https://landtransportguru.net/keppel-station/" target="_blank">
                         <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #f9edd8; color: #d1d1d1;">
+                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 30
                           </div>
-                          <h4 class="stn" style=" width: 128px; color: #d1d1d1;">Keppel (U/C)</h4>
+                          <h4 class="stn" style=" width: 69px; color: #FFF;">Keppel</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/cantonment-station/" target="_blank">
                         <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #f9edd8; color: #d1d1d1;">
+                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 31
                           </div>
-                          <h4 class="stn" style=" width: 176px; color: #d1d1d1;">Cantonment (U/C)</h4>
+                          <h4 class="stn" style=" width: 111px; color: #FFF;">Cantonment</h4>
                         </div>
                       </a>
                       <a href="https://landtransportguru.net/prince-edward-road-station/" target="_blank">
                         <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #f9edd8; color: #d1d1d1;">
+                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 32
                           </div>
-                          <h4 class="stn" style=" width: 216px; color: #d1d1d1;">Prince Edward Road (U/C)</h4>
+                          <h4 class="stn" style=" width: 171px; color: #FFF;">Prince Edward Road</h4>
                         </div>
-                      </a>
+                      </a> -->
                     </div>
                   </div>
                   <hr>
@@ -558,17 +567,53 @@
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
 
-  <script>
-    var ccl = document.getElementById("chimes");
+ <!-- Chimes -->
+ <script>
+  var ccl = document.getElementById("chimes");
 
-    function playAudio() {
-      ccl.play();
-    }
+  function playAudio() {
+    ccl.play();
+  }
 
-    function pauseAudio() {
-      ccl.pause();
+  function pauseAudio() {
+    ccl.pause();
+  }
+</script>
+
+<!-- Dark Mode Functionality for Individual Pages -->
+<script>
+  // Check localStorage for dark mode preference
+  if (localStorage.getItem('dark-mode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+    updateHrefForDarkMode();
+  }
+
+  const toggleButton = document.getElementById('dark-mode-toggle');
+  toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    // Save the preference in localStorage
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('dark-mode', 'enabled');
+    } else {
+      localStorage.setItem('dark-mode', 'disabled');
     }
-  </script>
+    updateHrefForDarkMode();
+  });
+
+  function updateHrefForDarkMode() {
+    const link = document.getElementById('line-ccl');
+    const img = document.getElementById('line-ccl-img');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+
+    if (isDarkMode) {
+      link.href = '../img/networks/ccl-diag-dark.png';
+      img.src = '../img/networks/ccl-diag-dark.png';
+    } else {
+      link.href = '../img/networks/ccl-diag.png';
+      img.src = '../img/networks/ccl-diag.png';
+    }
+  }
+</script>
 
   <script src="../js/jquery.min.js"></script>
 

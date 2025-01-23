@@ -2462,4 +2462,12 @@ h4.stn:hover {
     content: url('../img/networks/nsl-diag.png');
 }
 
+#line-ewl, #line-ewl-img  {
+    content: url('../img/networks/ewl-diag.png');
+}
+
+#line-sk, #line-sk-img  {
+    content: url('../img/networks/sk-diag.png');
+}
+
 /* ------------------------------------------ */

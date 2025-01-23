@@ -252,6 +252,10 @@ body.dark-mode a {
     color: #fff;
 }
 
+body.dark-mode a:hover {
+    color: #80a8cc;
+}
+
 body.dark-mode .accordion-button::after {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
@@ -300,6 +304,24 @@ body.dark-mode .about-me-stations {
     body.dark-mode #line-nsl,
     body.dark-mode #line-nsl-img {
         content: url('../img/networks/nsl-diag-dark.png');
+        transition: all 0.5s ease;
+    }
+
+    body.dark-mode #line-ewl,
+    body.dark-mode #line-ewl-img {
+        content: url('../img/networks/ewl-diag-dark.png');
+        transition: all 0.5s ease;
+    }
+
+    body.dark-mode #line-sk,
+    body.dark-mode #line-sk-img {
+        content: url('../img/networks/sk-diag-dark.png');
+        transition: all 0.5s ease;
+    }
+
+    body.dark-mode #line-ccl,
+    body.dark-mode #line-ccl-img {
+        content: url('../img/networks/ccl-diag-dark.png');
         transition: all 0.5s ease;
     }
 }
