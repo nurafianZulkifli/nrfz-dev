@@ -373,7 +373,7 @@ h6 {
 .section-padding-80-0 {
     padding-top: 80px;
     padding-bottom: 80px;
-    background-color: #f6f7f2;
+    background-color: #e9eae5;
 }
 
 .section-padding-80-50 {
@@ -641,7 +641,7 @@ section.follow-area.clearfix {
 
 .breakpoint-on .classynav>ul>li>a {
     background-color: #e9eae5;
-    border-bottom: 1px solid #898a77;
+    border-bottom: 1px solid #363636;
 }
 
 .breakpoint-on .classy-navbar .classy-menu {
@@ -1181,7 +1181,7 @@ section.follow-area.clearfix {
 }
 
 .about-me-summ {
-    background-color: #f5f6f2;
+    background-color: #e9eae5;
     padding-top: 50px;
     padding-bottom: 0px;
 }
@@ -1761,6 +1761,11 @@ p.accord-twt {
 .accordion-body:last-of-type {
     border-bottom-right-radius: var(--bs-accordion-border-radius);
     border-bottom-left-radius: var(--bs-accordion-border-radius);
+
+}
+
+.accordion-body {
+    background-color: #f5f6f2;
 }
 
 
@@ -1823,7 +1828,7 @@ p.accord-twt {
     border-bottom: 1px dotted #3b3b3b;
     position: relative;
     cursor: pointer;
-    z-index: 999;
+    z-index: 1;
 }
 
 [data-title]:hover::after {
@@ -2437,12 +2442,6 @@ h4.stn:hover {
 .wbnrfz_details .col-lg-6,
 .wbnrfz_details .col-lg-4 {
     padding-top: 25px;
-}
-
-.section-padding-80-0 {
-    padding-top: 80px;
-    padding-bottom: 80px;
-    background-color: #f6f7f2;
 }
 
 .row-line-diag {

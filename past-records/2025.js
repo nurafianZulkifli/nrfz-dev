@@ -141,8 +141,8 @@ const toggleButton = document.getElementById('dark-mode-toggle');
 toggleButton.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   const isDarkMode = document.body.classList.contains('dark-mode');
-  updateChartOptions(doverviewsm25, true);
-  updateChartOptions(doverviewsb25, true);
+  updateChartOptions(doverviewsm25, isDarkMode);
+  updateChartOptions(doverviewsb25, isDarkMode);
   // Save the preference in localStorage
   if (isDarkMode) {
     localStorage.setItem('dark-mode', 'enabled');

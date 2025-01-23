@@ -34,7 +34,6 @@ const darkThemeOptions = {
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
-  ...darkThemeOptions,
   scales: {
     y: {
       beginAtZero: true
@@ -212,10 +211,10 @@ const toggleButton = document.getElementById('dark-mode-toggle');
 toggleButton.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   const isDarkMode = document.body.classList.contains('dark-mode');
-  updateChartOptions(linesmrt, true);
-  updateChartOptions(lineslrt, true);
-  updateChartOptions(linesbst, true);
-  updateChartOptions(lineslrt2, true);
+  updateChartOptions(linesmrt, isDarkMode);
+  updateChartOptions(lineslrt, isDarkMode);
+  updateChartOptions(linesbst, isDarkMode);
+  updateChartOptions(lineslrt2, isDarkMode);
   // Save the preference in localStorage
   if (isDarkMode) {
     localStorage.setItem('dark-mode', 'enabled');
