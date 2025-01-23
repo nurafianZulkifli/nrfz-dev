@@ -292,11 +292,15 @@ body.dark-mode .wbnrfz_details .details_catagory_wrap .single_catagory .social_l
 
 body.dark-mode .about-me-stations {
     background-color: #242526;
+    transition: all 0.5s ease;
 }
 
 @media (prefers-color-scheme: dark) {
-    body.dark-mode #line-nsl {
+
+    body.dark-mode #line-nsl,
+    body.dark-mode #line-nsl-img {
         content: url('../img/networks/nsl-diag-dark.png');
+        transition: all 0.5s ease;
     }
 }
 
