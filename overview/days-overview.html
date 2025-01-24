@@ -1,10 +1,11 @@
 <div class="row row-lrd">
+    <div class="alert alert-do alert-info" role="alert">
+        <i class="fa-solid fa-circle-info"></i>&nbsp;<b>Delays Overview & Incidents are updated separately.</b>
+    </div>
+
     <div class="alert alert-primary wow fadeInUp" data-wow-delay="100ms" role="alert" style="margin-bottom: 2em;"> <i
             class="fa-solid fa-circle-info"></i>&nbsp;
-        <b>Data as of 23 January 2025</b>
-        <a class="btn dataraw_btn"
-            href="https://github.com/nurafianZulkifli/train-delays-checker-v3/releases/download/1.0/TDC.xlsx"
-            download><i class="fa-solid fa-download" title="Download Raw Excel File"></i></a>
+        <b id="data-date"></b>
     </div>
 
     <!-- NSL -->
@@ -17,7 +18,7 @@
                             <a href="mrt-lines/nsl.html">North-South Line</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">13 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-01-10"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>
@@ -39,7 +40,7 @@
                             <a href="mrt-lines/ewl.html">East-West Line</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">37 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-12-17"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>
@@ -61,7 +62,7 @@
                             <a href="mrt-lines/nel.html">North East Line</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">238 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-05-30"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>
@@ -83,7 +84,7 @@
                             <a href="mrt-lines/ccl.html">Circle Line</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">31 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-12-23"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>
@@ -105,7 +106,7 @@
                             <a href="mrt-lines/dtl.html">Downtown Line</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">244 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-05-24"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>
@@ -127,7 +128,7 @@
                             <a href="mrt-lines/tel.html">Thomson-East Coast Line</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">21 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-01-02"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>
@@ -149,7 +150,7 @@
                             <a href="mrt-lines/bp.html">Bukit Panjang LRT</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">93 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-10-22"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>
@@ -171,7 +172,7 @@
                             <a href="mrt-lines/sk.html">Sengkang</a>-<a href="mrt-lines/pg.html">Punggol LRT</a>
                         </div>
                         <!-- Days -->
-                        <div class="h5 days mb-0 font-weight-bold">228 Days</div>
+                        <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-06-09"></div>
                         <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                             since last reported delay</div>
                     </div>

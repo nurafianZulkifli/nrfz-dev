@@ -194,6 +194,14 @@ body.dark-mode .accordion-item {
     border-color: #000;
 }
 
+body.dark-mode .acc-pi {
+    background-color: #2f3132;
+    transition: all 0.5s ease;
+    border-bottom-right-radius: var(--bs-accordion-border-radius);
+    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border-color: #000;
+}
+
 body.dark-mode .accordion-item:first-of-type {
     border-bottom-right-radius: var(--bs-accordion-border-radius);
     border-bottom-left-radius: var(--bs-accordion-border-radius);
