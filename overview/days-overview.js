@@ -28,12 +28,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // Format the current date into a human-readable string
     const formattedDate = currentDate.toLocaleDateString('en-UK', options);
 
+    const delaySpans = document.querySelectorAll('span[data-last-delay]');
+
     // Update the text content of the element to display the current date
     dateElement.textContent = `Data as of ${formattedDate}`;
+
+    delaySpans.forEach(function(span) {
+            const lastDelay = span.getAttribute('data-last-delay');
+            const date = new Date(lastDelay);
+            const ukFormattedDate = date.toLocaleDateString('en-GB');
+            span.textContent = ukFormattedDate;
+    });
 });
 
-window.setTimeout(function() {
-    $(".alert-do").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-}, 6000);
