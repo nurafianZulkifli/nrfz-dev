@@ -1,9 +1,6 @@
-/* Dark Mode Functionality for Individual Pages */
-
 // Check localStorage for dark mode preference
 if (localStorage.getItem('dark-mode') === 'enabled') {
     document.body.classList.add('dark-mode');
-    // updateHrefForDarkMode();
 }
 
 const toggleButton = document.getElementById('dark-mode-toggle');
@@ -15,5 +12,4 @@ toggleButton.addEventListener('click', () => {
     } else {
         localStorage.setItem('dark-mode', 'disabled');
     }
-    // updateHrefForDarkMode();
 });
