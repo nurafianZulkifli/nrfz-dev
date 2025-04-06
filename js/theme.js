@@ -3,7 +3,7 @@
 // Check localStorage for dark mode preference
 if (localStorage.getItem('dark-mode') === 'enabled') {
     document.body.classList.add('dark-mode');
-    // updateHrefForDarkMode();
+    updateHrefForDarkMode();
 }
 
 const toggleButton = document.getElementById('dark-mode-toggle');
@@ -15,5 +15,25 @@ toggleButton.addEventListener('click', () => {
     } else {
         localStorage.setItem('dark-mode', 'disabled');
     }
-    // updateHrefForDarkMode();
+    updateHrefForDarkMode();
 });
+
+function updateHrefForDarkMode() {
+    /* Banners */
+    const aboutPage = document.getElementById('cv-about');
+
+    const isDarkMode = document.body.classList.contains('dark-mode');
+
+    if (isDarkMode) {
+        /* Banners */
+        aboutPage.style.backgroundImage = "url('img/bg-img/hero-bg-small-dark.png')";
+
+
+
+    } else {
+        /* Banners */
+        aboutPage.style.backgroundImage = "url('img/bg-img/hero-bg-small.png')";
+    }
+
+
+}

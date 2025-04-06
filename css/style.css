@@ -121,7 +121,8 @@ ul li {
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: rgba(0, 0, 0, 0.773)
+    background-color: #262626e2;
+    backdrop-filter: blur(2px);
 }
 
 .row {
@@ -529,7 +530,7 @@ input:required {
             #fd1d1d 50%,
             #df9e43 100%);
     width: 0%;
-    filter: drop-shadow(0 0 5px);
+    filter: drop-shadow(0 0 1px);
     border-radius: 20px;
 }
 
@@ -613,6 +614,12 @@ input:required {
     color: #ffffff;
     font-weight: 500;
 }
+
+.wbnrfz_btn_theme:hover {
+    background-color: #80a8cc;
+    color: #fff;
+}
+
 
 /* ------------------------------------------ */
 
@@ -763,7 +770,7 @@ classynav ul li.has-down>a::after,
 }
 
 .main-header-area.sticky {
-    background-color: #ebece7;
+    background-color: #dcdcd8;
 }
 
 .classy-navbar-toggler .navbarToggler span {
@@ -842,7 +849,7 @@ classynav ul li.has-down>a::after,
 
 #hero:before {
     content: "";
-    background-color: #626262b7;
+    background-color: #262626e2;
     backdrop-filter: blur(2px);
     position: absolute;
     bottom: 0;

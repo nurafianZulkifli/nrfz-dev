@@ -46,6 +46,11 @@ body.dark-mode .wbnrfz_btn_theme {
     color: #fff;
 }
 
+body.dark-mode .wbnrfz_btn_theme:hover {
+    background-color: #80a8cc;
+    color: #fff;
+}
+
 /* ---- */
 body.dark-mode #hero {
     width: 100%;
@@ -58,13 +63,25 @@ body.dark-mode #hero {
 
 body.dark-mode #hero:before {
     content: "";
-    background-color: #0f0f0fd4;
+    background-color: #000000d4;
     backdrop-filter: blur(2px);
     position: absolute;
     bottom: 0;
     top: 0;
     left: 0;
     right: 0;
+}
+
+body.dark-mode .bg-overlay::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #000000d4;
+    backdrop-filter: blur(2px);
 }
 
 
