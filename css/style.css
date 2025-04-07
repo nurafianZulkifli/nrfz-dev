@@ -653,12 +653,13 @@ input:required {
 }
 
 .breakpoint-on .classynav>ul>li>a {
-    background-color: #e9eae5;
+    background-color: transparent;
     border-bottom: 1px solid #898a77;
 }
 
 .breakpoint-on .classy-navbar .classy-menu {
-    background-color: #e9eae5;
+    background-color: #ffffffc3;
+    backdrop-filter: blur(10px);
 }
 
 .classy-nav-container .classy-navbar .nav-brand {
@@ -686,7 +687,7 @@ input:required {
 
 .classy-nav-container .classy-navbar .classynav ul li a:hover,
 .classy-nav-container .classy-navbar .classynav ul li a:focus {
-    color: #80a8cc;
+    color: #99bbd8;
 }
 
 .classy-nav-container .classy-navbar .classynav ul li.cn-dropdown-item ul li a,

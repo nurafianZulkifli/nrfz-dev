@@ -155,7 +155,7 @@
 
     .classy-nav-container .classy-navbar .classynav ul li a:hover,
     .classy-nav-container .classy-navbar .classynav ul li a:focus {
-        color: #80a8cc;
+        color: #5284af;
     }
 
     .classynav ul li.active a::before {
@@ -624,7 +624,7 @@
     }
 
     body.dark-mode .classy-nav-container .classy-navbar .classynav ul li a {
-        background-color: #1f2022;
+        background-color: transparent;
         color: #fff;
     }
 

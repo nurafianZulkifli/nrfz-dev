@@ -167,7 +167,8 @@ body.dark-mode .single-skill .progress {
 
 /* ---- Mobile Nav Bar */
 body.dark-mode .breakpoint-on .classy-navbar .classy-menu {
-    background-color: #1f2022;
+    background-color: #1f2022cd;
+    backdrop-filter: blur(10px);
     transition: all 0.5s ease;
 }
 
