@@ -2295,24 +2295,28 @@ h2.page-title {
 
 /* ------------------------------------------ */
 
-/*  */
+/* ------------------------------------------ xx.x Timeline ------------------------------------------ */
 .timeline-horizontal {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 20px; /* Space between items */
+    align-items: stretch;
     margin: 20px 0;
-    position: relative;
 }
 
 .timeline-item {
     background: #fff;
     padding: 15px 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    margin: 0 10px;
+    position: relative;
+    transition-duration: 800ms;
+}
+
+.timeline-item:hover {
+    background-color: #c7e3fb;
 }
 
 .timeline-item h4 {
@@ -2324,11 +2328,32 @@ h2.page-title {
 .timeline-item p {
     margin: 0;
     font-size: 14px;
+    text-align: center;
 }
 
-.timeline-arrow {
-    font-size: 20px;
-    color: #888;
-    flex-shrink: 0;
-    margin: 0 10px;
+h4.timeline-date-edu {
+    font-size: 18px;
+    background-color: #708ea8;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-align: center;
+}
+
+h4.timeline-date-exp {
+    font-size: 18px;
+    background-color: #898a77;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-align: center;
+}
+
+h4.timeline-date-aa {
+    font-size: 18px;
+    background-color: #df7d4d;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-align: center;
 }

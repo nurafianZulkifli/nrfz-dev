@@ -353,3 +353,14 @@ body.dark-mode .ftco-section-otb {
 }
 
 /* ------------------------------------------ */
+
+/* ------------------------------------------ xx.x Timeline ------------------------------------------ */
+body.dark-mode .timeline-item {
+    background-color: #2e2e2e;
+    border: none;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode .timeline-item:hover {
+    background-color: #52718d;
+}

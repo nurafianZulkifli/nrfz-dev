@@ -25,6 +25,14 @@
 --------------------------------------------- */
 
 /* ------------------------------------------ 1.0 Specific Breakpoints ------------------------------------------ */
+/* ---- 1.0.0 Max Width: 1200px */
+@media (max-width: 1200px) {
+    .timeline-horizontal {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 items per row */
+    }
+}
+
 /* ---- 1.0.1 Max Width: 992px */
 @media (max-width: 992px) {
     #hero {
@@ -83,6 +91,42 @@
     .parallax-video video {
         min-width: 100%;
         min-height: 100vh;
+    }
+
+
+    .timeline-horizontal {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .timeline-item {
+        text-align: left;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .timeline-arrow-edu,
+    .timeline-arrow-exp {
+        display: none;
+        /* Hide arrows on mobile */
+    }
+
+    .timeline-item h4 {
+        font-size: 18px;
+    }
+
+    .timeline-item h3 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .timeline-item p {
+        font-size: 14px;
+    }
+
+    .timeline-horizontal {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 items per row */
     }
 }
 
@@ -176,8 +220,15 @@
 
     .text-left {
         text-align: left !important;
-      }
+    }
 
+}
+
+@media (max-width: 576px) {
+    .timeline-horizontal {
+        grid-template-columns: 1fr;
+        /* 1 item per row */
+    }
 }
 
 /* ---- */
