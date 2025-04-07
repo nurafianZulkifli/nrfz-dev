@@ -1166,63 +1166,66 @@ classynav ul li.has-down>a::after,
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 13.0 Timelines/Summary ------------------------------------------ */
-.timeline-content {
-    -webkit-transition-duration: 800ms;
-    -o-transition-duration: 800ms;
-    transition-duration: 800ms;
-    background-color: #ffffff;
-    padding: 36px 17px 20px;
-    border-radius: 10px;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 1;
-    margin-top: 50px;
+.timeline-horizontal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 20px; /* Space between items */
+    align-items: stretch;
+    margin: 20px 0;
 }
 
-.timeline-content:hover {
+.timeline-item {
+    background: #fff;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    position: relative;
+    transition-duration: 800ms;
+}
+
+.timeline-item:hover {
     background-color: #c7e3fb;
 }
 
-.timeline-content .period-date-edu {
-    position: absolute;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 18px;
-    color: #fff;
-    background-color: #898a77;
-    top: 15px;
-    left: 1.5em;
-    right: 1.5em;
-    font-weight: 500;
-    cursor: default;
+.timeline-item h4 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.timeline-content .period-date-aa {
-    position: absolute;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 18px;
-    color: #fff;
-    background-color: #df7d4d;
-    top: 15px;
-    left: 1.5em;
-    right: 1.5em;
-    font-weight: 500;
-    cursor: default;
+.timeline-item p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
 }
 
-.timeline-content .period-date-exp {
-    position: absolute;
-    padding: 5px 15px;
-    border-radius: 20px;
+h4.timeline-date-edu {
     font-size: 18px;
-    color: #fff;
     background-color: #708ea8;
-    top: 15px;
-    left: 1.5em;
-    right: 1.5em;
-    font-weight: 500;
-    cursor: default;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-align: center;
+}
+
+h4.timeline-date-exp {
+    font-size: 18px;
+    background-color: #898a77;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-align: center;
+}
+
+h4.timeline-date-aa {
+    font-size: 18px;
+    background-color: #df7d4d;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-align: center;
 }
 
 .about-me-summary {
@@ -1298,6 +1301,7 @@ classynav ul li.has-down>a::after,
 .breadcrumb-content {
     position: relative;
     z-index: 1;
+    scale: 0.85;
 }
 
 .breadcrumb-content .breadcrumb {
@@ -2297,64 +2301,3 @@ h2.page-title {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ xx.x Timeline ------------------------------------------ */
-.timeline-horizontal {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
-    gap: 20px; /* Space between items */
-    align-items: stretch;
-    margin: 20px 0;
-}
-
-.timeline-item {
-    background: #fff;
-    padding: 15px 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    position: relative;
-    transition-duration: 800ms;
-}
-
-.timeline-item:hover {
-    background-color: #c7e3fb;
-}
-
-.timeline-item h4 {
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.timeline-item p {
-    margin: 0;
-    font-size: 14px;
-    text-align: center;
-}
-
-h4.timeline-date-edu {
-    font-size: 18px;
-    background-color: #708ea8;
-    color: #fff;
-    border-radius: 20px;
-    padding: 5px 15px;
-    text-align: center;
-}
-
-h4.timeline-date-exp {
-    font-size: 18px;
-    background-color: #898a77;
-    color: #fff;
-    border-radius: 20px;
-    padding: 5px 15px;
-    text-align: center;
-}
-
-h4.timeline-date-aa {
-    font-size: 18px;
-    background-color: #df7d4d;
-    color: #fff;
-    border-radius: 20px;
-    padding: 5px 15px;
-    text-align: center;
-}
