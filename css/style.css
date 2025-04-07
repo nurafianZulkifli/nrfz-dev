@@ -338,7 +338,7 @@ input:required {
 .section-padding-50 {
     padding-top: 50px;
     padding-bottom: 50px;
-    background-color: #f6f7f2;
+    background-color: #e9eae5;
 }
 
 .section-padding-80 {
@@ -386,6 +386,7 @@ input:required {
 .follow-area.clearfix {
     padding-top: 80px;
     padding-bottom: 80px;
+    background-color: #f8faf4;
 }
 
 /* ------------------------------------------ */
@@ -1228,7 +1229,7 @@ classynav ul li.has-down>a::after,
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 46px 36px 13px;
     border-radius: 10px;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
@@ -1261,7 +1262,7 @@ classynav ul li.has-down>a::after,
 }
 
 .about-me-summ {
-    background-color: #e9eae5;
+    background-color: #f8faf4;
     padding-top: 50px;
     padding-bottom: 83px;
 }
@@ -1511,7 +1512,7 @@ li.breadcrumb-item.active a {
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
-    background-color: #f5f6f2;
+    background-color: #f8faf4;
 }
 
 .pw-projects-menu {
