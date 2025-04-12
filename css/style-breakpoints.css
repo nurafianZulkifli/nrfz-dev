@@ -41,7 +41,8 @@
     .portfolio-sort {
         display: flex;
         align-items: center;
-        gap: 10px; /* Space between label and dropdown */
+        gap: 10px;
+        /* Space between label and dropdown */
         padding-top: 3em;
     }
 }
@@ -70,6 +71,7 @@
         display: flex;
         justify-content: space-between;
     }
+
 }
 
 /* ---- */
@@ -141,18 +143,28 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .wbnrfz_details {
+        backdrop-filter: blur(10px);
+        margin-top: -2.2em;
+    }
+
     .portfolio-controls {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        /* Stack children vertically */
+        gap: 20px;
+        /* Add spacing between elements */
+    }
+
+    .portfolio-filter {
+        order: 1;
+        /* Ensure it appears first */
     }
 
     .portfolio-sort {
         margin-top: 0em;
-    }
-
-    .wbnrfz_details {
-        backdrop-filter: blur(10px);
-        margin-top: -2.2em;
+        order: 2;
+        /* Ensure it appears below */
     }
 }
 
@@ -211,7 +223,8 @@
         display: none;
     }
 
-    #check:checked~.icons #close-icon, body.dark-mode #check:checked~.icons #close-icon {
+    #check:checked~.icons #close-icon,
+    body.dark-mode #check:checked~.icons #close-icon {
         display: block;
     }
 
@@ -259,7 +272,7 @@
         display: block;
         padding: 0;
     }
-    
+
     body.dark-mode .navbar-mobile {
         position: absolute;
         top: 100%;
@@ -365,6 +378,22 @@
         text-align: left !important;
     }
 
+    .breadcrumb {
+        justify-content: center;
+    }
+
+    .portfolio-filter {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .portfolio-filter a {
+        flex: 1 1 calc(50% - 10px);
+        text-align: center;
+    }
+
 }
 
 /* ---- */
@@ -418,10 +447,6 @@
         width: 80%;
     }
 
-    .classy-nav-container .classy-navbar .classynav ul li a {
-        font-size: 14px;
-    }
-
     .single-software-item .instagram-hover-content a span {
         font-size: 12px;
     }
@@ -439,26 +464,34 @@
         flex: 0 0 auto;
         width: 50%;
     }
+
+    .portfolio-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .wbnrfz_details h1 {
+        text-align: center;
+    }
+
+    .breadcrumb {
+        justify-content: center;
+    }
+
+    .portfolio-filter {
+        order: 1;
+    }
+
+    .portfolio-sort {
+        order: 2;
+    }
 }
 
 /* ---- */
 
 /* 2.0.2 Min Width: 768px Max Width: 991px */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .classy-nav-container .classy-navbar .classynav ul li a {
-        font-size: 14px;
-        color: #252525;
-    }
-
-    .classy-nav-container .classy-navbar .classynav ul li a:hover,
-    .classy-nav-container .classy-navbar .classynav ul li a:focus {
-        color: #80a8cc;
-    }
-
-    .classynav ul li.active a::before {
-        display: none;
-    }
-
     img.profile-pic {
         width: 310px;
         height: 310px;
@@ -509,11 +542,33 @@
         width: 50%;
     }
 
+    .portfolio-controls {
+        display: flex;
+        flex-direction: column;
+        /* Stack children vertically */
+        gap: 20px;
+        /* Add spacing between elements */
+    }
 
+    .wbnrfz_details h1 {
+        text-align: center;
+    }
 
-    body.dark-mode .classy-nav-container .classy-navbar .classynav ul li a {
-        background-color: #1f2022;
-        color: #fff;
+    .breadcrumb {
+        justify-content: center;
+    }
+
+    .portfolio-filter {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .portfolio-sort {
+        margin-top: 0em;
+        order: 2;
+        /* Ensure it appears below */
     }
 }
 
@@ -580,7 +635,7 @@
 
     .wbnrfz_details h1 {
         font-size: clamp(34px, 8.5vw, 40px) !important;
-        text-align: left;
+        text-align: center;
         margin-bottom: 50px;
     }
 
@@ -680,6 +735,24 @@
     body.dark-mode .cp-img {
         border-radius: 10px;
     }
+
+    .portfolio-controls {
+        display: flex;
+        flex-direction: column;
+        /* Stack children vertically */
+        gap: 20px;
+        /* Add spacing between elements */
+    }
+
+    .portfolio-filter {
+        order: 1;
+        /* Ensure it appears first */
+    }
+
+    .portfolio-sort {
+        order: 2;
+        /* Ensure it appears below */
+    }
 }
 
 /* ---- */
@@ -744,7 +817,7 @@
 
     .wbnrfz_details h1 {
         font-size: clamp(30px, 8.5vw, 30px) !important;
-        text-align: left;
+        text-align: center;
         margin-bottom: 50px;
     }
 

@@ -696,8 +696,6 @@ header {
     display: none;
 }
 
-
-
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 8.0 Hero ------------------------------------------ */
@@ -2251,7 +2249,7 @@ h2.page-title {
 }
 
 .portfolio-filter .btn {
-    margin: 5px;
+    /* margin: 5px; */
     padding: 10px 15px;
     border: none;
     background: #e4e6cf;
@@ -2259,7 +2257,22 @@ h2.page-title {
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 160px;
+    height: 60px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: border-box;
 }
+
+.portfolio-filter .btn-filter {
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+}
+
 
 .portfolio-filter .btn.active,
 .portfolio-filter .btn:hover {
@@ -2276,7 +2289,7 @@ h2.page-title {
 }
 
 .portfolio-sort label {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #000;
 }
@@ -2287,6 +2300,8 @@ h2.page-title {
     border-radius: 25px;
     font-size: 14px;
     background-color: #e4e6cf;
+    width: 120px;
+    height: 50px;
 }
 
 .wbnrfz-summ {
@@ -2302,4 +2317,8 @@ h2.page-title {
     margin-top: -2.2em;
     padding-top: 3em;
     padding-bottom: 2em;
+}
+
+#summary, #tm, #lppl {
+    scroll-margin-top: 8vh;
 }
