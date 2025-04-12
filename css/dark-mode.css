@@ -115,8 +115,20 @@ body.dark-mode #scrollUp {
     }
 }
 
+body.dark-mode .header-area {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+    background: #181818e3;
+    box-shadow: 0 4px 30px #0000001a;
+    backdrop-filter: blur(5px);
+}
+
 body.dark-mode .classy-nav-container {
-    background-color: transparent;
+    background: #181818e3;
     padding: 0;
 }
 
@@ -374,4 +386,19 @@ body.dark-mode .portfolio-sort label {
     font-size: 14px;
     font-weight: bold;
     color: #fff;
+}
+
+body.dark-mode .wbnrfz-summ {
+    background-color: #f5f6f2;
+    padding-top: 8em;
+    padding-bottom: 10px;
+}
+
+body.dark-mode .wbnrfz_details {
+    background: #181818ec;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    margin-top: -3.6em;
+    padding-top: 3em;
+    padding-bottom: 2em;
 }
