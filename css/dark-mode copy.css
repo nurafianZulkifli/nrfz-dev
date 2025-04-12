@@ -29,7 +29,7 @@ body.dark-mode #preloader {
     font-weight: 500;
     display: inline-block;
     padding: 0 30px;
-    /* margin-left: 28px; */
+    margin-left: 5px;
     text-align: center;
     text-transform: capitalize;
     background-color: #444;
@@ -46,6 +46,10 @@ body.dark-mode .wbnrfz_btn_theme {
     color: #fff;
 }
 
+body.dark-mode .wbnrfz_btn_theme:hover {
+    background-color: #80a8cc;
+    color: #fff;
+}
 
 /* ---- */
 body.dark-mode #hero {
@@ -111,76 +115,23 @@ body.dark-mode #scrollUp {
     }
 }
 
-body.dark-mode header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 0 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 5;
-    background: #000000d4;
-    box-shadow: 0 4px 30px #0000001a;
-    backdrop-filter: blur(5px);
-    transition: all 0.5s ease;
+body.dark-mode .classy-nav-container {
+    background-color: transparent;
+    padding: 0;
 }
 
-
-body.dark-mode .nav-item {
-    position: relative;
+body.dark-mode .classy-nav-container .classy-navbar .classynav ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
     color: #fff;
-    font-size: 1rem;
     font-weight: 500;
-    line-height: 25px;
-    letter-spacing: -0.13px;
-    text-decoration: none;
-    transition: all 0.5s ease;
-  }
-
-body.dark-mode .nav-item:hover {
-    color: #80a8cc;
+    padding: 0 20px;
+    cursor: pointer;
 }
 
-body.dark-mode .nav-item.active {
-    font-weight: bold;
-    border-bottom: 2px solid #bdbea5;
-    text-decoration: none;
-    line-height: 40px;
+body.dark-mode .main-header-area.sticky {
+    background-color: #171717;
 }
-
-body.dark-mode .nav-item-toggle {
-    position: relative;
-    line-height: 25px;
-    letter-spacing: -0.13px;
-    text-decoration: none;
-    margin-left: 2.5rem;
-    transition: all 0.5s ease;
-}
-
-body.dark-mode .nav-item-toggle:hover:after,
-body.dark-mode .nav-item-toggle::after {
-    background-color: none;
-}
-
-body.dark-mode .icons i {
-    color: #ffffff; /* Set to white or any contrasting color */
-}
-
-body.dark-mode .social-info a i {
-    color: #ffffff; /* Ensure social icons are visible */
-}
-
-body.dark-mode #menu-icon,
-body.dark-mode #close-icon {
-    color: #ffffff; /* Ensure menu icons are visible */
-}
-
-body.dark-mode #check {
-    display: none;
-}
-
 
 /* ---- */
 
@@ -214,6 +165,12 @@ body.dark-mode .single-skill .progress {
 
 /* ---- */
 
+/* ---- Mobile Nav Bar */
+body.dark-mode .breakpoint-on .classy-navbar .classy-menu {
+    background-color: #181818cb;
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+}
 
 /* ------------------------------------------ */
 
@@ -314,11 +271,8 @@ body.dark-mode .timeline-content:hover {
 
 /* ------------------------------------------ 3.0 Indiv Pages ------------------------------------------ */
 body.dark-mode .wbnrfz-summ {
-    background-color: #181818cb;
+    background-color: #1e1e1e;
     transition: all 0.5s ease;
-    padding-top: 8em;
-    padding-bottom: 10px;
-    backdrop-filter: blur(10px);
 }
 
 body.dark-mode span,
@@ -410,26 +364,4 @@ body.dark-mode .timeline-item {
 
 body.dark-mode .timeline-item:hover {
     background-color: #52718d;
-}
-
-/* ------------------------------------------ xx.x Portfolio Controls ------------------------------------------ */
-body.dark-mode .portfolio-sort label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-}
-
-body.dark-mode .wbnrfz-summ {
-    background-color: #f5f6f2;
-    padding-top: 8em;
-    padding-bottom: 10px;
-}
-
-body.dark-mode .wbnrfz_details {
-    background: #0d0d0de0;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    margin-top: -3.2em;
-    padding-top: 3em;
-    padding-bottom: 2em;
 }

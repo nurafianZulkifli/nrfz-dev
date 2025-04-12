@@ -33,18 +33,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
 @import url(bootstrap.min.css);
 @import url(animate.css);
+@import url(default-assets/classy-nav.css);
 @import url(owl.carousel.min.css);
 @import url(magnific-popup.css);
 @import url(default-assets/themify-icons.css);
 
 /* ------------------------------------------ 1.0 Body/Main Styling ------------------------------------------ */
-
 * {
-    box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
-
 
 body {
     font-family: "Onest", sans-serif;
@@ -618,85 +616,170 @@ input:required {
     font-weight: 500;
 }
 
+.wbnrfz_btn_theme:hover {
+    background-color: #80a8cc;
+    color: #fff;
+}
+
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 7.0 Header ------------------------------------------ */
-header {
+.header-area {
     position: fixed;
-    top: 0;
-    left: 0;
+    z-index: 100;
     width: 100%;
-    padding: 0 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 5;
-    background: #ffffffea;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+    background: #ffffffe5;
+    box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(5px);
 }
 
-
-.nav-item {
-    position: relative;
-    color: #000;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 25px;
-    letter-spacing: -0.13px;
-    text-decoration: none;
-    margin-left: 2.5rem;
-    transition: all 0.5s ease;
+.classy-nav-container {
+    background: #ffffffd6;
+    padding: 0;
 }
 
-.nav-item:hover {
+.classy-nav-container .classy-navbar {
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+    height: 70px;
+    padding: 0;
+}
+
+.classycloseIcon .cross-wrap {
+    display: none;
+}
+
+.breakpoint-on .classynav>ul>li>a {
+    background-color: transparent;
+    border-bottom: 1px solid #898a77;
+}
+
+.breakpoint-on .classy-navbar .classy-menu {
+    background-color: #ffffffc3;
+    backdrop-filter: blur(10px);
+}
+
+.classy-nav-container .classy-navbar .nav-brand {
+    max-width: 180px;
+    margin-left: -73px;
+}
+
+.classynav {
+    cursor: default;
+}
+
+.classy-nav-container .classy-navbar .classynav ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #000;
+    font-weight: 500;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+/* .main-header-area.sticky .classynav ul li a {
+    color: #000;
+    transition: color 0.3s ease;
+} */
+
+.classy-nav-container .classy-navbar .classynav ul li a:hover,
+.classy-nav-container .classy-navbar .classynav ul li a:focus {
+    color: #99bbd8;
+}
+
+.classy-nav-container .classy-navbar .classynav ul li.cn-dropdown-item ul li a,
+.classy-nav-container .classy-navbar .classynav ul li.megamenu-item ul li a {
+    font-size: 14px;
+    text-transform: capitalize;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 30px;
+    color: #898a77;
+}
+
+.classy-nav-container .classy-navbar .classynav ul li.cn-dropdown-item ul li a:focus,
+.classy-nav-container .classy-navbar .classynav ul li.cn-dropdown-item ul li a:hover,
+.classy-nav-container .classy-navbar .classynav ul li.megamenu-item ul li a:focus,
+.classy-nav-container .classy-navbar .classynav ul li.megamenu-item ul li a:hover {
+    color: #fc6060;
+}
+
+.classynav ul li.active a {
+    position: relative;
+    z-index: 1;
+}
+
+.classynav ul li.active a::before {
+    width: calc(100% - 40px);
+    height: 2px;
+    background-color: #bdbea5;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    z-index: 1;
+    content: '';
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.main-header-area.sticky .classynav ul li.active a::before {
+    width: calc(100% - 40px);
+    height: 2px;
+    background-color: #959581;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    z-index: 1;
+    content: '';
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+classynav ul li.has-down>a::after,
+.classynav ul li.has-down.active>a::after,
+.classynav ul li.megamenu-item>a::after {
     color: #80a8cc;
 }
 
-
-.nav-item.active {
-    font-weight: bold;
-    border-bottom: 2px solid #bdbea5;
-    text-decoration: none;
-    line-height: 40px;
+.breakpoint-off .classynav ul li .dropdown,
+.breakpoint-off .classynav ul li .megamenu {
+    width: 210px;
+    -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+    box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+    border-radius: 6px;
 }
 
-.nav-item:hover:after {
+.breakpoint-off .classynav ul li .megamenu {
     width: 100%;
 }
 
-.nav-item-toggle {
+.classy-navbar-toggler .navbarToggler span {
+    background-color: #252525;
+}
+
+.main-header-area {
     position: relative;
-    line-height: 25px;
-    letter-spacing: -0.13px;
-    text-decoration: none;
-    margin-left: 2.5rem;
-    transition: all 0.5s ease;
+    z-index: 1;
+    background-color: transparent;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.nav-item-toggle:hover:after,
-.nav-item-toggle::after {
-    background-color: none;
+.main-header-area.sticky {
+    background-color: #dcdcd8;
 }
 
-.logo {
-    width: 58px;
+.classy-navbar-toggler .navbarToggler span {
+    background-color: #ffffff;
 }
-
-.icons {
-    position: absolute;
-    right: 5%;
-    font-size: 2.3rem;
-    color: #000;
-    cursor: pointer;
-    display: none;
-}
-
-#check {
-    display: none;
-}
-
-
 
 /* ------------------------------------------ */
 
@@ -1088,10 +1171,8 @@ header {
 /* ------------------------------------------ 13.0 Timelines/Summary ------------------------------------------ */
 .timeline-horizontal {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* 4 items per row */
-    gap: 20px;
-    /* Space between items */
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 20px; /* Space between items */
     align-items: stretch;
     margin: 20px 0;
 }
@@ -1434,15 +1515,12 @@ li.breadcrumb-item.active a {
 .pw-portfolio {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    /* Space between items */
+    gap: 20px; /* Space between items */
 }
 
 .single_gallery_item {
-    flex: 1 1 calc(25% - 20px);
-    /* 4 items per row with spacing */
-    max-width: calc(25% - 20px);
-    /* Ensure items don't exceed 25% width */
+    flex: 1 1 calc(25% - 20px); /* 4 items per row with spacing */
+    max-width: calc(25% - 20px); /* Ensure items don't exceed 25% width */
     box-sizing: border-box;
 }
 
@@ -2238,41 +2316,37 @@ h2.page-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    /* Ensures responsiveness */
+    flex-wrap: wrap; /* Ensures responsiveness */
     margin-bottom: 20px;
 }
 
 .portfolio-filter {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    /* Space between buttons */
+    gap: 10px; /* Space between buttons */
 }
 
 .portfolio-filter .btn {
     margin: 5px;
     padding: 10px 15px;
     border: none;
-    background: #e4e6cf;
-    color: #000;
-    border-radius: 25px;
+    background: #f2f2f2;
+    color: #333;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .portfolio-filter .btn.active,
 .portfolio-filter .btn:hover {
-    background: #898a77;
+    background: #333;
     color: #fff;
-    border-radius: 25px;
 }
 
 .portfolio-sort {
     display: flex;
     align-items: center;
-    gap: 10px;
-    /* Space between label and dropdown */
+    gap: 10px; /* Space between label and dropdown */
 }
 
 .portfolio-sort label {
@@ -2283,23 +2357,22 @@ h2.page-title {
 
 .portfolio-sort select {
     padding: 5px 10px;
-    margin-right: 10px;
-    border-radius: 25px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     font-size: 14px;
-    background-color: #e4e6cf;
 }
 
 .wbnrfz-summ {
     background-color: #f5f6f2;
-    padding-top: 7em;
+    padding-top: 8em;
     padding-bottom: 10px;
 }
 
 .wbnrfz_details {
     background: #ffffffea;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    margin-top: -2.2em;
+    backdrop-filter: blur(5px);
+    margin-top: -3.6em;
     padding-top: 3em;
     padding-bottom: 2em;
 }
