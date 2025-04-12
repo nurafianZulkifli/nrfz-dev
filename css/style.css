@@ -632,7 +632,9 @@ input:required {
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
     transition-duration: 500ms;
-    background-color: transparent;
+    background: #181818e3;
+    box-shadow: 0 4px 30px #0000001a;
+    backdrop-filter: blur(5px);
 }
 
 .classy-nav-container {
@@ -1271,11 +1273,7 @@ h4.timeline-date-aa {
     padding-bottom: 83px;
 }
 
-.wbnrfz-summ {
-    background-color: #f5f6f2;
-    padding-top: 50px;
-    padding-bottom: 10px;
-}
+/* to rel */
 
 /* ------------------------------------------ */
 
@@ -1514,6 +1512,18 @@ li.breadcrumb-item.active a {
     background-color: #f5f6f2;
 } */
 
+.pw-portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+}
+
+.single_gallery_item {
+    flex: 1 1 calc(25% - 20px); /* 4 items per row with spacing */
+    max-width: calc(25% - 20px); /* Ensure items don't exceed 25% width */
+    box-sizing: border-box;
+}
+
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
@@ -1537,7 +1547,7 @@ li.breadcrumb-item.active a {
     font-size: 17px;
     font-weight: 600;
     border-radius: 30px;
-    margin: 7px 15px;
+    margin: 7px 36px;
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
     transition-duration: 500ms;
@@ -2301,4 +2311,68 @@ h2.page-title {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ xx.x Timeline ------------------------------------------ */
+/* ------------------------------------------ xx.x Portfolio Controls ------------------------------------------ */
+.portfolio-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    margin-bottom: 20px;
+}
+
+.portfolio-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between buttons */
+}
+
+.portfolio-filter .btn {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    background: #f2f2f2;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.portfolio-filter .btn.active,
+.portfolio-filter .btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+.portfolio-sort {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between label and dropdown */
+}
+
+.portfolio-sort label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+.portfolio-sort select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.wbnrfz-summ {
+    background-color: #f5f6f2;
+    padding-top: 8em;
+    padding-bottom: 10px;
+}
+
+.wbnrfz_details {
+    background: #181818ec;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    margin-top: -3.6em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}

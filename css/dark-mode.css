@@ -271,8 +271,11 @@ body.dark-mode .timeline-content:hover {
 
 /* ------------------------------------------ 3.0 Indiv Pages ------------------------------------------ */
 body.dark-mode .wbnrfz-summ {
-    background-color: #1e1e1e;
+    background-color: #181818cb;
     transition: all 0.5s ease;
+    padding-top: 8em;
+    padding-bottom: 10px;
+    backdrop-filter: blur(10px);
 }
 
 body.dark-mode span,
@@ -364,4 +367,11 @@ body.dark-mode .timeline-item {
 
 body.dark-mode .timeline-item:hover {
     background-color: #52718d;
+}
+
+/* ------------------------------------------ xx.x Portfolio Controls ------------------------------------------ */
+body.dark-mode .portfolio-sort label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
 }

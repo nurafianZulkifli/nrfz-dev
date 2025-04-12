@@ -31,6 +31,11 @@
         grid-template-columns: repeat(3, 1fr);
         /* 3 items per row */
     }
+
+    .single_gallery_item {
+        flex: 1 1 calc(33.33% - 20px); /* 3 items per row */
+        max-width: calc(33.33% - 20px);
+    }
 }
 
 /* ---- 1.0.1 Max Width: 992px */
@@ -127,6 +132,15 @@
     .timeline-horizontal {
         grid-template-columns: repeat(2, 1fr);
         /* 2 items per row */
+    }
+
+    .portfolio-controls {
+        flex-direction: column; /* Stack on smaller screens */
+        align-items: flex-start;
+    }
+
+    .portfolio-sort {
+        margin-top: 10px; /* Add spacing between filter and sort on small screens */
     }
 }
 
@@ -228,6 +242,11 @@
     .timeline-horizontal {
         grid-template-columns: 1fr;
         /* 1 item per row */
+    }
+
+    .single_gallery_item {
+        flex: 1 1 100%; /* 1 item per row */
+        max-width: 100%;
     }
 }
 
