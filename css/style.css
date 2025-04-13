@@ -158,14 +158,14 @@ ul li {
 .mfp-iframe-holder .mfp-close {
     position: fixed;
     z-index: 100;
-    color: #ffffff;
+    color: #000;
     right: 20px;
     text-align: center;
     padding-right: 0;
     width: 100%;
     top: 20px;
     width: 30px;
-    background: #898a77;
+    background: #b5b69f;
     height: 30px;
     line-height: 30px;
 }
@@ -411,7 +411,7 @@ input:required {
   
   .loader {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #898a77;
+    border-top: 5px solid #b5b69f;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -462,8 +462,8 @@ input:required {
     width: 40px;
     height: 40px;
     bottom: 60px;
-    background-color: #898a77;
-    color: #ffffff;
+    background-color: #b5b69f;
+    color: #000;
     text-align: center;
     transition-duration: 500ms;
     border-radius: 50%;
@@ -568,6 +568,10 @@ input:required {
     background-color: #df7d4d;
     color: #ffffff;
     font-weight: 500;
+}
+
+.wbnrfz_btn_theme:hover {
+    background-color: #80a8cc;
 }
 
 /* ------------------------------------------ */
@@ -720,7 +724,7 @@ header {
 
 #hero:before {
     content: "";
-    background-color: #f5f6f2c2;
+    background-color: #e5e5e5b7;
     backdrop-filter: blur(5px);
     position: absolute;
     bottom: 0;
@@ -936,12 +940,12 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #898a77;
+    background-color: #b5b69f;
     display: inline-block;
     text-align: center;
     line-height: 76px;
     border-radius: 50%;
-    color: #ffffff;
+    color: #000;
     font-size: 30px;
     position: absolute;
     top: -38px;
@@ -1088,8 +1092,8 @@ h4.timeline-date-edu {
 
 h4.timeline-date-exp {
     font-size: 18px;
-    background-color: #898a77;
-    color: #fff;
+    background-color: #b5b69f;
+    color: #000;
     border-radius: 20px;
     padding: 5px 15px;
     text-align: center;
@@ -1127,12 +1131,12 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #898a77;
+    background-color: #b5b69f;
     display: inline-block;
     text-align: center;
     line-height: 76px;
     border-radius: 50%;
-    color: #ffffff;
+    color: #000;
     font-size: 30px;
     position: absolute;
     top: -38px;
@@ -1183,7 +1187,7 @@ h4.timeline-date-aa {
 }
 
 .breadcrumb-content .breadcrumb .breadcrumb-item {
-    color: #898a77;
+    color: #b5b69f;
     font-weight: 400;
     font-size: 16px;
     cursor: default;
@@ -1271,7 +1275,7 @@ h4.timeline-date-aa {
 }
 
 li.breadcrumb-item.active a {
-    color: #898a77 !important;
+    color: #b5b69f !important;
 }
 
 /* ------------------------------------------ */
@@ -1385,13 +1389,13 @@ li.breadcrumb-item.active a {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #0b2a45a2;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 25px;
+    width: 102%;
+    height: 102%;
+
   }
 
   .single-portfolio-content .hover-content-blog a {
@@ -1403,22 +1407,27 @@ li.breadcrumb-item.active a {
     display: inline-block;
     width: 52px;
     height: 52px;
-    border-radius: 50%;
-    background-color: #898a77;
+    border-radius: 25px;
+    background-color: #b5b69f;
     text-align: center;
     line-height: 52px;
     font-size: 30px;
-    color: #fff;
+    color: #000;
+}
+
+.single-portfolio-content .hover-content-blog a:hover {
+    background-color: #80a8cc;
 }
 
 .single-portfolio-content .hover-content-blog h4{
     margin-bottom: 2rem;
     padding: 0 2em 0 2em;
+    color: #fff;
 }
 
   /* Show the hover content on hover */
   .single-portfolio-content:hover .hover-content-blog {
-    opacity: 1; /* Make it visible */
+    opacity: 1;
   }
   
   /* Ensure the parent container is positioned correctly */
@@ -1481,8 +1490,8 @@ li.breadcrumb-item.active a {
 }
 
 .pw-projects-menu .portfolio-menu .btn.active {
-    background-color: #898a77;
-    color: #fff;
+    background-color: #b5b69f;
+    color: #000;
 }
 
 .pw-projects-menu .portfolio-menu .btn:hover {
@@ -1536,11 +1545,11 @@ li.breadcrumb-item.active a {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background-color: #898a77;
+    background-color: #b5b69f;
     text-align: center;
     line-height: 52px;
     font-size: 30px;
-    color: #fff;
+    color: #000;
 }
 
 
@@ -1668,7 +1677,7 @@ img.profile-pic {
     font-size: 16px;
     font-weight: 400;
     text-transform: capitalize;
-    color: #898a77;
+    color: #b5b69f;
     margin: 0;
 }
 
@@ -2156,8 +2165,8 @@ hr {
 
 .block-27 ul li.active a,
 .block-27 ul li.active span {
-    background: #898a77;
-    color: #fff;
+    background: #b5b69f;
+    color: #000;
     border: 1px solid transparent;
     border-radius: 20px;
 }
@@ -2257,10 +2266,9 @@ h2.page-title {
 }
 
 .portfolio-filter .btn {
-    /* margin: 5px; */
     padding: 10px 15px;
     border: none;
-    background: #e4e6cf;
+    background: #b5b69f;
     color: #000;
     border-radius: 25px;
     cursor: pointer;
@@ -2290,8 +2298,8 @@ h2.page-title {
 
 .portfolio-filter .btn.active,
 .portfolio-filter .btn:hover {
-    background: #898a77;
-    color: #fff;
+    background: #80a8cc;
+    color: #000;
     border-radius: 25px;
 }
 
@@ -2299,7 +2307,6 @@ h2.page-title {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* Space between label and dropdown */
 }
 
 .portfolio-sort label {
@@ -2321,12 +2328,19 @@ h2.page-title {
     font-size: 16px;
     height: 40px;
     line-height: 1.5;
-    background-color: #e4e6cf;
+    background-color: #b5b69f;
+    color: #000;
     transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
 }
 
 #sort-options:hover {
     cursor: pointer;
+}
+
+/* Change dropdown option hover color */
+#sort-options option:hover {
+    background-color: #80a8cc !important; /* Desired hover background color */
+    color: #fff; /* Desired hover text color */
 }
 
 select:focus {
@@ -2349,7 +2363,7 @@ select:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #f5f6f2a0;
+    background-color: #e5e5e5b7;
     backdrop-filter: blur(5px);
     z-index: 1;
 }

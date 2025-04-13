@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const interval = setInterval(() => {
       preloaderText.textContent = messages[index];
       index = (index + 1) % messages.length;
-    }, 2000);
+    }, 1050);
   
     // Simulate loading completion
     setTimeout(() => {

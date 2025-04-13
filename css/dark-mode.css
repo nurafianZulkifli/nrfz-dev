@@ -38,8 +38,8 @@ body.dark-mode #preloader-text {
     /* margin-left: 28px; */
     text-align: center;
     text-transform: capitalize;
-    background-color: #444;
-    color: #fff;
+    background-color: #b5b69f;
+    color: #000;
     border-radius: 60px;
     transition-duration: 500ms;
     margin-bottom: 10px;
@@ -47,9 +47,17 @@ body.dark-mode #preloader-text {
     border: none;
 }
 
+body.dark-mode .wbnrfz_btn_theme:hover {
+    background-color: #80a8cc;
+}
+
 body.dark-mode .wbnrfz_btn_theme {
-    background-color: #898a77;
-    color: #fff;
+    background-color: #80a8cc;
+    color: #000;
+}
+
+body.dark-mode .portfolio-filter .btn {
+    color: #000;
 }
 
 
