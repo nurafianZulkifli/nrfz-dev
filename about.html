@@ -36,10 +36,11 @@
 
 <body>
 
+    <!-- Preloader Section -->
     <div id="preloader">
         <div class="loader"></div>
+        <p id="preloader-text">Loading...</p>
     </div>
-
 
     <header>
         <a href="./index.html"><img src="./img/core-img/logo.png" alt="logo" class="logo" /></a>
@@ -98,7 +99,7 @@
                             <button class="btn">Language Proficiency</button>
                         </a>
                         <a href="#lppl">
-                        <button class="btn">Programming Languages</button>
+                            <button class="btn">Programming Languages</button>
                         </a>
                     </div>
                 </div>
@@ -460,6 +461,10 @@
     <script src="js/pw.bundle.js"></script>
 
     <script src="js/default-assets/active.js"></script>
+
+    <script src="js/preloader.js"></script>
+
+    <script> document.getElementById('age').textContent = calculateAge('2000-03-04') + ' years old'; </script>
 
 </body>
 

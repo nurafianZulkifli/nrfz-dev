@@ -394,92 +394,44 @@ input:required {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 3.0 Preloader ------------------------------------------ */
+/* Preloader Styles */
 #preloader {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 9999999;
     top: 0;
     left: 0;
-    background-color: #ffffff;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
+    flex-direction: column;
     justify-content: center;
-    overflow: hidden;
-}
-
-.loader,
-.loader:before,
-.loader:after {
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #898a77;
     border-radius: 50%;
-    width: 2.5em;
-    height: 2.5em;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation: load7 1.8s infinite ease-in-out;
-    animation: load7 1.8s infinite ease-in-out;
-}
-
-.loader {
-    margin-top: -20px;
-    color: #898a77;
-    font-size: 6px;
-    position: relative;
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation-delay: -0.16s;
-    animation-delay: -0.16s;
-}
-
-.loader:before,
-.loader:after {
-    content: '';
-    position: absolute;
-    top: 0;
-}
-
-.loader:before {
-    left: -3.5em;
-    -webkit-animation-delay: -0.32s;
-    animation-delay: -0.32s;
-}
-
-.loader:after {
-    left: 3.5em;
-}
-
-@-webkit-keyframes load7 {
-
-    0%,
-    80%,
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
     100% {
-        box-shadow: 0 2.5em 0 -1.3em;
+      transform: rotate(360deg);
     }
-
-    40% {
-        box-shadow: 0 2.5em 0 0;
-    }
-}
-
-@keyframes load7 {
-
-    0%,
-    80%,
-    100% {
-        box-shadow: 0 2.5em 0 -1.3em;
-    }
-
-    40% {
-        box-shadow: 0 2.5em 0 0;
-    }
-}
+  }
+  
+  #preloader-text {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+  }
 
 /* ------------------------------------------ */
 
@@ -1439,6 +1391,7 @@ li.breadcrumb-item.active a {
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 25px;
   }
 
   .single-portfolio-content .hover-content-blog a {
@@ -1546,7 +1499,7 @@ li.breadcrumb-item.active a {
     -o-transition-duration: 500ms;
     transition-duration: 500ms;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 25px;
 }
 
 .single-portfolio-content img {
