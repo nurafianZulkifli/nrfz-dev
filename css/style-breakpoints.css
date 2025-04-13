@@ -291,7 +291,7 @@
     }
 
     #check:checked~.navbar {
-        height: 26rem;
+        height: 100vh;
     }
 
     .nav-item {
