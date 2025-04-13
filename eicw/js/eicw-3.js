@@ -41,19 +41,19 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        coverSect.style.backgroundImage = "url('img/eicw/cover-dark.png')";
-        iuSect.style.backgroundImage = "url('img/eicw/iu-dark.png')";
+        coverSect.style.backgroundImage = "url('eicw/img/cover-dark.png')";
+        iuSect.style.backgroundImage = "url('eicw/img/iu-dark.png')";
 
 
         /* Images */
-        cs_link.href = 'img/eicw/cs-dark.png';
-        cs_img.src = 'img/eicw/cs-dark.png';
+        cs_link.href = 'eicw/img/cs-dark.png';
+        cs_img.src = 'eicw/img/cs-dark.png';
 
-        wfs_link.href = 'img/eicw/wfs-dark.png';
-        wfs_img.src = 'img/eicw/wfs-dark.png';
+        wfs_link.href = 'eicw/img/wfs-dark.png';
+        wfs_img.src = 'eicw/img/wfs-dark.png';
 
-        wfs2_link.href = 'img/eicw/wfs2-dark.png';
-        wfs2_img.src = 'img/eicw/wfs2-dark.png';
+        wfs2_link.href = 'eicw/img/wfs2-dark.png';
+        wfs2_img.src = 'eicw/img/wfs2-dark.png';
 
 
         /* Videos */
@@ -61,19 +61,19 @@ function updateHrefForDarkMode() {
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('img/eicw/cover-light.png')";
-        iuSect.style.backgroundImage = "url('img/eicw/iu-light.png')";
+        coverSect.style.backgroundImage = "url('eicw/img/cover-light.png')";
+        iuSect.style.backgroundImage = "url('eicw/img/iu-light.png')";
  
 
         /* Images */
-        cs_link.href = 'img/eicw/cs-light.png';
-        cs_img.src = 'img/eicw/cs-light.png';
+        cs_link.href = 'eicw/img/cs-light.png';
+        cs_img.src = 'eicw/img/cs-light.png';
 
-        wfs_link.href = 'img/eicw/wfs-light.png';
-        wfs_img.src = 'img/eicw/wfs-light.png';
+        wfs_link.href = 'eicw/img/wfs-light.png';
+        wfs_img.src = 'eicw/img/wfs-light.png';
 
-        wfs2_link.href = 'img/eicw/wfs2-light.png';
-        wfs2_img.src = 'img/eicw/wfs2-light.png';
+        wfs2_link.href = 'eicw/img/wfs2-light.png';
+        wfs2_img.src = 'eicw/img/wfs2-light.png';
 
 
         /* Videos */

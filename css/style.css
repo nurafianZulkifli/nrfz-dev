@@ -851,6 +851,7 @@ header {
 .footer-area {
     background-color: #f8f9fa; /* Light gray background */
     padding: 10px 0;
+    padding-top: 1em;
 }
 
 .footer-content {
@@ -1832,8 +1833,8 @@ img.profile-pic {
 }
 
 .mb-3 {
-    margin-top: 1.2rem !important;
-    margin-bottom: 0rem !important;
+    margin-top: 3.2rem !important;
+    margin-bottom: 2rem !important;
 }
 
 .row-blog {
@@ -2409,6 +2410,13 @@ select:focus {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     margin-top: -2.2em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
+.wbnrfz_details_body {
+    background: #e9eae5;
+    margin-top: -3.2em;
     padding-top: 3em;
     padding-bottom: 2em;
 }
