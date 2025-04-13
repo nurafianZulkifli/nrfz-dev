@@ -1424,16 +1424,16 @@ li.breadcrumb-item.active a {
     background-color: #f6f7f2;
 }
 
-/* Center the button inside hover-content-blog */
 .hover-content-blog {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s ease-in-out; /* Smooth transition */
-    background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a background overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
     left: 0;
@@ -1460,6 +1460,7 @@ li.breadcrumb-item.active a {
 
 .single-portfolio-content .hover-content-blog h4{
     margin-bottom: 2rem;
+    padding: 0 2em 0 2em;
 }
 
   /* Show the hover content on hover */
