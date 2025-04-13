@@ -208,3 +208,18 @@ function updateHrefForDarkMode() {
     vid2.load();
 
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    var videos = document.querySelectorAll('video');
+    videos.forEach(function (video) {
+        video.play().catch(function (error) {
+            console.log('Autoplay was prevented:', error);
+        });
+    });
+});
+
+document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});

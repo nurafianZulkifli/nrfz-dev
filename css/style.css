@@ -124,7 +124,7 @@ ul li {
     left: 0;
     z-index: -1;
     background-color: #262626e2;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
 }
 
 .row {
@@ -1187,7 +1187,7 @@ h4.timeline-date-aa {
 .about-me-summ {
     background-color: #f8faf4;
     /* padding-top: 50px; */
-    padding-bottom: 83px;
+    /* padding-bottom: 83px; */
 }
 
 /* to rel */
@@ -2257,7 +2257,7 @@ h2.page-title {
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 160px;
+    width: 200px;
     height: 60px;
     display: inline-flex;
     justify-content: center;
@@ -2350,3 +2350,89 @@ select:focus {
 #lppl {
     scroll-margin-top: 8vh;
 }
+
+/* ------------------------------------------ 21.0 EICW ------------------------------------------ */
+.wbnrfz-summ-micro {
+    background-color: #f5f6f2;
+    padding-top: 8em;
+    padding-bottom: 10px;
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: '\f105';
+    color: #000;
+    font-family: "FontAwesome";
+}
+
+li.breadcrumb-item a {
+    color: #000;
+}
+
+.wbnrfz_eicw .banner-eicw img {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb-area-eicw-cover {
+    position: relative;
+    z-index: 1;
+    height: 50vh;
+}
+
+.breadcrumb-area-eicw-backCover {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+
+
+.breadcrumb-area-eicw-subs {
+    position: relative;
+    z-index: 1;
+    height: 40vh;
+}
+
+h2.page-title {
+    color: #fff;
+}
+
+.cp-img {
+    border-radius: 20px;
+}
+
+.column-vid {
+    width: 100% !important;
+    border-radius: 30px;
+    padding: 10px !important;
+}
+
+.col-lg-6-noPads {
+    padding: 0px !important;
+}
+
+.ftco-section-otb {
+    padding: 5em 0;
+    background-color: #e9eae5;
+}
+
+#pid {
+    scroll-margin-top: 8vh;
+}
+
+.wbnrfz_eicw {
+    background: #e9eae5;
+    backdrop-filter: blur(10px);
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
+/* ------------------------------------------ */
