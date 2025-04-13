@@ -855,11 +855,11 @@
         color: #fff;
     }
 
-    .wbnrfz_btn_theme,
+    /* .wbnrfz_btn_theme,
     body.dark-mode .wbnrfz_btn_theme {
         margin-left: 15px !important;
         margin-top: 15px !important;
-    }
+    } */
 
     body.dark-mode .wbnrfz_details .banner-eicw img {
         border-radius: 10px !important;

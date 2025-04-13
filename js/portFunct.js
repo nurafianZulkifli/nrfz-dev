@@ -38,3 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
         item.element.setAttribute("data-name", name.toLowerCase());
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".btn-filter");
+    const titleElement = document.getElementById("filter-title");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        // Get the filter text from the button
+        const filterText = this.textContent.trim();
+        // Update the title
+        titleElement.textContent = filterText;
+      });
+    });
+  });

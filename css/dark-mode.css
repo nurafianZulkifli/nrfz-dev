@@ -175,6 +175,7 @@ body.dark-mode .social-info a i {
 body.dark-mode #menu-icon,
 body.dark-mode #close-icon {
     color: #ffffff; /* Ensure menu icons are visible */
+    font-size: 30px;
 }
 
 body.dark-mode #check {
@@ -414,7 +415,7 @@ body.dark-mode .timeline-item:hover {
 
 /* ------------------------------------------ xx.x Portfolio Controls ------------------------------------------ */
 body.dark-mode .portfolio-sort label {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #fff;
 }

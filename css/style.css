@@ -1186,7 +1186,7 @@ h4.timeline-date-aa {
 
 .about-me-summ {
     background-color: #f8faf4;
-    padding-top: 50px;
+    /* padding-top: 50px; */
     padding-bottom: 83px;
 }
 
@@ -2269,7 +2269,7 @@ h2.page-title {
 
 .portfolio-filter .btn-filter {
     width: 120px;
-    height: 50px;
+    height: 40px;
     font-size: 16px;
 }
 
@@ -2295,13 +2295,39 @@ h2.page-title {
 }
 
 .portfolio-sort select {
-    padding: 5px 10px;
-    margin-right: 10px;
+    padding: 10px;
     border-radius: 25px;
     font-size: 14px;
     background-color: #e4e6cf;
     width: 120px;
-    height: 50px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+#sort-options {
+    appearance: none;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="black" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
+    background-size: 10px;
+    padding-right: 30px;
+    padding-left: 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    height: 40px;
+    line-height: 1.5;
+    background-color: #e4e6cf;
+    transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
+}
+
+#sort-options:hover {
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-radius: 25px;
 }
 
 .wbnrfz-summ {
@@ -2319,6 +2345,8 @@ h2.page-title {
     padding-bottom: 2em;
 }
 
-#summary, #tm, #lppl {
+#summary,
+#tm,
+#lppl {
     scroll-margin-top: 8vh;
 }
