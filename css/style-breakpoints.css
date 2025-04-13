@@ -83,11 +83,17 @@
     }
 
     #profile-picture {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
         position: relative;
         left: 50%;
         transform: translate(-50%, 0);
+    }
+
+    .breadcrumb-content {
+        position: relative;
+        z-index: 1;
+        scale: 0.8;
     }
 
     #media {
@@ -151,20 +157,16 @@
     .portfolio-controls {
         display: flex;
         flex-direction: column;
-        /* Stack children vertically */
         gap: 20px;
-        /* Add spacing between elements */
     }
 
     .portfolio-filter {
         order: 1;
-        /* Ensure it appears first */
     }
 
     .portfolio-sort {
         margin-top: 0em;
         order: 2;
-        /* Ensure it appears below */
     }
 }
 
@@ -429,8 +431,8 @@
 /* ---- 2.0.1 Min Width: 992px Max Width: 1199px */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     img.profile-pic {
-        width: 310px;
-        height: 310px;
+        width: 220px;
+        height: 220px;
     }
 
     .profile-det {
@@ -441,6 +443,12 @@
     .profile-link a {
         padding: 1.0em;
         font-size: 10px;
+    }
+
+    .breadcrumb-content {
+        position: relative;
+        z-index: 1;
+        scale: 0.8;
     }
 
     .wbnrfz_details .banner img {
@@ -493,8 +501,8 @@
 /* 2.0.2 Min Width: 768px Max Width: 991px */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     img.profile-pic {
-        width: 310px;
-        height: 310px;
+        width: 200px;
+        height: 200px;
     }
 
     .profile-det {
@@ -614,8 +622,8 @@
     }
 
     img.profile-pic {
-        width: 280px;
-        height: 280px;
+        width: 220px;
+        height: 220px;
     }
 
     .profile-det {

@@ -1,43 +1,48 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Initialize Isotope for filtering
-    const portfolioGrid = document.querySelector(".pw-portfolio");
-    const iso = new Isotope(portfolioGrid, {
-        itemSelector: ".single_gallery_item",
-        layoutMode: "fitRows",
+    // Initialize Isotope
+    const portfolioContainer = document.querySelector(".pw-portfolio");
+    const iso = new Isotope(portfolioContainer, {
+      itemSelector: ".single_gallery_item",
+      layoutMode: "fitRows",
+      getSortData: {
+        year: "[data-year] parseInt", // Sort by year
+        title: ".hover-content h4", // Sort by title
+      },
     });
 
     // Filter functionality
-    const filterButtons = document.querySelectorAll(".portfolio-filter .btn");
+    const filterButtons = document.querySelectorAll(".btn-filter");
     filterButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            // Remove active class from all buttons
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            // Add active class to the clicked button
-            this.classList.add("active");
-            // Filter items
-            const filterValue = this.getAttribute("data-filter");
-            iso.arrange({ filter: filterValue });
-        });
+      button.addEventListener("click", function () {
+        // Remove active class from all buttons
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        // Add active class to the clicked button
+        this.classList.add("active");
+
+        // Get the filter value and apply it
+        const filterValue = this.getAttribute("data-filter");
+        iso.arrange({ filter: filterValue });
+      });
     });
 
     // Sort functionality
-    const sortDropdown = document.getElementById("sort-options");
-    sortDropdown.addEventListener("change", function () {
-        const sortValue = this.value;
+    const sortSelect = document.getElementById("sort-options");
+    sortSelect.addEventListener("change", function () {
+      const sortValue = this.value;
+      let sortBy = "original-order"; // Default sorting
 
-        // Sort items based on the selected value
-        iso.arrange({
-            sortBy: sortValue === "alphabetical" ? "name" : "original-order",
-            sortAscending: sortValue === "oldest" || sortValue === "alphabetical",
-        });
+      if (sortValue === "newest") {
+        sortBy = "year";
+        iso.arrange({ sortBy, sortAscending: false }); // Descending order
+      } else if (sortValue === "oldest") {
+        sortBy = "year";
+        iso.arrange({ sortBy, sortAscending: true }); // Ascending order
+      } else if (sortValue === "alphabetical") {
+        sortBy = "title";
+        iso.arrange({ sortBy, sortAscending: true }); // Alphabetical order
+      }
     });
-
-    // Add custom sort data for alphabetical sorting
-    iso.items.forEach((item) => {
-        const name = item.element.querySelector(".hover-content h4").textContent.trim();
-        item.element.setAttribute("data-name", name.toLowerCase());
-    });
-});
+  });
 
 document.addEventListener("DOMContentLoaded", function () {
     const filterButtons = document.querySelectorAll(".btn-filter");
