@@ -458,6 +458,13 @@ body.dark-mode .wbnrfz_details {
     padding-bottom: 2em;
 }
 
+body.dark-mode .wbnrfz_details_body {
+    background: #18191a;
+    margin-top: -3.2em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
 body.dark-mode .wbnrfz_eicw {
     background: #0d0d0d;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

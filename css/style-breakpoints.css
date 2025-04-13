@@ -321,11 +321,11 @@
     }
 
     .footer-content .copywrite-text p {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .footer-content .copywrite-text p a {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .footer-content .footer-logo a img {
@@ -333,8 +333,7 @@
     }
 
     .footer-content .social-info a {
-        margin-right: 5px;
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .single-software-item .instagram-hover-content a span {

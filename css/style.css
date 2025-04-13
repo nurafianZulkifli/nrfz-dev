@@ -141,7 +141,7 @@ ul li {
 }
 
 .container-xxl {
-    max-width: 1450px;
+    max-width: 90em;
 }
 
 .mfp-arrow {
@@ -509,7 +509,7 @@ input:required {
     line-height: 40px;
     width: 40px;
     height: 40px;
-    bottom: 54px;
+    bottom: 60px;
     background-color: #898a77;
     color: #ffffff;
     text-align: center;
@@ -849,39 +849,42 @@ header {
 
 /* ------------------------------------------ 10.0 Footer ------------------------------------------ */
 .footer-area {
-    background-color: #ffffff;
-    z-index: 999;
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 10px 0;
 }
 
 .footer-content {
-    padding: 20px 0;
-    padding-right: 57px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.footer-content .copywrite-text {
-    position: relative;
-    z-index: 1;
+.footer-area .social-info a {
+    margin: 0 10px;
+    font-size: 18px;
+    color: #6c757d; /* Muted icon color */
+    transition: color 0.3s ease;
 }
 
-.footer-content .copywrite-text p {
-    margin-bottom: 0;
-    color: #252525;
-    cursor: default;
+.footer-area .social-info a:hover {
+    color: #007bff; /* Change to primary color on hover */
 }
 
-.footer-content .social-info {
-    cursor: default;
+.footer-area .copywrite-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d; /* Muted text color */
+    margin-top: 10px;
 }
 
-.footer-content .social-info a {
-    color: #252525;
-    font-size: 16px;
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-.footer-content .social-info a:last-child {
-    margin-right: 0;
+/* Ensure footer width matches the navbar */
+.footer-area .container {
+    max-width: 1200px; /* Adjust this value to match your navbar's width */
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ------------------------------------------ */
@@ -1420,6 +1423,55 @@ li.breadcrumb-item.active a {
     background-color: #f6f7f2;
 }
 
+/* Center the button inside hover-content-blog */
+.hover-content-blog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a background overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .single-portfolio-content .hover-content-blog a {
+    position: absolute;
+    top: 70%;
+    margin-top: 0;
+    margin-left: -26px;
+    z-index: 100;
+    display: inline-block;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #898a77;
+    text-align: center;
+    line-height: 52px;
+    font-size: 30px;
+    color: #fff;
+}
+
+.single-portfolio-content .hover-content-blog h4{
+    margin-bottom: 2rem;
+}
+
+  /* Show the hover content on hover */
+  .single-portfolio-content:hover .hover-content-blog {
+    opacity: 1; /* Make it visible */
+  }
+  
+  /* Ensure the parent container is positioned correctly */
+  .single-portfolio-content {
+    position: relative;
+    overflow: hidden;
+  }
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 16.0 Works By NRFZ ------------------------------------------ */
@@ -1781,7 +1833,7 @@ img.profile-pic {
 
 .mb-3 {
     margin-top: 1.2rem !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 0rem !important;
 }
 
 .row-blog {
@@ -2270,6 +2322,12 @@ h2.page-title {
 
 .portfolio-filter .btn-filter {
     width: 120px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.portfolio-filter .btn-filter-blog {
+    width: 175px;
     height: 40px;
     font-size: 16px;
 }
