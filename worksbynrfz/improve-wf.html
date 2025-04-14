@@ -36,75 +36,39 @@
 
 <body>
 
+  <!-- Preloader Section -->
   <div id="preloader">
     <div class="loader"></div>
+          <p id="preloader-text">Just a moment...</p>
   </div>
 
 
-  <header class="header-area">
 
-    <div class="main-header-area">
-      <div class="classy-nav-container breakpoint-off">
-        <div class="container container-xxl">
+  <header>
+    <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
 
-          <nav class="classy-navbar justify-content-between" id="pwNav">
+    <input type="checkbox" id="check" />
+    <label for="check" class="icons">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+      <i class="fa-solid fa-xmark" id="close-icon"></i>
+    </label>
 
-            <a class="nav-brand img-logo" href="../index.html"><img class="logo-img" src="../img/core-img/logo.png"
-                alt></a>
-
-            <div class="classy-navbar-toggler">
-              <span class="navbarToggler"><span></span><span></span><span></span></span>
-            </div>
-
-            <div class="classy-menu">
-
-              <div class="classycloseIcon">
-                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-              </div>
-
-              <div class="classynav">
-                <ul id="nav">
-                  <li><a href="../index.html">Home</a></li>
-                  <li><a href="../about.html">About</a></li>
-                  <li class="active"><a href="../works-by-nrfz.html">Works By NRFZ</a></li>
-                  <li><a href="../blog.html">Blog</a></li>
-                  <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!"><i
-                        class="fa-solid fa-moon"></i></button>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
+    <nav class="navbar navbar-mobile">
+      <a href="../index.html" class="nav-item">Home</a>
+      <a href="../about.html" class="nav-item">About</a>
+      <a href="../works-by-nrfz.html" class="nav-item active">Works By NRFZ</a>
+      <a href="../eicw.html" class="nav-item">EICW</a>
+      <a href="../blog.html" class="nav-item">Blog</a>
+      <a href="#" class="nav-item"><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
+          title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button></a>
+    </nav>
   </header>
 
 
-  <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(https://i.imgur.com/sBOOEqY.png)">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-12">
-          <div class="breadcrumb-content text-center">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="../index.html"> Home</a>
-                </li>
-                <li class="breadcrumb-item"><a href="../works-by-nrfz.html"> Works By NRFZ</a>
-                </li>
-              </ol>
-            </nav>
-            <h2 class="page-title">EICW - Implementation Brainstorming</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-
-  <section class="wbnrfz-summ clearfix">
-    <div class="wbnrfz_details wow fadeInUp" data-wow-delay="100ms">
+  <section class="wbnrfz-summ-indiv breadcrumb-area-eicw-cover bg-img parallax" id="cv-eicw"
+    style="background-image: url(https://i.imgur.com/sBOOEqY.png); height: 100vh;">
+    <div class="wbnrfz_details wbnrfz_details_indiv">
       <div class="container">
         <div class="col-lg-12">
           <div class="main-title">
@@ -137,23 +101,6 @@
               </a>
             </div>
           </div>
-          <!-- <div class="single_catagory text-center">
-            <a class="btn wbnrfz_btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                class="fa-solid fa-download"></i>&nbsp; Download Handbooks</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="downloads/Experimenting Improvements of Current Wayfinding.pdf"
-                  download>First Edition</a></li>
-            </ul>
-            <a class="btn wbnrfz_btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                class="fa-solid fa-external-link"></i>&nbsp; View Handbook</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item"
-                  href="https://drive.google.com/file/d/1jKlaRXYsOWCaQVGjVIBPz8G8X-uq_GfO/view?usp=sharing">in Google
-                  Drive</a></li>
-              <li><a class="dropdown-item" href="https://nurafianzulkifli.github.io/eicw/">in
-                  Microsite Version</a></li>
-            </ul>
-          </div> -->
           <div class="single_catagory text-center">
             <a class="btn wbnrfz_btn" href="https://nurafianzulkifli.github.io/eicw/" target="_blank"><i
                 class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp; View Microsite</a>
@@ -162,6 +109,34 @@
       </div>
     </div>
   </section>
+
+  <!-- <section class="wbnrfz-summ-indiv breadcrumb-area-eicw-cover bg-img parallax" id="cv-about"
+    style="background-image: url(https://i.imgur.com/sBOOEqY.png); height: 100vh;">
+    <div class="wbnrfz_details">
+      <div class="container">
+        <div class="col-lg-12">
+          <div class="main-title">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html"> Home</a>
+                </li>
+                <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/works-by-nrfz.html"> Works By NRFZ
+                  </a>
+                </li>
+              </ol>
+            </nav>
+            <h1>Works By NRFZ</h1>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+  </section> -->
+
 
   <section class="about-me-summ section-padding-80-0 clearfix">
     <div class="wbnrfz_details wow fadeInUp" data-wow-delay="100ms">
@@ -232,8 +207,7 @@
               <a href="https://github.com/nurafianZulkifli"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
               <a href="https://twitter.com/nrfzlkf_"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
               <a href="https://www.facebook.com/Nrfnzlkf/"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-              <a href="https://www.instagram.com/nrfzlkf/"><i class="fa-brands fa-instagram"
-                  aria-hidden="true"></i></a>
+              <a href="https://www.instagram.com/nrfzlkf/"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
@@ -246,7 +220,7 @@
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
 
-  <script src="../js/theme.js"></script>
+  <script src="../js/theme-wbnrfz.js"></script>
 
   <script src="../js/jquery.min.js"></script>
 
@@ -268,6 +242,7 @@
 
   <script src="../js/copy-to-clipboard.js"></script>
 
+  <script src="js/preloader.js"></script>
 
 </body>
 

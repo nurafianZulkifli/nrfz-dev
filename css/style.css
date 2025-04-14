@@ -2382,6 +2382,12 @@ select:focus {
     padding-bottom: 2em;
 }
 
+.wbnrfz_details_indiv {
+    margin-top: 4.8em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
 .wbnrfz_details_body {
     background: #e9eae5;
     margin-top: -3.2em;
