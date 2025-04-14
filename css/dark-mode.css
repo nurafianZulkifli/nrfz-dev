@@ -487,6 +487,7 @@ body.dark-mode .wbnrfz_details {
     margin-top: -3.2em;
     padding-top: 3em;
     padding-bottom: 2em;
+    z-index: 1000000 !important;
 }
 
 body.dark-mode .wbnrfz_details_body {

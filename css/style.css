@@ -2486,3 +2486,23 @@ h2.page-title {
 }
 
 /* ------------------------------------------ */
+
+/* Ensure the toggle button is only visible on mobile */
+.toggle-btn {
+    display: none;
+}
+
+@media (max-height: 540px) {
+    .toggle-btn {
+        display: inline-block; /* Show the toggle button on mobile */
+    }
+}
+
+/* Ensure the collapsible content is always visible on desktop */
+@media (min-height: 540px) {
+    #collapsible-content {
+        display: block !important; /* Force the content to be visible on desktop */
+        visibility: visible;
+        height: auto !important;
+    }
+}
