@@ -47,48 +47,48 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        coverSect.style.backgroundImage = "url('eicw/img/cover-dark.png')";
-        platSect.style.backgroundImage = "url('eicw/img/plat-dark.png')";
-        entSect.style.backgroundImage = "url('eicw/img/ent-dark.png')";
-        concSect.style.backgroundImage = "url('eicw/img/conc-dark.png')";
+        coverSect.style.backgroundImage = "url('./img/cover-dark.png')";
+        platSect.style.backgroundImage = "url('./img/plat-dark.png')";
+        entSect.style.backgroundImage = "url('./img/ent-dark.png')";
+        concSect.style.backgroundImage = "url('./img/conc-dark.png')";
 
 
         /* Images */
-        cclDiag_link.href = 'eicw/img/ccl-diag-dark.png';
-        cclDiag_img.src = 'eicw/img/ccl-diag-dark.png';
+        cclDiag_link.href = './img/ccl-diag-dark.png';
+        cclDiag_img.src = './img/ccl-diag-dark.png';
 
-        arrow_link.href = 'eicw/img/arrow-dark.png';
-        arrow_img.src = 'eicw/img/arrow-dark.png';
+        arrow_link.href = './img/arrow-dark.png';
+        arrow_img.src = './img/arrow-dark.png';
 
-        wfm_link.href = 'eicw/img/ccl6-7aD.png';
-        wfm_img.src = 'eicw/img/ccl6-7aD.png';
+        wfm_link.href = './img/ccl6-7aD.png';
+        wfm_img.src = './img/ccl6-7aD.png';
 
-        evo3_link.href = 'eicw/img/ccl6-overview-dark.png';
-        evo3_img.src = 'eicw/img/ccl6-overview-dark.png';
+        evo3_link.href = './img/ccl6-overview-dark.png';
+        evo3_img.src = './img/ccl6-overview-dark.png';
 
         /* Videos */
 
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('eicw/img/cover-light.png')";
-        platSect.style.backgroundImage = "url('eicw/img/plat-light.png')";
-        entSect.style.backgroundImage = "url('eicw/img/ent-light.png')";
-        concSect.style.backgroundImage = "url('eicw/img/conc-light.png')";
+        coverSect.style.backgroundImage = "url('./img/cover-light.png')";
+        platSect.style.backgroundImage = "url('./img/plat-light.png')";
+        entSect.style.backgroundImage = "url('./img/ent-light.png')";
+        concSect.style.backgroundImage = "url('./img/conc-light.png')";
 
 
         /* Images */
-        cclDiag_link.href = 'eicw/img/ccl-diag-light.png';
-        cclDiag_img.src = 'eicw/img/ccl-diag-light.png';
+        cclDiag_link.href = './img/ccl-diag-light.png';
+        cclDiag_img.src = './img/ccl-diag-light.png';
 
-        arrow_link.href = 'eicw/img/arrow-light.png';
-        arrow_img.src = 'eicw/img/arrow-light.png';
+        arrow_link.href = './img/arrow-light.png';
+        arrow_img.src = './img/arrow-light.png';
 
-        wfm_link.href = 'eicw/img/ccl6-7aL.png';
-        wfm_img.src = 'eicw/img/ccl6-7aL.png';
+        wfm_link.href = './img/ccl6-7aL.png';
+        wfm_img.src = './img/ccl6-7aL.png';
 
-        evo3_link.href = 'eicw/img/ccl6-overview-light.png';
-        evo3_img.src = 'eicw/img/ccl6-overview-light.png';
+        evo3_link.href = './img/ccl6-overview-light.png';
+        evo3_img.src = './img/ccl6-overview-light.png';
 
 
         /* Videos */
