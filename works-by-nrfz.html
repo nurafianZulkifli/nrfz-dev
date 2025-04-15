@@ -39,11 +39,11 @@
 
 <body>
 
-<!-- Preloader Section -->
-<div id="preloader">
-  <div class="loader"></div>
-        <p id="preloader-text">Just a moment...</p>
-</div>
+  <!-- Preloader Section -->
+  <div id="preloader">
+    <div class="loader"></div>
+    <p id="preloader-text">Just a moment...</p>
+  </div>
 
 
   <header>
@@ -71,51 +71,57 @@
     style="background-image: url(img/bg-img/hero-bg-small.png); height: 100vh;">
     <div class="wbnrfz_details">
       <div class="container">
-        <div class="col-lg-12">
-          <div class="main-title">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html"> Home</a>
-                </li>
-                <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/works-by-nrfz.html"> Works By NRFZ
-                  </a>
-                </li>
-              </ol>
-            </nav>
-            <h1>Works By NRFZ</h1>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div class="container">
-        <div class="portfolio-controls">
+        <div class="portfolio-controls d-flex justify-content-between align-items-center">
           <!-- Filter Buttons -->
-          <div class="portfolio-filter">
-            <button class="btn btn-filter active" data-filter="*">All Projects</button>
-            <button class="btn btn-filter" data-filter=".ds">Designs</button>
-            <button class="btn btn-filter" data-filter=".mc">Mockups</button>
-            <button class="btn btn-filter" data-filter=".ig">Infographics</button>
-            <button class="btn btn-filter" data-filter=".lg">Logos</button>
-            <button class="btn btn-filter" data-filter=".in">Innovations</button>
+          <div class="portfolio-filter mt-3">
+            <div class="col-lg-12">
+              <div class="main-title">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html"> Home</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/works-by-nrfz.html"> Works By NRFZ
+                      </a>
+                    </li>
+                  </ol>
+                </nav>
+                <h1 class="brc">Works By NRFZ</h1>
+              </div>
+            </div>
           </div>
+          <!-- Collapsible Header -->
+          <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+            aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;">
+            <i class="fa-solid fa-chevron-down nav-chev"></i>
+          </div>
+        </div>
+        <!-- Collapsible Content -->
+        <div id="portfolioFilter" class="collapse">
+          <div class="portfolio-controls">
+            <!-- Filter Buttons -->
+            <div class="portfolio-filter">
+              <button class="btn btn-filter active" data-filter="*">All Projects</button>
+              <button class="btn btn-filter" data-filter=".ds">Designs</button>
+              <button class="btn btn-filter" data-filter=".mc">Mockups</button>
+              <button class="btn btn-filter" data-filter=".ig">Infographics</button>
+              <button class="btn btn-filter" data-filter=".lg">Logos</button>
+              <button class="btn btn-filter" data-filter=".in">Innovations</button>
+            </div>
 
-          <!-- Sort Dropdown -->
-          <div class="portfolio-sort">
-            <label for="sort-options">Sort By:</label>
-            <select id="sort-options">
-              <option value="newest">Newest</option>
-              <option value="oldest">Oldest</option>
-              <option value="alphabetical">Alphabetical</option>
-            </select>
+            <!-- Sort Dropdown -->
+            <div class="portfolio-sort">
+              <label for="sort-options">Sort By:</label>
+              <select id="sort-options">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="alphabetical">Alphabetical</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
-
 
 
   <section class="about-me-summ clearfix">
@@ -137,7 +143,8 @@
               <img src="https://i.imgur.com/rBAx6Yy.png" alt>
               <div class="hover-content-blog">
                 <h4>EICW - Implementation Brainstorming</h4>
-                <a class="info" href="worksbynrfz/improve-wf.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/improve-wf.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -148,7 +155,8 @@
               <img src="https://i.imgur.com/iRDMx37.png" alt="tdc-v3">
               <div class="hover-content-blog">
                 <h4>Train Delays Checker V3</h4>
-                <a class="info" href="worksbynrfz/delays-checker.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/delays-checker.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -159,7 +167,8 @@
               <img src="https://i.imgur.com/ZZqsqxc.png" alt="store-invent">
               <div class="hover-content-blog">
                 <h4>Store Inventory Tracking</h4>
-                <a class="info" href="worksbynrfz/sit.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/sit.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -170,7 +179,8 @@
               <img src="https://i.imgur.com/TdU00ue.png" alt="bp12-nws">
               <div class="hover-content-blog">
                 <h4>New Wayfinding System for BP12 Jelapang</h4>
-                <a class="info" href="worksbynrfz/bp12.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/bp12.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -181,27 +191,32 @@
               <img src="https://i.imgur.com/NyUt8Sc.png" alt="bus-pids">
               <div class="hover-content-blog">
                 <h4>LTA Bus PIDS Redesign</h4>
-                <a class="info" href="worksbynrfz/lta-pids.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/lta-pids.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
-          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeInUp" data-wow-delay="700ms">
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeInUp" data-wow-delay="700ms"
+            data-year="2024">
             <div class="single-portfolio-content">
               <img src="https://i.imgur.com/GrXbpDs.png" alt="bus-stop-pole">
               <div class="hover-content-blog">
                 <h4>LTA Bus Stop Pole Design Refresh</h4>
-                <a class="info" href="worksbynrfz/lta-bp.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/lta-bp.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
-          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="100ms">
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="100ms"
+            data-year="2022">
             <div class="single-portfolio-content">
               <img src="https://i.imgur.com/LBGqE6A.png" alt="man-a22-mascot">
               <div class="hover-content-blog">
                 <h4>MAN A22 Lion Mascot Replication</h4>
-                <a class="info" href="worksbynrfz/man-a22-masc.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/man-a22-masc.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -212,7 +227,8 @@
               <img src="https://i.imgur.com/JUvj9AL.png" alt="myts-app">
               <div class="hover-content-blog">
                 <h4>MyTransport.SG App Redesign</h4>
-                <a class="info" href="worksbynrfz/myts-app.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/myts-app.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -224,7 +240,8 @@
               <img src="https://i.imgur.com/mrtK74Z.png" alt="bus-rep">
               <div class="hover-content-blog">
                 <h4>Bus Replications</h4>
-                <a class="info" href="worksbynrfz/bus-rep.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/bus-rep.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -235,7 +252,8 @@
               <img src="https://i.imgur.com/59TyNel.png" alt="time-tree">
               <div class="hover-content-blog">
                 <h4>How To Use TimeTree Infographic</h4>
-                <a class="info" href="worksbynrfz/igra3.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/igra3.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -246,7 +264,8 @@
               <img src="https://i.imgur.com/homh9Ja.png" alt="more-rep">
               <div class="hover-content-blog">
                 <h4>More Replications</h4>
-                <a class="info" href="worksbynrfz/more-rep.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/more-rep.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -257,7 +276,8 @@
               <img src="https://i.imgur.com/c0Ui8nR.png" alt="mrt-sign-s1">
               <div class="hover-content-blog">
                 <h4>MRT Signages Concept/Replications S1</h4>
-                <a class="info" href="worksbynrfz/mrt-signage-rep-s1.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/mrt-signage-rep-s1.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -268,7 +288,8 @@
               <img src="https://i.imgur.com/jd1xmMH.png" alt="mrt-sign-s2">
               <div class="hover-content-blog">
                 <h4>MRT Signages Concept/Replications S2</h4>
-                <a class="info" href="worksbynrfz/mrt-signage-rep-s2.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/mrt-signage-rep-s2.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -279,7 +300,8 @@
               <img src="https://i.imgur.com/l1H7ojG.png" alt="hydration-reg">
               <div class="hover-content-blog">
                 <h4>Hydration Regime Infographic</h4>
-                <a class="info" href="worksbynrfz/hydrationreg.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/hydrationreg.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -290,7 +312,8 @@
               <img src="https://i.imgur.com/c6T9wC5.png" alt="hydration-reg">
               <div class="hover-content-blog">
                 <h4>EZ-Link Card Redesign</h4>
-                <a class="info" href="worksbynrfz/ezlink-red.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/ezlink-red.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -301,7 +324,8 @@
               <img src="https://i.imgur.com/LSNcrrn.png" alt="hydration-reg">
               <div class="hover-content-blog">
                 <h4>Food Review Compiler/Flashify - a Flashcard App</h4>
-                <a class="info" href="worksbynrfz/food-rev-flash-app.html" class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
+                <a class="info" href="worksbynrfz/food-rev-flash-app.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>

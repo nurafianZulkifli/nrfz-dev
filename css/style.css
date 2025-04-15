@@ -1148,6 +1148,8 @@ h4.timeline-date-aa {
     background-color: #f8faf4;
     /* padding-top: 50px; */
     /* padding-bottom: 83px; */
+    position: relative;
+    z-index: 0; /* Ensure it stays above background elements */
 }
 
 /* to rel */
@@ -1745,6 +1747,12 @@ img.profile-pic {
 .wbnrfz_details h1 {
     font-size: clamp(34px, 8.5vw, 40px) !important;
     margin-bottom: 50px;
+    font-weight: bold;
+}
+
+h1.brc {
+    font-size: clamp(34px, 8.5vw, 40px) !important;
+    margin-bottom: 0px;
     font-weight: bold;
 }
 
@@ -2487,22 +2495,55 @@ h2.page-title {
 
 /* ------------------------------------------ */
 
-/* Ensure the toggle button is only visible on mobile */
-.toggle-btn {
-    display: none;
+/* Align buttons to the left and collapsible toggle to the right */
+.portfolio-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-@media (max-height: 540px) {
-    .toggle-btn {
-        display: inline-block; /* Show the toggle button on mobile */
-    }
+.portfolio-filter {
+    display: flex;
+    gap: 10px;
 }
 
-/* Ensure the collapsible content is always visible on desktop */
-@media (min-height: 540px) {
-    #collapsible-content {
-        display: block !important; /* Force the content to be visible on desktop */
-        visibility: visible;
-        height: auto !important;
-    }
+.collapsible-header {
+    font-size: 16px;
+    margin-top: 3em;
+    background-color: #b5b69f;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 25px;
+}
+
+/* Rotate the chevron when expanded */
+.collapsible-header[aria-expanded="true"] {
+    transform: rotate(180deg);
+    background-color: #80a8cc;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 25px;
+}
+
+.nav-chev {
+    color: #000;
+}
+
+
+/* Prevent jumping when collapsing */
+#portfolioFilter {
+    transition: height 0.3s ease, opacity 0.3s ease; /* Smooth transition for height and opacity */
+    overflow: hidden; /* Prevent content overflow during collapse */
+}
+
+#portfolioFilter.collapsing {
+    height: 0; /* Ensure height is set to 0 during collapsing */
+    opacity: 0; /* Fade out effect */
+}
+
+#portfolioFilter.collapse.show {
+    height: auto; /* Allow the content to expand naturally */
+    opacity: 1; /* Fully visible when expanded */
 }

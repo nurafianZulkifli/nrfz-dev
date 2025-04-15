@@ -10,6 +10,22 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
+       // Filter functionality
+       const filterButtons = document.querySelectorAll(".btn-filter");
+       filterButtons.forEach((button) => {
+           button.addEventListener("click", function () {
+               // Remove active class from all buttons
+               filterButtons.forEach((btn) => btn.classList.remove("active"));
+               // Add active class to the clicked button
+               this.classList.add("active");
+
+               // Get the filter value from the button
+               const filterValue = this.getAttribute("data-filter");
+               // Apply the filter
+               iso.arrange({ filter: filterValue });
+           });
+       });
+
     // Sort functionality
     const sortSelect = document.getElementById("sort-options");
     if (sortSelect) {
