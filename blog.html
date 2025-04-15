@@ -53,8 +53,8 @@
             <a href="./index.html" class="nav-item">Home</a>
             <a href="./about.html" class="nav-item">About</a>
             <a href="./works-by-nrfz.html" class="nav-item">Works By NRFZ</a>
-            <a href="./eicw.html" class="nav-item">EICW</a>
-            <a href="./blog.html" class="nav-item active">Blog</a>
+            <a href="eicw/eicw.html" class="nav-item">EICW</a>
+            <a href="#" class="nav-item active">Blog</a>
             <a href="#" class="nav-item"><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
                     title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button></a>
         </nav>
@@ -62,58 +62,61 @@
 
 
     <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-about"
-    style="background-image: url(img/bg-img/hero-bg-small.png); height: 100vh;">
-    <div class="wbnrfz_details_blog">
-      <div class="container">
-        <div class="portfolio-controls d-flex justify-content-between align-items-center">
-          <!-- Filter Buttons -->
-          <div class="portfolio-filter mt-3">
-            <div class="col-lg-12">
-                <div class="main-title">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html"> Home</a>
-                            </li>
-                            <li class="breadcrumb-item active"><a href="https://nurafianzulkifli.com/works-by-nrfz.html">
-                                    Blog
-                                </a>
-                            </li>
-                        </ol>
-                    </nav>
-                    <h1 class="brc">My Blogs</h1>
+        style="background-image: url(img/bg-img/hero-bg-small.png); height: 100vh;">
+        <div class="wbnrfz_details_blog">
+            <div class="container">
+                <div class="portfolio-controls d-flex justify-content-between align-items-center">
+                    <!-- Filter Buttons -->
+                    <div class="portfolio-filter mt-3">
+                        <div class="col-lg-12">
+                            <div class="main-title">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html">
+                                                Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item active"><a
+                                                href="https://nurafianzulkifli.com/works-by-nrfz.html">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <h1 class="brc">My Blogs</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Collapsible Header -->
+                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+                        aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;"
+                        title="Filter/Sort">
+                        <i class="fa-solid fa-chevron-down nav-chev"></i>
+                    </div>
+                </div>
+                <!-- Collapsible Content -->
+                <div id="portfolioFilter" class="collapse">
+                    <div class="portfolio-controls">
+                        <!-- Filter Buttons -->
+                        <div class="portfolio-filter">
+                            <button class="btn btn-filter-blog active" data-filter="*">All Posts</button>
+                            <button class="btn btn-filter-blog" data-filter=".wbd">Website Design</button>
+                            <button class="btn btn-filter-blog" data-filter=".wfd">Wayfinding Design</button>
+                        </div>
+
+                        <!-- Sort Dropdown -->
+                        <div class="portfolio-sort">
+                            <label for="sort-options">Sort By:</label>
+                            <select id="sort-options">
+                                <option value="newest">Newest</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="alphabetical">Alphabetical</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
-          <!-- Collapsible Header -->
-          <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
-            aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;" title="Filter/Sort">
-            <i class="fa-solid fa-chevron-down nav-chev"></i>
-          </div>
         </div>
-        <!-- Collapsible Content -->
-        <div id="portfolioFilter" class="collapse">
-          <div class="portfolio-controls">
-            <!-- Filter Buttons -->
-            <div class="portfolio-filter">
-                <button class="btn btn-filter-blog active" data-filter="*">All Posts</button>
-                <button class="btn btn-filter-blog" data-filter=".wbd">Website Design</button>
-                <button class="btn btn-filter-blog" data-filter=".wfd">Wayfinding Design</button>
-            </div>
-
-            <!-- Sort Dropdown -->
-            <div class="portfolio-sort">
-              <label for="sort-options">Sort By:</label>
-              <select id="sort-options">
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="alphabetical">Alphabetical</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
     <section class="ftco-section-blog">
         <div class="container container-xxl container-blogList">

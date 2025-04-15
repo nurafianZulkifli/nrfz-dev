@@ -151,230 +151,230 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        coverSect.style.backgroundImage = "url('eicw/img/cover-dark.png')";
-        ciSect.style.backgroundImage = "url('eicw/img/c-i-dark.png')";
-        eiaSect.style.backgroundImage = "url('eicw/img/eia-dark.png')";
+        coverSect.style.backgroundImage = "url('./img/cover-dark.png')";
+        ciSect.style.backgroundImage = "url('./img/c-i-dark.png')";
+        eiaSect.style.backgroundImage = "url('./img/eia-dark.png')";
 
         /* Images */
-        tf_link.href = 'eicw/img/typeface-dark.png';
-        tf_img.src = 'eicw/img/typeface-dark.png';
+        tf_link.href = './img/typeface-dark.png';
+        tf_img.src = './img/typeface-dark.png';
 
-        pl_link.href = 'eicw/img/palettes-dark.png';
-        pl_img.src = 'eicw/img/palettes-dark.png';
+        pl_link.href = './img/palettes-dark.png';
+        pl_img.src = './img/palettes-dark.png';
 
-        pl2_link.href = 'eicw/img/palettes-dark2.png';
-        pl2_img.src = 'eicw/img/palettes-dark2.png';
+        pl2_link.href = './img/palettes-dark2.png';
+        pl2_img.src = './img/palettes-dark2.png';
 
-        wo1_link.href = 'eicw/img/wo1-dark.png';
-        wo1_img.src = 'eicw/img/wo1-dark.png';
+        wo1_link.href = './img/wo1-dark.png';
+        wo1_img.src = './img/wo1-dark.png';
 
-        wo2_link.href = 'eicw/img/wo2-dark.png';
-        wo2_img.src = 'eicw/img/wo2-dark.png';
+        wo2_link.href = './img/wo2-dark.png';
+        wo2_img.src = './img/wo2-dark.png';
 
-        exit_link.href = 'eicw/img/exit-dark.png';
-        exit_img.src = 'eicw/img/exit-dark.png';
+        exit_link.href = './img/exit-dark.png';
+        exit_img.src = './img/exit-dark.png';
 
-        lift1_link.href = 'eicw/img/lift-dark1.png';
-        lift1_img.src = 'eicw/img/lift-dark1.png';
+        lift1_link.href = './img/lift-dark1.png';
+        lift1_img.src = './img/lift-dark1.png';
 
-        lift2_link.href = 'eicw/img/lift-dark2.png';
-        lift2_img.src = 'eicw/img/lift-dark2.png';
+        lift2_link.href = './img/lift-dark2.png';
+        lift2_img.src = './img/lift-dark2.png';
 
-        liftd_link.href = 'eicw/img/liftd-dark.png';
-        liftd_img.src = 'eicw/img/liftd-dark.png';
+        liftd_link.href = './img/liftd-dark.png';
+        liftd_img.src = './img/liftd-dark.png';
 
-        ed1_link.href = 'eicw/img/ed1-dark.png';
-        ed1_img.src = 'eicw/img/ed1-dark.png';
+        ed1_link.href = './img/ed1-dark.png';
+        ed1_img.src = './img/ed1-dark.png';
 
-        sn_link.href = 'eicw/img/sn-dark.png';
-        sn_img.src = 'eicw/img/sn-dark.png';
+        sn_link.href = './img/sn-dark.png';
+        sn_img.src = './img/sn-dark.png';
 
-        se_link.href = 'eicw/img/se-dark.png';
-        se_img.src = 'eicw/img/se-dark.png';
+        se_link.href = './img/se-dark.png';
+        se_img.src = './img/se-dark.png';
 
-        evo_link.href = 'eicw/img/evo-dark.png';
-        evo_img.src = 'eicw/img/evo-dark.png';
+        evo_link.href = './img/evo-dark.png';
+        evo_img.src = './img/evo-dark.png';
 
-        es_link.href = 'eicw/img/es-dark.png';
-        es_img.src = 'eicw/img/es-dark.png';
+        es_link.href = './img/es-dark.png';
+        es_img.src = './img/es-dark.png';
 
-        cp_link.href = 'eicw/img/cp-dark.png';
-        cp_img.src = 'eicw/img/cp-dark.png';
+        cp_link.href = './img/cp-dark.png';
+        cp_img.src = './img/cp-dark.png';
 
-        ls_link.href = 'eicw/img/ls-dark.png';
-        ls_img.src = 'eicw/img/ls-dark.png';
+        ls_link.href = './img/ls-dark.png';
+        ls_img.src = './img/ls-dark.png';
 
-        tt_link.href = 'eicw/img/tt-dark.png';
-        tt_img.src = 'eicw/img/tt-dark.png';
+        tt_link.href = './img/tt-dark.png';
+        tt_img.src = './img/tt-dark.png';
 
-        ttann_link.href = 'eicw/img/ttann-dark.png';
-        ttann_img.src = 'eicw/img/ttann-dark.png';
+        ttann_link.href = './img/ttann-dark.png';
+        ttann_img.src = './img/ttann-dark.png';
 
-        lsb_link.href = 'eicw/img/lsb-dark.png';
-        lsb_img.src = 'eicw/img/lsb-dark.png';
+        lsb_link.href = './img/lsb-dark.png';
+        lsb_img.src = './img/lsb-dark.png';
 
-        lsbann1_link.href = 'eicw/img/lsbann1-dark.png';
-        lsbann1_img.src = 'eicw/img/lsbann1-dark.png';
+        lsbann1_link.href = './img/lsbann1-dark.png';
+        lsbann1_img.src = './img/lsbann1-dark.png';
 
-        lsbann2_link.href = 'eicw/img/lsbann2-dark.png';
-        lsbann2_img.src = 'eicw/img/lsbann2-dark.png';
+        lsbann2_link.href = './img/lsbann2-dark.png';
+        lsbann2_img.src = './img/lsbann2-dark.png';
 
-        wf1_link.href = 'eicw/img/wf1-dark.png';
-        wf1_img.src = 'eicw/img/wf1-dark.png';
+        wf1_link.href = './img/wf1-dark.png';
+        wf1_img.src = './img/wf1-dark.png';
 
-        wf2_link.href = 'eicw/img/wf2-dark.png';
-        wf2_img.src = 'eicw/img/wf2-dark.png';
+        wf2_link.href = './img/wf2-dark.png';
+        wf2_img.src = './img/wf2-dark.png';
 
-        ed_link.href = 'eicw/img/ed-dark.png';
-        ed_img.src = 'eicw/img/ed-dark.png';
+        ed_link.href = './img/ed-dark.png';
+        ed_img.src = './img/ed-dark.png';
 
-        edann1_link.href = 'eicw/img/edann1-dark.png';
-        edann1_img.src = 'eicw/img/edann1-dark.png';
+        edann1_link.href = './img/edann1-dark.png';
+        edann1_img.src = './img/edann1-dark.png';
 
-        edann2_link.href = 'eicw/img/edann2-dark.png';
-        edann2_img.src = 'eicw/img/edann2-dark.png';
+        edann2_link.href = './img/edann2-dark.png';
+        edann2_img.src = './img/edann2-dark.png';
 
-        ts_link.href = 'eicw/img/ts-dark.png';
-        ts_img.src = 'eicw/img/ts-dark.png';
+        ts_link.href = './img/ts-dark.png';
+        ts_img.src = './img/ts-dark.png';
 
-        tsann1_link.href = 'eicw/img/tsann1-dark.png';
-        tsann1_img.src = 'eicw/img/tsann1-dark.png';
+        tsann1_link.href = './img/tsann1-dark.png';
+        tsann1_img.src = './img/tsann1-dark.png';
 
-        tsann2_link.href = 'eicw/img/tsann2-dark.png';
-        tsann2_img.src = 'eicw/img/tsann2-dark.png';
+        tsann2_link.href = './img/tsann2-dark.png';
+        tsann2_img.src = './img/tsann2-dark.png';
 
-        os_link.href = 'eicw/img/os-dark.png';
-        os_img.src = 'eicw/img/os-dark.png';
+        os_link.href = './img/os-dark.png';
+        os_img.src = './img/os-dark.png';
 
-        osann1_link.href = 'eicw/img/osann1-dark.png';
-        osann1_img.src = 'eicw/img/osann1-dark.png';
+        osann1_link.href = './img/osann1-dark.png';
+        osann1_img.src = './img/osann1-dark.png';
 
-        ud_link.href = 'eicw/img/ud-dark.png';
-        ud_img.src = 'eicw/img/ud-dark.png';
+        ud_link.href = './img/ud-dark.png';
+        ud_img.src = './img/ud-dark.png';
 
         /* Videos */
-        vid1Source.src = 'eicw/img/eicw-vid1-dark.mp4';
-        vid2Source.src = 'eicw/img/eicw-vid2-dark.mp4';
-        vid3Source.src = 'eicw/img/eicw-vid3-dark.mp4';
-        vid4Source.src = 'eicw/img/eicw-vid4-dark.mp4';
-        vid5Source.src = 'eicw/img/eicw-vid5-dark.mp4';
-        vid6Source.src = 'eicw/img/eicw-vid6-dark.mp4';
-        vid7Source.src = 'eicw/img/eicw-vid7-dark.mp4';
-        vid8Source.src = 'eicw/img/eicw-vid8-dark.mp4';
+        vid1Source.src = './img/eicw-vid1-dark.mp4';
+        vid2Source.src = './img/eicw-vid2-dark.mp4';
+        vid3Source.src = './img/eicw-vid3-dark.mp4';
+        vid4Source.src = './img/eicw-vid4-dark.mp4';
+        vid5Source.src = './img/eicw-vid5-dark.mp4';
+        vid6Source.src = './img/eicw-vid6-dark.mp4';
+        vid7Source.src = './img/eicw-vid7-dark.mp4';
+        vid8Source.src = './img/eicw-vid8-dark.mp4';
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('eicw/img/cover-light.png')";
-        ciSect.style.backgroundImage = "url('eicw/img/c-i-light.png')";
-        eiaSect.style.backgroundImage = "url('eicw/img/eia-light.png')";
+        coverSect.style.backgroundImage = "url('./img/cover-light.png')";
+        ciSect.style.backgroundImage = "url('./img/c-i-light.png')";
+        eiaSect.style.backgroundImage = "url('./img/eia-light.png')";
 
         /* Images */
-        tf_link.href = 'eicw/img/typeface-light.png';
-        tf_img.src = 'eicw/img/typeface-light.png';
+        tf_link.href = './img/typeface-light.png';
+        tf_img.src = './img/typeface-light.png';
 
-        pl_link.href = 'eicw/img/palettes-light.png';
-        pl_img.src = 'eicw/img/palettes-light.png';
+        pl_link.href = './img/palettes-light.png';
+        pl_img.src = './img/palettes-light.png';
 
-        pl2_link.href = 'eicw/img/palettes-light2.png';
-        pl2_img.src = 'eicw/img/palettes-light2.png';
+        pl2_link.href = './img/palettes-light2.png';
+        pl2_img.src = './img/palettes-light2.png';
 
-        wo1_link.href = 'eicw/img/wo1-light.png';
-        wo1_img.src = 'eicw/img/wo1-light.png';
+        wo1_link.href = './img/wo1-light.png';
+        wo1_img.src = './img/wo1-light.png';
 
-        wo2_link.href = 'eicw/img/wo2-light.png';
-        wo2_img.src = 'eicw/img/wo2-light.png';
+        wo2_link.href = './img/wo2-light.png';
+        wo2_img.src = './img/wo2-light.png';
 
-        exit_link.href = 'eicw/img/exit-light.png';
-        exit_img.src = 'eicw/img/exit-light.png';
+        exit_link.href = './img/exit-light.png';
+        exit_img.src = './img/exit-light.png';
 
-        lift1_link.href = 'eicw/img/lift-light1.png';
-        lift1_img.src = 'eicw/img/lift-light1.png';
+        lift1_link.href = './img/lift-light1.png';
+        lift1_img.src = './img/lift-light1.png';
 
-        lift2_link.href = 'eicw/img/lift-light2.png';
-        lift2_img.src = 'eicw/img/lift-light2.png';
+        lift2_link.href = './img/lift-light2.png';
+        lift2_img.src = './img/lift-light2.png';
 
-        liftd_link.href = 'eicw/img/liftd-light.png';
-        liftd_img.src = 'eicw/img/liftd-light.png';
+        liftd_link.href = './img/liftd-light.png';
+        liftd_img.src = './img/liftd-light.png';
 
-        ed1_link.href = 'eicw/img/ed1-light.png';
-        ed1_img.src = 'eicw/img/ed1-light.png';
+        ed1_link.href = './img/ed1-light.png';
+        ed1_img.src = './img/ed1-light.png';
 
-        sn_link.href = 'eicw/img/sn-light.png';
-        sn_img.src = 'eicw/img/sn-light.png';
+        sn_link.href = './img/sn-light.png';
+        sn_img.src = './img/sn-light.png';
 
-        se_link.href = 'eicw/img/se-light.png';
-        se_img.src = 'eicw/img/se-light.png';
+        se_link.href = './img/se-light.png';
+        se_img.src = './img/se-light.png';
 
-        evo_link.href = 'eicw/img/evo-light.png';
-        evo_img.src = 'eicw/img/evo-light.png';
+        evo_link.href = './img/evo-light.png';
+        evo_img.src = './img/evo-light.png';
 
-        es_link.href = 'eicw/img/es-light.png';
-        es_img.src = 'eicw/img/es-light.png';
+        es_link.href = './img/es-light.png';
+        es_img.src = './img/es-light.png';
 
-        cp_link.href = 'eicw/img/cp-light.png';
-        cp_img.src = 'eicw/img/cp-light.png';
+        cp_link.href = './img/cp-light.png';
+        cp_img.src = './img/cp-light.png';
 
-        ls_link.href = 'eicw/img/ls-light.png';
-        ls_img.src = 'eicw/img/ls-light.png';
+        ls_link.href = './img/ls-light.png';
+        ls_img.src = './img/ls-light.png';
 
-        tt_link.href = 'eicw/img/tt-light.png';
-        tt_img.src = 'eicw/img/tt-light.png';
+        tt_link.href = './img/tt-light.png';
+        tt_img.src = './img/tt-light.png';
 
-        ttann_link.href = 'eicw/img/ttann-light.png';
-        ttann_img.src = 'eicw/img/ttann-light.png';
+        ttann_link.href = './img/ttann-light.png';
+        ttann_img.src = './img/ttann-light.png';
 
-        lsb_link.href = 'eicw/img/lsb-light.png';
-        lsb_img.src = 'eicw/img/lsb-light.png';
+        lsb_link.href = './img/lsb-light.png';
+        lsb_img.src = './img/lsb-light.png';
 
-        lsbann1_link.href = 'eicw/img/lsbann1-light.png';
-        lsbann1_img.src = 'eicw/img/lsbann1-light.png';
+        lsbann1_link.href = './img/lsbann1-light.png';
+        lsbann1_img.src = './img/lsbann1-light.png';
 
-        lsbann2_link.href = 'eicw/img/lsbann2-light.png';
-        lsbann2_img.src = 'eicw/img/lsbann2-light.png';
+        lsbann2_link.href = './img/lsbann2-light.png';
+        lsbann2_img.src = './img/lsbann2-light.png';
 
-        wf1_link.href = 'eicw/img/wf1-light.png';
-        wf1_img.src = 'eicw/img/wf1-light.png';
+        wf1_link.href = './img/wf1-light.png';
+        wf1_img.src = './img/wf1-light.png';
 
-        wf2_link.href = 'eicw/img/wf2-light.png';
-        wf2_img.src = 'eicw/img/wf2-light.png';
+        wf2_link.href = './img/wf2-light.png';
+        wf2_img.src = './img/wf2-light.png';
 
-        ed_link.href = 'eicw/img/ed-light.png';
-        ed_img.src = 'eicw/img/ed-light.png';
+        ed_link.href = './img/ed-light.png';
+        ed_img.src = './img/ed-light.png';
 
-        edann1_link.href = 'eicw/img/edann1-light.png';
-        edann1_img.src = 'eicw/img/edann1-light.png';
+        edann1_link.href = './img/edann1-light.png';
+        edann1_img.src = './img/edann1-light.png';
 
-        edann2_link.href = 'eicw/img/edann2-light.png';
-        edann2_img.src = 'eicw/img/edann2-light.png';
+        edann2_link.href = './img/edann2-light.png';
+        edann2_img.src = './img/edann2-light.png';
 
-        ts_link.href = 'eicw/img/ts-light.png';
-        ts_img.src = 'eicw/img/ts-light.png';
+        ts_link.href = './img/ts-light.png';
+        ts_img.src = './img/ts-light.png';
 
-        tsann1_link.href = 'eicw/img/tsann1-light.png';
-        tsann1_img.src = 'eicw/img/tsann1-light.png';
+        tsann1_link.href = './img/tsann1-light.png';
+        tsann1_img.src = './img/tsann1-light.png';
 
-        tsann2_link.href = 'eicw/img/tsann2-light.png';
-        tsann2_img.src = 'eicw/img/tsann2-light.png';
+        tsann2_link.href = './img/tsann2-light.png';
+        tsann2_img.src = './img/tsann2-light.png';
 
-        os_link.href = 'eicw/img/os-light.png';
-        os_img.src = 'eicw/img/os-light.png';
+        os_link.href = './img/os-light.png';
+        os_img.src = './img/os-light.png';
 
-        osann1_link.href = 'eicw/img/osann1-light.png';
-        osann1_img.src = 'eicw/img/osann1-light.png';
+        osann1_link.href = './img/osann1-light.png';
+        osann1_img.src = './img/osann1-light.png';
 
-        ud_link.href = 'eicw/img/ud-light.png';
-        ud_img.src = 'eicw/img/ud-light.png';
+        ud_link.href = './img/ud-light.png';
+        ud_img.src = './img/ud-light.png';
 
 
         /* Videos */
-        vid1Source.src = 'eicw/img/eicw-vid1-light.mp4';
-        vid2Source.src = 'eicw/img/eicw-vid2-light.mp4';
-        vid3Source.src = 'eicw/img/eicw-vid3-light.mp4';
-        vid4Source.src = 'eicw/img/eicw-vid4-light.mp4';
-        vid5Source.src = 'eicw/img/eicw-vid5-light.mp4';
-        vid6Source.src = 'eicw/img/eicw-vid6-light.mp4';
-        vid7Source.src = 'eicw/img/eicw-vid7-light.mp4';
-        vid8Source.src = 'eicw/img/eicw-vid8-light.mp4';
+        vid1Source.src = './img/eicw-vid1-light.mp4';
+        vid2Source.src = './img/eicw-vid2-light.mp4';
+        vid3Source.src = './img/eicw-vid3-light.mp4';
+        vid4Source.src = './img/eicw-vid4-light.mp4';
+        vid5Source.src = './img/eicw-vid5-light.mp4';
+        vid6Source.src = './img/eicw-vid6-light.mp4';
+        vid7Source.src = './img/eicw-vid7-light.mp4';
+        vid8Source.src = './img/eicw-vid8-light.mp4';
     }
     vid1.load();
     vid2.load();
