@@ -24,6 +24,7 @@
     - 19.0 Works By NRFZ_Details Section
     - 20.0 Blog Post Section
     - 21.0 EICW
+    - 22.0 Filter/Jumplist Controls
 
 > style-breakpoints
 > dark theme
@@ -2537,6 +2538,7 @@ h2.page-title {
 }
 
 /* ------------------------------------------ */
+
 /* ------------------------------------------ 22.0 Filter/Jumplist Controls ------------------------------------------ */
 .portfolio-controls {
     display: flex;
@@ -2560,6 +2562,14 @@ h2.page-title {
     transition: all 0.5s ease;
 }
 
+.collapsible-header i {
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
 .collapsible-header:hover {
     background-color: #80a8cc;
     padding: 1em;
@@ -2573,7 +2583,6 @@ h2.page-title {
     color: #000;
 }
 
-/* Prevent jumping when collapsing */
 #portfolioFilter {
     transition: height 0.3s ease, opacity 0.3s ease;
     overflow: hidden;
