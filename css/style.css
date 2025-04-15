@@ -123,7 +123,7 @@ ul li {
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: #262626e2;
+    background-color: #e5e5e5b7;
     backdrop-filter: blur(5px);
 }
 
@@ -407,31 +407,32 @@ input:required {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-  }
-  
-  .loader {
+}
+
+.loader {
     border: 5px solid #f3f3f3;
     border-top: 5px solid #b5b69f;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
-  
-  #preloader-text {
+}
+
+#preloader-text {
     margin-top: 20px;
     font-size: 16px;
     color: #333;
-  }
+}
 
 /* ------------------------------------------ */
 
@@ -525,7 +526,7 @@ input:required {
     padding: 0 30px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #e4e6cf;
+    background-color: #b5b69f;
     color: #252525;
     border-radius: 60px;
     -webkit-transition-duration: 500ms;
@@ -545,7 +546,7 @@ input:required {
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     background-color: #80a8cc;
-    color: #ffffff;
+    color: #000;
 }
 
 .badges-btn {
@@ -805,7 +806,8 @@ header {
 
 /* ------------------------------------------ 10.0 Footer ------------------------------------------ */
 .footer-area {
-    background-color: #f8f9fa; /* Light gray background */
+    background-color: #f8f9fa;
+    /* Light gray background */
     padding: 10px 0;
     padding-top: 1em;
 }
@@ -820,24 +822,28 @@ header {
 .footer-area .social-info a {
     margin: 0 10px;
     font-size: 18px;
-    color: #6c757d; /* Muted icon color */
+    color: #6c757d;
+    /* Muted icon color */
     transition: color 0.3s ease;
 }
 
 .footer-area .social-info a:hover {
-    color: #007bff; /* Change to primary color on hover */
+    color: #007bff;
+    /* Change to primary color on hover */
 }
 
 .footer-area .copywrite-text p {
     margin: 0;
     font-size: 14px;
-    color: #6c757d; /* Muted text color */
+    color: #6c757d;
+    /* Muted text color */
     margin-top: 10px;
 }
 
 /* Ensure footer width matches the navbar */
 .footer-area .container {
-    max-width: 1200px; /* Adjust this value to match your navbar's width */
+    max-width: 1200px;
+    /* Adjust this value to match your navbar's width */
     padding-left: 15px;
     padding-right: 15px;
     margin-left: auto;
@@ -1146,10 +1152,11 @@ h4.timeline-date-aa {
 
 .about-me-summ {
     background-color: #f8faf4;
-    /* padding-top: 50px; */
+    padding-top: 50px;
     /* padding-bottom: 83px; */
     position: relative;
-    z-index: 0; /* Ensure it stays above background elements */
+    z-index: 0;
+    /* Ensure it stays above background elements */
 }
 
 /* to rel */
@@ -1277,7 +1284,7 @@ h4.timeline-date-aa {
 }
 
 li.breadcrumb-item.active a {
-    color: #b5b69f !important;
+    color: #8f9078 !important;
 }
 
 /* ------------------------------------------ */
@@ -1398,9 +1405,9 @@ li.breadcrumb-item.active a {
     width: 102%;
     height: 102%;
 
-  }
+}
 
-  .single-portfolio-content .hover-content-blog a {
+.single-portfolio-content .hover-content-blog a {
     position: absolute;
     top: 70%;
     margin-top: 0;
@@ -1421,22 +1428,22 @@ li.breadcrumb-item.active a {
     background-color: #80a8cc;
 }
 
-.single-portfolio-content .hover-content-blog h4{
+.single-portfolio-content .hover-content-blog h4 {
     margin-bottom: 2rem;
     padding: 0 2em 0 2em;
     color: #fff;
 }
 
-  /* Show the hover content on hover */
-  .single-portfolio-content:hover .hover-content-blog {
+/* Show the hover content on hover */
+.single-portfolio-content:hover .hover-content-blog {
     opacity: 1;
-  }
-  
-  /* Ensure the parent container is positioned correctly */
-  .single-portfolio-content {
+}
+
+/* Ensure the parent container is positioned correctly */
+.single-portfolio-content {
     position: relative;
     overflow: hidden;
-  }
+}
 
 /* ------------------------------------------ */
 
@@ -1717,7 +1724,8 @@ img.profile-pic {
 }
 
 .wbnrfz_details .details_catagory_wrap .single_catagory {
-    margin-bottom: 30px;
+    margin-top: 2em;
+    margin-bottom: 0px;
 }
 
 .wbnrfz_details .details_catagory_wrap .single_catagory h4 {
@@ -1768,7 +1776,7 @@ h1.brc {
     padding: 0 30px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #e4e6cf;
+    background-color: #b5b69f;
     color: #252525;
     border-radius: 60px;
     transition-duration: 500ms;
@@ -2347,8 +2355,10 @@ h2.page-title {
 
 /* Change dropdown option hover color */
 #sort-options option:hover {
-    background-color: #80a8cc !important; /* Desired hover background color */
-    color: #fff; /* Desired hover text color */
+    background-color: #80a8cc !important;
+    /* Desired hover background color */
+    color: #fff;
+    /* Desired hover text color */
 }
 
 select:focus {
@@ -2376,7 +2386,17 @@ select:focus {
     z-index: 1;
 }
 
-.wbnrfz-summ > * {
+.wbnrfz-summ-indiv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wbnrfz-summ>*,
+.wbnrfz-summ-indiv>* {
     position: relative;
     z-index: 2;
 }
@@ -2385,8 +2405,23 @@ select:focus {
     background: #ffffffea;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
+    margin-top: 4.8em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
+.wbnrfz_details_blog {
+    background: #ffffffea;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
     margin-top: -2.2em;
     padding-top: 3em;
+    padding-bottom: 2em;
+}
+
+.wbnrfz_details_section {
+    margin-top: 0em;
+    padding-top: 0em;
     padding-bottom: 2em;
 }
 
@@ -2440,6 +2475,10 @@ li.breadcrumb-item a {
     margin-bottom: 20px;
 }
 
+.banner {
+    margin-bottom: 20px;
+}
+
 .breadcrumb-area-eicw-cover {
     position: relative;
     z-index: 1;
@@ -2460,7 +2499,7 @@ li.breadcrumb-item a {
 }
 
 h2.page-title {
-    color: #fff;
+    color: #000;
 }
 
 .cp-img {
@@ -2494,8 +2533,7 @@ h2.page-title {
 }
 
 /* ------------------------------------------ */
-
-/* Align buttons to the left and collapsible toggle to the right */
+/* ------------------------------------------ 22.0 Filter/Jumplist Controls ------------------------------------------ */
 .portfolio-controls {
     display: flex;
     justify-content: space-between;
@@ -2531,19 +2569,18 @@ h2.page-title {
     color: #000;
 }
 
-
 /* Prevent jumping when collapsing */
 #portfolioFilter {
-    transition: height 0.3s ease, opacity 0.3s ease; /* Smooth transition for height and opacity */
-    overflow: hidden; /* Prevent content overflow during collapse */
+    transition: height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
 }
 
 #portfolioFilter.collapsing {
-    height: 0; /* Ensure height is set to 0 during collapsing */
-    opacity: 0; /* Fade out effect */
+    height: 0;
+    opacity: 0;
 }
 
 #portfolioFilter.collapse.show {
-    height: auto; /* Allow the content to expand naturally */
-    opacity: 1; /* Fully visible when expanded */
+    height: auto;
+    opacity: 1;
 }

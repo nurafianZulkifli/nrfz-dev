@@ -26,13 +26,13 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        eicwPage.style.backgroundImage = "url('../img/bg-img/hero-bg-small-dark.png')";
+        eicwPage.style.backgroundImage = "url('../eicw/img/cover-dark.png')";
 
 
 
     } else {
         /* Banners */
-        eicwPage.style.backgroundImage = "url('https://i.imgur.com/sBOOEqY.png')";
+        eicwPage.style.backgroundImage = "url('../eicw/img/cover-light.png')";
     }
 
 

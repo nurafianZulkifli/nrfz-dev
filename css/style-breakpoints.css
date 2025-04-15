@@ -188,16 +188,7 @@
         bottom: 50px;
     }
 
-    header::before {
-        position: absolute;
-        content: "";
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        background: #070707d4;
-        backdrop-filter: blur(50px);
-        z-index: -1;
-    }
+
 
     header::after {
         position: absolute;
@@ -291,7 +282,13 @@
 
     #check:checked~.navbar {
         height: 100vh;
-        background: #070707ec;
+        background: #fdfdfdf6;
+        backdrop-filter: blur(50px) !important;
+    }
+
+    body.dark-mode #check:checked~.navbar {
+        height: 100vh;
+        background: #0e0e0ef9;
         backdrop-filter: blur(50px) !important;
     }
 
