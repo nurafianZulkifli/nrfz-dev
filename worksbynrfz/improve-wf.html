@@ -57,7 +57,7 @@
       <a href="../index.html" class="nav-item">Home</a>
       <a href="../about.html" class="nav-item">About</a>
       <a href="../works-by-nrfz.html" class="nav-item active">Works By NRFZ</a>
-      <a href="../eicw.html" class="nav-item">EICW</a>
+      <a href="../eicw/eicw.html" class="nav-item">EICW</a>
       <a href="../blog.html" class="nav-item">Blog</a>
       <a href="#" class="nav-item"><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
           title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button></a>
@@ -139,7 +139,8 @@
               <div class="row justify-content-center">
                 <div class="col-lg-12">
                   <div class="info justify-content-center">
-                    <p style="text-align: center;">A self-made handbook of how I explored different ways and ideas to
+                    <p style="text-align: center; padding-bottom: 2em;">
+                      A self-made handbook of how I explored different ways and ideas to
                       make the current Wayfinding system better. <br>
 
                       Covered in this Handbook:<br>
@@ -206,8 +207,6 @@
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
 
-  <script src="../js/theme-wbnrfz.js"></script>
-
   <script src="../js/jquery.min.js"></script>
 
   <script src="../js/popper.min.js"></script>
@@ -229,6 +228,45 @@
   <script src="../js/copy-to-clipboard.js"></script>
 
   <script src="js/preloader.js"></script>
+
+  <!-- Script for Indiv Page - Modes -->
+  <script>
+    /* Dark Mode Functionality for Individual Pages */
+
+    // Check localStorage for dark mode preference
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      updateHrefForDarkMode();
+    }
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      // Save the preference in localStorage
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+      } else {
+        localStorage.setItem('dark-mode', 'disabled');
+      }
+      updateHrefForDarkMode();
+    });
+
+    function updateHrefForDarkMode() {
+      /* Banners */
+      const eicwPage = document.getElementById('cv-eicw');
+
+      const isDarkMode = document.body.classList.contains('dark-mode');
+
+      if (isDarkMode) {
+        /* Banners */
+        eicwPage.style.backgroundImage = "url('../eicw/img/cover-dark.png')";
+
+      } else {
+        /* Banners */
+        eicwPage.style.backgroundImage = "url('../eicw/img/cover-light.png')";
+      }
+    }
+  </script>
 
 </body>
 

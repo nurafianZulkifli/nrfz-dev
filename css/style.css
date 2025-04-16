@@ -1711,6 +1711,7 @@ img.profile-pic {
 .collapse .details_catagory_wrap,
 .collapsing .details_catagory_wrap {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     max-width: 1400px;
 }
@@ -1719,7 +1720,7 @@ img.profile-pic {
 .collapsing .details_catagory_wrap .single_catagory .social_links a {
     font-size: 16px;
     color: #000;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .collapse .details_catagory_wrap .single_catagory .social_links a:hover {
@@ -1730,18 +1731,19 @@ img.profile-pic {
 .collapsing .details_catagory_wrap .single_catagory {
     margin-top: 2em;
     margin-bottom: 0px;
+    text-align: left;
 }
 
 .collapse .details_catagory_wrap .single_catagory h4,
 .collapsing .details_catagory_wrap .single_catagory h4 {
-    font-size: 16px;
+    font-size: 20px;
     color: #000;
     font-weight: 400;
 }
 
 .collapse .details_catagory_wrap .single_catagory span,
 .collapsing .details_catagory_wrap .single_catagory span {
-    font-size: 12px;
+    font-size: 16px;
     color: #828793;
     font-weight: 400;
     font-family: "Onest", sans-serif;
@@ -2424,6 +2426,7 @@ select:focus {
     margin-top: -4.2em;
     padding-top: 3em;
     padding-bottom: 2em;
+    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }
 
 .wbnrfz_details_section {
@@ -2602,5 +2605,58 @@ h2.page-title {
 #portfolioFilter.collapse.show {
     height: auto;
     opacity: 1;
+}
+
+/* Style for the collapsible content container */
+.details_catagory_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Style for individual categories */
+.single_catagory {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 200px;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+
+/* Style for the "View Microsite" button */
+.single_catagory.text-center .btn {
+        position: relative;
+        z-index: 1;
+        min-width: 25em;
+        height: 46px;
+        line-height: 42px;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-block;
+        padding: 0 30px;
+        text-align: center;
+        text-transform: capitalize;
+        background-color: #b5b69f;
+        color: #252525;
+        border-radius: 60px;
+        transition-duration: 500ms;
+        margin-bottom: 10px;
+        margin-top: 5px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .single_catagory {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+
+    .social_links {
+        flex-wrap: wrap;
+        
+    }
 }
 
