@@ -2411,7 +2411,7 @@ select:focus {
 }
 
 .wbnrfz_details {
-    background: #ffffffea;
+    background: #ffffffe0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     margin-top: 4.8em;
@@ -2420,13 +2420,13 @@ select:focus {
 }
 
 .wbnrfz_details_blog {
-    background: #ffffffea;
+    background: #ffffffe0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     margin-top: -4.2em;
     padding-top: 3em;
-    padding-bottom: 2em;
-    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
+    padding-bottom: 4em;
+    mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%);
 }
 
 .wbnrfz_details_section {
@@ -2479,7 +2479,8 @@ li.breadcrumb-item a {
     color: #000;
 }
 
-li.breadcrumb-item a:hover, li.breadcrumb-item.active a:hover {
+li.breadcrumb-item a:hover,
+li.breadcrumb-item.active a:hover {
     color: #80a8cc !important;
 }
 
@@ -2607,7 +2608,6 @@ h2.page-title {
     opacity: 1;
 }
 
-/* Style for the collapsible content container */
 .details_catagory_wrap {
     display: flex;
     flex-wrap: wrap;
@@ -2615,7 +2615,6 @@ h2.page-title {
     justify-content: space-between;
 }
 
-/* Style for individual categories */
 .single_catagory {
     flex: 1 1 calc(33.333% - 20px);
     min-width: 200px;
@@ -2625,38 +2624,22 @@ h2.page-title {
 }
 
 
-
-/* Style for the "View Microsite" button */
 .single_catagory.text-center .btn {
-        position: relative;
-        z-index: 1;
-        min-width: 25em;
-        height: 46px;
-        line-height: 42px;
-        font-size: 14px;
-        font-weight: 500;
-        display: inline-block;
-        padding: 0 30px;
-        text-align: center;
-        text-transform: capitalize;
-        background-color: #b5b69f;
-        color: #252525;
-        border-radius: 60px;
-        transition-duration: 500ms;
-        margin-bottom: 10px;
-        margin-top: 5px;
+    position: relative;
+    z-index: 1;
+    min-width: 25em;
+    height: 46px;
+    line-height: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0 30px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #b5b69f;
+    color: #252525;
+    border-radius: 60px;
+    transition-duration: 500ms;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .single_catagory {
-        flex: 1 1 100%;
-        margin-bottom: 20px;
-    }
-
-    .social_links {
-        flex-wrap: wrap;
-        
-    }
-}
-

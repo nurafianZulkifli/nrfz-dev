@@ -156,7 +156,6 @@
     .timeline-arrow-edu,
     .timeline-arrow-exp {
         display: none;
-        /* Hide arrows on mobile */
     }
 
     .timeline-item h4 {
@@ -194,6 +193,16 @@
     .portfolio-sort {
         margin-top: 0em;
         order: 2;
+    }
+
+    .single_catagory {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+
+    .social_links {
+        flex-wrap: wrap;
+
     }
 }
 
@@ -344,6 +353,15 @@
         margin-top: -4.2em !important;
     }
 
+    /* .wbnrfz_details_blog {
+        mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%);
+    }
+
+    body.dark-mode .wbnrfz_details_blog {
+        mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%);
+    } */
+
+
     .footer-content .copywrite-text p {
         font-size: 16px;
     }
@@ -459,7 +477,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        max-width: 150px; 
+        max-width: 150px;
     }
 
     .breadcrumb-item a {
