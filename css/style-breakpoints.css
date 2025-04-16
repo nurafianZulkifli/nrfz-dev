@@ -7,12 +7,16 @@
         - 1.0.1 Max Width: 992px
         - 1.0.2 Max Width: 768px
         - 1.0.3 Max Width: 767px
+        - 1.0.4 Max Width: 450px
+        - 1.0.5 Max Width: 576px
+
     - 2.0 Width Breakpoints
         - 2.0.1 Min Width: 992px Max Width: 1199px
         - 2.0.2 Min Width: 768px Max Width: 991px
         - 2.0.3 Min Width: 576px Max Width: 767px
         - 2.0.4 Min Width: 320px Max Width: 575px
-        - 2.0.5 Max Width: 319px
+        - 2.0.5 Max Width: 576px
+        - 2.0.6 Max Width: 319px
 
     - 3.0 Height Breakpoints
         - 3.0.1 Min Height: 531px Max Height: 620px
@@ -25,6 +29,19 @@
 --------------------------------------------- */
 
 /* ------------------------------------------ 1.0 Specific Breakpoints ------------------------------------------ */
+/* ---- 1.0.0 Max Width: 1200px */
+@media (max-width: 1399px) {
+    h1.brc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: wrap;
+        max-width: 24em;
+        text-align: left;
+    }
+}
+
+/* ---- */
+
 /* ---- 1.0.0 Max Width: 1200px */
 @media (max-width: 1200px) {
     .timeline-horizontal {
@@ -45,7 +62,17 @@
         /* Space between label and dropdown */
         padding-top: 3em;
     }
+
+    h1.brc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: wrap;
+        max-width: 24em;
+        text-align: center;
+    }
 }
+
+/* ---- */
 
 /* ---- 1.0.1 Max Width: 992px */
 @media (max-width: 992px) {
@@ -172,8 +199,7 @@
 
 /* ---- */
 
-
-/* ---- 1.0.4 Max Width: 767px */
+/* ---- 1.0.3 Max Width: 767px */
 @media only screen and (max-width: 767px) {
     .container {
         max-width: 720px;
@@ -397,7 +423,7 @@
 
 /* ---- */
 
-/* ---- 1.0.5 Max Width: 450px */
+/* ---- 1.0.4 Max Width: 450px */
 @media (max-width: 450px) {
     .btn {
         width: 130px;
@@ -419,6 +445,26 @@
     .single_gallery_item {
         flex: 1 1 100%;
         max-width: 100%;
+    }
+
+    .breadcrumb {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .breadcrumb-item {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 150px; 
+    }
+
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: inherit;
     }
 }
 
@@ -633,12 +679,13 @@
         font-size: 10px;
     }
 
-    .wbnrfz_details .details_catagory_wrap {
+    .collapse .details_catagory_wrap,
+    .collapsing .details_catagory_wrap {
         display: block;
         margin-bottom: 40px;
     }
 
-    .wbnrfz_details h1 {
+    .collapse h1 {
         font-size: clamp(34px, 8.5vw, 40px) !important;
         text-align: center;
         margin-bottom: 50px;
@@ -815,12 +862,12 @@
         margin-top: 12px;
     }
 
-    .wbnrfz_details .details_catagory_wrap {
+    .collapse .details_catagory_wrap {
         display: block;
         margin-bottom: 40px;
     }
 
-    .wbnrfz_details h1 {
+    .collapse h1 {
         font-size: clamp(30px, 8.5vw, 30px) !important;
         text-align: center;
         margin-bottom: 0px;

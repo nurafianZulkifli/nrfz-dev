@@ -1708,34 +1708,39 @@ img.profile-pic {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 19.0 Works By NRFZ_Details Section ------------------------------------------ */
-.wbnrfz_details .details_catagory_wrap {
+.collapse .details_catagory_wrap,
+.collapsing .details_catagory_wrap {
     display: flex;
     justify-content: space-between;
     max-width: 1400px;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory .social_links a {
+.collapse .details_catagory_wrap .single_catagory .social_links a,
+.collapsing .details_catagory_wrap .single_catagory .social_links a {
     font-size: 16px;
     color: #000;
     margin-right: 10px;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory .social_links a:hover {
+.collapse .details_catagory_wrap .single_catagory .social_links a:hover {
     color: #80a8cc;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory {
+.collapse .details_catagory_wrap .single_catagory,
+.collapsing .details_catagory_wrap .single_catagory {
     margin-top: 2em;
     margin-bottom: 0px;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory h4 {
+.collapse .details_catagory_wrap .single_catagory h4,
+.collapsing .details_catagory_wrap .single_catagory h4 {
     font-size: 16px;
     color: #000;
     font-weight: 400;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory span {
+.collapse .details_catagory_wrap .single_catagory span,
+.collapsing .details_catagory_wrap .single_catagory span {
     font-size: 12px;
     color: #828793;
     font-weight: 400;
@@ -1763,6 +1768,7 @@ h1.brc {
     font-size: clamp(34px, 8.5vw, 40px) !important;
     margin-bottom: 0px;
     font-weight: bold;
+    text-align: center;
 }
 
 .wbnrfz_btn {
@@ -2415,7 +2421,7 @@ select:focus {
     background: #ffffffea;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    margin-top: -2.2em;
+    margin-top: -4.2em;
     padding-top: 3em;
     padding-bottom: 2em;
 }
@@ -2597,3 +2603,4 @@ h2.page-title {
     height: auto;
     opacity: 1;
 }
+
