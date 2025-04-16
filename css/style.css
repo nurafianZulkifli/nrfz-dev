@@ -480,7 +480,7 @@ input:required {
     color: #ffffff;
 }
 
-#scrollIndicator {
+/* #scrollIndicator {
     height: 5px;
     background: linear-gradient(90deg,
             #de650f 0%,
@@ -489,6 +489,27 @@ input:required {
     width: 0%;
     filter: drop-shadow(0 0 1px);
     border-radius: 20px;
+} */
+
+/* Scroll Indicator Container */
+#scroll-indicator-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 9999; /* Ensure it stays on top of other elements */
+}
+
+/* Scroll Indicator */
+#scroll-indicator {
+    height: 100%;
+    width: 0; /* Start with 0 width */
+    background: linear-gradient(90deg,
+    #de650f 0%,
+    #fd1d1d 50%,
+    #df9e43 100%);
+    transition: width 0.1s ease; /* Smooth transition for the indicator */
 }
 
 .scroll-bar {
