@@ -2442,12 +2442,12 @@ select:focus {
 
 .wbnrfz_details_blog {
     background: #ffffffe0;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(10px);
     margin-top: -4.2em;
     padding-top: 3em;
-    padding-bottom: 4em;
-    mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%);
+    padding-bottom: 3em;
+    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }
 
 .wbnrfz_details_section {
@@ -2645,10 +2645,10 @@ h2.page-title {
 }
 
 
-.single_catagory.text-center .btn {
+/* .single_catagory.text-center .btn {
     position: relative;
     z-index: 1;
-    min-width: 25em;
+    min-width: 50%;
     height: 46px;
     line-height: 42px;
     font-size: 14px;
@@ -2663,4 +2663,31 @@ h2.page-title {
     transition-duration: 500ms;
     margin-bottom: 10px;
     margin-top: 5px;
+} */
+
+.single_catagory.text-center .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 46px;
+    line-height: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 20px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #b5b69f;
+    color: #252525;
+    border-radius: 60px;
+    transition-duration: 500ms;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.single_catagory.text-center .btn:hover {
+    background: #80a8cc;
+    color: #000;
+    box-shadow: none;
 }

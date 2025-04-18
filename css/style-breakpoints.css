@@ -204,6 +204,11 @@
         flex-wrap: wrap;
 
     }
+
+    .single_catagory .btn {
+        width: 100%;
+        max-width: 200px;
+    }
 }
 
 /* ---- */

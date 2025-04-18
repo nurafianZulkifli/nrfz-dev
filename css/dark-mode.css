@@ -509,9 +509,9 @@ body.dark-mode .wbnrfz_details_blog {
     backdrop-filter: blur(10px);
     margin-top: -5.2em;
     padding-top: 3em;
-    padding-bottom: 4em;
+    padding-bottom: 3em;
     z-index: 1000000 !important; 
-    mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%);
+    /* mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%); */
 }
 
 body.dark-mode .wbnrfz_eicw {
