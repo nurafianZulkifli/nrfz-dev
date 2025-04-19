@@ -46,6 +46,11 @@
     margin: 0;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 
 body {
     font-family: "Onest", sans-serif;
@@ -498,18 +503,21 @@ input:required {
     left: 0;
     width: 100%;
     height: 4px;
-    z-index: 9999; /* Ensure it stays on top of other elements */
+    z-index: 9999;
+    /* Ensure it stays on top of other elements */
 }
 
 /* Scroll Indicator */
 #scroll-indicator {
     height: 100%;
-    width: 0; /* Start with 0 width */
+    width: 0;
+    /* Start with 0 width */
     background: linear-gradient(90deg,
-    #de650f 0%,
-    #fd1d1d 50%,
-    #df9e43 100%);
-    transition: width 0.1s ease; /* Smooth transition for the indicator */
+            #de650f 0%,
+            #fd1d1d 50%,
+            #df9e43 100%);
+    transition: width 0.1s ease;
+    /* Smooth transition for the indicator */
 }
 
 .scroll-bar {
@@ -1309,6 +1317,10 @@ li.breadcrumb-item.active a {
     color: #7b7c64 !important;
 }
 
+body.dark-mode li.breadcrumb-item.active a {
+    color: #7b7c64 !important;
+}
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 15.0 Blog ------------------------------------------ */
@@ -2040,10 +2052,14 @@ blockquote {
 } */
 
 hr {
-    border: 0; /* Remove default border */
-    border-top: 1px solid #ccc; /* Add a visible border */
-    margin: 20px 0; /* Add spacing above and below */
-    width: 100%; /* Ensure it spans the full width */
+    border: 0;
+    /* Remove default border */
+    border-top: 1px solid #ccc;
+    /* Add a visible border */
+    margin: 20px 0;
+    /* Add spacing above and below */
+    width: 100%;
+    /* Ensure it spans the full width */
 }
 
 .ftco-section {
@@ -2309,7 +2325,7 @@ h2.page-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     /* Ensures responsiveness */
     margin-bottom: 20px;
 }
@@ -2520,6 +2536,11 @@ select:focus {
 
 li.breadcrumb-item a {
     color: #000;
+}
+
+
+li.breadcrumb-item a::after {
+    color: inherit;
 }
 
 li.breadcrumb-item a:hover,
