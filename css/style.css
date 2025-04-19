@@ -2484,6 +2484,19 @@ select:focus {
     scroll-margin-top: 8vh;
 }
 
+#context,
+#identify,
+#icons,
+#exit,
+#consist,
+#overall,
+#proposed,
+#summary,
+#whathappened,
+#paperSign {
+    scroll-margin-top: 10vh;
+}
+
 /* ------------------------------------------ 21.0 EICW ------------------------------------------ */
 .wbnrfz-summ-micro {
     background-color: #f5f6f2;
