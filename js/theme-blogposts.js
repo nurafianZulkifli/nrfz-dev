@@ -21,17 +21,23 @@ toggleButton.addEventListener('click', () => {
 function updateHrefForDarkMode() {
     /* Banners */
     const wayfind1Page = document.getElementById('cv-wf1');
+    const wayfind2Page = document.getElementById('cv-wf2');
+    const pv4Page = document.getElementById('cv-pv4');
 
     const isDarkMode = document.body.classList.contains('dark-mode');
 
     if (isDarkMode) {
         /* Banners */
         wayfind1Page.style.backgroundImage = "url(https://i.imgur.com/HmJURmV.jpg)";
+        wayfind2Page.style.backgroundImage = "url(https://i.imgur.com/LMu9vuD.png)";
+        pv4Page.style.backgroundImage = "url(https://i.imgur.com/XfoBdpk.png";
 
 
     } else {
         /* Banners */
         wayfind1Page.style.backgroundImage = "url(https://i.imgur.com/HmJURmV.jpg)";
+        wayfind2Page.style.backgroundImage = "url(https://i.imgur.com/LMu9vuD.png)";
+        pv4Page.style.backgroundImage = "url(https://i.imgur.com/XfoBdpk.png)";
     }
 
 
