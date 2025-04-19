@@ -1814,12 +1814,12 @@ h1.brc {
     margin-top: 5px;
 }
 
-.wbnrfz_details .col-lg-6,
-.wbnrfz_details .col-lg-4 {
+.wbnrfz_details_section .col-lg-6,
+.wbnrfz_details_section .col-lg-4 {
     padding-top: 25px;
 }
 
-.wbnrfz_details .banner img {
+.wbnrfz_details_section .banner img {
     width: 80%;
 }
 
