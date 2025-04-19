@@ -2085,7 +2085,8 @@ hr {
 }
 
 .container-blogList {
-    max-width: 1450px;
+    padding-right: 5%;
+    padding-left: 5%;
 }
 
 .blog-entry {
