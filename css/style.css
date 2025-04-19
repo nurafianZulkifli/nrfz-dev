@@ -72,7 +72,7 @@ a,
 a:active,
 a:focus,
 a:hover {
-    color: #80a8cc;
+    color: #6d99c0;
     text-decoration: none;
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
@@ -81,7 +81,7 @@ a:hover {
 }
 
 a:hover {
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 li {
@@ -412,7 +412,7 @@ input:required {
 
 .loader {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #b5b69f;
+    border-top: 5px solid #7b7c64;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -464,8 +464,8 @@ input:required {
     width: 40px;
     height: 40px;
     bottom: 60px;
-    background-color: #b5b69f;
-    color: #000;
+    background-color: #8c8e75;
+    color: #fff;
     text-align: center;
     transition-duration: 500ms;
     border-radius: 50%;
@@ -476,7 +476,7 @@ input:required {
 
 #scrollUp:focus,
 #scrollUp:hover {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
     color: #ffffff;
 }
 
@@ -548,7 +548,7 @@ input:required {
     padding: 0 30px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #b5b69f;
+    background-color: #7b7c64;
     color: #252525;
     border-radius: 60px;
     -webkit-transition-duration: 500ms;
@@ -557,7 +557,7 @@ input:required {
 }
 
 .pw-btn.btn-2 {
-    color: #252525;
+    color: #fff;
 }
 
 .pw-btn:focus,
@@ -567,8 +567,8 @@ input:required {
     font-weight: 500;
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
-    background-color: #80a8cc;
-    color: #000;
+    background-color: #6d99c0;
+    color: #fff;
 }
 
 .badges-btn {
@@ -594,7 +594,7 @@ input:required {
 }
 
 .wbnrfz_btn_theme:hover {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
 }
 
 /* ------------------------------------------ */
@@ -629,13 +629,13 @@ header {
 }
 
 .nav-item:hover {
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 
 .nav-item.active {
     font-weight: bold;
-    border-bottom: 2px solid #bdbea5;
+    border-bottom: 2px solid #7b7c64;
     text-decoration: none;
     line-height: 40px;
 }
@@ -968,12 +968,12 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #b5b69f;
+    background-color: #7b7c64;
     display: inline-block;
     text-align: center;
     line-height: 76px;
     border-radius: 50%;
-    color: #000;
+    color: #fff;
     font-size: 30px;
     position: absolute;
     top: -38px;
@@ -987,7 +987,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #df7d4d;
+    background-color: #ce8763;
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1006,7 +1006,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #80a8cc;
+    background-color: #6d99c0;
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1111,7 +1111,7 @@ header {
 
 h4.timeline-date-edu {
     font-size: 18px;
-    background-color: #708ea8;
+    background-color: #6d99c0;
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1120,8 +1120,8 @@ h4.timeline-date-edu {
 
 h4.timeline-date-exp {
     font-size: 18px;
-    background-color: #b5b69f;
-    color: #000;
+    background-color: #8c8e75;
+    color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
     text-align: center;
@@ -1129,7 +1129,7 @@ h4.timeline-date-exp {
 
 h4.timeline-date-aa {
     font-size: 18px;
-    background-color: #df7d4d;
+    background-color: #ce8763;
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1159,12 +1159,12 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #b5b69f;
+    background-color: #7b7c64;
     display: inline-block;
     text-align: center;
     line-height: 76px;
     border-radius: 50%;
-    color: #000;
+    color: #fff;
     font-size: 30px;
     position: absolute;
     top: -38px;
@@ -1232,7 +1232,7 @@ h4.timeline-date-aa {
 
 .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
 .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
@@ -1306,7 +1306,7 @@ h4.timeline-date-aa {
 }
 
 li.breadcrumb-item.active a {
-    color: #8f9078 !important;
+    color: #7b7c64 !important;
 }
 
 /* ------------------------------------------ */
@@ -1352,7 +1352,7 @@ li.breadcrumb-item.active a {
 .single-post-area .post-catagory:hover,
 .single-post-area .post-catagory:focus {
     font-weight: 500;
-    background-color: #80a8cc;
+    background-color: #6d99c0;
 }
 
 .single-post-area .post-content {
@@ -1380,7 +1380,7 @@ li.breadcrumb-item.active a {
 
 .single-post-area .post-content .post-meta a:hover,
 .single-post-area .post-content .post-meta a:focus {
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 .single-post-area .post-content .post-meta a:hover::after,
@@ -1396,7 +1396,7 @@ li.breadcrumb-item.active a {
 
 .single-post-area .post-content .post-title:hover,
 .single-post-area .post-content .post-title:focus {
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 .single-post-area:hover .post-thumbnail img,
@@ -1439,15 +1439,15 @@ li.breadcrumb-item.active a {
     width: 52px;
     height: 52px;
     border-radius: 25px;
-    background-color: #b5b69f;
+    background-color: #7b7c64;
     text-align: center;
     line-height: 52px;
     font-size: 30px;
-    color: #000;
+    color: #fff;
 }
 
 .single-portfolio-content .hover-content-blog a:hover {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
 }
 
 .single-portfolio-content .hover-content-blog h4 {
@@ -1526,7 +1526,7 @@ li.breadcrumb-item.active a {
 }
 
 .pw-projects-menu .portfolio-menu .btn:hover {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
     color: #fff;
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
@@ -1607,7 +1607,7 @@ li.breadcrumb-item.active a {
 
 .single-portfolio-content .hover-content a:hover,
 .single-portfolio-content .hover-content a:focus {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
 }
 
 .single-portfolio-content:hover img,
@@ -1668,7 +1668,7 @@ img.profile-pic {
 }
 
 .profile-link a:hover {
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 /* ------------------------------------------ */
@@ -1745,7 +1745,7 @@ img.profile-pic {
 }
 
 .collapse .details_catagory_wrap .single_catagory .social_links a:hover {
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 .collapse .details_catagory_wrap .single_catagory,
@@ -1824,12 +1824,12 @@ h1.brc {
 }
 
 .dropdown-item:focus {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
     color: #fff;
 }
 
 .dropdown-item:hover {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
     color: #fff;
 }
 
@@ -1928,7 +1928,7 @@ figcaption p {
 .tagcloud a:hover {
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
-    background-color: #80a8cc;
+    background-color: #6d99c0;
     color: #ffffff;
 }
 
@@ -2156,7 +2156,7 @@ hr {
 .blog-entry .blog-date-div {
     margin-top: 2em;
     font-size: 14px;
-    color: #80a8cc;
+    color: #6d99c0;
 }
 
 .p-4 {
@@ -2324,8 +2324,8 @@ h2.page-title {
 .portfolio-filter .btn {
     padding: 10px 15px;
     border: none;
-    background: #b5b69f;
-    color: #000;
+    background: #7b7c64;
+    color: #fff;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -2354,8 +2354,8 @@ h2.page-title {
 
 .portfolio-filter .btn.active,
 .portfolio-filter .btn:hover {
-    background: #80a8cc;
-    color: #000;
+    background: #6d99c0;
+    color: #fff;
     border-radius: 25px;
 }
 
@@ -2372,10 +2372,9 @@ h2.page-title {
 }
 
 
-
 #sort-options {
     appearance: none;
-    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="black" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="white" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
     background-size: 10px;
     padding-right: 30px;
     padding-left: 15px;
@@ -2384,8 +2383,8 @@ h2.page-title {
     font-size: 16px;
     height: 40px;
     line-height: 1.5;
-    background-color: #b5b69f;
-    color: #000;
+    background-color: #8a8a73;
+    color: #fff;
     transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
 }
 
@@ -2395,7 +2394,7 @@ h2.page-title {
 
 /* Change dropdown option hover color */
 #sort-options option:hover {
-    background-color: #80a8cc !important;
+    background-color: #6d99c0 !important;
     /* Desired hover background color */
     color: #fff;
     /* Desired hover text color */
@@ -2512,7 +2511,7 @@ li.breadcrumb-item a {
 
 li.breadcrumb-item a:hover,
 li.breadcrumb-item.active a:hover {
-    color: #80a8cc !important;
+    color: #6d99c0 !important;
 }
 
 .wbnrfz_eicw .banner-eicw img {
@@ -2595,7 +2594,7 @@ h2.page-title {
 .collapsible-header {
     font-size: 16px;
     margin-top: 3em;
-    background-color: #b5b69f;
+    background-color: #7b7c64;
     padding: 1em;
     padding-left: 2em;
     padding-right: 2em;
@@ -2612,7 +2611,7 @@ h2.page-title {
 }
 
 .collapsible-header:hover {
-    background-color: #80a8cc;
+    background-color: #6d99c0;
     padding: 1em;
     padding-left: 2em;
     padding-right: 2em;
@@ -2621,7 +2620,7 @@ h2.page-title {
 }
 
 .nav-chev {
-    color: #000;
+    color: #fff;
 }
 
 #portfolioFilter {
@@ -2655,26 +2654,6 @@ h2.page-title {
 }
 
 
-/* .single_catagory.text-center .btn {
-    position: relative;
-    z-index: 1;
-    min-width: 50%;
-    height: 46px;
-    line-height: 42px;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-block;
-    padding: 0 30px;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: #b5b69f;
-    color: #252525;
-    border-radius: 60px;
-    transition-duration: 500ms;
-    margin-bottom: 10px;
-    margin-top: 5px;
-} */
-
 .single_catagory.text-center .btn {
     display: inline-flex;
     justify-content: center;
@@ -2687,8 +2666,8 @@ h2.page-title {
     padding: 0 20px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #b5b69f;
-    color: #252525;
+    background-color: #7b7c64;
+    color: #fff;
     border-radius: 60px;
     transition-duration: 500ms;
     margin-bottom: 10px;
@@ -2697,7 +2676,7 @@ h2.page-title {
 }
 
 .single_catagory.text-center .btn:hover {
-    background: #80a8cc;
-    color: #000;
+    background: #6d99c0;
+    color: #fff;
     box-shadow: none;
 }
