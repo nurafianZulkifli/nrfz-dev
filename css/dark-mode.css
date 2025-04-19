@@ -170,6 +170,7 @@ body.dark-mode .nav-item.active {
     border-bottom: 2px solid #7b7c64;
     text-decoration: none;
     line-height: 40px;
+    color: #7b7c64;
 }
 
 body.dark-mode .nav-item-toggle {
