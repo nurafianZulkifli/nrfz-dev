@@ -190,15 +190,6 @@ body.dark-mode .icons i {
     color: #ffffff;
 }
 
-body.dark-mode .social-info a i {
-    color: #ffffff;
-    transition: all 0.3s ease;
-}
-
-body.dark-mode .social-info a i:hover {
-    color: #6d99c0;
-}
-
 body.dark-mode #menu-icon,
 body.dark-mode #close-icon {
     color: #ffffff;
@@ -220,11 +211,28 @@ body.dark-mode .footer-area {
     z-index: 999;
 }
 
-body.dark-mode .footer-content .copywrite-text p {
-    color: #fff;
+body.dark-mode .footer-area .social-info a {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #1e1e1e;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: color 0.3s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 7px;
+    text-align: center;
+    transition: all 0.3s ease;
+
 }
 
-body.dark-mode .footer-content .social-info a {
+body.dark-mode .footer-area .social-info a:hover {
+    background-color: #6d99c0;
+    color: #fff !important;
+}
+
+body.dark-mode .footer-content .copywrite-text p {
     color: #fff;
 }
 
@@ -265,6 +273,10 @@ body.dark-mode h2 {
 body.dark-mode .profile-link a {
     color: #fff;
     padding: 1.0em;
+}
+
+body.dark-mode .profile-link a:hover {
+    color: #6d99c0;
 }
 
 body.dark-mode h2.profile-desc {

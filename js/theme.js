@@ -21,20 +21,17 @@ toggleButton.addEventListener('click', () => {
 function updateHrefForDarkMode() {
     /* Banners */
     const aboutPage = document.getElementById('cv-about');
-    const wayfind1Page = document.getElementById('cv-wf1');
 
     const isDarkMode = document.body.classList.contains('dark-mode');
 
     if (isDarkMode) {
         /* Banners */
         aboutPage.style.backgroundImage = "url('img/bg-img/hero-bg-small-dark.png')";
-        wayfind1Page.style.backgroundImage = "url('img/bg-img/hero-bg-small-dark.png')";
 
 
     } else {
         /* Banners */
         aboutPage.style.backgroundImage = "url('img/bg-img/hero-bg-small.png')";
-        wayfind1Page.style.backgroundImage = "url('img/bg-img/hero-bg-small.png')";
     }
 
 
