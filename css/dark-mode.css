@@ -215,8 +215,8 @@ body.dark-mode .footer-area {
 body.dark-mode .footer-area .social-info a {
     margin: 0 10px;
     font-size: 14px;
-    color: #1e1e1e;
-    background-color: #ffffff;
+    color: #fff;
+    background-color: #6a6a6a;
     border-radius: 50%;
     transition: color 0.3s ease;
     padding-left: 10px;

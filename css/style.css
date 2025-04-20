@@ -754,7 +754,7 @@ header {
 
 #hero:before {
     content: "";
-    background-color: #f0efefbf;
+    background-color: #f0efefd0;
     backdrop-filter: blur(2px);
     position: absolute;
     bottom: 0;
@@ -2515,7 +2515,9 @@ select:focus {
 #proposed,
 #summary,
 #whathappened,
-#paperSign {
+#paperSign,
+#changes,
+#conclusion {
     scroll-margin-top: 10vh;
 }
 

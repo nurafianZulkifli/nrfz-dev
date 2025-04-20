@@ -20,22 +20,18 @@ toggleButton.addEventListener('click', () => {
 
 function updateHrefForDarkMode() {
     /* Banners */
-    const eicwPage = document.getElementById('cv-eicw');
-    const tdcPage = document.getElementById('cv-tdc');
+    const pv4Page = document.getElementById('cv-pv4');
 
     const isDarkMode = document.body.classList.contains('dark-mode');
 
     if (isDarkMode) {
         /* Banners */
-        eicwPage.style.backgroundImage = "url('../eicw/img/cover-dark.png')";
-        tdcPage.style.backgroundImage = "url('https://i.imgur.com/5I39ojc.png')";
-
+        pv4Page.style.backgroundImage = "url(https://i.imgur.com/XfoBdpk.png";
 
 
     } else {
         /* Banners */
-        eicwPage.style.backgroundImage = "url('../eicw/img/cover-light.png')";
-        tdcPage.style.backgroundImage = "url('https://i.imgur.com/5I39ojc.png')";
+        pv4Page.style.backgroundImage = "url(https://i.imgur.com/XfoBdpk.png)";
     }
 
 
