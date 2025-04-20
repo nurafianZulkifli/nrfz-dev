@@ -36,3 +36,12 @@ function updateHrefForDarkMode() {
 
 
 }
+
+// Update the scroll indicator width based on scroll position
+window.addEventListener("scroll", function () {
+    const scrollIndicator = document.getElementById("scroll-indicator");
+    const scrollTop = window.scrollY; // Current scroll position
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight; // Total scrollable height
+    const scrollPercentage = (scrollTop / scrollHeight) * 100; // Calculate scroll percentage
+    scrollIndicator.style.width = scrollPercentage + "%"; // Update the width of the indicator
+});
