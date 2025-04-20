@@ -2517,7 +2517,13 @@ select:focus {
 #whathappened,
 #paperSign,
 #changes,
-#conclusion {
+#conclusion,
+#history,
+#v1,
+#v2,
+#v3,
+#v4,
+#whats-next {
     scroll-margin-top: 10vh;
 }
 
