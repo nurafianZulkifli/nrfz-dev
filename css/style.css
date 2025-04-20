@@ -2511,7 +2511,8 @@ select:focus {
 #v4,
 #whats-next,
 #tooSoon,
-#rewrite {
+#rewrite,
+#ai {
     scroll-margin-top: 10vh;
 }
 
