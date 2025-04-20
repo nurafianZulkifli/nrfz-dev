@@ -2046,25 +2046,11 @@ blockquote {
     padding-top: 3em;
 }
 
-/* hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid #6364576e;
-    display: none;
-    visibility: hidden;
-    height: 0;
-} */
-
 hr {
     border: 0;
-    /* Remove default border */
-    border-top: 1px solid #ccc;
-    /* Add a visible border */
+    border-top: 1px solid #000;
     margin: 20px 0;
-    /* Add spacing above and below */
     width: 100%;
-    /* Ensure it spans the full width */
 }
 
 .ftco-section {
@@ -2523,7 +2509,9 @@ select:focus {
 #v2,
 #v3,
 #v4,
-#whats-next {
+#whats-next,
+#tooSoon,
+#rewrite {
     scroll-margin-top: 10vh;
 }
 
