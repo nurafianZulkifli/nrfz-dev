@@ -211,12 +211,18 @@
     }
 
     .main-title {
-        margin: 0 auto; /* Center the element horizontally */
-        padding: 0 -0.5rem; /* Add padding to prevent text from touching edges */
-        max-width: 100%; /* Ensure it doesn't exceed the container width */
-        box-sizing: border-box; /* Include padding in width calculations */
-        overflow-wrap: break-word; /* Break long words to prevent overflow */
-        word-wrap: break-word; /* Ensure proper word wrapping */
+        margin: 0 auto;
+        /* Center the element horizontally */
+        padding: 0 -0.5rem;
+        /* Add padding to prevent text from touching edges */
+        max-width: 100%;
+        /* Ensure it doesn't exceed the container width */
+        box-sizing: border-box;
+        /* Include padding in width calculations */
+        overflow-wrap: break-word;
+        /* Break long words to prevent overflow */
+        word-wrap: break-word;
+        /* Ensure proper word wrapping */
     }
 }
 
@@ -259,10 +265,19 @@
 
     #check:checked~.icons #menu-icon {
         display: none;
+        color: #000;
+        font-size: 30px;
     }
 
-    .icons #close-icon {
+    #menu-icon {
+        color: #000;
+        font-size: 30px;
+    }
+
+    #close-icon {
         display: none;
+        color: #000;
+        font-size: 30px;
     }
 
     #check:checked~.icons #close-icon,

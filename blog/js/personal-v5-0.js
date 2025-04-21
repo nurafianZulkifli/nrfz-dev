@@ -29,6 +29,24 @@ function updateHrefForDarkMode() {
     const gc2_link = document.getElementById('gc2');
     const gc2_img = document.getElementById('gc2-img');
 
+    const opv4 = document.getElementById('opv4');
+    const opv4_img = document.getElementById('opv4-img');
+
+    const opv5 = document.getElementById('opv5');
+    const opv5_img = document.getElementById('opv5-img');
+
+    const hmv4 = document.getElementById('hmv4');
+    const hmv4_img = document.getElementById('hmv4-img');
+
+    const hmv5 = document.getElementById('hmv5');
+    const hmv5_img = document.getElementById('hmv5-img');
+
+    const eicwv4 = document.getElementById('eicwv4');
+    const eicwv4_img = document.getElementById('eicwv4-img');
+
+    const eicwv5 = document.getElementById('eicwv5');
+    const eicwv5_img = document.getElementById('eicwv5-img');
+
     const isDarkMode = document.body.classList.contains('dark-mode');
 
     if (isDarkMode) {
@@ -42,6 +60,24 @@ function updateHrefForDarkMode() {
         gc2_link.href = 'https://i.imgur.com/3fUcmIB.png';
         gc2_img.src = 'https://i.imgur.com/3fUcmIB.png';
 
+        opv4.href = 'https://i.imgur.com/hOpLjmk.png';
+        opv4_img.src = 'https://i.imgur.com/hOpLjmk.png';
+
+        opv5.href = 'https://i.imgur.com/FoOMBfk.png';
+        opv5_img.src = 'https://i.imgur.com/FoOMBfk.png';
+
+        hmv4.href = 'https://i.imgur.com/AUOgj3s.png';
+        hmv4_img.src = 'https://i.imgur.com/AUOgj3s.png';
+
+        hmv5.href = 'https://i.imgur.com/hAlBg3D.png';
+        hmv5_img.src = 'https://i.imgur.com/hAlBg3D.png';
+
+        eicwv4.href = 'https://i.imgur.com/m8aKnEv.png';
+        eicwv4_img.src = 'https://i.imgur.com/m8aKnEv.png';
+
+        eicwv5.href = 'https://i.imgur.com/wbMBPUf.png';
+        eicwv5_img.src = 'https://i.imgur.com/wbMBPUf.png';
+
 
     } else {
         /* Banners */
@@ -53,6 +89,24 @@ function updateHrefForDarkMode() {
 
         gc2_link.href = 'https://i.imgur.com/OkpOkHg.png';
         gc2_img.src = 'https://i.imgur.com/OkpOkHg.png';
+
+        opv4.href = 'https://i.imgur.com/aXX0gH4.png';
+        opv4_img.src = 'https://i.imgur.com/aXX0gH4.png';
+
+        opv5.href = 'https://i.imgur.com/NH8ryqW.png';
+        opv5_img.src = 'https://i.imgur.com/NH8ryqW.png';
+
+        hmv4.href = 'https://i.imgur.com/UQ8UnfO.png';
+        hmv4_img.src = 'https://i.imgur.com/UQ8UnfO.png';
+
+        hmv5.href = 'https://i.imgur.com/0f3ZjLT.png';
+        hmv5_img.src = 'https://i.imgur.com/0f3ZjLT.png';
+
+        eicwv4.href = 'https://i.imgur.com/Xt7Xhev.png';
+        eicwv4_img.src = 'https://i.imgur.com/Xt7Xhev.png';
+
+        eicwv5.href = 'https://i.imgur.com/wybzXsU.jpeg';
+        eicwv5_img.src = 'https://i.imgur.com/wybzXsU.jpeg';
     }
 
 
