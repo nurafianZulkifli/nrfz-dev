@@ -432,9 +432,11 @@ body.dark-mode li.breadcrumb-item a {
     color: #fff;
 }
 
-body.dark-mode .wbnrfz_details .banner-eicw img {
+body.dark-mode .banner-eicw img {
     width: 100%;
     border-radius: 20px;
+    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
 body.dark-mode h2.page-title {

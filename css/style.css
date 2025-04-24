@@ -2483,6 +2483,13 @@ select:focus {
     padding-bottom: 2em;
 }
 
+.wbnrfz_details_body_tchp {
+    background: #e9eae5;
+    margin-top: -3.2em;
+    padding-top: 0em;
+    padding-bottom: 2em;
+}
+
 #summary,
 #tm,
 #lppl {
@@ -2548,10 +2555,11 @@ li.breadcrumb-item.active a:hover {
     color: #6d99c0 !important;
 }
 
-.wbnrfz_eicw .banner-eicw img {
+.banner-eicw img {
     width: 100%;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
 .banner {
