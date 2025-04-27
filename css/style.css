@@ -1836,6 +1836,22 @@ h1.brc {
 
 .wbnrfz_details_section .banner img {
     width: 80%;
+    border-radius: 25px;
+    transition: all 0.5s ease;
+}
+
+.wbnrfz_details_section .thumb img {
+    border-radius: 25px;
+}
+
+
+.wbnrfz_details_section img:hover,
+.banner-eicw img:hover,
+.cp-img:hover {
+    transform: scale(1.03);
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Smooth transition */
+    cursor: pointer;
 }
 
 .dropdown-item:focus {
