@@ -1724,6 +1724,7 @@ img.profile-pic {
     text-transform: capitalize;
     color: #b5b69f;
     margin: 0;
+    cursor: default;
 }
 
 .skill-ara .single-skill .progress {
