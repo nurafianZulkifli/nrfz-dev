@@ -2332,8 +2332,6 @@ h2.page-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* flex-wrap: wrap; */
-    /* Ensures responsiveness */
     margin-bottom: 20px;
 }
 
@@ -2341,7 +2339,13 @@ h2.page-title {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    /* Space between buttons */
+}
+
+.portfolio-filter-sub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 .portfolio-filter .btn {
