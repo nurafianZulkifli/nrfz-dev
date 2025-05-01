@@ -2538,7 +2538,11 @@ select:focus {
 #whats-next,
 #tooSoon,
 #rewrite,
-#ai {
+#ai,
+#typeface,
+#colour,
+#icon-assets,
+#brainstorm {
     scroll-margin-top: 10vh;
 }
 
