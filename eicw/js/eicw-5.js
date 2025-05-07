@@ -21,6 +21,7 @@ toggleButton.addEventListener('click', () => {
 function updateHrefForDarkMode() {
     /* Banners */
     const coverSect = document.getElementById('cv-img');
+    const cdSect = document.getElementById('cd-img');
 
 
     /* Images */
@@ -34,7 +35,8 @@ function updateHrefForDarkMode() {
 
 
     /* Videos */
-
+    const vid9 = document.getElementById('eicw-vid9');
+    const vid9Source = vid9.querySelector('source');
 
 
     const isDarkMode = document.body.classList.contains('dark-mode');
@@ -42,7 +44,7 @@ function updateHrefForDarkMode() {
     if (isDarkMode) {
         /* Banners */
         coverSect.style.backgroundImage = "url('./img/cover-psr-dark.png')";
-
+        cdSect.style.backgroundImage = "url('./img/cdbus-dark.png')";
 
 
         /* Images */
@@ -55,12 +57,12 @@ function updateHrefForDarkMode() {
 
 
         /* Videos */
-
+        vid9Source.src = './img/eicw-vid9-dark.mp4';
 
     } else {
         /* Banners */
         coverSect.style.backgroundImage = "url('./img/cover-psr-light.png')";
-
+        cdSect.style.backgroundImage = "url('./img/cdbus-light.png')";
 
 
         /* Images */
@@ -74,10 +76,11 @@ function updateHrefForDarkMode() {
 
 
         /* Videos */
-
+        vid9Source.src = './img/eicw-vid9-light.mp4';
 
     }
-
+    
+        vid9.load();
 
 }
 
