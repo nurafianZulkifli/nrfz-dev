@@ -31,6 +31,14 @@ function updateHrefForDarkMode() {
     const psr2_link = document.getElementById('psr2');
     const psr2_img = document.getElementById('psr2-img');
 
+    const psr3a_link = document.getElementById('psr3a');
+    const psr3a_img = document.getElementById('psr3a-img');
+
+    const psr3b_link = document.getElementById('psr3b');
+    const psr3b_img = document.getElementById('psr3b-img');
+
+    const psr5a_link = document.getElementById('psr5a');
+    const psr5a_img = document.getElementById('psr5a-img');
 
 
 
@@ -54,7 +62,14 @@ function updateHrefForDarkMode() {
         psr2_link.href = './img/psr-2-dark.png';
         psr2_img.src = './img/psr-2-dark.png';
 
+        psr3a_link.href = './img/psr-3a-dark.png';
+        psr3a_img.src = './img/psr-3a-dark.png';
 
+        psr3b_link.href = './img/psr-3b-dark.png';
+        psr3b_img.src = './img/psr-3b-dark.png';
+
+        psr5a_link.href = './img/psr5a-dark.png';
+        psr5a_img.src = './img/psr5a-dark.png';
 
         /* Videos */
         vid9Source.src = './img/eicw-vid9-dark.mp4';
@@ -72,15 +87,21 @@ function updateHrefForDarkMode() {
         psr2_link.href = './img/psr-2-light.png';
         psr2_img.src = './img/psr-2-light.png';
 
+        psr3a_link.href = './img/psr-3a-light.png';
+        psr3a_img.src = './img/psr-3a-light.png';
 
+        psr3b_link.href = './img/psr-3b-light.png';
+        psr3b_img.src = './img/psr-3b-light.png';
 
+        psr5a_link.href = './img/psr5a-light.png';
+        psr5a_img.src = './img/psr5a-light.png';
 
         /* Videos */
         vid9Source.src = './img/eicw-vid9-light.mp4';
 
     }
-    
-        vid9.load();
+
+    vid9.load();
 
 }
 
