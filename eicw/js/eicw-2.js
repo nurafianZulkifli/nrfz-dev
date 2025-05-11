@@ -67,6 +67,9 @@ function updateHrefForDarkMode() {
     const ic3_link = document.getElementById('ic3');
     const ic3_img = document.getElementById('ic3-img');
 
+    const ic4_link = document.getElementById('ic4');
+    const ic4_img = document.getElementById('ic4-img');
+
     const sne1_link = document.getElementById('sne1');
     const sne1_img = document.getElementById('sne1-img');
 
@@ -134,6 +137,9 @@ function updateHrefForDarkMode() {
         ic3_link.href = './img/ic3-dark.png';
         ic3_img.src = './img/ic3-dark.png';
 
+        ic4_link.href = './img/ic4-dark.png';
+        ic4_img.src = './img/ic4-dark.png';
+
         sne1_link.href = './img/sne1-dark.png';
         sne1_img.src = './img/sne1-dark.png';
 
@@ -192,6 +198,9 @@ function updateHrefForDarkMode() {
 
         ic3_link.href = './img/ic3-light.png';
         ic3_img.src = './img/ic3-light.png';
+
+        ic4_link.href = './img/ic4-light.png';
+        ic4_img.src = './img/ic4-light.png';
 
         sne1_link.href = './img/sne1-light.png';
         sne1_img.src = './img/sne1-light.png';

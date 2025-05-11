@@ -2554,7 +2554,9 @@ select:focus {
 #typeface,
 #colour,
 #icon-assets,
-#brainstorm {
+#brainstorm,
+#psrith,
+#cckint {
     scroll-margin-top: 10vh;
 }
 
