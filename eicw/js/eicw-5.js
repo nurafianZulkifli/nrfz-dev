@@ -67,6 +67,11 @@ function updateHrefForDarkMode() {
     const psr5a_link = document.getElementById('psr5a');
     const psr5a_img = document.getElementById('psr5a-img');
 
+    const cck1a_link = document.getElementById('cck1a');
+    const cck1a_img = document.getElementById('cck1a-img');
+
+    const cck2_link = document.getElementById('cck2');
+    const cck2_img = document.getElementById('cck2-img');
 
 
     /* Videos */
@@ -98,6 +103,12 @@ function updateHrefForDarkMode() {
         psr5a_link.href = './img/psr5a-dark.png';
         psr5a_img.src = './img/psr5a-dark.png';
 
+        cck1a_link.href = './img/cck-1a-dark.png';
+        cck1a_img.src = './img/cck-1a-dark.png';
+
+        cck2_link.href = './img/cck-2-dark.png';
+        cck2_img.src = './img/cck-2-dark.png';
+
         /* Videos */
         vid9Source.src = './img/eicw-vid9-dark.mp4';
 
@@ -122,6 +133,12 @@ function updateHrefForDarkMode() {
 
         psr5a_link.href = './img/psr5a-light.png';
         psr5a_img.src = './img/psr5a-light.png';
+
+        cck1a_link.href = './img/cck-1a-light.png';
+        cck1a_img.src = './img/cck-1a-light.png';
+
+        cck2_link.href = './img/cck-2-light.png';
+        cck2_img.src = './img/cck-2-light.png';
 
         /* Videos */
         vid9Source.src = './img/eicw-vid9-light.mp4';
