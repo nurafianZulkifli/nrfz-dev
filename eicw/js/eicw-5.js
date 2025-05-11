@@ -73,10 +73,18 @@ function updateHrefForDarkMode() {
     const cck2_link = document.getElementById('cck2');
     const cck2_img = document.getElementById('cck2-img');
 
+    const cck3a_link = document.getElementById('cck3a');
+    const cck3a_img = document.getElementById('cck3a-img');
+
+    const cck4a_link = document.getElementById('cck4a');
+    const cck4a_img = document.getElementById('cck4a-img');
 
     /* Videos */
     const vid9 = document.getElementById('eicw-vid9');
     const vid9Source = vid9.querySelector('source');
+
+    const vid10 = document.getElementById('eicw-vid10');
+    const vid10Source = vid10.querySelector('source');
 
 
     const isDarkMode = document.body.classList.contains('dark-mode');
@@ -109,8 +117,15 @@ function updateHrefForDarkMode() {
         cck2_link.href = './img/cck-2-dark.png';
         cck2_img.src = './img/cck-2-dark.png';
 
+        cck3a_link.href = './img/cck-3a-dark.png';
+        cck3a_img.src = './img/cck-3a-dark.png';
+
+        cck4a_link.href = './img/cck-4a-dark.png';
+        cck4a_img.src = './img/cck-4a-dark.png';
+
         /* Videos */
         vid9Source.src = './img/eicw-vid9-dark.mp4';
+        vid10Source.src = './img/eicw-vid10-dark.mp4';
 
     } else {
         /* Banners */
@@ -140,12 +155,20 @@ function updateHrefForDarkMode() {
         cck2_link.href = './img/cck-2-light.png';
         cck2_img.src = './img/cck-2-light.png';
 
+        cck3a_link.href = './img/cck-3a-light.png';
+        cck3a_img.src = './img/cck-3a-light.png';
+
+        cck4a_link.href = './img/cck-4a-light.png';
+        cck4a_img.src = './img/cck-4a-light.png';
+
         /* Videos */
         vid9Source.src = './img/eicw-vid9-light.mp4';
+        vid10Source.src = './img/eicw-vid10-light.mp4';
 
     }
 
     vid9.load();
+    vid10.load();
 
 }
 
