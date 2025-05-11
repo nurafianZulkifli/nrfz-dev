@@ -14,7 +14,7 @@
 
   <link rel="icon" href="../img/core-img/favicon.png">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -61,7 +61,7 @@
       <a href="../blog.html" class="nav-item">Blog</a>
       <a href="#" class="nav-item">
         <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
-          <i class="fa-solid fa-moon" id="theme-icon"></i>
+          <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
         </button>
       </a>
     </nav>
@@ -234,17 +234,27 @@
       updateHrefForDarkMode();
     });
 
-    // Function to update the theme icon
-    function updateThemeIcon(theme) {
-      const themeIcon = document.getElementById('theme-icon');
-      if (theme === 'dark') {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-      } else {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-      }
+// Function to update the theme icon with animation
+function updateThemeIcon(theme) {
+    const themeIcon = document.getElementById('theme-icon');
+
+    // Add animation class
+    themeIcon.classList.add('animate');
+
+    // Update the icon based on the theme
+    if (theme === 'dark') {
+        themeIcon.classList.remove('fa-sun-bright');
+        themeIcon.classList.add('fa-moon-stars');
+    } else {
+        themeIcon.classList.remove('fa-moon-stars');
+        themeIcon.classList.add('fa-sun-bright');
     }
+
+    // Remove the animation class after the animation ends
+    setTimeout(() => {
+        themeIcon.classList.remove('animate');
+    }, 300); // Match the duration of the CSS transition
+}
     function updateHrefForDarkMode() {
       /* Banners */
       const tdcPage = document.getElementById('cv-tdc');
