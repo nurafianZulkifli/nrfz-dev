@@ -14,7 +14,7 @@
 
     <link rel="icon" href="../img/core-img/favicon.png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -32,40 +32,26 @@
     </div>
 
 
-    <header class="header-area">
-        <div class="main-header-area">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container container-xxl">
+    <header>
+        <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
 
-                    <nav class="classy-navbar justify-content-between" id="pwNav">
+        <input type="checkbox" id="check" />
+        <label for="check" class="icons">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+            <i class="fa-solid fa-xmark" id="close-icon"></i>
+        </label>
 
-                        <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
-
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <div class="classy-menu">
-
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-                            <div class="classynav">
-                                <ul id="nav">
-                                    <li class="active"><a href="../statistics/statistics.html">Statistics</a></li>
-                                    <li><a href="../past-records/past-records.html">Past Records</a></li>
-                                    <li><a href="../our-networks.html">Networks</a></li>
-                                    <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
-                                            title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <nav class="navbar navbar-mobile">
+            <a href="#" class="nav-item active">Home</a>
+            <a href="../statistics/statistics.html" class="nav-item">Statistics</a>
+            <a href="../past-records/past-records.html" class="nav-item">Past Records</a>
+            <a href="../our-networks.html" class="nav-item">Networks</a>
+            <a href="#" class="nav-item">
+                <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
+                    <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
+                </button>
+            </a>
+        </nav>
     </header>
 
 

@@ -53,7 +53,7 @@ const doverviewsm24 = new Chart(doverview24sm, {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
       label: "SMRT Trains",
-      data: [2,2,3,3],
+      data: [2,2,3,3,2],
       borderColor: 'rgb(207, 61, 61)',
       fill: true,
       backgroundColor: 'rgba(207, 61, 61,0.05)',
