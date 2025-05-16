@@ -406,8 +406,13 @@ section.follow-area.clearfix {
     background-color: #f6f7f2;
 }
 
-.col-xl-3 {
+.col-xl-4 {
     padding-bottom: 2em;
+}
+
+.mb-4 {
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 /* ------------------------------------------ */
@@ -764,8 +769,8 @@ header {
 
 #hero:before {
     content: "";
-    background-color: #f0efefa9;
-    backdrop-filter: blur(2px);
+    background-color: #d8d8d898;
+    backdrop-filter: blur(5px);
     position: absolute;
     bottom: 0;
     top: 0;
@@ -1499,6 +1504,36 @@ img.profile-pic {
 .card-header:first-child {
     border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
 }
+
+.card-header-ri-active {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 0;
+    background-color: #b4c5e6;
+    border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
+}
+
+.card-header-ri {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 0;
+    background-color: #f8f8f8;
+    border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
+}
+
+.card-ri-active {
+    background-color: #cfe2ff;
+    padding: 0rem;
+    border-radius: 25px;
+}
+
+.card-ri {
+    background-color: #fff;
+    padding: 0rem;
+    border-radius: 25px;
+}
+
+
 
 .card-footer {
     padding: 0.75rem 1.25rem;
@@ -2482,3 +2517,78 @@ h4.stn:hover {
 }
 
 /* ------------------------------------------ */
+
+/* Timeline Horizontal Styles */
+.timeline-area {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+.timeline-horizontal {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 40px;
+}
+.timeline-horizontal li {
+    position: relative;
+    min-width: 220px;
+    text-align: left;
+}
+.timeline-date {
+    font-size: 0.95em;
+    margin-bottom: 8px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #ba2b03;
+    border-radius: 25px;
+}
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    background: #ccc;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #ccc;
+    display: inline-block;
+}
+.timeline-dot.smrt {
+    background: rgb(207, 61, 61);
+    box-shadow: 0 0 0 2px rgba(207, 61, 61, 0.2);
+}
+.timeline-dot.sbs {
+    background: rgb(130, 71, 148);
+    box-shadow: 0 0 0 2px rgba(130, 71, 148, 0.2);
+}
+.timeline-label {
+    font-size: 0.98em;
+    color: #333;
+    margin-top: 4px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.timeline-horizontal li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    width: 40px;
+    height: 3px;
+    background: #2f2f2f;
+    z-index: 0;
+    transform: translateX(8px);
+}
+@media (max-width: 600px) {
+    .timeline-horizontal {
+        gap: 16px;
+    }
+    .timeline-horizontal li {
+        min-width: 140px;
+    }
+}
