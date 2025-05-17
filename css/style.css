@@ -1395,10 +1395,15 @@ img.profile-pic {
     padding-right: 8em;
 }
 
-.row-do,
-.row-ri {
+.row-do {
     padding-left: 8em;
     padding-right: 8em;
+}
+
+
+.row-ri {
+    padding-left: 6em;
+    padding-right: 6em;
 }
 
 #lrd {
@@ -1532,7 +1537,7 @@ img.profile-pic {
     padding: 0rem;
     border-radius: 25px;
     margin-bottom: 2em !important;
-    max-width: 28.5rem;
+    width: 30.5rem !important;
 }
 
 .card-ri {
@@ -1540,9 +1545,29 @@ img.profile-pic {
     padding: 0rem;
     border-radius: 25px;
     margin-bottom: 2em !important;
-    max-width: 28.5rem;
+    width: 30.5rem !important;
 }
 
+.card-ri,
+.card-ri-active {
+    min-width: 320px;
+    max-width: 380px;
+    width: 100%;
+    min-height: 260px;
+    max-height: 340px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    box-sizing: border-box;
+}
+
+.swiper-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: stretch;
+    height: auto;
+}
 
 
 .card-footer {
@@ -2614,73 +2639,218 @@ h4.stn:hover {
 }
 
 
-
-
-.swiper {
+/*  */
+.slide-container {
     width: 100%;
-    padding-bottom: 2em;
-    position: relative;
-    /* Ensure positioning context for arrows */
+    padding: 20px 0;
 }
 
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    height: auto;
-    width: 547px !important;
-    margin-left: -63px !important;
-    margin-right: -35px !important;
+.slide-content {
+    margin: 0 50px;
+    overflow: hidden;
+    border-radius: 25px;
 }
 
 .card-ri {
-    width: 100%;
-    max-width: 420px;
+    border-radius: 25px;
+    background-color: #FFF;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
+.image-content,
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.image-content {
+    position: relative;
+    row-gap: 5px;
+    padding: 25px 0;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50%;
+    width: 100%;
+    background-color: #4070F4;
+    border-radius: 25px 25px 0 25px;
+}
+
+.overlay::before,
+.overlay::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    height: 40px;
+    width: 40px;
+    background-color: #4070F4;
+}
+
+.overlay::after {
+    border-radius: 0 25px 0 0;
+    background-color: #FFF;
+}
+
+.card-image {
+    position: relative;
+    width: 48px;
+    height: 55px;
+
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.description {
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+}
+
+.button {
+    border: none;
+    font-size: 16px;
+    color: #FFF;
+    padding: 8px 16px;
+    background-color: #4070F4;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #265DF2;
+}
+
+.swiper-navBtn {
     color: #fff;
-    opacity: 0 !important;
-    pointer-events: none !important;
+    transition: color 0.3s ease;
+}
+
+.swiper-navBtn:hover {
+    color: #fff;
+}
+
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+    font-size: 35px;
+}
+
+.swiper-button-next {
+    right: 0;
     transition: opacity 0.2s;
     background-color: #5f7cb4;
     border-radius: 50%;
-    right: 40px;
     line-height: 40px;
     width: 40px;
     height: 40px;
     bottom: 54px;
 }
 
-.swiper:hover .swiper-button-next,
-.swiper:hover .swiper-button-prev {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    cursor: pointer;
+.swiper-button-prev {
+    left: 0;
+    transition: opacity 0.2s;
+    background-color: #5f7cb4;
+    border-radius: 50%;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    bottom: 54px;
 }
 
-.swiper-button-next::after {
-    content: "\f061";
-    /* fa-arrow-right */
-    font-family: "FontAwesome";
-    font-size: 20px;
+.swiper-pagination-bullet {
+    background-color: #6E93f7;
+    opacity: 1;
 }
 
+.swiper-pagination-bullet-active {
+    background-color: #4070F4;
+}
+
+/* Use only the icon, hide Swiper's default arrow */
+.swiper-button-next::after,
 .swiper-button-prev::after {
-    content: "\f060";
-    /* fa-arrow-left */
-    font-family: "FontAwesome";
-    font-size: 20px;
+    display: none;
 }
 
+.swiper-button-next.swiper-navBtn,
+.swiper-button-prev.swiper-navBtn {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+.swiper-blur-left,
+.swiper-blur-right {
+    position: absolute;
+    top: 0;
+    width: 48px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.swiper-blur-left,
+.swiper-blur-right {
+    filter: none;
+    transition: filter 0.3s;
+}
+
+/* Show blur only when a Swiper nav button is active (clicked/focused) */
+.swiper-button-next:active~.swiper-blur-right,
+.swiper-button-next:focus~.swiper-blur-right,
+.swiper-button-prev:active~.swiper-blur-left,
+.swiper-button-prev:focus~.swiper-blur-left {
+    filter: blur(5px);
+}
+
+/* Hide Swiper arrows if not scrollable (Swiper adds these classes automatically) */
 .swiper-button-disabled,
 .swiper-button-lock {
     display: none !important;
 }
 
-@media (max-width: 1272px) {
-    .swiper {
-        padding-bottom: 3em;
+@media screen and (max-width: 768px) {
+    .slide-content {
+        margin: 0 10px;
+    }
+
+    .swiper-navBtn {
+        display: none;
+    }
+
+    .swiper-blur-left,
+    .swiper-blur-right {
+        width: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .slide-content {
+        margin: 0 0px !important;
+        padding: 0 4vw !important;
+    }
+    .swiper-slide {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+        padding: 0 !important;
+    }
+    .card-ri,
+    .card-ri-active {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+
     }
 }

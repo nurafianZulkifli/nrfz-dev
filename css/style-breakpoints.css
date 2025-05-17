@@ -864,8 +864,8 @@
 /* 2.0.4 Min Width: 320px Max Width: 575px */
 @media only screen and (min-width: 320px) and (max-width: 575px) {
     img.profile-pic {
-        width: 200px;
-        height: 200px;
+        width: 310px;
+        height: 115px;
     }
 
     .profile-det {
@@ -975,9 +975,15 @@
 
     .row-do,
     .row-ri {
-        padding-left: 3em;
-        padding-right: 3em;
-        justify-content: center;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    .row-lrd {
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-right: 1px;
+        margin-left: 1px;
     }
 
 }
