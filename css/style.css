@@ -1474,6 +1474,10 @@ img.profile-pic {
     margin-bottom: 0.75rem;
 }
 
+.card-text {
+    color: #052c65;
+}
+
 .card-subtitle {
     margin-top: -0.375rem;
     margin-bottom: 0;
@@ -1509,8 +1513,9 @@ img.profile-pic {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
     border-bottom: 0;
-    background-color: #b4c5e6;
+    background-color: #9eb0d1;
     border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
+    color: #052c65;
 }
 
 .card-header-ri {
@@ -1519,18 +1524,23 @@ img.profile-pic {
     border-bottom: 0;
     background-color: #f8f8f8;
     border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
+    font-size: 15px;
 }
 
 .card-ri-active {
-    background-color: #cfe2ff;
+    background-color: #b2c3e3;
     padding: 0rem;
     border-radius: 25px;
+    margin-bottom: 2em !important;
+    max-width: 28.5rem;
 }
 
 .card-ri {
     background-color: #fff;
     padding: 0rem;
     border-radius: 25px;
+    margin-bottom: 2em !important;
+    max-width: 28.5rem;
 }
 
 
@@ -2524,6 +2534,7 @@ h4.stn:hover {
     overflow-x: auto;
     padding: 20px 0;
 }
+
 .timeline-horizontal {
     display: flex;
     justify-content: flex-start;
@@ -2533,11 +2544,13 @@ h4.stn:hover {
     margin: 0;
     gap: 40px;
 }
+
 .timeline-horizontal li {
     position: relative;
     min-width: 220px;
     text-align: left;
 }
+
 .timeline-date {
     font-size: 0.95em;
     margin-bottom: 8px;
@@ -2546,6 +2559,7 @@ h4.stn:hover {
     background-color: #ba2b03;
     border-radius: 25px;
 }
+
 .timeline-dot {
     width: 16px;
     height: 16px;
@@ -2556,14 +2570,17 @@ h4.stn:hover {
     box-shadow: 0 0 0 2px #ccc;
     display: inline-block;
 }
+
 .timeline-dot.smrt {
     background: rgb(207, 61, 61);
     box-shadow: 0 0 0 2px rgba(207, 61, 61, 0.2);
 }
+
 .timeline-dot.sbs {
     background: rgb(130, 71, 148);
     box-shadow: 0 0 0 2px rgba(130, 71, 148, 0.2);
 }
+
 .timeline-label {
     font-size: 0.98em;
     color: #333;
@@ -2571,8 +2588,9 @@ h4.stn:hover {
     background: #f8f9fa;
     border-radius: 6px;
     padding: 8px 12px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
+
 .timeline-horizontal li:not(:last-child)::after {
     content: '';
     position: absolute;
@@ -2584,11 +2602,85 @@ h4.stn:hover {
     z-index: 0;
     transform: translateX(8px);
 }
+
 @media (max-width: 600px) {
     .timeline-horizontal {
         gap: 16px;
     }
+
     .timeline-horizontal li {
         min-width: 140px;
+    }
+}
+
+
+
+
+.swiper {
+    width: 100%;
+    padding-bottom: 2em;
+    position: relative;
+    /* Ensure positioning context for arrows */
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: auto;
+    width: 547px !important;
+    margin-left: -63px !important;
+    margin-right: -35px !important;
+}
+
+.card-ri {
+    width: 100%;
+    max-width: 420px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s;
+    background-color: #5f7cb4;
+    border-radius: 50%;
+    right: 40px;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    bottom: 54px;
+}
+
+.swiper:hover .swiper-button-next,
+.swiper:hover .swiper-button-prev {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swiper-button-next::after {
+    content: "\f061";
+    /* fa-arrow-right */
+    font-family: "FontAwesome";
+    font-size: 20px;
+}
+
+.swiper-button-prev::after {
+    content: "\f060";
+    /* fa-arrow-left */
+    font-family: "FontAwesome";
+    font-size: 20px;
+}
+
+.swiper-button-disabled,
+.swiper-button-lock {
+    display: none !important;
+}
+
+@media (max-width: 1272px) {
+    .swiper {
+        padding-bottom: 3em;
     }
 }

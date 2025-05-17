@@ -282,6 +282,44 @@ body.dark-mode .card-header-active {
     background-color: #5f7cb4;
 }
 
+body.dark-mode .card-text {
+    color: #e4efff;
+}
+
+body.dark-mode .card-header-ri-active {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 0;
+    background-color: #5470a6;
+    border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
+    color: #fff;
+}
+
+body.dark-mode .card-header-ri {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 0;
+    background-color: #1f2020;
+    border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
+    font-size: 15px;
+    color: #e4efff;
+}
+
+body.dark-mode .card-ri-active {
+    background-color: #5f7cb4;
+    padding: 0rem;
+    border-radius: 25px;
+    margin-bottom: 2em !important;
+}
+
+body.dark-mode .card-ri {
+    background-color: #242526;
+    padding: 0rem;
+    border-radius: 25px;
+    margin-bottom: 2em !important;
+    
+}
+
 body.dark-mode [data-title] {
     color: #fff;
     border-bottom: 1px dotted #fff;

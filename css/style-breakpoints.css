@@ -29,6 +29,7 @@
 --------------------------------------------- */
 
 /* ------------------------------------------ 1.0 Specific Breakpoints ------------------------------------------ */
+
 /* ---- 1.0.0 Max Width: 1200px */
 @media (max-width: 1399px) {
     h1.brc {
@@ -958,12 +959,6 @@
         color: #fff;
     }
 
-    /* .wbnrfz_btn_theme,
-    body.dark-mode .wbnrfz_btn_theme {
-        margin-left: 15px !important;
-        margin-top: 15px !important;
-    } */
-
     body.dark-mode .wbnrfz_details .banner-eicw img {
         border-radius: 10px !important;
     }
@@ -976,6 +971,13 @@
     .column-vid,
     body.dark-mode .column-vid {
         border-radius: 20px !important;
+    }
+
+    .row-do,
+    .row-ri {
+        padding-left: 3em;
+        padding-right: 3em;
+        justify-content: center;
     }
 
 }
