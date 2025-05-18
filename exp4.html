@@ -1,3 +1,4 @@
+<!-- Network Uptime, Card Recent Incidents -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,13 +103,38 @@
             </div>
         </div>
 
+                <!-- Delays Overview (> 10 mins) -->
+        <div class="row row-do">
+            <div class="chart col-xl-12 col-lg-12 wow fadeInUp" data-wow-delay="300ms">
+                <div class="card card-do h-100 py-2">
+                    <div class="card-header card-header-active py-3 d-flex align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-black">
+                            <span data-title="Only delays reported officially will be shown">
+                                Network Uptime (18 Feb - 18 May 2025)</span>
+                        </h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body card-body-do">
+
+                        <!-- 90 days (desktop/tablet) -->
+                        <div class="uptime-bars uptime-bars-90 d-flex align-items-end"></div>
+
+                        <!-- 30 days (mobile) -->
+                        <div class="uptime-bars uptime-bars-30 d-flex align-items-end"></div>
+                        <div class="d-flex justify-content-between mt-2" style="font-size:0.9em;">
+                            <span class="text-muted days-label" id="uptime-days-label">90 days ago</span>
+                            <span class="text-muted" data-date="2025-05-18" id="data-date"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
         <!-- Days Overview -->
         <div class="row row-lrd">
-            <div class="alert alert-primary wow fadeInUp" data-wow-delay="100ms" role="alert"
-                style="margin-bottom: 2em; cursor: default;"> <i class="fa-solid fa-circle-info"></i>&nbsp;
-                <b id="data-date"></b>
-            </div>
-
             <!-- NSL -->
             <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
                 <div class="card card-nsl border-nsl h-100 py-2">
@@ -321,37 +347,9 @@
         <br>
         <br>
 
-        <!-- Delays Overview (> 10 mins) -->
-        <div class="row row-do">
-            <div class="chart col-xl-12 col-lg-12 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-do h-100 py-2">
-                    <div class="card-header card-header-active py-3 d-flex align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-black">
-                            <span data-title="Delays less than 10 mins won't be reflected in this chart.">
-                                Delays Overview (> 10 mins)</span>
-                        </h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body card-body-do">
-                        <div class="chart-area">
-                            <canvas id="delays-overview-sm-24"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-        <br>
-
 
         <!-- Recent Incidents -->
         <div class="row row-ri">
-            <div class="col-12">
-                <div class="breadcrumb-content text-center">
-                    <h2 class="page-title wow fadeInUp" data-wow-delay="100ms">Recent Incidents</h2>
-                </div>
-            </div>
             <div class="slide-container swiper">
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">
@@ -367,14 +365,10 @@
                                     <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
                                 </a>
 
-                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
-                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Point Fault<br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>10 mins</b> travel time <br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Yishun and Sembawang
+                                <p class="card-text-ri" style="font-size: 15px;">
+                                    Due to a track point fault, please expect an additional 10mins train travel
+                                    time between #Yishun and #Sembawang. Free regular bus service is available between
+                                    #Yishun and #Woodlands.
                                 </p>
 
                             </div>
@@ -391,14 +385,10 @@
                                     <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
                                 </a>
 
-                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
-                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Point Fault<br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>10 mins</b> travel time <br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Tampines and Pasir Ris
+                                <p class="card-text-ri" style="font-size: 15px;">
+                                    Due to a track point fault, pls add additional 10mins train travel time
+                                    between #Tampines and #PasirRis. Free regular bus service is available between
+                                    #Tampines and #PasirRis.
                                 </p>
 
                             </div>
@@ -415,15 +405,10 @@
                                     <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
                                 </a>
 
-                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
-                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Fault<br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>15 mins</b> travel time <br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Toa Payoh and Bishan towards
-                                    Jurong East
+                                <p class="card-text-ri" style="font-size: 15px">
+                                    Due to a track fault, pls add 15mins train travel time from #ToaPayoh to
+                                    #Bishan towards #JurongEast. Free regular bus is available between #ToaPayoh and
+                                    #Bishan.
                                 </p>
 
                             </div>
@@ -440,14 +425,10 @@
                                     <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
                                 </a>
 
-                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
-                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Fault<br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>20 mins</b> travel time <br>
-                                </p>
-                                <p class="card-text-ri">
-                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Queenstown and BoonLay
+                                <p class="card-text-ri" style="font-size: 15px;">
+                                    Due to a track fault, please expect an additional 20mins of travelling time
+                                    between #Queenstown and #BoonLay. Shuttle train are available between #Clementi and
+                                    #JurongEast and #JurongEast and #Lakeside. Free regular bus is available...
                                 </p>
 
                             </div>
@@ -463,7 +444,7 @@
                 <div class="swiper-pagination"></div>
             </div>
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
-                <a href="./past-records/past-records.html" class="btn pw-btn btn-2 mt-15">Incident History &nbsp;<i
+                <a href="./past-records/past-records.html" class="btn pw-btn btn-2 mt-15">View Incident History &nbsp;<i
                         class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
@@ -491,7 +472,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/index-alt.js"></script>
 
     <script src="overview/days-overview.js"></script>
 
@@ -509,6 +490,10 @@
     <script src="js/default-assets/active.js"></script>
 
     <script src="js/preloader.js"></script>
+
+    <script src="js/uptime-tooltip.js"></script>
+
+    <script src="js/uptime-bars.js"></script>
 
 
 
