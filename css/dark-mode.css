@@ -31,7 +31,7 @@ body.dark-mode #preloader {
     margin-left: 5px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #444;
+    background-color: #1c7293;
     color: #fff;
     border-radius: 60px;
     transition-duration: 500ms;
@@ -45,8 +45,20 @@ body.dark-mode #scrollUp {
     color: #fff;
 }
 
+body.dark-mode #scrollUp:focus,
+body.dark-mode #scrollUp:hover {
+    background-color: #80a8cc;
+    color: #ffffff;
+}
+
+
 body.dark-mode .wbnrfz_btn_theme {
-    background-color: #5f7cb4;
+    background-color: #68a2ba;
+    color: #fff;
+}
+
+body.dark-mode .wbnrfz_btn_theme:hover {
+    background-color: #21295c;
     color: #fff;
 }
 

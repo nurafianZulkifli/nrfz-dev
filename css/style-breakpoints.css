@@ -679,25 +679,6 @@
 
 /* 2.0.3 Min Width: 576px Max Width: 767px */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .classy-nav-container .classy-navbar .nav-brand {
-        max-width: 174px;
-        margin-left: -63px;
-    }
-
-    .classy-nav-container .classy-navbar .classynav ul li a {
-        font-size: 14px;
-        color: #252525;
-    }
-
-    .classy-nav-container .classy-navbar .classynav ul li a:hover,
-    .classy-nav-container .classy-navbar .classynav ul li a:focus {
-        color: #80a8cc;
-    }
-
-    .classynav ul li.active a::before {
-        display: none;
-    }
-
     .section-heading h2 {
         font-size: 24px;
     }
@@ -856,6 +837,11 @@
     .portfolio-sort {
         order: 2;
         /* Ensure it appears below */
+    }
+
+    .row-do, .row-ri, .row-lrd {
+        padding-left: 3em;
+        padding-right: 3em;
     }
 }
 
