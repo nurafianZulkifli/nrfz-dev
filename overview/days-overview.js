@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const delaySpans = document.querySelectorAll('span[data-last-delay]');
 
     // Update the text content of the element to display the current date
-    dateElement.textContent = `Data as of ${formattedDate}`;
+    dateElement.textContent = `${formattedDate}`;
 
     delaySpans.forEach(function(span) {
             const lastDelay = span.getAttribute('data-last-delay');

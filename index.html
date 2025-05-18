@@ -102,13 +102,38 @@
             </div>
         </div>
 
+                <!-- Delays Overview (> 10 mins) -->
+        <div class="row row-do">
+            <div class="chart col-xl-12 col-lg-12 wow fadeInUp" data-wow-delay="300ms">
+                <div class="card card-do h-100 py-2">
+                    <div class="card-header card-header-active py-3 d-flex align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-black">
+                            <span data-title="Only delays reported officially will be shown">
+                                Network Uptime (18 Feb - 18 May 2025)</span>
+                        </h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body card-body-do">
+
+                        <!-- 90 days (desktop/tablet) -->
+                        <div class="uptime-bars uptime-bars-90 d-flex align-items-end"></div>
+
+                        <!-- 30 days (mobile) -->
+                        <div class="uptime-bars uptime-bars-30 d-flex align-items-end"></div>
+                        <div class="d-flex justify-content-between mt-2" style="font-size:0.9em;">
+                            <span class="text-muted days-label" id="uptime-days-label">90 days ago</span>
+                            <span class="text-muted" id="data-date">18 May 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
         <!-- Days Overview -->
         <div class="row row-lrd">
-            <div class="alert alert-primary wow fadeInUp" data-wow-delay="100ms" role="alert"
-                style="margin-bottom: 2em; cursor: default;"> <i class="fa-solid fa-circle-info"></i>&nbsp;
-                <b id="data-date"></b>
-            </div>
-
             <!-- NSL -->
             <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
                 <div class="card card-nsl border-nsl h-100 py-2">
@@ -312,36 +337,6 @@
                             <div class="col-auto">
                                 <img src="img/caplets/SKPGCap.png" alt="SKPGLRT" width="55px">
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-        <br>
-
-        <!-- Delays Overview (> 10 mins) -->
-        <div class="row row-do">
-            <div class="chart col-xl-12 col-lg-12 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-do h-100 py-2">
-                    <div class="card-header card-header-active py-3 d-flex align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-black">
-                            <span data-title="Only delays reported officially will be shown">
-                                Network Uptime (18 Feb - 18 May 2025)</span>
-                        </h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body card-body-do">
-
-                        <!-- 90 days (desktop/tablet) -->
-                        <div class="uptime-bars uptime-bars-90 d-flex align-items-end"></div>
-
-                        <!-- 30 days (mobile) -->
-                        <div class="uptime-bars uptime-bars-30 d-flex align-items-end"></div>
-                        <div class="d-flex justify-content-between mt-2" style="font-size:0.9em;">
-                            <span class="text-muted days-label" id="uptime-days-label">90 days ago</span>
-                            <span class="text-muted">18 May 2025</span>
                         </div>
                     </div>
                 </div>
