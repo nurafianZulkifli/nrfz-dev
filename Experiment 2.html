@@ -33,8 +33,10 @@
 
 <body>
 
+    <!-- Preloader Section -->
     <div id="preloader">
         <div class="loader"></div>
+        <p id="preloader-text">Just a moment...</p>
     </div>
 
 
@@ -88,13 +90,13 @@
                 <div class="col-12">
                     <div class="breadcrumb-content text-center">
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
+                            <ol class="breadcrumb justify-content-center wow fadeInUp" data-wow-delay="100ms">
                                 <li class="breadcrumb-item-aag">Home
                                 </li>
                                 <li class="breadcrumb-item-aag active" aria-current="page">At a glance</li>
                             </ol>
                         </nav>
-                        <h2 class="page-title">Line Overview</h2>
+                        <h2 class="page-title wow fadeInUp" data-wow-delay="100ms">Line Overview</h2>
                     </div>
                 </div>
             </div>
@@ -117,12 +119,12 @@
                                     <a href="mrt-lines/nsl.html">North-South Line</a>
                                 </div>
                                 <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-04-16"></div>
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-05-11"></div>
                                 <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                                     since last reported delay</div>
                                 <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
                                     <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
-                                        data-last-delay="2025-04-16"></span>
+                                        data-last-delay="2025-05-11"></span>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -347,197 +349,157 @@
         <div class="row row-ri">
             <div class="col-12">
                 <div class="breadcrumb-content text-center">
-                    <h2 class="page-title">Recent Incidents</h2>
+                    <h2 class="page-title wow fadeInUp" data-wow-delay="100ms">Recent Incidents</h2>
                 </div>
             </div>
             <div class="slide-container swiper">
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="img/caplets/NSLCap.png" alt="" class="card-img">
-                                </div>
+                        <!-- Card 1 -->
+                        <div class="card-ri swiper-slide wow fadeInUp" data-wow-delay="100ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 11/05/2025
                             </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
-                            </div>
-                        </div>
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile2.jpg" alt="" class="card-img">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/NSLCap.png" alt="NSL" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SMRT_Singapore/status/1921451426167062994"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
+                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Point Fault<br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>10 mins</b> travel time <br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Yishun and Sembawang
+                                </p>
+
                             </div>
                         </div>
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile3.jpg" alt="" class="card-img">
-                                </div>
+                        <!-- Card 2 -->
+                        <div class="card-ri swiper-slide wow fadeInUp" data-wow-delay="200ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 23/04/2025
                             </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
-                            </div>
-                        </div>
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile4.jpg" alt="" class="card-img">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/EWLCap.png" alt="NSL" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SMRT_Singapore/status/1914816349135888488"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
+                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Point Fault<br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>10 mins</b> travel time <br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Tampines and Pasir Ris
+                                </p>
+
                             </div>
                         </div>
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile5.jpg" alt="" class="card-img">
-                                </div>
+                        <!-- Card 3 -->
+                        <div class="card-ri swiper-slide wow fadeInUp" data-wow-delay="300ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 16/04/2025
                             </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
-                            </div>
-                        </div>
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile6.jpg" alt="" class="card-img">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/NSLCap.png" alt="NSL" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SMRT_Singapore/status/1912346685872988215"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
+                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Fault<br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>15 mins</b> travel time <br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Toa Payoh and Bishan towards
+                                    Jurong East
+                                </p>
+
                             </div>
                         </div>
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile7.jpg" alt="" class="card-img">
-                                </div>
+                        <!-- Card 4 -->
+                        <div class="card-ri swiper-slide wow fadeInUp" data-wow-delay="400ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 04/04/2025
                             </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
-                            </div>
-                        </div>
-                        <div class="card-ri swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile8.jpg" alt="" class="card-img">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
-                            </div>
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="images/profile9.jpg" alt="" class="card-img">
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">David Dell</h2>
-                                <p class="description">The lorem text the section that contains header with having open
-                                    functionality. Lorem
-                                    dolor sit amet consectetur adipisicing elit.</p>
-                                <button class="button">View More</button>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/EWLCap.png" alt="NSL" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SMRT_Singapore/status/1908029621167382639"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 22px; font-weight: bold;">
+                                    <i class="fa-solid fa-train-track"></i>&nbsp; Track Fault<br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-clock"></i>&nbsp; Additional <b>20 mins</b> travel time <br>
+                                </p>
+                                <p class="card-text-ri">
+                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Between Queenstown and BoonLay
+                                </p>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-button-next swiper-navBtn"></div>
-                <div class="swiper-button-prev swiper-navBtn"></div>
+                <button class="swiper-button-next swiper-navBtn" tabindex="0" aria-label="Next slide">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button class="swiper-button-prev swiper-navBtn" tabindex="0" aria-label="Previous slide">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
                 <div class="swiper-pagination"></div>
+            </div>
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
+                <a href="./past-records/past-records.html" class="btn pw-btn btn-2 mt-15">Incident History &nbsp;<i
+                        class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
-
-    </section><!-- End Hero -->
-
+    </section>
 
 
     <footer class="footer-area">
-        <div class="container container-xxl">
-            <div class="row">
-                <div class="col-12">
-                    <div class="footer-content d-flex align-items-center justify-content-center">
-
-                        <div class="copywrite-text">
-                            <p>
-                                Data is obtained through each operator's X/Facebook page
-                            </p>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="footer-content d-flex flex-column align-items-center text-center">
+                <!-- Copywrite Text -->
+                <div class="copywrite-text">
+                    <p>Data is obtained through each operator's X/Facebook page</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modular DIVs -->
-    <script> w3IncludeHTML(); </script>
 
     <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
         data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
 
+
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/theme-index.js"></script>
+    <script src="js/index.js"></script>
+
+    <script src="overview/days-overview.js"></script>
 
     <script src="js/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+    <script src="js/popper.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <script src="js/pw.bundle.js"></script>
 
@@ -546,13 +508,8 @@
 
     <script src="js/default-assets/active.js"></script>
 
-    <!-- Page level plugins -->
+    <script src="js/preloader.js"></script>
 
-
-    <!-- Page level custom scripts -->
-    <!-- <script src="overview/delays-overview-both.js"></script> -->
-
-    <script src="overview/days-overview.js"></script>
 
 
 </body>

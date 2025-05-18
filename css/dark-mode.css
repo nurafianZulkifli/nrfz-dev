@@ -528,3 +528,12 @@ body.dark-mode .about-me-stations {
 }
 
 /* ------------------------------------------ */
+
+body.dark-mode .uptime-bar.up {
+    background: #5f7cb4;
+    height: 40px;
+}
+
+body.dark-mode .text-muted {
+    color: #e4efff !important;
+}

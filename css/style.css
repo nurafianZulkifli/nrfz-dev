@@ -1391,8 +1391,16 @@ img.profile-pic {
 
 
 .row-ri {
-    padding-left: 5.5em;
-    padding-right: 5em;
+    padding-left: 7.5em;
+    padding-right: 7em;
+}
+
+.netw-up {
+    /* background-color: #ededf4;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15); */
+    padding: 2em;
+    border-radius: 25px;
+    border: 1px solid #1f2020;
 }
 
 #lrd {
@@ -3044,4 +3052,170 @@ h4.stn:hover {
     background: #6d99c0;
     color: #fff;
     box-shadow: none;
+}
+
+
+
+/* Uptime Bar Graph Styles */
+.uptime-dot i {
+    color: #4070F4;
+    font-size: 1.3em;
+    vertical-align: middle;
+}
+
+.uptime-bars {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 3px;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.5em 0;
+    scrollbar-width: thin;
+    scrollbar-color: #b4c5e6 #f9f9ff;
+}
+
+.uptime-bar {
+    flex: 0 0 auto;
+    min-width: 6px;
+    max-width: 12px;
+    height: 40px;
+    border-radius: 6px;
+    background: #e3e8fd;
+    transition: background 0.2s, height 0.2s;
+}
+
+.uptime-bar.up {
+    background: #acc7ff;
+    height: 40px;
+}
+
+.uptime-bar.down {
+    background: #f44336;
+    height: 40px;
+}
+
+/* Tooltip styles for uptime bars */
+.uptime-bar {
+    position: relative;
+    cursor: pointer;
+}
+
+.uptime-bar .uptime-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: 130%;
+    transform: translateX(-50%);
+    background: #21295c;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 0.85em;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    max-width: 200px;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Show tooltip on hover/focus */
+.uptime-bar:hover .uptime-tooltip,
+.uptime-bar:focus .uptime-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Shift tooltip right for the first bar */
+.uptime-bar:first-child .uptime-tooltip {
+    left: 0;
+    transform: translateX(0);
+}
+
+/* Shift tooltip left for the last bar */
+.uptime-bar:last-child .uptime-tooltip {
+    left: auto;
+    right: -2em;
+    transform: translateX(0);
+}
+
+/* Show 90 bars by default, hide 30 bars */
+.uptime-bars-90 {
+    display: flex !important;
+    flex-wrap: nowrap;
+    overflow-x: visible;
+    width: 100%;
+}
+
+.uptime-bars-90 .uptime-bar {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+}
+
+.uptime-bars-30 {
+    display: none !important;
+}
+
+/* Make 30 bars fill the width on mobile */
+.uptime-bars-30 {
+    display: none !important;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.uptime-bars-30 .uptime-bar {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+}
+
+
+
+
+@media (max-width: 600px) {
+    .uptime-bar {
+        min-width: 3px;
+        max-width: 5px;
+        height: 18px;
+    }
+
+    .uptime-bar.up {
+        height: 18px;
+    }
+
+    .uptime-bar.down {
+        height: 7px;
+    }
+
+    .uptime-bars {
+        min-height: 24px;
+    }
+
+    .uptime-bar .uptime-tooltip {
+        font-size: 0.75em;
+        max-width: 120px;
+        padding: 5px 8px;
+    }
+
+    .uptime-bars-90 {
+        display: none !important;
+    }
+
+    .uptime-bars-30 {
+        display: flex !important;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .uptime-bars-30 .uptime-bar {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: none;
+    }
 }
