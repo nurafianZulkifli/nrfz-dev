@@ -14,7 +14,7 @@
 
     <link rel="icon" href="../img/core-img/favicon.png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -34,57 +34,67 @@
     </div>
 
 
-    <header class="header-area">
-        <div class="main-header-area">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container container-xxl">
+    <header>
+        <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
 
-                    <nav class="classy-navbar justify-content-between" id="pwNav">
+        <input type="checkbox" id="check" />
+        <label for="check" class="icons">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+            <i class="fa-solid fa-xmark" id="close-icon"></i>
+        </label>
 
-                        <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
-
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <div class="classy-menu">
-
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-                            <div class="classynav">
-                                <ul id="nav">
-                                    <li><a href="../statistics/statistics.html">Statistics</a></li>
-                                    <li class="active"><a href="past-records.html">Past Records</a></li>
-                                    <li><a href="../our-networks.html">Networks</a></li>
-                                    <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
-                                            title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <nav class="navbar navbar-mobile">
+            <a href="../index.html" class="nav-item active">Home</a>
+            <a href="../statistics/statistics.html" class="nav-item">Statistics</a>
+            <a href="../past-records/past-records.html" class="nav-item">Past Records</a>
+            <a href="../our-networks.html" class="nav-item">Networks</a>
+            <a href="#" class="nav-item">
+                <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
+                    <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
+                </button>
+            </a>
+        </nav>
     </header>
 
 
     <!-- ============================================= Hero Section ============================================= -->
-    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/hero.png);">
-        <div class="container h-100" style="margin-top: 2em;">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcrumb-content breadcrumb-content-subp text-center">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="../index.html">Home</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Past Records</li>
-                            </ol>
-                        </nav>
-                        <h2 class="page-title">Past Records</h2>
+    <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-about"
+        style="background-image: url(../img/bg-img/hero.png); height: 100vh;">
+        <div class="wbnrfz_details_blog">
+            <div class="container">
+                <div class="portfolio-controls d-flex justify-content-between align-items-center">
+                    <!-- Filter Buttons -->
+                    <div class="portfolio-filter mt-3">
+                        <div class="col-lg-12">
+                            <div class="main-title">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html">
+                                                Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item active"><a
+                                                href="https://nurafianzulkifli.com/works-by-nrfz.html">
+                                                Past Records
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <h1 class="brc">Past Records</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Collapsible Header -->
+                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+                        aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;" title="Jump To">
+                        <i class="fa-solid fa-chevron-down nav-chev"></i>
+                    </div>
+                </div>
+                <!-- Collapsible Content -->
+                <div id="portfolioFilter" class="collapse">
+                    <div class="portfolio-filter mt-3">
+                        <a href="#" class="btn">2025</a>
+                        <a href="2024_past-records.html" class="btn">2024</a>
+                        <a href="2023_past-records.html" class="btn">2023</a>
                     </div>
                 </div>
             </div>
@@ -97,12 +107,6 @@
 
         <!--  -->
         <div class="row row-do">
-
-            <div class="pagination" style="margin-bottom:2em;">
-                <a href="#" class="active">2025</a>
-                <a href="2024_past-records.html">2024</a>
-                <a href="2023_past-records.html">2023</a>
-            </div>
 
             <div class="col-12 wow fadeInUp" data-wow-delay="100ms" style="margin-bottom:2em;">
                 <h6>
@@ -128,43 +132,10 @@
                     <div id="collapseSMRT25" class="accordion-collapse collapse" aria-labelledby="headingSMRT25"
                         data-bs-parent="#accordPastRec25">
                         <div class="accordion-body">
-
-                            <div class="chart col-xl-12 col-lg-12">
-                                <div class="card card-acc h-100 py-2">
-                                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold">
-                                            <span
-                                                data-title="Delays less than 10 mins won't be reflected in this chart.">
-                                                Delays Overview (> 10 mins)
-                                            </span>
-                                        </h6>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body card-body-acc">
-                                        <div class="chart-area">
-                                            <canvas id="delays-overview-sm-25"></canvas>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-
                             <!-- Past Incidents -->
-                            <div class="accordion" id="accordion-ai-2025">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-ai-2025">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#ai-2025" aria-expanded="false"
-                                            aria-controls="ai-2025">
-                                            <h6 class="m-0 font-weight-bold">Past Incidents</h6>
-                                        </button>
-                                    </h2>
-                                    <div id="ai-2025" class="accordion-collapse collapse"
-                                        aria-labelledby="heading-ai-2025" data-bs-parent="#accordion-ai-2025">
-                                        <div class="accordion-body acc-pi">
-                                            <!-- <p class="ai-year">December</p>
+
+
+                            <!-- <p class="ai-year">December</p>
                                         <hr>
     
                                         <p class="ai-year">November</p>
@@ -191,87 +162,85 @@
                                         <p class="ai-year">April</p>
                                         <hr> -->
 
-                                            <p class="ai-year">March</p>
-                                            <p class="mb-0">
-                                                <b>- <a href="https://x.com/SMRT_Singapore/status/1900502980346143157">Mar
-                                                        14:</a></b><br>
-                                                [CCL]: Additional 15 mins train travel time between #HarbourFront,
-                                                #MarinaBay and #DhobyGhaut
-                                                due to a signal system fault.
-                                            </p>
-                                            <hr>
-                                            <p class="mb-0">
-                                                <b>- <a href="https://x.com/SMRT_Singapore/status/1899576519300899093">Mar
-                                                        12:</a></b><br>
-                                                [TEL]: Due to a train fault, there will be no train service between
-                                                Gardens By The Bay to
-                                                Bayshore. Train service is available between Woodlands North to Gardens
-                                                By The Bay. Free Regular
-                                                Bus available between Gardens By The Bay to Bayshore.
-                                            </p>
-                                            <hr>
-                                            <p class="mb-0">
-                                                <b>- <a href="https://x.com/SMRT_Singapore/status/1897197246871167416">Mar
-                                                        5:</a></b><br>
-                                                [CCL]: Please add 30 mins train travel time between #Promenade and
-                                                #Serangoon, in both
-                                                directions due to train fault. Free regular bus service is available
-                                                between #Promenade and
-                                                #Serangoon. Train service is still available.
-                                            </p>
-                                            <hr>
+                            <p class="ai-year">March</p>
+                            <p class="mb-0">
+                                <b>- <a href="https://x.com/SMRT_Singapore/status/1900502980346143157">Mar
+                                        14:</a></b><br>
+                                [CCL]: Additional 15 mins train travel time between #HarbourFront,
+                                #MarinaBay and #DhobyGhaut
+                                due to a signal system fault.
+                            </p>
+                            <hr>
+                            <p class="mb-0">
+                                <b>- <a href="https://x.com/SMRT_Singapore/status/1899576519300899093">Mar
+                                        12:</a></b><br>
+                                [TEL]: Due to a train fault, there will be no train service between
+                                Gardens By The Bay to
+                                Bayshore. Train service is available between Woodlands North to Gardens
+                                By The Bay. Free Regular
+                                Bus available between Gardens By The Bay to Bayshore.
+                            </p>
+                            <hr>
+                            <p class="mb-0">
+                                <b>- <a href="https://x.com/SMRT_Singapore/status/1897197246871167416">Mar
+                                        5:</a></b><br>
+                                [CCL]: Please add 30 mins train travel time between #Promenade and
+                                #Serangoon, in both
+                                directions due to train fault. Free regular bus service is available
+                                between #Promenade and
+                                #Serangoon. Train service is still available.
+                            </p>
+                            <hr>
 
-                                            <p class="ai-year">February</p>
-                                            <p class="mb-0">
-                                                <b>- <a
-                                                        href="https://www.facebook.com/SMRTCorpSG/posts/pfbid0W5iPaUKFHNy6ghSk24n96L7XZP3xCJ3h8BEVqs8uNE1xPYrD7eWLYxVgeuZ97ySjl">Feb
-                                                        11:</a></b><br>
-                                                Update on the Circle Line (CCL) at 10.20am:
-                                                On 11 February, at around 8.11 am, a signalling system fault occurred
-                                                between Paya Lebar and
-                                                Marymount stations, affecting train operations across eight stations...
-                                            </p>
-                                            <br>
-                                            <p class="mb-0">
-                                                <b>- <a href="https://x.com/SMRT_Singapore/status/1887639217314144384">Feb
-                                                        07:</a></b><br>
-                                                [NSL]: Due to engineering vehicle fault, please add 10 minutes
-                                                travelling time from #AngMoKio to
-                                                #JurongEast. Free regular bus services and bridging bus services are
-                                                available between #Bishan
-                                                and #Woodlands. We apologise for this delay to your journey.
-                                            </p>
-                                            <hr>
+                            <p class="ai-year">February</p>
+                            <p class="mb-0">
+                                <b>- <a
+                                        href="https://www.facebook.com/SMRTCorpSG/posts/pfbid0W5iPaUKFHNy6ghSk24n96L7XZP3xCJ3h8BEVqs8uNE1xPYrD7eWLYxVgeuZ97ySjl">Feb
+                                        11:</a></b><br>
+                                Update on the Circle Line (CCL) at 10.20am:
+                                On 11 February, at around 8.11 am, a signalling system fault occurred
+                                between Paya Lebar and
+                                Marymount stations, affecting train operations across eight stations...
+                            </p>
+                            <br>
+                            <p class="mb-0">
+                                <b>- <a href="https://x.com/SMRT_Singapore/status/1887639217314144384">Feb
+                                        07:</a></b><br>
+                                [NSL]: Due to engineering vehicle fault, please add 10 minutes
+                                travelling time from #AngMoKio to
+                                #JurongEast. Free regular bus services and bridging bus services are
+                                available between #Bishan
+                                and #Woodlands. We apologise for this delay to your journey.
+                            </p>
+                            <hr>
 
-                                            <p class="ai-year">January
-                                            <p class="mb-0">
-                                                <b>- <a href="https://x.com/SMRT_Singapore/status/1877655134899184057">Jan
-                                                        10:</a></b><br>
-                                                [NSL]: Due to a train fault, pls add 15mins train travel time btwn
-                                                #MarinaSouthPier and #Bishan.
-                                                Free regular bus svcs btwn #MarinaSouthPier and #ToaPayoh. Passengers
-                                                are advised to use
-                                                alternative route to continue their journey. Our station staff will
-                                                assist.
-                                            </p>
-                                            <br>
-                                            <p class="mb-0">
-                                                <b>- <a href="https://x.com/SMRT_Singapore/status/1874782432857383077">Jan
-                                                        2:</a></b><br>
-                                                [TEL]: Please allow for additional 10 mins travelling time from
-                                                Caldecott to
-                                                Gardens by the Bay
-                                                due to a train fault.
-                                            </p>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <p class="ai-year">January
+                            <p class="mb-0">
+                                <b>- <a href="https://x.com/SMRT_Singapore/status/1877655134899184057">Jan
+                                        10:</a></b><br>
+                                [NSL]: Due to a train fault, pls add 15mins train travel time btwn
+                                #MarinaSouthPier and #Bishan.
+                                Free regular bus svcs btwn #MarinaSouthPier and #ToaPayoh. Passengers
+                                are advised to use
+                                alternative route to continue their journey. Our station staff will
+                                assist.
+                            </p>
+                            <br>
+                            <p class="mb-0">
+                                <b>- <a href="https://x.com/SMRT_Singapore/status/1874782432857383077">Jan
+                                        2:</a></b><br>
+                                [TEL]: Please allow for additional 10 mins travelling time from
+                                Caldecott to
+                                Gardens by the Bay
+                                due to a train fault.
+                            </p>
+                            </p>
                         </div>
                     </div>
+
                 </div>
+
+
 
                 <!-- SBST -->
                 <div class="accordion-item wow fadeInUp" data-wow-delay="300ms">
@@ -284,41 +253,8 @@
                     <div id="collapseSBST25" class="accordion-collapse collapse" aria-labelledby="headingSBST25"
                         data-bs-parent="#accordPastRec25">
                         <div class="accordion-body">
-
-                            <div class="chart col-xl-12 col-lg-12">
-                                <div class="card card-acc h-100 py-2">
-                                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold">
-                                            <span
-                                                data-title="Delays less than 10 mins won't be reflected in this chart.">
-                                                Delays Overview (> 10 mins)
-                                            </span>
-                                        </h6>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body card-body-acc">
-                                        <div class="chart-area">
-                                            <canvas id="delays-overview-sb-25"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-
-                                <!-- Past Incidents -->
-                                <div class="accordion" id="accordion-ai-2025">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading-ai-2025">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#ai-2025"
-                                                aria-expanded="false" aria-controls="ai-2025">
-                                                <h6 class="m-0 font-weight-bold">Past Incidents</h6>
-                                            </button>
-                                        </h2>
-                                        <div id="ai-2025" class="accordion-collapse collapse"
-                                            aria-labelledby="heading-ai-2025" data-bs-parent="#accordion-ai-2025">
-                                            <div class="accordion-body acc-pi">
-                                                <!-- <p class="ai-year">December</p>
+                            <!-- Past Incidents -->
+                            <!-- <p class="ai-year">December</p>
                                         <hr>
     
                                         <p class="ai-year">November</p>
@@ -343,62 +279,45 @@
                                         <hr>
     
                                         <p class="ai-year">April</p>
-                                        <hr>
-    
-                                        <p class="ai-year">March</p>
                                         <hr> -->
 
-                                                <p class="ai-year">February</p>
-                                                <p class="mb-0">
-                                                    <b>- <a
-                                                            href="https://x.com/SBSTransit_Ltd/status/1888715397228380474">Feb
-                                                            10:</a></b><br>
-                                                    NEL Service is delayed due to a Signaling Fault. Additional travel
-                                                    time of about 10 minutes may
-                                                    be expected. We are sorry for the inconvenience caused.
-                                                </p>
-                                                <hr>
+                            <p class="ai-year">March</p>
+                            <p class="mb-0">
+                                <b>No Reported Incidents</b>
+                            </p>
+                            </p>
+                            <hr>
 
-                                                <p class="ai-year">January
-                                                <p class="mb-0">
-                                                    <b>No Reported Incidents</b>
-                                                </p>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <p class="ai-year">February</p>
+                            <p class="mb-0">
+                                <b>- <a href="https://x.com/SBSTransit_Ltd/status/1888715397228380474">Feb
+                                        10:</a></b><br>
+                                NEL Service is delayed due to a Signaling Fault. Additional travel
+                                time of about 10 minutes may
+                                be expected. We are sorry for the inconvenience caused.
+                            </p>
+                            <hr>
 
-                            </div>
-
-
+                            <p class="ai-year">January
+                            <p class="mb-0">
+                                <b>No Reported Incidents</b>
+                            </p>
+                            </p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
-        <br>
-        <br>
-        <br>
-
     </section><!-- End Hero -->
 
 
 
     <footer class="footer-area">
-        <div class="container container-xxl">
-            <div class="row">
-                <div class="col-12">
-                    <div class="footer-content d-flex align-items-center justify-content-center">
-
-                        <div class="copywrite-text">
-                            <p>
-                                Data is obtained through each operator's X/Facebook page
-                            </p>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="footer-content d-flex flex-column align-items-center text-center">
+                <!-- Copywrite Text -->
+                <div class="copywrite-text">
+                    <p>Data is obtained through each operator's X/Facebook page</p>
                 </div>
             </div>
         </div>
@@ -408,6 +327,8 @@
         data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
+
+    <script src="../js/theme.js"></script>
 
     <script src="../js/jquery.min.js"></script>
 
@@ -423,7 +344,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="./2025.js"></script>
+    <script src="../2025.js"></script>
 
 
 </body>

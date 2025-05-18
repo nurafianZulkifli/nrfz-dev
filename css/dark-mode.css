@@ -53,7 +53,7 @@ body.dark-mode #scrollUp {
 
 body.dark-mode #scrollUp:focus,
 body.dark-mode #scrollUp:hover {
-    background-color: #80a8cc;
+    background-color: #21295c;
     color: #ededf4;
 }
 
@@ -85,6 +85,10 @@ body.dark-mode .mb-0 a {
 
 body.dark-mode hr {
     border-color: #ededf4;
+}
+
+body.dark-mode .fa-square-x-twitter {
+    color: #fff;
 }
 
 /* ---- */

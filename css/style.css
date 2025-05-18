@@ -425,7 +425,7 @@ section.follow-area.clearfix {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #f8faf4;
+    background-color: #f9f9ff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -435,7 +435,7 @@ section.follow-area.clearfix {
 
 .loader {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #acc7ff;
+    border-top: 5px solid #21295c;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -729,7 +729,7 @@ header {
 
 #hero:before {
     content: "";
-    background-color: #d8d8d898;
+    background-color: #f9f9ff9c;
     backdrop-filter: blur(5px);
     position: absolute;
     bottom: 0;
@@ -1018,10 +1018,39 @@ header {
 }
 
 .wbnrfz-summ {
-    background-color: #f5f6f2;
-    padding-top: 50px;
-    padding-bottom: 0px;
+    position: relative;
+    z-index: 1;
 }
+
+.wbnrfz-summ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff83;
+    z-index: 0;
+    /* Lower than content */
+    pointer-events: none;
+    /* Allow clicks through */
+}
+
+.wbnrfz-summ-indiv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wbnrfz-summ>*,
+.wbnrfz-summ-indiv>* {
+    position: relative;
+    z-index: 2;
+}
+
 
 .about-me-route {
     -webkit-transition-duration: 800ms;
@@ -2477,6 +2506,25 @@ h4.stn:hover {
     content: url('../img/networks/bp-diag.png');
 }
 
+.wbnrfz_details {
+    background: #ffffffe0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    margin-top: 4.8em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
+.wbnrfz_details_blog {
+    background: #ffffffe0;
+    box-shadow: 0 4px 30px #0000001a;
+    backdrop-filter: blur(10px);
+    margin-top: 0.2em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
+}
+
 /* ------------------------------------------ */
 
 /* Timeline Horizontal Styles */
@@ -2565,7 +2613,7 @@ h4.stn:hover {
 }
 
 
-/*  */
+/* 19.0 */
 .slide-container {
     width: 100%;
     padding: 20px 0;
@@ -2696,11 +2744,12 @@ h4.stn:hover {
 }
 
 .swiper-navBtn {
-    color: #fff;
+    color: #21295c;
     transition: color 0.3s ease;
 }
 
 .swiper-navBtn:hover {
+    background-color: #21295c;
     color: #fff;
 }
 
@@ -2711,24 +2760,24 @@ h4.stn:hover {
 
 .swiper-button-next {
     right: 0;
-    transition: opacity 0.2s;
-    background-color: #5f7cb4;
+    background-color: #acc7ff;
     border-radius: 50%;
     line-height: 40px;
     width: 40px;
     height: 40px;
     bottom: 54px;
+    transition: all 0.3s ease;
 }
 
 .swiper-button-prev {
     left: 0;
-    transition: opacity 0.2s;
     background-color: #5f7cb4;
     border-radius: 50%;
     line-height: 40px;
     width: 40px;
     height: 40px;
     bottom: 54px;
+    transition: all 0.3s ease;
 }
 
 .swiper-pagination-bullet {
@@ -2808,4 +2857,191 @@ h4.stn:hover {
         width: 100% !important;
 
     }
+}
+
+/* ------------------------------------------ 20.0 Portfolio Controls ------------------------------------------ */
+.portfolio-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.portfolio-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.portfolio-filter-sub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.portfolio-filter .btn {
+    padding: 10px 15px;
+    border: none;
+    background: #acc7ff;
+    color: #21295c;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 145px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.portfolio-filter .btn-filter {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.portfolio-filter .btn-filter-blog {
+    width: 175px;
+    height: 40px;
+    font-size: 16px;
+}
+
+
+.portfolio-filter .btn.active,
+.portfolio-filter .btn:hover {
+    background: #6d99c0;
+    color: #fff;
+    border-radius: 25px;
+}
+
+.portfolio-sort {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.portfolio-sort label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* ------------------------------------------ 21.0 Filter/Jumplist Controls ------------------------------------------ */
+.portfolio-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.portfolio-filter {
+    display: flex;
+    gap: 10px;
+}
+
+.collapsible-header {
+    font-size: 16px;
+    margin-top: 3em;
+    background-color: #acc7ff;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 25px;
+    transition: all 0.5s ease;
+}
+
+.collapsible-header i {
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
+.collapsible-header:hover {
+    background-color: #21295c;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 25px;
+    transition: all 0.5s ease;
+}
+
+.collapsible-header:hover i {
+    color: #fff !important;
+}
+
+.nav-chev {
+    color: #21295c;
+}
+
+.collapsible-header[aria-expanded="true"] i {
+    transform: rotate(180deg);
+    color: #21295c;
+}
+
+.collapsible-header[aria-expanded="false"] i {
+    transform: rotate(0deg);
+    color: #21295c;
+}
+
+#portfolioFilter {
+    transition: height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+#portfolioFilter.collapsing {
+    height: 0;
+    opacity: 0;
+}
+
+#portfolioFilter.collapse.show {
+    height: auto;
+    opacity: 1;
+}
+
+.details_catagory_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.single_catagory {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 200px;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.single_catagory.text-center .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 46px;
+    line-height: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 20px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #7b7c64;
+    color: #fff;
+    border-radius: 60px;
+    transition-duration: 500ms;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.single_catagory.text-center .btn:hover {
+    background: #6d99c0;
+    color: #fff;
+    box-shadow: none;
 }
