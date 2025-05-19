@@ -103,7 +103,7 @@
             </div>
         </div>
 
-                <!-- Delays Overview (> 10 mins) -->
+        <!-- Delays Overview (> 10 mins) -->
         <div class="row row-do">
             <div class="chart col-xl-12 col-lg-12 wow fadeInUp" data-wow-delay="300ms">
                 <div class="card card-do h-100 py-2">
@@ -116,21 +116,15 @@
                     <!-- Card Body -->
                     <div class="card-body card-body-do">
 
-                        <!-- 90 days (desktop/tablet) -->
-                        <div class="uptime-bars uptime-bars-90 d-flex align-items-end"></div>
+                        <!-- Uptime bars included from external file -->
+                        <div w3-include-html="uptime-bars.html"></div>
 
-                        <!-- 30 days (mobile) -->
-                        <div class="uptime-bars uptime-bars-30 d-flex align-items-end"></div>
-                        <div class="d-flex justify-content-between mt-2" style="font-size:0.9em;">
-                            <span class="text-muted days-label" id="uptime-days-label">90 days ago</span>
-                            <span class="text-muted" data-date="2025-05-18" id="data-date"></span>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-                <!-- Recent Incidents -->
+        <!-- Recent Incidents -->
         <div class="row row-ri">
             <div class="slide-container swiper">
                 <div class="slide-content">
@@ -491,10 +485,13 @@
 
     <script src="js/preloader.js"></script>
 
-    <script src="js/uptime-tooltip.js"></script>
+    <!-- <script src="js/uptime-tooltip.js"></script>
 
-    <script src="js/uptime-bars.js"></script>
+    <script src="js/uptime-bars.js"></script> -->
 
+    <script>
+        w3IncludeHTML();
+    </script>
 
 
 </body>

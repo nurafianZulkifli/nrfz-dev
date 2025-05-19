@@ -3090,12 +3090,12 @@ h4.stn:hover {
     cursor: pointer;
 }
 
-.uptime-bar.up {
+.uptime-bars .uptime-bar.up {
     background: #acc7ff;
     height: 40px;
 }
 
-.uptime-bar.down {
+.uptime-bars .uptime-bar.down {
     background: #f44336;
     height: 40px;
 }
