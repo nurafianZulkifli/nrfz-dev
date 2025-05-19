@@ -3076,13 +3076,18 @@ h4.stn:hover {
 }
 
 .uptime-bar {
-    flex: 0 0 auto;
-    min-width: 6px;
-    max-width: 12px;
-    height: 40px;
-    border-radius: 6px;
-    background: #e3e8fd;
-    transition: background 0.2s, height 0.2s;
+    /* Remove display: inline-block and width */
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    height: 32px;
+    margin: 0 1px;
+    border-radius: 2px;
+    background: #4caf50; /* default up color */
+    transition: background 0.2s;
+    vertical-align: bottom;
+    position: relative;
+    cursor: pointer;
 }
 
 .uptime-bar.up {
@@ -3101,25 +3106,9 @@ h4.stn:hover {
     cursor: pointer;
 }
 
-.uptime-bar .uptime-tooltip {
-    position: absolute;
-    left: 50%;
-    bottom: 130%;
-    transform: translateX(-50%);
-    background: #21295c;
-    color: #fff;
-    padding: 1px 4px;
-    border-radius: 6px;
-    white-space: nowrap;
-    font-size: 0.85em;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    max-width: 200px;
-    text-align: center;
-    word-break: break-word;
+#lo {
+    margin-top: 3em;
+    margin-bottom: 23em;
 }
 
 /* Show tooltip on hover/focus */

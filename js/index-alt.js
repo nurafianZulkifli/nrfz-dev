@@ -5,7 +5,6 @@ if (localStorage.getItem('dark-mode') === 'enabled') {
     document.body.classList.add('dark-mode');
     updateThemeIcon('dark');
     updateHrefForDarkMode();
-    updateChartOptions(doverviewsm24, true);
 } else {
     updateThemeIcon('light');
 }
@@ -55,7 +54,6 @@ function updateHrefForDarkMode() {
 
 
     const isDarkMode = document.body.classList.contains('dark-mode');
-    updateChartOptions(doverviewsm24, isDarkMode);
 
     if (isDarkMode) {
         // coverSect.style.backgroundImage = "url('./img/cover-dark.png')";

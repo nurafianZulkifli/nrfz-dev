@@ -537,3 +537,9 @@ body.dark-mode .uptime-bar.up {
 body.dark-mode .text-muted {
     color: #e4efff !important;
 }
+
+body.dark-mode #lo {
+    margin-top: 3em;
+    margin-bottom: 23em;
+    background-color: #111318;
+}
