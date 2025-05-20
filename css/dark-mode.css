@@ -362,7 +362,7 @@ body.dark-mode header {
     align-items: center;
     z-index: 5;
     background: #0c0c0cbb;
-    box-shadow: 0 4px 30px #0000001a;
+    box-shadow: 0 4px 30px #070707e8;
     backdrop-filter: blur(5px);
     transition: all 0.5s ease;
 }
@@ -455,7 +455,7 @@ body.dark-mode .section-padding-80-0 {
 }
 
 body.dark-mode .wbnrfz-summ {
-    background-color: #1e1e1e;
+    background-color: #161616;
     transition: all 0.5s ease;
 }
 
@@ -542,4 +542,34 @@ body.dark-mode #lo {
     margin-top: 3em;
     margin-bottom: 23em;
     background-color: #111318;
+}
+
+
+
+body.dark-mode .wbnrfz_details_blog {
+    background: #0c0c0cc7;
+    box-shadow: 0 4px 30px #0000001a;
+    backdrop-filter: blur(10px);
+    margin-top: 1em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
+}
+
+body.dark-mode .wbnrfz-summ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000c0;
+    /* backdrop-filter: blur(5px); */
+    z-index: 1;
+}
+
+body.dark-mode .breadcrumb-item+.breadcrumb-item::before {
+    content: '\f105';
+    color: #fff;
+    font-family: "FontAwesome";
 }
