@@ -21,7 +21,7 @@ body.dark-mode #preloader-text {
     margin-top: 20px;
     font-size: 16px;
     color: #ededf4;
-  }
+}
 
 /* ---- Button */
 .wbnrfz_btn_theme {
@@ -314,7 +314,7 @@ body.dark-mode .card-header-ri {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
     border-bottom: 0;
-    background-color: #1f2020;
+    background-color: #5470a6;
     border-radius: calc(25px - 1px) calc(25px - 1px) 0 0;
     font-size: 15px;
     color: #e4efff;
@@ -330,7 +330,7 @@ body.dark-mode .card-ri {
     background-color: #242526;
     padding: 0rem;
     border-radius: 25px;
-    
+
 }
 
 body.dark-mode [data-title] {
@@ -346,6 +346,47 @@ body.dark-mode .alert-info {
 
 body.dark-mode .alert-dismissible .btn-close {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
+}
+
+body.dark-mode .pw-btn.btn-2 {
+    background-color: #5470a6;
+    color: #fff;
+
+}
+
+body.dark-mode .pw-btn.btn-2:hover {
+    background-color: #21295c;
+    color: #fff;
+}
+
+body.dark-mode .swiper-button-next {
+    right: 0;
+    background-color: #5470a6;
+    border-radius: 50%;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    bottom: 54px;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+body.dark-mode .swiper-button-prev {
+    left: 0;
+    background-color: #5470a6;
+    border-radius: 50%;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    bottom: 54px;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+body.dark-mode .swiper-button-next:hover,
+body.dark-mode .swiper-button-prev:hover {
+    background-color: #21295c;
+    color: #fff;
 }
 
 /* ------------------------------------------ */
@@ -573,3 +614,32 @@ body.dark-mode .breadcrumb-item+.breadcrumb-item::before {
     color: #fff;
     font-family: "FontAwesome";
 }
+
+
+
+/*  */
+body.dark-mode .card-in {
+    background-color: #242526;
+    padding: 0rem;
+    border-radius: 25px;
+    margin-top: 2em;
+}
+
+body.dark-mode .card-in .card-header {
+    background-color: #5470a6;
+    color: #fff;
+}
+
+body.dark-mode .nav-tabs .nav-link {
+    color: #fff !important;
+    border: none;
+    border-radius: 20px !important;
+}
+
+body.dark-mode .nav-link.active {
+    color: #000 !important;
+} 
+
+body.dark-mode .nav-link.active:hover {
+    color: #fff !important;
+} 
