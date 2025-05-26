@@ -498,12 +498,23 @@ section.follow-area.clearfix {
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     z-index: 12345111212;
+    animation: pulse-animation 2s infinite;
 }
 
 #scrollUp:focus,
 #scrollUp:hover {
     background-color: #21295c;
     color: #ffffff;
+}
+
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+    }
 }
 
 /* ------------------------------------------ */
@@ -1004,17 +1015,16 @@ header {
 }
 
 .about-me-stations {
-    -webkit-transition-duration: 800ms;
-    -o-transition-duration: 800ms;
     transition-duration: 800ms;
-    background-color: #f5f6f2;
+    background-color: #ededf4;
     padding: 35px 26px 13px;
-    border-radius: 10px;
+    border-radius: 25px;
     position: relative;
     z-index: 1;
     margin-top: 50px;
     margin-left: 1em;
     margin-right: 1em;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .wbnrfz-summ {
@@ -1088,7 +1098,7 @@ header {
 
 .about-me-summ {
     background-color: #e9eae5;
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 0px;
 }
 
@@ -1902,56 +1912,56 @@ canvas#delays-overview-sb-23 {
     background-color: #ff9e97;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-ewl {
     background-color: #afe9ca;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-ccl {
     background-color: #fdd79b;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-lrt {
     background-color: #e7e7e7;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-tel {
     background-color: #e8ccb0;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-dtl {
     background-color: #b0cce8;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-nel {
     background-color: #dbb0e8;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-do {
     background-color: #ededf4;
     border-radius: 25px;
     transition: all 0.5s ease;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 #ops-smrt {
@@ -2379,33 +2389,33 @@ h4.stn:hover {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 18.0 Lines Indiv Page ------------------------------------------ */
-.wbnrfz_details .details_catagory_wrap {
+#portfolioFilter .details_catagory_wrap {
     display: flex;
     justify-content: space-between;
     max-width: 1400px;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory .social_links a {
+#portfolioFilter .details_catagory_wrap .single_catagory .social_links a {
     font-size: 16px;
     color: #000;
     margin-right: 10px;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory .social_links a:hover {
+#portfolioFilter .details_catagory_wrap .single_catagory .social_links a:hover {
     color: #80a8cc;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory {
+#portfolioFilter .details_catagory_wrap .single_catagory {
     margin-bottom: 30px;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory h4 {
+#portfolioFilter .details_catagory_wrap .single_catagory h4 {
     font-size: 16px;
     color: #000;
     font-weight: 400;
 }
 
-.wbnrfz_details .details_catagory_wrap .single_catagory span {
+#portfolioFilter .details_catagory_wrap .single_catagory span {
     font-size: 12px;
     color: #828793;
     font-weight: 400;
@@ -2415,16 +2425,16 @@ h4.stn:hover {
     cursor: default;
 }
 
-.wbnrfz_details .banner {
+#portfolioFilter .banner {
     margin-bottom: 30px;
 }
 
-.wbnrfz_details .details_info {
+#portfolioFilter .details_info {
     margin-bottom: 20px;
     text-align: justify;
 }
 
-.wbnrfz_details h1 {
+#portfolioFilter h1 {
     font-size: clamp(34px, 8.5vw, 40px) !important;
     margin-bottom: 50px;
     font-weight: bold;
@@ -2518,7 +2528,6 @@ h4.stn:hover {
     background: #ffffffe0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    margin-top: 4.8em;
     padding-top: 3em;
     padding-bottom: 2em;
 }
@@ -2527,7 +2536,7 @@ h4.stn:hover {
     background: #ffffffe0;
     box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(10px);
-    margin-top: 1em;
+    margin-top: 0em;
     padding-top: 3em;
     padding-bottom: 3em;
     /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
@@ -2660,9 +2669,6 @@ h4.stn:hover {
     border-radius: 25px;
     margin-bottom: 2em !important;
     width: 30.5rem !important;
-}
-
-.card-ri {
     min-width: 320px;
     max-width: 520px;
     width: 100%;
@@ -2673,7 +2679,7 @@ h4.stn:hover {
     flex-direction: column;
     justify-content: stretch;
     box-sizing: border-box;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15)
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
 .card-text-ri {
@@ -3123,6 +3129,7 @@ h4.stn:hover {
     padding: 0rem;
     border-radius: 25px;
     margin-top: 2em;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);;
 }
 
 .card-in .card-header {
@@ -3138,9 +3145,8 @@ h4.stn:hover {
 
 .nav-link.active {
     color: #000 !important;
-} 
+}
 
 .nav-link.active:hover {
     color: #fff !important;
-} 
-
+}
