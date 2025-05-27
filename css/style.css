@@ -1238,7 +1238,7 @@ header {
 }
 
 li.breadcrumb-item.active a {
-    color: #80a8cc !important;
+    color: #5b77af !important;
 }
 
 .breadcrumb-content {
@@ -1475,6 +1475,8 @@ img.profile-pic {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
 }
 
 .py-2 {
@@ -2918,6 +2920,10 @@ h4.stn:hover {
     box-sizing: border-box;
 }
 
+.portfolio-filter .btn.active {
+    background-color: #debcdf;
+}
+
 .portfolio-filter .btn-filter {
     width: 120px;
     height: 40px;
@@ -2930,10 +2936,8 @@ h4.stn:hover {
     font-size: 16px;
 }
 
-
-.portfolio-filter .btn.active,
 .portfolio-filter .btn:hover {
-    background: #6d99c0;
+    background: #21295c;
     color: #fff;
     border-radius: 25px;
 }
@@ -3129,7 +3133,8 @@ h4.stn:hover {
     padding: 0rem;
     border-radius: 25px;
     margin-top: 2em;
-    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
+    ;
 }
 
 .card-in .card-header {

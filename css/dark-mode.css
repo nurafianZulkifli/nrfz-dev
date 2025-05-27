@@ -156,6 +156,12 @@ body.dark-mode #hero {
     transition: all 0.5s ease;
 }
 
+body.dark-mode .about-me-summ {
+    background-color: #111318;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
 body.dark-mode #hero:before {
     content: "";
     background: #000000c6;
@@ -258,6 +264,12 @@ body.dark-mode .accordion-button {
     border-radius: 25px;
 }
 
+body.dark-mode .accordion-button {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
 body.dark-mode .accordion-body,
 body.dark-mode .accordion-item {
     background-color: #242526;
@@ -280,8 +292,8 @@ body.dark-mode .acc-pi {
 }
 
 body.dark-mode .accordion-item:first-of-type {
-    border-bottom-right-radius: var(--bs-accordion-border-radius);
-    border-bottom-left-radius: var(--bs-accordion-border-radius);
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     border-color: #000;
 }
 
@@ -622,7 +634,7 @@ body.dark-mode .wbnrfz_details_blog {
     backdrop-filter: blur(10px);
     margin-top: 0em;
     padding-top: 3em;
-    padding-bottom: 3em;
+    padding-bottom: 1em;
     /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }
 

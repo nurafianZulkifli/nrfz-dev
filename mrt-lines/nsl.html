@@ -516,6 +516,22 @@
         img.src = '../img/networks/nsl-diag.png';
       }
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var collapsible = document.getElementById('portfolioFilter');
+      var header = document.querySelector('.collapsible-header');
+
+      collapsible.addEventListener('show.bs.collapse', function () {
+        document.body.classList.add('noscroll');
+        header.style.zIndex = 1051;
+        header.style.position = 'relative';
+      });
+      collapsible.addEventListener('hide.bs.collapse', function () {
+        document.body.classList.remove('noscroll');
+        header.style.zIndex = '';
+        header.style.position = '';
+      });
+    });
   </script>
 
   <script src="../js/jquery.min.js"></script>
