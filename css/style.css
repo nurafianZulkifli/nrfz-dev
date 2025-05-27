@@ -527,7 +527,7 @@ section.follow-area.clearfix {
 .pw-btn {
     position: relative;
     z-index: 1;
-    min-width: 160px;
+    min-width: 200px;
     height: 46px;
     line-height: 42px;
     font-size: 14px;
@@ -1472,6 +1472,12 @@ img.profile-pic {
 }
 
 .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.card-body-stats {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
@@ -2540,7 +2546,7 @@ h4.stn:hover {
     backdrop-filter: blur(10px);
     margin-top: 0em;
     padding-top: 3em;
-    padding-bottom: 3em;
+    padding-bottom: 2em;
     /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }
 
@@ -2906,6 +2912,24 @@ h4.stn:hover {
     padding: 10px 15px;
     border: none;
     background: #acc7ff;
+    color: #21295c;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 145px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.portfolio-filter .btn.tab {
+    padding: 10px 15px;
+    border: none;
+    background: none;
     color: #21295c;
     border-radius: 25px;
     cursor: pointer;
