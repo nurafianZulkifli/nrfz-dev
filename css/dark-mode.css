@@ -150,7 +150,7 @@ body.dark-mode .breakpoint-on .classy-navbar .classy-menu {
 body.dark-mode #hero {
     width: 100%;
     height: 100vh;
-    background: url("../img/bg-img/hero.png") top right no-repeat;
+    background: url("../img/bg-img/og_img.png") top right no-repeat;
     background-size: cover;
     position: relative;
     transition: all 0.5s ease;
@@ -165,7 +165,7 @@ body.dark-mode .about-me-summ {
 body.dark-mode #hero:before {
     content: "";
     background: #000000c6;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     position: absolute;
     bottom: 0;
     top: 0;
