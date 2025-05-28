@@ -14,7 +14,7 @@
 
   <link rel="icon" href="../img/core-img/favicon.png">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -26,100 +26,92 @@
 
 <body>
 
+  <!-- Preloader Section -->
   <div id="preloader">
     <div class="loader"></div>
+    <p id="preloader-text">Just a moment...</p>
   </div>
 
 
-  <header class="header-area">
-    <div class="main-header-area">
-      <div class="classy-nav-container breakpoint-off">
-        <div class="container container-xxl">
+  <header>
+    <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
 
-          <nav class="classy-navbar justify-content-between" id="pwNav">
+    <input type="checkbox" id="check" />
+    <label for="check" class="icons">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+      <i class="fa-solid fa-xmark" id="close-icon"></i>
+    </label>
 
-            <a class="nav-brand img-logo" href="../index.html"><img src="../img/core-img/logo.png" alt></a>
-
-            <div class="classy-navbar-toggler">
-              <span class="navbarToggler"><span></span><span></span><span></span></span>
-            </div>
-
-            <div class="classy-menu">
-
-              <div class="classycloseIcon">
-                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-              </div>
-              <div class="classynav">
-                <ul id="nav">
-                  <li><a href="../statistics/statistics.html">Statistics</a></li>
-                  <li><a href="../incident-history/incident-history.html">Incident History</a></li>
-                  <li class="active"><a href="../our-networks.html">Networks</a></li>
-                  <li><button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!"><i
-                        class="fa-solid fa-moon"></i></button>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
+    <nav class="navbar navbar-mobile">
+      <a href="../index.html" class="nav-item">Home</a>
+      <a href="../statistics/statistics.html" class="nav-item">Statistics</a>
+      <a href="../incident-history/incident-history.html" class="nav-item">Incident History</a>
+      <a href="../our-networks.html" class="nav-item active">Networks</a>
+      <a href="#" class="nav-item">
+        <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
+          <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
+        </button>
+      </a>
+    </nav>
   </header>
 
+  <!-- ============================================= Hero Section ============================================= -->
+  <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-about"
+    style="background-image: url(../img/networks/skpgA.png); height: 100vh;">
+    <div class="wbnrfz_details_blog">
+      <div class="container">
+        <div class="portfolio-controls d-flex justify-content-between align-items-center">
+          <!-- Details Buttons -->
+          <div class="portfolio-filter mt-3">
+            <div class="col-lg-12">
+              <div class="main-title">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../our-networks.html">
+                        Networks</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#" style="color: #9648a0; cursor: default;">
+                        SBS Transit
+                      </a>
+                    </li>
+                  </ol>
+                </nav>
+                <h1 class="brc">Punggol LRT</h1>
+              </div>
+            </div>
+          </div>
 
-  <section class="breadcrumb-area-lines bg-img bg-overlay" style="background-image: url(../img/networks/skpgA.png)">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-12">
-          <div class="breadcrumb-content text-center">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="../index.html"> SBS Transit</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="../our-networks.html">Networks</a>
-                </li>
-              </ol>
-            </nav>
-            <h2 class="page-title">Punggol LRT</h2>
+
+          <!-- Collapsible Header -->
+          <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+            aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;" title="More Details">
+            <i class="fa-solid fa-chevron-down nav-chev"></i>
+          </div>
+        </div>
+        <!-- Collapsible Content -->
+        <div id="portfolioFilter" class="collapse">
+          <div class="details_catagory_wrap">
+            <div class="col-sm-3 single_catagory ">
+              <span>Opened</span>
+              <h4>29 January 2005<br>(All stations)</h4>
+            </div>
+            <div class="col-sm-3 single_catagory">
+              <span>Length of Line</span>
+              <h4>10.7 km <br>(with 15 stations)</h4>
+            </div>
+
+            <div class="col-sm-3 single_catagory">
+              <span>Operated By</span>
+              <img class="logo-operator" src="../img/core-img/sbstl.png" id="ops-sbst" alt="sbst" width="170px">
+            </div>
+
           </div>
         </div>
       </div>
     </div>
+    <div style="background-color: #758374; width: 100%; height: 10px;"></div>
   </section>
 
-
-  <section class="wbnrfz-summ clearfix">
-    <div class="wbnrfz_details wow fadeInUp" data-wow-delay="100ms">
-      <div class="container container-summary">
-        <div class="col-lg-12">
-          <div class="main-title">
-            <span style="color: #9648a0; cursor: default;">SBS Transit</span>
-            <h1 style="cursor: default;">
-              Punggol LRT</h1>
-          </div>
-        </div>
-
-        <div class="details_catagory_wrap">
-          <div class="col-sm-3 single_catagory ">
-            <span>Opened</span>
-            <h4>29 January 2005<br>(All stations)</h4>
-          </div>
-          <div class="col-sm-3 single_catagory">
-            <span>Length of Line</span>
-            <h4>10.7 km <br>(with 15 stations)</h4>
-          </div>
-
-          <div class="col-sm-3 single_catagory">
-            <span>Operated By</span>
-            <img class="logo-operator" src="../img/core-img/sbstl.png" id="ops-sbst" alt="sbst" width="170px">
-          </div>
-
-        </div>
-      </div>
-      <div style="background-color: #758374; width: 100%; height: 20px;"></div>
-    </div>
-  </section>
 
   <section class="about-me-summ section-padding-80-0 clearfix">
     <div class="wbnrfz_details wow fadeInUp" data-wow-delay="300ms">
