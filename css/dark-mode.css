@@ -78,6 +78,13 @@ body.dark-mode p {
     color: #ededf4;
 }
 
+body.dark-mode .read-aloud {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ededf4;
+}
+
 body.dark-mode .mb-0,
 body.dark-mode .mb-0 a {
     color: #ededf4;
@@ -633,7 +640,7 @@ body.dark-mode .wbnrfz_details_blog {
     box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(10px);
     margin-top: 1em;
-    padding-top: 3em;
+    padding-top: 1em;
     padding-bottom: 2em;
     /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }
@@ -707,7 +714,7 @@ body.dark-mode .portfolio-filter .btn.tab {
 body.dark-mode .portfolio-filter .btn.tab:hover {
     padding: 10px 15px;
     border: none;
-    background: #21295c ;
+    background: #21295c;
     color: #fff;
     border-radius: 25px;
     cursor: pointer;

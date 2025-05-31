@@ -82,7 +82,7 @@ li {
     list-style: none;
 }
 
-p {
+p, .read-aloud {
     line-height: 1.9;
     color: #636363;
     font-size: 15px;
@@ -2545,7 +2545,7 @@ h4.stn:hover {
     box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(10px);
     margin-top: 1em;
-    padding-top: 3em;
+    padding-top: 1em;
     padding-bottom: 2em;
     /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }

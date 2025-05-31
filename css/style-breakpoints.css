@@ -220,6 +220,18 @@
         position: fixed;
         width: 100vw;
     }
+
+    .nav-tabs {
+        justify-content: center !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .nav-tabs .nav-item-ic {
+        float: none;
+        display: inline-block;
+    }
 }
 
 /* ---- */

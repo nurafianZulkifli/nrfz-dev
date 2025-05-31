@@ -70,8 +70,8 @@
                     <li class="breadcrumb-item"><a href="../our-networks.html">
                         Networks</a>
                     </li>
-                    <li class="breadcrumb-item" onclick="playAudio()"><a href="#" style="color: #ea1c2d; cursor: pointer;"
-                      title="Click me to hear one of the EWL Chimes!" >
+                    <li class="breadcrumb-item" onclick="playAudio()"><a href="#"
+                        style="color: #ea1c2d; cursor: pointer;" title="Click me to hear one of the EWL Chimes!">
                         SMRT Trains
                       </a>
                     </li>
@@ -150,6 +150,12 @@
                       rail
                       interchanges/terminal stations on the EW and NS Lines.<br><br> (Source: <a
                         href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/east_west_line.html">LTA</a>)
+                      &nbsp;
+
+                      <button type="button" class="read-aloud" onclick="readAloud(this.parentElement)"
+                        title="Read aloud">
+                        <i class="fa-solid fa-volume-up"></i></button>
+
                     </p>
                   </div>
                 </div>
@@ -610,6 +616,18 @@
       } else {
         link.href = '../img/networks/ewl-diag.png';
         img.src = '../img/networks/ewl-diag.png';
+      }
+    }
+
+    function readAloud(element) {
+      const text = element.innerText || element.textContent;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop any ongoing speech
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-SG';
+        window.speechSynthesis.speak(utter);
+      } else {
+        alert('Sorry, your browser does not support speech synthesis.');
       }
     }
   </script>
