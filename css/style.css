@@ -2945,7 +2945,8 @@ h4.stn:hover {
 }
 
 .portfolio-filter .btn.active {
-    background-color: #debcdf;
+    background-color: #debcdf !important;
+    color: #111318 !important;
 }
 
 .portfolio-filter .btn-filter {
@@ -3137,6 +3138,7 @@ h4.stn:hover {
     text-decoration: none;
     margin-left: 0.5rem;
     transition: all 0.5s ease;
+    margin-top: 0.5rem;
 }
 
 .nav-item.active {

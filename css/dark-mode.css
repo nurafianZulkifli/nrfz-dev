@@ -675,6 +675,7 @@ body.dark-mode .nav-tabs .nav-link {
     color: #fff !important;
     border: none;
     border-radius: 20px !important;
+    background-color: #5470a6;
 }
 
 body.dark-mode .nav-link.active {
@@ -688,7 +689,7 @@ body.dark-mode .nav-link.active:hover {
 body.dark-mode .portfolio-filter .btn.tab {
     padding: 10px 15px;
     border: none;
-    background: none;
+    background-color: #5470a6;
     color: #fff;
     border-radius: 25px;
     cursor: pointer;
