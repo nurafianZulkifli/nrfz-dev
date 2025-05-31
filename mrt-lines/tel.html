@@ -140,7 +140,8 @@
                       (CCL), Downtown Line, North East Line (NEL) and Bukit Panjang LRT. <br><br> (Source: <a
                         href="https://www.lta.gov.sg/content/ltagov/en/upcoming_projects/rail_expansion/thomson_east_coast_line.html">LTA</a>)&nbsp;
 
-                      <button type="button" class="read-aloud" onclick="readAloud(this.parentElement)" title="Read aloud">
+                      <button type="button" class="read-aloud" onclick="readAloud(this.parentElement)"
+                        title="Read aloud">
                         <i class="fa-solid fa-volume-up"></i></button>
 
                     </p>
@@ -514,7 +515,7 @@
       }
     }
 
-        function readAloud(element) {
+    function readAloud(element) {
       const text = element.innerText || element.textContent;
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel(); // Stop any ongoing speech
@@ -525,6 +526,12 @@
         alert('Sorry, your browser does not support speech synthesis.');
       }
     }
+
+    window.addEventListener('beforeunload', function () {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    });
   </script>
 
   <script src="../js/jquery.min.js"></script>

@@ -432,6 +432,10 @@ body.dark-mode .swiper-button-prev:hover {
     color: #fff;
 }
 
+body.dark-mode div.line {
+    color: #fff;
+}
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 2.0 Statistics/Incident History Page ------------------------------------------ */

@@ -539,6 +539,12 @@
         alert('Sorry, your browser does not support speech synthesis.');
       }
     }
+
+    window.addEventListener('beforeunload', function () {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    });
   </script>
 
   <script src="../js/jquery.min.js"></script>
