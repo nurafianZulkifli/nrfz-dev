@@ -2933,7 +2933,7 @@ div.line {
 .portfolio-filter .btn.tab {
     padding: 10px 15px;
     border: none;
-    background: none;
+    background-color: #acc7ff;
     color: #21295c;
     border-radius: 25px;
     cursor: pointer;
@@ -3176,6 +3176,7 @@ div.line {
     color: #000 !important;
     border: none;
     border-radius: 20px !important;
+    background-color: #acc7ff;
 }
 
 .nav-link.active {
