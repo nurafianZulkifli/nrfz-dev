@@ -632,7 +632,7 @@ body.dark-mode .wbnrfz_details_blog {
     background: #111318ab;
     box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(10px);
-    margin-top: 0em;
+    margin-top: 1em;
     padding-top: 3em;
     padding-bottom: 2em;
     /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
