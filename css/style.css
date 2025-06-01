@@ -21,6 +21,10 @@
     - 16.0 Sections (General)
     - 17.0 Lines Section
     - 18.0 Lines Indiv Page
+    - 19.0 Recent Incidents Swiper
+    - 20.0 Portfolio Controls
+    - 21.0 Filter/Jumplist Controls
+    - 22.0 Content Tabs/IH Cards
 
 > style-breakpoints
 --------------------------------------------- */
@@ -2562,93 +2566,7 @@ div.line {
 
 /* ------------------------------------------ */
 
-/* Timeline Horizontal Styles */
-.timeline-area {
-    width: 100%;
-    overflow-x: auto;
-    padding: 20px 0;
-}
-
-.timeline-horizontal {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 40px;
-}
-
-.timeline-horizontal li {
-    position: relative;
-    min-width: 220px;
-    text-align: left;
-}
-
-.timeline-date {
-    font-size: 0.95em;
-    margin-bottom: 8px;
-    color: #fff;
-    font-weight: bold;
-    background-color: #ba2b03;
-    border-radius: 25px;
-}
-
-.timeline-dot {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    margin-bottom: 8px;
-    background: #ccc;
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 2px #ccc;
-    display: inline-block;
-}
-
-.timeline-dot.smrt {
-    background: rgb(207, 61, 61);
-    box-shadow: 0 0 0 2px rgba(207, 61, 61, 0.2);
-}
-
-.timeline-dot.sbs {
-    background: rgb(130, 71, 148);
-    box-shadow: 0 0 0 2px rgba(130, 71, 148, 0.2);
-}
-
-.timeline-label {
-    font-size: 0.98em;
-    color: #333;
-    margin-top: 4px;
-    background: #f8f9fa;
-    border-radius: 6px;
-    padding: 8px 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-}
-
-.timeline-horizontal li:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 18px;
-    left: 50%;
-    width: 40px;
-    height: 3px;
-    background: #2f2f2f;
-    z-index: 0;
-    transform: translateX(8px);
-}
-
-@media (max-width: 600px) {
-    .timeline-horizontal {
-        gap: 16px;
-    }
-
-    .timeline-horizontal li {
-        min-width: 140px;
-    }
-}
-
-
-/* 19.0 */
+/* ------------------------------------------ 19.0 Recent Incidents Swiper ------------------------------------------ */
 .slide-container {
     width: 100%;
     padding: 20px 0;
@@ -3100,7 +3018,7 @@ div.line {
 }
 
 
-/*  */
+/* ------------------------------------------ 22.0 Content Tabs/IH Cards ------------------------------------------ */
 .nav-tabs {
     border-bottom: none !important;
     border-radius: 20px !important;
@@ -3157,7 +3075,6 @@ div.line {
     width: 100%;
 }
 
-/*  */
 .card-in {
     background-color: #ededf4;
     padding: 0rem;
