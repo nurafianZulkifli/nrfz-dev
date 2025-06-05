@@ -3116,3 +3116,51 @@ div.line {
 .nav-link.active:hover {
     color: #fff !important;
 }
+
+
+
+
+
+/* ------------------------------------------ */
+
+  .calendar-table {
+    border-radius: 25px;
+    overflow: hidden;
+  }
+
+.calendar-table td {
+    min-width: 40px;
+    min-height: 90px;
+    height: 90px;
+    vertical-align: top;
+    word-break: break-word;
+    background-color: #ededf4;
+}
+
+.calendar-table th {
+    min-width: 40px;
+    min-height: 60px;
+    height: 60px;
+    vertical-align: top;
+    word-break: break-word;
+    background-color: #acc7ff;
+}
+
+@media (max-width: 767.98px) {
+    .calendar-table {
+        font-size: 0.85rem;
+    }
+
+    .calendar-table td,
+    .calendar-table th {
+        min-width: 32px;
+        min-height: 40px;
+        height: 40px;
+        padding: 0.25rem;
+    }
+
+    .calendar-table .badge {
+        font-size: 0.7em;
+        padding: 0.3em 0.5em;
+    }
+}
