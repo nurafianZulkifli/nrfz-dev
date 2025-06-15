@@ -48,23 +48,23 @@ function updateThemeIcon(theme) {
 function updateHrefForDarkMode() {
     /* Banners */
     const coverSect = document.getElementById('cv-img');
-    const platSect = document.getElementById('plat-img');
-    const entSect = document.getElementById('ent-img');
-    const concSect = document.getElementById('conc-img');
+    const iuSect = document.getElementById('iu-img');
 
     /* Images */
-    const cclDiag_link = document.getElementById('ccl-diag');
-    const cclDiag_img = document.getElementById('ccl-diag-img');
+    const cs_link = document.getElementById('cs');
+    const cs_img = document.getElementById('cs-img');
 
-    const arrow_link = document.getElementById('arrow');
-    const arrow_img = document.getElementById('arrow-img');
+    const wfs_link = document.getElementById('wfs');
+    const wfs_img = document.getElementById('wfs-img');
 
-    const wfm_link = document.getElementById('wfm');
-    const wfm_img = document.getElementById('wfm-img');
+    const wfs2_link = document.getElementById('wfs2');
+    const wfs2_img = document.getElementById('wfs2-img');
 
-    const evo3_link = document.getElementById('evo3');
-    const evo3_img = document.getElementById('evo3-img');
+    const lcd1_link = document.getElementById('lcd1');
+    const lcd1_img = document.getElementById('lcd1-img');
 
+    const lcd2_link = document.getElementById('lcd2');
+    const lcd2_img = document.getElementById('lcd2-img');
 
     /* Videos */
 
@@ -74,48 +74,50 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-eicw-4-dark.png')";
-        platSect.style.backgroundImage = "url('./img/plat-dark.png')";
-        entSect.style.backgroundImage = "url('./img/ent-dark.png')";
-        concSect.style.backgroundImage = "url('./img/conc-dark.png')";
+        coverSect.style.backgroundImage = "url('./img/cover-3-dark.png')";
+        iuSect.style.backgroundImage = "url('./img/iu-dark.png')";
 
 
         /* Images */
-        cclDiag_link.href = './img/ccl-diag-dark.png';
-        cclDiag_img.src = './img/ccl-diag-dark.png';
+        cs_link.href = './img/cs-dark.png';
+        cs_img.src = './img/cs-dark.png';
 
-        arrow_link.href = './img/arrow-dark.png';
-        arrow_img.src = './img/arrow-dark.png';
+        wfs_link.href = './img/wfs-dark.png';
+        wfs_img.src = './img/wfs-dark.png';
 
-        wfm_link.href = './img/ccl6-7aD.png';
-        wfm_img.src = './img/ccl6-7aD.png';
+        wfs2_link.href = './img/wfs2-dark.png';
+        wfs2_img.src = './img/wfs2-dark.png';
 
-        evo3_link.href = './img/ccl6-overview-dark.png';
-        evo3_img.src = './img/ccl6-overview-dark.png';
+        lcd1_link.href = './img/lcd-dark.png';
+        lcd1_img.src = './img/lcd-dark.png';
+
+        lcd2_link.href = './img/lcd2-dark.png';
+        lcd2_img.src = './img/lcd2-dark.png';
 
         /* Videos */
 
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-eicw-4-light.png')";
-        platSect.style.backgroundImage = "url('./img/plat-light.png')";
-        entSect.style.backgroundImage = "url('./img/ent-light.png')";
-        concSect.style.backgroundImage = "url('./img/conc-light.png')";
+        coverSect.style.backgroundImage = "url('./img/cover-3-light.png')";
+        iuSect.style.backgroundImage = "url('./img/iu-light.png')";
 
 
         /* Images */
-        cclDiag_link.href = './img/ccl-diag-light.png';
-        cclDiag_img.src = './img/ccl-diag-light.png';
+        cs_link.href = './img/cs-light.png';
+        cs_img.src = './img/cs-light.png';
 
-        arrow_link.href = './img/arrow-light.png';
-        arrow_img.src = './img/arrow-light.png';
+        wfs_link.href = './img/wfs-light.png';
+        wfs_img.src = './img/wfs-light.png';
 
-        wfm_link.href = './img/ccl6-7aL.png';
-        wfm_img.src = './img/ccl6-7aL.png';
+        wfs2_link.href = './img/wfs2-light.png';
+        wfs2_img.src = './img/wfs2-light.png';
 
-        evo3_link.href = './img/ccl6-overview-light.png';
-        evo3_img.src = './img/ccl6-overview-light.png';
+        lcd1_link.href = './img/lcd-light.png';
+        lcd1_img.src = './img/lcd-light.png';
+
+        lcd2_link.href = './img/lcd2-light.png';
+        lcd2_img.src = './img/lcd2-light.png';
 
 
         /* Videos */
@@ -135,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// document.addEventListener('contextmenu', function(e) {
+// document.addEventListener('contextmenu', function (e) {
 //     if (e.target.tagName === 'IMG') {
 //         e.preventDefault();
 //     }

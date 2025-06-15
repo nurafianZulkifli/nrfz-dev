@@ -2556,7 +2556,10 @@ select:focus {
 #icon-assets,
 #brainstorm,
 #psrith,
-#cckint {
+#cckint,
+#br-diag,
+#bat,
+#tv {
     scroll-margin-top: 10vh;
 }
 
