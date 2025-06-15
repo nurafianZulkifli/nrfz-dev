@@ -48,7 +48,6 @@ function updateThemeIcon(theme) {
 function updateHrefForDarkMode() {
     /* Existing logic for updating banners, images, and videos */
     const coverSect = document.getElementById('cv-img');
-    const eiaSect = document.getElementById('eia-img');
 
     const tf_link = document.getElementById('tf');
     const tf_img = document.getElementById('tf-img');
@@ -112,8 +111,6 @@ function updateHrefForDarkMode() {
 
     } else {
         coverSect.style.backgroundImage = "url('./img/cover-light.png')";
-        ciSect.style.backgroundImage = "url('./img/c-i-light.png')";
-        eiaSect.style.backgroundImage = "url('./img/eia-light.png')";
 
         tf_link.href = './img/typeface-light.png';
         tf_img.src = './img/typeface-light.png';
