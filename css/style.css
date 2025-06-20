@@ -2019,6 +2019,12 @@ canvas#delays-overview-sb-23 {
     margin-top: 8px;
     font-size: 12px;
     color: #d42e12;
+    line-height: 17px;
+}
+
+.advisory a {
+    font-size: 12px;
+    color: #d42e12;
 }
 
 
