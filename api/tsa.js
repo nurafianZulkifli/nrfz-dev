@@ -13,7 +13,7 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com')
     alertDiv.style.cursor = 'default';
 
     if (firstAlert && firstAlert.Message && firstAlert.Message.trim() !== "") {
-        alertDiv.classList.add('alert-danger');
+        alertDiv.classList.add('alert-warning');
         alertDiv.innerHTML = '<i class="fa-solid fa-circle-info"></i>&nbsp; <b>' + firstAlert.Message + '</b>';
     } else {
         alertDiv.classList.add('alert-success');
