@@ -1971,7 +1971,8 @@ canvas#delays-overview-sb-23 {
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.062);
 }
 
-.card-lrt {
+.card-bplrt,
+.card-skpglrt {
     background-color: #e7e7e7;
     border-radius: 25px;
     transition: all 0.5s ease;

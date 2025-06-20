@@ -25,7 +25,7 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
                 'DTL': '.card-dtl .h5.font-weight-bold',
                 'TEL': '.card-tel .h5.font-weight-bold',
                 'BPLRT': '.card-bplrt .h5.font-weight-bold',
-                'SLRT': '.card-slrt .h5.font-weight-bold'
+                'SKPGLRT': '.card-skpglrt .h5.font-weight-bold'
             };
 
             // Check each line code in the message and update the card if found
@@ -48,7 +48,44 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
         if (rowLrd) {
             rowLrd.insertBefore(alertDiv, rowLrd.firstChild);
         }
+
+        // ---- Move the end time logic here ----
+        const lineEndTimes = {
+            'NSL': { hour: 0, minute: 17 },    // 12:17 AM
+            'EWL': { hour: 0, minute: 25 },    // 12:25 AM
+            'NEL': { hour: 23, minute: 25 },   // 11:25 PM
+            'CCL': { hour: 23, minute: 0 },    // 11:00 PM
+            'DTL': { hour: 23, minute: 35 },   // 11:35 PM
+            'TEL': { hour: 0, minute: 6 },     // 12:06 AM
+            'BPLRT': { hour: 23, minute: 30 }, // 11:30 PM
+            'SKPGLRT': { hour: 0, minute: 50 }    // 12:50 AM
+        };
+
+        const now = new Date();
+        Object.keys(lineEndTimes).forEach(line => {
+            const selector = `.card-${line.toLowerCase()} .h5.font-weight-bold`;
+            const elem = document.querySelector(selector);
+            if (elem && elem.textContent.trim() === 'Normal Service') {
+                const end = lineEndTimes[line];
+                // Calculate end time as today's Date object
+                const endTime = new Date(now);
+                endTime.setHours(end.hour, end.minute, 0, 0);
+
+                // If end time is before start of day (i.e., after midnight), add 1 day if now is before end time
+                if (end.hour < 12 && now.getHours() < end.hour) {
+                    endTime.setDate(endTime.getDate() - 1);
+                }
+
+                if (now >= endTime) {
+                    elem.textContent = 'Train Service Ended';
+                    elem.classList.remove('text-warning');
+                    elem.classList.add('text-muted');
+                }
+            }
+        });
+        // ---- End of moved logic ----
     })
     .catch(error => {
         console.error('Error fetching train service alerts:', error);
     });
+

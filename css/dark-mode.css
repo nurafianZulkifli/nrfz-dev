@@ -250,7 +250,8 @@ body.dark-mode .card-ccl {
     transition: all 0.5s ease;
 }
 
-body.dark-mode .card-lrt {
+body.dark-mode .card-bplrt,
+body.dark-mode .card-skpglrt {
     background-color: #313731;
     border-radius: 25px;
     transition: all 0.5s ease;
