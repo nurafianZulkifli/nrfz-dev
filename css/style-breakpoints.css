@@ -29,6 +29,7 @@
 --------------------------------------------- */
 
 /* ------------------------------------------ 1.0 Specific Breakpoints ------------------------------------------ */
+
 /* ---- 1.0.0 Max Width: 1200px */
 @media (max-width: 1399px) {
     h1.brc {
@@ -180,12 +181,6 @@
         margin-top: -2.2em;
     }
 
-    .portfolio-controls {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 20px;
-    }
-
     .portfolio-filter {
         order: 1;
     }
@@ -212,17 +207,30 @@
 
     .main-title {
         margin: 0 auto;
-        /* Center the element horizontally */
         padding: 0 -0.5rem;
-        /* Add padding to prevent text from touching edges */
         max-width: 100%;
-        /* Ensure it doesn't exceed the container width */
         box-sizing: border-box;
-        /* Include padding in width calculations */
         overflow-wrap: break-word;
-        /* Break long words to prevent overflow */
         word-wrap: break-word;
-        /* Ensure proper word wrapping */
+
+    }
+
+    body.noscroll {
+        overflow: hidden;
+        position: fixed;
+        width: 100vw;
+    }
+
+    .nav-tabs {
+        justify-content: center !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .nav-tabs .nav-item-ic {
+        float: none;
+        display: inline-block;
     }
 }
 
@@ -234,16 +242,24 @@
         max-width: 720px;
     }
 
+    .container-collapsible {
+        max-width: 720px;
+        max-height: 77vh;
+    }
+
     .section-heading h2 {
         font-size: 24px;
     }
 
     #scrollUp {
         right: 20px;
-        bottom: 50px;
+        bottom: 55px;
     }
 
-
+    h2.page-title {
+        font-size: 40px;
+        margin-bottom: 0.5em;
+    }
 
     header::after {
         position: absolute;
@@ -392,11 +408,12 @@
 
 
     .footer-content .copywrite-text p {
-        font-size: 16px;
+        font-size: 13px;
+        text-align: center;
     }
 
     .footer-content .copywrite-text p a {
-        font-size: 16px;
+        font-size: 13px;
     }
 
     .footer-content .footer-logo a img {
@@ -404,7 +421,7 @@
     }
 
     .footer-content .social-info a {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .single-software-item .instagram-hover-content a span {
@@ -466,6 +483,44 @@
         text-align: center;
     }
 
+    .portfolio-controls {
+        display: flex;
+        flex-direction: column-reverse;
+        /* gap: 20px; */
+    }
+
+    h1.brc {
+        text-align: center;
+        line-height: 1.2;
+        margin: 0 auto;
+        max-width: 100%;
+        font-size: 35px;
+    }
+
+    .info p {
+        margin-top: 4em;
+    }
+
+    .wbnrfz_details_blog {
+        background: #ffffffe0;
+        box-shadow: 0 4px 30px #0000001a;
+        backdrop-filter: blur(10px);
+        margin-top: 0em !important;
+        padding-top: 3em !important;
+        padding-bottom: 2em;
+        /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
+    }
+
+    body.dark-mode .wbnrfz_details_blog {
+        background: #111318ab;
+        box-shadow: 0 4px 30px #0000001a;
+        backdrop-filter: blur(10px);
+        margin-top: 0em !important;
+        padding-top: 3em !important;
+        padding-bottom: 2em;
+        /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
+    }
+
 }
 
 /* ---- */
@@ -485,6 +540,7 @@
         line-height: 1.2;
         margin: 0 auto;
         max-width: 100%;
+        font-size: 35px;
     }
 }
 
@@ -583,6 +639,7 @@
 
     .portfolio-filter {
         order: 1;
+        justify-content: center;
     }
 
     .portfolio-sort {
@@ -678,25 +735,6 @@
 
 /* 2.0.3 Min Width: 576px Max Width: 767px */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .classy-nav-container .classy-navbar .nav-brand {
-        max-width: 174px;
-        margin-left: -63px;
-    }
-
-    .classy-nav-container .classy-navbar .classynav ul li a {
-        font-size: 14px;
-        color: #252525;
-    }
-
-    .classy-nav-container .classy-navbar .classynav ul li a:hover,
-    .classy-nav-container .classy-navbar .classynav ul li a:focus {
-        color: #80a8cc;
-    }
-
-    .classynav ul li.active a::before {
-        display: none;
-    }
-
     .section-heading h2 {
         font-size: 24px;
     }
@@ -842,19 +880,26 @@
     .portfolio-controls {
         display: flex;
         flex-direction: column-reverse;
-        /* Stack children vertically */
         gap: 20px;
-        /* Add spacing between elements */
     }
 
     .portfolio-filter {
         order: 1;
-        /* Ensure it appears first */
+        flex-wrap: nowrap;
+        padding-left: 2em;
+        padding-right: 2em;
     }
 
     .portfolio-sort {
         order: 2;
         /* Ensure it appears below */
+    }
+
+    .row-do,
+    .row-ri,
+    .row-lrd {
+        padding-left: 3em;
+        padding-right: 3em;
     }
 }
 
@@ -863,8 +908,8 @@
 /* 2.0.4 Min Width: 320px Max Width: 575px */
 @media only screen and (min-width: 320px) and (max-width: 575px) {
     img.profile-pic {
-        width: 200px;
-        height: 200px;
+        width: 310px;
+        height: 115px;
     }
 
     .profile-det {
@@ -958,12 +1003,6 @@
         color: #fff;
     }
 
-    /* .wbnrfz_btn_theme,
-    body.dark-mode .wbnrfz_btn_theme {
-        margin-left: 15px !important;
-        margin-top: 15px !important;
-    } */
-
     body.dark-mode .wbnrfz_details .banner-eicw img {
         border-radius: 10px !important;
     }
@@ -976,6 +1015,26 @@
     .column-vid,
     body.dark-mode .column-vid {
         border-radius: 20px !important;
+    }
+
+    .row-do,
+    .row-ri {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    .row-lrd {
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-right: 1px;
+        margin-left: 1px;
+    }
+
+    .portfolio-filter {
+        order: 1;
+        flex-wrap: nowrap;
+        padding-left: 2em;
+        padding-right: 2em;
     }
 
 }
@@ -997,6 +1056,13 @@
 
     body.dark-mode .wbnrfz_details .banner-eicw img {
         border-radius: 15px !important;
+    }
+
+    .portfolio-filter {
+        order: 1;
+        flex-wrap: nowrap;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
     }
 }
 
