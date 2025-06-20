@@ -1,7 +1,7 @@
 
 
 // Example: Fetching Train Service Alerts using fetch (for Node.js or server-side)
-fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
+fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com')
     .then(response => response.json())
 .then(data => {
     const firstAlert = data.value && data.value[0];
