@@ -1441,6 +1441,12 @@ img.profile-pic {
     padding-top: 50px;
 }
 
+#ls {
+    background-color: #f9f9ffff;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
 #io {
     background-color: #f9f9ffff;
     padding-top: 00px;
