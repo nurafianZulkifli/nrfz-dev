@@ -67,23 +67,25 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
             const elem = document.querySelector(selector);
             if (elem && elem.textContent.trim() === 'Normal Service') {
                 const end = lineEndTimes[line];
-                // Calculate end time as today's Date object
-                const endTime = new Date(now);
+
+                // Build end time for today
+                let endTime = new Date(now);
                 endTime.setHours(end.hour, end.minute, 0, 0);
 
-                // If end time is before start of day (i.e., after midnight), add 1 day if now is before end time
-                if (end.hour < 12 && now.getHours() < end.hour) {
-                    endTime.setDate(endTime.getDate() - 1);
-                }
-
-                if (now >= endTime) {
+                // If the end time is before now, mark as ended
+                // Also, if the end time is before midnight (hour >= 12), and now is after midnight, mark as ended
+                if (
+                    now >= endTime ||
+                    (end.hour >= 12 && now.getHours() < 12 && (
+                        now.getTime() >= (new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0)).getTime()
+                    ))
+                ) {
                     elem.textContent = 'Train Service Ended';
                     elem.classList.remove('text-warning');
                     elem.classList.add('text-muted');
                 }
             }
         });
-        // ---- End of moved logic ----
     })
     .catch(error => {
         console.error('Error fetching train service alerts:', error);
