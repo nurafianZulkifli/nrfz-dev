@@ -14,10 +14,10 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
 
     if (firstAlert && firstAlert.Message && firstAlert.Message.trim() !== "") {
         alertDiv.classList.add('alert-warning');
-        alertDiv.innerHTML = '<i class="fa-solid fa-circle-info"></i>&nbsp; <b>' + firstAlert.Message + '</b>';
+        alertDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>&nbsp; <b>' + firstAlert.Message + '</b>';
     } else {
         alertDiv.classList.add('alert-success');
-        alertDiv.innerHTML = '<i class="fa-solid fa-circle-info"></i>&nbsp; <b>Train service is running normally.</b>';
+        alertDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>&nbsp; <b>Train service is running normally.</b>';
     }
 
     // Insert at the top of .row-lrd
