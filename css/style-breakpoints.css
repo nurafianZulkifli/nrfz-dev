@@ -578,6 +578,15 @@
 /* ---- */
 
 /* ------------------------------------------ 2.0 Width Breakpoints ------------------------------------------ */
+/* ---- 2.0.0 Min Width: 1200px Max Width: 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1400px) {
+    .row-lrd {
+        padding-left: 5em;
+        padding-right: 5em;
+        padding-bottom: 30px;
+    }
+}
+
 /* ---- 2.0.1 Min Width: 992px Max Width: 1199px */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     img.profile-pic {
@@ -728,6 +737,12 @@
         margin-top: 0em;
         order: 2;
         /* Ensure it appears below */
+    }
+
+    .row-lrd {
+        padding-left: 4em;
+        padding-right: 4em;
+        padding-bottom: 30px;
     }
 }
 

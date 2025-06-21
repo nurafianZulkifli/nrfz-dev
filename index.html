@@ -91,7 +91,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content text-center">
-                        <h2 class="page-title wow fadeInUp" data-wow-delay="300ms">Lines Status</h2>
+                        <h2 class="page-title wow fadeInUp" data-wow-delay="300ms">Lines Status (BETA)</h2>
                     </div>
                 </div>
             </div>
@@ -169,12 +169,14 @@
                                     <a href="mrt-lines/ccl.html">Circle Line</a>
                                 </div>
                                 <!-- Days -->
-                                <div class="h5 mb-0 font-weight-bold">Normal Service</div>
+                                <div class="h5 mb-0 font-weight-bold"> Normal Service</div>
 
                                 <!-- Advisory -->
                                 <div class="h5 advisory mb-0 font-weight-bold">
-                                    <a href="https://www.lta.gov.sg/content/ltagov/en/newsroom/2025/5/news-releases/service-adjustments-on-the-circle-line-in-preparation-for-circle.html">
-                                        <i class="fa-solid fa-triangle-exclamation"></i>&nbsp; Changes to Last Train Timings</a></h5>
+                                    <a
+                                        href="https://www.lta.gov.sg/content/ltagov/en/newsroom/2025/5/news-releases/service-adjustments-on-the-circle-line-in-preparation-for-circle.html">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>&nbsp; Changes to Last Train
+                                        Timings</a></h5>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -264,6 +266,7 @@
                     </div>
                 </div>
             </div>
+
     </section>
 
 
@@ -278,210 +281,213 @@
             </div>
         </div>
 
-        <!-- Days Overview -->
-        <div class="row row-lrd">
-            <!-- NSL -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-nsl border-nsl h-100 py-2">
-                    <div class="card-body card-body-nsl">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-nsl text-uppercase mb-1">
-                                    <a href="mrt-lines/nsl.html">North-South Line</a>
+        <div class="collapse show" id="linesOverviewCollapse">
+            <!-- Days Overview -->
+            <div class="row row-lrd">
+                <!-- NSL -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-nsl border-nsl h-100 py-2">
+                        <div class="card-body card-body-nsl">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-nsl text-uppercase mb-1">
+                                        <a href="mrt-lines/nsl.html">North-South Line</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-06-13"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
+                                            data-last-delay="2025-06-13"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-06-13"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
-                                        data-last-delay="2025-06-13"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/NSLCap.png" alt="NSL" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/NSLCap.png" alt="NSL" width="55px">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- EWL -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-ewl border-ewl h-100 py-2">
-                    <div class="card-body card-body-ewl">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-ewl text-uppercase mb-1">
-                                    <a href="mrt-lines/ewl.html">East-West Line</a>
+                <!-- EWL -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-ewl border-ewl h-100 py-2">
+                        <div class="card-body card-body-ewl">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-ewl text-uppercase mb-1">
+                                        <a href="mrt-lines/ewl.html">East-West Line</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-04-23"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="ewl-last-delay"
+                                            data-last-delay="2025-04-23"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-04-23"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="ewl-last-delay"
-                                        data-last-delay="2025-04-23"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/EWLCap.png" alt="EWL" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/EWLCap.png" alt="EWL" width="55px">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- NEL -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-nel border-nel h-100 py-2">
-                    <div class="card-body card-body-nel">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-nel text-uppercase mb-1">
-                                    <a href="mrt-lines/nel.html">North East Line</a>
+                <!-- NEL -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-nel border-nel h-100 py-2">
+                        <div class="card-body card-body-nel">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-nel text-uppercase mb-1">
+                                        <a href="mrt-lines/nel.html">North East Line</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-02-10"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nel-last-delay"
+                                            data-last-delay="2025-02-10"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-02-10"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nel-last-delay"
-                                        data-last-delay="2025-02-10"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/NELCap.png" alt="NEL" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/NELCap.png" alt="NEL" width="55px">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- CCL -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-ccl border-ccl h-100 py-2">
-                    <div class="card-body card-body-ccl">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-ccl text-uppercase mb-1">
-                                    <a href="mrt-lines/ccl.html">Circle Line</a>
+                <!-- CCL -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-ccl border-ccl h-100 py-2">
+                        <div class="card-body card-body-ccl">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-ccl text-uppercase mb-1">
+                                        <a href="mrt-lines/ccl.html">Circle Line</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-05-20"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
+                                            data-last-delay="2025-05-20"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-05-20"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
-                                        data-last-delay="2025-05-20"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/CCLCap.png" alt="CCL" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/CCLCap.png" alt="CCL" width="55px">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- DTL -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-dtl border-dtl h-100 py-2">
-                    <div class="card-body card-body-dtl">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-dtl text-uppercase mb-1">
-                                    <a href="mrt-lines/dtl.html">Downtown Line</a>
+                <!-- DTL -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-dtl border-dtl h-100 py-2">
+                        <div class="card-body card-body-dtl">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-dtl text-uppercase mb-1">
+                                        <a href="mrt-lines/dtl.html">Downtown Line</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-12-01"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
+                                            data-last-delay="2024-12-01"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-12-01"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
-                                        data-last-delay="2024-12-01"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/DTLCap.png" alt="DTL" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/DTLCap.png" alt="DTL" width="55px">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- TEL -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-tel border-tel h-100 py-2">
-                    <div class="card-body card-body-tel">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-tel text-uppercase mb-1">
-                                    <a href="mrt-lines/tel.html">Thomson-East Coast Line</a>
+                <!-- TEL -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-tel border-tel h-100 py-2">
+                        <div class="card-body card-body-tel">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-tel text-uppercase mb-1">
+                                        <a href="mrt-lines/tel.html">Thomson-East Coast Line</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-03-12"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
+                                            data-last-delay="2025-03-12"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-03-12"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
-                                        data-last-delay="2025-03-12"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/TELCap.png" alt="TEL" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/TELCap.png" alt="TEL" width="55px">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- BPLRT -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-bplrt border-lrt h-100 py-2">
-                    <div class="card-body card-body-bplrt">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
-                                    <a href="mrt-lines/bp.html">Bukit Panjang LRT</a>
+                <!-- BPLRT -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-bplrt border-lrt h-100 py-2">
+                        <div class="card-body card-body-bplrt">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
+                                        <a href="mrt-lines/bp.html">Bukit Panjang LRT</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-10-22"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
+                                            data-last-delay="2024-10-22"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-10-22"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
-                                        data-last-delay="2024-10-22"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/BPCap.png" alt="BPLRT" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/BPCap.png" alt="BPLRT" width="55px">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- SKPGLRT -->
-            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                <div class="card card-skpglrt border-lrt h-100 py-2">
-                    <div class="card-body card-body-bplrt">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
-                                    <a href="mrt-lines/sk.html">Sengkang</a>-<a href="mrt-lines/pg.html">Punggol LRT</a>
+                <!-- SKPGLRT -->
+                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="card card-skpglrt border-lrt h-100 py-2">
+                        <div class="card-body card-body-bplrt">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
+                                        <a href="mrt-lines/sk.html">Sengkang</a>-<a href="mrt-lines/pg.html">Punggol
+                                            LRT</a>
+                                    </div>
+                                    <!-- Days -->
+                                    <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-06-09"></div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        since last reported delay</div>
+                                    <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
+                                            data-last-delay="2024-06-09"></span>
+                                    </div>
                                 </div>
-                                <!-- Days -->
-                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2024-06-09"></div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    since last reported delay</div>
-                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;<span id="nsl-last-delay"
-                                        data-last-delay="2024-06-09"></span>
+                                <div class="col-auto">
+                                    <img src="img/caplets/SKPGCap.png" alt="SKPGLRT" width="55px">
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <img src="img/caplets/SKPGCap.png" alt="SKPGLRT" width="55px">
                             </div>
                         </div>
                     </div>
@@ -489,9 +495,9 @@
             </div>
         </div>
 
-        <br>
-        <br>
+    </section>
 
+    <section id="ri" class="d-flex flex-column justify-content-center">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">

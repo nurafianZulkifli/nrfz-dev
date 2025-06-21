@@ -91,7 +91,13 @@ body.dark-mode .mb-0 a {
 }
 
 body.dark-mode hr {
-    border-color: #ededf4;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border: none !important;
+    border-top: 1px solid #999999 !important;
+    background: none !important;
+    height: 1px !important;
+    padding: 0 !important;
 }
 
 body.dark-mode .fa-square-x-twitter {
@@ -182,14 +188,22 @@ body.dark-mode #hero:before {
 
 body.dark-mode #lrd {
     background-color: #111318;
-    padding-top: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     transition: all 0.5s ease;
 }
 
 body.dark-mode #ls {
     background-color: #111318;
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    transition: all 0.5s ease;
+}
+
+body.dark-mode #ri {
+    background-color: #111318;
+    padding-top: 30px;
+    padding-bottom: 10px;
     transition: all 0.5s ease;
 }
 

@@ -422,6 +422,10 @@ section.follow-area.clearfix {
     padding-bottom: 2em;
 }
 
+.col-xl-3 {
+    padding-bottom: 2em;
+}
+
 .mb-4 {
     margin-left: 1em;
     margin-right: 1em;
@@ -1265,7 +1269,7 @@ li.breadcrumb-item.active a {
 }
 
 .breadcrumb-content {
-    padding-top: 3em;
+    padding-top: 1em;
 }
 
 .breadcrumb-content-subp {
@@ -1415,11 +1419,13 @@ img.profile-pic {
 .row-lrd {
     padding-left: 8em;
     padding-right: 8em;
+    padding-bottom: 30px;
 }
 
 .row-do {
     padding-left: 8em;
     padding-right: 8em;
+    padding-bottom: 20px;
 }
 
 
@@ -1438,18 +1444,27 @@ img.profile-pic {
 
 #lrd {
     background-color: #f9f9ffff;
-    padding-top: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #ls {
     background-color: #f9f9ffff;
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
+
+#ri {
+    background-color: #f9f9ffff;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
 
 #io {
     background-color: #f9f9ffff;
-    padding-top: 00px;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 #hero-smrt a.credits,
@@ -2023,7 +2038,6 @@ canvas#delays-overview-sb-23 {
 }
 
 .advisory a {
-    font-size: 12px;
     color: #d42e12;
 }
 
@@ -2287,10 +2301,13 @@ blockquote {
 }
 
 hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid #6364576e;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: none;
+    border-top: 1px solid #3f3f3f;
+    background: none;
+    height: 1px;
+    padding: 0;
 }
 
 .ftco-section {

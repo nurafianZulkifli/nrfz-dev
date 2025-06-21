@@ -9,53 +9,58 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
         alertDiv.style.marginBottom = '2em';
         alertDiv.style.cursor = 'default';
 
-
-
-        // Map line codes to their card classes
-        const lineMap = {
-            'NSL': '.card-nsl .h5.font-weight-bold',
-            'EWL': '.card-ewl .h5.font-weight-bold',
-            'NEL': '.card-nel .h5.font-weight-bold',
-            'CCL': '.card-ccl .h5.font-weight-bold',
-            'CEL': '.card-cel .h5.font-weight-bold',
-            'CGL': '.card-cgl .h5.font-weight-bold',
-            'DTL': '.card-dtl .h5.font-weight-bold',
-            'TEL': '.card-tel .h5.font-weight-bold',
-            'BPL': '.card-bplrt .h5.font-weight-bold',
-            'PEL': '.card-skpglrt .h5.font-weight-bold',
-            'PWL': '.card-skpglrt .h5.font-weight-bold',
-            'SEL': '.card-skpglrt .h5.font-weight-bold',
-            'SWL': '.card-skpglrt .h5.font-weight-bold'
-        };
-
-        // Check each line code in the message and update the card if found
-        if (
-            !firstAlert ||
-            !firstAlert.Message ||
-            firstAlert.Message.trim() === "" ||
-            firstAlert.Message.trim() === "[]"
-        ) {
-            // No alert, show normal service
-            alertDiv.classList.add('alert-success');
-            alertDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>&nbsp; <b>Train service is running normally.</b>';
-        } else {
-            // There is an alert message
+        if (firstAlert && firstAlert.Message && firstAlert.Message.trim() !== "") {
             alertDiv.classList.add('alert-warning');
             alertDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>&nbsp; <b>' + firstAlert.Message + '</b>';
+
+            // Map line codes to their card classes
+            const lineMap = {
+                'NSL': '.card-nsl .h5.font-weight-bold',
+                'EWL': '.card-ewl .h5.font-weight-bold',
+                'NEL': '.card-nel .h5.font-weight-bold',
+                'CCL': '.card-ccl .h5.font-weight-bold',
+                'DTL': '.card-dtl .h5.font-weight-bold',
+                'TEL': '.card-tel .h5.font-weight-bold',
+                'BPLRT': '.card-bplrt .h5.font-weight-bold',
+                'SKPGLRT': '.card-skpglrt .h5.font-weight-bold'
+            };
+
+            // Check each line code in the message and update the card if found
+            Object.keys(lineMap).forEach(line => {
+                if (firstAlert.Message.includes(line)) {
+                    const statusElem = document.querySelector(lineMap[line]);
+                    if (statusElem) {
+                        statusElem.textContent = 'Degraded Service';
+                        statusElem.classList.add('text-warning');
+                    }
+                }
+            });
+        } else {
+            alertDiv.classList.add('alert-success');
+            alertDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>&nbsp; <b>Train service is running normally.</b>';
         }
 
 
 
-        
+
+
+
+
+
+
+
+
+
+
         // Define start and end times for each line
         const lineStartTimes = {
             'NSL': { hour: 5, minute: 30 },
             'EWL': { hour: 5, minute: 30 },
-            'NEL': { hour: 5, minute: 42 },
+            'NEL': { hour: 5, minute: 45 },
             'CCL': { hour: 5, minute: 30 },
-            'DTL': { hour: 5, minute: 30 },
-            'TEL': { hour: 5, minute: 30 },
-            'BPLRT': { hour: 5, minute: 32 },
+            'DTL': { hour: 5, minute: 45 },
+            'TEL': { hour: 5, minute: 45 },
+            'BPLRT': { hour: 5, minute: 30 },
             'SKPGLRT': { hour: 5, minute: 30 }
         };
 
@@ -114,17 +119,12 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
         if (allEnded) {
             alertDiv.classList.add('alert-secondary');
             alertDiv.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>&nbsp; <b>Train services have ended for today.</b>';
-        } else if (
-            !firstAlert ||
-            !firstAlert.Message ||
-            firstAlert.Message.trim() === "" ||
-            firstAlert.Message.trim() === "[]"
-        ) {
-            alertDiv.classList.add('alert-success');
-            alertDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>&nbsp; <b>Train service is running normally.</b>';
-        } else {
+        } else if (firstAlert && firstAlert.Message && firstAlert.Message.trim() !== "") {
             alertDiv.classList.add('alert-warning');
             alertDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>&nbsp; <b>' + firstAlert.Message + '</b>';
+        } else {
+            alertDiv.classList.add('alert-success');
+            alertDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>&nbsp; <b>Train service is running normally.</b>';
         }
 
         // Insert at the top of .row-lrd
