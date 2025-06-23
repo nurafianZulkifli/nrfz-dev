@@ -9,6 +9,8 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
         alertDiv.style.marginBottom = '2em';
         alertDiv.style.cursor = 'default';
 
+
+
         // Map line codes to their card classes
         const lineMap = {
             'NSL': '.card-nsl .h5.font-weight-bold',
@@ -25,6 +27,25 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
             'SEL': '.card-skpglrt .h5.font-weight-bold',
             'SWL': '.card-skpglrt .h5.font-weight-bold'
         };
+
+        // Check each line code in the message and update the card if found
+        if (
+            !firstAlert ||
+            !firstAlert.Message ||
+            firstAlert.Message.trim() === "" ||
+            firstAlert.Message.trim() === "[]"
+        ) {
+            // No alert, show normal service
+            alertDiv.classList.add('alert-success');
+            alertDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>&nbsp; <b>Train service is running normally.</b>';
+        } else {
+            // There is an alert message
+            alertDiv.classList.add('alert-warning');
+            alertDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>&nbsp; <b>' + firstAlert.Message + '</b>';
+        }
+
+
+
 
         // Define start and end times for each line
         const lineStartTimes = {
@@ -50,40 +71,49 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
         };
 
         const now = new Date();
-        let allEnded = true;
+let allEnded = true;
+let allNotStarted = true;
 
-        Object.keys(lineEndTimes).forEach(line => {
-            const selector = `.card-${line.toLowerCase()} .h5.font-weight-bold`;
-            const elem = document.querySelector(selector);
-            if (elem) {
-                const start = lineStartTimes[line];
-                const end = lineEndTimes[line];
+Object.keys(lineEndTimes).forEach(line => {
+    const selector = `.card-${line.toLowerCase()} .h5.font-weight-bold`;
+    const elem = document.querySelector(selector);
+    if (elem) {
+        const start = lineStartTimes[line];
+        const end = lineEndTimes[line];
 
-                // Build start and end times for today
-                let startTime = new Date(now);
-                startTime.setHours(start.hour, start.minute, 0, 0);
-                let endTime = new Date(now);
-                endTime.setHours(end.hour, end.minute, 0, 0);
+        // Build start and end times for today
+        let startTime = new Date(now);
+        startTime.setHours(start.hour, start.minute, 0, 0);
+        let endTime = new Date(now);
+        endTime.setHours(end.hour, end.minute, 0, 0);
 
-                // If end time is before start time, endTime is next day
-                if (endTime <= startTime) {
-                    endTime.setDate(endTime.getDate() + 1);
-                }
+        // If end time is before start time, endTime is next day
+        if (endTime <= startTime) {
+            endTime.setDate(endTime.getDate() + 1);
+        }
 
-                if (now >= endTime) {
-                    elem.textContent = 'Train Service Ended';
-                    elem.classList.remove('text-warning', 'text-secondary');
-                    elem.classList.add('text-muted');
-                } else {
-                    allEnded = false;
-                }
-            }
-        });
+        if (now < startTime) {
+            elem.textContent = 'Train Service Not Started';
+            elem.classList.remove('text-warning', 'text-muted');
+            elem.classList.add('text-secondary');
+            // Do not change allEnded here!
+            allNotStarted = false;
+        } else if (now >= endTime) {
+            elem.textContent = 'Train Service Ended';
+            elem.classList.remove('text-warning', 'text-secondary');
+            elem.classList.add('text-muted');
+        } else {
+            // Service is running
+            allEnded = false;
+            allNotStarted = false;
+        }
+    }
+});
 
-        // Show alert: if all services have ended, show "Ended", else show "running normally"
+        // Show alert based on overall service status
         if (allEnded) {
             alertDiv.classList.add('alert-secondary');
-            alertDiv.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>&nbsp; <b>Train Service Ended</b>';
+            alertDiv.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>&nbsp; <b>Train Service has ended.</b>';
         } else {
             alertDiv.classList.add('alert-success');
             alertDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>&nbsp; <b>Train service is running normally.</b>';
@@ -91,7 +121,7 @@ fetch('https://tsa-proxy-nurafian-b8e19d1412f4.herokuapp.com/api/tsa')
 
         // Insert at the top of .row-lrd
         const rowLrd = document.querySelector('.row-lrd');
-        if (rowLrd && alertDiv) {
+        if (rowLrd) {
             rowLrd.insertBefore(alertDiv, rowLrd.firstChild);
         }
     })

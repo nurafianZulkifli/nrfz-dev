@@ -2041,6 +2041,17 @@ canvas#delays-overview-sb-23 {
     color: #d42e12;
 }
 
+.text-secondary {
+    color: #303030 !important;
+}
+
+.alert-secondary {
+    background-color: #e2e3e5 !important;
+    color: #2b2f32 !important;
+    border-color: #c4c8cb !important;
+    transition: all 0.5s ease;
+}
+
 
 /* ------------------------------------------ */
 
