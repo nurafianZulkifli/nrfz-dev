@@ -93,15 +93,11 @@ Object.keys(lineEndTimes).forEach(line => {
         }
 
         if (now < startTime) {
-            elem.textContent = 'Train Service Not Started';
+            elem.textContent = 'Train Service Ended';
             elem.classList.remove('text-warning', 'text-muted');
             elem.classList.add('text-secondary');
             // Do not change allEnded here!
             allNotStarted = false;
-        } else if (now >= endTime) {
-            elem.textContent = 'Train Service Ended';
-            elem.classList.remove('text-warning', 'text-secondary');
-            elem.classList.add('text-muted');
         } else {
             // Service is running
             allEnded = false;
