@@ -188,7 +188,7 @@ body.dark-mode #hero:before {
 
 body.dark-mode #lrd {
     background-color: #111318;
-    padding-top: 10px;
+    padding-top: 50px;
     padding-bottom: 10px;
     transition: all 0.5s ease;
 }
