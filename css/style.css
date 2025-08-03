@@ -759,21 +759,20 @@ header {
 #hero {
     width: 100%;
     height: 100vh;
-    background: url("../img/bg-img/hero-bg.png") top right no-repeat;
-    background-size: cover;
     position: relative;
+    overflow: hidden;
 }
 
 
 #hero:before {
     content: "";
-    background-color: #f0efefd0;
-    backdrop-filter: blur(2px);
+    background-color: #f0efef4b;
     position: absolute;
     bottom: 0;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1;
 }
 
 #hero h1 {
@@ -2379,7 +2378,7 @@ h2.page-title {
 }
 
 .portfolio-filter .btn-filter {
-    width: 120px;
+    width: 146px;
     height: 40px;
     font-size: 16px;
 }
