@@ -1446,12 +1446,13 @@ li.breadcrumb-item.active a {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     backdrop-filter: blur(5px);
-    background-color: #0b2a45a2;
+    background-color: #572525d0;
     position: absolute;
     top: 0;
     left: 0;
-    width: 102%;
+    width: 100%;
     height: 102%;
+    border-radius: 25px;
 
 }
 
