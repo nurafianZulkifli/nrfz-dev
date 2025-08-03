@@ -78,7 +78,7 @@ a,
 a:active,
 a:focus,
 a:hover {
-    color: #6d99c0;
+    color: #da8c08;
     text-decoration: none;
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
@@ -415,7 +415,7 @@ input:required {
 
 .loader {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #7b7c64;
+    border-top: 5px solid #eb6767;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -479,7 +479,7 @@ input:required {
 
 #scrollUp:focus,
 #scrollUp:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #ffffff;
 }
 
@@ -544,7 +544,7 @@ input:required {
     padding: 0 30px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #7b7c64;
+    background-color: #eb6767;
     color: #252525;
     border-radius: 60px;
     -webkit-transition-duration: 500ms;
@@ -563,7 +563,7 @@ input:required {
     font-weight: 500;
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff;
 }
 
@@ -590,7 +590,7 @@ input:required {
 }
 
 .wbnrfz_btn_theme:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
 }
 
 #theme-icon {
@@ -648,16 +648,16 @@ header {
 }
 
 .nav-item:hover {
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 
 .nav-item.active {
     font-weight: bold;
-    border-bottom: 2px solid #7b7c64;
+    border-bottom: 2px solid #eb6767;
     text-decoration: none;
     line-height: 40px;
-    color: #7b7c64;
+    color: #eb6767;
 }
 
 .nav-item:hover:after {
@@ -876,7 +876,7 @@ header {
 }
 
 .footer-area .social-info a:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff;
 }
 
@@ -993,7 +993,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #7b7c64;
+    background-color: #da8c08;
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1012,7 +1012,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #ce8763;
+    background-color: #511919;
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1031,7 +1031,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #6d99c0;
+    background-color: #da8c08;
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1065,7 +1065,7 @@ header {
 
 .about-me-content:hover,
 .about-me-content:focus {
-    background-color: #c7e3fb;
+    background-color: #ffb6b9;
 }
 
 .about-me-content:hover .chosse-us-icon,
@@ -1136,7 +1136,7 @@ header {
 
 h4.timeline-date-edu {
     font-size: 18px;
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1145,8 +1145,8 @@ h4.timeline-date-edu {
 
 h4.timeline-date-exp {
     font-size: 18px;
-    background-color: #8c8e75;
-    color: #fff;
+    background-color: #ffb6b9;
+    color: #000;
     border-radius: 20px;
     padding: 5px 15px;
     text-align: center;
@@ -1184,7 +1184,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #7b7c64;
+    background-color: #eb6767;
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1257,7 +1257,7 @@ h4.timeline-date-aa {
 
 .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
 .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
@@ -1331,7 +1331,7 @@ h4.timeline-date-aa {
 }
 
 li.breadcrumb-item.active a {
-    color: #7b7c64 !important;
+    color: #eb6767 !important;
 }
 
 
@@ -1378,7 +1378,7 @@ li.breadcrumb-item.active a {
 .single-post-area .post-catagory:hover,
 .single-post-area .post-catagory:focus {
     font-weight: 500;
-    background-color: #6d99c0;
+    background-color: #da8c08;
 }
 
 .single-post-area .post-content {
@@ -1406,7 +1406,7 @@ li.breadcrumb-item.active a {
 
 .single-post-area .post-content .post-meta a:hover,
 .single-post-area .post-content .post-meta a:focus {
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 .single-post-area .post-content .post-meta a:hover::after,
@@ -1422,7 +1422,7 @@ li.breadcrumb-item.active a {
 
 .single-post-area .post-content .post-title:hover,
 .single-post-area .post-content .post-title:focus {
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 .single-post-area:hover .post-thumbnail img,
@@ -1464,7 +1464,7 @@ li.breadcrumb-item.active a {
     width: 80px;
     height: 56px;
     border-radius: 25px;
-    background-color: #7b7c64;
+    background-color: #eb6767;
     text-align: center;
     line-height: 56px;
     font-size: 30px;
@@ -1472,7 +1472,7 @@ li.breadcrumb-item.active a {
 }
 
 .single-portfolio-content .hover-content-blog a:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
 }
 
 .single-portfolio-content .hover-content-blog h4 {
@@ -1551,7 +1551,7 @@ li.breadcrumb-item.active a {
 }
 
 .pw-projects-menu .portfolio-menu .btn:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff;
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
@@ -1632,7 +1632,7 @@ li.breadcrumb-item.active a {
 
 .single-portfolio-content .hover-content a:hover,
 .single-portfolio-content .hover-content a:focus {
-    background-color: #6d99c0;
+    background-color: #da8c08;
 }
 
 .single-portfolio-content:hover img,
@@ -1693,7 +1693,7 @@ img.profile-pic {
 }
 
 .profile-link a:hover {
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 /* ------------------------------------------ */
@@ -1771,7 +1771,7 @@ img.profile-pic {
 }
 
 .collapse .details_catagory_wrap .single_catagory .social_links a:hover {
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 .collapse .details_catagory_wrap .single_catagory,
@@ -1867,12 +1867,12 @@ h1.brc {
 }
 
 .dropdown-item:focus {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff;
 }
 
 .dropdown-item:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff;
 }
 
@@ -1971,7 +1971,7 @@ figcaption p {
 .tagcloud a:hover {
     -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
     box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #ffffff;
 }
 
@@ -2190,7 +2190,7 @@ hr {
 .blog-entry .blog-date-div {
     margin-top: 2em;
     font-size: 14px;
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 .p-4 {
@@ -2362,7 +2362,7 @@ h2.page-title {
 .portfolio-filter .btn {
     padding: 10px 15px;
     border: none;
-    background: #7b7c64;
+    background: #eb6767;
     color: #fff;
     border-radius: 25px;
     cursor: pointer;
@@ -2392,7 +2392,7 @@ h2.page-title {
 
 .portfolio-filter .btn.active,
 .portfolio-filter .btn:hover {
-    background: #6d99c0;
+    background: #da8c08;
     color: #fff;
     border-radius: 25px;
 }
@@ -2432,7 +2432,7 @@ h2.page-title {
 
 /* Change dropdown option hover color */
 #sort-options option:hover {
-    background-color: #6d99c0 !important;
+    background-color: #da8c08 !important;
     /* Desired hover background color */
     color: #fff;
     /* Desired hover text color */
@@ -2596,7 +2596,7 @@ li.breadcrumb-item a::after {
 
 li.breadcrumb-item a:hover,
 li.breadcrumb-item.active a:hover {
-    color: #6d99c0 !important;
+    color: #da8c08 !important;
 }
 
 .banner-eicw img {
@@ -2680,7 +2680,7 @@ h2.page-title {
 .collapsible-header {
     font-size: 16px;
     margin-top: 3em;
-    background-color: #7b7c64;
+    background-color: #eb6767;
     padding: 1em;
     padding-left: 2em;
     padding-right: 2em;
@@ -2697,7 +2697,7 @@ h2.page-title {
 }
 
 .collapsible-header:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     padding: 1em;
     padding-left: 2em;
     padding-right: 2em;
@@ -2752,7 +2752,7 @@ h2.page-title {
     padding: 0 20px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #7b7c64;
+    background-color: #eb6767;
     color: #fff;
     border-radius: 60px;
     transition-duration: 500ms;
@@ -2762,7 +2762,7 @@ h2.page-title {
 }
 
 .single_catagory.text-center .btn:hover {
-    background: #6d99c0;
+    background: #da8c08;
     color: #fff;
     box-shadow: none;
 }

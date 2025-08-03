@@ -38,7 +38,7 @@ body.dark-mode #preloader-text {
     /* margin-left: 28px; */
     text-align: center;
     text-transform: capitalize;
-    background-color: #8c8e75;
+    background-color: #444;
     color: #fff;
     border-radius: 60px;
     transition-duration: 500ms;
@@ -48,11 +48,12 @@ body.dark-mode #preloader-text {
 }
 
 body.dark-mode .wbnrfz_btn_theme:hover {
-    background-color: #8c8e75;
+    background-color: #ffb6b9;
+    color: #000;
 }
 
 body.dark-mode .wbnrfz_btn_theme {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff;
 }
 
@@ -166,10 +167,10 @@ body.dark-mode .nav-item:hover {
 
 body.dark-mode .nav-item.active {
     font-weight: bold;
-    border-bottom: 2px solid #7b7c64;
+    border-bottom: 2px solid #eb6767;
     text-decoration: none;
     line-height: 40px;
-    color: #a2a390;
+    color: #eb6767;
 }
 
 body.dark-mode .nav-item-toggle {
@@ -228,7 +229,7 @@ body.dark-mode .footer-area .social-info a {
 }
 
 body.dark-mode .footer-area .social-info a:hover {
-    background-color: #6d99c0;
+    background-color: #da8c08;
     color: #fff !important;
 }
 
@@ -276,7 +277,7 @@ body.dark-mode .profile-link a {
 }
 
 body.dark-mode .profile-link a:hover {
-    color: #6d99c0;
+    color: #da8c08;
 }
 
 body.dark-mode h2.profile-desc {
@@ -303,7 +304,7 @@ body.dark-mode .about-me-content p {
 }
 
 body.dark-mode .about-me-content:hover {
-    background-color: #52718d;
+    background-color: #b75252;
 }
 
 body.dark-mode .follow-area {
