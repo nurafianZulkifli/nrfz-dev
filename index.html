@@ -61,8 +61,8 @@
         <nav class="navbar navbar-mobile">
             <a href="#" class="nav-item active">Home</a>
             <a href="./about.html" class="nav-item">About</a>
-            <a href="./works-by-nrfz.html" class="nav-item">OpenBVE</a>
-            <a href="omsi-2.html" class="nav-item">OMSI 2</a>
+            <a href="./openbve.html" class="nav-item">OpenBVE</a>
+            <a href="./omsi-2.html" class="nav-item">OMSI 2</a>
             <a href="./blog.html" class="nav-item">Blog</a>
             <a href="#" class="nav-item">
                 <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
@@ -75,7 +75,11 @@
 
     <!-- ============================================= Hero Section ============================================= -->
     <section id="hero" class="d-flex flex-column justify-content-center">
-
+        <picture>
+            <source srcset="img/bg-img/hero-bg-mobile.png" media="(max-width: 768px)">
+            <source srcset="img/bg-img/hero-bg-tablet.png" media="(max-width: 1024px)">
+            <img src="img/bg-img/hero-bg-desktop.png" alt="Hero" class="hero-img">
+        </picture>
     </section><!-- End Hero -->
 
 

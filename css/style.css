@@ -756,12 +756,20 @@ header {
 }
 
 
-#hero {
+/* #hero {
     width: 100%;
     height: 100vh;
     background: url("../img/bg-img/hero-bg.png") top right no-repeat;
     background-size: cover;
     position: relative;
+} */
+
+.hero-img {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
 }
 
 
@@ -2783,6 +2791,7 @@ h2.page-title {
 .accord-img {
     width: 50% !important;
     padding: 10px !important;
+    border-radius: 25px;
 }
 
 .pw-btn-accord {
@@ -2802,4 +2811,8 @@ h2.page-title {
     border-radius: 60px;
     transition-duration: 500ms;
     margin: 10px;
+}
+
+.accordion-header {
+    font-size: 15px;
 }

@@ -225,6 +225,15 @@
         word-wrap: break-word;
         /* Ensure proper word wrapping */
     }
+
+    .hero-img,
+    body.dark-mode .hero-img {
+        width: 100vw;
+        max-width: 100vw;
+        height: 60vh;
+        object-fit: cover;
+        display: block;
+    }
 }
 
 /* ---- */

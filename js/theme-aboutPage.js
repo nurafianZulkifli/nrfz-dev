@@ -53,12 +53,12 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        aboutPage.style.backgroundImage = "url('img/bg-img/hero-bg-dark.png')";
+        aboutPage.style.backgroundImage = "url('img/bg-img/hero-about.png')";
 
 
     } else {
         /* Banners */
-        aboutPage.style.backgroundImage = "url('img/bg-img/hero-bg.png')";
+        aboutPage.style.backgroundImage = "url('img/bg-img/hero-about.png')";
     }
 
 
