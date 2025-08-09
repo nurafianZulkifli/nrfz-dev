@@ -2772,3 +2772,34 @@ h2.page-title {
     color: #fff;
     box-shadow: none;
 }
+
+
+/* ------------------------------------------ 3.0 OMSI/OpenBVE Page ------------------------------------------ */
+
+.accordion {
+    padding-bottom: 30px;
+}
+
+.accord-img {
+    width: 50% !important;
+    padding: 10px !important;
+}
+
+.pw-btn-accord {
+    position: relative;
+    z-index: 1;
+    min-width: 163px;
+    height: 45px;
+    line-height: 40px;
+    font-size: 19px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 2px 30px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #e96060;
+    color: #fff;
+    border-radius: 60px;
+    transition-duration: 500ms;
+    margin: 10px;
+}
