@@ -1094,6 +1094,10 @@ header {
     margin-bottom: -2em;
 }
 
+canvas#mkbf-smrt-mrt {
+    height: 400px !important;
+}
+
 
 /* ------------------------------------------ */
 
