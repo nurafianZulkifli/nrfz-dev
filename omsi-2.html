@@ -105,10 +105,10 @@
             <!-- Filter Buttons -->
             <div class="portfolio-filter">
               <button class="btn btn-filter active" data-filter="*">All Releases</button>
-              <button class="btn btn-filter" data-filter=".ds">Routes</button>
-              <button class="btn btn-filter" data-filter=".mc">Buses</button>
-              <button class="btn btn-filter" data-filter=".ig">Repaints</button>
-              <button class="btn btn-filter" data-filter=".lg">Developer Files</button>
+              <button class="btn btn-filter" data-filter=".rt">Routes</button>
+              <button class="btn btn-filter" data-filter=".bs">Buses</button>
+              <button class="btn btn-filter" data-filter=".rp">Repaints</button>
+              <button class="btn btn-filter" data-filter=".df">Developer Files</button>
             </div>
 
             <!-- Sort Dropdown -->
@@ -128,9 +128,6 @@
 
 
   <section class="about-me-summ clearfix">
-
-
-
     <div class="pw-portfolio-area clearfix" style="padding-top: 1em; padding-bottom: 2em;">
       <div class="container-fluid">
 
@@ -141,359 +138,204 @@
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
+        <!-- Accordion -->
         <div class="accordion" id="accordGuide">
 
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingGetStarted">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseGetStarted" aria-expanded="false" aria-controls="collapseGetStarted">
-              <i class="fa-solid fa-download"></i>&nbsp; Get Started
-            </button>
-          </h2>
-          <div id="collapseGetStarted" class="accordion-collapse collapse" aria-labelledby="headingGetStarted"
-            data-bs-parent="#accordGuide">
-            <div class="accordion-body">
-              <h4><i class="fa-brands fa-windows"></i>&nbsp; Get OMSI 2 up and running </h1>
-                <p>OMSI 2 is a DLC. Simply purchase OMSI 2 from Steam and you're good to go!
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingGetStarted">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseGetStarted" aria-expanded="false" aria-controls="collapseGetStarted">
+                <i class="fa-solid fa-download"></i>&nbsp; Get Started
+              </button>
+            </h2>
+            <div id="collapseGetStarted" class="accordion-collapse collapse" aria-labelledby="headingGetStarted"
+              data-bs-parent="#accordGuide">
+              <div class="accordion-body">
+                <h4><i class="fa-brands fa-windows"></i>&nbsp; Get OMSI 2 up and running </h1>
+                  <p>OMSI 2 is a DLC. Simply purchase OMSI 2 from Steam and you're good to go!
 
-                <h6 style="font-size: 13px">System Requirements</h6>
-                <p style="font-size: 13px">Operating System: Windows 7 or later<br>
-                  Processor: Pentium 4 @ 2.6GHz or better<br>
-                  Memory: 2 GB RAM<br>
-                  Graphics: GeForce or comparable AMD with minimum 512 MB<br>
-                  DirectX: Version 9.0c</p>
+                  <h6 style="font-size: 13px">System Requirements</h6>
+                  <p style="font-size: 13px">Operating System: Windows 7 or later<br>
+                    Processor: Pentium 4 @ 2.6GHz or better<br>
+                    Memory: 2 GB RAM<br>
+                    Graphics: GeForce or comparable AMD with minimum 512 MB<br>
+                    DirectX: Version 9.0c</p>
 
-                <p> Note: You may require a better processor, memory and graphics card to run the game
-                  with
-                  better performance.</p>
-                <br>
-                <br>
-                <h4>Step 1 - Purchase the Program from Steam</h6>
-                  <figcaption>
-                    <a href="./img/tutorials/tutom.png" class="portfolio-img"><img src="./img/tutorials/tutom.png"
-                        class="img-fluid accord-img" alt="Hero Image Section"></a>
-                    <p>
-                      <a href="https://store.steampowered.com/app/252530/OMSI_2_Steam_Edition/"
-                        class="btn pw-btn-accord btn-2 mt-15" target="_blank">
-                        <i class="fa-solid fa-download"></i>&nbsp;&nbsp;OMSI 2</a>
-                    </p>
-                  </figcaption>
+                  <p> Note: You may require a better processor, memory and graphics card to run the game
+                    with
+                    better performance.</p>
                   <br>
                   <br>
-                  <h4>Step 2 - Familiarizing the OMSI 2 Directory</h4>
-                  <figcaption>
-                    <a href="./img/tutorials/tutom2.png" class="portfolio-img"><img src="./img/tutorials/tutom2.png"
-                        class="img-fluid accord-img" alt="Hero Image Section"></a>
-                    <p>After installing Steam, and purchasing the DLC, navigate to <b>C:\(your
-                        Directory)\steamapps\common\OMSI 2</b>. All your OMSI 2 stuffs will be
-                      housed here.
-                    </p>
-                  </figcaption>
+                  <h4>Step 1 - Purchase the Program from Steam</h6>
+                    <figcaption>
+                      <a href="./img/tutorials/tutom.png" class="portfolio-img"><img src="./img/tutorials/tutom.png"
+                          class="img-fluid accord-img" alt="Hero Image Section"></a>
+                      <p>
+                        <a href="https://store.steampowered.com/app/252530/OMSI_2_Steam_Edition/"
+                          class="btn pw-btn-accord btn-2 mt-15" target="_blank">
+                          <i class="fa-solid fa-download"></i>&nbsp;&nbsp;OMSI 2</a>
+                      </p>
+                    </figcaption>
+                    <br>
+                    <br>
+                    <h4>Step 2 - Familiarizing the OMSI 2 Directory</h4>
+                    <figcaption>
+                      <a href="./img/tutorials/tutom2.png" class="portfolio-img"><img src="./img/tutorials/tutom2.png"
+                          class="img-fluid accord-img" alt="Hero Image Section"></a>
+                      <p>After installing Steam, and purchasing the DLC, navigate to <b>C:\(your
+                          Directory)\steamapps\common\OMSI 2</b>. All your OMSI 2 stuffs will be
+                        housed here.
+                      </p>
+                    </figcaption>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingIGT">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseIGT" aria-expanded="false" aria-controls="collapseIGT">
-              <i class="fa-solid fa-train-subway"></i>&nbsp; Install Guide - Modified Buses/Maps
-            </button>
-          </h2>
 
-          <div id="collapseIGT" class="accordion-collapse collapse" aria-labelledby="headingIGT"
-            data-bs-parent="#accordGuide">
-            <div class="accordion-body">
-              <p> Our released buses are a complete package. Hence you would only need to download the
-                following : <br>
-                - <a href="releases/omsi-developer-files.html" style="color: #e96060"> Fonts</a> (for
-                BOTH Bus & Maps)<br>
-                - <a href="releases/omsi-developer-files.html" style="color: #e96060">
-                  Sceneryobjects</a> (for Maps)<br>
-                - <a href="releases/omsi-developer-files.html" style="color: #e96060"> Splines</a> (for
-                Maps)<br>
-                - <a href="releases/omsi-developer-files.html" style="color: #e96060"> Krueger EDS
-                  Scripts</a> (for
-                Bus)<br>
-                <br>
-              <h4>Step 1 - Downloading our Maps/Buses</h4>
-              <p>NOTE: This is applicable for all released buses. For this
-                guide, we'll be demonstrating how to do so for the Solaris Urbino 18. <br> First up,
-                download
-                the Bus.</p>
-              <figcaption>
-                <a href="./img/tutorials/tutom3.png" class="portfolio-img"><img src="./img/tutorials/tutom3.png"
-                    class="img-fluid accord-img" alt="Hero Image Section"></a>
-                <p>
-                  <a href="releases/solaris-urbino-18.html" class="btn pw-btn-accord btn-2 mt-15" target="_blank">
-                    <i class="fa-solid fa-download"></i>&nbsp;&nbsp;Bus</a>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingIGT">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseIGT" aria-expanded="false" aria-controls="collapseIGT">
+                <i class="fa-solid fa-train-subway"></i>&nbsp; Install Guide - Modified Buses/Maps
+              </button>
+            </h2>
+
+            <div id="collapseIGT" class="accordion-collapse collapse" aria-labelledby="headingIGT"
+              data-bs-parent="#accordGuide">
+              <div class="accordion-body">
+                <p> Our released buses are a complete package. Hence you would only need to download the
+                  following : <br>
+                  - <a href="releases/omsi-developer-files.html" style="color: #e96060"> Fonts</a> (for
+                  BOTH Bus & Maps)<br>
+                  - <a href="releases/omsi-developer-files.html" style="color: #e96060">
+                    Sceneryobjects</a> (for Maps)<br>
+                  - <a href="releases/omsi-developer-files.html" style="color: #e96060"> Splines</a> (for
+                  Maps)<br>
+                  - <a href="releases/omsi-developer-files.html" style="color: #e96060"> Krueger EDS
+                    Scripts</a> (for
+                  Bus)<br>
+                  <br>
+                <h4>Step 1 - Downloading our Maps/Buses</h4>
+                <p>NOTE: This is applicable for all released buses. For this
+                  guide, we'll be demonstrating how to do so for the Solaris Urbino 18. <br> First up,
+                  download
+                  the Bus.</p>
+                <figcaption>
+                  <a href="./img/tutorials/tutom3.png" class="portfolio-img"><img src="./img/tutorials/tutom3.png"
+                      class="img-fluid accord-img" alt="Hero Image Section"></a>
+                  <p>
+                    <a href="releases/solaris-urbino-18.html" class="btn pw-btn-accord btn-2 mt-15" target="_blank">
+                      <i class="fa-solid fa-download"></i>&nbsp;&nbsp;Bus</a>
+                  </p>
+                </figcaption>
                 </p>
-              </figcaption>
-              </p>
 
-              <hr>
+                <hr>
 
-              <h4>Step 2 - Extracting it into your OMSI 2 Directory</h4>
-              <p> Open the Fonts & Bus Zip file and extract the folder into the OMSI directory
-                (<b>C:\(your
-                  Directory)\steamapps\common\OMSI 2</b>). </p>
+                <h4>Step 2 - Extracting it into your OMSI 2 Directory</h4>
+                <p> Open the Fonts & Bus Zip file and extract the folder into the OMSI directory
+                  (<b>C:\(your
+                    Directory)\steamapps\common\OMSI 2</b>). </p>
 
-              <p>We recommend using
-                <a href="https://www.7-zip.org/download.html" style="color: #e96060">7-Zip</a> or
+                <p>We recommend using
+                  <a href="https://www.7-zip.org/download.html" style="color: #e96060">7-Zip</a> or
 
-                <a href="https://apps.microsoft.com/detail/9n8g7tscl18r?hl=en-US&gl=US" style="color: #e96060">NanaZip
-                  (shown in the video)</a> to extract.
-              </p>
+                  <a href="https://apps.microsoft.com/detail/9n8g7tscl18r?hl=en-US&gl=US" style="color: #e96060">NanaZip
+                    (shown in the video)</a> to extract.
+                </p>
 
-              <figcaption>
-                <a href="./img/tutorials/tutom4.png" class="portfolio-img"><img src="./img/tutorials/tutom4.png"
-                    class="img-fluid accord-img" alt="Hero Image Section"></a>
-                <p>This will be the same for any releases except Repaints.</p>
-              </figcaption>
+                <figcaption>
+                  <a href="./img/tutorials/tutom4.png" class="portfolio-img"><img src="./img/tutorials/tutom4.png"
+                      class="img-fluid accord-img" alt="Hero Image Section"></a>
+                  <p>This will be the same for any releases except Repaints.</p>
+                </figcaption>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- All Releases -->
+        <div class="row">
+          <div class="col-12">
+            <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+              <h2 id="filter-title">All Releases</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pw-portfolio">
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item rt mb-30 wow fadeInUp" data-wow-delay="100ms"
+            data-year="2025">
+            <div class="single-portfolio-content">
+              <img src="img/releases-ss/ht.png" alt="ht">
+              <div class="hover-content-blog align-items-center">
+                <h4>Hillgrove Town</h4>
+                <a class="info" href="worksbynrfz/improve-wf.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item rt mb-30 wow fadeInUp" data-wow-delay="100ms"
+            data-year="2024">
+            <div class="single-portfolio-content">
+              <img src="img/releases-ss/wt.png" alt="wt">
+              <div class="hover-content-blog">
+                <h4>Woodlands Town</h4>
+                <a class="info" href="worksbynrfz/delays-checker.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item bs mb-30 wow fadeInUp" data-wow-delay="100ms"
+            data-year="2024">
+            <div class="single-portfolio-content">
+              <img src="img/releases-ss/su18.png" alt="su18">
+              <div class="hover-content-blog">
+                <h4>Solaris Urbino 18</h4>
+                <a class="info" href="worksbynrfz/sit.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item bs mb-30 wow fadeInUp" data-wow-delay="100ms"
+            data-year="2024">
+            <div class="single-portfolio-content">
+              <img src="img/releases-ss/vdl.png" alt="vdl">
+              <div class="hover-content-blog">
+                <h4>VDL Citea LLE</h4>
+                <a class="info" href="worksbynrfz/bp12.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item df mb-30 wow fadeInUp" data-wow-delay="300ms"
+            data-year="2024">
+            <div class="single-portfolio-content">
+              <img src="img/releases-ss/dfA.png" alt="df">
+              <div class="hover-content-blog">
+                <h4>OMSI 2 Developer Files</h4>
+                <a class="info" href="worksbynrfz/lta-pids.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 single_gallery_item bs rp mb-30 wow fadeInUp" data-wow-delay="300ms"
+            data-year="2024">
+            <div class="single-portfolio-content">
+              <img src="img/releases-ss/jw.png" alt="jw">
+              <div class="hover-content-blog">
+                <h4>SMRT JW B9TL Ad</h4>
+                <a class="info" href="worksbynrfz/lta-bp.html" class="portfolio-img"><i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-12">
-          <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
-            <h2 id="filter-title">All Releases</h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="row pw-portfolio">
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="100ms"
-          data-year="2025">
-          <div class="single-portfolio-content">
-            <img src="img/releases-ss/ht.png" alt>
-            <div class="hover-content-blog align-items-center">
-              <h4>Hillgrove Town</h4>
-              <a class="info" href="worksbynrfz/improve-wf.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item in mb-30 wow fadeInUp" data-wow-delay="100ms"
-          data-year="2024">
-          <div class="single-portfolio-content">
-            <img src="img/releases-ss/wt.png" alt="tdc-v3">
-            <div class="hover-content-blog">
-              <h4>Woodlands Town</h4>
-              <a class="info" href="worksbynrfz/delays-checker.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item in mb-30 wow fadeInUp" data-wow-delay="100ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/ZZqsqxc.png" alt="store-invent">
-            <div class="hover-content-blog">
-              <h4>Store Inventory Tracking</h4>
-              <a class="info" href="worksbynrfz/sit.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="100ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/TdU00ue.png" alt="bp12-nws">
-            <div class="hover-content-blog">
-              <h4>New Wayfinding System for BP12 Jelapang</h4>
-              <a class="info" href="worksbynrfz/bp12.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeInUp" data-wow-delay="300ms"
-          data-year="2024">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/NyUt8Sc.png" alt="bus-pids">
-            <div class="hover-content-blog">
-              <h4>LTA Bus PIDS Redesign</h4>
-              <a class="info" href="worksbynrfz/lta-pids.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeInUp" data-wow-delay="300ms"
-          data-year="2024">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/GrXbpDs.png" alt="bus-stop-pole">
-            <div class="hover-content-blog">
-              <h4>LTA Bus Stop Pole Design Refresh</h4>
-              <a class="info" href="worksbynrfz/lta-bp.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="300ms"
-          data-year="2022">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/LBGqE6A.png" alt="man-a22-mascot">
-            <div class="hover-content-blog">
-              <h4>MAN A22 Lion Mascot Replication</h4>
-              <a class="info" href="worksbynrfz/man-a22-masc.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mc mb-30 wow fadeInUp" data-wow-delay="300ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/JUvj9AL.png" alt="myts-app">
-            <div class="hover-content-blog">
-              <h4>MyTransport.SG App Redesign</h4>
-              <a class="info" href="worksbynrfz/myts-app.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="500ms"
-          data-year="2022">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/mrtK74Z.png" alt="bus-rep">
-            <div class="hover-content-blog">
-              <h4>Bus Replications</h4>
-              <a class="info" href="worksbynrfz/bus-rep.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video ig mb-30 wow fadeInUp" data-wow-delay="500ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/59TyNel.png" alt="time-tree">
-            <div class="hover-content-blog">
-              <h4>How To Use TimeTree Infographic</h4>
-              <a class="info" href="worksbynrfz/igra3.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="500ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/homh9Ja.png" alt="more-rep">
-            <div class="hover-content-blog">
-              <h4>More Replications</h4>
-              <a class="info" href="worksbynrfz/more-rep.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeInUp" data-wow-delay="500ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/c0Ui8nR.png" alt="mrt-sign-s1">
-            <div class="hover-content-blog">
-              <h4>MRT Signages Concept/Replications S1</h4>
-              <a class="info" href="worksbynrfz/mrt-signage-rep-s1.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeInUp" data-wow-delay="700ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/jd1xmMH.png" alt="mrt-sign-s2">
-            <div class="hover-content-blog">
-              <h4>MRT Signages Concept/Replications S2</h4>
-              <a class="info" href="worksbynrfz/mrt-signage-rep-s2.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ig mb-30 wow fadeInUp" data-wow-delay="700ms"
-          data-year="2022">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/l1H7ojG.png" alt="hydration-reg">
-            <div class="hover-content-blog">
-              <h4>Hydration Regime Infographic</h4>
-              <a class="info" href="worksbynrfz/hydrationreg.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeInUp" data-wow-delay="700ms"
-          data-year="2023">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/c6T9wC5.png" alt="hydration-reg">
-            <div class="hover-content-blog">
-              <h4>EZ-Link Card Redesign</h4>
-              <a class="info" href="worksbynrfz/ezlink-red.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item mc mb-30 wow fadeInUp" data-wow-delay="700ms"
-          data-year="2020">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/LSNcrrn.png" alt="hydration-reg">
-            <div class="hover-content-blog">
-              <h4>Food Review Compiler/Flashify - a Flashcard App</h4>
-              <a class="info" href="worksbynrfz/food-rev-flash-app.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item lg mb-30 wow fadeInUp" data-wow-delay="900ms"
-          data-year="2017">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/Wc0jdDu.png" alt="hydration-reg">
-            <div class="hover-content-blog">
-              <h4>Friends Forever Logo Design</h4>
-              <a class="info" href="worksbynrfz/ffl.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ig mb-30 wow fadeInUp" data-wow-delay="900ms"
-          data-year="2020">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/AsrVHVA.png" alt="hydration-reg">
-            <div class="hover-content-blog">
-              <h4>Infographic Resume</h4>
-              <a class="info" href="worksbynrfz/igra1.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ig mb-30 wow fadeInUp" data-wow-delay="900ms"
-          data-year="2021">
-          <div class="single-portfolio-content">
-            <img src="https://i.imgur.com/UpTKOk6.png" alt="hydration-reg">
-            <div class="hover-content-blog">
-              <h4>COVID-19 Shopping Habits Infographic</h4>
-              <a class="info" href="worksbynrfz/igra2.html" class="portfolio-img"><i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     </div>
 
   </section>
