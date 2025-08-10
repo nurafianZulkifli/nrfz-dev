@@ -869,6 +869,11 @@
         margin-bottom: 30px;
         /* Ensure it appears below */
     }
+
+    .about-me-stations {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
 }
 
 /* ---- */
@@ -989,6 +994,11 @@
     .column-vid,
     body.dark-mode .column-vid {
         border-radius: 20px !important;
+    }
+
+    .about-me-stations {
+        margin-left: 2em;
+        margin-right: 2em;
     }
 
 }
