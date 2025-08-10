@@ -1346,7 +1346,6 @@ li.breadcrumb-item.active a {
     color: #eb6767 !important;
 }
 
-
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 15.0 Blog ------------------------------------------ */
@@ -1504,6 +1503,18 @@ li.breadcrumb-item.active a {
     position: relative;
     overflow: hidden;
 }
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 25px;
+}
+
+iframe {
+    aspect-ratio: 16 / 9;
+    width: 70% !important;
+}
+
 
 /* ------------------------------------------ */
 
@@ -1910,7 +1921,7 @@ h1.brc {
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
-    padding-top: 0px;
+    padding-top: 4em !important;
     padding: 10px;
 }
 
@@ -2542,38 +2553,8 @@ select:focus {
     scroll-margin-top: 8vh;
 }
 
-#context,
-#identify,
-#icons,
-#exit,
-#consist,
-#overall,
-#proposed,
-#summary,
-#whathappened,
-#paperSign,
-#changes,
-#conclusion,
-#history,
-#v1,
-#v2,
-#v3,
-#v4,
-#whats-next,
-#tooSoon,
-#rewrite,
-#ai,
-#typeface,
-#colour,
-#icon-assets,
-#brainstorm,
-#psrith,
-#cckint,
-#br-diag,
-#bat,
-#tv,
-#staris2,
-#bcr {
+#psd, 
+#ys {
     scroll-margin-top: 10vh;
 }
 
