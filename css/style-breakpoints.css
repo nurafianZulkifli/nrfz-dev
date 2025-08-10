@@ -239,7 +239,7 @@
 /* ---- */
 
 /* ---- 1.0.3 Max Width: 767px */
-@media only screen and (max-width: 767px) {
+@media (max-width: 767px) {
     .container {
         max-width: 720px;
     }
@@ -532,6 +532,22 @@
 /* ---- */
 
 /* ------------------------------------------ 2.0 Width Breakpoints ------------------------------------------ */
+/* ---- 2.0.1 Min Width: 1400px Max Width: 1899px */
+@media only screen and (min-width: 1400px) and (max-width: 1899px) {
+    .about-me-stations {
+        margin-left: 15em;
+        margin-right: 15em;
+    }
+}
+
+/* ---- 2.0.1 Min Width: 1200px Max Width: 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .about-me-stations {
+        margin-left: 8em;
+        margin-right: 8em;
+    }
+}
+
 /* ---- 2.0.1 Min Width: 992px Max Width: 1199px */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     img.profile-pic {
@@ -598,6 +614,11 @@
     .portfolio-sort {
         order: 1;
         margin-bottom: 30px;
+    }
+
+    .about-me-stations {
+        margin-left: 8em;
+        margin-right: 8em;
     }
 }
 
@@ -683,6 +704,11 @@
         order: 2;
         margin-bottom: 30px;
         /* Ensure it appears below */
+    }
+
+    .about-me-stations {
+        margin-left: 8em;
+        margin-right: 8em;
     }
 }
 
@@ -871,8 +897,8 @@
     }
 
     .about-me-stations {
-        margin-left: 2em;
-        margin-right: 2em;
+        margin-left: 4em;
+        margin-right: 4em;
     }
 }
 
@@ -997,8 +1023,8 @@
     }
 
     .about-me-stations {
-        margin-left: 2em;
-        margin-right: 2em;
+        margin-left: 4em;
+        margin-right: 4em;
     }
 
 }
@@ -1020,6 +1046,11 @@
 
     body.dark-mode .wbnrfz_details .banner-eicw img {
         border-radius: 15px !important;
+    }
+
+    .about-me-stations {
+        margin-left: 2em;
+        margin-right: 2em;
     }
 }
 
