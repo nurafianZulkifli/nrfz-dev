@@ -230,7 +230,7 @@
     body.dark-mode .hero-img {
         width: 100vw;
         max-width: 100vw;
-        height: 60vh;
+        height: 100vh;
         object-fit: cover;
         display: block;
     }
