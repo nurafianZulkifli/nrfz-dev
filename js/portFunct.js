@@ -5,7 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
         itemSelector: ".single_gallery_item",
         layoutMode: "fitRows",
         getSortData: {
-            year: "[data-year] parseInt", // Sort by year (numeric value from data-year attribute)
+            year: function (itemElem) {
+                // Convert yyyy-mm to a sortable number (e.g., 2024-12 -> 202412)
+                const dateStr = itemElem.getAttribute("data-date");
+                if (!dateStr) return 0;
+                const parts = dateStr.split("-");
+                if (parts.length !== 2) return 0;
+                return parseInt(parts[0] + parts[1]);
+            },
             title: ".hover-content-blog h4", // Sort by title (text inside h4 in hover-content-blog)
         },
     });
@@ -42,27 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 iso.arrange({ sortBy: "original-order" }); // Default order
             }
         });
+
+        // Show newest items on load
+        sortSelect.value = "newest";
+        iso.arrange({ sortBy: "year", sortAscending: false });
     }
-});
-
-// Sort portfolio items by data-year and data-date on page load
-$(document).ready(function () {
-    var $portfolio = $('.pw-portfolio');
-    var $items = $portfolio.find('.single_gallery_item');
-
-    $items.sort(function (a, b) {
-        // Get year and date, fallback to 0 if missing
-        var yearA = parseInt($(a).data('year')) || 0;
-        var yearB = parseInt($(b).data('year')) || 0;
-        var dateA = $(a).data('date') ? parseInt($(a).data('date').replace('-', '')) : 0;
-        var dateB = $(b).data('date') ? parseInt($(b).data('date').replace('-', '')) : 0;
-
-        // Sort by year descending, then date descending
-        if (yearB !== yearA) {
-            return yearB - yearA;
-        }
-        return dateB - dateA;
-    }).appendTo($portfolio);
 });
 
 //Dynamic Title Update
