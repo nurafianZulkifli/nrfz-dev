@@ -27,22 +27,22 @@ document.addEventListener("DOMContentLoaded", function () {
        });
 
     // Sort functionality
-    const sortSelect = document.getElementById("sort-options");
-    if (sortSelect) {
-        sortSelect.addEventListener("change", function () {
-            const sortValue = this.value;
+    // const sortSelect = document.getElementById("sort-options");
+    // if (sortSelect) {
+    //     sortSelect.addEventListener("change", function () {
+    //         const sortValue = this.value;
 
-            if (sortValue === "newest") {
-                iso.arrange({ sortBy: "year", sortAscending: false }); // Sort by year descending
-            } else if (sortValue === "oldest") {
-                iso.arrange({ sortBy: "year", sortAscending: true }); // Sort by year ascending
-            } else if (sortValue === "alphabetical") {
-                iso.arrange({ sortBy: "title", sortAscending: true }); // Sort by title alphabetically
-            } else {
-                iso.arrange({ sortBy: "original-order" }); // Default order
-            }
-        });
-    }
+    //         if (sortValue === "newest") {
+    //             iso.arrange({ sortBy: "year", sortAscending: false }); // Sort by year descending
+    //         } else if (sortValue === "oldest") {
+    //             iso.arrange({ sortBy: "year", sortAscending: true }); // Sort by year ascending
+    //         } else if (sortValue === "alphabetical") {
+    //             iso.arrange({ sortBy: "title", sortAscending: true }); // Sort by title alphabetically
+    //         } else {
+    //             iso.arrange({ sortBy: "original-order" }); // Default order
+    //         }
+    //     });
+    // }
 });
 
 //Dynamic Title Update
