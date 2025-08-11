@@ -1523,11 +1523,10 @@ iframe {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 16.0 Works By NRFZ ------------------------------------------ */
-/* .pw-portfolio-area {
-    position: relative;
-    z-index: 1;
-    background-color: #f5f6f2;
-} */
+.row.pw-portfolio {
+    min-height: 600px; /* Adjust as needed */
+    transition: none;
+}
 
 .pw-portfolio {
     display: flex;
