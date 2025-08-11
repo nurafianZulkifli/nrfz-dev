@@ -20,18 +20,18 @@ toggleButton.addEventListener('click', () => {
 
 function updateHrefForDarkMode() {
     /* Banners */
-    const wayfind2Page = document.getElementById('cv-wf2');
+    const cumupdPage = document.getElementById('cv-cumupd');
 
     const isDarkMode = document.body.classList.contains('dark-mode');
 
     if (isDarkMode) {
         /* Banners */
-        wayfind2Page.style.backgroundImage = "url(https://i.imgur.com/LMu9vuD.png)";
+        cumupdPage.style.backgroundImage = "url(../img/blog/cumulativeUpd.png)";
 
 
     } else {
         /* Banners */
-        wayfind2Page.style.backgroundImage = "url(https://i.imgur.com/LMu9vuD.png)";
+        cumupdPage.style.backgroundImage = "url(../img/blog/cumulativeUpd.png)";
     }
 
 

@@ -26,12 +26,12 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        aelysPage.style.backgroundImage = "url(../img/blog/ael-ys.png)";
+        aelysPage.style.backgroundImage = "url(../img/blog/aelys.png)";
 
 
     } else {
         /* Banners */
-        aelysPage.style.backgroundImage = "url(../img/blog/ael-ys.png)";
+        aelysPage.style.backgroundImage = "url(../img/blog/aelys.png)";
     }
 
 
