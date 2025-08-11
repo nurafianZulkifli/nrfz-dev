@@ -100,7 +100,7 @@ p {
 }
 
 b:hover {
-  color: #e38286;  
+    color: #e38286;
 }
 
 img {
@@ -788,6 +788,15 @@ header {
     z-index: 1;
 }
 
+#hero:before {
+    transition: opacity 0.4s;
+}
+
+#hero.hide-before:before {
+    opacity: 0;
+    pointer-events: none;
+}
+
 #hero h1 {
     margin: 0;
     font-size: 64px;
@@ -863,6 +872,8 @@ header {
     background-color: #fdfdfd;
     padding: 10px 0;
     padding-top: 1em;
+    position: relative;
+    z-index: 10;
 }
 
 .footer-content {
@@ -1524,7 +1535,8 @@ iframe {
 
 /* ------------------------------------------ 16.0 Works By NRFZ ------------------------------------------ */
 .row.pw-portfolio {
-    min-height: 600px; /* Adjust as needed */
+    min-height: 600px;
+    /* Adjust as needed */
     transition: none;
 }
 
@@ -1546,8 +1558,10 @@ iframe {
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
+    padding-top: 5%;
     background-color: #f6f7f2;
 }
+
 
 .pw-projects-menu {
     position: relative;
@@ -1587,8 +1601,6 @@ iframe {
 .single-portfolio-content {
     position: relative;
     z-index: 1;
-    -webkit-transition-duration: 500ms;
-    -o-transition-duration: 500ms;
     transition-duration: 500ms;
     overflow: hidden;
     border-radius: 25px;
@@ -2556,7 +2568,7 @@ select:focus {
     scroll-margin-top: 8vh;
 }
 
-#psd, 
+#psd,
 #ys {
     scroll-margin-top: 10vh;
 }
