@@ -99,6 +99,10 @@ p {
     cursor: default;
 }
 
+b:hover {
+  color: #e38286;  
+}
+
 img {
     width: 100%;
     height: auto;
