@@ -213,17 +213,11 @@
 
     .main-title {
         margin: 0 auto;
-        /* Center the element horizontally */
         padding: 0 -0.5rem;
-        /* Add padding to prevent text from touching edges */
         max-width: 100%;
-        /* Ensure it doesn't exceed the container width */
         box-sizing: border-box;
-        /* Include padding in width calculations */
         overflow-wrap: break-word;
-        /* Break long words to prevent overflow */
         word-wrap: break-word;
-        /* Ensure proper word wrapping */
     }
 
     .hero-img,
@@ -233,6 +227,46 @@
         height: 100vh;
         object-fit: cover;
         display: block;
+    }
+
+    .fleet-table th,
+    .fleet-table td {
+        white-space: nowrap;
+    }
+
+    .filter-inputs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-inputs .search-input {
+        width: 66%;
+    }
+
+    .fleet-table th,
+    .fleet-table .manu,
+    .fleet-table .model,
+    .fleet-table .type,
+    .fleet-table .cat,
+    .fleet-table .dev,
+    .fleet-table .disp,
+    .fleet-table .livery,
+    .fleet-table .rego {
+        font-size: 14px;
+    }
+
+    body.dark-mode .fleet-table th,
+    body.dark-mode .fleet-table td {
+        white-space: nowrap;
+    }
+
+    body.dark-mode .filter-inputs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    body.dark-mode .filter-inputs .search-input {
+        width: 66%;
     }
 }
 
@@ -252,8 +286,6 @@
         right: 20px;
         bottom: 50px;
     }
-
-
 
     header::after {
         position: absolute;
@@ -476,6 +508,13 @@
         text-align: center;
     }
 
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        background-color: #6ac144 !important;
+        border: none;
+        border-radius: 20px !important;
+    }
+
 }
 
 /* ---- */
@@ -483,7 +522,7 @@
 /* ---- 1.0.4 Max Width: 450px */
 @media (max-width: 450px) {
     .btn {
-        width: 130px;
+        width: 195px;
     }
 
     .light:after {
@@ -526,6 +565,20 @@
         color: #7b7b7b;
         white-space: nowrap;
         max-width: 100%;
+    }
+
+    .accordion-button {
+        font-size: 1rem;
+        padding: 0.75em 1em;
+        display: flex;
+        align-items: center;
+        gap: 1.0em;
+        text-align: left;
+    }
+
+    .accordion-button i {
+        font-size: 1.2em;
+        vertical-align: middle;
     }
 }
 
