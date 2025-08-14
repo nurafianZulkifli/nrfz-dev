@@ -2564,7 +2564,8 @@ select:focus {
 
 #summary,
 #tm,
-#lppl {
+#orp,
+#obf {
     scroll-margin-top: 8vh;
 }
 
@@ -3060,8 +3061,168 @@ h4.stn:hover {
 }
 
 /* ------------------------------------------ 6.0 Fleets Pages ------------------------------------------ */
+.filter-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-inputs .search-input {
+  flex: 1;
+  max-width: 300px;
+}
+
+#manufacturerFilter,
+#categoryFilter {
+  background-color: #fff;
+}
+
+.search-input {
+  height: 50px;
+  border-radius: 30px;
+  padding-left: 35px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #000;
+  width: 30%;
+}
+
+.search-input::placeholder {
+  color: #000;
+}
+
+.fleet-table th {
+  font-weight: bold;
+  width: 9%;
+  border: 2px solid #b3b3b3;
+  background-color: #b1b1b1;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fleet-table .manu {
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+  vertical-align: top;
+}
+
+.fleet-table .model {
+  font-weight: bold;
+  text-align: center;
+  width: 15%;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+  vertical-align: top;
+}
+
+.fleet-table .type {
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+  vertical-align: top;
+  width: 15%;
+}
+
+.fleet-table .cat {
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+  vertical-align: top;
+}
+
+.fleet-table .dev {
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+  vertical-align: top;
+  width: 15%;
+}
+
+.fleet-table .disp {
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+  vertical-align: top;
+}
+
+.fleet-table .livery {
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+  vertical-align: top;
+  width: 9%;
+}
+
+.fleet-table .rego {
+  font-weight: bold;
+  text-align: center;
+  width: 40%;
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  color: #000;
+}
 
 
+.fleet-table tbody tr:nth-child(odd) {
+  background-color: #dfdfdf;
+  /* Darker gray for dark mode */
+  border: 2px solid #b3b3b3;
+}
+
+.fleet-table tbody tr:nth-child(even) {
+  background-color: #f5f6f2;
+  /* Slightly lighter gray for dark mode */
+  border: 2px solid #b3b3b3;
+}
+
+.tab-content {
+  padding-top: 20px;
+}
+
+.nav-tabs {
+  border-bottom: none !important;
+  border-radius: 20px !important;
+}
+
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  background-color: #6ac144 !important;
+  border: none;
+  border-radius: 20px !important;
+}
+
+.nav-tabs .nav-link {
+  color: #000 !important;
+  border: none;
+  border-radius: 20px !important;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: #ffb6b9 !important;
+  color: #000 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 20px !important;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
 
 
 

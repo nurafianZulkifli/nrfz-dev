@@ -268,20 +268,7 @@
     body.dark-mode .filter-inputs .search-input {
         width: 66%;
     }
-
-      .nav-tabs {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    border-bottom: 1px solid #dee2e6;
-    width: 100%;
-  }
-  .nav-tabs .nav-item {
-    flex: 0 0 auto;
-  }
-  .nav-tabs .nav-link {
-    white-space: nowrap;
-  }
+    
 }
 
 /* ---- */
