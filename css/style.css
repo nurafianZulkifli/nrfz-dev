@@ -1226,7 +1226,7 @@ h4.timeline-date-aa {
 
 .about-me-summ {
     background-color: #f8faf4;
-    padding-top: 50px;
+    /* padding-top: 50px; */
     padding-bottom: 5em;
     position: relative;
     z-index: 0;
