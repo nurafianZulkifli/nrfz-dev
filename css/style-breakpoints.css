@@ -269,7 +269,6 @@
     body.dark-mode .filter-inputs .search-input {
         width: 66%;
     }
-    
 }
 
 /* ---- */
@@ -426,15 +425,6 @@
         margin-top: -4.2em !important;
     }
 
-    /* .wbnrfz_details_blog {
-        mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%);
-    }
-
-    body.dark-mode .wbnrfz_details_blog {
-        mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%);
-    } */
-
-
     .footer-content .copywrite-text p {
         font-size: 16px;
     }
@@ -510,7 +500,7 @@
         text-align: center;
     }
 
-        .fleet-table th,
+    .fleet-table th,
     .fleet-table td {
         white-space: nowrap;
     }
@@ -569,6 +559,11 @@
         line-height: 1.2;
         margin: 0 auto;
         max-width: 100%;
+    }
+
+    #scrollUp {
+        right: 20px;
+        bottom: 130px;
     }
 }
 
