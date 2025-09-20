@@ -5,39 +5,37 @@ document.addEventListener("DOMContentLoaded", function () {
         itemSelector: ".single_gallery_item",
         layoutMode: "fitRows",
         getSortData: {
-            date: function (itemElem) {
-                // Get the data-date attribute and convert to a timestamp for accurate sorting
-                const dateStr = itemElem.getAttribute("data-date");
-                return dateStr ? Date.parse(dateStr) : 0;
-            },
-            year: "[data-year] parseInt",
-            title: ".hover-content-blog h4",
+            year: "[data-year] parseInt", // Sort by year (numeric value from data-year attribute)
+            title: ".hover-content-blog h4", // Sort by title (text inside h4 in hover-content-blog)
         },
     });
 
-    // Filter functionality
-    const filterButtons = document.querySelectorAll(".btn-filter");
-    filterButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            this.classList.add("active");
-            const filterValue = this.getAttribute("data-filter");
-            iso.arrange({ filter: filterValue });
-        });
-    });
+       // Filter functionality
+       const filterButtons = document.querySelectorAll(".btn-filter");
+       filterButtons.forEach((button) => {
+           button.addEventListener("click", function () {
+               // Remove active class from all buttons
+               filterButtons.forEach((btn) => btn.classList.remove("active"));
+               // Add active class to the clicked button
+               this.classList.add("active");
+
+               // Get the filter value from the button
+               const filterValue = this.getAttribute("data-filter");
+               // Apply the filter
+               iso.arrange({ filter: filterValue });
+           });
+       });
 
     // Sort functionality
     const sortSelect = document.getElementById("sort-options");
     if (sortSelect) {
-        sortSelect.value = ""; // Show blank on load
-
         sortSelect.addEventListener("change", function () {
             const sortValue = this.value;
 
             if (sortValue === "newest") {
-                iso.arrange({ sortBy: "date", sortAscending: false }); // Sort by date descending
+                iso.arrange({ sortBy: "year", sortAscending: false }); // Sort by year descending
             } else if (sortValue === "oldest") {
-                iso.arrange({ sortBy: "date", sortAscending: true }); // Sort by date ascending
+                iso.arrange({ sortBy: "year", sortAscending: true }); // Sort by year ascending
             } else if (sortValue === "alphabetical") {
                 iso.arrange({ sortBy: "title", sortAscending: true }); // Sort by title alphabetically
             } else {
@@ -45,16 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
-    // Recalculate Isotope layout after images load
-    imagesLoaded(portfolioContainer, function () {
-        iso.arrange();
-    });
-
-    // Recalculate Isotope layout after window resize
-    $(window).on('resize', function () {
-        iso.arrange();
-    });
 });
 
 //Dynamic Title Update
@@ -64,7 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     filterButtons.forEach((button) => {
         button.addEventListener("click", function () {
+            // Get the filter text from the button
             const filterText = this.textContent.trim();
+            // Update the title
             titleElement.textContent = filterText;
         });
     });
