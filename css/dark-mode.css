@@ -557,3 +557,25 @@ body.dark-mode .wbnrfz_eicw {
     padding-top: 3em;
     padding-bottom: 2em;
 }
+
+
+body.dark-mode .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    appearance: none;
+    background-color: #000;
+    background-clip: padding-box;
+    border: #000;
+    border-radius: 25px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+body.dark-mode .form-control::placeholder {
+  color: #cccccc; /* Red color example */
+  opacity: 1; /* Ensure full opacity if desired, as some browsers default to lower opacity */
+}

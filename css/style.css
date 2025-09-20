@@ -1521,7 +1521,7 @@ li.breadcrumb-item.active a {
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
-    background-color: #f6f7f2;
+    background-color: #f8faf4;
 }
 
 .pw-projects-menu {
@@ -2771,4 +2771,32 @@ h2.page-title {
 
 md-menu {
     z-index: 9999 !important;
+}
+
+
+
+
+
+
+
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #d3d3d3;
+    appearance: none;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #cccccc;
+    border-radius: 25px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-control::placeholder {
+  color: #aaaaaa; /* Red color example */
+  opacity: 1; /* Ensure full opacity if desired, as some browsers default to lower opacity */
 }
