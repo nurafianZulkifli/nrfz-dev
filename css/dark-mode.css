@@ -15,7 +15,7 @@
 /* ------------------------------------------ General ------------------------------------------ */
 /* ---- Preloader */
 body.dark-mode #preloader {
-    background-color: #151616d3;
+    background-color: #0c0c0ce8;
     backdrop-filter: blur(5px);
 }
 
