@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     imagesLoaded(portfolioContainer, function () {
         const iso = new Isotope(portfolioContainer, {
             itemSelector: ".single_gallery_item",
-            layoutMode: "fitRows",
+            layoutMode: "fitRows", // Ensures items are arranged in rows without gaps
+            fitRows: {
+                gutter: 0, // Removes any extra spacing between rows
+            },
             getSortData: {
                 year: "[data-year] parseInt", // Sort by year (numeric value from data-year attribute)
                 title: ".hover-content-blog h4", // Sort by title (text inside h4 in hover-content-blog)
@@ -79,6 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Show or hide the "Project Not Found" message
             noResultsMessage.style.display = hasResults ? "none" : "block";
+
+            // Trigger Isotope layout recalculation to remove blank spaces
+            iso.arrange();
         });
     });
 });
