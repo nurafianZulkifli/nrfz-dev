@@ -675,6 +675,30 @@
         margin-bottom: 30px;
         /* Ensure it appears below */
     }
+
+    .wrapper {
+        padding: 15px;
+        position: relative;
+        overflow-x: hidden;
+        max-width: 1200px;
+        border-radius: 13px;
+    }
+
+
+
+    .tabs-box {
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        white-space: nowrap;
+        /* Prevent tabs from wrapping */
+    }
+
+    .tabs-box .tab {
+        width: 150px;
+        /* Adjust the width to control how many tabs fit on the screen */
+        flex-shrink: 0;
+        /* Prevent tabs from shrinking */
+    }
 }
 
 /* ---- */
@@ -860,6 +884,28 @@
         margin-bottom: 30px;
         /* Ensure it appears below */
     }
+
+    .wrapper {
+        padding: 15px;
+        position: relative;
+        overflow-x: hidden;
+        max-width: 1200px;
+        border-radius: 13px;
+    }
+
+    .tabs-box {
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        white-space: nowrap;
+        /* Prevent tabs from wrapping */
+    }
+
+    .tabs-box .tab {
+        width: 150px;
+        /* Adjust the width to control how many tabs fit on the screen */
+        flex-shrink: 0;
+        /* Prevent tabs from shrinking */
+    }
 }
 
 /* ---- */
@@ -982,6 +1028,28 @@
         border-radius: 20px !important;
     }
 
+    .wrapper {
+        padding: 15px;
+        position: relative;
+        overflow-x: hidden;
+        max-width: 1200px;
+        border-radius: 13px;
+    }
+
+    .tabs-box {
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        white-space: nowrap;
+        /* Prevent tabs from wrapping */
+    }
+
+    .tabs-box .tab {
+        width: 150px;
+        /* Adjust the width to control how many tabs fit on the screen */
+        flex-shrink: 0;
+        /* Prevent tabs from shrinking */
+    }
+
 }
 
 /* ---- */
@@ -1001,6 +1069,14 @@
 
     body.dark-mode .wbnrfz_details .banner-eicw img {
         border-radius: 15px !important;
+    }
+
+    .wrapper {
+        padding: 15px;
+        position: relative;
+        overflow-x: hidden;
+        max-width: 1200px;
+        border-radius: 13px;
     }
 }
 
