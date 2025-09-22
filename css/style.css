@@ -2490,7 +2490,7 @@ select:focus {
 }
 
 .wbnrfz_details_blog {
-    background: #f5f5f5;
+    background: #ffffffe0;
     box-shadow: 0 4px 30px #0000001a;
     backdrop-filter: blur(10px);
     margin-top: -4.2em;
@@ -2659,7 +2659,7 @@ h2.page-title {
 }
 
 .wbnrfz_eicw {
-    background: #f5f5f5;
+    background: #e9eae5;
     backdrop-filter: blur(10px);
     padding-top: 3em;
     padding-bottom: 2em;
@@ -2799,62 +2799,4 @@ md-menu {
 .form-control::placeholder {
   color: #aaaaaa; /* Red color example */
   opacity: 1; /* Ensure full opacity if desired, as some browsers default to lower opacity */
-}
-
-
-
-
-
-.wrapper {
-  padding: 25px;
-  position: relative;
-  overflow-x: hidden;
-  max-width: 1400px;
-  border-radius: 25px;
-  background: #dddddd;
-}
-
-
-
-.wrapper .tabs-box {
-  display: flex;
-  gap: 15px;
-  list-style: none;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-.tabs-box.dragging {
-    scroll-behavior: auto;
-    cursor: grab;
-    touch-action: pan-x; /* Allow horizontal dragging */
-}
-
-.tabs-box.dragging:active {
-    cursor: grabbing;
-}
-
-.tabs-box .tab {
-  cursor: pointer;
-  font-size: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
-  background: #98997f;
-  color: #fff;
-  padding: 13px 20px;
-  border-radius: 30px;
-  border: 1px solid #d8d5f2;
-  width: 400px;
-}
-.tabs-box .tab:hover{
-  background: #efedfb;
-}
-.tabs-box.dragging .tab {
-  user-select: none;
-  pointer-events: none;
-}
-.tabs-box .tab.active{
-  color: #fff;
-  background: #6d99c0;
-  border-color: transparent;
 }
