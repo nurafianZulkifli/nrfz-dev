@@ -579,3 +579,21 @@ body.dark-mode .form-control::placeholder {
   color: #cccccc; /* Red color example */
   opacity: 1; /* Ensure full opacity if desired, as some browsers default to lower opacity */
 }
+
+
+
+
+
+
+
+
+body.dark-mode .icon:first-child {
+  left: 0;
+  display: none;
+  background: linear-gradient(90deg, #18191a 70%, transparent);
+}
+body.dark-mode .icon:last-child {
+  right: 0;
+  justify-content: flex-end;
+  background: linear-gradient(-90deg, #18191a 70%, transparent);
+}
