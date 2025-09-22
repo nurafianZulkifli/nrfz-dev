@@ -560,7 +560,7 @@ body.dark-mode .wbnrfz_eicw {
     background: #18191a;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    padding-top: 3em;
+    padding-top: 1em;
     padding-bottom: 2em;
 }
 
@@ -594,20 +594,7 @@ body.dark-mode .form-control::placeholder {
 
 
 /* ------------------------------------------ xx.x Tabs Controls ------------------------------------------ */
-body.dark-mode .tabs {
-    font-size: 15px;
-    padding: 0px;
-    list-style: none;
-    background: #494949;
-    box-shadow: 0px 2px 8px rgba(150, 150, 150, 0.15);
-    display: inline-block;
-    border-radius: 25px;
-    position: relative;
-    z-index: 1;
-    padding: 10px;
-}
-
-.tabs a {
+body.dark-mode .tabs a {
     text-decoration: none;
     color: #fff;
     padding: 10px 20px;
@@ -615,4 +602,16 @@ body.dark-mode .tabs {
     position: relative;
     z-index: 2;
     transition-duration: 0.6s;
+}
+
+body.dark-mode .tabs .normal {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    transition-duration: 0.6s;
+    background: #494949;
+    border-radius: 25px;
 }

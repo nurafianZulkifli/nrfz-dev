@@ -33,7 +33,7 @@ function shiftSelector(tabs) {
 
     let activeBody = $(".tabs .active").attr("data-body");
     $(".tab-body > section").hide();
-    $("." + activeBody).fadeIn();
+    $("." + activeBody).show(); // Replaced fadeIn() with show() to remove animation
 }
 
 
@@ -55,3 +55,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
