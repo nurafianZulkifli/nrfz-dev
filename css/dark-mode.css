@@ -14,7 +14,7 @@
 
 /* ------------------------------------------ General ------------------------------------------ */
 /* ---- Preloader */
-body.dark-mode #preloader {
+/* body.dark-mode #preloader {
     background-color: #0c0c0ce8;
     backdrop-filter: blur(5px);
 }
@@ -23,6 +23,12 @@ body.dark-mode #preloader-text {
     margin-top: 20px;
     font-size: 16px;
     color: #fff;
+} */
+
+
+body.dark-mode {
+    visibility: visible;
+    opacity: 1;
 }
 
 /* ---- Button */
@@ -587,13 +593,26 @@ body.dark-mode .form-control::placeholder {
 
 
 
-body.dark-mode .icon:first-child {
-  left: 0;
-  display: none;
-  background: linear-gradient(90deg, #18191a 70%, transparent);
+/* ------------------------------------------ xx.x Tabs Controls ------------------------------------------ */
+body.dark-mode .tabs {
+    font-size: 15px;
+    padding: 0px;
+    list-style: none;
+    background: #494949;
+    box-shadow: 0px 2px 8px rgba(150, 150, 150, 0.15);
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    z-index: 1;
+    padding: 10px;
 }
-body.dark-mode .icon:last-child {
-  right: 0;
-  justify-content: flex-end;
-  background: linear-gradient(-90deg, #18191a 70%, transparent);
+
+.tabs a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    transition-duration: 0.6s;
 }

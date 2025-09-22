@@ -94,13 +94,13 @@
             </div>
           </div>
           <!-- Collapsible Header -->
-          <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+          <!-- <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
             aria-controls="portfolioFilter" style="cursor: pointer;" title="Go To">
             <i class="fa-solid fa-chevron-down nav-chev"></i>
-          </div>
+          </div> -->
         </div>
         <!-- Collapsible Content -->
-        <div id="portfolioFilter" class="collapse">
+        <!-- <div id="portfolioFilter" class="collapse">
           <div class="portfolio-filter mt-3">
             <a href="eicw.html">
               <button class="btn">Design System Introduction</button>
@@ -118,7 +118,7 @@
               <button class="btn">Rethinking CCL6 Signages</button>
             </a>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -127,12 +127,25 @@
   <section class="about-me-summ clearfix">
     <div class="wbnrfz_details_body">
       <div class="container container-mobile">
+
+        <div class="wrapper">
+          <nav class="tabs">
+            <div class="selector"></div>
+            <a href="eicw.html#dsi">Design System Introduction</a>
+            <a href="eicw-2.html#pct">Proposed Changes - Trains</a>
+            <a href="#" class="active">Proposed Changes - Buses</a>
+            <a href="eicw-4.html#pcu">Proposed Changes - UI/UX</a>
+            <a href="eicw-5.html#pcc">Proposed Changes - CCL6</a>
+          </nav>
+        </div>
+
+
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="row justify-content-center">
 
               <!-- Preface -->
-              <div class="col-lg-12 wow fadeInUp" data-wow-delay="100ms">
+              <div class="col-lg-12 wow fadeInUp" data-wow-delay="100ms" id="pcb">
                 <div class="info justify-content-center">
                   <h2 class="text-center" style="font-size: 30px; font-weight:bold; text-align: left;">Proposed
                     Wayfinding Changes - Buses</h2>
@@ -504,6 +517,8 @@
 
   <script src="../js/jquery.min.js"></script>
 
+  <script src="../js/dstabs.js"></script>
+
   <script src="../js/popper.min.js"></script>
 
   <script src="../js/bootstrap.min.js"></script>
@@ -512,7 +527,7 @@
 
   <script src="../js/default-assets/active.js"></script>
 
-    <!--  <script src="../js/preloader.js"></script> -->
+  <!--  <script src="../js/preloader.js"></script> -->
 
 </body>
 

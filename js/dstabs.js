@@ -1,55 +1,57 @@
-const tabsBox = document.querySelector(".tabs-box"),
-allTabs = tabsBox.querySelectorAll(".tab"),
-arrowIcons = document.querySelectorAll(".icon i");
-let isDragging = false, startX, startScrollLeft;
-
-const handleIcons = (scrollVal) => {
-    let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-    arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
-    arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
-};
-
-arrowIcons.forEach(icon => {
-    icon.addEventListener("click", () => {
-        // if clicked icon is left, reduce 350 from tabsBox scrollLeft else add
-        let scrollWidth = tabsBox.scrollLeft += icon.id === "left" ? -340 : 340;
-        handleIcons(scrollWidth);
-    });
+//script for tabs
+jQuery().ready(function () {
+    initTabs($(".tabs"));
 });
 
-allTabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-        tabsBox.querySelector(".active").classList.remove("active");
-        tab.classList.add("active");
+function initTabs(tabs) {
+    shiftSelector(tabs);
+
+    $(window).resize(function () {
+        shiftSelector(tabs);
+    });
+
+    tabs.on("click", "a", function (e) {
+        e.preventDefault();
+        tabs.find("a").removeClass("active");
+        $(this).addClass("active");
+
+        shiftSelector(tabs);
+    });
+}
+
+function shiftSelector(tabs) {
+    let activeItem = tabs.find(".active");
+    let activeWidth = activeItem.innerWidth();
+    let activeHeight = activeItem.innerHeight();
+    let itemPos = activeItem.position();
+    tabs.find(".selector").css({
+        left: itemPos.left + "px",
+        width: activeWidth + "px",
+        height: activeHeight + "px",
+        top: itemPos.top + "px"
+    });
+
+    let activeBody = $(".tabs .active").attr("data-body");
+    $(".tab-body > section").hide();
+    $("." + activeBody).fadeIn();
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('nav.tabs a');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default anchor behavior
+            const href = tab.getAttribute('href');
+            const dataBody = tab.getAttribute('data-body');
+
+            // Redirect to the href or data-body if available
+            if (dataBody) {
+                window.location.href = dataBody;
+            } else if (href) {
+                window.location.href = href;
+            }
+        });
     });
 });
-
-const dragging = (e) => {
-    if (!isDragging) return;
-    tabsBox.classList.add("dragging");
-    const movementX = e.type === "mousemove" ? e.movementX : e.touches[0].clientX - startX;
-    tabsBox.scrollLeft -= movementX;
-    startX = e.type === "touchmove" ? e.touches[0].clientX : startX;
-    handleIcons(tabsBox.scrollLeft);
-};
-
-const dragStart = (e) => {
-    isDragging = true;
-    tabsBox.classList.add("dragging");
-    startX = e.type === "mousedown" ? e.pageX : e.touches[0].clientX;
-    startScrollLeft = tabsBox.scrollLeft;
-};
-
-const dragStop = () => {
-    isDragging = false;
-    tabsBox.classList.remove("dragging");
-};
-
-tabsBox.addEventListener("mousedown", dragStart);
-tabsBox.addEventListener("mousemove", dragging);
-document.addEventListener("mouseup", dragStop);
-
-// Add touch event listeners for mobile
-tabsBox.addEventListener("touchstart", dragStart);
-tabsBox.addEventListener("touchmove", dragging);
-tabsBox.addEventListener("touchend", dragStop);

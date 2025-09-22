@@ -38,10 +38,10 @@
 <body>
 
     <!-- Preloader Section -->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="loader"></div>
         <p id="preloader-text">Just a moment...</p>
-    </div>
+    </div> -->
 
     <div id="scroll-indicator-container">
         <div id="scroll-indicator"></div>
@@ -96,13 +96,13 @@
                         </div>
                     </div>
                     <!-- Collapsible Header -->
-                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+                    <!-- <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
                         aria-controls="portfolioFilter" style="cursor: pointer;" title="Go To">
                         <i class="fa-solid fa-chevron-down nav-chev"></i>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- Collapsible Content -->
-                <div id="portfolioFilter" class="collapse">
+                <!-- <div id="portfolioFilter" class="collapse">
                     <div class="portfolio-filter mt-3">
                         <a href="eicw.html">
                             <button class="btn">Design System Introduction</button>
@@ -120,7 +120,7 @@
                             <button class="btn">Rethinking CCL6 Signages</button>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -129,12 +129,25 @@
     <section class="about-me-sum clearfix">
         <div class="wbnrfz_eicw">
             <div class="container container-mobile">
+
+                <div class="wrapper">
+                    <nav class="tabs">
+                        <div class="selector"></div>
+                        <a href="eicw.html#dsi">Design System Introduction</a>
+                        <a href="#" class="active">Proposed Changes - Trains</a>
+                        <a href="eicw-3.html#pcb">Proposed Changes - Buses</a>
+                        <a href="eicw-4.html#pcu">Proposed Changes - UI/UX</a>
+                        <a href="eicw-5.html#pcc">Proposed Changes - CCL6</a>
+                    </nav>
+                </div>
+
+
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="row justify-content-center">
 
                             <!-- Preface -->
-                            <div class="col-lg-12 wow fadeInUp" data-wow-delay="100ms">
+                            <div class="col-lg-12 wow fadeInUp" data-wow-delay="100ms" id="pct">
                                 <div class="info justify-content-center">
                                     <h2 class="mb-3 text-center" style="font-size: 30px; font-weight:bold;">Proposed
                                         Wayfinding Changes - Trains</h2>
@@ -741,7 +754,7 @@
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <hr>
 
                             <!-- Unused Designs -->
@@ -1197,8 +1210,7 @@
 
                             <!-- Enhancements Overview -->
                             <div class="col-lg-12 wow fadeInUp" data-wow-delay="100ms">
-                                <h2 class="text-center"
-                                    style="font-size: 30px; font-weight:bold; text-align: center;">
+                                <h2 class="text-center" style="font-size: 30px; font-weight:bold; text-align: center;">
                                     Enhancements Overview</h2>
                                 <div class="banner-eicw">
                                     <a href="img/evo2-light.png" id="evo2" class="portfolio-img">
@@ -1246,6 +1258,8 @@
     <script src="js/eicw-2.js"></script>
 
     <script src="../js/jquery.min.js"></script>
+
+    <script src="../js/dstabs.js"></script>
 
     <script src="../js/popper.min.js"></script>
 
