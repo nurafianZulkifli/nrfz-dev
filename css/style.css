@@ -1201,7 +1201,7 @@ h4.timeline-date-aa {
 
 .about-me-summ {
     background-color: #f8faf4;
-    padding-top: 50px;
+    /* padding-top: 50px; */
     /* padding-bottom: 83px; */
     position: relative;
     z-index: 0;
@@ -1741,17 +1741,18 @@ img.profile-pic {
 }
 
 .skill-ara .single-skill .progress {
-    height: 5px;
+    height: 12px;
     border-radius: 0;
     background-color: #dbe3e9;
-    border-radius: 4px;
+    border-radius: 15px;
 }
 
 .skill-ara .single-skill .progress-bar {
-    background: linear-gradient(90deg, #708ea8 0%, #619bcd 45%, #72a7d6 100%);
+    background: #87bee8;
+    background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
     width: 0%;
-    filter: drop-shadow(0 0 5px);
-    border-radius: 5px;
+
+    border-radius: 15px;
 }
 
 /* ------------------------------------------ */
@@ -2817,86 +2818,100 @@ md-menu {
 
 /* ------------------------------------------ xx.x Tabs Controls ------------------------------------------ */
 
-.wrapper {
+/*--------------------*/
+.container-slider {
+    margin-top: 35px;
+}
+
+.category-lists-slider {
+    position: relative;
+}
+
+#catgory-slider .swiper-slide {
+    width: auto;
+}
+
+.category-button {
     text-align: center;
-    margin: 50px auto;
-}
-
-.tabs {
     font-size: 15px;
-    padding: 0px;
-    list-style: none;
-    /* background: #fff;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15); */
+    font-weight: 700;
+    background-color: #fff;
+    color: #37a7f1;
+    padding: 15px 28px;
+    border-radius: 50px;
     display: inline-block;
-    border-radius: 25px;
-    position: relative;
-    z-index: 1;
-    padding: 10px;
+    cursor: pointer;
+    user-select: none;
 }
 
-.tabs .normal {
-    text-decoration: none;
-    color: #777;
-    padding: 10px 20px;
-    display: inline-block;
-    position: relative;
-    z-index: 2;
-    background: #fff;
-    border-radius: 25px;
-}
 
-.tabs a {
-    text-decoration: none;
-    color: #777;
-    padding: 10px 20px;
-    margin: 10px;
-    display: inline-block;
-    position: relative;
-    z-index: 2;
-}
-
-.tabs a img,
-.tabs a i {
-    display: inline;
-    max-height: 13px;
-    margin-right: 5px;
-}
-
-.tabs .selector {
-    height: 100%;
-    display: inline-block;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 1; /* Lower z-index to ensure text appears on top */
-    border-radius: 25px;
+.category-button.active {
     background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
-    box-shadow: 0px 2px 10px rgba(14, 14, 14, 0.151);
-    margin: 10px;
-}
-
-.tabs a {
-    text-decoration: none;
-    color: #777;
-    padding: 10px 20px;
-    margin: 10px;
-    display: inline-block;
-    position: relative;
-    z-index: 2; /* Higher z-index to ensure text is above the selector */
-}
-
-.tabs a.active {
     color: #fff;
-    z-index: 3; /* Ensure active tab text is always on top */
 }
-.tab-body>section {
-    /* border: 1px solid grey; */
-    background-color: white;
-    padding-top: 10vmin;
+
+.data-text {
     display: none;
 }
 
-.tab-body>section:first-child {
+.data-text.active {
     display: block;
+}
+
+.data-text h6 {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.data-text p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.slider-button {
+    width: 35px;
+    height: 35px;
+    background: #ae7356;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 30%);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    position: absolute;
+    top: 9px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.slider-button.slider-prev {
+    left: -40px;
+}
+
+.slider-button.slider-next {
+    right: -40px;
+}
+
+.slider-button.swiper-button-disabled {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.box {
+    padding: 30px;
+    margin-top: 20px;
+    background-color: #d9eefd;
+    border-radius: 6px;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.box i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #37a7f1;
 }

@@ -1050,6 +1050,28 @@
         /* Prevent tabs from shrinking */
     }
 
+    .category-lists-slider {
+        margin-top: 40px;
+    }
+
+    .category-button {
+        font-size: 12px;
+        padding: 4px 14px;
+    }
+
+    .slider-button {
+        top: -40px;
+    }
+
+    .slider-button.slider-prev {
+        left: inherit;
+        right: 32px;
+    }
+
+    .slider-button.slider-next {
+        right: 0;
+    }
+
 }
 
 /* ---- */

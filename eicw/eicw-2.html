@@ -16,6 +16,7 @@
     <link rel="icon" href="../img/core-img/favicon.png">
 
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+    <link rel='stylesheet' href='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.css'>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -130,15 +131,44 @@
         <div class="wbnrfz_eicw">
             <div class="container container-mobile">
 
-                <div class="wrapper">
-                    <nav class="tabs">
-                        <div class="selector"></div>
-                        <a href="eicw.html#dsi" class="normal">Design System Introduction</a>
-                        <a href="#" class="active">Proposed Wayfinding Changes - Trains</a>
-                        <a href="eicw-3.html#pcb" class="normal">Proposed Wayfinding Changes - Buses</a>
-                        <a href="eicw-4.html#pcu" class="normal">Proposed UI/UX Changes</a>
-                        <a href="eicw-5.html#pcc" class="normal">Rethinking CCL6 Signages</a>
-                    </nav>
+                <div class="container container-slider">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="category-lists-slider">
+                                <div class="swiper-container" id="catgory-slider">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <a href="eicw.html#dsi" class="category-button">
+                                                Design System Introduction
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#" class="category-button active">
+                                                Proposed Wayfinding Changes - Trains
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="eicw-3.html#pcb" class="category-button">
+                                                Proposed Wayfinding Changes - Buses
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="eicw-4.html#pcu" class="category-button">
+                                                Proposed UI/UX Changes
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="eicw-5.html#pcc" class="category-button">
+                                                Rethinking CCL6 Signages
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider-button slider-prev"><i class="fa fa-chevron-left"></i></div>
+                                <div class="slider-button slider-next"><i class="fa fa-chevron-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -1258,6 +1288,8 @@
     <script src="js/eicw-2.js"></script>
 
     <script src="../js/jquery.min.js"></script>
+
+    <script src='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.js'></script>
 
     <script src="../js/dstabs.js"></script>
 
