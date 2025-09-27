@@ -35,7 +35,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: wrap;
-        max-width: 24em;
+        max-width: 26em;
         text-align: left;
     }
 }
@@ -884,28 +884,6 @@
         margin-bottom: 30px;
         /* Ensure it appears below */
     }
-
-    .wrapper {
-        padding: 15px;
-        position: relative;
-        overflow-x: hidden;
-        max-width: 1200px;
-        border-radius: 13px;
-    }
-
-    .tabs-box {
-        overflow-x: auto;
-        /* Enable horizontal scrolling */
-        white-space: nowrap;
-        /* Prevent tabs from wrapping */
-    }
-
-    .tabs-box .tab {
-        width: 150px;
-        /* Adjust the width to control how many tabs fit on the screen */
-        flex-shrink: 0;
-        /* Prevent tabs from shrinking */
-    }
 }
 
 /* ---- */
@@ -1050,26 +1028,23 @@
         /* Prevent tabs from shrinking */
     }
 
-    .category-lists-slider {
-        margin-top: 40px;
+    .container-slider {
+        padding-left: 25px;
     }
 
-    .category-button {
-        font-size: 12px;
-        padding: 4px 14px;
-    }
 
-    .slider-button {
+    /* .slider-button {
         top: -40px;
-    }
+    } */
 
     .slider-button.slider-prev {
         left: inherit;
-        right: 32px;
+        left: -43px;
+
     }
 
     .slider-button.slider-next {
-        right: 0;
+        right: -43px;
     }
 
 }

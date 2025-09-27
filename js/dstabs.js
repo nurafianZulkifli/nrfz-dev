@@ -1,7 +1,7 @@
 // ----------swiper-slider---------
 var swiper = '';
 $(window).on('load', function(){
-    swiper = new Swiper('#catgory-slider', {
+    swiper = new Swiper('#swiper-cat-slider', {
         loop: false,
         slidesPerView: "auto",
         allowTouchMove: this,

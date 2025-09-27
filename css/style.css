@@ -1817,7 +1817,7 @@ img.profile-pic {
 }
 
 h1.brc {
-    font-size: clamp(34px, 8.5vw, 40px) !important;
+    font-size: clamp(34px, 8.5vw, 35px) !important;
     margin-bottom: 0px;
     font-weight: bold;
     text-align: center;
@@ -2821,13 +2821,14 @@ md-menu {
 /*--------------------*/
 .container-slider {
     margin-top: 35px;
+    padding-left: 0px;
 }
 
 .category-lists-slider {
     position: relative;
 }
 
-#catgory-slider .swiper-slide {
+#swiper-cat-slider .swiper-slide {
     width: auto;
 }
 
@@ -2835,8 +2836,8 @@ md-menu {
     text-align: center;
     font-size: 15px;
     font-weight: 700;
-    background-color: #fff;
-    color: #37a7f1;
+    background-color: #eeeeee;
+    color: #000;
     padding: 15px 28px;
     border-radius: 50px;
     display: inline-block;
@@ -2896,6 +2897,8 @@ md-menu {
     right: -40px;
 }
 
+
+
 .slider-button.swiper-button-disabled {
     opacity: 0;
     visibility: hidden;
@@ -2904,7 +2907,7 @@ md-menu {
 .box {
     padding: 30px;
     margin-top: 20px;
-    background-color: #d9eefd;
+    background-color: #fcfcfc;
     border-radius: 6px;
     transition: 0.3s;
     height: 100%;
@@ -2914,4 +2917,34 @@ md-menu {
     font-size: 40px;
     margin-bottom: 20px;
     color: #37a7f1;
+}
+
+/* Add blur effect at the ends of the slider */
+#swiper-cat-slider {
+    position: relative;
+    overflow: hidden; /* Ensure the blur effect stays within the slider bounds */
+}
+
+#swiper-cat-slider::before,
+#swiper-cat-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px; /* Adjust the width of the blur */
+    z-index: 2;
+    pointer-events: none; /* Ensure the blur doesn't block interactions */
+    display: none; /* Hide by default */
+}
+
+#swiper-cat-slider.show-left-blur::before {
+    display: block;
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+#swiper-cat-slider.show-right-blur::after {
+    display: block;
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
 }
