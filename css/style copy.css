@@ -2820,6 +2820,7 @@ md-menu {
 
 /*--------------------*/
 .scrollable-tabs-container {
+    background: #000;
     max-width: 1400px;
     margin: 16px auto;
     border-radius: 4px;
@@ -2847,12 +2848,12 @@ md-menu {
 
 .scrollable-tabs-container .right-arrow {
     right: 0;
-    background: linear-gradient(to left, #e9eae5 50%, transparent);
+    background: linear-gradient(to left, #000 50%, transparent);
     justify-content: flex-end;
 }
 
 .scrollable-tabs-container .left-arrow {
-    background: linear-gradient(to right, #e9eae5 50%, transparent);
+    background: linear-gradient(to right, #000 50%, transparent);
     justify-content: flex-start;
 }
 
@@ -2862,22 +2863,19 @@ md-menu {
     height: 38px;
     padding: 8px;
     cursor: pointer;
-    color: #000;
-    transition: all 0.3s ease-in-out;
-    border-radius: 50%;
+    color: #fff;
 }
 
 
 .scrollable-tabs-container svg:hover {
-    background: #6d99c0;
-    transform: scale(1.05);
-    color: #fff;
+    background: #333;
+    border-radius: 50%;
 }
 
 .scrollable-tabs-container ul {
     display: flex;
     gap: 16px;
-    padding: 12px 5px;
+    padding: 12px 24px;
     margin: 0;
     list-style: none;
     overflow-x: scroll;
@@ -2891,48 +2889,16 @@ md-menu {
 }
 
 .scrollable-tabs-container a {
-    color: #000;
+    color: #fff;
     text-decoration: none;
-    background: #fff;
-    padding: 12px 24px;
+    background: #333;
+    padding: 4px 24px;
     display: inline-block;
-    border-radius: 24px;
+    border-radius: 4px;
     white-space: nowrap;
-    box-shadow: rgba(0, 0, 0, 0.11) 1px 2px 3px 1px;
+
 }
 
 .scrollable-tabs-container a.active {
-    background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
-    color: #fff;
-}
-
-/* Slider container */
-.slider-container {
-    position: relative;
-    width: 300px;
-    height: 10px;
-    background: #e0e0e0;
-    border-radius: 5px;
-    margin: 20px;
-}
-
-/* Slider track */
-.slider-track {
-    position: absolute;
-    height: 100%;
     background: #6d99c0;
-    border-radius: 5px;
-    width: 0;
-}
-
-/* Slider handle */
-.slider-handle {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background: #6d99c0;
-    border-radius: 50%;
-    cursor: pointer;
 }

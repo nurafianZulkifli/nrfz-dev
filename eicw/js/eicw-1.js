@@ -1,3 +1,18 @@
+
+// Sticky header functionality
+window.addEventListener('scroll', function () {
+    const header = document.querySelector('header');
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 50) { // Adjust scroll threshold as needed
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
+    }
+});
+
+
+
 /* Dark Mode Functionality for Individual Pages */
 
 // Check localStorage for dark mode preference

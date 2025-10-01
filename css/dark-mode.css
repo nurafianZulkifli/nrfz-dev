@@ -546,7 +546,7 @@ body.dark-mode .wbnrfz_details_body_tchp {
 }
 
 body.dark-mode .wbnrfz_details_blog {
-    background: #0c0c0ce0;
+    background: #0c0c0cea;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     margin-top: -5.2em;
@@ -594,15 +594,39 @@ body.dark-mode .form-control::placeholder {
 
 
 /* ------------------------------------------ xx.x Tabs Controls ------------------------------------------ */
-body.dark-mode .category-button {
-    text-align: center;
-    font-size: 15px;
-    font-weight: 700;
-    background-color: #494949;
+body.dark-mode .scrollable-tabs-container a {
     color: #fff;
-    padding: 15px 28px;
-    border-radius: 50px;
+    text-decoration: none;
+    background: #494949;
+    padding: 12px 24px;
     display: inline-block;
+    border-radius: 24px;
+    white-space: nowrap;
+    box-shadow: rgba(0, 0, 0, 0.11) 1px 2px 3px 1px;
+}
+
+body.dark-mode .scrollable-tabs-container .right-arrow {
+    right: 0;
+    background: linear-gradient(to left, #18191a 50%, transparent);
+    justify-content: flex-end;
+}
+
+body.dark-mode .scrollable-tabs-container .left-arrow {
+    background: linear-gradient(to right, #18191a 50%, transparent);
+    justify-content: flex-start;
+}
+
+body.dark-mode .scrollable-tabs-container svg {
+    width: 38px;
+    height: 38px;
+    padding: 8px;
     cursor: pointer;
-    user-select: none;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50%;
+}
+
+body.dark-mode .scrollable-tabs-container a.active {
+    background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
+    color: #fff;
 }
