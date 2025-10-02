@@ -51,3 +51,8 @@ leftArrow.addEventListener("click", () => {
 
 tabsList.addEventListener("scroll", manageIcons);
 
+
+
+
+
+
