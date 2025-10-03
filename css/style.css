@@ -2950,10 +2950,6 @@ md-menu {
 
 
 /* ==================== ADVANCED NAVIGATION BAR ==================== */
-.demo-container {
-    padding: 40px 20px;
-    min-height: 100vh;
-}
 
 .navbar-container {
     position: fixed;
@@ -2961,13 +2957,13 @@ md-menu {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    width: calc(100% - 60px);
-    max-width: 1400px;
+    width: calc(100% - 80px);
+    max-width: 1700px;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .navbar {
-    background: #ececeac9;
+    background: #ffffffc9;
     backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
@@ -3153,25 +3149,6 @@ md-menu {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ==================== CTA BUTTON ==================== */
-.cta-button {
-    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    margin-left: 5px;
-}
-
-.cta-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
-}
 
 /* ==================== MOBILE RESPONSIVE ==================== */
 @media (max-width: 1200px) {
@@ -3383,138 +3360,7 @@ md-menu {
     }
 }
 
-/* ==================== DEMO CONTENT ==================== */
-.demo-content {
-    margin-top: 120px;
-    text-align: center;
-    color: white;
-    padding: 40px 20px;
-}
 
-.demo-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #ffffff, #f0f0f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.demo-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-}
-
-/* ==================== CONTENT SECTIONS ==================== */
-.content-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 100px 20px 40px;
-    text-align: center;
-    color: white;
-    position: relative;
-}
-
-/* Add extra spacing for home section */
-#home {
-    padding-top: 200px;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #ffffff, #f0f0f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.section-subtitle {
-    font-size: 1.1rem;
-    opacity: 0.8;
-    max-width: 600px;
-    line-height: 1.6;
-    margin-bottom: 40px;
-}
-
-#home {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
-    padding-top: 200px;
-}
-
-#about {
-    background: linear-gradient(135deg, #2d1b69 0%, #11998e 50%, #38ef7d 100%);
-}
-
-#services {
-    background: linear-gradient(135deg, #134e5e 0%, #71b280 50%, #2d3748 100%);
-}
-
-#portfolio {
-    background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%);
-}
-
-#contact {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1a202c 100%);
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.feature-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-}
-
-.feature-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-}
-
-.feature-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.feature-description {
-    opacity: 0.8;
-    line-height: 1.5;
-}
 
 /* ==================== FLOATING ELEMENTS ==================== */
 .floating-elements {
@@ -3578,14 +3424,14 @@ md-menu {
 
 /* ==================== FOOTER ==================== */
 .footer {
-    background: rgba(255, 255, 255, 0.1);
+    background: #fafafa8c;
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
-    margin: 30px auto 40px;
-    padding: 25px 40px;
-    max-width: 1400px;
-    width: calc(100% - 60px);
+    margin: 20px auto 20px;
+    padding: 10px 40px;
+    max-width: 1700px;
+    width: calc(100% - 80px);
     box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -3681,17 +3527,18 @@ md-menu {
 }
 
 .social-link {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #000;
     text-decoration: none;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 20px;
 }
 
 .social-link:hover {
@@ -3708,10 +3555,10 @@ md-menu {
 
 .footer-copy {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 3px;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: #000;
     font-size: 0.85rem;
 }
 
@@ -3746,130 +3593,5 @@ md-menu {
 
     .footer-links {
         gap: 15px;
-    }
-}
-
-/* ==================== CONTACT FORM ==================== */
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.form-group {
-    margin-bottom: 25px;
-    position: relative;
-}
-
-.form-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-}
-
-.form-input,
-.form-textarea {
-    width: 100%;
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    color: white;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-sizing: border-box;
-}
-
-.form-input::placeholder,
-.form-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.form-input:focus,
-.form-textarea:focus {
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-}
-
-.form-textarea {
-    resize: vertical;
-    min-height: 120px;
-    font-family: inherit;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 15px 30px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.submit-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #764ba2, #667eea);
-    transition: left 0.3s ease;
-}
-
-.submit-btn:hover::before {
-    left: 0;
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
-}
-
-.submit-btn span {
-    position: relative;
-    z-index: 1;
-}
-
-@media (max-width: 768px) {
-    .contact-form {
-        padding: 30px 25px;
-        margin: 0 20px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .contact-form {
-        padding: 25px 20px;
-        margin: 0 10px;
     }
 }
