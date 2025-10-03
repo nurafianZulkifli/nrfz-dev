@@ -447,12 +447,17 @@
         padding-left: 10px;
     }
 
+    .container-mobile-header {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
     .text-left {
         text-align: left !important;
     }
 
     .breadcrumb {
-        justify-content: center;
+        justify-content: left;
     }
 
     .portfolio-filter {

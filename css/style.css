@@ -54,7 +54,6 @@ body {
 
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #e9eae5;
     min-height: 100vh;
     padding: 0;
@@ -236,6 +235,18 @@ input:required {
     border-left-color: #ffffff;
 }
 
+.about-me-area {
+    padding-top: 50px;
+    padding-bottom: 83px;
+    background-color: #f6f7f2;
+}
+
+.pw-portfolio-area {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #e9eae5;
+}
+
 /*  ------------------------------------------ */
 
 /* ------------------------------------------ 2.0 Spacing ------------------------------------------ */
@@ -394,7 +405,7 @@ input:required {
 .follow-area.clearfix {
     padding-top: 80px;
     padding-bottom: 80px;
-    background-color: #f8faf4;
+    background-color: #e9eae5;
 }
 
 /* ------------------------------------------ */
@@ -593,7 +604,8 @@ input:required {
 }
 
 .wbnrfz_btn_theme:hover {
-    background-color: #6d99c0;
+    background-color: #7d9cda;
+    transform: translateY(-2px);
 }
 
 #theme-icon {
@@ -1523,7 +1535,7 @@ li.breadcrumb-item.active a {
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
-    background-color: #f8faf4;
+    background-color: #e9eae5;
 }
 
 .pw-projects-menu {
@@ -2672,8 +2684,20 @@ h2.page-title {
 .wbnrfz_eicw {
     background: #ececea;
     backdrop-filter: blur(10px);
-    padding-top: 6em;
     padding-bottom: 2em;
+}
+
+.page-header-section {
+    padding-top: 4em;
+    background: #ececea;
+}
+
+h1.page-title {
+    font-weight: bolder;
+}
+
+li.breadcrumb-item a {
+    color: #000;
 }
 
 /* ------------------------------------------ */
@@ -2879,7 +2903,7 @@ md-menu {
 .scrollable-tabs-container ul {
     display: flex;
     gap: 16px;
-    padding: 12px 5px;
+    padding: 12px 60px;
     margin: 0;
     list-style: none;
     overflow-x: scroll;
@@ -3070,8 +3094,9 @@ md-menu {
 
 
 .nav-link:hover {
-    color: white;
+    color: #fff;
     transform: translateY(-2px);
+    background-color: #7eafda;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -3463,3 +3488,5 @@ md-menu {
         gap: 15px;
     }
 }
+
+

@@ -53,10 +53,11 @@ body.dark-mode {
 
 body.dark-mode .wbnrfz_btn_theme:hover {
     background-color: #8c8e75;
+    transform: translateY(-2px);
 }
 
 body.dark-mode .wbnrfz_btn_theme {
-    background-color: #6d99c0;
+    background-color: #7eafda;
     color: #fff;
 }
 
@@ -443,6 +444,14 @@ body.dark-mode .ftco-section-otb {
     transition: all 0.5s ease;
 }
 
+body.dark-mode .page-header-section {
+    background: #18191a;
+}
+
+body.dark-mode li.breadcrumb-item a {
+    color: #fff;
+}
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ xx.x Timeline ------------------------------------------ */
@@ -543,7 +552,6 @@ body.dark-mode .wbnrfz_eicw {
     background: #18191a;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    padding-top: 1em;
     padding-bottom: 2em;
 }
 
