@@ -1,29 +1,28 @@
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function () {
-    const mobileToggle = document.getElementById('mobileToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileToggle = document.getElementById('mobileToggle');
     const mobileMenuClose = document.getElementById('mobileMenuClose');
     const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Function to open mobile menu
-    function openMobileMenu() {
-        console.log('Opening mobile menu');
-        mobileToggle.classList.add('active');
-        mobileMenu.classList.add('active');
-        mobileMenuOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent body scroll
-    }
+// Function to open mobile menu
+function openMobileMenu() {
+    mobileMenu.classList.add('active');
+    mobileMenuOverlay.classList.add('active');
+    mobileToggle.classList.add('active');
+    document.body.classList.add('no-scroll'); // Prevent page scroll
+}
 
-    // Function to close mobile menu
-    function closeMobileMenu() {
-        console.log('Closing mobile menu');
-        mobileToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-        document.body.style.overflow = ''; // Restore body scroll
-    }
+// Function to close mobile menu
+function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+    mobileToggle.classList.remove('active');
+    document.body.classList.remove('no-scroll'); // Re-enable page scroll
+}
+    
 
     // Toggle mobile menu when hamburger is clicked
     mobileToggle.addEventListener('click', function (e) {
@@ -128,7 +127,15 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+
+            const href = this.getAttribute('href');
+
+            // Skip if href is just "#" or empty
+            if (href === '#' || href === '' || href.length <= 1) {
+                return;
+            }
+
+            const target = document.querySelector(href);
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -137,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
 
     // Handle window resize
     window.addEventListener('resize', function () {
@@ -161,3 +169,4 @@ window.addEventListener('scroll', () => {
     const scrollPercentage = Math.min((scrollTop / docHeight) * 100, 100); // Cap at 100%
     document.getElementById('scroll-indicator').style.width = scrollPercentage + '%';
 });
+

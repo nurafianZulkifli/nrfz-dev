@@ -88,8 +88,8 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-item">
-                        <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
-                            <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
+                        <button class="wbnrfz_btn_theme" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
+                            <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
                         </button>
                     </a>
                 </li>
@@ -116,8 +116,14 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="#" class="mobile-menu-brand">
-                <div class="logo-icon"></div>
-                <span class="brand-text">NeoNav</span>
+                <span class="brand-text">
+                    <li class="mobile-menu-item mobile-theme-toggle">
+                        <button class="wbnrfz_btn_theme mobile-theme-btn" id="dark-mode-toggle-mobile"
+                            title="Toggle Dark/Light Mode!">
+                            <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+                        </button>
+                    </li>
+                </span>
             </a>
             <button class="mobile-menu-close" id="mobileMenuClose">
                 <span>×</span>
@@ -126,60 +132,36 @@
 
         <ul class="mobile-menu-nav">
             <li class="mobile-menu-item">
-                <a href="#home" class="mobile-menu-link active">
-                    <svg class="mobile-menu-icon" viewBox="0 0 24 24">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9,22 9,12 15,12 15,22"></polyline>
-                    </svg>
+                <a href="#home" class="mobile-menu-link">
+                    <i class="fa-duotone fa-regular fa-house"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
                 <a href="#about" class="mobile-menu-link">
-                    <svg class="mobile-menu-icon" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
+                    <i class="fa-duotone fa-regular fa-circle-user"></i>
                     <span>About</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
                 <a href="#services" class="mobile-menu-link">
-                    <svg class="mobile-menu-icon" viewBox="0 0 24 24">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
-                    <span>Services</span>
+                    <i class="fa-duotone fa-solid fa-pen-paintbrush"></i>
+                    <span>Works by NRFZ</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="#portfolio" class="mobile-menu-link">
-                    <svg class="mobile-menu-icon" viewBox="0 0 24 24">
-                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                        <path d="M16 3h6v4"></path>
-                        <path d="m22 7-10-4-10 4"></path>
-                    </svg>
-                    <span>Portfolio</span>
+                <a href="#portfolio" class="mobile-menu-link active">
+                    <i class="fa-duotone fa-solid fa-map-location"></i>
+                    <span>EICW</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
                 <a href="#contact" class="mobile-menu-link">
-                    <svg class="mobile-menu-icon" viewBox="0 0 24 24">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span>Contact</span>
+                    <i class="fa-duotone fa-solid fa-comment"></i>
+                    <span>Blog</span>
                 </a>
             </li>
         </ul>
-
-        <div class="mobile-cta">
-            <a href="#cta" class="mobile-cta-button">
-                Get Started
-            </a>
-        </div>
     </div>
 
     <!-- Scroll Indicator -->
@@ -188,12 +170,8 @@
     </div>
 
 
-
-
-
-
     <!-- Section Header -->
-    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay parallax" id="eia-img"
+    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-img"
         style="background-image: url(img/cover-light.png); height: 80vh;">
         <div class="container h-100">
             <div class="row h-100 align-items-center">

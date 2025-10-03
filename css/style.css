@@ -2994,7 +2994,7 @@ md-menu {
             transparent,
             rgba(255, 255, 255, 0.1),
             transparent);
-    transition: left 0.8s ease;
+    /* transition: left 0.8s ease; */
 }
 
 .navbar:hover::before {
@@ -3008,63 +3008,6 @@ md-menu {
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* ==================== LOGO SECTION ==================== */
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: white;
-    font-weight: 700;
-    font-size: 1.4rem;
-    z-index: 2;
-    position: relative;
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.logo-icon::before {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    animation: logo-pulse 2s ease-in-out infinite;
-}
-
-@keyframes logo-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-}
-
-.brand-text {
-    background: linear-gradient(135deg, #ffffff, #f0f0f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 /* ==================== NAVIGATION LINKS ==================== */
 .navbar-nav {
@@ -3104,7 +3047,7 @@ md-menu {
     text-decoration: none;
     color: #000000e6;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 15px;
     border-radius: 25px;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
@@ -3282,14 +3225,16 @@ md-menu {
 .mobile-menu {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    left: 3%;
+    width: 95%;
+    height: 80vh;
+        background: #0e0e0e;
+        backdrop-filter: blur(50px) !important;
     z-index: 1600;
     transform: translateY(-100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     overflow-y: auto;
+    border-radius: 50px;
 }
 
 .mobile-menu.active {
@@ -3303,6 +3248,13 @@ md-menu {
     align-items: center;
     padding: 30px 30px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
 }
 
 .mobile-menu-brand {
@@ -3343,6 +3295,7 @@ md-menu {
 }
 
 .mobile-menu-item {
+    margin-top: 8px;
     margin-bottom: 8px;
 }
 
@@ -3364,7 +3317,7 @@ md-menu {
 
 .mobile-menu-link:hover,
 .mobile-menu-link.active {
-    background: rgba(255, 255, 255, 0.15);
+    background: #a0a37b;
     color: white;
     transform: translateX(8px);
     border-color: rgba(255, 255, 255, 0.2);

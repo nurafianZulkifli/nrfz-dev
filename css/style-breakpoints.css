@@ -316,7 +316,7 @@
         padding: 0;
     } */
 
-    body.dark-mode .navbar {
+    /* body.dark-mode .navbar {
         position: absolute;
         top: 100%;
         left: 0;
@@ -343,7 +343,7 @@
         transition: all 0.3s ease;
         display: block;
         padding: 0;
-    }
+    } */
 
     #check:checked~.navbar {
         height: 100vh;
