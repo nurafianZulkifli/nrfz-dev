@@ -773,7 +773,7 @@ header {
 
 #hero {
     width: 100%;
-    height: 100vh;
+    height: 70vh;
     background: url("../img/bg-img/hero-bg.png") top right no-repeat;
     background-size: cover;
     position: relative;
@@ -782,8 +782,8 @@ header {
 
 #hero:before {
     content: "";
-    background-color: #f0efefd0;
-    backdrop-filter: blur(2px);
+    /* background: #f0f0f071;
+    backdrop-filter: blur(15px); */
     position: absolute;
     bottom: 0;
     top: 0;
