@@ -13,22 +13,19 @@
 --------------------------------------------- */
 
 /* ------------------------------------------ General ------------------------------------------ */
-/* ---- Preloader */
-/* body.dark-mode #preloader {
-    background-color: #0c0c0ce8;
-    backdrop-filter: blur(5px);
-}
-
-body.dark-mode #preloader-text {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #fff;
-} */
-
 
 body.dark-mode {
     visibility: visible;
     opacity: 1;
+}
+
+body.dark-mode {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #18191a;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
 }
 
 /* ---- Button */
@@ -116,18 +113,15 @@ body.dark-mode hr {
 body.dark-mode #scrollUp {
     box-shadow: 0 2px 40px 0px rgba(15, 15, 15, 0.15);
     z-index: 12345111212;
-    animation: pulse-animation 2s infinite;
+
 }
 
-@keyframes pulse-animation {
-    0% {
-        box-shadow: 0 0 0 0px #8d8d8d6b;
-    }
-
-    100% {
-        box-shadow: 0 0 0 20px #00000000;
-    }
+#scrollUp:focus,
+#scrollUp:hover {
+    transform: translateY(-2px);
 }
+
+
 
 body.dark-mode header {
     position: fixed;
@@ -571,8 +565,10 @@ body.dark-mode .form-control {
 }
 
 body.dark-mode .form-control::placeholder {
-  color: #cccccc; /* Red color example */
-  opacity: 1; /* Ensure full opacity if desired, as some browsers default to lower opacity */
+    color: #cccccc;
+    /* Red color example */
+    opacity: 1;
+    /* Ensure full opacity if desired, as some browsers default to lower opacity */
 }
 
 
@@ -645,6 +641,59 @@ body.dark-mode .navbar {
 }
 
 
-body.dark-mode .nav-link{
+body.dark-mode .nav-link {
+    color: #fff;
+}
+
+body.dark-mode .mobile-menu {
+    background: #0e0e0e;
+}
+
+body.dark-mode .mobile-menu-overlay {
+    background: rgba(0, 0, 0, 0.8);
+
+}
+
+body.dark-mode .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.dark-mode .mobile-menu.active {
+    transform: translateY(0);
+}
+
+body.dark-mode .hamburger span {
+    background: #fff;
+}
+
+body.dark-mode .mobile-toggle:hover {
+    background: #e6e6e61a;
+}
+
+body.dark-mode .footer {
+    background: #2c2c2c8c;
+    border: 1px solid #2b2b2b33;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(61, 61, 61, 0.384);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body.dark-mode .social-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 20px;
+}
+
+body.dark-mode .footer-copy {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
 }

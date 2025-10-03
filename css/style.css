@@ -477,13 +477,13 @@ input:required {
     border-radius: 25px;
     box-shadow: 0 2px 40px 0px rgba(15, 15, 15, 0.15);
     z-index: 12345111212;
-    animation: pulse-animation 2s infinite;
 }
 
 #scrollUp:focus,
 #scrollUp:hover {
     background-color: #6d99c0;
     color: #ffffff;
+    transform: translateY(-2px);
 }
 
 
@@ -3075,7 +3075,8 @@ md-menu {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
     color: #fff;
 }
 
@@ -3084,8 +3085,10 @@ md-menu {
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.3),
         0 4px 12px rgba(0, 0, 0, 0.1);
-    color: #fff; /* Set active text color to white */
+    color: #fff;
+    /* Set active text color to white */
 }
+
 .nav-icon {
     width: 16px;
     height: 16px;
@@ -3102,7 +3105,7 @@ md-menu {
     display: none;
     background: none;
     border: none;
-    color: white;
+    color: #000;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 8px;
@@ -3114,7 +3117,7 @@ md-menu {
 }
 
 .mobile-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #3d3d3d1a;
     transform: scale(1.1);
 }
 
@@ -3130,7 +3133,7 @@ md-menu {
 .hamburger span {
     width: 24px;
     height: 2px;
-    background: white;
+    background: #000;
     border-radius: 2px;
     transition: all 0.3s ease;
     display: block;
@@ -3185,7 +3188,7 @@ md-menu {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(224, 224, 224, 0.8);
     backdrop-filter: blur(10px);
     z-index: 1500;
     opacity: 0;
@@ -3205,8 +3208,8 @@ md-menu {
     left: 3%;
     width: 95%;
     height: 80vh;
-        background: #0e0e0e;
-        backdrop-filter: blur(50px) !important;
+    background: #fdfdfdf6;
+    backdrop-filter: blur(50px) !important;
     z-index: 1600;
     transform: translateY(-100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -3247,7 +3250,7 @@ md-menu {
 .mobile-menu-close {
     background: none;
     border: none;
-    color: white;
+    color: #000;
     font-size: 2rem;
     cursor: pointer;
     padding: 8px;
@@ -3282,20 +3285,20 @@ md-menu {
     gap: 16px;
     padding: 20px 24px;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.9);
+    color: #000;
     font-weight: 500;
     font-size: 1.1rem;
     border-radius: 20px;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #ebebeb3f;
+    border: 1px solid #1b1b1b1a;
     margin-bottom: 12px;
 }
 
 .mobile-menu-link:hover,
 .mobile-menu-link.active {
     background: #a0a37b;
-    color: white;
+    color: #fff;
     transform: translateX(8px);
     border-color: rgba(255, 255, 255, 0.2);
 }
@@ -3306,29 +3309,6 @@ md-menu {
     fill: currentColor;
 }
 
-.mobile-cta {
-    margin: 30px 30px 40px;
-}
-
-.mobile-cta-button {
-    display: block;
-    width: 100%;
-    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-    color: white;
-    text-decoration: none;
-    padding: 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-    transition: all 0.3s ease;
-}
-
-.mobile-cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
-}
 
 @media (max-width: 768px) {
     .navbar-container {
@@ -3362,61 +3342,6 @@ md-menu {
 
 
 
-/* ==================== FLOATING ELEMENTS ==================== */
-.floating-elements {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.floating-circle {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    animation: float 6s ease-in-out infinite;
-}
-
-.floating-circle:nth-child(1) {
-    width: 80px;
-    height: 80px;
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.floating-circle:nth-child(2) {
-    width: 120px;
-    height: 120px;
-    top: 60%;
-    right: 15%;
-    animation-delay: 2s;
-}
-
-.floating-circle:nth-child(3) {
-    width: 60px;
-    height: 60px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 4s;
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-20px) rotate(180deg);
-    }
-}
-
-
 
 
 
@@ -3425,7 +3350,6 @@ md-menu {
 /* ==================== FOOTER ==================== */
 .footer {
     background: #fafafa8c;
-    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
     margin: 20px auto 20px;
@@ -3450,55 +3374,14 @@ md-menu {
             transparent,
             rgba(255, 255, 255, 0.1),
             transparent);
-    transition: left 0.8s ease;
+}
+
+.footer:hover {
+    transform: translateY(-2px);
 }
 
 .footer:hover::before {
     left: 100%;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    color: white;
-    position: relative;
-    z-index: 2;
-}
-
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.footer-logo {
-    width: 35px;
-    height: 35px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.footer-logo::before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    animation: logo-pulse 2s ease-in-out infinite;
 }
 
 .footer-links {
@@ -3507,19 +3390,6 @@ md-menu {
     list-style: none;
 }
 
-.footer-link {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    padding: 8px 0;
-}
-
-.footer-link:hover {
-    color: white;
-    transform: translateY(-1px);
-}
 
 .footer-social {
     display: flex;
@@ -3529,7 +3399,6 @@ md-menu {
 .social-link {
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -3537,7 +3406,6 @@ md-menu {
     color: #000;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 20px;
 }
 

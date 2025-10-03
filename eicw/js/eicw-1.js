@@ -78,12 +78,6 @@ function updateThemeIcon(theme) {
 }
 
 
-
-
-
-
-
-
 function updateHrefForDarkMode() {
     /* Existing logic for updating banners, images, and videos */
     const coverSect = document.getElementById('cv-img');
