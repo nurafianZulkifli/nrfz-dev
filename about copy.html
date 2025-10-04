@@ -13,7 +13,7 @@
 
     <link rel="icon" href="./img/core-img/favicon.png">
 
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
@@ -35,205 +35,90 @@
 
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar-container">
-        <div class="navbar">
-            <!-- Logo -->
-            <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
+    <!-- Preloader Section -->
+    <!-- <div id="preloader">
+        <div class="loader"></div>
+        <p id="preloader-text">Just a moment...</p>
+    </div> -->
 
-            <!-- Navigation Links -->
-            <ul class="navbar-nav" id="navbarNav">
-                <li class="nav-item">
-                    <a href="../index.html" class="nav-link">
-                        <i class="fa-solid fa-regular fa-house"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../about.html" class="nav-link active">
-                        <i class="fa-solid fa-regular fa-circle-user"></i>
-                        <span>About</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../works-by-nrfz.html" class="nav-link">
-                        <i class="fa-solid fa-pen-paintbrush"></i>
-                        <span>Works by NRFZ</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa-solid fa-map-location"></i>
-                        <span>EICW</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../blog.html" class="nav-link">
-                        <i class="fa-solid fa-comment"></i>
-                        <span>Blog</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-item">
-                        <button class="wbnrfz_btn_theme" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
-                            <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
-                        </button>
-                    </a>
-                </li>
-            </ul>
+    <header>
+        <a href="./index.html"><img src="./img/core-img/logo.png" alt="logo" class="logo" /></a>
 
-            <!-- Mobile Toggle -->
-            <button class="mobile-toggle" id="mobileToggle">
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-        </div>
+        <input type="checkbox" id="check" />
+        <label for="check" class="icons">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+            <i class="fa-solid fa-xmark" id="close-icon"></i>
+        </label>
 
-        </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <a href="#" class="mobile-menu-brand">
-                <span class="brand-text">
-                    <li class="mobile-menu-item mobile-theme-toggle">
-                        <button class="wbnrfz_btn_theme mobile-theme-btn" id="dark-mode-toggle-mobile"
-                            title="Toggle Dark/Light Mode!">
-                            <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
-                        </button>
-                    </li>
-                </span>
+        <nav class="navbar navbar-mobile">
+            <a href="./index.html" class="nav-item">Home</a>
+            <a href="#" class="nav-item active">About</a>
+            <a href="./works-by-nrfz.html" class="nav-item">Works By NRFZ</a>
+            <a href="eicw/eicw.html" class="nav-item">EICW</a>
+            <a href="./blog.html" class="nav-item">Blog</a>
+            <a href="#" class="nav-item">
+                <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
+                    <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
+                </button>
             </a>
-            <button class="mobile-menu-close" id="mobileMenuClose">
-                <span>×</span>
-            </button>
-        </div>
+        </nav>
+    </header>
 
-        <ul class="mobile-menu-nav">
-            <li class="mobile-menu-item">
-                <a href="../index.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-regular fa-house"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="../about.html" class="mobile-menu-link active">
-                    <i class="fa-solid fa-regular fa-circle-user"></i>
-                    <span>About</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="../works-by-nrfz.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-pen-paintbrush"></i>
-                    <span>Works by NRFZ</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link">
-                    <i class="fa-solid fa-map-location"></i>
-                    <span>EICW</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="../blog.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-comment"></i>
-                    <span>Blog</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-
-
-    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
-
-    <!-- Cover Header -->
-    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-about"
-        style="background-image: url(img/bg-img/hero-bg-small.png); height: 68vh;">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Title/Breadcrumbs -->
-    <section class="about-me-sum clearfix">
-        <div class="wbnrfz_eicw">
-            <div class="page-header-section">
-                <div class="container-xxl container-mobile container-mobile-header">
-                    <div class="breadcrumb-wrapper">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="../index.html">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="#">About</a>
-                                </li>
-                                <!-- <li class="breadcrumb-item active" aria-current="page">
-                                    EICW
-                                </li> -->
-                            </ol>
-                        </nav>
-                        <div class="page-title-wrapper">
-                            <h1 class="page-title-single">About Me</h1>
+    <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-about"
+        style="background-image: url(img/bg-img/hero-bg-small.png); height: 100vh;">
+        <div class="wbnrfz_details_blog">
+            <div class="container">
+                <div class="portfolio-controls d-flex justify-content-between align-items-center">
+                    <!-- Filter Buttons -->
+                    <div class="portfolio-filter mt-3">
+                        <div class="col-lg-12">
+                            <div class="main-title">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html">
+                                                Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item active"><a
+                                                href="https://nurafianzulkifli.com/works-by-nrfz.html">
+                                                About
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <h1 class="brc">About Me</h1>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="scrollable-tabs-container">
-                    <div class="left-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
-
-                    </div>
-
-                    <ul>
-                        <li>
-                            <a href="#summary" class="active">Summary</a>
-                        </li>
-
-                        <li>
-                            <a href="#tm">Timelines & Milestones</a>
-                        </li>
-
-                        <li>
-                            <a href="#lppl">Language Proficiency</a>
-                        </li>
-
-                        <li>
-                            <a href="#lppl">Programming Languages</a>
-                        </li>
-                    </ul>
-
-                    <div class="right-arrow active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-
+                    <!-- Collapsible Header -->
+                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+                        aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;" title="Jump To">
+                        <i class="fa-solid fa-chevron-down nav-chev"></i>
                     </div>
                 </div>
-                <hr>
+                <!-- Collapsible Content -->
+                <div id="portfolioFilter" class="collapse">
+                    <div class="portfolio-filter mt-3">
+                        <a href="#summary">
+                            <button class="btn">Summary</button>
+                        </a>
+                        <a href="#tm">
+                            <button class="btn">Timelines & Milestones</button>
+                        </a>
+                        <a href="#lppl">
+                            <button class="btn">Language Proficiency</button>
+                        </a>
+                        <a href="#lppl">
+                            <button class="btn">Programming Languages</button>
+                        </a>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </section>
 
+    
+
+    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
 
     <!-- Summary -->
     <section class="about-me-summ clearfix" style="padding-top: 4em; padding-bottom: 5em;" id="summary">
@@ -465,7 +350,7 @@
         </div>
     </section>
 
-    <!-- Proficiencies -->
+
     <section class="follow-area clearfix" id="lppl">
         <div class="container container-xxl">
             <div class="row">
@@ -549,27 +434,26 @@
 
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-social">
-                <a href="https://github.com/nurafianZulkifli" class="social-link">
-                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                </a>
-                <a href="https://twitter.com/nrfzlkf_" class="social-link">
-                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="https://www.facebook.com/Nrfnzlkf/" class="social-link">
-                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="https://www.instagram.com/nrfzlkf/" class="social-link">
-                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                </a>
+    <footer class="footer-area">
+        <div class="container">
+            <div class="footer-content d-flex flex-column align-items-center text-center">
+                <!-- Social Links -->
+                <div class="social-info">
+                    <a href="https://github.com/nurafianZulkifli"><i class="fa-brands fa-github"
+                            aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/nrfzlkf_"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/Nrfnzlkf/"><i class="fa-brands fa-facebook"
+                            aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/nrfzlkf/"><i class="fa-brands fa-instagram"
+                            aria-hidden="true"></i></a>
+                </div>
+                <!-- Copywrite Text -->
+                <div class="copywrite-text">
+                    <p>&copy;
+                        <script>document.write(new Date().getFullYear());</script> Nurafian Zulkifli
+                    </p>
+                </div>
             </div>
-        </div>
-
-        <div class="footer-copy">
-            © 2025 Nurafian Zulkifli
         </div>
     </footer>
 
@@ -589,8 +473,6 @@
     <script src="js/pw.bundle.js"></script>
 
     <script src="js/default-assets/active.js"></script>
-
-    <script src="js/dstabs.js"></script>
 
     <!-- <script src="js/preloader.js"></script> -->
 

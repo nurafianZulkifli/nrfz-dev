@@ -80,7 +80,7 @@ a,
 a:active,
 a:focus,
 a:hover {
-    color: #6d99c0;
+    color: #fff;
     text-decoration: none;
     -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
@@ -1237,7 +1237,7 @@ h4.timeline-date-aa {
 }
 
 .about-me-summ {
-    background-color: #f8faf4;
+    background-color: #ececea;
     /* padding-top: 50px; */
     /* padding-bottom: 83px; */
     position: relative;
@@ -1781,7 +1781,7 @@ img.profile-pic {
 .skill-ara .single-skill .progress {
     height: 12px;
     border-radius: 0;
-    background-color: #dbe3e9;
+    background-color: #dddddd;
     border-radius: 15px;
 }
 
@@ -3466,7 +3466,7 @@ md-menu {
 }
 
 .social-link:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #87b4dc;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
