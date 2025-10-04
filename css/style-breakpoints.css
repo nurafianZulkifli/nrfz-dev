@@ -40,7 +40,7 @@
     }
 
     .scrollable-tabs-container ul {
-        padding: 12px 25px !important;
+        padding: 12px 50px !important;
     }
 }
 
@@ -105,7 +105,7 @@
     }
 
     .scrollable-tabs-container ul {
-        padding: 12px 25px !important;
+        padding: 12px 50px !important;
     }
 
 }
@@ -231,7 +231,7 @@
     }
 
     .scrollable-tabs-container ul {
-        padding: 12px 25px !important;
+        padding: 12px 30px !important;
     }
 
     .page-title-wrapper>div {
@@ -254,7 +254,7 @@
         max-width: 100% !important;
         width: 100%;
         display: flex;
-        justify-content: center;
+        /* justify-content: center; */
     }
 
     #portfolio-search {
@@ -440,7 +440,7 @@
     }
 
     .scrollable-tabs-container ul {
-        padding: 12px 25px !important;
+        padding: 12px 30px !important;
     }
 
 }
@@ -496,7 +496,7 @@
     }
 
     .scrollable-tabs-container ul {
-        padding: 12px 25px !important;
+        padding: 12px 30px !important;
     }
 }
 
