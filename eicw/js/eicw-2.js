@@ -520,11 +520,18 @@ function updateHrefForDarkMode() {
 }
 
 
-// Update the scroll indicator width based on scroll position
-window.addEventListener("scroll", function () {
-    const scrollIndicator = document.getElementById("scroll-indicator");
-    const scrollTop = window.scrollY; // Current scroll position
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight; // Total scrollable height
-    const scrollPercentage = (scrollTop / scrollHeight) * 100; // Calculate scroll percentage
-    scrollIndicator.style.width = scrollPercentage + "%"; // Update the width of the indicator
+// Update the scroll indicator width on scroll
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercentage = (scrollTop / docHeight) * 100;
+    document.getElementById('scroll-indicator').style.width = scrollPercentage + '%';
+});
+
+// Update the scroll indicator width on scroll
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercentage = Math.min((scrollTop / docHeight) * 100, 100); // Cap at 100%
+    document.getElementById('scroll-indicator').style.width = scrollPercentage + '%';
 });

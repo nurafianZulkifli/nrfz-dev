@@ -44,40 +44,38 @@
             <!-- Navigation Links -->
             <ul class="navbar-nav" id="navbarNav">
                 <li class="nav-item">
-                    <a href="../index.html" class="nav-link">
-                        <i class="fa-solid fa-regular fa-house"></i>
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../about.html" class="nav-link active">
-                        <i class="fa-solid fa-regular fa-circle-user"></i>
+                    <a href="#" class="nav-link active">
+                        <i class="fa-solid fa-circle-user"></i>
                         <span>About</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../works-by-nrfz.html" class="nav-link">
+                    <a href="works-by-nrfz.html" class="nav-link">
                         <i class="fa-solid fa-pen-paintbrush"></i>
                         <span>Works by NRFZ</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="eicw/eicw.html" class="nav-link">
                         <i class="fa-solid fa-map-location"></i>
                         <span>EICW</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../blog.html" class="nav-link">
+                    <a href="blog.html" class="nav-link">
                         <i class="fa-solid fa-comment"></i>
                         <span>Blog</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-item">
-                        <button class="wbnrfz_btn_theme" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
-                            <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
-                        </button>
+                <li class="nav-item-toggle">
+                    <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
+                        <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
                     </a>
                 </li>
             </ul>
@@ -101,15 +99,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
+            <li class="mobile-menu-item mobile-theme-toggle">
+                <a href="#" class="nav-link-toggle" id="dark-mode-toggle-mobile" title="Toggle Dark/Light Mode!">
+                    <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+                </a>
+            </li>
             <a href="#" class="mobile-menu-brand">
-                <span class="brand-text">
-                    <li class="mobile-menu-item mobile-theme-toggle">
-                        <button class="wbnrfz_btn_theme mobile-theme-btn" id="dark-mode-toggle-mobile"
-                            title="Toggle Dark/Light Mode!">
-                            <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
-                        </button>
-                    </li>
-                </span>
+                <span class="brand-text"></span>
             </a>
             <button class="mobile-menu-close" id="mobileMenuClose">
                 <span>×</span>
@@ -118,31 +114,31 @@
 
         <ul class="mobile-menu-nav">
             <li class="mobile-menu-item">
-                <a href="../index.html" class="mobile-menu-link">
+                <a href="index.html" class="mobile-menu-link">
                     <i class="fa-solid fa-regular fa-house"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="../about.html" class="mobile-menu-link active">
+                <a href="#" class="mobile-menu-link active">
                     <i class="fa-solid fa-regular fa-circle-user"></i>
                     <span>About</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="../works-by-nrfz.html" class="mobile-menu-link">
+                <a href="works-by-nrfz.html" class="mobile-menu-link">
                     <i class="fa-solid fa-pen-paintbrush"></i>
                     <span>Works by NRFZ</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link">
+                <a href="eicw/eicw.html" class="mobile-menu-link">
                     <i class="fa-solid fa-map-location"></i>
                     <span>EICW</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="../blog.html" class="mobile-menu-link">
+                <a href="blog.html" class="mobile-menu-link">
                     <i class="fa-solid fa-comment"></i>
                     <span>Blog</span>
                 </a>
@@ -156,7 +152,7 @@
 
     <!-- Cover Header -->
     <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-about"
-        style="background-image: url(img/bg-img/hero-bg-small.png); height: 68vh;">
+        style="background-image: url(img/bg-img/hero-bg-small.png); height: 72vh;">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -233,7 +229,6 @@
         </div>
 
     </section>
-
 
     <!-- Summary -->
     <section class="about-me-summ clearfix" style="padding-top: 4em; padding-bottom: 5em;" id="summary">
@@ -577,6 +572,8 @@
         data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
+
+    <script src="js/navtabs.js"></script>
 
     <script src="js/theme-subPages.js"></script>
 

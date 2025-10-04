@@ -7,22 +7,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
     const navLinks = document.querySelectorAll('.nav-link');
 
-// Function to open mobile menu
-function openMobileMenu() {
-    mobileMenu.classList.add('active');
-    mobileMenuOverlay.classList.add('active');
-    mobileToggle.classList.add('active');
-    document.body.classList.add('no-scroll'); // Prevent page scroll
-}
+    // Store the scroll position before opening mobile menu
+    let previousScrollPosition = 0;
 
-// Function to close mobile menu
-function closeMobileMenu() {
-    mobileMenu.classList.remove('active');
-    mobileMenuOverlay.classList.remove('active');
-    mobileToggle.classList.remove('active');
-    document.body.classList.remove('no-scroll'); // Re-enable page scroll
-}
-    
+    // Function to open mobile menu
+    function openMobileMenu() {
+        // Store current scroll position
+        previousScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        mobileMenu.classList.add('active');
+        mobileMenuOverlay.classList.add('active');
+        mobileToggle.classList.add('active');
+        document.body.classList.add('no-scroll'); // Prevent page scroll
+    }
+
+    // Function to close mobile menu
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        document.body.classList.remove('no-scroll'); // Re-enable page scroll
+        
+        // Return to previous scroll position
+        window.scrollTo(0, previousScrollPosition);
+    }
+        
 
     // Toggle mobile menu when hamburger is clicked
     mobileToggle.addEventListener('click', function (e) {
@@ -145,7 +154,6 @@ function closeMobileMenu() {
         });
     });
 
-
     // Handle window resize
     window.addEventListener('resize', function () {
         if (window.innerWidth > 992 && mobileMenu.classList.contains('active')) {
@@ -153,20 +161,3 @@ function closeMobileMenu() {
         }
     });
 });
-
-// Update the scroll indicator width on scroll
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercentage = (scrollTop / docHeight) * 100;
-    document.getElementById('scroll-indicator').style.width = scrollPercentage + '%';
-});
-
-// Update the scroll indicator width on scroll
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercentage = Math.min((scrollTop / docHeight) * 100, 100); // Cap at 100%
-    document.getElementById('scroll-indicator').style.width = scrollPercentage + '%';
-});
-
