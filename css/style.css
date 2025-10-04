@@ -159,7 +159,11 @@ ul li {
 }
 
 .container-xxl {
+    padding-right: 25px;
+    padding-left: 25px;
     max-width: 90em;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .mfp-arrow {
@@ -254,10 +258,16 @@ input:required {
     background-color: #f6f7f2;
 }
 
-.pw-portfolio-area {
+.pw-portfolio-area-featured {
     padding-top: 80px;
     padding-bottom: 80px;
-    background-color: #e9eae5;
+    background-color: #ececea;
+}
+
+.pw-portfolio-area {
+    padding-top: 20px;
+    padding-bottom: 80px;
+    background-color: #ececea;
 }
 
 /*  ------------------------------------------ */
@@ -786,7 +796,7 @@ header {
 
 #hero {
     width: 100%;
-    height: 70vh;
+    height: 100vh;
     background: url("../img/bg-img/hero-bg.png") top right no-repeat;
     background-size: cover;
     position: relative;
@@ -795,8 +805,8 @@ header {
 
 #hero:before {
     content: "";
-    /* background: #f0f0f071;
-    backdrop-filter: blur(15px); */
+    /* background: #97979780;
+    backdrop-filter: blur(15px);  */
     position: absolute;
     bottom: 0;
     top: 0;
@@ -1548,7 +1558,7 @@ li.breadcrumb-item.active a {
 .pw-portfolio-area .container-fluid {
     padding-right: 5%;
     padding-left: 5%;
-    background-color: #e9eae5;
+    background-color: #ececea;
 }
 
 .pw-projects-menu {
@@ -2430,6 +2440,7 @@ h2.page-title {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-right: 4em;
 }
 
 .portfolio-sort label {
@@ -2441,7 +2452,7 @@ h2.page-title {
 
 #sort-options {
     appearance: none;
-    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="white" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="black" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
     background-size: 10px;
     padding-right: 30px;
     padding-left: 15px;
@@ -2450,8 +2461,9 @@ h2.page-title {
     font-size: 16px;
     height: 40px;
     line-height: 1.5;
-    background-color: #8a8a73;
-    color: #fff;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #000;
     transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
 }
 
@@ -2706,6 +2718,12 @@ h2.page-title {
 
 h1.page-title {
     font-weight: bolder;
+    padding-right: 6em;
+}
+
+h1.page-title-single {
+    font-weight: bolder;
+    padding-right: 5px;
 }
 
 li.breadcrumb-item a {
@@ -2885,12 +2903,12 @@ md-menu {
 
 .scrollable-tabs-container .right-arrow {
     right: 0;
-    background: linear-gradient(to left, #e9eae5 50%, transparent);
+    background: linear-gradient(to left, #ececea 50%, transparent);
     justify-content: flex-end;
 }
 
 .scrollable-tabs-container .left-arrow {
-    background: linear-gradient(to right, #e9eae5 50%, transparent);
+    background: linear-gradient(to right, #ececea 50%, transparent);
     justify-content: flex-start;
 }
 
@@ -2915,7 +2933,7 @@ md-menu {
 .scrollable-tabs-container ul {
     display: flex;
     gap: 16px;
-    padding: 12px 60px;
+    padding: 12px 20px;
     margin: 0;
     list-style: none;
     overflow-x: scroll;
@@ -3397,6 +3415,7 @@ md-menu {
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .footer::before {

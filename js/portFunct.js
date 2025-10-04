@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
             },
         });
 
-        // Filter functionality
-        const filterButtons = document.querySelectorAll(".btn-filter");
+        // Filter functionality - FIXED: Changed from .btn-filter to .btn-fliter to match HTML
+        const filterButtons = document.querySelectorAll(".btn-fliter");
         filterButtons.forEach((button) => {
             button.addEventListener("click", function () {
                 // Remove active class from all buttons
@@ -66,25 +66,29 @@ document.addEventListener("DOMContentLoaded", function () {
         const portfolioItems = document.querySelectorAll(".single_gallery_item");
         const noResultsMessage = document.getElementById("no-results-message");
 
-        searchInput.addEventListener("input", () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            let hasResults = false;
+        if (searchInput) {
+            searchInput.addEventListener("input", () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                let hasResults = false;
 
-            portfolioItems.forEach((item) => {
-                const title = item.querySelector("h4").textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    item.style.display = "block";
-                    hasResults = true;
-                } else {
-                    item.style.display = "none";
+                portfolioItems.forEach((item) => {
+                    const title = item.querySelector("h4").textContent.toLowerCase();
+                    if (title.includes(searchTerm)) {
+                        item.style.display = "block";
+                        hasResults = true;
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+
+                // Show or hide the "Project Not Found" message
+                if (noResultsMessage) {
+                    noResultsMessage.style.display = hasResults ? "none" : "block";
                 }
+
+                // Trigger Isotope layout recalculation to remove blank spaces
+                iso.arrange();
             });
-
-            // Show or hide the "Project Not Found" message
-            noResultsMessage.style.display = hasResults ? "none" : "block";
-
-            // Trigger Isotope layout recalculation to remove blank spaces
-            iso.arrange();
-        });
+        }
     });
 });

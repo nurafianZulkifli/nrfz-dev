@@ -583,9 +583,9 @@
         text-align: center;
     }
 
-    .breadcrumb {
+    /* .breadcrumb {
         justify-content: center;
-    }
+    } */
 
     .portfolio-filter {
         order: 2;
@@ -663,9 +663,9 @@
         text-align: center;
     }
 
-    .breadcrumb {
+    /* .breadcrumb {
         justify-content: center;
-    }
+    } */
 
     .portfolio-filter {
         display: flex;
@@ -703,6 +703,12 @@
         /* Adjust the width to control how many tabs fit on the screen */
         flex-shrink: 0;
         /* Prevent tabs from shrinking */
+    }
+
+    .container,
+    .container-md,
+    .container-sm {
+        max-width: 900px;
     }
 }
 
