@@ -1749,7 +1749,7 @@ img.profile-pic {
 
 .skill-ara .single-skill .progress-bar {
     background: #87bee8;
-    background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
+background: linear-gradient(180deg,rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
     width: 0%;
 
     border-radius: 15px;

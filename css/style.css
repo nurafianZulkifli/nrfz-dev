@@ -504,7 +504,7 @@ input:required {
     width: 46px;
     height: 46px;
     bottom: 60px;
-    background-color: #ae7356;
+    background-color: #e18b34;
     color: #fff;
     text-align: center;
     transition-duration: 500ms;
@@ -537,10 +537,7 @@ input:required {
     height: 100%;
     width: 0;
     /* Start with 0 width */
-    background: linear-gradient(90deg,
-            #de650f 0%,
-            #fd1d1d 50%,
-            #df9e43 100%);
+    background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
     transition: width 0.1s ease;
     /* Smooth transition for the indicator */
 }
@@ -1040,7 +1037,7 @@ header {
     transition-duration: 800ms;
     background-color: #ffffff;
     padding: 47px 20px 17px;
-    border-radius: 10px;
+    border-radius: 25px;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 1;
@@ -1053,7 +1050,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #7b7c64;
+    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1072,7 +1069,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #ce8763;
+    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1091,7 +1088,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #6d99c0;
+    background: linear-gradient(180deg, rgba(164, 185, 215, 1) 0%, rgba(82, 160, 241, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1171,7 +1168,7 @@ header {
     background: #fff;
     padding: 15px 20px;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 25px;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
     text-align: center;
     position: relative;
@@ -1196,7 +1193,7 @@ header {
 
 h4.timeline-date-edu {
     font-size: 18px;
-    background-color: #6d99c0;
+    background: linear-gradient(180deg, rgba(164, 185, 215, 1) 0%, rgba(82, 160, 241, 1) 100%);
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1205,7 +1202,7 @@ h4.timeline-date-edu {
 
 h4.timeline-date-exp {
     font-size: 18px;
-    background-color: #8c8e75;
+    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1214,7 +1211,7 @@ h4.timeline-date-exp {
 
 h4.timeline-date-aa {
     font-size: 18px;
-    background-color: #ce8763;
+    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1227,7 +1224,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     background-color: #fff;
     padding: 46px 36px 13px;
-    border-radius: 10px;
+    border-radius: 25px;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 1;
@@ -1244,7 +1241,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background-color: #7b7c64;
+    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1595,7 +1592,7 @@ li.breadcrumb-item.active a {
     z-index: 1;
     border: 0;
     background-color: #e4e6cf;
-    border-radius: 10px;
+    border-radius: 25px;
     padding: 15px;
     font-size: 17px;
     font-weight: 600;
@@ -1808,7 +1805,7 @@ img.profile-pic {
 
 .skill-ara .single-skill .progress-bar {
     background: #87bee8;
-    background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
+    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
     width: 0%;
     border-radius: 15px;
 }
@@ -2980,7 +2977,7 @@ md-menu {
 }
 
 .scrollable-tabs-container a.active {
-    background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
+    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
     color: #fff;
 }
 
