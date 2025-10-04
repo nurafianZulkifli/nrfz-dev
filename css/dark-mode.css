@@ -247,6 +247,10 @@ body.dark-mode .pw-portfolio-area {
     transition: all 0.5s ease;
 }
 
+body.dark-mode .pw-portfolio-area-featured {
+    background-color: #18191a;
+}
+
 body.dark-mode .pw-portfolio-area .container-fluid {
     background-color: #18191a;
     color: #fff;
@@ -474,6 +478,11 @@ body.dark-mode .portfolio-sort label {
 }
 
 body.dark-mode #sort-options {
+    appearance: none;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="white" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
+    background-size: 10px;
+    padding-right: 30px;
+    padding-left: 15px;
     background-color: #000;
     border: 1px solid #000;
     color: #fff;
