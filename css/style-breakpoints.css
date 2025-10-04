@@ -558,10 +558,6 @@
         text-align: center;
     }
 
-    /* .breadcrumb {
-        justify-content: center;
-    } */
-
     .portfolio-filter {
         order: 2;
     }
@@ -569,6 +565,11 @@
     .portfolio-sort {
         order: 1;
         margin-bottom: 30px;
+    }
+
+    .single_gallery_item {
+        flex: 1 1 calc(25% - 15px) !important;
+        max-width: calc(25% - 15px) !important;
     }
 }
 

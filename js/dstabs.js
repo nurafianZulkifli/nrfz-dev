@@ -33,10 +33,6 @@ const manageIcons = () => {
     // Check if scrolling is needed with a small tolerance
     const isScrollable = tabsList.scrollWidth > (tabsList.clientWidth + 2);
     
-    console.log("scroll width: ", tabsList.scrollWidth);
-    console.log("client width: ", tabsList.clientWidth);
-    console.log("is scrollable: ", isScrollable);
-    console.log("scroll left: ", tabsList.scrollLeft);
     
     if (!isScrollable) {
         // Force hide both arrows if no scrolling is needed

@@ -1548,10 +1548,8 @@ li.breadcrumb-item.active a {
 }
 
 .single_gallery_item {
-    flex: 1 1 calc(25% - 20px);
-    /* 4 items per row with spacing */
-    max-width: calc(25% - 20px);
-    /* Ensure items don't exceed 25% width */
+    flex: 1 1 calc(25% - 15px);
+    max-width: calc(25% - 15px);
     box-sizing: border-box;
 }
 
@@ -1563,6 +1561,7 @@ li.breadcrumb-item.active a {
     margin-left: auto;
     background-color: #ececea;
 }
+
 .pw-projects-menu {
     position: relative;
     z-index: 1;
