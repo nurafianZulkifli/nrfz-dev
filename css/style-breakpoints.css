@@ -1024,6 +1024,12 @@
         right: -43px;
     }
 
+    #cv-about, #cv-img {
+        background-image: url("img/bg-img/hero-bg-small.png");
+        height: 45vh;
+
+    }
+
 }
 
 /* ---- */
