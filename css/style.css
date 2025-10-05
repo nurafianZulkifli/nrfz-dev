@@ -1254,6 +1254,81 @@ h4.timeline-date-aa {
     margin-left: -38px;
 }
 
+.port-summary {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    background-color: #fff;
+    padding: 46px 36px 13px;
+    border-radius: 25px;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 7em;
+}
+
+.port-summary:hover {
+    background-color: #c7e3fb;
+}
+
+.port-summary .summ-icon {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 76px;
+    width: 76px;
+    background: linear-gradient(180deg, rgba(164, 185, 215, 1) 0%, rgba(82, 160, 241, 1) 100%);
+    display: inline-block;
+    text-align: center;
+    line-height: 76px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -38px;
+}
+
+.port-year .summ-icon {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 76px;
+    width: 76px;
+    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
+    display: inline-block;
+    text-align: center;
+    line-height: 76px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -38px;
+}
+
+.port-share .summ-icon {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 76px;
+    width: 76px;
+    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
+    display: inline-block;
+    text-align: center;
+    line-height: 76px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -38px;
+}
+
+
 .about-me-summ {
     background-color: #ececea;
     /* padding-top: 50px; */
@@ -1813,41 +1888,31 @@ img.profile-pic {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 19.0 Works By NRFZ_Details Section ------------------------------------------ */
-.collapse .details_catagory_wrap,
-.collapsing .details_catagory_wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 1400px;
-}
 
-.collapse .details_catagory_wrap .single_catagory .social_links a,
-.collapsing .details_catagory_wrap .single_catagory .social_links a {
+.social_links a {
     font-size: 16px;
     color: #000;
-    margin-right: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
-.collapse .details_catagory_wrap .single_catagory .social_links a:hover {
+.social_links a:hover {
     color: #6d99c0;
 }
 
-.collapse .details_catagory_wrap .single_catagory,
-.collapsing .details_catagory_wrap .single_catagory {
+.collapse .details_catagory_wrap .single_catagory {
     margin-top: 2em;
     margin-bottom: 0px;
     text-align: left;
 }
 
-.collapse .details_catagory_wrap .single_catagory h4,
-.collapsing .details_catagory_wrap .single_catagory h4 {
+.collapse .details_catagory_wrap .single_catagory h4 {
     font-size: 20px;
     color: #000;
     font-weight: 400;
 }
 
-.collapse .details_catagory_wrap .single_catagory span,
-.collapsing .details_catagory_wrap .single_catagory span {
+.collapse .details_catagory_wrap .single_catagory span {
     font-size: 16px;
     color: #828793;
     font-weight: 400;
@@ -2736,6 +2801,26 @@ li.breadcrumb-item a {
 
 }
 
+#cv-tdc {
+    background-image: url("https://i.imgur.com/dRoqS9F.png");
+    height: 72vh;
+}
+
+#cv-img {
+    background-image: url("../eicw/img/cover-light.png");
+    height: 72vh;
+}
+
+.wbnrfz_details_blog {
+    background: #ffffffe0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    margin-top: -4.2em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
+}
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 22.0 Filter/Jumplist Controls ------------------------------------------ */
@@ -2961,6 +3046,11 @@ md-menu {
     border-radius: 24px;
     white-space: nowrap;
     box-shadow: rgba(0, 0, 0, 0.11) 1px 2px 3px 1px;
+}
+
+.scrollable-tabs-container a:hover {
+    background-color: #4784c5;
+    color: #fff;
 }
 
 .scrollable-tabs-container a.active {
@@ -3583,5 +3673,132 @@ md-menu {
 
     .footer-links {
         gap: 15px;
+    }
+}
+
+
+
+
+
+/* ss */
+.wrapper {
+    display: flex;
+    max-width: 1200px;
+    position: relative;
+}
+
+.wrapper i {
+    top: 50%;
+    height: 44px;
+    width: 44px;
+    color: #343F4F;
+    cursor: pointer;
+    font-size: 1.15rem;
+    position: absolute;
+    text-align: center;
+    line-height: 44px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.1s linear;
+    z-index: 5;
+}
+
+.wrapper i:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+.wrapper i:hover {
+    background: #f2f2f2;
+}
+
+.wrapper i:first-child {
+    left: -22px;
+    display: none;
+}
+
+.wrapper i:last-child {
+    right: -22px;
+}
+
+.wrapper .carousel {
+    font-size: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+}
+
+.carousel.dragging {
+    cursor: grab;
+    scroll-behavior: auto;
+}
+
+.carousel.dragging img {
+    pointer-events: none;
+}
+
+.carousel img {
+    height: 340px;
+    object-fit: cover;
+    user-select: none;
+    /* Remove width: calc(100% / 3); and margin-left */
+    width: 100%;
+    margin-left: 0;
+    border-radius: 25px;
+}
+
+.carousel a {
+    margin-right: 16px;
+    /* Adjust gap as needed */
+    display: inline-block;
+    width: calc(100% / 3 - 11px);
+    /* 3 images per view, minus gap compensation */
+    vertical-align: top;
+}
+
+.carousel a:last-child {
+    margin-right: 0;
+}
+
+/* Hide scrollbars on body and html when GLightbox is open */
+body.glightbox-open,
+html.glightbox-open {
+    overflow: hidden !important;
+    height: 100% !important;
+}
+
+/* Hide scrollbars in GLightbox overlay (all browsers) */
+.glightbox-container,
+.glightbox-container * {
+    scrollbar-width: none !important;
+    /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE 10+ */
+    overscroll-behavior: contain !important;
+}
+
+.glightbox-container::-webkit-scrollbar,
+.glightbox-container *::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    /* Chrome, Safari, Opera */
+}
+
+.glightbox-container {
+    overflow: hidden !important;
+}
+
+@media screen and (max-width: 900px) {
+    .carousel a {
+        width: calc(100% / 2 - 8px);
+        /* 2 images per view, minus gap compensation */
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .carousel a {
+        width: 100%;
     }
 }
