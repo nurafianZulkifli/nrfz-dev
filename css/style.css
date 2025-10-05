@@ -2796,7 +2796,7 @@ li.breadcrumb-item a {
 }
 
 #cv-about {
-    background-image: url("img/bg-img/hero-bg-small.png");
+    background-image: url("../img/bg-img/hero-bg-small.png");
     height: 72vh;
 
 }
