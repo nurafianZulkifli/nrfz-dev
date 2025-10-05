@@ -56,8 +56,8 @@ body.dark-mode #hero {
 
 body.dark-mode #hero:before {
     content: "";
-    /* background: #000000c6;
-    backdrop-filter: blur(15px); */
+    background-color: #00000050;
+    /* backdrop-filter: blur(15px); */
     position: absolute;
     bottom: 0;
     top: 0;
@@ -736,4 +736,22 @@ body.dark-mode .social-link {
 body.dark-mode .footer-copy {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
+}
+
+
+
+
+body.dark-mode .bouncing-arrow-link {
+    color: #bebebe;
+    font-size: 2.5rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+body.dark-mode .bouncing-arrow-link:hover {
+    color: #4784c5;
+}
+
+body.dark-mode .bouncing-arrow {
+    animation: bounce 3.0s infinite;
 }
