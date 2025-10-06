@@ -447,21 +447,25 @@
 
 /* ---- */
 
-/* ---- 1.0.4 Max Width: 450px */
-@media (max-width: 450px) {
-    .btn {
-        width: 130px;
+/* ---- 1.0.4 Max Width: 600px */
+@media (max-width: 600px) {
+    .breadcrumb-content {
+        max-width: 98vw;
+        padding: 1.2em 0.5em 1em 0.5em;
+        border-radius: 25px;
     }
 
-    .light:after {
-        width: 120px;
+    img.profile-pic {
+        width: 100px;
+        height: 100px;
     }
 
-    h1.brc {
-        text-align: center;
-        line-height: 1.2;
-        margin: 0 auto;
-        max-width: 100%;
+    .profile-name {
+        font-size: 1.1rem;
+    }
+
+    .profile-desc {
+        font-size: 0.95rem;
     }
 }
 
@@ -497,6 +501,26 @@
 
     .scrollable-tabs-container ul {
         padding: 12px 30px !important;
+    }
+}
+
+/* ---- */
+
+/* ---- 1.0.6 Max Width: 450px */
+@media (max-width: 450px) {
+    .btn {
+        width: 130px;
+    }
+
+    .light:after {
+        width: 120px;
+    }
+
+    h1.brc {
+        text-align: center;
+        line-height: 1.2;
+        margin: 0 auto;
+        max-width: 100%;
     }
 }
 
@@ -1024,7 +1048,8 @@
         right: -43px;
     }
 
-    #cv-about, #cv-img {
+    #cv-about,
+    #cv-img {
         background-image: url("img/bg-img/hero-bg-small.png");
         height: 45vh;
 

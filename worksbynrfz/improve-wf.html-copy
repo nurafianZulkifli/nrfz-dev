@@ -8,14 +8,14 @@
   <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Train Delays Tracker | WBN</title>
+  <title>EICW - Implementation Brainstorming | WBN</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <meta property="og:image" content="https://i.imgur.com/kMi3VsK.png" />
 
   <link rel="icon" href="../img/core-img/favicon.png">
 
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -44,6 +44,7 @@
   </div> -->
 
 
+
   <header>
     <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
 
@@ -67,8 +68,8 @@
     </nav>
   </header>
 
-  <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-tdc"
-    style="background-image: url(https://i.imgur.com/dRoqS9F.png); height: 100vh;">
+  <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-eicw"
+    style="background-image: url(../eicw/img/cover-light.png); height: 100vh;">
     <div class="wbnrfz_details_blog">
       <div class="container">
         <div class="portfolio-controls d-flex justify-content-between align-items-center">
@@ -80,12 +81,12 @@
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../works-by-nrfz.html"> Works By NRFZ</a>
                     </li>
-                    <li class="breadcrumb-item active"><a href="#">Innovations
+                    <li class="breadcrumb-item active"><a href="#">Designs
                       </a>
                     </li>
                   </ol>
                 </nav>
-                <h1 class="brc">Train Delays Tracker</h1>
+                <h1 class="brc">Experimenting Improvements of Current Wayfinding</h1>
               </div>
             </div>
           </div>
@@ -100,19 +101,19 @@
           <div class="details_catagory_wrap">
             <div class="col-sm-4 single_catagory ">
               <span>Category</span>
-              <h4>Website Design</h4>
+              <h4>Concepts & Replications</h4>
             </div>
             <div class="col-sm-4 single_catagory">
               <span>Project Year</span>
-              <h4>2025 (Version 5)</h4>
+              <h4>2024</h4>
             </div>
             <div class="col-sm-4 single_catagory">
               <span>Share Project</span>
               <div class="social_links">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://nurafianzulkifli.com/worksbynrfz/delays-checker.html"
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://nurafianzulkifli.com/worksbynrfz/improve-wf.html"
                   title="Facebook">
                   <i class="fa-brands fa-facebook"></i> </a>
-                <a href="https://x.com/intent/post?url=https://nurafianzulkifli.com/worksbynrfz/delays-checker.html&text= Train Delays Checker"
+                <a href="https://x.com/intent/post?url=https://nurafianzulkifli.com/worksbynrfz/improve-wf.html&text= Experimenting Improvements of Current Wayfinding"
                   title="X (Twitter)">
                   <i class="fa-brands fa-x-twitter"></i></a>
                 <a href="#" class="clipboard" onclick="copyToClipboard()" title="Copy Link"><i
@@ -122,8 +123,9 @@
               </div>
             </div>
             <div class="single_catagory text-center">
-              <a class="btn wbnrfz_btn" href="https://nurafianzulkifli.github.io/train-delays-checker/"
-                target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp; View Website</a>
+              <a class="btn wbnrfz_btn"
+                href="https://drive.google.com/file/d/1jKlaRXYsOWCaQVGjVIBPz8G8X-uq_GfO/view?usp=sharing"
+                target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp; View Handbook</a>
             </div>
           </div>
         </div>
@@ -142,36 +144,40 @@
               <div class="row justify-content-center">
                 <div class="col-lg-12">
                   <div class="info justify-content-center">
-                    <p style="text-align: center; padding-bottom: 2em;">A pet-project of mine. Created just to keep
-                      track of
-                      train delays and breakdowns. The current features only included an Overview of Days Since Last
-                      Reported
-                      Failure, the Delays Overview, as well as Recent Incidents (i.e. Incidents History). I do wish to
-                      make this
-                      into a real-time website one day.</p>
+                    <p style="text-align: center; padding-bottom: 2em;">
+                      A self-made handbook of how I explored different ways and ideas to
+                      make the current Wayfinding system better. <br>
+                      This has now been expanded into <a href="../eicw/eicw.html">EICW</a> with more ideas
+                      being showcased. <br>
+
+                      Covered in this Handbook:<br>
+                      - Design Improvements <br>
+                      - Font and Color Palettes <br>
+                      - Design Ideas Brainstorming
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
 
-            <div class="banner text-center wow fadeInUp" data-wow-delay="150ms">
-              <a href="https://i.imgur.com/XPq0mvF.png" class="portfolio-img" id="tdt1"><img
-                  src="https://i.imgur.com/XPq0mvF.png" class="img-fluid" id="tdt1-img" alt="tdt1-img"></a>
+            <div class="banner text-center wow fadeIn" data-wow-delay="150ms">
+              <a href="https://i.imgur.com/sBOOEqY.png" class="portfolio-img"><img src="https://i.imgur.com/sBOOEqY.png"
+                  class="img-fluid" alt="cover-page"></a>
             </div>
 
-            <div class="details_single_img wow fadeInUp" data-wow-delay="150ms">
+            <div class="details_single_img">
               <div class="row">
                 <div class="col-lg-6 col-md-6">
                   <div class="thumb">
-                    <a href="https://i.imgur.com/JqT4T3I.png" class="portfolio-img" id="tdt2" alt="tdt2"><img
-                        src="https://i.imgur.com/JqT4T3I.png" class="img-fluid" id="tdt2-img" alt="tdt2-img"></a>
+                    <a href="https://i.imgur.com/W3vPlwI.png" class="portfolio-img"><img
+                        src="https://i.imgur.com/W3vPlwI.png" class="img-fluid" alt="font-col-palette"></a>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                   <div class="thumb">
-                    <a href="https://i.imgur.com/xKLVJbC.png" class="portfolio-img" id="tdt3" alt="tdt3"><img
-                        src="https://i.imgur.com/xKLVJbC.png" class="img-fluid" id="tdt3-img" alt="tdt3-img"></a>
+                    <a href="https://i.imgur.com/94YwAP9.png" class="portfolio-img"><img
+                        src="https://i.imgur.com/94YwAP9.png" class="img-fluid" alt="des-idea"></a>
                   </div>
                 </div>
               </div>
@@ -228,7 +234,7 @@
 
   <script src="../js/copy-to-clipboard.js"></script>
 
-    <!--  <script src="../js/preloader.js"></script> -->
+  <!-- <script src="../js/preloader.js"></script> -->
 
   <!-- Script for Indiv Page - Modes -->
   <script>
@@ -257,71 +263,41 @@
       updateHrefForDarkMode();
     });
 
-    // Function to update the theme icon with animation
-    function updateThemeIcon(theme) {
-      const themeIcon = document.getElementById('theme-icon');
+// Function to update the theme icon with animation
+function updateThemeIcon(theme) {
+    const themeIcon = document.getElementById('theme-icon');
 
-      // Add animation class
-      themeIcon.classList.add('animate');
+    // Add animation class
+    themeIcon.classList.add('animate');
 
-      // Update the icon based on the theme
-      if (theme === 'dark') {
+    // Update the icon based on the theme
+    if (theme === 'dark') {
         themeIcon.classList.remove('fa-sun-bright');
         themeIcon.classList.add('fa-moon-stars');
-      } else {
+    } else {
         themeIcon.classList.remove('fa-moon-stars');
         themeIcon.classList.add('fa-sun-bright');
-      }
-
-      // Remove the animation class after the animation ends
-      setTimeout(() => {
-        themeIcon.classList.remove('animate');
-      }, 300); // Match the duration of the CSS transition
     }
+
+    // Remove the animation class after the animation ends
+    setTimeout(() => {
+        themeIcon.classList.remove('animate');
+    }, 300); // Match the duration of the CSS transition
+}
 
     function updateHrefForDarkMode() {
       /* Banners */
-      const tdcPage = document.getElementById('cv-tdc');
+      const eicwPage = document.getElementById('cv-eicw');
 
       const isDarkMode = document.body.classList.contains('dark-mode');
 
-      const tdt1_link = document.getElementById('tdt1');
-      const tdt1_img = document.getElementById('tdt1-img');
-
-      const tdt2_link = document.getElementById('tdt2');
-      const tdt2_img = document.getElementById('tdt2-img');
-
-      const tdt3_link = document.getElementById('tdt3');
-      const tdt3_img = document.getElementById('tdt3-img');
-
-
       if (isDarkMode) {
         /* Banners */
-        tdcPage.style.backgroundImage = "url('https://i.imgur.com/dRoqS9F.png')";
-
-        tdt1_link.href = 'https://i.imgur.com/FpOufoV.png';
-        tdt1_img.src = 'https://i.imgur.com/FpOufoV.png';
-
-        tdt2_link.href = 'https://i.imgur.com/UwMCmXE.png';
-        tdt2_img.src = 'https://i.imgur.com/UwMCmXE.png';
-
-        tdt3_link.href = 'https://i.imgur.com/eX0NhWw.png';
-        tdt3_img.src = 'https://i.imgur.com/eX0NhWw.png';
-
+        eicwPage.style.backgroundImage = "url('../eicw/img/cover-dark.png')";
 
       } else {
         /* Banners */
-        tdcPage.style.backgroundImage = "url('https://i.imgur.com/dRoqS9F.png')";
-
-        tdt1_link.href = 'https://i.imgur.com/XPq0mvF.png';
-        tdt1_img.src = 'https://i.imgur.com/XPq0mvF.png';
-
-        tdt2_link.href = 'https://i.imgur.com/JqT4T3I.png';
-        tdt2_img.src = 'https://i.imgur.com/JqT4T3I.png';
-
-        tdt3_link.href = 'https://i.imgur.com/xKLVJbC.png';
-        tdt3_img.src = 'https://i.imgur.com/xKLVJbC.png';
-
+        eicwPage.style.backgroundImage = "url('../eicw/img/cover-light.png')";
       }
     }
   </script>
