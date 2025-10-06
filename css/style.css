@@ -823,7 +823,7 @@ header {
 
 #hero:before {
     content: "";
-    background: #dfdfdf52;
+    /* background: #dfdfdf52; */
     /* backdrop-filter: blur(15px); */
     position: absolute;
     bottom: 0;
@@ -2641,14 +2641,14 @@ select:focus {
 }
 
 .wbnrfz_details_body {
-    background: #e9eae5;
+    background: #ececea;
     margin-top: -3.2em;
     padding-top: 3em;
     padding-bottom: 2em;
 }
 
 .wbnrfz_details_body_tchp {
-    background: #e9eae5;
+    background: #ececea;
     margin-top: -3.2em;
     padding-top: 0em;
     padding-bottom: 2em;
@@ -2813,6 +2813,26 @@ li.breadcrumb-item a {
 
 #cv-img {
     background-image: url("../eicw/img/cover-light.png");
+    height: 72vh;
+}
+
+#cv-img-2 {
+    background-image: url("../eicw/img/cover-2-light.png");
+    height: 72vh;
+}
+
+#cbus-img {
+    background-image: url("../eicw/img/cdbus-light.png");
+    height: 72vh;
+}
+
+#cui-img {
+    background-image: url("../eicw/img/cover-eicw-4-light.png");
+    height: 72vh;
+}
+
+#covccl-img {
+    background-image: url("../eicw/img/cover-eicw-5-light.png");
     height: 72vh;
 }
 

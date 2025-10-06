@@ -1,8 +1,3 @@
-
-
-
-
-
 /* Dark Mode Functionality for Individual Pages */
 
 // Check localStorage for dark mode preference

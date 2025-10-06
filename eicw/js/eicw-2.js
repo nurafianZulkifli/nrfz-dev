@@ -72,9 +72,10 @@ function updateThemeIcon(theme) {
     }, 300); // Match the duration of the CSS transition
 }
 
+
 function updateHrefForDarkMode() {
     /* Existing logic for updating banners, images, and videos */
-    const coverSect = document.getElementById('cv-img');
+    const coverSect = document.getElementById('cv-img-2');
     const ciSect = document.getElementById('ci-img');
 
     const wo1_link = document.getElementById('wo1');
