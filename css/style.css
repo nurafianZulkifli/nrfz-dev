@@ -2807,7 +2807,7 @@ li.breadcrumb-item a {
 
 #cv-about {
     background-image: url("../img/bg-img/hero-bg-small.png");
-    height: 72vh;
+    height: 74vh;
 
 }
 
@@ -2974,7 +2974,7 @@ md-menu {
 /*--------------------*/
 .scrollable-tabs-container {
     max-width: 1400px;
-    margin: 16px auto;
+    margin: 20px auto;
     border-radius: 4px;
     overflow: hidden;
     position: relative;
