@@ -262,6 +262,8 @@
         width: 100% !important;
         margin: 0 !important;
     }
+
+    
 }
 
 /* ---- */
@@ -1049,8 +1051,13 @@
     }
 
     #cv-about,
-    #cv-img {
-        background-image: url("img/bg-img/hero-bg-small.png");
+    #cv-img,
+    #cv-img-2,
+    #cbus-img,
+    #cui-img,
+    #covccl-img,
+    #cv-eicw,
+    #cv-tdc {
         height: 45vh;
 
     }
