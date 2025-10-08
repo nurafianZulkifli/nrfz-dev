@@ -263,7 +263,7 @@
         margin: 0 !important;
     }
 
-    
+
 }
 
 /* ---- */
@@ -468,6 +468,15 @@
 
     .profile-desc {
         font-size: 0.95rem;
+    }
+
+    .carousel-cell {
+        width: 80vw;
+        height: 300px;
+    }
+
+    .carousel-cell img {
+        height: 300px;
     }
 }
 

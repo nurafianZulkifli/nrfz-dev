@@ -3728,132 +3728,64 @@ md-menu {
 
 
 /* ss */
-.wrapper {
-    display: flex;
-    max-width: 1200px;
-    position: relative;
+.carousel {
+    background: none;
+    margin: 0 auto;
+    padding: 2em 0;
+    max-width: 1400px;
+    overflow: visible;
 }
 
-.wrapper i {
-    top: 50%;
-    height: 44px;
-    width: 44px;
-    color: #343F4F;
-    cursor: pointer;
-    font-size: 1.15rem;
-    position: absolute;
-    text-align: center;
-    line-height: 44px;
-    background: #fff;
-    border-radius: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.1s linear;
-    z-index: 10000;
-}
-
-.wrapper i:active {
-    transform: translateY(-50%) scale(0.9);
-}
-
-.wrapper i:hover {
-    background: #f2f2f2;
-}
-
-.wrapper i:first-child {
-    left: -22px;
-    display: none;
-}
-
-.wrapper i:last-child {
-    right: -22px;
-    z-index: 5;
-
-}
-
-.wrapper .carousel {
-    font-size: 0px;
-    cursor: pointer;
+.carousel-cell {
+    width: 500px;
+    margin: 0 10px;
+    border-radius: 32px;
     overflow: hidden;
-    white-space: nowrap;
-    scroll-behavior: smooth;
+    background: transparent;
+    transition: box-shadow 0.2s;
 }
 
-.carousel.dragging {
-    cursor: grab;
-    scroll-behavior: auto;
-}
-
-.carousel.dragging img {
-    pointer-events: none;
-}
-
-.carousel img {
-    height: 340px;
-    object-fit: cover;
-    user-select: none;
-    /* Remove width: calc(100% / 3); and margin-left */
-    width: 100%;
-    margin-left: 0;
-    border-radius: 25px;
-}
-
-.carousel a {
-    margin-right: 16px;
-    /* Adjust gap as needed */
-    display: inline-block;
-    width: calc(100% / 3 - 11px);
-    /* 3 images per view, minus gap compensation */
-    vertical-align: top;
-}
-
-.carousel a:last-child {
+/* Remove right margin from the last cell for a clean edge */
+.carousel-cell:last-child {
     margin-right: 0;
 }
 
-
-
-@media screen and (max-width: 900px) {
-    .carousel a {
-        width: calc(100% / 2 - 8px);
-        /* 2 images per view, minus gap compensation */
-    }
-}
-
-@media screen and (max-width: 550px) {
-    .carousel a {
-        width: 100%;
-    }
+.carousel-cell img {
+    display: block;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 32px;
+    pointer-events: none;
+    user-select: none;
 }
 
 
 
-/* .bouncing-arrow-container {
+.flickity-prev-next-button {
     position: absolute;
-    left: 50%;
-    bottom: 32px;
-    transform: translateX(-50%);
-    z-index: 10;
-    text-align: center;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff !important;
+    cursor: pointer;
+    transform: translateY(0%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
-.bouncing-arrow-link {
-    color: #444;
-    font-size: 2.5rem;
-    text-decoration: none;
-    transition: color 0.2s;
+.flickity-prev-next-button:hover {
+    transform: translateY(-2px) !important;
+    background-color: #c7e3fb !important;
 }
 
-.bouncing-arrow-link:hover,
-.bouncing-arrow-link:focus {
-    color: #4784c5;
+.flickity-prev-next-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 5px #09F;
 }
 
-.bouncing-arrow {
-    animation: bounce 3.0s infinite;
+.flickity-prev-next-button:disabled {
+    display: none !important;
 }
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-} */
