@@ -1071,6 +1071,10 @@
 
     }
 
+    .single_gallery_item {
+        left: 0px !important;
+    }
+
 }
 
 /* ---- */

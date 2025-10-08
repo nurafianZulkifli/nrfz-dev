@@ -562,7 +562,7 @@ body.dark-mode .wbnrfz_eicw {
     background: #18191a;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    padding-bottom: 2em;
+    padding-bottom: 0em;
 }
 
 
