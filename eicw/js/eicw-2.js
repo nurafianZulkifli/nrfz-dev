@@ -77,6 +77,7 @@ function updateHrefForDarkMode() {
     /* Existing logic for updating banners, images, and videos */
     const coverSect = document.getElementById('cv-img-2');
     const ciSect = document.getElementById('ci-img');
+    const dsbSect = document.getElementById('dsb-img');
 
     const wo1_link = document.getElementById('wo1');
     const wo1_img = document.getElementById('wo1-img');
@@ -236,6 +237,7 @@ function updateHrefForDarkMode() {
     if (isDarkMode) {
         coverSect.style.backgroundImage = "url('./img/cover-2-dark.png')";
         ciSect.style.backgroundImage = "url('./img/c-i-dark.png')";
+        dsbSect.style.backgroundImage = "url('./img/dsb-dark.png')";
 
         wo1_link.href = './img/wo1-dark.png';
         wo1_img.src = './img/wo1-dark.png';
@@ -372,7 +374,7 @@ function updateHrefForDarkMode() {
     } else {
         coverSect.style.backgroundImage = "url('./img/cover-2-light.png')";
         ciSect.style.backgroundImage = "url('./img/c-i-light.png')";
-
+        dsbSect.style.backgroundImage = "url('./img/dsb-light.png')";
 
 
         wo1_link.href = './img/wo1-light.png';

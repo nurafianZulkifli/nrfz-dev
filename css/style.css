@@ -2675,6 +2675,7 @@ select:focus {
     scroll-margin-top: 35vh;
 }
 
+#eia-img,
 #context,
 #identify,
 #icons,
@@ -2707,10 +2708,11 @@ select:focus {
 #tv,
 #staris2,
 #bcr {
-    scroll-margin-top: 10vh;
+    scroll-margin-top: 8vh;
 }
 
-#featured {
+#featured,
+#ci-img {
     scroll-margin-top: 5vh;
 }
 
@@ -2769,6 +2771,8 @@ h2.page-title {
 
 .cp-img {
     border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .column-vid {
