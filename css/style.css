@@ -452,7 +452,7 @@ input:required {
 
 .loader {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #7b7c64;
+    border-top: 5px solid #989891;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -504,7 +504,7 @@ input:required {
     width: 46px;
     height: 46px;
     bottom: 60px;
-    background-color: #e18b34;
+    background-color: #de652e;
     color: #fff;
     text-align: center;
     transition-duration: 500ms;
@@ -578,7 +578,7 @@ input:required {
     padding: 0 30px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #adada6;
+    background-color: #a4a59d;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
     color: #252525;
     border-radius: 60px;
@@ -709,10 +709,10 @@ header {
 
 .nav-item.active {
     font-weight: bold;
-    border-bottom: 2px solid #7b7c64;
+    border-bottom: 2px solid #989891;
     text-decoration: none;
     line-height: 40px;
-    color: #7b7c64;
+    color: #989891;
 }
 
 .nav-item:hover:after {
@@ -1049,7 +1049,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
+    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1207,7 +1207,7 @@ h4.timeline-date-edu {
 
 h4.timeline-date-exp {
     font-size: 18px;
-    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
+    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1248,7 +1248,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
+    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1324,7 +1324,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(180deg, rgba(197, 198, 190, 1) 0%, rgba(155, 155, 149, 1) 100%);
+    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1472,7 +1472,7 @@ h4.timeline-date-aa {
 }
 
 li.breadcrumb-item.active a {
-    color: #7b7c64 !important;
+    color: #989891 !important;
 }
 
 
@@ -1605,7 +1605,7 @@ li.breadcrumb-item.active a {
     width: 80px;
     height: 56px;
     border-radius: 25px;
-    background-color: #adada6;
+    background-color: #a4a59d;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     line-height: 56px;
@@ -2494,8 +2494,7 @@ h2.page-title {
 
 .portfolio-filter .btn {
     padding: 10px 15px;
-    border: none;
-    background: #7b7c64;
+    background: #989891;
     color: #fff;
     border-radius: 25px;
     cursor: pointer;
@@ -2508,6 +2507,8 @@ h2.page-title {
     text-align: center;
     font-size: 16px;
     box-sizing: border-box;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .portfolio-filter .btn-filter {
@@ -2525,9 +2526,11 @@ h2.page-title {
 
 .portfolio-filter .btn.active,
 .portfolio-filter .btn:hover {
-    background: #6d99c0;
-    color: #fff;
+    background: #c7e3fb;
+    color: #000;
     border-radius: 25px;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .portfolio-sort {
@@ -2869,7 +2872,7 @@ li.breadcrumb-item a {
 .collapsible-header {
     font-size: 16px;
     margin-top: 3em;
-    background-color: #7b7c64;
+    background-color: #989891;
     padding: 1em;
     padding-left: 2em;
     padding-right: 2em;
@@ -2941,7 +2944,7 @@ li.breadcrumb-item a {
     padding: 0 20px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #7b7c64;
+    background-color: #989891;
     color: #fff;
     border-radius: 60px;
     transition-duration: 500ms;

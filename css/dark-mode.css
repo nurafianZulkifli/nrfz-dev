@@ -38,6 +38,11 @@ body.dark-mode .portfolio-filter .btn {
     color: #fff;
 }
 
+body.dark-mode .portfolio-filter .btn.active,
+body.dark-mode .portfolio-filter .btn:hover {
+    background: #52718d;
+}
+
 body.dark-mode .wbnrfz_btn_theme:hover {
     background-color: #4784c5;
     transform: translateY(-2px);
