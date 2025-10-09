@@ -78,6 +78,8 @@ function updateHrefForDarkMode() {
     const coverSect = document.getElementById('cv-img-2');
     const ciSect = document.getElementById('ci-img');
     const dsbSect = document.getElementById('dsb-img');
+    const iuSect = document.getElementById('iu-img');
+    const ieSect = document.getElementById('ie-img');
 
     const wo1_link = document.getElementById('wo1');
     const wo1_img = document.getElementById('wo1-img');
@@ -238,6 +240,8 @@ function updateHrefForDarkMode() {
         coverSect.style.backgroundImage = "url('./img/cover-2-dark.png')";
         ciSect.style.backgroundImage = "url('./img/c-i-dark.png')";
         dsbSect.style.backgroundImage = "url('./img/dsb-dark.png')";
+        iuSect.style.backgroundImage = "url('./img/iu-dark.png')";
+        ieSect.style.backgroundImage = "url('./img/ie-dark.png')";
 
         wo1_link.href = './img/wo1-dark.png';
         wo1_img.src = './img/wo1-dark.png';
@@ -375,7 +379,8 @@ function updateHrefForDarkMode() {
         coverSect.style.backgroundImage = "url('./img/cover-2-light.png')";
         ciSect.style.backgroundImage = "url('./img/c-i-light.png')";
         dsbSect.style.backgroundImage = "url('./img/dsb-light.png')";
-
+        iuSect.style.backgroundImage = "url('./img/iu-light.png')";
+        ieSect.style.backgroundImage = "url('./img/ie-light.png')";
 
         wo1_link.href = './img/wo1-light.png';
         wo1_img.src = './img/wo1-light.png';
