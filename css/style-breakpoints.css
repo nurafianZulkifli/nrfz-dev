@@ -1071,6 +1071,11 @@
 
     }
 
+    #cv-iwf {
+        height: 66vh;
+
+    }
+
     .single_gallery_item {
         left: 0px !important;
     }

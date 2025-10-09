@@ -37,7 +37,7 @@
 </head>
 
 <style>
-  #cv-eicw {
+  #cv-iwf {
     background-image: url("../eicw/img/cover-light.png");
     height: 75vh;
   }
@@ -162,7 +162,7 @@
   <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
 
   <!-- Cover Header -->
-  <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-eicw">
+  <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-iwf">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">
@@ -362,8 +362,6 @@
 
   <script src="../js/isotope.pkgd.min.js"></script>
 
-  <script src="../js/portfolio-comp.js"></script>
-
   <script src="../js/copy-to-clipboard.js"></script>
 
   <script src='//cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js'></script>
@@ -381,6 +379,7 @@
     if (localStorage.getItem('dark-mode') === 'enabled') {
       document.body.classList.add('dark-mode');
       updateThemeIcon('dark');
+      updateHrefForDarkMode();
     } else {
       updateThemeIcon('light');
     }
@@ -400,6 +399,7 @@
         localStorage.setItem('dark-mode', 'disabled');
         updateThemeIcon('light');
       }
+      updateHrefForDarkMode();
     }
 
     // Add event listeners to both buttons if they exist
@@ -449,7 +449,7 @@
 
     function updateHrefForDarkMode() {
       /* Banners */
-      const eicwPage = document.getElementById('cv-eicw');
+      const eicwPage = document.getElementById('cv-iwf');
 
       const isDarkMode = document.body.classList.contains('dark-mode');
 
