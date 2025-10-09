@@ -1049,7 +1049,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
+background: linear-gradient(58deg,rgba(197, 198, 190, 1) 0%, rgba(94, 94, 90, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1068,7 +1068,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
+background: linear-gradient(58deg,rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1087,7 +1087,7 @@ header {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(180deg, rgba(164, 185, 215, 1) 0%, rgba(82, 160, 241, 1) 100%);
+background: linear-gradient(58deg,rgba(164, 185, 215, 1) 0%, rgba(41, 99, 161, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1198,7 +1198,7 @@ header {
 
 h4.timeline-date-edu {
     font-size: 18px;
-    background: linear-gradient(180deg, rgba(164, 185, 215, 1) 0%, rgba(82, 160, 241, 1) 100%);
+background: linear-gradient(58deg,rgba(164, 185, 215, 1) 0%, rgba(41, 99, 161, 1) 100%);
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1207,7 +1207,7 @@ h4.timeline-date-edu {
 
 h4.timeline-date-exp {
     font-size: 18px;
-    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
+background: linear-gradient(58deg,rgba(197, 198, 190, 1) 0%, rgba(94, 94, 90, 1) 100%);
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1216,7 +1216,7 @@ h4.timeline-date-exp {
 
 h4.timeline-date-aa {
     font-size: 18px;
-    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
+background: linear-gradient(58deg,rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
     color: #fff;
     border-radius: 20px;
     padding: 5px 15px;
@@ -1248,7 +1248,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
+background: linear-gradient(58deg,rgba(197, 198, 190, 1) 0%, rgba(94, 94, 90, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1286,7 +1286,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(180deg, rgba(164, 185, 215, 1) 0%, rgba(82, 160, 241, 1) 100%);
+background: linear-gradient(58deg,rgba(164, 185, 215, 1) 0%, rgba(41, 99, 161, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1305,7 +1305,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
+background: linear-gradient(58deg,rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1324,7 +1324,7 @@ h4.timeline-date-aa {
     transition-duration: 800ms;
     height: 76px;
     width: 76px;
-    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(128, 128, 125, 1) 100%);
+background: linear-gradient(58deg,rgba(197, 198, 190, 1) 0%, rgba(94, 94, 90, 1) 100%);
     display: inline-block;
     text-align: center;
     line-height: 76px;
@@ -1890,7 +1890,7 @@ img.profile-pic {
 
 .skill-ara .single-skill .progress-bar {
     background: #87bee8;
-    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
+background: linear-gradient(58deg,rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
     width: 0%;
     border-radius: 15px;
 }
@@ -2676,6 +2676,9 @@ select:focus {
 }
 
 #eia-img,
+#dsb-img,
+#iu-img,
+#ie-img, 
 #context,
 #identify,
 #icons,
@@ -3094,7 +3097,7 @@ md-menu {
 }
 
 .scrollable-tabs-container a.active {
-    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
+background: linear-gradient(58deg,rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
     color: #fff;
 }
 

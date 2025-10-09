@@ -646,7 +646,7 @@ body.dark-mode .scrollable-tabs-container svg {
 }
 
 body.dark-mode .scrollable-tabs-container a.active {
-    background: linear-gradient(180deg, rgba(223, 76, 58, 1) 0%, rgba(220, 147, 25, 1) 100%);
+background: linear-gradient(58deg,rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
     color: #fff;
 }
 
