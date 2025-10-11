@@ -270,6 +270,14 @@ input:required {
     background-color: #ececea;
 }
 
+.hyperlink {
+    color: #3294ac;
+}
+
+.hyperlink:hover {
+    color: #52718d;
+}
+
 /*  ------------------------------------------ */
 
 /* ------------------------------------------ 2.0 Spacing ------------------------------------------ */
@@ -1632,6 +1640,10 @@ li.breadcrumb-item.active a {
 .single-portfolio-content {
     position: relative;
     overflow: hidden;
+}
+
+.img-fluid {
+    border-radius: 25px;
 }
 
 /* ------------------------------------------ */
@@ -3763,6 +3775,16 @@ md-menu {
     overflow: hidden;
     background: transparent;
     transition: box-shadow 0.2s;
+}
+
+.portfolio-img {
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+img.mfp-img {
+    padding: 0px 0 0px !important;
+    border-radius: 24px;
 }
 
 /* Remove right margin from the last cell for a clean edge */
