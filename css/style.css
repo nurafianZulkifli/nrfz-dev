@@ -1350,7 +1350,7 @@ h4.timeline-date-aa {
     background-color: #ececea;
     /* padding-top: 50px; */
     /* padding-bottom: 83px; */
-    position: relative;
+    /* position: relative; */
     z-index: 0;
     /* Ensure it stays above background elements */
 }

@@ -1080,6 +1080,16 @@
         left: 0px !important;
     }
 
+    .breadcrumb-area-eicw-subs {
+        position: relative;
+        z-index: 1;
+        height: 25vh;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
 }
 
 /* ---- */
@@ -1107,6 +1117,10 @@
         overflow-x: hidden;
         max-width: 1200px;
         border-radius: 13px;
+    }
+
+    p {
+        font-size: 14px;
     }
 }
 
