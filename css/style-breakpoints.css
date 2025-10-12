@@ -606,6 +606,11 @@
         flex: 1 1 calc(25% - 15px) !important;
         max-width: calc(25% - 15px) !important;
     }
+
+    .carousel {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
 }
 
 /* ---- */
@@ -720,6 +725,11 @@
     .container-md,
     .container-sm {
         max-width: 900px;
+    }
+
+    .carousel {
+        margin-left: 5vw;
+        margin-right: 5vw;
     }
 }
 
@@ -907,6 +917,11 @@
         /* Ensure it appears below */
     }
 
+    .carousel {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+
 }
 
 /* ---- */
@@ -1088,6 +1103,11 @@
 
     p {
         font-size: 14px;
+    }
+
+    .carousel {
+        margin-left: 5vw;
+        margin-right: 5vw;
     }
 
 }

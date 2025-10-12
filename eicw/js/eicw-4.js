@@ -109,7 +109,6 @@ function updateHrefForDarkMode() {
     if (isDarkMode) {
         /* Banners */
         coverSect.style.backgroundImage = "url('./img/cover-eicw-4-dark.png')";
-        cdSect.style.backgroundImage = "url('./img/cdui-dark.png')";
 
 
         /* Images */
@@ -142,7 +141,6 @@ function updateHrefForDarkMode() {
     } else {
         /* Banners */
         coverSect.style.backgroundImage = "url('./img/cover-eicw-4-light.png')";
-        cdSect.style.backgroundImage = "url('./img/cdui-light.png')";
 
         /* Images */
         lcd1_link.href = './img/lcd-light.png';
