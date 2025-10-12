@@ -644,12 +644,12 @@ input:required {
     /* margin-left: 28px; */
     text-align: center;
     text-transform: capitalize;
-    color: #fff;
+    color: #000;
     border-radius: 60px;
     transition-duration: 500ms;
     margin-bottom: 0px;
     margin-top: 0px;
-    border: none;
+    border: 1px solid #cccccc;
 }
 
 .wbnrfz_btn_theme:hover {

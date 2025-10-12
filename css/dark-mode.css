@@ -32,6 +32,7 @@ body.dark-mode {
 body.dark-mode .wbnrfz_btn_theme {
     background-color: #4784c5;
     color: #fff;
+    border: 1px solid #1b1b1b1a;
 }
 
 body.dark-mode .portfolio-filter .btn {
@@ -646,7 +647,7 @@ body.dark-mode .scrollable-tabs-container svg {
 }
 
 body.dark-mode .scrollable-tabs-container a.active {
-background: linear-gradient(58deg,rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
+    background: linear-gradient(58deg, rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
     color: #fff;
 }
 
