@@ -24,210 +24,96 @@
 
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar-container">
-        <div class="navbar">
-            <!-- Logo -->
-            <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
-
-            <!-- Navigation Links -->
-            <ul class="navbar-nav" id="navbarNav">
-                <li class="nav-item">
-                    <a href="../index.html" class="nav-link">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../about.html" class="nav-link">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span>About</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../works-by-nrfz.html" class="nav-link">
-                        <i class="fa-solid fa-pen-paintbrush"></i>
-                        <span>Works By NRFZ</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../eicw/eicw.html" class="nav-link">
-                        <i class="fa-solid fa-map-location"></i>
-                        <span>EICW</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../blog.html" class="nav-link active">
-                        <i class="fa-solid fa-comment"></i>
-                        <span>Blog</span>
-                    </a>
-                </li>
-                <li class="nav-item-toggle">
-                    <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
-                        <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Mobile Toggle -->
-            <button class="mobile-toggle" id="mobileToggle">
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-        </div>
-
-        </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <a href="#" class="mobile-menu-brand">
-                <span class="brand-text">
-                    <li class="mobile-menu-item mobile-theme-toggle">
-                        <button class="wbnrfz_btn_theme mobile-theme-btn" id="dark-mode-toggle-mobile"
-                            title="Toggle Dark/Light Mode!">
-                            <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
-                        </button>
-                    </li>
-                </span>
-            </a>
-            <button class="mobile-menu-close" id="mobileMenuClose">
-                <span>×</span>
-            </button>
-        </div>
-
-        <ul class="mobile-menu-nav">
-            <li class="mobile-menu-item">
-                <a href="../index.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-regular fa-house"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="../about.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-regular fa-circle-user"></i>
-                    <span>About</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="../works-by-nrfz.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-pen-paintbrush"></i>
-                    <span>Works By NRFZ</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="../eicw/eicw.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-map-location"></i>
-                    <span>EICW</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item active">
-                <a href="blog.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-comment"></i>
-                    <span>Blog</span>
-                </a>
-            </li>
-        </ul>
+    <!-- Preloader Section -->
+    <div id="preloader">
+        <div class="loader"></div>
+        <p id="preloader-text">Just a moment...</p>
     </div>
 
-    <!-- Scroll Indicator -->
     <div id="scroll-indicator-container">
         <div id="scroll-indicator"></div>
     </div>
 
 
-    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
+    <header>
+        <a href="./index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
 
-    <!-- Cover Header -->
-    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-pv5"
-        style="background-image: url(https://i.imgur.com/XfoBdpk.png); height: 72vh;">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </section>
+        <input type="checkbox" id="check" />
+        <label for="check" class="icons">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+            <i class="fa-solid fa-xmark" id="close-icon"></i>
+        </label>
 
-    <!-- Title/Breadcrumbs -->
-    <section class="about-me-sum clearfix">
-        <div class="wbnrfz_eicw">
-            <div class="page-header-section">
-                <div class="container-xxl container-mobile container-mobile-header">
-                    <div class="breadcrumb-wrapper">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="../index.html">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="../blog.html">Blog</a>
-                                </li>
-                            </ol>
-                        </nav>
-                        <div class="page-title-wrapper">
-                            <h1 class="page-title-single">Personal V4 - A big redesign</h1>
-                            <p class="page-subtitle">5 mins read • By Nurafian Zulkifli</p>
+        <nav class="navbar navbar-mobile">
+            <a href="../index.html" class="nav-item">Home</a>
+            <a href="../about.html" class="nav-item">About</a>
+            <a href="../works-by-nrfz.html" class="nav-item">Works By NRFZ</a>
+            <a href="../eicw/eicw.html" class="nav-item">EICW</a>
+            <a href="../blog.html" class="nav-item active">Blog</a>
+            <a href="#" class="nav-item"><button class="wbnrfz_btn_theme" id="dark-mode-toggle"
+                    title="Toggle Dark/Light Mode!"><i class="fa-solid fa-moon"></i></button></a>
+        </nav>
+    </header>
+
+    <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-pv4"
+        style="background-image: url(https://i.imgur.com/XfoBdpk.png); height: 100vh;">
+        <div class="wbnrfz_details_blog">
+            <div class="container">
+                <div class="portfolio-controls d-flex justify-content-between align-items-center">
+                    <!-- Filter Buttons -->
+                    <div class="portfolio-filter mt-3">
+                        <div class="col-lg-12">
+                            <div class="main-title">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="https://nurafianzulkifli.com/index.html">
+                                                Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item active"><a href="../blog.html">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <h1 class="brc">Personal V4 - A big redesign</h1>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="scrollable-tabs-container">
-                    <div class="left-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
-
+                    <!-- Collapsible Header -->
+                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
+                        aria-controls="portfolioFilter" style="cursor: pointer;" title="Go To">
+                        <i class="fa-solid fa-chevron-down nav-chev"></i>
                     </div>
-
-                    <ul>
-                        <li>
-                            <a href="#v1">Personal Website - Version 1</a>
-                        </li>
-
-                        <li>
-                            <a href="#v2">Personal Website - Version 2</a>
-                        </li>
-
-                        <li>
-                            <a href="#v3">Personal Website - Version 3</a>
-                        </li>
-
-                        <li>
-                            <a href="#whats-next">What's Next?</a>
-                        </li>
-
-                        <li>
-                            <a href="#v4">Personal Website - Version 4</a>
-                        </li>
-                    </ul>
-
-                    <div class="right-arrow active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
+                </div>
+                <!-- Collapsible Content -->
+                <div id="portfolioFilter" class="collapse">
+                    <div class="portfolio-filter mt-3">
+                        <a href="#history">
+                            <button class="btn">History</button>
+                        </a>
+                        <a href="#v1">
+                            <button class="btn">Personal Website - Version 1</button>
+                        </a>
+                        <a href="#v2">
+                            <button class="btn">Personal Website - Version 2</button>
+                        </a>
+                        <a href="#v3">
+                            <button class="btn">Personal Website - Version 3</button>
+                        </a>
+                        <a href="#whats-next">
+                            <button class="btn">What's Next?</button>
+                        </a>
+                        <a href="#v4">
+                            <button class="btn">Personal Website - Version 4</button>
+                        </a>
 
                     </div>
                 </div>
-                <hr>
             </div>
-
         </div>
-
     </section>
 
-    <!-- Section Contents -->
+
     <section class="ftco-section ftco-degree-bg">
         <div class="container container-blog">
             <div class="row row-blog">
