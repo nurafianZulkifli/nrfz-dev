@@ -2698,14 +2698,6 @@ select:focus {
 #dsb-img,
 #iu-img,
 #ie-img,
-#context,
-#identify,
-#icons,
-#exit,
-#consist,
-#overall,
-#proposed,
-#summary,
 #history,
 #rewrite,
 #ai,
@@ -2722,24 +2714,29 @@ select:focus {
     scroll-margin-top: 8vh;
 }
 
-
-#conclusion {
-    scroll-margin-top: 10vh;
-}
-
 #bat,
 #tv,
 #staris2,
 #bcr,
 #changes,
 #tooSoon,
+#conclusion,
 #whathappened,
 #paperSign,
 #v1,
 #v2,
 #v3,
 #v4,
-#whats-next {
+#whats-next,
+#old-vs-new,
+#context,
+#identify,
+#icons,
+#exit,
+#consist,
+#overall,
+#proposed,
+#summary {
     scroll-margin-top: 12vh;
 }
 
