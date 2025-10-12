@@ -587,7 +587,7 @@ input:required {
     padding: 0 30px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #a4a59d;
+    background-color: #de652e;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
     color: #252525;
     border-radius: 60px;
@@ -2706,15 +2706,12 @@ select:focus {
 #overall,
 #proposed,
 #summary,
-#whathappened,
-#paperSign,
 #history,
 #v1,
 #v2,
 #v3,
 #v4,
 #whats-next,
-#tooSoon,
 #rewrite,
 #ai,
 #typeface,
@@ -2730,7 +2727,7 @@ select:focus {
     scroll-margin-top: 8vh;
 }
 
-#changes,
+
 #conclusion {
     scroll-margin-top: 10vh;
 }
@@ -2738,7 +2735,11 @@ select:focus {
 #bat,
 #tv,
 #staris2,
-#bcr {
+#bcr,
+#changes,
+#tooSoon,
+#whathappened,
+#paperSign {
     scroll-margin-top: 12vh;
 }
 
