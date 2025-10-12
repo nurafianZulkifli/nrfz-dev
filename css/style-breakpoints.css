@@ -1098,7 +1098,7 @@
     .breadcrumb-area-eicw-subs {
         position: relative;
         z-index: 1;
-        height: 25vh;
+        height: 25vh !important;
     }
 
     p {

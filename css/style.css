@@ -556,6 +556,7 @@ input:required {
     width: 0%;
 }
 
+
 @keyframes pulse-animation {
     0% {
         box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
@@ -2520,7 +2521,7 @@ h2.page-title {
 
 .portfolio-filter .btn {
     padding: 10px 15px;
-    background: #989891;
+    background: #de652e;
     color: #fff;
     border-radius: 25px;
     cursor: pointer;

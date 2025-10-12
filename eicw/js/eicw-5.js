@@ -86,6 +86,9 @@ function updateHrefForDarkMode() {
     const arrow_link = document.getElementById('arrow');
     const arrow_img = document.getElementById('arrow-img');
 
+    const wfp_link = document.getElementById('wfp');
+    const wfp_img = document.getElementById('wfp-img');
+
     const wfm_link = document.getElementById('wfm');
     const wfm_img = document.getElementById('wfm-img');
 
@@ -117,6 +120,9 @@ function updateHrefForDarkMode() {
         wfm_link.href = './img/ccl6-7aD.png';
         wfm_img.src = './img/ccl6-7aD.png';
 
+        wfp_link.href = './img/ccl6-7D.png';
+        wfp_img.src = './img/ccl6-7D.png';
+
         evo3_link.href = './img/ccl6-overview-dark.png';
         evo3_img.src = './img/ccl6-overview-dark.png';
 
@@ -141,6 +147,9 @@ function updateHrefForDarkMode() {
         wfm_link.href = './img/ccl6-7aL.png';
         wfm_img.src = './img/ccl6-7aL.png';
 
+        wfp_link.href = './img/ccl6-7.png';
+        wfp_img.src = './img/ccl6-7.png';
+
         evo3_link.href = './img/ccl6-overview-light.png';
         evo3_img.src = './img/ccl6-overview-light.png';
 
@@ -150,7 +159,7 @@ function updateHrefForDarkMode() {
 
     }
 
-    
+
 
 }
 
