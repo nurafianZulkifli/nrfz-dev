@@ -186,3 +186,13 @@ window.addEventListener("scroll", function () {
     const scrollPercentage = (scrollTop / scrollHeight) * 100; // Calculate scroll percentage
     scrollIndicator.style.width = scrollPercentage + "%"; // Update the width of the indicator
 });
+
+var ccl = document.getElementById("chimes");
+
+function playAudio() {
+    ccl.play();
+}
+
+function pauseAudio() {
+    ccl.pause();
+}
