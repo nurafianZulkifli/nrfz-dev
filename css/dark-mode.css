@@ -812,5 +812,5 @@ body.dark-mode .flickity-prev-next-button svg {
 }
 
 body.dark-mode .flickity-prev-next-button .arrow {
-    fill: #fff;
+    fill: #fff !important;
 }
