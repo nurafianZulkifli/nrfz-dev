@@ -188,14 +188,22 @@
               </ol>
             </nav>
             <div class="page-title-wrapper">
-              <h1 class="page-title-single">Rethinking <span style="cursor: pointer;" onclick="playAudio()" title="Click me to hear one of the CCL Chimes!">CCL6</span> Signages</h1>
+              <h1 class="page-title-single">Rethinking <span id="chimes" style="cursor: pointer;"
+                  title="Click me to hear the CCL Chimes!">
+                  CCL6
+                </span>Signages</h1>
               <p class="page-subtitle">9 mins read</p>
             </div>
           </div>
         </div>
 
-        <audio id="chimes">
+        <!-- Audio Elements -->
+        <audio id="chimes-audio">
           <source src="../img/chimes/CCL_Chime B_V2.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+        <audio id="chimes-alt">
+          <source src="../img/chimes/CCL_Chime A_V2.wav" type="audio/wav">
           Your browser does not support the audio element.
         </audio>
 
