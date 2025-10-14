@@ -454,10 +454,10 @@ body.dark-mode li.breadcrumb-item a {
     color: #fff;
 }
 
-body.dark-mode .bg-overlay-section::after {
-    /* background-color: #080808d2;
-    backdrop-filter: blur(15px); */
-}
+/* body.dark-mode .bg-overlay-section::after {
+    background-color: #080808d2;
+    backdrop-filter: blur(15px);
+} */
 
 /* ------------------------------------------ */
 
