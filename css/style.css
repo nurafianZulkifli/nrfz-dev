@@ -3856,3 +3856,9 @@ img.mfp-img {
     width: 45% !important;
     height: 58% !important;
 }
+
+/* Hide carousel arrows when there are only 2 or fewer items */
+.carousel-cell-count-2 .flickity-prev-next-button,
+.carousel-cell-count-1 .flickity-prev-next-button {
+  display: none !important;
+}
