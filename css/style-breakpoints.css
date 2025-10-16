@@ -1178,13 +1178,9 @@
     #cui-img,
     #covccl-img,
     #cv-eicw,
-    #cv-tdc {
-        height: 45vh;
-
-    }
-
+    #cv-tdc,
     #cv-iwf {
-        height: 66vh;
+        height: 45vh !important;
 
     }
 
