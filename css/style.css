@@ -4,30 +4,32 @@
 > style (this)
     - Import
     - 1.0 Body/Main Styling
-    - 2.0 Spacing
-    - 3.0 Preloader
-    - 4.0 Heading
-    - 5.0 BackToTop/ ProgressBar
-    - 6.0 Buttons
-    - 7.0 Header
-    - 8.0 Hero
-    - 9.0 Animations
-    - 10.0 Footer
-    - 11.0 Softwares
-    - 12.0 About
-    - 13.0 Timelines/Summary
-    - 14.0 Breadcrumb
-    - 15.0 Blog
-    - 16.0 Works By NRFZ
-    - 17.0 Hero Details
-    - 18.0 Skills Section
-    - 19.0 Works By NRFZ_Details Section
-    - 20.0 Blog Post Section
-    - 21.0 EICW
-    - 22.0 Filter/Jumplist Controls
+    - 2.0 Paddings/Margins
+    - 3.0 Heading
+    - 4.0 BackToTop/ ProgressBar
+    - 5.0 Buttons
+    - 6.0 Header
+    - 7.0 Hero
+    - 8.0 Animations
+    - 9.0 About
+    - 10.0 Timelines/Summary
+    - 11.0 Blog
+    - 12.0 Works By NRFZ
+    - 13.0 Hero Details
+    - 14.0 Skills Section
+    - 15.0 Works By NRFZ_Details Section
+    - 16.0 Blog Post Section
+    - 17.0 Breadcrumbs
+    - 18.0 Portfolio Controls
+    - 19.0 EICW
+    - 20.0 Filter/Jumplist Controls
+    - 21.0 Scrollable Tabs
+    - 22.0 Navigation
+    - 23.0 Footer
+    - 24.0 Screenshots Draggable Carousel
 
 > style-breakpoints
-> dark theme
+> dark-mode
 --------------------------------------------- */
 
 /* ------------------------------------------ Import ------------------------------------------*/
@@ -37,6 +39,7 @@
 @import url(owl.carousel.min.css);
 @import url(magnific-popup.css);
 @import url(default-assets/themify-icons.css);
+/* ------------------------------------------*/
 
 /* ------------------------------------------ 1.0 Body/Main Styling ------------------------------------------ */
 
@@ -129,8 +132,6 @@ ul li {
     top: 0;
     left: 0;
     z-index: -1;
-    /* background-color: #e5e5e5b7;
-    backdrop-filter: blur(10px); */
 }
 
 .bg-overlay-section::after {
@@ -141,8 +142,6 @@ ul li {
     top: 0;
     left: 0;
     z-index: -1;
-    /* background-color: #e9e9e9cc; */
-    /* backdrop-filter: blur(2px); */
 }
 
 .row {
@@ -280,7 +279,8 @@ input:required {
 
 /*  ------------------------------------------ */
 
-/* ------------------------------------------ 2.0 Spacing ------------------------------------------ */
+/* ------------------------------------------ 2.0 Paddings/Margins ------------------------------------------ */
+
 .mt-15 {
     margin-top: 15px;
 }
@@ -441,51 +441,8 @@ input:required {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 3.0 Preloader ------------------------------------------ */
-/* Preloader Styles */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fffffff3;
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
+/* ------------------------------------------ 3.0 Heading ------------------------------------------ */
 
-.loader {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #989891;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-#preloader-text {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #333;
-}
-
-/* ------------------------------------------ */
-
-/* ------------------------------------------ 4.0 Heading ------------------------------------------ */
 .section-heading {
     position: relative;
     z-index: 1;
@@ -503,7 +460,8 @@ input:required {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 5.0 BackToTop/ ProgressBar ------------------------------------------ */
+/* ------------------------------------------ 4.0 BackToTop/ ProgressBar ------------------------------------------ */
+
 #scrollUp {
     position: fixed;
     right: 40px;
@@ -537,17 +495,14 @@ input:required {
     width: 100%;
     height: 4px;
     z-index: 9999;
-    /* Ensure it stays on top of other elements */
 }
 
 /* Scroll Indicator */
 #scroll-indicator {
     height: 100%;
     width: 0;
-    /* Start with 0 width */
     background: linear-gradient(90deg, #de650f 0%, #fd1d1d 50%, #df9e43 100%);
     transition: width 0.1s ease;
-    /* Smooth transition for the indicator */
 }
 
 .scroll-bar {
@@ -556,21 +511,10 @@ input:required {
     width: 0%;
 }
 
-
-@keyframes pulse-animation {
-    0% {
-        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
-    }
-
-    100% {
-        box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
-    }
-}
-
-
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 6.0 Buttons ------------------------------------------ */
+/* ------------------------------------------ 5.0 Buttons ------------------------------------------ */
+
 .btn:focus {
     box-shadow: none;
 }
@@ -641,7 +585,6 @@ input:required {
     font-weight: 500;
     display: inline-block;
     padding: 0 30px;
-    /* margin-left: 28px; */
     text-align: center;
     text-transform: capitalize;
     color: #000;
@@ -661,20 +604,6 @@ input:required {
     transition: transform 1.8s ease, opacity 1.8s ease;
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
 #theme-icon.animate {
     animation: pulse 0.5s infinite;
     opacity: 0.5;
@@ -682,7 +611,8 @@ input:required {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 7.0 Header ------------------------------------------ */
+/* ------------------------------------------ 6.0 Header ------------------------------------------ */
+
 header {
     position: fixed;
     top: 0;
@@ -761,7 +691,8 @@ header {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 8.0 Hero ------------------------------------------ */
+/* ------------------------------------------ 7.0 Hero ------------------------------------------ */
+
 #centered-container {
     position: fixed;
     top: 50%;
@@ -831,8 +762,6 @@ header {
 
 #hero:before {
     content: "";
-    /* background: #dfdfdf52; */
-    /* backdrop-filter: blur(15px); */
     position: absolute;
     bottom: 0;
     top: 0;
@@ -869,7 +798,8 @@ header {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 9.0 Animations ------------------------------------------ */
+/* ------------------------------------------ 8.0 Animations ------------------------------------------ */
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -908,131 +838,34 @@ header {
     animation-name: slideInLeft
 }
 
-/* ------------------------------------------ */
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+    }
 
-/* ------------------------------------------ 10.0 Footer ------------------------------------------ */
-.footer-area {
-    background-color: #fdfdfd;
-    padding: 10px 0;
-    padding-top: 1em;
+    100% {
+        box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+    }
 }
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
 
-.footer-area .social-info a {
-    margin: 0 10px;
-    font-size: 14px;
-    color: #f8f9fa;
-    background-color: #6c757d;
-    border-radius: 50%;
-    transition: color 0.3s ease;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 8px;
-    padding-bottom: 7px;
-    text-align: center;
-    transition: all 0.3s ease;
+    50% {
+        transform: scale(1.1);
+    }
 
-}
-
-.footer-area .social-info a:hover {
-    background-color: #6d99c0;
-    color: #fff;
-}
-
-.footer-area .copywrite-text p {
-    margin: 0;
-    font-size: 14px;
-    color: #6c757d;
-    margin-top: 10px;
-}
-
-/* Ensure footer width matches the navbar */
-.footer-area .container {
-    max-width: 1200px;
-    /* Adjust this value to match your navbar's width */
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 11.0 Softwares ------------------------------------------ */
-.single-software-item {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    -webkit-transition-duration: 500ms;
-    -o-transition-duration: 500ms;
-    transition-duration: 500ms;
-}
+/* ------------------------------------------ 9.0 About ------------------------------------------ */
 
-.single-software-item img {
-    width: 100%;
-    -webkit-transition-duration: 1500ms;
-    -o-transition-duration: 1500ms;
-    transition-duration: 1500ms;
-}
-
-.single-software-item .instagram-hover-content {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(252, 96, 96, 0.9);
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transition-duration: 500ms;
-    -o-transition-duration: 500ms;
-    transition-duration: 500ms;
-}
-
-.single-software-item .instagram-hover-content a {
-    text-align: center;
-}
-
-.single-software-item .instagram-hover-content a i {
-    color: #ffffff;
-    font-size: 32px;
-    display: block;
-    margin-bottom: 15px;
-}
-
-.single-software-item .instagram-hover-content a span {
-    font-size: 14px;
-    margin-bottom: 0;
-    color: #ffffff;
-}
-
-.single-software-item:hover img {
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
-.single-software-item:hover .instagram-hover-content {
-    opacity: 1;
-    visibility: visible;
-}
-
-.instagram-gallery-single-item:hover .instagram-hover-content .zoom-img {
-    margin-top: 0;
-    opacity: 1;
-}
-
-/* ------------------------------------------ */
-
-/* ------------------------------------------ 12.0 About ------------------------------------------ */
 .about-us-content h3 {
     font-size: 36px;
     display: block;
@@ -1162,16 +995,14 @@ header {
     margin-bottom: -2em;
 }
 
-
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 13.0 Timelines/Summary ------------------------------------------ */
+/* ------------------------------------------ 10.0 Timelines/Summary ------------------------------------------ */
+
 .timeline-horizontal {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* 4 items per row */
     gap: 20px;
-    /* Space between items */
     align-items: stretch;
     margin: 20px 0;
 }
@@ -1283,8 +1114,6 @@ h4.timeline-date-aa {
     margin-bottom: 7em;
 }
 
-
-
 .port-summary:hover {
     background-color: #c7e3fb;
 }
@@ -1349,145 +1178,13 @@ h4.timeline-date-aa {
 
 .about-me-summ {
     background-color: #ececea;
-    /* padding-top: 50px; */
-    /* padding-bottom: 83px; */
-    /* position: relative; */
     z-index: 0;
-    /* Ensure it stays above background elements */
 }
-
-/* to rel */
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 14.0 Breadcrumb ------------------------------------------ */
-.breadcrumb-area {
-    position: relative;
-    z-index: 1;
-    height: 100vh;
-}
+/* ------------------------------------------ 11.0 Blog ------------------------------------------ */
 
-.breadcrumb-area-subp {
-    position: relative;
-    z-index: 1;
-    height: 370px;
-}
-
-.breadcrumb-area .page-title,
-.breadcrumb-area-subp .page-title {
-    color: #ffffff;
-    font-size: 36px;
-    cursor: default;
-}
-
-.breadcrumb-content {
-    position: relative;
-    z-index: 1;
-    scale: 0.87;
-}
-
-.breadcrumb-content .breadcrumb {
-    padding: 0;
-    background-color: transparent;
-    margin-bottom: 0;
-}
-
-.breadcrumb-content .breadcrumb .breadcrumb-item {
-    color: #b5b69f;
-    font-weight: 400;
-    font-size: 16px;
-    cursor: default;
-}
-
-.breadcrumb-content .breadcrumb .breadcrumb-item a {
-    font-size: 16px;
-    color: #ffffff;
-    font-weight: 400;
-}
-
-.breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
-.breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
-    color: #6d99c0;
-}
-
-.breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
-    content: '\f105';
-    color: #ffffff;
-    font-family: "FontAwesome";
-}
-
-.breadcrumb-area.blog {
-    height: 550px;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-catagory {
-    padding: 2px 15px;
-    border-radius: 2px;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #ffffff;
-    background-color: #fc6060;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-catagory:hover,
-.breadcrumb-area.blog .breadcrumb-content .post-catagory:focus {
-    font-weight: 500;
-    background-color: #000000;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .page-title {
-    display: block;
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-meta {
-    position: relative;
-    z-index: 1;
-    margin-bottom: 5px;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-meta a {
-    position: relative;
-    z-index: 1;
-    font-size: 16px;
-    color: #ffffff;
-    font-weight: 500;
-    margin-right: 21px;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-meta a::after {
-    content: '|';
-    position: absolute;
-    top: 0;
-    right: -11px;
-    z-index: 1;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-meta a:last-child::after {
-    display: none;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-meta a:hover,
-.breadcrumb-area.blog .breadcrumb-content .post-meta a:focus {
-    color: #fc6060;
-}
-
-.breadcrumb-area.blog .breadcrumb-content .post-meta a:hover::after,
-.breadcrumb-area.blog .breadcrumb-content .post-meta a:focus::after {
-    color: #ffffff;
-}
-
-li.breadcrumb-item.active a {
-    color: #989891 !important;
-}
-
-
-/* ------------------------------------------ */
-
-/* ------------------------------------------ 15.0 Blog ------------------------------------------ */
 .single-post-area {
     position: relative;
     z-index: 1;
@@ -1649,12 +1346,7 @@ li.breadcrumb-item.active a {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 16.0 Works By NRFZ ------------------------------------------ */
-/* .pw-portfolio-area {
-    position: relative;
-    z-index: 1;
-    background-color: #f5f6f2;
-} */
+/* ------------------------------------------ 12.0 Works By NRFZ ------------------------------------------ */
 
 .pw-portfolio {
     display: flex;
@@ -1819,7 +1511,8 @@ li.breadcrumb-item.active a {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------  17.0 Hero Details ------------------------------------------ */
+/* ------------------------------------------  13.0 Hero Details ------------------------------------------ */
+
 img.profile-pic {
     width: 220px;
     height: 220px;
@@ -1856,7 +1549,8 @@ img.profile-pic {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 18.0 Skills Section ------------------------------------------ */
+/* ------------------------------------------ 14.0 Skills Section ------------------------------------------ */
+
 .owl-carousel.owl-loaded {
     display: block;
     scale: 0.8;
@@ -1912,7 +1606,7 @@ img.profile-pic {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 19.0 Works By NRFZ_Details Section ------------------------------------------ */
+/* ------------------------------------------ 15.0 Works By NRFZ_Details Section ------------------------------------------ */
 
 .social_links a {
     font-size: 16px;
@@ -2010,7 +1704,6 @@ h1.brc {
 .column-pic:hover {
     transform: translateY(-2px);
     transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    /* Smooth transition */
     cursor: pointer;
 }
 
@@ -2026,7 +1719,8 @@ h1.brc {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 20.0 Blog Post Section ------------------------------------------ */
+/* ------------------------------------------ 16.0 Blog Post Section ------------------------------------------ */
+
 .breadcrumb-area .page-title-blog {
     color: #ffffff;
     font-size: 55px;
@@ -2423,7 +2117,131 @@ hr {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 21.0 EICW ------------------------------------------ */
+/* ------------------------------------------ 17.0 Breadcrumbs ------------------------------------------ */
+
+.breadcrumb-area {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+
+.breadcrumb-area-subp {
+    position: relative;
+    z-index: 1;
+    height: 370px;
+}
+
+.breadcrumb-area .page-title,
+.breadcrumb-area-subp .page-title {
+    color: #ffffff;
+    font-size: 36px;
+    cursor: default;
+}
+
+.breadcrumb-content {
+    position: relative;
+    z-index: 1;
+    scale: 0.87;
+}
+
+.breadcrumb-content .breadcrumb {
+    padding: 0;
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+.breadcrumb-content .breadcrumb .breadcrumb-item {
+    color: #b5b69f;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: default;
+}
+
+.breadcrumb-content .breadcrumb .breadcrumb-item a {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
+.breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
+    color: #6d99c0;
+}
+
+.breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+    content: '\f105';
+    color: #ffffff;
+    font-family: "FontAwesome";
+}
+
+.breadcrumb-area.blog {
+    height: 550px;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-catagory {
+    padding: 2px 15px;
+    border-radius: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #fc6060;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-catagory:hover,
+.breadcrumb-area.blog .breadcrumb-content .post-catagory:focus {
+    font-weight: 500;
+    background-color: #000000;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .page-title {
+    display: block;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-meta {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-meta a {
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    margin-right: 21px;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-meta a::after {
+    content: '|';
+    position: absolute;
+    top: 0;
+    right: -11px;
+    z-index: 1;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-meta a:last-child::after {
+    display: none;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-meta a:hover,
+.breadcrumb-area.blog .breadcrumb-content .post-meta a:focus {
+    color: #fc6060;
+}
+
+.breadcrumb-area.blog .breadcrumb-content .post-meta a:hover::after,
+.breadcrumb-area.blog .breadcrumb-content .post-meta a:focus::after {
+    color: #ffffff;
+}
+
+li.breadcrumb-item.active a {
+    color: #989891 !important;
+}
+
 .wbnrfz-summ-micro {
     background-color: #f5f6f2;
     padding-top: 8em;
@@ -2498,7 +2316,8 @@ h2.page-title {
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ xx.x Portfolio Controls ------------------------------------------ */
+/* ------------------------------------------ 18.0 Portfolio Controls ------------------------------------------ */
+
 .portfolio-controls {
     display: flex;
     justify-content: space-between;
@@ -2598,9 +2417,7 @@ h2.page-title {
 /* Change dropdown option hover color */
 #sort-options option:hover {
     background-color: #6d99c0 !important;
-    /* Desired hover background color */
     color: #fff;
-    /* Desired hover text color */
 }
 
 select:focus {
@@ -2624,7 +2441,6 @@ select:focus {
     width: 100%;
     height: 100%;
     background-color: #ffffff83;
-    /* backdrop-filter: blur(5px); */
     z-index: 1;
 }
 
@@ -2659,7 +2475,6 @@ select:focus {
     margin-top: -4.2em;
     padding-top: 3em;
     padding-bottom: 3em;
-    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }
 
 .wbnrfz_details_section {
@@ -2748,7 +2563,8 @@ select:focus {
     scroll-margin-top: 35vh;
 }
 
-/* ------------------------------------------ 21.0 EICW ------------------------------------------ */
+/* ------------------------------------------ 19.0 EICW ------------------------------------------ */
+
 .wbnrfz-summ-micro {
     background-color: #f5f6f2;
     padding-top: 8em;
@@ -2888,12 +2704,12 @@ li.breadcrumb-item a {
     margin-top: -4.2em;
     padding-top: 3em;
     padding-bottom: 3em;
-    /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
 }
 
 /* ------------------------------------------ */
 
-/* ------------------------------------------ 22.0 Filter/Jumplist Controls ------------------------------------------ */
+/* ------------------------------------------ 20.0 Filter/Jumplist Controls ------------------------------------------ */
+
 .portfolio-controls {
     display: flex;
     justify-content: space-between;
@@ -2995,15 +2811,9 @@ li.breadcrumb-item a {
     box-shadow: none;
 }
 
-md-menu {
+.md-menu {
     z-index: 9999 !important;
 }
-
-
-
-
-
-
 
 .form-control {
     display: block;
@@ -3025,18 +2835,13 @@ md-menu {
 
 .form-control::placeholder {
     color: #aaaaaa;
-    /* Red color example */
     opacity: 1;
-    /* Ensure full opacity if desired, as some browsers default to lower opacity */
 }
 
+/* ------------------------------------------*/
 
+/* ------------------------------------------ 21.0 Scrollable Tabs ------------------------------------------ */
 
-
-
-/* ------------------------------------------ xx.x Tabs Controls ------------------------------------------ */
-
-/*--------------------*/
 .scrollable-tabs-container {
     max-width: 1400px;
     margin: 20px auto;
@@ -3163,17 +2968,10 @@ md-menu {
     cursor: pointer;
 }
 
+/* ------------------------------------------*/
 
 
-
-
-
-
-
-
-
-
-/* ==================== ADVANCED NAVIGATION BAR ==================== */
+/* ------------------------------------------ 22.0 Navigation ------------------------------------------ */
 
 .navbar-container {
     position: fixed;
@@ -3214,7 +3012,6 @@ md-menu {
             transparent,
             rgba(255, 255, 255, 0.1),
             transparent);
-    /* transition: left 0.8s ease; */
 }
 
 .navbar:hover::before {
@@ -3228,8 +3025,6 @@ md-menu {
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-
-/* ==================== NAVIGATION LINKS ==================== */
 .navbar-nav {
     display: flex;
     align-items: center;
@@ -3237,22 +3032,6 @@ md-menu {
     list-style: none;
     z-index: 2;
     position: relative;
-}
-
-/* Desktop navigation styles */
-@media (min-width: 1201px) {
-    .navbar-nav {
-        display: flex !important;
-        position: static !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        flex-direction: row !important;
-    }
 }
 
 .nav-item {
@@ -3399,7 +3178,8 @@ md-menu {
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ==================== MOBILE MENU TOGGLE ==================== */
+
+/* Mobile Toggle Button */
 .mobile-toggle {
     display: none;
     background: none;
@@ -3451,36 +3231,6 @@ md-menu {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-
-
-
-/* ==================== MOBILE RESPONSIVE ==================== */
-@media (max-width: 1200px) {
-    .navbar-container {
-        top: 10px;
-        width: calc(100% - 30px);
-    }
-
-    .navbar {
-        padding: 12px 20px;
-        position: relative;
-    }
-
-    .mobile-toggle {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Hide desktop navigation on mobile */
-    .navbar-nav {
-        display: none;
-    }
-
-    .brand-text {
-        font-size: 1.2rem;
-    }
-}
 
 /* Mobile Menu Overlay */
 .mobile-menu-overlay {
@@ -3611,45 +3361,10 @@ md-menu {
     fill: currentColor;
 }
 
+/* ------------------------------------------*/
 
-@media (max-width: 768px) {
-    .navbar-container {
-        width: calc(100% - 30px);
-    }
-}
+/* ------------------------------------------ 23.0 Footer------------------------------------------ */
 
-@media (max-width: 480px) {
-    .navbar-container {
-        width: calc(100% - 20px);
-        top: 15px;
-    }
-
-    .navbar {
-        padding: 10px 15px;
-    }
-
-    .navbar-brand {
-        gap: 8px;
-    }
-
-    .logo-icon {
-        width: 35px;
-        height: 35px;
-    }
-
-    .brand-text {
-        font-size: 1.1rem;
-    }
-}
-
-
-
-
-
-
-
-
-/* ==================== FOOTER ==================== */
 .footer {
     background: #fafafa8c;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -3733,45 +3448,12 @@ md-menu {
     font-size: 0.85rem;
 }
 
-@media (max-width: 768px) {
-    .footer {
-        width: calc(100% - 30px);
-        padding: 20px 25px;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-
-    .footer-links {
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .footer-social {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer {
-        width: calc(100% - 20px);
-        padding: 15px 20px;
-    }
-
-    .footer-links {
-        gap: 15px;
-    }
-}
+/* ------------------------------------------*/
 
 
 
+/* ------------------------------------------ 24.0 Screenshots Draggable Carousel ------------------------------------------ */
 
-
-/* Screenshots Draggable Carousel */
 .carousel {
     background: none;
     margin: 0 auto;
@@ -3799,7 +3481,6 @@ img.mfp-img {
     border-radius: 24px;
 }
 
-/* Remove right margin from the last cell for a clean edge */
 .carousel-cell:last-child {
     margin-right: 0;
 }
@@ -3857,8 +3538,9 @@ img.mfp-img {
     height: 58% !important;
 }
 
-/* Hide carousel arrows when there are only 2 or fewer items */
 .carousel-cell-count-2 .flickity-prev-next-button,
 .carousel-cell-count-1 .flickity-prev-next-button {
-  display: none !important;
+    display: none !important;
 }
+
+/* ------------------------------------------*/
