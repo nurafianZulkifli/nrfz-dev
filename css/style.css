@@ -2594,10 +2594,10 @@ li.breadcrumb-item a::after {
     color: inherit;
 }
 
-li.breadcrumb-item a:hover,
+/* li.breadcrumb-item a:hover,
 li.breadcrumb-item.active a:hover {
     color: #6d99c0 !important;
-}
+} */
 
 .banner-eicw img {
     width: 100%;
@@ -2664,6 +2664,18 @@ h1.page-title-single {
 
 li.breadcrumb-item a {
     color: #000;
+    padding: 10px;
+    border-radius: 25px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+li.breadcrumb-item a:hover {
+    padding: 10px;
+    border-radius: 25px;
+    color: #000;
+    transform: translateY(-2px);
+    background-color: #adc6db;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.082);
 }
 
 #cv-about {
@@ -3475,7 +3487,7 @@ li.breadcrumb-item a {
 
 .portfolio-img {
     border: none;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.007);
 }
 
 img.mfp-img {

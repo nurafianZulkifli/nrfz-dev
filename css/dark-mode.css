@@ -381,6 +381,16 @@ body.dark-mode li.breadcrumb-item a {
     color: #fff;
 }
 
+body.dark-mode li.breadcrumb-item a:hover {
+    padding: 10px;
+    border-radius: 25px;
+    color: #fff;
+    transform: translateY(-2px);
+    background-color: #5f7c95;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.082);
+}
+
+
 body.dark-mode .banner-eicw img {
     width: 100%;
     border-radius: 20px;
