@@ -562,6 +562,11 @@
         text-overflow: ellipsis;
     }
 
+        .breadcrumb,
+    .breadcrumb-item {
+        overflow: visible !important;
+    }
+
     .breadcrumb-item,
     body.dark-mode .breadcrumb-item {
         overflow: hidden;
@@ -1179,7 +1184,9 @@
     #covccl-img,
     #cv-eicw,
     #cv-tdc,
-    #cv-iwf {
+    #cv-iwf,
+    #cv-pv5,
+    #cv-pv6 {
         height: 45vh !important;
 
     }

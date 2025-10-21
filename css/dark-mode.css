@@ -36,7 +36,7 @@ body.dark-mode {
 /* ---- Button */
 
 body.dark-mode .wbnrfz_btn_theme {
-    background-color: #4784c5;
+    background: linear-gradient(90deg, rgba(0, 112, 147, 1) 0%, rgba(45, 147, 172, 1) 100%);
     color: #fff;
     border: 1px solid #1b1b1b1a;
 }
