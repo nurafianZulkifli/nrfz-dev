@@ -83,8 +83,11 @@ function updateHrefForDarkMode() {
     const evo_link = document.getElementById('evo');
     const evo_img = document.getElementById('evo-img');
 
-    // const opv4 = document.getElementById('opv4');
-    // const opv4_img = document.getElementById('opv4-img');
+    const v5_wf = document.getElementById('v5-wf');
+    const v5_wf_img = document.getElementById('v5-wf-img');
+
+    const v6_wf = document.getElementById('v6-wf');
+    const v6_wf_img = document.getElementById('v6-wf-img');
 
     // const opv5 = document.getElementById('opv5');
     // const opv5_img = document.getElementById('opv5-img');
@@ -132,11 +135,11 @@ function updateHrefForDarkMode() {
         evo_link.href = 'https://i.imgur.com/xBSDj13.png';
         evo_img.src = 'https://i.imgur.com/xBSDj13.png';
 
-        // opv4.href = 'https://i.imgur.com/hOpLjmk.png';
-        // opv4_img.src = 'https://i.imgur.com/hOpLjmk.png';
+        v5_wf.href = 'https://i.imgur.com/pXQBxj3.png';
+        v5_wf_img.src = 'https://i.imgur.com/pXQBxj3.png';
 
-        // opv5.href = 'https://i.imgur.com/FoOMBfk.png';
-        // opv5_img.src = 'https://i.imgur.com/FoOMBfk.png';
+        v6_wf.href = 'https://i.imgur.com/n7BRWR4.png';
+        v6_wf_img.src = 'https://i.imgur.com/n7BRWR4.png';
 
         // hmv4.href = 'https://i.imgur.com/AUOgj3s.png';
         // hmv4_img.src = 'https://i.imgur.com/AUOgj3s.png';
@@ -179,11 +182,11 @@ function updateHrefForDarkMode() {
         evo_link.href = 'https://i.imgur.com/cxzZm72.png';
         evo_img.src = 'https://i.imgur.com/cxzZm72.png';
 
-        // opv4.href = 'https://i.imgur.com/aXX0gH4.png';
-        // opv4_img.src = 'https://i.imgur.com/aXX0gH4.png';
+        v5_wf.href = 'https://i.imgur.com/m5IfoIQ.png';
+        v5_wf_img.src = 'https://i.imgur.com/m5IfoIQ.png';
 
-        // opv5.href = 'https://i.imgur.com/NH8ryqW.png';
-        // opv5_img.src = 'https://i.imgur.com/NH8ryqW.png';
+        v6_wf.href = 'https://i.imgur.com/tLuFHf9.png';
+        v6_wf_img.src = 'https://i.imgur.com/tLuFHf9.png';
 
         // hmv4.href = 'https://i.imgur.com/UQ8UnfO.png';
         // hmv4_img.src = 'https://i.imgur.com/UQ8UnfO.png';
