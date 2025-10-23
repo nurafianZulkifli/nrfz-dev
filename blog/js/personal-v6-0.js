@@ -156,8 +156,8 @@ function updateHrefForDarkMode() {
         nb1.href = 'https://i.imgur.com/1P8RyIK.png';
         nb1_img.src = 'https://i.imgur.com/1P8RyIK.png';
 
-        nb2.href = 'https://i.imgur.com/1P8RyIK.png';
-        nb2_img.src = 'https://i.imgur.com/1P8RyIK.png';
+        nb2.href = 'https://i.imgur.com/NoBp3Hs.png';
+        nb2_img.src = 'https://i.imgur.com/NoBp3Hs.png';
 
         fs1.href = 'https://i.imgur.com/lAO8qNY.png';
         fs1_img.src = 'https://i.imgur.com/lAO8qNY.png';
