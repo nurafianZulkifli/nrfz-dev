@@ -2551,7 +2551,10 @@ select:focus {
 #consist,
 #overall,
 #proposed,
-#summary {
+#summary,
+#time,
+#conc-rea,
+#descol {
     scroll-margin-top: 12vh;
 }
 

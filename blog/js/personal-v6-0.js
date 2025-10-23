@@ -95,11 +95,17 @@ function updateHrefForDarkMode() {
     const colour_sch = document.getElementById('colour-sch');
     const colour_sch_img = document.getElementById('colour-sch-img');
 
-    // const hmv5 = document.getElementById('hmv5');
-    // const hmv5_img = document.getElementById('hmv5-img');
+    const nb1 = document.getElementById('nb1');
+    const nb1_img = document.getElementById('nb1-img');
 
-    // const eicwv4 = document.getElementById('eicwv4');
-    // const eicwv4_img = document.getElementById('eicwv4-img');
+    const nb2 = document.getElementById('nb2');
+    const nb2_img = document.getElementById('nb2-img');
+
+    const fs1 = document.getElementById('fs1');
+    const fs1_img = document.getElementById('fs1-img');
+
+    const fs2 = document.getElementById('fs2');
+    const fs2_img = document.getElementById('fs2-img');
 
     // const eicwv5 = document.getElementById('eicwv5');
     // const eicwv5_img = document.getElementById('eicwv5-img');
@@ -147,17 +153,17 @@ function updateHrefForDarkMode() {
         colour_sch.href = 'https://i.imgur.com/uKqV2pG.png';
         colour_sch_img.src = 'https://i.imgur.com/uKqV2pG.png';
 
-        // eicwv4.href = 'https://i.imgur.com/m8aKnEv.png';
-        // eicwv4_img.src = 'https://i.imgur.com/m8aKnEv.png';
+        nb1.href = 'https://i.imgur.com/1P8RyIK.png';
+        nb1_img.src = 'https://i.imgur.com/1P8RyIK.png';
 
-        // eicwv5.href = 'https://i.imgur.com/wbMBPUf.png';
-        // eicwv5_img.src = 'https://i.imgur.com/wbMBPUf.png';
+        nb2.href = 'https://i.imgur.com/1P8RyIK.png';
+        nb2_img.src = 'https://i.imgur.com/1P8RyIK.png';
 
-        // footv4.href = 'https://i.imgur.com/6MWaAjH.png';
-        // footv4_img.src = 'https://i.imgur.com/6MWaAjH.png';
+        fs1.href = 'https://i.imgur.com/lAO8qNY.png';
+        fs1_img.src = 'https://i.imgur.com/lAO8qNY.png';
 
-        // footv5.href = 'https://i.imgur.com/CNQcS4r.png';
-        // footv5_img.src = 'https://i.imgur.com/CNQcS4r.png';
+        fs2.href = 'https://i.imgur.com/a0dHcs8.png';
+        fs2_img.src = 'https://i.imgur.com/a0dHcs8.png';
 
         // aboutv4.href = 'https://i.imgur.com/S3ZgoWf.jpeg';
         // aboutv4_img.src = 'https://i.imgur.com/S3ZgoWf.jpeg';
@@ -194,17 +200,17 @@ function updateHrefForDarkMode() {
         colour_sch.href = 'https://i.imgur.com/CLWRabF.png';
         colour_sch_img.src = 'https://i.imgur.com/CLWRabF.png';
 
-        // eicwv4.href = 'https://i.imgur.com/Xt7Xhev.png';
-        // eicwv4_img.src = 'https://i.imgur.com/Xt7Xhev.png';
+        nb1.href = 'https://i.imgur.com/qD6fECV.png';
+        nb1_img.src = 'https://i.imgur.com/qD6fECV.png';
 
-        // eicwv5.href = 'https://i.imgur.com/wybzXsU.jpeg';
-        // eicwv5_img.src = 'https://i.imgur.com/wybzXsU.jpeg';
+        nb2.href = 'https://i.imgur.com/rDKZwWk.png';
+        nb2_img.src = 'https://i.imgur.com/rDKZwWk.png';
 
-        // footv4.href = 'https://i.imgur.com/PgMi16g.png';
-        // footv4_img.src = 'https://i.imgur.com/PgMi16g.png';
+        fs1.href = 'https://i.imgur.com/P2nO6CK.png';
+        fs1_img.src = 'https://i.imgur.com/P2nO6CK.png';
 
-        // footv5.href = 'https://i.imgur.com/Tw1NomM.png';
-        // footv5_img.src = 'https://i.imgur.com/Tw1NomM.png';
+        fs2.href = 'https://i.imgur.com/BKGfaQS.png';
+        fs2_img.src = 'https://i.imgur.com/BKGfaQS.png';
 
         // aboutv4.href = 'https://i.imgur.com/L7s06d7.jpeg';
         // aboutv4_img.src = 'https://i.imgur.com/L7s06d7.jpeg';
