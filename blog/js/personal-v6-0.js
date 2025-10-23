@@ -89,11 +89,11 @@ function updateHrefForDarkMode() {
     const v6_wf = document.getElementById('v6-wf');
     const v6_wf_img = document.getElementById('v6-wf-img');
 
-    // const opv5 = document.getElementById('opv5');
-    // const opv5_img = document.getElementById('opv5-img');
+    const logo_col = document.getElementById('logo-col');
+    const logo_col_img = document.getElementById('logo-col-img');
 
-    // const hmv4 = document.getElementById('hmv4');
-    // const hmv4_img = document.getElementById('hmv4-img');
+    const colour_sch = document.getElementById('colour-sch');
+    const colour_sch_img = document.getElementById('colour-sch-img');
 
     // const hmv5 = document.getElementById('hmv5');
     // const hmv5_img = document.getElementById('hmv5-img');
@@ -141,11 +141,11 @@ function updateHrefForDarkMode() {
         v6_wf.href = 'https://i.imgur.com/n7BRWR4.png';
         v6_wf_img.src = 'https://i.imgur.com/n7BRWR4.png';
 
-        // hmv4.href = 'https://i.imgur.com/AUOgj3s.png';
-        // hmv4_img.src = 'https://i.imgur.com/AUOgj3s.png';
+        logo_col.href = 'https://i.imgur.com/XMUiCNb.png';
+        logo_col_img.src = 'https://i.imgur.com/XMUiCNb.png';
 
-        // hmv5.href = 'https://i.imgur.com/hAlBg3D.png';
-        // hmv5_img.src = 'https://i.imgur.com/hAlBg3D.png';
+        colour_sch.href = 'https://i.imgur.com/uKqV2pG.png';
+        colour_sch_img.src = 'https://i.imgur.com/uKqV2pG.png';
 
         // eicwv4.href = 'https://i.imgur.com/m8aKnEv.png';
         // eicwv4_img.src = 'https://i.imgur.com/m8aKnEv.png';
@@ -188,11 +188,11 @@ function updateHrefForDarkMode() {
         v6_wf.href = 'https://i.imgur.com/tLuFHf9.png';
         v6_wf_img.src = 'https://i.imgur.com/tLuFHf9.png';
 
-        // hmv4.href = 'https://i.imgur.com/UQ8UnfO.png';
-        // hmv4_img.src = 'https://i.imgur.com/UQ8UnfO.png';
+        logo_col.href = 'https://i.imgur.com/9985WRu.png';
+        logo_col_img.src = 'https://i.imgur.com/9985WRu.png';
 
-        // hmv5.href = 'https://i.imgur.com/0f3ZjLT.png';
-        // hmv5_img.src = 'https://i.imgur.com/0f3ZjLT.png';
+        colour_sch.href = 'https://i.imgur.com/CLWRabF.png';
+        colour_sch_img.src = 'https://i.imgur.com/CLWRabF.png';
 
         // eicwv4.href = 'https://i.imgur.com/Xt7Xhev.png';
         // eicwv4_img.src = 'https://i.imgur.com/Xt7Xhev.png';

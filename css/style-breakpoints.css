@@ -1203,7 +1203,7 @@
 
     p {
         font-size: 14px;
-        text-align: justify !important;
+        /* text-align: justify !important; */
     }
 
     .carousel {

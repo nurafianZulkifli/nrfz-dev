@@ -3491,7 +3491,7 @@ li.breadcrumb-item a:hover {
 }
 
 img.mfp-img {
-    padding: 0px 0 0px !important;
+    /* padding: 0px 0 0px !important; */
     border-radius: 24px;
 }
 
