@@ -1,40 +1,34 @@
+<!-- Network Uptime, Card Recent Incidents -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="description" content>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NRFZ | Home</title>
+
+    <title>Line Overview | TDT</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
+    <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
 
     <link rel="icon" href="./img/core-img/favicon.png">
 
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
     <link rel="stylesheet" href="css/dark-mode.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="css/carousel.css">
-
-
     <link rel="stylesheet" type="text/css"
         href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-WN76281P3Q');
-    </script>
+    <script src="https://www.w3schools.com/lib/w3data.js"></script>
 
 </head>
 
@@ -55,27 +49,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="about.html" class="nav-link">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span>About</span>
+                    <a href="statistics/statistics.html" class="nav-link">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Statistics</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="works-by-nrfz.html" class="nav-link">
-                        <i class="fa-solid fa-pen-paintbrush"></i>
-                        <span>Works By NRFZ</span>
+                    <a href="incident-history/incident-history.html" class="nav-link">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Incident History</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="eicw/eicw.html" class="nav-link">
-                        <i class="fa-solid fa-map-location"></i>
-                        <span>EICW</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">
-                        <i class="fa-solid fa-comment"></i>
-                        <span>Blog</span>
+                    <a href="our-networks.html" class="nav-link">
+                        <i class="fa-solid fa-map"></i>
+                        <span>Networks</span>
                     </a>
                 </li>
                 <li class="nav-item-toggle">
@@ -125,289 +113,456 @@
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="about.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-regular fa-circle-user"></i>
-                    <span>About</span>
+                <a href="statistics/statistics.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Statistics</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="works-by-nrfz.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-pen-paintbrush"></i>
-                    <span>Works By NRFZ</span>
+                <a href="incident-history/incident-history.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Incident History</span>
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="eicw/eicw.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-map-location"></i>
-                    <span>EICW</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="blog.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-comment"></i>
-                    <span>Blog</span>
+                <a href="our-networks.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-map"></i>
+                    <span>Networks</span>
                 </a>
             </li>
         </ul>
     </div>
 
-
     <!-- ============================================= Hero Section ============================================= -->
-    <section id="hero" class="d-flex flex-column justify-content-center">
-    </div>
-        <!-- <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center">
-                <div class="col-12 col-md-8">
-                    <div class="breadcrumb-content text-center wow fadeIn" data-wow-delay="100ms">
-                        <img class="profile-pic wow fadeIn" data-wow-delay="100ms" src="img/bg-img/about.png"
-                            alt="profile-pic">
+    <!-- <section id="hero" class="d-flex flex-column justify-content-center">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <img class="profile-pic wow fadeIn" data-wow-delay="100ms"
+                            src="img/core-img/logo_big_light.png" alt="profile-pic" id="logo-big-img">
                         <div class="profile-det wow fadeIn" data-wow-delay="200ms">
-                            <h2 class="profile-name wow fadeIn" data-wow-delay="400ms">Nurafian Zulkifli</h2>
-                            <h2 class="profile-desc wow fadeIn" data-wow-delay="400ms">Passionate about UI/UX, and
-                                everything else Design
-                            </h2>
+                            <h2 class="profile-name wow fadeIn" data-wow-delay="400ms">Train Delays Tracker</h2>
+                            <h2 class="profile-desc wow fadeIn" data-wow-delay="400ms">Overview of the days since last
+                                reported delays across Singapore's train network.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section> -->
+
+    <!-- End Hero -->
+
+    <!-- Recent Incidents -->
+    <section id="ri" class="d-flex flex-column justify-content-center">
+        <div class="row row-ri">
+            <!-- Responsive header and button -->
+            <!-- <div class="col-12 vai-btn-container">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h2 class="page-title wow fadeIn mb-0" data-wow-delay="300ms" style="text-align: left;">Recent
+                        Incidents</h2>
+                    <a href="./incident-history/incident-history.html" class="btn pw-btn btn-2 mt-15">
+                        View All Incidents&nbsp;<i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div> -->
+            <div class="slide-container swiper">
+                <div class="slide-content">
+                    <div class="card-wrapper swiper-wrapper">
+                        <!-- Card 1 -->
+                        <div class="card-ri swiper-slide wow fadeIn" data-wow-delay="100ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 17/09/2025
+                            </div>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/TELCap.png" alt="TEL" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SMRT_Singapore/status/1968109920781472046"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                        title="via X (Twitter)"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 15px;">
+                                    UPDATE: There will be no train services between Woodlands North and Bayshore in both
+                                    directions to facilitate train service recovery. Free regular and bridging bus
+                                    services between Woodlands North and Bayshore are available...
+                                </p>
+
+                            </div>
                         </div>
 
-                        <div class="profile-link wow fadeIn" data-wow-delay="700ms">
-                            <a href="https://github.com/nurafianZulkifli" target="_blank" class="media_link"
-                                title="GitHub">
-                                <div class="fa-brands fa-github" style="font-size: 30px; padding-bottom: 25px;"></div>
-                            </a>
-                            <a href="https://twitter.com/nrfzlkf_" target="_blank" class="media_link"
-                                title="X (Twitter)">
-                                <div class="fa-brands fa-x-twitter" style="font-size: 30px"></div>
-                            </a>
-                            <a href="https://www.facebook.com/Nrfnzlkf/" target="_blank" class="media_link"
-                                title="Facebook">
-                                <div class="fa-brands fa-facebook" style="font-size: 30px"></div>
-                            </a>
-                            <a href="https://www.instagram.com/nrfzlkf/" target="_blank" class="media_link"
-                                title="Instagram">
-                                <div class="fa-brands fa-instagram" style="font-size: 30px"></div>
-                            </a>
-                            <a href="https://www.linkedin.com/in/nurafian-zulkifli/" target="_blank" class="media_link"
-                                title="LinkedIn">
-                                <div class="fa-brands fa-linkedin" style="font-size: 30px"></div>
-                            </a>
+                        <!-- Card 2 -->
+                        <div class="card-ri swiper-slide wow fadeIn" data-wow-delay="100ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 16/09/2025
+                            </div>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/EWLCap.png" alt="EWL" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SMRT_Singapore/status/1967969162141278540"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                        title="via X (Twitter)"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 15px;">
+                                    UPDATE: Due to a signalling fault, there is no train svc btwn #Aljunied and
+                                    #TanahMerah. Free regular bus & free bridging bus svcs btwn #Aljunied and
+                                    #TanahMerah.
+                                </p>
+
+                            </div>
                         </div>
+
+                        <!-- Card 3 -->
+                        <div class="card-ri swiper-slide wow fadeIn" data-wow-delay="100ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 14/09/2025
+                            </div>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/NSLCap.png" alt="NSL" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SMRT_Singapore/status/1967072057193361822"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                        title="via X (Twitter)"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 15px;">
+                                    Due to a train fault, pls add 25mins train travel time from #Newton to #AngMoKio
+                                    towards #JurongEast.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="card-ri swiper-slide wow fadeIn" data-wow-delay="100ms">
+                            <div class="card-header-ri">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 13/09/2025
+                            </div>
+                            <div class="card-body text-primary" style="position: relative;">
+                                <img src="img/caplets/PGCap.png" alt="PG" width="55px" style="padding-bottom: 1em;">
+                                <a href="https://x.com/SBSTransit_Ltd/status/1966611284083740875"
+                                    style="position: absolute; top: -34px; right: 16px;">
+                                    <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                        title="via X (Twitter)"></i>
+                                </a>
+
+                                <p class="card-text-ri" style="font-size: 15px;">
+                                    No Punggol LRT service due to a systems fault. Free regular and bridging bus
+                                    services have been activated. We are sorry for the inconvenience caused.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="swiper-button-next swiper-navBtn" tabindex="0" aria-label="Next slide">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button class="swiper-button-prev swiper-navBtn" tabindex="0" aria-label="Previous slide">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="swiper-pagination"></div>
+            </div>
+            <!-- <div class="col-12 text-center wow fadeIn" data-wow-delay="700ms">
+                <a href="./incident-history/incident-history.html" class="btn pw-btn btn-2 mt-15">View Incident History
+                    &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+            </div> -->
+        </div>
+    </section>
+
+
+    <section id="lrd" class="d-flex flex-column justify-content-center">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title wow fadeIn" data-wow-delay="300ms">Lines Overview</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Days Overview -->
+        <div class="row row-lrd container-xxl container-mobile container-mobile-header">
+            <!-- NSL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-nsl border-nsl h-100 py-2">
+                    <div class="card-body card-body-nsl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-nsl text-uppercase mb-1">
+                                    <a href="mrt-lines/nsl.html">North-South Line</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-09-14"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-09-14"
+                                        id="nsl-last-delay-link">
+                                        <span id="nsl-last-delay" data-last-delay="2025-09-14"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/NSLCap.png" alt="NSL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EWL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-ewl border-ewl h-100 py-2">
+                    <div class="card-body card-body-ewl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-ewl text-uppercase mb-1">
+                                    <a href="mrt-lines/ewl.html">East-West Line</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-09-16"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-09-16"
+                                        id="ewl-last-delay-link">
+                                        <span id="ewl-last-delay" data-last-delay="2025-09-16"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/EWLCap.png" alt="EWL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-nel border-nel h-100 py-2">
+                    <div class="card-body card-body-nel">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-nel text-uppercase mb-1">
+                                    <a href="mrt-lines/nel.html">North East Line</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-08-28"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-08-28-2"
+                                        id="nel-last-delay-link">
+                                        <span id="nel-last-delay" data-last-delay="2025-08-28"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/NELCap.png" alt="NEL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CCL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-ccl border-ccl h-100 py-2">
+                    <div class="card-body card-body-ccl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-ccl text-uppercase mb-1">
+                                    <a href="mrt-lines/ccl.html">Circle Line</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-09-01"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-09-01"
+                                        id="ccl-last-delay-link">
+                                        <span id="ccl-last-delay" data-last-delay="2025-09-01"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/CCLCap.png" alt="CCL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DTL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-dtl border-dtl h-100 py-2">
+                    <div class="card-body card-body-dtl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-dtl text-uppercase mb-1">
+                                    <a href="mrt-lines/dtl.html">Downtown Line</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-08-28"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-08-28"
+                                        id="dtl-last-delay-link">
+                                        <span id="dtl-last-delay" data-last-delay="2025-08-28"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/DTLCap.png" alt="DTL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-tel border-tel h-100 py-2">
+                    <div class="card-body card-body-tel">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-tel text-uppercase mb-1">
+                                    <a href="mrt-lines/tel.html">Thomson-East Coast Line</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-09-17"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-09-17"
+                                        id="nsl-last-delay-link">
+                                        <span id="nsl-last-delay" data-last-delay="2025-09-17"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/TELCap.png" alt="TEL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BPLRT -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-lrt border-lrt h-100 py-2">
+                    <div class="card-body card-body-lrt">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
+                                    <a href="mrt-lines/bp.html">Bukit Panjang LRT</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-07-19"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-07-19"
+                                        id="nsl-last-delay-link">
+                                        <span id="nsl-last-delay" data-last-delay="2025-07-19"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/BPCap.png" alt="BPLRT" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKPGLRT -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-lrt border-lrt h-100 py-2">
+                    <div class="card-body card-body-lrt">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
+                                    <a href="mrt-lines/sk.html">Sengkang</a>-<a href="mrt-lines/pg.html">Punggol LRT</a>
+                                </div>
+                                <!-- Days -->
+                                <div class="h5 days mb-0 font-weight-bold" data-last-delay="2025-09-13"></div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since last reported delay</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                     <i class="fa-solid fa-clock-rotate-left"></i>&nbsp;
+                                    <a href="incident-history/incident-history.html#2025-09-13"
+                                        id="skpg-last-delay-link">
+                                        <span id="skpg-last-delay" data-last-delay="2025-09-13"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="img/caplets/SKPGCap.png" alt="SKPGLRT" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <!-- 
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title wow fadeIn" data-wow-delay="300ms">Recent Incidents</h2>
                     </div>
                 </div>
             </div>
         </div> -->
 
 
-    </section><!-- End Hero -->
+        <br>
+        <br>
 
 
-    <div class="pw-portfolio-area-featured clearfix" id="featured">
-        <div class="container-xxl container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms">
-                        <h2>Featured Works</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row pw-portfolio">
-
-                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeIn" data-wow-delay="100ms"
-                    data-year="2025">
-                    <div class="single-portfolio-content">
-                        <img src="https://i.imgur.com/HaCQ71l.png" alt>
-                        <div class="hover-content-blog">
-                            <h4>EICW - Implementation Brainstorming</h4>
-                            <a class="info" href="eicw/eicw.html" class="portfolio-img"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item in mb-30 wow fadeIn" data-wow-delay="300ms"
-                    data-year="2024">
-                    <div class="single-portfolio-content">
-                        <img src="https://i.imgur.com/6js4RYj.png" alt="tdc-v3">
-                        <div class="hover-content-blog">
-                            <h4>Train Delays Tracker</h4>
-                            <a class="info" href="https://nurafianzulkifli.github.io/train-delays-checker/"
-                                class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeIn" data-wow-delay="500ms"
-                    data-year="2022">
-                    <div class="single-portfolio-content">
-                        <img src="https://i.imgur.com/JAQpFxJ.png" alt="bus-rep">
-                        <div class="hover-content-blog">
-                            <h4>Bus Replications</h4>
-                            <a class="info" href="worksbynrfz/bus-rep.html" class="portfolio-img"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeIn" data-wow-delay="700ms">
-                    <div class="single-portfolio-content">
-                        <img src="https://i.imgur.com/IeRTJiV.png" alt="bus-stop-pole">
-                        <div class="hover-content-blog">
-                            <h4>LTA Bus Stop Pole Design Refresh</h4>
-                            <a class="info" href="worksbynrfz/lta-bp.html" class="portfolio-img"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-center wow fadeIn" data-wow-delay="700ms">
-                    <a href="./works-by-nrfz.html" class="btn pw-btn btn-2 mt-15">View All &nbsp;<i
-                            class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <section class="about-me-area clearfix">
-        <div class="container container-xxl">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms"
-                        style="margin-bottom: 18px;">
-                        <h2>Likes & Interests</h2>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms">
-                        <h1><a href="https://en.wikipedia.org/wiki/Jack_of_all_trades"
-                                style="font-size: 20px; color: #5f6051;">"Jack of all trades, master of
-                                none"</a></h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="100ms">
-                        <div class="wsd-icon">
-                            <i class="fa-solid fa-signs-post"></i>
-                        </div>
-                        <h4>Wayfinding Signage Designs</h4>
-                        <p>Great Wayfinding Signage guides people smoothly while enhancing their overall experience.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="300ms">
-                        <div class="ui-icon">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                        </div>
-                        <h4>User Interface (UI) Designs</h4>
-                        <p>Involves designing attractive, practical and user-friendly interfaces.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="500ms">
-                        <div class="ux-icon">
-                            <i class="fa-regular fa-face-smile-beam"></i>
-                        </div>
-                        <h4>User Experience (UX) Design Research</h4>
-                        <p> Involves carefully studying the target users and each of their
-                            needs.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
-
-    <section class="follow-area clearfix">
-        <div class="container container-xxl">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading text-center">
-                        <h2 style="font-size: 30px">Skills & Design Proficiency</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-ara wow fadeIn" data-wow-delay="100ms">
-                <div class="skill">
-                    <div class="single-skill">
-                        <div class="progress-count">
-                            <p>User Interface Design</p><span>70%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".5s"
-                                aria-valuenow="25" role="progressbar" style="width: 70%" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="progress-count">
-                            <p>User Experience</p><span>95%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s"
-                                role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="progress-count">
-                            <p>Illustration</p><span>85%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".6s"
-                                role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 text-center wow fadeIn" data-wow-delay="700ms">
-                <a href="./about.html" class="btn pw-btn btn-2 mt-15">About Me &nbsp;<i
-                        class="fa-solid fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-social">
-                <a href="https://github.com/nurafianZulkifli" class="social-link">
-                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                </a>
-                <a href="https://twitter.com/nrfzlkf_" class="social-link">
-                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="https://www.facebook.com/Nrfnzlkf/" class="social-link">
-                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="https://www.instagram.com/nrfzlkf/" class="social-link">
-                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-
         <div class="footer-copy">
-            © 2025 Nurafian Zulkifli
+            Data is obtained through each operator's X/Facebook page
         </div>
     </footer>
+
 
     <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
         data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
 
-    <script src="js/navtabs.js"></script>
 
-    <script src="js/theme-index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/index-alt.js"></script>
+
+    <script src="overview/days-overview_exp.js"></script>
+
+    <script src="js/navtabs.js"></script>
 
     <script src="js/jquery.min.js"></script>
 
@@ -419,7 +574,14 @@
 
     <script src="js/default-assets/active.js"></script>
 
-    <!-- <script src="js/preloader.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="js/swiper-ri.js"></script>
+
+
+    <script>
+        w3IncludeHTML();
+    </script>
 
 
 </body>

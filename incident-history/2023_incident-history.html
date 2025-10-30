@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Incident History | TDT</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
+
+    <link rel="icon" href="../img/core-img/favicon.png">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+
+    <script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
+
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../statistics/statistics.html" class="nav-link">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../incident-history/incident-history.html" class="nav-link active">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Incident History</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../our-networks.html" class="nav-link">
+                        <i class="fa-solid fa-map"></i>
+                        <span>Networks</span>
+                    </a>
+                </li>
+                <li class="nav-item-toggle">
+                    <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
+                        <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Mobile Toggle -->
+            <button class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <li class="mobile-menu-item mobile-theme-toggle">
+                <a href="#" class="nav-link-toggle" id="dark-mode-toggle-mobile" title="Toggle Dark/Light Mode!">
+                    <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+                </a>
+            </li>
+            <a href="#" class="mobile-menu-brand">
+                <span class="brand-text"></span>
+            </a>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <span>×</span>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-nav">
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link active">
+                    <i class="fa-solid fa-regular fa-house"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="statistics/statistics.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Statistics</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="incident-history/incident-history.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Incident History</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="our-networks.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-map"></i>
+                    <span>Networks</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
+
+    <!-- Cover Header -->
+    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-about">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Title/Breadcrumbs -->
+    <section class="about-me-sum clearfix">
+        <div class="wbnrfz_eicw">
+            <div class="page-header-section">
+                <div class="container-xxl container-mobile container-mobile-header">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#">Incident History</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    2023
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="page-title-wrapper">
+                            <div class="page-title-wrapper"
+                                style="display: flex; justify-content: space-between; align-items: center;">
+                                <h1 class="page-title-single">Incident History</h1>
+
+                                <select id="sort-options" onchange="handleSortChange(this.value)">
+                                    <option value="incident-history.html">2025</option>
+                                    <option value="2024_incident-history.html">2024</option>
+                                    <option value="2023_incident-history.html" selected>2023</option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+    </section>
+
+
+    <section id="io" class="d-flex flex-column justify-content-center ">
+        <!-- Incidents Overview -->
+        <div class="row row-lrd container-xxl container-mobile container-mobile-header">
+            <!-- NSL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-nsl border-nsl h-100 py-2">
+                    <div class="card-body card-body-nsl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-nsl text-uppercase mb-1">
+                                    <a href="mrt-lines/nsl.html">North-South Line</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">2 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/NSLCap.png" alt="NSL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EWL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-ewl border-ewl h-100 py-2">
+                    <div class="card-body card-body-ewl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-ewl text-uppercase mb-1">
+                                    <a href="mrt-lines/ewl.html">East-West Line</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">2 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/EWLCap.png" alt="EWL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-nel border-nel h-100 py-2">
+                    <div class="card-body card-body-nel">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-nel text-uppercase mb-1">
+                                    <a href="mrt-lines/nel.html">North East Line</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">0 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/NELCap.png" alt="NEL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CCL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-ccl border-ccl h-100 py-2">
+                    <div class="card-body card-body-ccl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-ccl text-uppercase mb-1">
+                                    <a href="mrt-lines/ccl.html">Circle Line</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">4 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/CCLCap.png" alt="CCL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DTL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-dtl border-dtl h-100 py-2">
+                    <div class="card-body card-body-dtl">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-dtl text-uppercase mb-1">
+                                    <a href="mrt-lines/dtl.html">Downtown Line</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">1 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/DTLCap.png" alt="DTL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEL -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-tel border-tel h-100 py-2">
+                    <div class="card-body card-body-tel">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-tel text-uppercase mb-1">
+                                    <a href="mrt-lines/tel.html">Thomson-East Coast Line</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">4 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/TELCap.png" alt="TEL" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BPLRT -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-lrt border-lrt h-100 py-2">
+                    <div class="card-body card-body-lrt">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
+                                    <a href="mrt-lines/bp.html">Bukit PanAprg LRT</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">2 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/BPCap.png" alt="BPLRT" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKPGLRT -->
+            <div class="col-xl-4 col-md-6 wow fadeIn" data-wow-delay="300ms">
+                <div class="card card-lrt border-lrt h-100 py-2">
+                    <div class="card-body card-body-lrt">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="line text-xs font-weight-bold text-lrt text-uppercase mb-1">
+                                    <a href="mrt-lines/sk.html">Sengkang</a>-<a href="mrt-lines/pg.html">Punggol LRT</a>
+                                </div>
+                                <!-- Incidents -->
+                                <div class="h5 days mb-0 font-weight-bold">0 Incidents</div>
+                                <div class="slrd text-xs font-weight-bold text-uppercase mb-1">
+                                    since Apr - Dec</div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="../img/caplets/SKPGCap.png" alt="SKPGLRT" width="55px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </section>
+
+
+
+    <section id="lrd" class="flex-column justify-content-center">
+        <div class="row row-do container-xxl container-mobile container-mobile-header wow fadeIn"
+            data-wow-delay="100ms">
+            <!-- Month Tabs -->
+            <div class="col-12">
+                <div class="scrollable-tabs-container scrollable-tabs-months">
+                    <div class="left-arrow active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+
+                    <ul id="ihTab" role="tablist">
+                        <li role="history">
+                            <a id="tab1-tab" data-target="#tab1" aria-selected="false" class="active">December</a>
+                        </li>
+
+                        <li role="history">
+                            <a id="tab2-tab" data-target="#tab2" aria-selected="false">November</a>
+                        </li>
+
+                        <li role="history">
+                            <a id="tab3-tab" data-target="#tab3" aria-selected="false">October</a>
+                        </li>
+
+                        <li role="history">
+                            <a id="tab4-tab" data-target="#tab4" aria-selected="false">September</a>
+                        </li>
+
+                        <li role="history">
+                            <a id="tab5-tab" data-target="#tab5" aria-selected="false">August</a>
+                        </li>
+
+                        <li role="history">
+                            <a id="tab6-tab" data-target="#tab6" aria-selected="false">July</a>
+                        </li>
+
+                        <li role="history">
+                            <a id="tab7-tab" data-target="#tab7" aria-selected="false">June</a>
+                        </li>
+                        
+                        <li role="history">
+                            <a id="tab8-tab" data-target="#tab8" aria-selected="false">May</a>
+                        </li>
+
+                        <li role="history">
+                            <a id="tab9-tab" data-target="#tab9" aria-selected="false">April</a>
+                        </li>
+                    </ul>
+
+                    <div class="right-arrow active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="ihTabContent">
+
+                <!-- Dec -->
+                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 08/12/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/TELCap.png" alt="TEL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://www.facebook.com/SMRTCorpSG/posts/pfbid0s8Yr93KYGT7X7uBueqnVaSRB6ntB5CVkyobXQMqH2HxapUgq6GySa6vSDK9RJn9Rl"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-facebook" style="font-size: 25px;" title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                [UPDATE Thomson-East Coast Line, 7 Dec, at 8.33am]: At about 5:00am, before the
+                                start of train services, a
+                                non-service train which was at Caldecott Station...
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nov -->
+                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 06/11/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/TELCap.png" alt="TEL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1676343191845613573"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a Signaling Fault, there will be an additional travelling time of 10 minutes
+                                from Orchard to Gardens
+                                By the Bay station. Commuters are advised to continue their journey on alternate
+                                lines.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 05/11/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/NSLCap.png" alt="NSL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1721017939200184521"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a train fault, pls add 25mins train travel time from #AngMoKio to #Newton
+                                towards #MarinaSouthPier.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oct -->
+                <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 27/10/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/NSLCap.png" alt="NSL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://x.com/SMRT_Singapore/status/1717845436948791310"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to an incident, Novena station is closed. All trains will not stop at Novena
+                                station in both directions.
+                                Free regular bus service is available between Newton and Toa Payoh station. We are
+                                sorry for the
+                                inconvenience caused. (not classified as a delay)
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sep -->
+                <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 29/09/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/CCLCap.png" alt="CCL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://x.com/SMRT_Singapore/status/1707500662345683016"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a track fault, train services between #DhobyGhaut / #MarinaBay and #Stadium
+                                are affected. Train
+                                shuttle services are available between #DhobyGhaut/ #MarinaBayand #Stadium. Please
+                                add 30 minutes additional
+                                travel time between #DhobyGhaut/ #MarinaBay and #Stadium.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aug -->
+                <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 12/08/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/TELCap.png" alt="TEL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1690337384842579968"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a track signal fault, trains are moving slower from Woodlands North towards
+                                Lentor. Additional
+                                travelling time 10 mins. Free regular bus service provided between Woodlands North
+                                to Lentor stations.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jul -->
+                <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 05/07/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/EWLCap.png" alt="EWL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1676343191845613573"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a factory fire near #TuasLink, there is no train svc btwn #TuasLink and
+                                #TuasWestRoad. Free regular
+                                bus services are available btwn #TuasLink and #TuasWestRoad. [External Factors - Not
+                                classified as a Delay]
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jun -->
+                <div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 28/06/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/EWLCap.png" alt="EWL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1673813447539294209"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a track point fault, pls add 15mins train travel time btwn #JooKoon and
+                                #JurongEast. Free regular bus
+                                svcs btwn #JooKoon and #JurongEast. Our station staff will assist.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 23/06/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/CCLCap.png" alt="CCL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1672256730573737985"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                UPDATE : No train service between #Esplanade / #Bayfront and #Mountbatten.
+                                Additional 30 minutes between
+                                #DhobyGhaut and #Esplanade, #MarinaBay and #Bayfront, and #Mountbatten and
+                                #PayaLebar. (2/2) <br><br>
+                                Additional 30mins train travel time between #DhobyGhaut / #MarinaBay and #PayaLebar
+                                due to a signal
+                                fault. Free Regular Bus is available between #DhobyGhaut / #MarinaBay and #PayaLebar
+                                (1/2)
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- May -->
+                <div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 10/05/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/DTLCap.png" alt="DTL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SBSTransit_Ltd/status/1656237948411727873"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                DTL service from DT35 Expo to DT29 Bedok North is delayed due to a train fault. Free
+                                regular bus services
+                                are available at designated stops. Additional travel time of about 15 minutes may be
+                                expected. We are sorry.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 04/05/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/BPCap.png" alt="BP" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1654045602450391040"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a train fault, normal train service is affected. Shuttle train service is
+                                available between Choa Chu
+                                Kang and Bt PanAprg stations. Train service between Bt PanAprg & Petir via Service A
+                                and Bt PanAprg & Senja
+                                via Service B is not affected.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apr -->
+                <div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 25/04/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/BPCap.png" alt="BP" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1650815429043195904"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a trackside switch fault, please use Service B for your journey till end of
+                                revenue hours.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 18/04/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/CCLCap.png" alt="CCL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1648240598703562754"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Due to a power fault, please add 20 minutes additional train travel time btw
+                                #KentRidge and #Harbourfront.
+                                Free regular buses are available btw #BuonaVista and #Harbourfront.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 11/04/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/TELCap.png" alt="TEL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1645574954535235585"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                UPDATE: Please allow for additional 10 mins travel time between Woodlands North and
+                                Gardens by the Bay in
+                                both directions due to a signal fault.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="card-in">
+                        <div class="card-header">
+                            <i class="fa-solid fa-clock-rotate-left" style="font-size: 20px;"></i>&nbsp; 07/04/2023
+                        </div>
+                        <div class="card-body text-primary" style="position: relative;">
+                            <img src="../img/caplets/CCLCap.png" alt="CCL" width="55px" style="padding-bottom: 1em;">
+                            <a href="https://twitter.com/SMRT_Singapore/status/1644203251154436098"
+                                style="position: absolute; top: -34px; right: 16px;">
+                                <i class="fa-brands fa-square-x-twitter" style="font-size: 25px;"
+                                    title="via X (Twitter)"></i>
+                            </a>
+
+                            <p class="card-text-ri" style="font-size: 15px;">
+                                Additional 30mins train travel time between #DhobyGhaut/#MarinaBay and #PayaLebar
+                                due to a signal fault.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+
+
+    </section><!-- End Hero -->
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-copy">
+            Data is obtained through each operator's X/Facebook page
+        </div>
+    </footer>
+
+    <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"
+        data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
+
+    <script src="../js/navtabs.js"></script>
+
+    <script src="../js/theme.js"></script>
+
+    <script src="../js/jquery.min.js"></script>
+
+    <script src='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.js'></script>
+
+    <script src="../js/dstabs.js"></script>
+
+    <script src="../js/popper.min.js"></script>
+
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/pw.bundle.js"></script>
+
+    <script src="../js/default-assets/active.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+
+
+
+    <script>
+        function handleSortChange(value) {
+            window.location.href = value;
+        }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('#ihTab a').forEach(function (el) {
+            el.addEventListener('click', function (event) {
+                event.preventDefault();
+                // Remove active from all tabs
+                document.querySelectorAll('#ihTab a').forEach(function (tab) {
+                    tab.classList.remove('active');
+                });
+                // Add active to clicked tab
+                el.classList.add('active');
+                // Show corresponding tab-pane
+                var target = el.getAttribute('data-target');
+                document.querySelectorAll('.tab-pane').forEach(function (pane) {
+                    pane.classList.remove('show', 'active');
+                });
+                var pane = document.querySelector(target);
+                if (pane) {
+                    pane.classList.add('show', 'active');
+                }
+                // --- FIX: Always keep navbar Incident History active ---
+                document.querySelectorAll('.navbar-nav .nav-link').forEach(function (nav) {
+                    if (nav.textContent.trim() === "Incident History") {
+                        nav.classList.add('active');
+                    }
+                });
+            });
+        });
+    });
+    </script>
+
+</body>
+
+</html>
