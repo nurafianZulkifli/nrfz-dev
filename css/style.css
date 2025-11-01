@@ -1024,7 +1024,7 @@ header {
     -webkit-transition-duration: 800ms;
     -o-transition-duration: 800ms;
     transition-duration: 800ms;
-    background-color: #ffffff;
+    background-color: #fafafa8c;
     padding: 46px 26px 13px;
     border-radius: 10px;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
@@ -1037,7 +1037,7 @@ header {
 
 .about-me-stations {
     transition-duration: 800ms;
-    background-color: #ededf4;
+    background-color: #fafafa8c;
     padding: 35px 26px 13px;
     border-radius: 25px;
     position: relative;
@@ -1117,11 +1117,98 @@ header {
     margin-left: -38px;
 }
 
-.about-me-summ {
-    background-color: #fcfcfc;
-    padding-top: 0px;
-    padding-bottom: 0px;
+.port-summary {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    background-color: #fff;
+    padding: 46px 36px 13px;
+    border-radius: 25px;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 7em;
 }
+
+.port-summary:hover {
+    background-color: #c7e3fb;
+}
+
+.port-summary .summ-icon {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 76px;
+    width: 76px;
+    background: linear-gradient(58deg, rgba(164, 185, 215, 1) 0%, rgba(41, 99, 161, 1) 100%);
+    display: inline-block;
+    text-align: center;
+    line-height: 76px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -38px;
+}
+
+.port-year .summ-icon {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 76px;
+    width: 76px;
+    background: linear-gradient(58deg, rgba(190, 62, 48, 1) 0%, rgba(220, 147, 25, 1) 100%);
+    display: inline-block;
+    text-align: center;
+    line-height: 76px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -38px;
+}
+
+.port-share .summ-icon {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    height: 76px;
+    width: 76px;
+    background: linear-gradient(58deg, rgba(197, 198, 190, 1) 0%, rgba(94, 94, 90, 1) 100%);
+    display: inline-block;
+    text-align: center;
+    line-height: 76px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -38px;
+}
+
+
+.about-me-summ {
+    background-color: #ececea;
+    z-index: 0;
+}
+
+.wbnrfz_details_section .col-lg-6,
+.wbnrfz_details_section .col-lg-4 {
+    padding-top: 25px;
+}
+
+.social_links a {
+    font-size: 16px;
+    color: #000;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 
 /* ------------------------------------------ */
 
@@ -2036,11 +2123,7 @@ canvas#delays-overview-sb-23 {
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 16.0 Sections (General) ------------------------------------------ */
-section {
-    padding: 0px 0;
-    /* padding-bottom: 137px; */
-    overflow: hidden;
-}
+
 
 .section-title {
     text-align: center;

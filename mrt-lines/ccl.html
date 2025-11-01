@@ -14,7 +14,8 @@
 
   <link rel="icon" href="../img/core-img/favicon.png">
 
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
+  <link rel='stylesheet' href='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.css'>
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -24,437 +25,590 @@
   <link rel="stylesheet" href="../css/glightbox.min.css">
 </head>
 
+<style>
+  #cv-tdc {
+    background-image: url('../img/networks/cclA.png');
+    height: 75vh;
+  }
+
+  .scrollable-tabs-container a.active {
+    background: linear-gradient(84deg, rgba(252, 155, 36, 1) 0%, rgba(181, 107, 16, 1) 100%) !important;
+    color: #fff !important;
+  }
+
+  #abt,
+  #ld,
+  #stn {
+    scroll-margin: 11vh;
+  }
+</style>
+
 <body>
 
-  <!-- Preloader Section -->
-  <div id="preloader">
-    <div class="loader"></div>
-    <p id="preloader-text">Just a moment...</p>
+  <!-- Navigation Bar -->
+  <nav class="navbar-container">
+    <div class="navbar">
+      <!-- Logo -->
+      <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
+
+      <!-- Navigation Links -->
+      <ul class="navbar-nav" id="navbarNav">
+        <li class="nav-item">
+          <a href="../index.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../statistics/statistics.html" class="nav-link">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Statistics</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../incident-history/incident-history.html" class="nav-link">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Incident History</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../our-networks.html" class="nav-link active">
+            <i class="fa-solid fa-map"></i>
+            <span>Networks</span>
+          </a>
+        </li>
+        <li class="nav-item-toggle">
+          <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
+            <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile Toggle -->
+      <button class="mobile-toggle" id="mobileToggle">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <li class="mobile-menu-item mobile-theme-toggle">
+        <a href="#" class="nav-link-toggle" id="dark-mode-toggle-mobile" title="Toggle Dark/Light Mode!">
+          <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+        </a>
+      </li>
+      <a href="#" class="mobile-menu-brand">
+        <span class="brand-text"></span>
+      </a>
+      <button class="mobile-menu-close" id="mobileMenuClose">
+        <span>×</span>
+      </button>
+    </div>
+
+    <ul class="mobile-menu-nav">
+      <li class="mobile-menu-item">
+        <a href="#" class="mobile-menu-link active">
+          <i class="fa-solid fa-regular fa-house"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="mobile-menu-item">
+        <a href="statistics/statistics.html" class="mobile-menu-link">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Statistics</span>
+        </a>
+      </li>
+      <li class="mobile-menu-item">
+        <a href="incident-history/incident-history.html" class="mobile-menu-link">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Incident History</span>
+        </a>
+      </li>
+      <li class="mobile-menu-item">
+        <a href="our-networks.html" class="mobile-menu-link">
+          <i class="fa-solid fa-map"></i>
+          <span>Networks</span>
+        </a>
+      </li>
+    </ul>
   </div>
 
-
-  <header>
-    <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
-
-    <input type="checkbox" id="check" />
-    <label for="check" class="icons">
-      <i class="fa-solid fa-bars" id="menu-icon"></i>
-      <i class="fa-solid fa-xmark" id="close-icon"></i>
-    </label>
-
-    <nav class="navbar navbar-mobile">
-      <a href="../index.html" class="nav-item">Home</a>
-      <a href="../statistics/statistics.html" class="nav-item">Statistics</a>
-      <a href="../incident-history/incident-history.html" class="nav-item">Incident History</a>
-      <a href="../our-networks.html" class="nav-item active">Networks</a>
-      <a href="#" class="nav-item">
-        <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
-          <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
-        </button>
-      </a>
-    </nav>
-  </header>
-
   <!-- ============================================= Hero Section ============================================= -->
-  <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-about"
-    style="background-image: url(../img/networks/cclA.png); height: 100vh;">
-    <div class="wbnrfz_details_blog">
-      <div class="container container-collapsible">
-        <div class="portfolio-controls d-flex justify-content-between align-items-center">
-          <!-- Details Buttons -->
-          <div class="portfolio-filter mt-3">
-            <div class="col-lg-12">
-              <div class="main-title">
-                <nav aria-label="breadcrumb">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="../our-networks.html">
-                          Networks</a>
-                      </li>
-                      <li class="breadcrumb-item" onclick="playAudio()"><a href="#"
-                          style="color: #ea1c2d; cursor: pointer;" title="Click me to hear one of the CCL Chimes!">
-                          SMRT Trains
-                        </a>
-                      </li>
-                    </ol>
-                  </nav>
-                  <h1 class="brc">Circle Line</h1>
-              </div>
-            </div>
-          </div>
-
-          <audio id="chimes">
-            <source src="../chimes/CCL_Chime B_V2.wav" type="audio/wav">
-            Your browser does not support the audio element.
-          </audio>
-
-
-          <!-- Collapsible Header -->
-          <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
-            aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;" title="More Details">
-            <i class="fa-solid fa-chevron-down nav-chev"></i>
-          </div>
-        </div>
-        <!-- Collapsible Content -->
-        <div id="portfolioFilter" class="collapse">
-          <div class="details_catagory_wrap">
-            <div class="col-sm-3 single_catagory ">
-              <span>Opened</span>
-              <h4>28 May 2009<br>(in Phases)</h4>
-            </div>
-            <div class="col-sm-3 single_catagory">
-              <span>Length of Line</span>
-              <h4>35.7 km <br>(with 30 stations)</h4>
-            </div>
-
-            <div class="col-sm-3 single_catagory">
-              <span>Operated By</span>
-              <img class="logo-operator" src="../img/core-img/stl.png" id="ops-smrt" alt="smrt" width="170px">
-            </div>
-
-          </div>
+  <!-- Cover Header -->
+  <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-tdc">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
         </div>
       </div>
     </div>
-    <div style="background-color: #FC9B24; width: 100%; height: 10px;"></div>
   </section>
 
+  <!-- Title/Breadcrumbs -->
+  <section class="about-me-sum clearfix">
+    <div class="wbnrfz_eicw">
+      <div class="page-header-section">
+        <div class="container-xxl container-mobile container-mobile-header">
+          <div class="breadcrumb-wrapper">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="../index.html">
+                    <i class="fa-solid fa-house"></i>
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a href="../our-networks.html#mrt">MRT Lines</a>
+                </li>
+              </ol>
+            </nav>
+            <div class="page-title-wrapper">
+              <h1 class="page-title-single"><span id="chimes" style="cursor: pointer;"
+                  title="Click me to hear the CCL Chimes!">
+                  Circle Line
+                </span>
+              </h1>
+            </div>
+          </div>
+        </div>
 
-  <section class="about-me-summ section-padding-80-0 clearfix">
-    <div class="wbnrfz_details">
-      <div class="container container-xxl">
+        <!-- Audio Elements -->
+        <audio id="chimes-audio">
+          <source src="../chimes/CCL_Chime B_V2.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+        <audio id="chimes-alt">
+          <source src="../chimes/CCL_Chime A_V2.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
 
+        <div class="scrollable-tabs-container">
+          <div class="left-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
+
+          </div>
+
+          <ul>
+            <li>
+              <a href="#abt" class="active">About Line</a>
+            </li>
+
+            <li>
+              <a href="#ld">Line Diagram</a>
+            </li>
+
+            <li>
+              <a href="#stn">Stations</a>
+            </li>
+          </ul>
+
+          <div class="right-arrow active">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
+
+          </div>
+        </div>
+        <hr>
+      </div>
+
+    </div>
+
+  </section>
+
+  <br>
+
+  <!-- Details/Contents Section -->
+  <section class="about-me-summ clearfix">
+    <div class="wbnrfz_details_section wow fadeIn" data-wow-delay="100ms" id="abt">
+      <div class="container-xxl container-mobile container-mobile-header">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div class="details_info">
-              <div class="row justify-content-center">
-                <div class="col-lg-12">
-                  <div class="info justify-content-center wow fadeInUp" data-wow-delay="300ms">
-                    <p style="text-align: center;">Building the Circle Line (CCL) was a
-                      feat that required innovations in design, engineering and construction. It took place in
-                      challenging soil
-                      conditions, a maze of underground structures, and under a densely packed surface of roads,
-                      expressways and
-                      buildings.
-                      <br><br>
-                      Proposals for the line began in the 1990s, and plans for the CCL evolved to:
-                      <br>
-                      - cater to growing public transport demand,<br>
-                      - distribute commuter traffic away from busy interchanges, and<br>
-                      - create a greater number of connections and faster journeys.
-                      <br><br>
-                      As its name suggests, the 30-station CCL is a circular rail line linking the North-South,
-                      East-West and
-                      North East Lines to the city.<br><br> (Source: <a
-                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/circle_line.html">LTA</a>)&nbsp;
+            <!-- Summary -->
+            <div class="container container-xxl container-mobile">
+              <div class="row">
 
-                      <button type="button" class="read-aloud" onclick="readAloud(this.parentElement)"
-                        title="Read aloud">
-                        <i class="fa-solid fa-volume-up"></i></button>
+                <div class="col-md-6 col-lg-4 box-indiv">
+                  <div class="port-summary port-cat text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                    <div class="summ-icon">
+                      <i class="fa-solid fa-calendar"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Opened</h3>
+                    <h4 style="font-size: 13px;">28 May 2009 <br>
+                      (in Phases)</h4>
+                  </div>
+                </div>
 
-                    </p>
+                <div class="col-md-6 col-lg-4 box-indiv">
+                  <div class="port-summary port-year text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                    <div class="summ-icon">
+                      <i class="fa-regular fa-ruler-horizontal"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Length</h3>
+                    <h4 style="font-size: 13px;">35.7 km <br>
+                      (with 30 stations)</h4>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 box-indiv">
+                  <div class="port-summary port-share text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                    <div class="summ-icon">
+                      <i class="fa-solid fa-train-subway"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Operated By</h3>
+                    <img class="logo-operator" src="../img/core-img/stl.png" id="ops-smrt" alt="smrt" width="170px">
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="about-me-stations text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
-
-              <h3 class="ld-s-title">Line Diagram</h3>
-              <div class="row row-line-diag justify-content-center">
-                <a href="../img/networks/ccl-diag.png" id="line-ccl" class="portfolio-img">
-                  <img src="../img/networks/ccl-diag.png" id="line-ccl-img" class="img-fluid" alt="cover-page">
-                </a>
-              </div>
-            </div>
-
-
-            <div class="col-md-12 col-12 box-indiv">
-              <div class="about-me-stations text-center mb-80 wow fadeInUp" data-wow-delay="700ms">
-
-                <h3 class="ld-s-title">Stations</h3>
+          <div class="row justify-content-center">
+            <div class="col-lg-12">
+              <div class="details_info">
                 <div class="row justify-content-center">
+                  <div class="col-lg-12">
+                    <div class="info justify-content-center wow fadeInUp" data-wow-delay="300ms">
+                      <p style="text-align: center;">Building the Circle Line (CCL) was a
+                        feat that required innovations in design, engineering and construction. It took place in
+                        challenging soil
+                        conditions, a maze of underground structures, and under a densely packed surface of roads,
+                        expressways and
+                        buildings.
+                        <br><br>
+                        Proposals for the line began in the 1990s, and plans for the CCL evolved to:
+                        <br>
+                        - cater to growing public transport demand,<br>
+                        - distribute commuter traffic away from busy interchanges, and<br>
+                        - create a greater number of connections and faster journeys.
+                        <br><br>
+                        As its name suggests, the 30-station CCL is a circular rail line linking the North-South,
+                        East-West and
+                        North East Lines to the city.<br><br> (Source: <a
+                          href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/circle_line.html">LTA</a>)&nbsp;
 
-                  <div class="stationBlock">
-                    <div class="stationBlockItem">
-                      <a href="https://landtransportguru.net/dhoby-ghaut-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 1
+                        <button type="button" class="read-aloud" onclick="readAloud(this.parentElement)"
+                          title="Read aloud">
+                          <i class="fa-solid fa-volume-up"></i></button>
+
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="about-me-stations text-center mb-80 wow fadeInUp" data-wow-delay="500ms" id="ld">
+
+                <h3 class="ld-s-title">Line Diagram</h3>
+                <div class="row row-line-diag justify-content-center">
+                  <a href="../img/networks/ccl-diag.png" id="line-ccl" class="portfolio-img">
+                    <img src="../img/networks/ccl-diag.png" id="line-ccl-img" class="img-fluid" alt="cover-page">
+                  </a>
+                </div>
+              </div>
+
+
+              <div class="col-md-12 col-12 box-indiv" id="stn">
+                <div class="about-me-stations text-center mb-80 wow fadeInUp" data-wow-delay="700ms">
+
+                  <h3 class="ld-s-title">Stations</h3>
+                  <div class="row justify-content-center">
+
+                    <div class="stationBlock">
+                      <div class="stationBlockItem">
+                        <a href="https://landtransportguru.net/dhoby-ghaut-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 1
+                              </div>
+                              <div class="station-pill-round" style="background-color: #E22726; color: #FFF;">
+                                NS 24
+                              </div>
+                              <div class="station-pill-round" style="background-color: #8F4199; color: #FFF;">
+                                NE 6
+                              </div>
                             </div>
-                            <div class="station-pill-round" style="background-color: #E22726; color: #FFF;">
-                              NS 24
+                            <h4 class="stn" style=" width: 123px;">Dhoby Ghaut</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/bras-basah-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 2
                             </div>
-                            <div class="station-pill-round" style="background-color: #8F4199; color: #FFF;">
-                              NE 6
+                            <h4 class="stn" style=" width: 110px;">Bras Basah</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/esplanade-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 3
                             </div>
+                            <h4 class="stn" style=" width: 100px;">Esplanade</h4>
                           </div>
-                          <h4 class="stn" style=" width: 123px;">Dhoby Ghaut</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/bras-basah-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 2
-                          </div>
-                          <h4 class="stn" style=" width: 110px;">Bras Basah</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/esplanade-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 3
-                          </div>
-                          <h4 class="stn" style=" width: 100px;">Esplanade</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/promenade-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 4
+                        </a>
+                        <a href="https://landtransportguru.net/promenade-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 4
+                              </div>
+                              <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
+                                DT 15
+                              </div>
                             </div>
-                            <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
-                              DT 15
+                            <h4 class="stn" style=" width: 106px;">Promenade</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/nicoll-highway-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 5
                             </div>
+                            <h4 class="stn" style=" width: 140px;">Nicoll Highway</h4>
                           </div>
-                          <h4 class="stn" style=" width: 106px;">Promenade</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/nicoll-highway-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 5
-                          </div>
-                          <h4 class="stn" style=" width: 140px;">Nicoll Highway</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/stadium-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 6
-                          </div>
-                          <h4 class="stn" style=" width: 83px;">Stadium</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/mountbatten-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 7
-                          </div>
-                          <h4 class="stn" style=" width: 123px;">Mountbatten</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/dakota-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 8
-                          </div>
-                          <h4 class="stn" style=" width: 75px;">Dakota</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/paya-lebar-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 9
+                        </a>
+                        <a href="https://landtransportguru.net/stadium-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 6
                             </div>
-                            <div class="station-pill-round" style="background-color: #34AF65; color: #FFF;">
-                              EW 8
+                            <h4 class="stn" style=" width: 83px;">Stadium</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/mountbatten-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 7
                             </div>
+                            <h4 class="stn" style=" width: 123px;">Mountbatten</h4>
                           </div>
-                          <h4 class="stn" style=" width: 105px;">Paya Lebar</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/macpherson-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 10
+                        </a>
+                        <a href="https://landtransportguru.net/dakota-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 8
                             </div>
-                            <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
-                              DT 26
+                            <h4 class="stn" style=" width: 75px;">Dakota</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/paya-lebar-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 9
+                              </div>
+                              <div class="station-pill-round" style="background-color: #34AF65; color: #FFF;">
+                                EW 8
+                              </div>
                             </div>
+                            <h4 class="stn" style=" width: 105px;">Paya Lebar</h4>
                           </div>
-                          <h4 class="stn" style=" width: 118px;">MacPherson</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/tai-seng-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 11
-                          </div>
-                          <h4 class="stn" style=" width: 86px;">Tai Seng</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/bartley-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 12
-                          </div>
-                          <h4 class="stn" style=" width: 73px;">Bartley</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/serangoon-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 13
+                        </a>
+                        <a href="https://landtransportguru.net/macpherson-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 10
+                              </div>
+                              <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
+                                DT 26
+                              </div>
                             </div>
-                            <div class="station-pill-round" style="background-color: #8F4199; color: #FFF;">
-                              NE 12
+                            <h4 class="stn" style=" width: 118px;">MacPherson</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/tai-seng-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 11
                             </div>
+                            <h4 class="stn" style=" width: 86px;">Tai Seng</h4>
                           </div>
-                          <h4 class="stn" style=" width: 103px;">Serangoon</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/lorong-chuan-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 14
-                          </div>
-                          <h4 class="stn" style=" width: 133px;">Lorong Chuan</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/bishan-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 15
+                        </a>
+                        <a href="https://landtransportguru.net/bartley-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 12
                             </div>
-                            <div class="station-pill-round" style="background-color: #E22726; color: #FFF;">
-                              NS 17
+                            <h4 class="stn" style=" width: 73px;">Bartley</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/serangoon-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 13
+                              </div>
+                              <div class="station-pill-round" style="background-color: #8F4199; color: #FFF;">
+                                NE 12
+                              </div>
                             </div>
+                            <h4 class="stn" style=" width: 103px;">Serangoon</h4>
                           </div>
-                          <h4 class="stn" style=" width: 68px;">Bishan</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/Marymount" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 16
-                          </div>
-                          <h4 class="stn" style=" width: 106px;">Marymount</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/caldecott-station/">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 17
+                        </a>
+                        <a href="https://landtransportguru.net/lorong-chuan-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 14
                             </div>
-                            <div class="station-pill-round" style="background-color: #9D5B25; color: #FFF;">
-                              TE 9
+                            <h4 class="stn" style=" width: 133px;">Lorong Chuan</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/bishan-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 15
+                              </div>
+                              <div class="station-pill-round" style="background-color: #E22726; color: #FFF;">
+                                NS 17
+                              </div>
                             </div>
+                            <h4 class="stn" style=" width: 68px;">Bishan</h4>
                           </div>
-                          <h4 class="stn" style=" width: 95px;">Caldecott</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/botanic-gardens-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 19
+                        </a>
+                        <a href="https://landtransportguru.net/Marymount" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 16
                             </div>
-                            <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
-                              DT 9
+                            <h4 class="stn" style=" width: 106px;">Marymount</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/caldecott-station/">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 17
+                              </div>
+                              <div class="station-pill-round" style="background-color: #9D5B25; color: #FFF;">
+                                TE 9
+                              </div>
                             </div>
+                            <h4 class="stn" style=" width: 95px;">Caldecott</h4>
                           </div>
-                          <h4 class="stn" style=" width: 156px;">Botanic Gardens</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/farrer-road-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 20
-                          </div>
-                          <h4 class="stn" style=" width: 110px;">Farrer Road</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/holland-village-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 21
-                          </div>
-                          <h4 class="stn" style=" width: 133px;">Holland Village</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/buona-vista-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 22
+                        </a>
+                        <a href="https://landtransportguru.net/botanic-gardens-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 19
+                              </div>
+                              <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
+                                DT 9
+                              </div>
                             </div>
-                            <div class="station-pill-round" style="background-color: #34AF65; color: #FFF;">
-                              EW 21
+                            <h4 class="stn" style=" width: 156px;">Botanic Gardens</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/farrer-road-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 20
                             </div>
+                            <h4 class="stn" style=" width: 110px;">Farrer Road</h4>
                           </div>
-                          <h4 class="stn" style=" width: 114px;">Buona Vista</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/One-north-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 23
-                          </div>
-                          <h4 class="stn" style=" width: 99px;">one-north</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/kent-Ridge-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 24
-                          </div>
-                          <h4 class="stn" style=" width: 103px;">Kent Ridge</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/haw-par-villa-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 25
-                          </div>
-                          <h4 class="stn" style=" width: 124px;">Haw Par Villa</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/pasir-panjang-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 26
-                          </div>
-                          <h4 class="stn" style=" width: 118px;">Pasir Panjang</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/labrador-park-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 27
-                          </div>
-                          <h4 class="stn" style=" width: 127px;">Labrador Park</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/telok-blangah-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
-                            CC 28
-                          </div>
-                          <h4 class="stn" style=" width: 132px;">Telok Blangah</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/harbourfront-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 29
+                        </a>
+                        <a href="https://landtransportguru.net/holland-village-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 21
                             </div>
-                            <div class="station-pill-round" style="background-color: #8F4199; color: #FFF;">
-                              NE 1
-                            </div>
+                            <h4 class="stn" style=" width: 133px;">Holland Village</h4>
                           </div>
-                          <h4 class="stn" style=" width: 127px;">HarbourFront</h4>
-                        </div>
-                      </a>
-                      <!-- <a href="https://landtransportguru.net/keppel-station/" target="_blank">
+                        </a>
+                        <a href="https://landtransportguru.net/buona-vista-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 22
+                              </div>
+                              <div class="station-pill-round" style="background-color: #34AF65; color: #FFF;">
+                                EW 21
+                              </div>
+                            </div>
+                            <h4 class="stn" style=" width: 114px;">Buona Vista</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/One-north-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 23
+                            </div>
+                            <h4 class="stn" style=" width: 99px;">one-north</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/kent-Ridge-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 24
+                            </div>
+                            <h4 class="stn" style=" width: 103px;">Kent Ridge</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/haw-par-villa-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 25
+                            </div>
+                            <h4 class="stn" style=" width: 124px;">Haw Par Villa</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/pasir-panjang-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 26
+                            </div>
+                            <h4 class="stn" style=" width: 118px;">Pasir Panjang</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/labrador-park-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 27
+                            </div>
+                            <h4 class="stn" style=" width: 127px;">Labrador Park</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/telok-blangah-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
+                              CC 28
+                            </div>
+                            <h4 class="stn" style=" width: 132px;">Telok Blangah</h4>
+                          </div>
+                        </a>
+                        <a href="https://landtransportguru.net/harbourfront-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 29
+                              </div>
+                              <div class="station-pill-round" style="background-color: #8F4199; color: #FFF;">
+                                NE 1
+                              </div>
+                            </div>
+                            <h4 class="stn" style=" width: 127px;">HarbourFront</h4>
+                          </div>
+                        </a>
+                        <!-- <a href="https://landtransportguru.net/keppel-station/" target="_blank">
                         <div class="stationBlockChildItem">
                           <div class="station-pill-round-single" style="background-color: #FC9B24; color: #000;">
                             CC 30
@@ -478,61 +632,62 @@
                           <h4 class="stn" style=" width: 171px; color: #FFF;">Prince Edward Road</h4>
                         </div>
                       </a> -->
+                      </div>
                     </div>
-                  </div>
-                  <hr>
-                  <h3 style="text-align: left; font-size: 20px;margin-bottom: 30px;">Circle Line Extension</h3>
-                  <div class="stationBlock">
-                    <div class="stationBlockItem">
-                      <a href="https://landtransportguru.net/promenade-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CC 4
+                    <hr>
+                    <h3 style="text-align: left; font-size: 20px;margin-bottom: 30px;">Circle Line Extension</h3>
+                    <div class="stationBlock">
+                      <div class="stationBlockItem">
+                        <a href="https://landtransportguru.net/promenade-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CC 4
+                              </div>
+                              <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
+                                DT 15
+                              </div>
                             </div>
-                            <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
-                              DT 15
-                            </div>
+                            <h4 class="stn" style=" width: 112px;">Promenade</h4>
                           </div>
-                          <h4 class="stn" style=" width: 112px;">Promenade</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/bayfront-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CE 1
+                        </a>
+                        <a href="https://landtransportguru.net/bayfront-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CE 1
+                              </div>
+                              <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
+                                DT 16
+                              </div>
                             </div>
-                            <div class="station-pill-round" style="background-color: #005DA8; color: #FFF;">
-                              DT 16
-                            </div>
+                            <h4 class="stn" style=" width: 88px;">Bayfront</h4>
                           </div>
-                          <h4 class="stn" style=" width: 88px;">Bayfront</h4>
-                        </div>
-                      </a>
-                      <a href="https://landtransportguru.net/marina-bay-station/" target="_blank">
-                        <div class="stationBlockChildItem">
-                          <div class="d-flex flex-row">
-                            <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
-                              CE 2
+                        </a>
+                        <a href="https://landtransportguru.net/marina-bay-station/" target="_blank">
+                          <div class="stationBlockChildItem">
+                            <div class="d-flex flex-row">
+                              <div class="station-pill-round" style="background-color: #FC9B24; color: #000;">
+                                CE 2
+                              </div>
+                              <div class="station-pill-round" style="background-color: #E22726; color: #FFF;">
+                                NS 27
+                              </div>
+                              <div class="station-pill-round" style="background-color: #9D5B25; color: #FFF;">
+                                TE 20
+                              </div>
                             </div>
-                            <div class="station-pill-round" style="background-color: #E22726; color: #FFF;">
-                              NS 27
-                            </div>
-                            <div class="station-pill-round" style="background-color: #9D5B25; color: #FFF;">
-                              TE 20
-                            </div>
+                            <h4 class="stn" style=" width: 112px;">Marina Bay</h4>
                           </div>
-                          <h4 class="stn" style=" width: 112px;">Marina Bay</h4>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+
             </div>
-
-
           </div>
         </div>
       </div>
@@ -540,18 +695,14 @@
   </section>
 
 
-  <footer class="footer-area">
-    <div class="container">
-      <div class="footer-content d-flex flex-column align-items-center text-center">
-        <!-- Copywrite Text -->
-        <div class="copywrite-text">
-          <p>
-            Information obtained from <a href="https://landtransportguru.net/">Land Transport Guru</a> and <a
-              href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html">Land
-              Transport Authority</a>
-          </p>
-        </div>
-      </div>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-copy">
+      Information obtained from <a href="https://landtransportguru.net/"><strong>Land Transport Guru</a></strong>
+      and <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html">
+        <strong>Land Transport Authority</a></strong>
     </div>
   </footer>
 
@@ -560,38 +711,81 @@
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
 
-  <!-- Chimes -->
-  <script>
-    var ccl = document.getElementById("chimes");
-
-    function playAudio() {
-      ccl.play();
-    }
-
-    function pauseAudio() {
-      ccl.pause();
-    }
-  </script>
-
   <!-- Dark Mode Functionality for Individual Pages -->
   <script>
+    /* Dark Mode Functionality for Individual Pages */
+
     // Check localStorage for dark mode preference
     if (localStorage.getItem('dark-mode') === 'enabled') {
       document.body.classList.add('dark-mode');
+      updateThemeIcon('dark');
       updateHrefForDarkMode();
+    } else {
+      updateThemeIcon('light');
     }
 
-    const toggleButton = document.getElementById('dark-mode-toggle');
-    toggleButton.addEventListener('click', () => {
+    // Get both toggle buttons
+    const toggleButtonDesktop = document.getElementById('dark-mode-toggle-desktop');
+    const toggleButtonMobile = document.getElementById('dark-mode-toggle-mobile');
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
       // Save the preference in localStorage
       if (document.body.classList.contains('dark-mode')) {
         localStorage.setItem('dark-mode', 'enabled');
+        updateThemeIcon('dark');
       } else {
         localStorage.setItem('dark-mode', 'disabled');
+        updateThemeIcon('light');
       }
       updateHrefForDarkMode();
-    });
+    }
+
+    // Add event listeners to both buttons if they exist
+    if (toggleButtonDesktop) {
+      toggleButtonDesktop.addEventListener('click', toggleDarkMode);
+    }
+
+    if (toggleButtonMobile) {
+      toggleButtonMobile.addEventListener('click', toggleDarkMode);
+    }
+    // Function to update the theme icon with animation
+    function updateThemeIcon(theme) {
+      const themeIconDesktop = document.getElementById('theme-icon-desktop');
+      const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+      // Add animation class to both icons
+      if (themeIconDesktop) themeIconDesktop.classList.add('animate');
+      if (themeIconMobile) themeIconMobile.classList.add('animate');
+
+      // Update the icon based on the theme
+      if (theme === 'dark') {
+        if (themeIconDesktop) {
+          themeIconDesktop.classList.remove('fa-sun-bright');
+          themeIconDesktop.classList.add('fa-moon-stars');
+        }
+        if (themeIconMobile) {
+          themeIconMobile.classList.remove('fa-sun-bright');
+          themeIconMobile.classList.add('fa-moon-stars');
+        }
+      } else {
+        if (themeIconDesktop) {
+          themeIconDesktop.classList.remove('fa-moon-stars');
+          themeIconDesktop.classList.add('fa-sun-bright');
+        }
+        if (themeIconMobile) {
+          themeIconMobile.classList.remove('fa-moon-stars');
+          themeIconMobile.classList.add('fa-sun-bright');
+        }
+      }
+
+      // Remove the animation class after the animation ends
+      setTimeout(() => {
+        if (themeIconDesktop) themeIconDesktop.classList.remove('animate');
+        if (themeIconMobile) themeIconMobile.classList.remove('animate');
+      }, 300); // Match the duration of the CSS transition
+    }
 
     function updateHrefForDarkMode() {
       const link = document.getElementById('line-ccl');
@@ -626,19 +820,21 @@
     });
   </script>
 
-  <script src="../js/jquery.min.js"></script>
+    <script src="../js/navtabs.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous"></script>
-  <script src="../js/pw.bundle.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
-  <script src="../js/default-assets/active.js"></script>
+    <script src="../js/popper.min.js"></script>
 
-  <script src="../js/swiper-bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/pw.bundle.js"></script>
+
+    <script src="../js/default-assets/active.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="../js/dstabs.js"></script>
 
   <script src="../js/glightbox.min.js"></script>
 
@@ -648,7 +844,7 @@
 
   <script src="../js/copy-to-clipboard.js"></script>
 
-  <script src="../js/preloader.js"></script>
+  <script src="../chimes/chimes_ccl.js"></script>
 
 </body>
 

@@ -178,7 +178,7 @@ body.dark-mode #hero {
 }
 
 body.dark-mode .about-me-summ {
-    background-color: #111318;
+    background-color: #18191a;
     padding-top: 0px;
     padding-bottom: 0px;
 }
@@ -607,6 +607,19 @@ body.dark-mode #portfolioFilter .details_catagory_wrap .single_catagory .social_
 body.dark-mode .about-me-stations {
     background-color: #242526;
     transition: all 0.5s ease;
+}
+
+body.dark-mode .port-summary {
+    background-color: #2e2e2e;
+    color: #fff;
+    transition: all 0.5s ease;
+    border: 1px solid #2b2b2b33;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(61, 61, 61, 0.384);
+}
+
+body.dark-mode .port-summary:hover {
+    background-color: #52718d;
+    transform: translateY(-2px);
 }
 
 @media (prefers-color-scheme: dark) {
