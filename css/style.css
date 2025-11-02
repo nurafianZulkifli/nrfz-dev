@@ -1846,7 +1846,7 @@ p.accord-twt {
 .accordion-button:not(.collapsed) {
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    background: linear-gradient(84deg, #b4c5e6 0%, #3f7e9a 100%);
+    background: linear-gradient(84deg, #b4c5e6 0%, #3b97be 100%);
     border: none;
 }
 
