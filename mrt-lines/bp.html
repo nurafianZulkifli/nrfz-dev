@@ -632,16 +632,16 @@
     }
 
     function updateHrefForDarkMode() {
-      const link = document.getElementById('line-ccl');
-      const img = document.getElementById('line-ccl-img');
+      const link = document.getElementById('line-bp');
+      const img = document.getElementById('line-bp-img');
       const isDarkMode = document.body.classList.contains('dark-mode');
 
       if (isDarkMode) {
-        link.href = '../img/networks/ccl-diag-dark.png';
-        img.src = '../img/networks/ccl-diag-dark.png';
+        link.href = '../img/networks/bp-diag-dark.png';
+        img.src = '../img/networks/bp-diag-dark.png';
       } else {
-        link.href = '../img/networks/ccl-diag.png';
-        img.src = '../img/networks/ccl-diag.png';
+        link.href = '../img/networks/bp-diag.png';
+        img.src = '../img/networks/bp-diag.png';
       }
     }
 
@@ -688,7 +688,7 @@
 
   <script src="../js/copy-to-clipboard.js"></script>
 
-  <script src="../chimes/chimes_ccl.js"></script>
+  <script src="../chimes/chimes.js"></script>
 
 </body>
 
