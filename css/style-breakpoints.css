@@ -866,6 +866,12 @@
         padding-left: 3em;
         padding-right: 3em;
     }
+
+        .col-xl-4 {
+        padding-bottom: 2em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 }
 
 /* ---- */
@@ -1004,6 +1010,12 @@
 
     #cv-tdc {
         height: 45vh !important;
+    }
+
+    .col-xl-4 {
+        padding-bottom: 2em;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
 }
