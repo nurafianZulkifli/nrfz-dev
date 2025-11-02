@@ -1495,6 +1495,11 @@ li.breadcrumb-item a:hover {
     cursor: default;
 }
 
+.line-io {
+    font-size: 18px;
+}
+
+
 /* ------------------------------------------ */
 
 /* ------------------------------------------ 14.0 Hero Details ------------------------------------------ */
@@ -1754,32 +1759,13 @@ img.profile-pic {
 }
 
 
-.text-nsl a {
-    color: #000;
-    font-weight: bolder;
-}
-
-.text-ccl a {
-    color: #000;
-    font-weight: bolder;
-}
-
+.text-nsl a,
+.text-ewl a,
+.text-nel a,
+.text-ccl a,
+.text-lrt a,
+.text-dtl a,
 .text-tel a {
-    color: #000;
-    font-weight: bolder;
-}
-
-.text-lrt a {
-    color: #000;
-    font-weight: bolder;
-}
-
-.text-nel a {
-    color: #000;
-    font-weight: bolder;
-}
-
-.text-dtl a {
     color: #000;
     font-weight: bolder;
 }
