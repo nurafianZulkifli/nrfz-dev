@@ -14,7 +14,8 @@
 
   <link rel="icon" href="../img/core-img/favicon.png">
 
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
+  <link rel='stylesheet' href='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.css'>
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/style-breakpoints.css">
@@ -24,152 +25,302 @@
   <link rel="stylesheet" href="../css/glightbox.min.css">
 </head>
 
+<style>
+  #cv-tdc {
+    background-image: url('../img/networks/bpA.png');
+    height: 75vh;
+  }
+
+  .scrollable-tabs-container a.active {
+    background: linear-gradient(84deg, rgb(117, 131, 116) 0%, rgb(75, 82, 75) 100%) !important;
+    color: #fff !important;
+  }
+
+  #abt,
+  #ld,
+  #stn {
+    scroll-margin: 11vh;
+  }
+</style>
+
 <body>
 
-  <!-- Preloader Section -->
-  <div id="preloader">
-    <div class="loader"></div>
-    <p id="preloader-text">Just a moment...</p>
+  <!-- Navigation Bar -->
+  <nav class="navbar-container">
+    <div class="navbar">
+      <!-- Logo -->
+      <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
+
+      <!-- Navigation Links -->
+      <ul class="navbar-nav" id="navbarNav">
+        <li class="nav-item">
+          <a href="../index.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../statistics/statistics.html" class="nav-link">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Statistics</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../incident-history/incident-history.html" class="nav-link">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Incident History</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../our-networks.html" class="nav-link active">
+            <i class="fa-solid fa-map"></i>
+            <span>Networks</span>
+          </a>
+        </li>
+        <li class="nav-item-toggle">
+          <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
+            <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile Toggle -->
+      <button class="mobile-toggle" id="mobileToggle">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <li class="mobile-menu-item mobile-theme-toggle">
+        <a href="#" class="nav-link-toggle" id="dark-mode-toggle-mobile" title="Toggle Dark/Light Mode!">
+          <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+        </a>
+      </li>
+      <a href="#" class="mobile-menu-brand">
+        <span class="brand-text"></span>
+      </a>
+      <button class="mobile-menu-close" id="mobileMenuClose">
+        <span>×</span>
+      </button>
+    </div>
+
+    <ul class="mobile-menu-nav">
+      <li class="mobile-menu-item">
+        <a href="../index.html" class="mobile-menu-link">
+          <i class="fa-solid fa-regular fa-house"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="mobile-menu-item">
+        <a href="../statistics/statistics.html" class="mobile-menu-link">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Statistics</span>
+        </a>
+      </li>
+      <li class="mobile-menu-item">
+        <a href="../incident-history/incident-history.html" class="mobile-menu-link">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Incident History</span>
+        </a>
+      </li>
+      <li class="mobile-menu-item">
+        <a href="../our-networks.html" class="mobile-menu-link active">
+          <i class="fa-solid fa-map"></i>
+          <span>Networks</span>
+        </a>
+      </li>
+    </ul>
   </div>
 
-
-  <header>
-    <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
-
-    <input type="checkbox" id="check" />
-    <label for="check" class="icons">
-      <i class="fa-solid fa-bars" id="menu-icon"></i>
-      <i class="fa-solid fa-xmark" id="close-icon"></i>
-    </label>
-
-    <nav class="navbar navbar-mobile">
-      <a href="../index.html" class="nav-item">Home</a>
-      <a href="../statistics/statistics.html" class="nav-item">Statistics</a>
-      <a href="../incident-history/incident-history.html" class="nav-item">Incident History</a>
-      <a href="../our-networks.html" class="nav-item active">Networks</a>
-      <a href="#" class="nav-item">
-        <button class="wbnrfz_btn_theme" id="dark-mode-toggle" title="Toggle Dark/Light Mode!">
-          <i class="fa-solid fa-moon-stars" id="theme-icon"></i>
-        </button>
-      </a>
-    </nav>
-  </header>
-
-
   <!-- ============================================= Hero Section ============================================= -->
-  <section class="wbnrfz-summ breadcrumb-area-eicw-cover bg-img parallax" id="cv-about"
-    style="background-image: url(../img/networks/bpA.png); height: 100vh;">
-    <div class="wbnrfz_details_blog">
-      <div class="container container-collapsible">
-        <div class="portfolio-controls d-flex justify-content-between align-items-center">
-          <!-- Details Buttons -->
-          <div class="portfolio-filter mt-3">
-            <div class="col-lg-12">
-              <div class="main-title">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../our-networks.html">
-                        Networks</a>
-                    </li>
-                    <li class="breadcrumb-item" onclick="playAudio()"><a href="#"
-                        style="color: #ea1c2d; cursor: pointer;" title="Click me to hear one of the BPLRT Chimes!">
-                        SMRT Trains
-                      </a>
-                    </li>
-                  </ol>
-                </nav>
-                <h1 class="brc">Bukit Panjang LRT</h1>
-              </div>
-            </div>
-          </div>
-
-          <audio id="chimes">
-            <source src="../chimes/BP_Chime.wav" type="audio/wav">
-            Your browser does not support the audio element.
-          </audio>
-
-
-          <!-- Collapsible Header -->
-          <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#portfolioFilter"
-            aria-expanded="false" aria-controls="portfolioFilter" style="cursor: pointer;" title="More Details">
-            <i class="fa-solid fa-chevron-down nav-chev"></i>
-          </div>
-        </div>
-        <!-- Collapsible Content -->
-        <div id="portfolioFilter" class="collapse">
-          <div class="details_catagory_wrap">
-            <div class="col-sm-3 single_catagory ">
-              <span>Opened</span>
-              <h4>6 November 1999<br>(All stations)</h4>
-            </div>
-            <div class="col-sm-3 single_catagory">
-              <span>Length of Line</span>
-              <h4>8 km <br>(with 13 stations)</h4>
-            </div>
-
-            <div class="col-sm-3 single_catagory">
-              <span>Operated By</span>
-              <img class="logo-operator" src="../img/core-img/stl.png" id="ops-smrt" alt="smrt" width="170px">
-            </div>
-
-          </div>
+  <!-- Cover Header -->
+  <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-tdc">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
         </div>
       </div>
     </div>
-    <div style="background-color: #758374; width: 100%; height: 10px;"></div>
   </section>
 
+  <!-- Title/Breadcrumbs -->
+  <section class="about-me-sum clearfix">
+    <div class="wbnrfz_eicw">
+      <div class="page-header-section">
+        <div class="container-xxl container-mobile container-mobile-header">
+          <div class="breadcrumb-wrapper">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="../index.html">
+                    <i class="fa-solid fa-house"></i>
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a href="../our-networks.html#lrt">LRT Lines</a>
+                </li>
+              </ol>
+            </nav>
+            <div class="page-title-wrapper">
+              <h1 class="page-title-single"><span id="chimes" style="cursor: pointer;"
+                  title="Click me to hear the BPLRT Chime!">
+                  Bukit Panjang LRT
+                </span>
+              </h1>
+            </div>
 
-  <section class="about-me-summ section-padding-80-0 clearfix">
-    <div class="wbnrfz_details">
-      <div class="container container-xxl">
+            <div class="scrollable-tabs-container">
+              <div class="left-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
 
+              </div>
+
+              <ul>
+                <li>
+                  <a href="#abt" class="active">About Line</a>
+                </li>
+
+                <li>
+                  <a href="#ld">Line Diagram</a>
+                </li>
+
+                <li>
+                  <a href="#stn">Stations</a>
+                </li>
+              </ul>
+
+              <div class="right-arrow active">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Audio Elements -->
+        <audio id="chimes-audio">
+          <source src="../chimes/BP_Chime.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+
+        <hr>
+      </div>
+
+    </div>
+
+  </section>
+
+  <br>
+
+  <!-- Details/Contents Section -->
+  <section class="about-me-summ clearfix">
+    <div class="wbnrfz_details_section wow fadeIn" data-wow-delay="100ms" id="abt">
+      <div class="container-xxl container-mobile container-mobile-header">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div class="details_info">
-              <div class="row justify-content-center">
-                <div class="col-lg-12">
-                  <div class="info justify-content-center wow fadeInUp" data-wow-delay="300ms">
-                    <p style="text-align: center;">The Bukit Panjang Light Rapid Transit
-                      (BPLRT) was launched as the first light rail line in Singapore in 1999.
-                      LRT in Bukit Panjang
-                      The fully automated 8km line connects residential estates within Bukit Panjang and Choa Chu Kang
-                      to the
-                      North-South and Downtown Lines, complementing existing feeder bus services. It is also the first
-                      driverless inter-town train feeder service.
-                      <br><br>
-                      To cater for the line’s proximity to homes, the trains have special privacy features such as
-                      windows that
-                      automatically dim.
-                      <br><br>
-                      Having served the residents for 20 years, the BPLRT is currently undergoing a renewal project to
-                      upgrade
-                      its trains, tracks and signalling system.<br><br> (Source: <a
-                        href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/bukit_panjang_lrt.html">LTA</a>)&nbsp;
+            <!-- Summary -->
+            <div class="container container-xxl container-mobile">
+              <div class="row">
 
-                      <button type="button" class="read-aloud" onclick="readAloud(this.parentElement)"
-                        title="Read aloud">
-                        <i class="fa-solid fa-volume-up"></i></button>
+                <div class="col-md-6 col-lg-4 box-indiv">
+                  <div class="port-summary port-cat text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                    <div class="summ-icon">
+                      <i class="fa-solid fa-calendar"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Opened</h3>
+                    <h4 style="font-size: 13px;">6 November 1999<br>(All stations)</h4>
+                  </div>
+                </div>
 
-                    </p>
+                <div class="col-md-6 col-lg-4 box-indiv">
+                  <div class="port-summary port-year text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                    <div class="summ-icon">
+                      <i class="fa-regular fa-ruler-horizontal"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Length</h3>
+                    <h4 style="font-size: 13px;">8 km <br>(with 13 stations)</h4>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 box-indiv">
+                  <div class="port-summary port-share text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                    <div class="summ-icon">
+                      <i class="fa-solid fa-train-subway"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Operated By</h3>
+                    <img class="logo-operator" src="../img/core-img/stl.png" id="ops-smrt" alt="smrt" width="170px">
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="about-me-stations text-center mb-80 wow fadeInUp" data-wow-delay="500ms">
+          <div class="row justify-content-center">
+            <div class="col-lg-12">
+              <div class="details_info">
+                <div class="row justify-content-center">
+                  <div class="col-lg-12">
+                    <div class="info justify-content-center wow fadeIn" data-wow-delay="300ms">
+                      <p style="text-align: center;">The Bukit Panjang Light Rapid Transit
+                        (BPLRT) was launched as the first light rail line in Singapore in 1999.
+                        LRT in Bukit Panjang
+                        The fully automated 8km line connects residential estates within Bukit Panjang and Choa Chu Kang
+                        to the
+                        North-South and Downtown Lines, complementing existing feeder bus services. It is also the first
+                        driverless inter-town train feeder service.
+                        <br><br>
+                        To cater for the line’s proximity to homes, the trains have special privacy features such as
+                        windows that
+                        automatically dim.
+                        <br><br>
+                        Having served the residents for 20 years, the BPLRT is currently undergoing a renewal project to
+                        upgrade
+                        its trains, tracks and signalling system.<br><br> (Source: <a
+                          href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/bukit_panjang_lrt.html">LTA</a>)&nbsp;
 
-              <h3 class="ld-s-title">Line Diagram</h3>
-              <div class="row row-line-diag justify-content-center">
-                <a href="../img/networks/bp-diag.png" id="line-bp" class="portfolio-img">
-                  <img src="../img/networks/bp-diag.png" id="line-bp-img" class="img-fluid" alt="cover-page">
-                </a>
+                        <button type="button" class="read-aloud" onclick="readAloud(this.parentElement)"
+                          title="Read aloud">
+                          <i class="fa-solid fa-volume-up"></i></button>
+
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+
+              <div class="about-me-stations text-center mb-80 wow fadeIn" data-wow-delay="500ms" id="ld">
+
+                <h3 class="ld-s-title">Line Diagram</h3>
+                <div class="row row-line-diag justify-content-center">
+                  <a href="../img/networks/bp-diag.png" id="line-bp" class="portfolio-img">
+                    <img src="../img/networks/bp-diag.png" id="line-bp-img" class="img-fluid" alt="cover-page">
+                  </a>
+                </div>
+              </div>
 
 
-            <div class="col-md-12 col-12 box-indiv">
-              <div class="about-me-stations text-center mb-80 wow fadeInUp" data-wow-delay="700ms">
+              <div class="col-md-12 col-12 box-indiv" id="stn">
+              <div class="about-me-stations text-center mb-80 wow fadeIn" data-wow-delay="700ms">
 
                 <h3 class="ld-s-title">Stations</h3>
                 <div class="row justify-content-center">
@@ -380,6 +531,7 @@
             </div>
 
 
+            </div>
           </div>
         </div>
       </div>
@@ -387,71 +539,109 @@
   </section>
 
 
-  <footer class="footer-area">
-    <div class="container">
-      <div class="footer-content d-flex flex-column align-items-center text-center">
-        <!-- Copywrite Text -->
-        <div class="copywrite-text">
-          <p>
-            Information obtained from <a href="https://landtransportguru.net/">Land Transport Guru</a> and <a
-              href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html">Land
-              Transport Authority</a>
-          </p>
-        </div>
-      </div>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-copy">
+      Information obtained from <a href="https://landtransportguru.net/"><strong>Land Transport Guru</a></strong>
+      and <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html">
+        <strong>Land Transport Authority</a></strong>
     </div>
   </footer>
-
 
   <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"
     data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
     data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
     </script>
 
-  <!-- Chimes -->
-  <script>
-    var bp = document.getElementById("chimes");
-
-    function playAudio() {
-      bp.play();
-    }
-
-    function pauseAudio() {
-      bp.pause();
-    }
-  </script>
-
   <!-- Dark Mode Functionality for Individual Pages -->
   <script>
+    /* Dark Mode Functionality for Individual Pages */
+
     // Check localStorage for dark mode preference
     if (localStorage.getItem('dark-mode') === 'enabled') {
       document.body.classList.add('dark-mode');
+      updateThemeIcon('dark');
       updateHrefForDarkMode();
+    } else {
+      updateThemeIcon('light');
     }
 
-    const toggleButton = document.getElementById('dark-mode-toggle');
-    toggleButton.addEventListener('click', () => {
+    // Get both toggle buttons
+    const toggleButtonDesktop = document.getElementById('dark-mode-toggle-desktop');
+    const toggleButtonMobile = document.getElementById('dark-mode-toggle-mobile');
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
       // Save the preference in localStorage
       if (document.body.classList.contains('dark-mode')) {
         localStorage.setItem('dark-mode', 'enabled');
+        updateThemeIcon('dark');
       } else {
         localStorage.setItem('dark-mode', 'disabled');
+        updateThemeIcon('light');
       }
       updateHrefForDarkMode();
-    });
+    }
+
+    // Add event listeners to both buttons if they exist
+    if (toggleButtonDesktop) {
+      toggleButtonDesktop.addEventListener('click', toggleDarkMode);
+    }
+
+    if (toggleButtonMobile) {
+      toggleButtonMobile.addEventListener('click', toggleDarkMode);
+    }
+    // Function to update the theme icon with animation
+    function updateThemeIcon(theme) {
+      const themeIconDesktop = document.getElementById('theme-icon-desktop');
+      const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+      // Add animation class to both icons
+      if (themeIconDesktop) themeIconDesktop.classList.add('animate');
+      if (themeIconMobile) themeIconMobile.classList.add('animate');
+
+      // Update the icon based on the theme
+      if (theme === 'dark') {
+        if (themeIconDesktop) {
+          themeIconDesktop.classList.remove('fa-sun-bright');
+          themeIconDesktop.classList.add('fa-moon-stars');
+        }
+        if (themeIconMobile) {
+          themeIconMobile.classList.remove('fa-sun-bright');
+          themeIconMobile.classList.add('fa-moon-stars');
+        }
+      } else {
+        if (themeIconDesktop) {
+          themeIconDesktop.classList.remove('fa-moon-stars');
+          themeIconDesktop.classList.add('fa-sun-bright');
+        }
+        if (themeIconMobile) {
+          themeIconMobile.classList.remove('fa-moon-stars');
+          themeIconMobile.classList.add('fa-sun-bright');
+        }
+      }
+
+      // Remove the animation class after the animation ends
+      setTimeout(() => {
+        if (themeIconDesktop) themeIconDesktop.classList.remove('animate');
+        if (themeIconMobile) themeIconMobile.classList.remove('animate');
+      }, 300); // Match the duration of the CSS transition
+    }
 
     function updateHrefForDarkMode() {
-      const link = document.getElementById('line-bp');
-      const img = document.getElementById('line-bp-img');
+      const link = document.getElementById('line-ccl');
+      const img = document.getElementById('line-ccl-img');
       const isDarkMode = document.body.classList.contains('dark-mode');
 
       if (isDarkMode) {
-        link.href = '../img/networks/bp-diag-dark.png';
-        img.src = '../img/networks/bp-diag-dark.png';
+        link.href = '../img/networks/ccl-diag-dark.png';
+        img.src = '../img/networks/ccl-diag-dark.png';
       } else {
-        link.href = '../img/networks/bp-diag.png';
-        img.src = '../img/networks/bp-diag.png';
+        link.href = '../img/networks/ccl-diag.png';
+        img.src = '../img/networks/ccl-diag.png';
       }
     }
 
@@ -474,19 +664,21 @@
     });
   </script>
 
+  <script src="../js/navtabs.js"></script>
+
   <script src="../js/jquery.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous"></script>
+  <script src="../js/popper.min.js"></script>
+
+  <script src="../js/bootstrap.min.js"></script>
+
   <script src="../js/pw.bundle.js"></script>
 
   <script src="../js/default-assets/active.js"></script>
 
-  <script src="../js/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="../js/dstabs.js"></script>
 
   <script src="../js/glightbox.min.js"></script>
 
@@ -496,7 +688,7 @@
 
   <script src="../js/copy-to-clipboard.js"></script>
 
-  <script src="../js/preloader.js"></script>
+  <script src="../chimes/chimes_ccl.js"></script>
 
 </body>
 

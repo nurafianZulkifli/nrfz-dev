@@ -24,6 +24,31 @@
 
 </head>
 
+<style>
+    .line {
+        padding-left: 1.5em;
+        background-size: 1.5em;
+        background-repeat: no-repeat;
+        background-position: left center;
+    }
+
+    .line-nsl {
+        background-image: url("../img/caplets/NSLCap.png");
+    }
+
+    .line-ccl {
+        background-image: url("../img/caplets/CCLCap.png");
+    }
+
+    .line-bp {
+        background-image: url("../img/caplets/BPCap.png");
+    }
+
+    .line-bp {
+        background-image: url("../img/caplets/BPCap.png");
+    }
+</style>
+
 <body>
 
     <!-- Navigation Bar -->
@@ -99,7 +124,7 @@
 
         <ul class="mobile-menu-nav">
             <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link active">
+                <a href="index.html" class="mobile-menu-link">
                     <i class="fa-solid fa-regular fa-house"></i>
                     <span>Home</span>
                 </a>
@@ -117,7 +142,7 @@
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="our-networks.html" class="mobile-menu-link">
+                <a href="our-networks.html" class="mobile-menu-link active">
                     <i class="fa-solid fa-map"></i>
                     <span>Networks</span>
                 </a>
@@ -164,32 +189,35 @@
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <div class="scrollable-tabs-container">
-                    <div class="left-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
+                        <div class="scrollable-tabs-container">
+                            <div class="left-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                </svg>
 
-                    </div>
+                            </div>
 
-                    <ul>
-                        <li>
-                            <a href="#mrt" class="active">MRT Lines</a>
-                        </li>
+                            <ul>
+                                <li>
+                                    <a href="#mrt" class="active">MRT Lines</a>
+                                </li>
 
-                        <li>
-                            <a href="#lrt">LRT Lines</a>
-                        </li>
-                    </ul>
+                                <li>
+                                    <a href="#lrt">LRT Lines</a>
+                                </li>
+                            </ul>
 
-                    <div class="right-arrow active">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
+                            <div class="right-arrow active">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                </svg>
+
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -216,10 +244,9 @@
                                 alt="thumbnail-2"></a>
 
                         <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">SMRT Trains</a>
+                            <div class="line line-nsl"><a href="mrt-lines/nsl.html" class="post-title">North-South
+                                    Line</a>
                             </div>
-                            <a href="mrt-lines/nsl.html" class="post-title">North-South Line</a>
                         </div>
                     </div>
                 </div>
@@ -261,10 +288,8 @@
                                 alt="thumbnail-2"></a>
 
                         <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">SMRT Trains</a>
+                            <div class="line line-ccl"><a href="mrt-lines/ccl.html" class="post-title">Circle Line</a>
                             </div>
-                            <a href="mrt-lines/ccl.html" class="post-title">Circle Line</a>
                         </div>
                     </div>
                 </div>
@@ -322,10 +347,8 @@
                                 alt="thumbnail-2"></a>
 
                         <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">SMRT Trains</a>
-                            </div>
-                            <a href="mrt-lines/bp.html" class="post-title">Bukit Panjang LRT</a>
+                            <div class="line line-bp"><a href="mrt-lines/bp.html" class="post-title">Bukit Panjang
+                                    LRT</a></div>
                         </div>
                     </div>
                 </div>
@@ -381,7 +404,13 @@
 
     <script src="js/navtabs.js"></script>
 
+    <script src="js/theme.js"></script>
+
     <script src="js/jquery.min.js"></script>
+
+    <script src='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.js'></script>
+
+    <script src="js/dstabs.js"></script>
 
     <script src="js/popper.min.js"></script>
 
@@ -390,10 +419,6 @@
     <script src="js/pw.bundle.js"></script>
 
     <script src="js/default-assets/active.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script src="js/theme.js"></script>
 
     <script src="js/swiper-ri.js"></script>
 

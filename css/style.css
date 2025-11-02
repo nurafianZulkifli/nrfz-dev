@@ -426,7 +426,7 @@ section.follow-area.clearfix {
 
 .col-xl-4 {
     padding-bottom: 2em;
-    padding-left: 0em;
+    padding-left: 2em;
     padding-right: 2em;
 }
 
@@ -1482,11 +1482,17 @@ li.breadcrumb-item a:hover {
     color: #80a8cc;
 }
 
-.single-post-area:hover .post-thumbnail img,
-.single-post-area:focus .post-thumbnail img {
-    -webkit-transform: scale(1.4) rotate(10deg);
-    -ms-transform: scale(1.4) rotate(10deg);
-    transform: scale(1.4) rotate(10deg);
+.single-post-area:hover {
+    background-color: #052c65 !important;
+    transform: translateY(-2px);
+}
+
+.line {
+    font-size: 22px;
+    padding-left: 42px !important;
+    padding-top: 4px;
+    color: #fff;
+    cursor: default;
 }
 
 /* ------------------------------------------ */
@@ -2233,6 +2239,15 @@ figcaption p {
     margin-left: auto;
 }
 
+.container-xxl-io {
+    padding-right: 0px;
+    padding-left: 0px;
+    max-width: 100em;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
 .container-xxl-netw {
     max-width: 1650px;
     padding-right: 5%;
@@ -2391,7 +2406,8 @@ hr {
 }
 
 .single-post-area .post-content .post-title {
-    font-size: 25px;
+    font-size: 22px;
+    font-weight: normal;
 }
 
 .pw-blog-area {
@@ -2434,12 +2450,11 @@ h4.stn {
     letter-spacing: 0.32px;
     word-wrap: break-word;
     cursor: default;
+    transition-duration: 500ms;
 }
 
 h4.stn:hover {
     color: #6b91b5;
-    -webkit-transition-duration: 500ms;
-    -o-transition-duration: 500ms;
     cursor: pointer;
 }
 
@@ -2533,9 +2548,6 @@ h4.stn:hover {
     border-top: 1px solid #dee2e6;
 }
 
-div.line {
-    color: #000;
-}
 
 /* ------------------------------------------ */
 
