@@ -32,7 +32,7 @@
 
 
 
-/* ---- 1.0.1 Max Width: 1200px */
+/* ---- 1.0.1 Max Width: 1399px */
 @media (max-width: 1399px) {
     h1.brc {
         overflow: hidden;
@@ -439,7 +439,6 @@
     .portfolio-controls {
         display: flex;
         flex-direction: column-reverse;
-        /* gap: 20px; */
     }
 
     h1.brc {
@@ -461,7 +460,6 @@
         margin-top: 0em !important;
         padding-top: 3em !important;
         padding-bottom: 2em;
-        /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
     }
 
     body.dark-mode .wbnrfz_details_blog {
@@ -471,11 +469,23 @@
         margin-top: 0em !important;
         padding-top: 3em !important;
         padding-bottom: 2em;
-        /* mask-image: linear-gradient(to bottom, white calc(100% - 32px), transparent 100%); */
     }
 
     .breadcrumb {
         justify-content: left;
+    }
+
+    .slide-content {
+        margin: 0 10px;
+    }
+
+    .swiper-navBtn {
+        display: none;
+    }
+
+    .swiper-blur-left,
+    .swiper-blur-right {
+        width: 24px;
     }
 
 }
@@ -537,6 +547,27 @@
         color: #7b7b7b;
         white-space: nowrap;
         max-width: 100%;
+    }
+
+    .slide-content {
+        margin: 0 0px !important;
+        padding: 0 4vw !important;
+    }
+
+    .swiper-slide {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+        padding: 0 !important;
+    }
+
+    .card-ri,
+    .card-ri-active {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+
     }
 }
 
@@ -867,7 +898,7 @@
         padding-right: 3em;
     }
 
-        .col-xl-4 {
+    .col-xl-4 {
         padding-bottom: 2em;
         padding-left: 1em;
         padding-right: 1em;
