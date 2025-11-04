@@ -903,6 +903,12 @@
         padding-left: 1em;
         padding-right: 1em;
     }
+
+    .card-body-stats {
+        padding: 1.25rem;
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
 }
 
 /* ---- */
@@ -1039,7 +1045,8 @@
         padding-right: 2em;
     }
 
-    #cv-tdc {
+    #cv-tdc,
+    #cv-about {
         height: 45vh !important;
     }
 
@@ -1047,6 +1054,12 @@
         padding-bottom: 2em;
         padding-left: 1em;
         padding-right: 1em;
+    }
+
+    .card-body-stats {
+        padding: 1.25rem;
+        padding-left: 0rem;
+        padding-right: 0rem;
     }
 
 }
