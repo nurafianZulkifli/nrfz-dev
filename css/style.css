@@ -2652,51 +2652,6 @@ h4.stn:hover {
     margin-right: 5px;
 }
 
-#line-nsl,
-#line-nsl-img {
-    content: url('../img/networks/nsl-diag.png');
-}
-
-#line-ewl,
-#line-ewl-img {
-    content: url('../img/networks/ewl-diag.png');
-}
-
-#line-sk,
-#line-sk-img {
-    content: url('../img/networks/sk-diag.png');
-}
-
-#line-ccl,
-#line-ccl-img {
-    content: url('../img/networks/ccl-diag.png');
-}
-
-#line-nel,
-#line-nel-img {
-    content: url('../img/networks/nel-diag.png');
-}
-
-#line-tel,
-#line-tel-img {
-    content: url('../img/networks/tel-diag.png');
-}
-
-#line-pg,
-#line-pg-img {
-    content: url('../img/networks/pg-diag.png');
-}
-
-#line-dtl,
-#line-dtl-img {
-    content: url('../img/networks/dtl-diag.png');
-}
-
-#line-bp,
-#line-bp-img {
-    content: url('../img/networks/bp-diag.png');
-}
-
 .wbnrfz_details {
     background: #ffffffe0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
