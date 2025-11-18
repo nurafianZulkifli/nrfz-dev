@@ -1617,6 +1617,11 @@ img.profile-pic {
     padding-top: 7em;
 }
 
+#df {
+    background-color: #f6f7f2;
+    padding-top: 5em;
+}
+
 #io {
     background-color: #ececea;
     padding-top: 10px;
@@ -2978,7 +2983,7 @@ h4.stn:hover {
 }
 
 
-#sort-options {
+#sort-options, #delayFilter {
     appearance: none;
     background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="black" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
     background-size: 10px;

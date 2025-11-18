@@ -826,7 +826,8 @@ body.dark-mode .portfolio-sort label {
     color: #fff;
 }
 
-body.dark-mode #sort-options {
+body.dark-mode #sort-options,
+body.dark-mode #delayFilter {
     appearance: none;
     background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="white" d="M0 0L5 6L10 0H0Z"/></svg>') no-repeat right 10px center;
     background-size: 10px;

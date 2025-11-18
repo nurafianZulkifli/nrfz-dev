@@ -122,3 +122,31 @@ window.addEventListener('DOMContentLoaded', function() {
         if (el) el.scrollIntoView({behavior: "smooth"});
     }
 });
+
+
+    // JavaScript to handle the dropdown toggle
+    // document.getElementById('delayFilter').addEventListener('change', function () {
+    //     const selectedFilter = this.value;
+    //     const cards = document.querySelectorAll('.delay-card');
+
+    //     cards.forEach(card => {
+    //         const delayStatus = card.getAttribute('data-delay-status');
+    //         if (selectedFilter === 'all' || delayStatus === selectedFilter) {
+    //             card.style.display = 'block';
+    //         } else {
+    //             card.style.display = 'none';
+    //         }
+    //     });
+    // });
+
+        document.getElementById('delayFilter').addEventListener('change', function () {
+        const selectedValue = this.value;
+
+        // Redirect based on the selected value
+        if (selectedValue === 'reported') {
+            window.location.href = 'index.html'; // Replace with the actual URL
+        } else if (selectedValue === 'unreported') {
+            window.location.href = 'index-ud.html'; // Replace with the actual URL
+        }
+    });
+
