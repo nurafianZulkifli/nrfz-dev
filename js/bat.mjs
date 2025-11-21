@@ -1,21 +1,23 @@
 import express from 'express';
-import axios from 'axios';
-import { createClient } from '@supabase/supabase-js';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import axios from 'axios';
+import { createClient } from '@supabase/supabase-js';
 
 dotenv.config();
 
 const app = express();
-const port = 3000;
+app.use(cors({
+    origin: process.env.ALLOWED_ORIGIN || '*', // Replace '*' with your frontend URL in production
+}));
 
-const supabaseUrl = 'https://umwzyyussvyzgdrqhoir.supabase.co';
-const supabaseKey = 'sb_publishable_ejFNl66l6ML87merySO9Wg_2TukDnZ7'; // Keep this secure
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const ltaAccountKey = process.env.LTA_ACCOUNT_KEY;
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const ltaAccountKey = 'x4qNELfkS8O3YhQUQpQV8A=='; // Keep this secure
-
-app.use(cors());
+const PORT = process.env.PORT || 3000; // Use Heroku's port or default to 3000
 
 app.get('/bus-arrivals', async (req, res) => {
   try {
@@ -34,14 +36,14 @@ app.get('/bus-arrivals', async (req, res) => {
 
     // Preprocess the data to match Supabase schema
     const processedData = ltaData.map((service) => ({
-      serviceno: service.ServiceNo, // Change to lowercase
-      operator: service.Operator, // Change to lowercase
-      estimatedarrival: service.NextBus.EstimatedArrival, // Change to lowercase
-      latitude: service.NextBus.Latitude, // Change to lowercase
-      longitude: service.NextBus.Longitude, // Change to lowercase
-      load: service.NextBus.Load, // Change to lowercase
-      feature: service.NextBus.Feature, // Change to lowercase
-      type: service.NextBus.Type, // Change to lowercase
+      serviceno: service.ServiceNo,
+      operator: service.Operator,
+      estimatedarrival: service.NextBus.EstimatedArrival,
+      latitude: service.NextBus.Latitude,
+      longitude: service.NextBus.Longitude,
+      load: service.NextBus.Load,
+      feature: service.NextBus.Feature,
+      type: service.NextBus.Type,
     }));
 
     // Insert processed data into Supabase
@@ -61,7 +63,6 @@ app.get('/bus-arrivals', async (req, res) => {
   }
 });
 
-
 app.get('/get-bus-arrivals', async (req, res) => {
   console.log('Received request for /get-bus-arrivals');
   try {
@@ -78,6 +79,6 @@ app.get('/get-bus-arrivals', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
