@@ -19,6 +19,20 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const PORT = process.env.PORT || 3000; // Use Heroku's port or default to 3000
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Serve static files from the "bat" directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, '../bat')));
+
+// Default route to serve the main HTML file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../bat/bus-arr.html'));
+});
+
 app.get('/bus-arrivals', async (req, res) => {
   try {
     // Fetch data from LTA DataMall API
