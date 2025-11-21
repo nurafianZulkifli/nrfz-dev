@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-    origin: process.env.ALLOWED_ORIGIN || '*', // Replace '*' with your frontend URL in production
+    origin: process.env.ALLOWED_ORIGIN || 'https://nurafianzulkifli.github.io/nrfz-dev/bat/bus-arr.html', // Replace '*' with your frontend URL in production
 }));
 
 const supabaseUrl = process.env.SUPABASE_URL;
