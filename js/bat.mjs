@@ -7,9 +7,21 @@ import { createClient } from '@supabase/supabase-js';
 dotenv.config();
 
 const app = express();
+
 app.use(cors({
-    origin: process.env.ALLOWED_ORIGIN || 'https://nurafianzulkifli.github.io',
+    origin: (origin, callback) => {
+        const allowedOrigins = [
+            'https://nurafianzulkifli.github.io/nrfz-dev', // Production
+            'http://localhost:5500'              // Development
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
 }));
+
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
