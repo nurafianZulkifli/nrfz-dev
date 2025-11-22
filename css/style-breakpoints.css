@@ -1234,6 +1234,11 @@
         padding-left: 1em !important;
     }
 
+    .bus-time {
+    margin-right: 1em; /* Adjust spacing as needed */
+    font-size: 15px;
+}
+
 }
 
 /* ---- */

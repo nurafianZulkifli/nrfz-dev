@@ -183,7 +183,7 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="#">Blog</a>
+                                    <a href="#">Works By NRFZ</a>
                                 </li>
                             </ol>
                         </nav>
@@ -243,7 +243,7 @@
     </section>
 
     <!-- Section Contents -->
-    <section class="about-me-summ clearfix">
+    <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
         <div class="container">
 
             <table class="table">
@@ -266,7 +266,7 @@
             </table>
 
 
-            <table class="table">
+            <!-- <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Services</th>
@@ -290,7 +290,7 @@
                         <td><img src="assets/smrt.png" alt="bd" class="operator-logo"></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
 
         </div>
     </section>
@@ -384,7 +384,7 @@
                             <p class="svcNum">${service.ServiceNo}</p>
                         </td>
                         <td class="departure-spacing">
-                            <span class="bus-time"> ${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : 'N/A'}</span>
+                            <span class="bus-time">${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : 'N/A'}</span>
                             <span class="bus-time">${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : 'N/A'}</span>
                         </td>
                         <td>
