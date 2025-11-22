@@ -74,7 +74,7 @@ function updateThemeIcon(theme) {
 
 function updateHrefForDarkMode() {
     /* Banners */
-    const aboutPage = document.getElementById('cv-about');
+    const aboutPage = document.getElementById('cv-bat');
 
     const isDarkMode = document.body.classList.contains('dark-mode');
 
