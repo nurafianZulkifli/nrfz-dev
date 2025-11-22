@@ -57,9 +57,9 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(lat1 * (Math.PI / 180)) *
-      Math.cos(lat2 * (Math.PI / 180)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(lat2 * (Math.PI / 180)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c; // Distance in kilometers
 }
@@ -97,8 +97,8 @@ app.get('/nearby-bus-stops', async (req, res) => {
       }
     }
 
-    // Calculate distances and find the nearest bus stop
-    const nearbyBusStops = busStops
+    // Calculate distances and find the 3 nearest bus stops
+    const nearbyBusStops = validBusStops
       .map((busStop) => {
         const distance = calculateDistance(
           parseFloat(latitude),
@@ -109,10 +109,10 @@ app.get('/nearby-bus-stops', async (req, res) => {
         return { ...busStop, distance };
       })
       .filter((busStop) => busStop.distance <= parseFloat(radius))
-      .sort((a, b) => a.distance - b.distance); // Sort by distance
+      .sort((a, b) => a.distance - b.distance) // Sort by distance
+      .slice(0, 3); // Get the 3 closest bus stops
 
-    // Return the nearest bus stop
-    res.json(nearbyBusStops.length > 0 ? nearbyBusStops[0] : null);
+    res.json(nearbyBusStops);
   } catch (error) {
     console.error('Error fetching nearby bus stops:', error.message);
     res.status(500).send('Error connecting to LTA DataMall');
