@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/nurafianZulkifli/nrfz-dev/issues"
   },
-  "homepage": "https://github.com/nurafianZulkifli/nrfz-dev#readme"
+  "homepage": "https://github.com/nurafianZulkifli/nrfz-dev#readme",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "express": "^5.1.0"
+  }
 }
