@@ -3654,3 +3654,23 @@ table th {
     color: #ff0000; /* Change to your desired color */
     font-weight: bold;
 }
+
+.zoom-controls {
+    margin-bottom: 1em;
+    text-align: right;
+}
+
+.zoom-controls button {
+    padding: 0.5em 1em;
+    margin: 0 0.5em;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.zoom-controls button:hover {
+    background-color: #e0e0e0;
+}

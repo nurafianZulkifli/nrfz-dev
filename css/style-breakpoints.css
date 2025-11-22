@@ -1232,6 +1232,7 @@
 
     .departure-spacing {
         padding-left: 1em !important;
+        padding-right: 1em !important;
     }
 
     .bus-time {
