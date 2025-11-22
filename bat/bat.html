@@ -191,7 +191,7 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
-                                    <h1 class="page-title" id="filter-title">All Posts</h1>
+                                    <h1 class="page-title" id="filter-title">Bus Arrival Timings</h1>
                                 </div>
                                 <div style="position: relative; max-width: 400px; margin-top: 5px;">
                                     <i class="fa-solid fa-search"
@@ -251,11 +251,16 @@
                     <tr>
                         <th scope="col">Services</th>
                         <th scope="col">Departure Times</th>
+                        <th scope="col">Fleet Type</th>
+                        <th scope="col">Operator</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-
+                        <td>
+                            <span class="bus-time"></span>
+                            <span class="bus-time"></span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -308,7 +313,6 @@
 
     <script src="../js/isotope.pkgd.min.js"></script>
 
-    <script src="../js/blogFunct.js"></script>
 
     <script src="../js/dstabs.js"></script>
 
@@ -317,12 +321,18 @@
     async function fetchBusArrivals() {
         try {
             const searchInput = document.getElementById('bus-stop-search').value.trim();
+            const tableBody = document.querySelector('table tbody');
+
+            // If no input, show a message and stop further execution
+            if (!searchInput) {
+                tableBody.innerHTML = '<tr><td colspan="4">Please type a Bus Stop Code</td></tr>';
+                return;
+            }
+
             const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
 
             // Append query parameters
-            if (searchInput) {
-                url.searchParams.append('busStop', searchInput);
-            }
+            url.searchParams.append('BusStopCode', searchInput);
 
             const response = await fetch(url);
 
@@ -333,11 +343,10 @@
             const data = await response.json();
             console.log('API Response:', data); // Debugging log
 
-            const tableBody = document.querySelector('table tbody');
             tableBody.innerHTML = ''; // Clear existing rows
 
             if (!data.Services || data.Services.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="2">No data available</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="4">No data available</td></tr>';
                 return;
             }
 
@@ -345,22 +354,47 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${service.ServiceNo}</td>
-                    <td>${service.NextBus.EstimatedArrival || 'N/A'}</td>
+                    <td><span class="bus-time">
+                        ${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : 'N/A'}</span>
+                        <span class="bus-time">${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : 'N/A'}</span>
+                    </td>
+                    <td>${service.NextBus.Type}</td>
+                    <td>${service.Operator}</td>
                 `;
                 tableBody.appendChild(row);
             });
         } catch (error) {
             console.error('Error fetching bus arrivals:', error);
             const tableBody = document.querySelector('table tbody');
-            tableBody.innerHTML = '<tr><td colspan="2">Error loading data</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="4">Error loading data</td></tr>';
         }
     }
 
     // Add an event listener to the search input
     document.getElementById('bus-stop-search').addEventListener('input', fetchBusArrivals);
 
-    // Initial call to fetch and populate data
+    // Initial call to show the default message
     fetchBusArrivals();
+
+    // Refresh data every 30 seconds
+    setInterval(fetchBusArrivals, 30000);
+
+    // Function to format ISO string to hh:mm and show "Arr" if the time matches the current time
+    function formatArrivalTime(isoString) {
+        const date = new Date(isoString);
+        const hours = date.getHours().toString().padStart(2, '0'); // Ensure 2-digit format
+        const minutes = date.getMinutes().toString().padStart(2, '0'); // Ensure 2-digit format
+        const formattedTime = `${hours}:${minutes}`;
+
+        // Get the current time in hh:mm format
+        const now = new Date();
+        const currentHours = now.getHours().toString().padStart(2, '0');
+        const currentMinutes = now.getMinutes().toString().padStart(2, '0');
+        const currentTime = `${currentHours}:${currentMinutes}`;
+
+        // Compare the times and return "Arr" if they match
+        return formattedTime === currentTime ? 'Arr' : formattedTime;
+    }
 </script>
 
 </body>
