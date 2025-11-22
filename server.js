@@ -11,7 +11,7 @@ app.use(cors()); // Enable CORS
 // Define the /bus-arrivals route
 app.get('/bus-arrivals', async (req, res) => {
   try {
-    const response = await axios.get('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals', {
+    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=45401', {
       headers: {
         AccountKey: LTA_API_KEY,
         accept: 'application/json',
