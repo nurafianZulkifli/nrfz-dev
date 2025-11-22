@@ -1,18 +1,17 @@
 const express = require('express');
 const axios = require('axios');
-
 const cors = require('cors');
-app.use(cors());
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Use Heroku's dynamic port or default to 3000
+const PORT = process.env.PORT || 3000;
+const LTA_API_KEY = process.env.LTA_API_KEY;
 
-const LTA_API_KEY = process.env.LTA_API_KEY; // Store your API key in environment variables
+app.use(cors()); // Enable CORS
 
-// Define the route
+// Define the /bus-arrivals route
 app.get('/bus-arrivals', async (req, res) => {
   try {
-    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=45401', {
+    const response = await axios.get('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals', {
       headers: {
         AccountKey: LTA_API_KEY,
         accept: 'application/json',
