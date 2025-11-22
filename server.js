@@ -67,7 +67,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 // Define the /nearby-bus-stops route
 app.get('/nearby-bus-stops', async (req, res) => {
   try {
-    const { latitude, longitude, radius = 1 } = req.query; // Default radius is 1 km
+    const { latitude, longitude, radius = 1 } = req.query;
 
     if (!latitude || !longitude) {
       return res.status(400).send('Latitude and Longitude are required');
@@ -82,18 +82,22 @@ app.get('/nearby-bus-stops', async (req, res) => {
 
     const busStops = response.data.value;
 
-    // Filter bus stops within the specified radius
-    const nearbyBusStops = busStops.filter((busStop) => {
-      const distance = calculateDistance(
-        parseFloat(latitude),
-        parseFloat(longitude),
-        busStop.Latitude,
-        busStop.Longitude
-      );
-      return distance <= parseFloat(radius);
-    });
+    // Calculate distances and find the nearest bus stop
+    const nearbyBusStops = busStops
+      .map((busStop) => {
+        const distance = calculateDistance(
+          parseFloat(latitude),
+          parseFloat(longitude),
+          busStop.Latitude,
+          busStop.Longitude
+        );
+        return { ...busStop, distance };
+      })
+      .filter((busStop) => busStop.distance <= parseFloat(radius))
+      .sort((a, b) => a.distance - b.distance); // Sort by distance
 
-    res.json(nearbyBusStops);
+    // Return the nearest bus stop
+    res.json(nearbyBusStops.length > 0 ? nearbyBusStops[0] : null);
   } catch (error) {
     console.error('Error fetching nearby bus stops:', error.message);
     res.status(500).send('Error connecting to LTA DataMall');
