@@ -9,7 +9,7 @@ const LTA_API_KEY = process.env.LTA_API_KEY; // Store your API key in environmen
 // Define the route
 app.get('/bus-arrivals', async (req, res) => {
   try {
-    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival', {
+    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=45401', {
       headers: {
         AccountKey: LTA_API_KEY,
         accept: 'application/json',
