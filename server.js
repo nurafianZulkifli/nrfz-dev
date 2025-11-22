@@ -98,7 +98,7 @@ app.get('/nearby-bus-stops', async (req, res) => {
     }
 
     // Calculate distances and find the 3 nearest bus stops
-    const nearbyBusStops = validBusStops
+    const nearbyBusStops = busStops // Replace `validBusStops` with `busStops`
       .map((busStop) => {
         const distance = calculateDistance(
           parseFloat(latitude),

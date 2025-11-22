@@ -46,7 +46,7 @@
 
                 try {
                     // Fetch nearby bus stops from the backend
-                    const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=1`);
+                    const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=2`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch nearby bus stops');
                     }
