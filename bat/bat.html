@@ -317,9 +317,15 @@
     async function fetchBusArrivals() {
         try {
             const searchInput = document.getElementById('bus-stop-search').value.trim();
-            const queryParam = searchInput ? `?busStop=${encodeURIComponent(searchInput)}` : '';
-            const response = await fetch(`https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals${queryParam}`);
-            
+            const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
+
+            // Append query parameters
+            if (searchInput) {
+                url.searchParams.append('busStop', searchInput);
+            }
+
+            const response = await fetch(url);
+
             if (!response.ok) {
                 throw new Error('Failed to fetch bus arrivals');
             }
@@ -339,7 +345,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${service.ServiceNo}</td>
-                    <td>${service.NextBus.EstimatedArrival}</td>
+                    <td>${service.NextBus.EstimatedArrival || 'N/A'}</td>
                 `;
                 tableBody.appendChild(row);
             });
