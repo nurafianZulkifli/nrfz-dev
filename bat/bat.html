@@ -302,6 +302,38 @@
 
     <script src="js/dstabs.js"></script>
 
+    <script>
+  // Fetch data from the backend API
+  async function fetchBusArrivals() {
+    try {
+      const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
+      if (!response.ok) {
+        throw new Error('Failed to fetch bus arrivals');
+      }
+
+      const data = await response.json();
+
+      // Assuming the data contains an array of bus services and their departure times
+      const tableBody = document.querySelector('table tbody');
+      tableBody.innerHTML = ''; // Clear existing rows
+
+      data.Services.forEach((service) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${service.ServiceNo}</td>
+          <td>${service.NextBus.EstimatedArrival}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    } catch (error) {
+      console.error('Error fetching bus arrivals:', error);
+    }
+  }
+
+  // Call the function to fetch and populate data
+  fetchBusArrivals();
+</script>
+
 </body>
 
 </html>
