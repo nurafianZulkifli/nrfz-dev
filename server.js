@@ -97,7 +97,7 @@ app.get('/nearby-bus-stops', async (req, res) => {
       }
     }
 
-    // Calculate distances and find the nearest bus stop
+    // Calculate distances and find the 3 nearest bus stops
     const nearbyBusStops = busStops
       .map((busStop) => {
         const distance = calculateDistance(
@@ -109,10 +109,10 @@ app.get('/nearby-bus-stops', async (req, res) => {
         return { ...busStop, distance };
       })
       .filter((busStop) => busStop.distance <= parseFloat(radius))
-      .sort((a, b) => a.distance - b.distance); // Sort by distance
+      .sort((a, b) => a.distance - b.distance) // Sort by distance
+      .slice(0, 3); // Get the 3 closest bus stops
 
-    // Return the nearest bus stop
-    res.json(nearbyBusStops.length > 0 ? nearbyBusStops[0] : null);
+    res.json(nearbyBusStops);
   } catch (error) {
     console.error('Error fetching nearby bus stops:', error.message);
     res.status(500).send('Error connecting to LTA DataMall');
