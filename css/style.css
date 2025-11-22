@@ -3745,7 +3745,17 @@ table th {
 }
 
 .bus-stop:hover {
-    background-color: #c7e3fb;
+    background-color: #d8e6f3;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bus-stop-code {
+    color: #3294ac !important;
+    cursor: pointer;
+    transition-duration: 800ms;
+}
+
+.bus-stop-code:hover {
+    color: #52718d !important;
 }

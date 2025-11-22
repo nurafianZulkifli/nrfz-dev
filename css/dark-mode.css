@@ -808,3 +808,20 @@ body.dark-mode .bus-stop {
     transition: all 0.5s ease;
     border: 1px solid #2b2b2b33;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(61, 61, 61, 0.384);
+}
+
+body.dark-mode .bus-stop:hover {
+    background-color: #334250;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .bus-stop-code {
+    color: #3294ac !important;
+    cursor: pointer;
+    transition-duration: 800ms;
+}
+
+body.dark-mode .bus-stop-code:hover {
+    color: #a4c5e2 !important;
+}
