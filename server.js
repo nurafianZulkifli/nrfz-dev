@@ -32,6 +32,23 @@ app.get('/bus-arrivals', async (req, res) => {
   }
 });
 
+// Define the /bus-stops route
+app.get('/bus-stops', async (req, res) => {
+  try {
+    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/BusStops', {
+      headers: {
+        AccountKey: LTA_API_KEY,
+        accept: 'application/json',
+      },
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching bus stops from LTA:', error.message);
+    res.status(500).send('Error connecting to LTA DataMall');
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
