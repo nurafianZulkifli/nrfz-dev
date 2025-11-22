@@ -3724,3 +3724,28 @@ table th {
     height: 20px;
     object-fit: contain;
 }
+
+#bus-stops {
+    margin-top: 20px;
+}
+
+.bus-stop {
+    transition-duration: 800ms;
+    background-color: #fff;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 25px;
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bus-stop:hover {
+    background-color: #c7e3fb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

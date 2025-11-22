@@ -26,13 +26,13 @@
 
 <body>
     <h1>Nearby Bus Stops</h1>
-    <button id="get-location">Find Nearby Bus Stops</button>
     <div id="bus-stops"></div>
 
     <script>
         const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/nearby-bus-stops'; // Update with your server URL
 
-        document.getElementById('get-location').addEventListener('click', () => {
+        // Automatically fetch nearby bus stops on page load
+        document.addEventListener('DOMContentLoaded', () => {
             // Check if geolocation is available
             if (!navigator.geolocation) {
                 alert('Geolocation is not supported by your browser.');
@@ -77,13 +77,24 @@
                 const busStopElement = document.createElement('div');
                 busStopElement.className = 'bus-stop';
                 busStopElement.innerHTML = `
-      <strong>${index + 1}. Bus Stop Code:</strong> ${busStop.BusStopCode}<br>
-      <strong>Description:</strong> ${busStop.Description}<br>
-      <strong>Road Name:</strong> ${busStop.RoadName}<br>
-      <strong>Distance:</strong> ${busStop.distance ? `${busStop.distance.toFixed(2)} km` : 'N/A'
-                    }
-    `;
+                <strong>${index + 1}. Bus Stop Code:</strong> 
+                <span class="bus-stop-code" style="color: blue; cursor: pointer;" data-code="${busStop.BusStopCode}">
+                    ${busStop.BusStopCode}
+                </span><br>
+                <strong>Description:</strong> ${busStop.Description}<br>
+                <strong>Road Name:</strong> ${busStop.RoadName}<br>
+                <strong>Distance:</strong> ${busStop.distance ? `${busStop.distance.toFixed(2)} km` : 'N/A'}
+                `;
                 busStopsContainer.appendChild(busStopElement);
+            });
+
+            // Add click event listeners to bus stop codes
+            document.querySelectorAll('.bus-stop-code').forEach((element) => {
+                element.addEventListener('click', (event) => {
+                    const busStopCode = event.target.getAttribute('data-code');
+                    // Navigate to bat.html with the bus stop code as a query parameter
+                    window.location.href = `bat.html?BusStopCode=${busStopCode}`;
+                });
             });
         }
     </script>

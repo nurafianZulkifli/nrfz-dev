@@ -168,7 +168,7 @@
         </div>
     </section>
 
-    <!-- Breadcrumbs -->
+    <!-- Title/Breadcrumbs -->
     <section class="about-me-sum clearfix">
         <div class="wbnrfz_eicw">
             <div class="page-header-section">
@@ -177,7 +177,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">
+                                    <a href="../index.html">
                                         <i class="fa-solid fa-house"></i>
                                     </a>
                                 </li>
@@ -198,38 +198,39 @@
                                     <input type="text" id="bus-stop-search" class="form-control"
                                         placeholder=" Search for a Bus Stop" style="padding-left: 35px; width: 100%;">
                                 </div>
+
                             </div>
                         </div>
                     </div>
 
-                    <div class="scrollable-tabs-container">
-                        <div class="left-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                            </svg>
+                </div>
 
-                        </div>
 
-                        <ul>
-                            <li>
-                                <a href="nbs.html">Nearby Bus Stops</a>
-                            </li>
-
-                            <li>
-                                <a href="bat.html">Search Bus Stop</a>
-                            </li>
-                        </ul>
-
-                        <div class="right-arrow active">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                            </svg>
-
-                        </div>
+                <div class="scrollable-tabs-container">
+                    <div class="left-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
                     </div>
 
+                    <ul>
+                        <li>
+                            <a href="nbs.html">Nearby Bus Stops</a>
+                        </li>
+
+                        <li>
+                            <a href="bat.html" id="search-bus-stop-button">Search Bus Stop</a>
+                        </li>
+                    </ul>
+
+                    <div class="right-arrow active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+
+                    </div>
                 </div>
                 <hr>
             </div>
@@ -256,14 +257,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <span class="bus-time"></span>
-                            <span class="bus-time"></span>
-                        </td>
+                    <tr class="message">
+                        <td colspan="4">Loading Data...</td>
                     </tr>
                 </tbody>
             </table>
+
         </div>
     </section>
 
@@ -316,6 +315,40 @@
     <script src="../js/dstabs.js"></script>
 
     <script>
+        // Function to get query parameters from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Populate the search bar with the BusStopCode from the query parameter
+        document.addEventListener('DOMContentLoaded', () => {
+            const busStopCode = getQueryParam('BusStopCode');
+            const searchInput = document.getElementById('bus-stop-search');
+            const tableBody = document.querySelector('table tbody');
+
+            if (busStopCode) {
+                searchInput.value = busStopCode; // Set the search bar value
+                sessionStorage.setItem('busStopSearch', busStopCode); // Save to sessionStorage
+                fetchBusArrivals(); // Trigger the search
+
+                // Remove the query parameters from the URL after loading
+                const url = new URL(window.location.href);
+                url.searchParams.delete('BusStopCode');
+                window.history.replaceState({}, document.title, url.pathname);
+            } else {
+                // Restore the search input value from sessionStorage on page load
+                const savedSearch = sessionStorage.getItem('busStopSearch');
+                if (savedSearch) {
+                    searchInput.value = savedSearch;
+                    fetchBusArrivals(); // Fetch data for the saved search value
+                } else {
+                    // Show "Enter Bus Stop Code" message if no value is present
+                    tableBody.innerHTML = '<tr class="message"><td colspan="4">Enter Bus Stop Code</td></tr>';
+                }
+            }
+        });
+
         // Fetch data from the backend API
         async function fetchBusArrivals() {
             try {
@@ -352,16 +385,16 @@
                 data.Services.forEach((service) => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                    <td class="svcNumtd">
-                        <p class="svcNum">${service.ServiceNo}</p>
-                    </td>
-                    <td class="departure-spacing">
-                        <span class="bus-time">${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : '-'} &nbsp; ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : ''}</span>
-                        <span class="bus-time">${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : ''} &nbsp; ${service.NextBus2.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : ''}</span>
-                    </td>
-                    <td> 
-                        ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="operator-logo">` : ''}</td>
-                `;
+            <td class="svcNumtd">
+                <p class="svcNum">${service.ServiceNo}</p>
+            </td>
+            <td class="departure-spacing">
+                <span class="bus-time">${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : '-'} &nbsp; ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : ''}</span>
+                <span class="bus-time">${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : ''} &nbsp; ${service.NextBus2.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : ''}</span>
+            </td>
+            <td> 
+                ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="operator-logo">` : ''}</td>
+        `;
                     tableBody.appendChild(row);
                 });
             } catch (error) {
@@ -370,27 +403,6 @@
                 tableBody.innerHTML = '<tr><td colspan="4">Error loading data</td></tr>';
             }
         }
-
-        // Save the search input value to localStorage
-        document.getElementById('bus-stop-search').addEventListener('input', (event) => {
-            localStorage.setItem('busStopSearch', event.target.value);
-            fetchBusArrivals();
-        });
-
-        // Restore the search input value from localStorage on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedSearch = localStorage.getItem('busStopSearch');
-            const tableBody = document.querySelector('table tbody');
-
-            if (savedSearch) {
-                document.getElementById('bus-stop-search').value = savedSearch;
-                fetchBusArrivals(); // Fetch data for the saved search value
-            } else {
-                // Show "Enter Bus Stop Code" message if no saved search value
-                tableBody.innerHTML = '<tr class="message"><td colspan="4">Enter Bus Stop Code</td></tr>';
-            }
-        });
-
         // Refresh data every 30 seconds
         setInterval(fetchBusArrivals, 30000);
 
@@ -413,6 +425,34 @@
             }
             return formattedTime;
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchBusStopButton = document.getElementById('search-bus-stop-button'); // Select the button by id
+            const searchInput = document.getElementById('bus-stop-search'); // Select the search input field
+            const tableBody = document.querySelector('table tbody'); // Select the table body
+
+            if (searchBusStopButton && searchInput && tableBody) {
+                searchBusStopButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    searchInput.value = ''; // Clear the search bar
+                    sessionStorage.removeItem('busStopSearch'); // Clear session storage
+                    tableBody.innerHTML = '<tr class="message"><td colspan="4">Enter Bus Stop Code</td></tr>'; // Reset table content
+                });
+            }
+        });
+
+        // Debounce function
+        function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        // Attach debounce to the search input
+        const searchInput = document.getElementById('bus-stop-search');
+        searchInput.addEventListener('input', debounce(fetchBusArrivals, 300));
     </script>
 
 </body>
