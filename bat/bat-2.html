@@ -63,26 +63,28 @@
             });
         });
 
-        // Display the list of nearby bus stops
-        // Display the nearest bus stop
-        function displayBusStops(busStop) {
+        // Display the 3 nearest bus stops
+        function displayBusStops(busStops) {
             const busStopsContainer = document.getElementById('bus-stops');
             busStopsContainer.innerHTML = ''; // Clear previous results
 
-            if (!busStop) {
+            if (!busStops || busStops.length === 0) {
                 busStopsContainer.innerHTML = '<p>No bus stops found nearby.</p>';
                 return;
             }
 
-            const busStopElement = document.createElement('div');
-            busStopElement.className = 'bus-stop';
-            busStopElement.innerHTML = `
-            <strong>Bus Stop Code:</strong> ${busStop.BusStopCode}<br>
-            <strong>Description:</strong> ${busStop.Description}<br>
-            <strong>Road Name:</strong> ${busStop.RoadName}<br>
-            <strong>Distance:</strong> ${busStop.distance.toFixed(2)} km
-        `;
-            busStopsContainer.appendChild(busStopElement);
+            busStops.forEach((busStop, index) => {
+                const busStopElement = document.createElement('div');
+                busStopElement.className = 'bus-stop';
+                busStopElement.innerHTML = `
+      <strong>${index + 1}. Bus Stop Code:</strong> ${busStop.BusStopCode}<br>
+      <strong>Description:</strong> ${busStop.Description}<br>
+      <strong>Road Name:</strong> ${busStop.RoadName}<br>
+      <strong>Distance:</strong> ${busStop.distance ? `${busStop.distance.toFixed(2)} km` : 'N/A'
+                    }
+    `;
+                busStopsContainer.appendChild(busStopElement);
+            });
         }
     </script>
 </body>
