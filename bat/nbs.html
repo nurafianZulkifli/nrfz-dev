@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>BAT | Blog</title>
+    <title>Nearby Bus Stops | BAT</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
@@ -36,6 +36,10 @@
     #cv-bat {
         background-image: url("../img/bg-img/hero-bg-small.png");
         height: 34vh;
+    }
+
+    .footer {
+        display: none;
     }
 </style>
 
@@ -321,6 +325,7 @@
                 } catch (error) {
                     console.error('Error:', error);
                     busStopsContainer.innerHTML = '<p>Failed to fetch nearby bus stops. Please try again later.</p>';
+                    footer.style.display = 'block'; 
                 }
             }, (error) => {
                 console.error('Geolocation error:', error);
@@ -331,10 +336,12 @@
         // Display the 3 nearest bus stops
         function displayBusStops(busStops) {
             const busStopsContainer = document.getElementById('bus-stops');
+            const footer = document.querySelector('.footer'); // Select the footer
             busStopsContainer.innerHTML = ''; // Clear previous results
 
             if (!busStops || busStops.length === 0) {
                 busStopsContainer.innerHTML = '<p>No bus stops found nearby.</p>';
+                footer.style.display = 'block'; // Show footer even if no bus stops are found
                 return;
             }
 
@@ -346,14 +353,14 @@
                 const busStopElement = document.createElement('div');
                 busStopElement.className = 'bus-stop';
                 busStopElement.innerHTML = `
-        <strong>Bus Stop Code:</strong> 
-        <span class="bus-stop-code" data-code="${busStop.BusStopCode}" data-description="${busStop.Description}">
-            ${busStop.BusStopCode}
-        </span><br>
-        <strong>Description:</strong> ${busStop.Description}<br>
-        <strong>Road Name:</strong> ${busStop.RoadName}<br>
-        <strong>Distance:</strong> ${distance}
-    `;
+            <strong>Bus Stop Code:</strong> 
+            <span class="bus-stop-code" data-code="${busStop.BusStopCode}" data-description="${busStop.Description}">
+                ${busStop.BusStopCode}
+            </span><br>
+            <strong>Description:</strong> ${busStop.Description}<br>
+            <strong>Road Name:</strong> ${busStop.RoadName}<br>
+            <strong>Distance:</strong> ${distance}
+        `;
                 busStopsContainer.appendChild(busStopElement);
             });
 
@@ -366,6 +373,8 @@
                     window.location.href = `bat.html?BusStopCode=${encodeURIComponent(busStopCode)}&Description=${encodeURIComponent(description)}`;
                 });
             });
+
+            footer.style.display = 'block'; // Show footer after bus stops are loaded
         }
 
         document.addEventListener('DOMContentLoaded', () => {
