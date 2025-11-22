@@ -801,3 +801,10 @@ body.dark-mode .arrival-now {
     color: #9fa102;
     font-weight: bold;
 }
+
+body.dark-mode .bus-stop {
+    background-color: #2e2e2e;
+    color: #fff;
+    transition: all 0.5s ease;
+    border: 1px solid #2b2b2b33;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(61, 61, 61, 0.384);
