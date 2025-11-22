@@ -776,6 +776,10 @@ body.dark-mode .flickity-prev-next-button .arrow {
 
 /* ------------------------------------------*/
 
+body.dark-mode .table {
+    border: 1px solid #000;
+}
+
 body.dark-mode table th {
     background-color: #94d40b;
     color: #000;
@@ -791,4 +795,9 @@ body.dark-mode .svcNum {
     background-color: #94d40b;
     border-radius: 5px;
     color: #000;
+}
+
+body.dark-mode .arrival-now {
+    color: #ff0000;
+    font-weight: bold;
 }

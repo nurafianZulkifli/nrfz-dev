@@ -3593,6 +3593,27 @@ img.mfp-img {
 }
 
 /* ------------------------------------------*/
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    padding-left: 20px;
+}
+
+.table tr:last-child td:first-child {
+    border-bottom-left-radius: 25px;
+}
+
+.table tr:last-child td:last-child {
+    border-bottom-right-radius: 25px;
+}
 
 table th {
     background-color: #94d40b !important;
@@ -3602,23 +3623,24 @@ table th {
 }
 
 .bus-time {
-    display: inline-block; /* Ensures consistent alignment */
-    width: 115px; /* Set a fixed width for alignment */
-    text-align: center; /* Center-align the text */
-    margin-right: 10em; /* Retain the existing spacing */
-    font-size: 20px; /* Retain the current font size */
+    display: inline-block;
+    width: 115px;
+    text-align: center;
+    margin-right: 10em;
+    font-size: 20px;
 }
 
 .svcNum {
     background-color: #94d40b;
     border-radius: 5px;
     color: #000;
+    font-weight: bold;
 }
 
 .svcNumtd {
-    text-align: center; /* Center the text */
-    width: 85px; /* Adjust the width to fit the number */
-    white-space: nowrap; /* Prevent wrapping */
+    text-align: center;
+    width: 85px;
+    white-space: nowrap;
     margin-right: 3em;
 }
 
@@ -3628,30 +3650,28 @@ table th {
 }
 
 .operator-logo {
-    max-width: 100px; /* Set a maximum width for the logo */
-    max-height: 50px; /* Set a maximum height for the logo */
-    object-fit: contain; /* Ensure the image scales proportionally */
-    display: block; /* Ensure the image behaves like a block element */
-    margin: 0 auto; /* Center the image horizontally */
+    max-width: 100px;
+    max-height: 50px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
-/* Align the Operator column header with the logo */
 .operator-column {
-    text-align: center; /* Center-align the text in the header */
-    width: 20em; /* Set a fixed width for the column */
+    text-align: center;
+    width: 20em;
 }
 
-/* Ensure the logo in the data cells is centered and fits within the column */
 .operator-logo {
-    max-width: 100px; /* Set a maximum width for the logo */
-    max-height: 50px; /* Set a maximum height for the logo */
-    object-fit: contain; /* Ensure the image scales proportionally */
-    display: block; /* Ensure the image behaves like a block element */
-    margin: 0 auto; /* Center the image horizontally */
+    max-width: 100px;
+    max-height: 50px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 .arrival-now {
-    color: #ff0000; /* Change to your desired color */
+    color: #ff0000;
     font-weight: bold;
 }
 
@@ -3673,4 +3693,10 @@ table th {
 
 .zoom-controls button:hover {
     background-color: #e0e0e0;
+}
+
+.message {
+    font-size: 15px;
+    text-align: center;
+    font-style: italic;
 }
