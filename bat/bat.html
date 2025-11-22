@@ -358,7 +358,9 @@
                         ${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : 'N/A'}</span>
                         <span class="bus-time">${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : 'N/A'}</span>
                     </td>
-                    <td>${service.NextBus.Type}</td>
+                    <td>
+                        ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 50px; height: auto;">` : 'N/A'}
+                    </td>
                     <td>${service.Operator}</td>
                 `;
                 tableBody.appendChild(row);
