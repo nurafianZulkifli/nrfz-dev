@@ -424,7 +424,10 @@
             const currentTime = `${currentHours}:${currentMinutes}`;
 
             // Compare the times and return "Arr" if they match
-            return formattedTime === currentTime ? 'Arr' : formattedTime;
+            if (formattedTime === currentTime) {
+                return `<span class="arrival-now">Arr</span>`;
+            }
+            return formattedTime;
         }
     </script>
 

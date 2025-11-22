@@ -3649,3 +3649,8 @@ table th {
     display: block; /* Ensure the image behaves like a block element */
     margin: 0 auto; /* Center the image horizontally */
 }
+
+.arrival-now {
+    color: #ff0000; /* Change to your desired color */
+    font-weight: bold;
+}
