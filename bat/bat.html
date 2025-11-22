@@ -386,17 +386,36 @@
         }
 
         // Add event listener for search bar input
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('bus-stop-search');
-            const footer = document.querySelector('.footer');
+document.addEventListener('DOMContentLoaded', () => {
+    const busStopCode = getQueryParam('BusStopCode'); // Get BusStopCode from the URL
+    const description = getQueryParam('Description'); // Get Description from the URL
+    const searchInput = document.getElementById('bus-stop-search'); // Search input field
+    const tableBody = document.querySelector('table tbody'); // Table body
+    const footer = document.querySelector('.footer'); // Footer
 
-            // Hide footer when search bar is cleared
-            searchInput.addEventListener('input', () => {
-                if (!searchInput.value.trim()) {
-                    footer.style.display = 'none';
-                }
-            });
-        });
+    if (busStopCode) {
+        searchInput.value = busStopCode; // Set the search bar value
+        sessionStorage.setItem('busStopSearch', busStopCode); // Save to sessionStorage
+        fetchBusArrivals(); // Trigger the search
+
+        // Remove the query parameters from the URL after loading
+        const url = new URL(window.location.href);
+        url.searchParams.delete('BusStopCode');
+        url.searchParams.delete('Description');
+        window.history.replaceState({}, document.title, url.pathname);
+    } else {
+        // Restore the search input value from sessionStorage on page load
+        const savedSearch = sessionStorage.getItem('busStopSearch');
+        if (savedSearch) {
+            searchInput.value = savedSearch;
+            fetchBusArrivals(); // Fetch data for the saved search value
+        } else {
+            // Show "Enter Bus Stop Code" message if no value is present
+            tableBody.innerHTML = '<tr class="message"><td colspan="4">Enter Bus Stop Code</td></tr>';
+            footer.style.display = 'block'; // Show footer even if no search is performed
+        }
+    }
+});
 
         // Refresh data every 30 seconds
         setInterval(fetchBusArrivals, 30000);
