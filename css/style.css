@@ -3112,6 +3112,7 @@ li.breadcrumb-item a:hover {
     white-space: nowrap;
     border: 1px solid #cccccc;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff4d;
 }
 
 .nav-link::before {
