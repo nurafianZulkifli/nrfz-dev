@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="fa-solid fa-comment"></i>
                         <span>Blog</span>
                     </a>
@@ -251,7 +251,6 @@
                     <tr>
                         <th scope="col">Services</th>
                         <th scope="col" class="departure-spacing">Departure Times</th>
-                        <th scope="col">Fleet Type</th>
                         <th class="operator-column" scope="col">Operator</th>
                     </tr>
                 </thead>
@@ -384,12 +383,12 @@
                             <p class="svcNum">${service.ServiceNo}</p>
                         </td>
                         <td class="departure-spacing">
-                            <span class="bus-time">${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : 'N/A'}</span>
-                            <span class="bus-time">${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : 'N/A'}</span>
-                        </td>
-                        <td>
-                            ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 50px; height: auto;">` : 'N/A'}
-                        </td>
+                            <span class="bus-time">${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : 'N/A'} &nbsp; ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : 'N/A'}
+                            </span>
+
+                            <span class="bus-time">${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : 'N/A'}&nbsp; ${service.NextBus2.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : 'N/A'}
+                            </span>
+
                         <td> 
                             ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="operator-logo">` : 'N/A'}</td>
                 `;

@@ -3597,11 +3597,13 @@ img.mfp-img {
 table th {
     background-color: #94d40b !important;
     color: #000;
+    font-size: 20px;
+    margin: 5px;
 }
 
 .bus-time {
     display: inline-block; /* Ensures consistent alignment */
-    width: 80px; /* Set a fixed width for alignment */
+    width: 115px; /* Set a fixed width for alignment */
     text-align: center; /* Center-align the text */
     margin-right: 10em; /* Retain the existing spacing */
     font-size: 20px; /* Retain the current font size */
@@ -3611,7 +3613,6 @@ table th {
     background-color: #94d40b;
     border-radius: 5px;
     color: #000;
-    margin-bottom: 1rem;
 }
 
 .svcNumtd {
@@ -3622,7 +3623,8 @@ table th {
 }
 
 .departure-spacing {
-    padding-left: 5em !important; /* Adjust the spacing as needed */
+    padding-left: 3em !important;
+    padding-right: 3em !important;
 }
 
 .operator-logo {

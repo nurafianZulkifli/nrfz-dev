@@ -1235,9 +1235,14 @@
     }
 
     .bus-time {
-    margin-right: 1em; /* Adjust spacing as needed */
-    font-size: 15px;
-}
+        margin-right: 1em;
+        /* Adjust spacing as needed */
+        font-size: 20px;
+    }
+
+    table th {
+        font-size: 15px;
+    }
 
 }
 
