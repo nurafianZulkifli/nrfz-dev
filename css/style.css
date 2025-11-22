@@ -3700,3 +3700,27 @@ table th {
     text-align: center;
     font-style: italic;
 }
+
+.fleet-legend {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 15px;
+    color: #000;
+    padding-bottom: 20px;
+    cursor: default;
+}
+
+.fleet-legend span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fleet-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
