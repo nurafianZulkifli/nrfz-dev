@@ -49,6 +49,57 @@ app.get('/bus-stops', async (req, res) => {
   }
 });
 
+// Helper function to calculate distance between two coordinates (Haversine formula)
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the Earth in kilometers
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) *
+      Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distance in kilometers
+}
+
+// Define the /nearby-bus-stops route
+app.get('/nearby-bus-stops', async (req, res) => {
+  try {
+    const { latitude, longitude, radius = 1 } = req.query; // Default radius is 1 km
+
+    if (!latitude || !longitude) {
+      return res.status(400).send('Latitude and Longitude are required');
+    }
+
+    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/BusStops', {
+      headers: {
+        AccountKey: LTA_API_KEY,
+        accept: 'application/json',
+      },
+    });
+
+    const busStops = response.data.value;
+
+    // Filter bus stops within the specified radius
+    const nearbyBusStops = busStops.filter((busStop) => {
+      const distance = calculateDistance(
+        parseFloat(latitude),
+        parseFloat(longitude),
+        busStop.Latitude,
+        busStop.Longitude
+      );
+      return distance <= parseFloat(radius);
+    });
+
+    res.json(nearbyBusStops);
+  } catch (error) {
+    console.error('Error fetching nearby bus stops:', error.message);
+    res.status(500).send('Error connecting to LTA DataMall');
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
