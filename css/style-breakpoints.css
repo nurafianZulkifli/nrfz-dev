@@ -1039,6 +1039,10 @@
         margin-right: 5vw;
     }
 
+    .departure-spacing {
+        padding-left: 3em !important;
+    }
+
 }
 
 /* ---- */
@@ -1224,6 +1228,10 @@
     .carousel {
         margin-left: 5vw;
         margin-right: 5vw;
+    }
+
+    .departure-spacing {
+        padding-left: 1em !important;
     }
 
 }
