@@ -67,20 +67,35 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 // Define the /nearby-bus-stops route
 app.get('/nearby-bus-stops', async (req, res) => {
   try {
-    const { latitude, longitude, radius = 1 } = req.query;
+    const { latitude, longitude, radius = 2 } = req.query;
 
     if (!latitude || !longitude) {
       return res.status(400).send('Latitude and Longitude are required');
     }
 
-    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/BusStops', {
-      headers: {
-        AccountKey: LTA_API_KEY,
-        accept: 'application/json',
-      },
-    });
+    // Fetch all bus stops (handle pagination)
+    let busStops = [];
+    let skip = 0;
+    let hasMoreData = true;
 
-    const busStops = response.data.value;
+    while (hasMoreData) {
+      const response = await axios.get(`https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=${skip}`, {
+        headers: {
+          AccountKey: LTA_API_KEY,
+          accept: 'application/json',
+        },
+      });
+
+      const data = response.data.value;
+      busStops = busStops.concat(data);
+
+      // If fewer than 500 records are returned, we've reached the last page
+      if (data.length < 500) {
+        hasMoreData = false;
+      } else {
+        skip += 500; // Move to the next page
+      }
+    }
 
     // Calculate distances and find the nearest bus stop
     const nearbyBusStops = busStops
