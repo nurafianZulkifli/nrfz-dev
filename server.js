@@ -110,7 +110,7 @@ app.get('/nearby-bus-stops', async (req, res) => {
       })
       .filter((busStop) => busStop.distance <= parseFloat(radius))
       .sort((a, b) => a.distance - b.distance) // Sort by distance
-      .slice(0, 3); // Get the 3 closest bus stops
+      .slice(0, 4); // Get the 4 closest bus stops
 
     res.json(nearbyBusStops);
   } catch (error) {
