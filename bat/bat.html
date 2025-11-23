@@ -267,7 +267,12 @@
                 </thead>
                 <tbody>
                     <tr class="message">
-                        <td colspan="3">Loading Data...</td>
+                        <td colspan="3">
+                            <p
+                                style="text-align:center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <span class="spinner"></span> Loading Data...
+                            </p>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -349,8 +354,8 @@
                     searchInput.value = savedSearch;
                     fetchBusArrivals();
                 } else {
-                    tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code</td></tr>';
-                    footer.style.display = 'block';
+                    tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code on the Search Box.</td></tr>';
+                    footer.style.display = 'none';
                 }
             }
 
@@ -381,7 +386,7 @@
                         if (isIdle) {
                             fetchBusArrivals();
                         }
-                    }, 15000); // Refresh every 15 seconds
+                    }, 10000); // Refresh every 10 seconds
                 }
             };
 
@@ -408,6 +413,7 @@
             };
         }
 
+        // Updated fetchBusArrivals function
         async function fetchBusArrivals() {
             try {
                 const searchInput = document.getElementById('bus-stop-search').value.trim();
@@ -415,7 +421,7 @@
                 const footer = document.querySelector('.footer');
 
                 if (!searchInput) {
-                    tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code</td></tr>';
+                    tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code on the Search Box.</td></tr>';
                     footer.style.display = 'none'; // Hide footer if no input
                     return;
                 }
@@ -440,6 +446,8 @@
                     return;
                 }
 
+                const now = new Date();
+
                 data.Services.forEach((service) => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -448,12 +456,12 @@
             </td>
             <td class="departure-spacing">
                 <span class="bus-time">
-                    ${service.NextBus.EstimatedArrival ? formatArrivalTime(service.NextBus.EstimatedArrival) : '-'} 
+                    ${service.NextBus.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '-'} 
                     &nbsp; 
                     ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : ''}
                 </span>
                 <span class="bus-time">
-                    ${service.NextBus2.EstimatedArrival ? formatArrivalTime(service.NextBus2.EstimatedArrival) : ''} 
+                    ${service.NextBus2.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : ''} 
                     &nbsp; 
                     ${service.NextBus2.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus2.Type}" style="width: 30px; height: auto;">` : ''}
                 </span>
@@ -476,6 +484,24 @@
             }
         }
 
+        // Function to format ISO string to hh:mm or show "Arr" if the time has passed
+        function formatArrivalTimeOrArr(isoString, now) {
+            const arrivalTime = new Date(isoString);
+
+            // Allow a small margin for matching the current time
+            const timeDifference = arrivalTime - now;
+
+            // If the arrival time is in the past or within the current minute, show "Arr"
+            if (timeDifference <= 0 && timeDifference > -60000) {
+                return `<span class="arrival-now">Arr</span>`;
+            }
+
+            // Otherwise, format the time as hh:mm
+            const hours = arrivalTime.getHours().toString().padStart(2, '0');
+            const minutes = arrivalTime.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+        }
+
         function formatArrivalTime(isoString) {
             const date = new Date(isoString);
             const hours = date.getHours().toString().padStart(2, '0');
@@ -492,6 +518,18 @@
             }
             return formattedTime;
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchBusStopButton = document.getElementById('search-bus-stop-button'); // Select the "Search Bus Stop" button
+            const searchInput = document.getElementById('bus-stop-search'); // Select the search input field
+
+            if (searchBusStopButton && searchInput) {
+                searchBusStopButton.addEventListener('click', () => {
+                    searchInput.value = ''; // Clear the search input field
+                    sessionStorage.removeItem('busStopSearch'); // Clear the session storage value
+                });
+            }
+        });
     </script>
 
 </body>
