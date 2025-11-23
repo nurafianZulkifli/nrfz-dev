@@ -306,20 +306,32 @@
 
     <script src="../js/dstabs.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops'; // API URL
-            const listGroup = document.querySelector('.list-group'); // Select the existing list-group container
-            const paginationContainer = document.createElement('div'); // Create a container for pagination
-            paginationContainer.className = 'pagination-container';
-            listGroup.parentNode.appendChild(paginationContainer); // Append pagination below the list group
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops'; // API URL
+        const listGroup = document.querySelector('.list-group'); // Select the existing list-group container
+        const paginationContainer = document.createElement('div'); // Create a container for pagination
+        paginationContainer.className = 'pagination-container';
+        listGroup.parentNode.appendChild(paginationContainer); // Append pagination below the list group
 
-            let skip = 0; // Start with the first 500 items
-            const limit = 500; // Number of items per page
+        const searchInput = document.getElementById('bus-stop-search'); // Search input field
+        let skip = 0; // Start with the first 500 items
+        const limit = 500; // Number of items per page
+        let allBusStops = []; // Store all fetched bus stops for searching
+        let isFetchingAll = false; // Flag to indicate if all bus stops are being fetched
 
-            // Function to fetch bus stops
-            async function fetchBusStops(skip) {
-                try {
+        // Function to fetch bus stops
+        async function fetchBusStops(skip, fetchAll = false) {
+            try {
+                // If fetching all bus stops, reset the allBusStops array
+                if (fetchAll) {
+                    allBusStops = [];
+                    skip = 0;
+                }
+
+                let hasMoreData = true;
+
+                while (hasMoreData) {
                     const response = await fetch(`${apiUrl}?$skip=${skip}`, {
                         method: 'GET',
                         headers: {
@@ -333,77 +345,136 @@
 
                     const data = await response.json();
 
-                    // Clear the existing list-group content
-                    listGroup.innerHTML = '';
+                    // Append fetched bus stops to the allBusStops array
+                    allBusStops = allBusStops.concat(data.value);
 
-                    // Iterate through the bus stops and create list-group-item elements
-                    data.value.forEach((busStop) => {
-                        const listItem = document.createElement('a');
-                        listItem.href = '#'; // Add a link if needed
-                        listItem.className = 'list-group-item list-group-item-action bus-stop-code';
-                        listItem.setAttribute('data-code', busStop.BusStopCode); // Add bus stop code as a data attribute
-                        listItem.setAttribute('data-description', busStop.Description); // Add description as a data attribute
-                        listItem.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
-                        listGroup.appendChild(listItem);
-                    });
+                    // If fewer than 500 records are returned, we've reached the last page
+                    if (data.value.length < limit || !fetchAll) {
+                        hasMoreData = false;
+                    } else {
+                        skip += limit; // Increment skip for the next batch
+                    }
 
-                    // Add click event listeners to the dynamically created bus stop codes
-                    addClickListeners();
-
-                    // Update pagination controls
-                    updatePagination(skip, data.value.length);
-                } catch (error) {
-                    console.error('Error fetching bus stops:', error);
-                    listGroup.innerHTML = '<a href="#" class="list-group-item list-group-item-action">Error loading bus stops</a>';
+                    // If not fetching all, display the current batch
+                    if (!fetchAll) {
+                        displayBusStops(data.value);
+                        updatePagination(skip, data.value.length);
+                        return;
+                    }
                 }
-            }
 
-            // Function to add click event listeners to bus stop codes
-            function addClickListeners() {
-                document.querySelectorAll('.bus-stop-code').forEach((element) => {
-                    element.addEventListener('click', (event) => {
-                        event.preventDefault(); // Prevent default link behavior
-                        const busStopCode = event.target.getAttribute('data-code');
-                        const description = event.target.getAttribute('data-description');
-                        // Navigate to bat.html with the bus stop code and description as query parameters
-                        window.location.href = `bat.html?BusStopCode=${encodeURIComponent(busStopCode)}&Description=${encodeURIComponent(description)}`;
-                    });
+                // If fetching all, display all bus stops
+                if (fetchAll) {
+                    displayBusStops(allBusStops);
+                }
+            } catch (error) {
+                console.error('Error fetching bus stops:', error);
+                listGroup.innerHTML = '<a href="#" class="list-group-item list-group-item-action">Error loading bus stops</a>';
+            }
+        }
+
+        // Function to display bus stops
+        function displayBusStops(busStops) {
+            listGroup.innerHTML = ''; // Clear the list group
+
+            busStops.forEach((busStop) => {
+                const listItem = document.createElement('a');
+                listItem.href = '#'; // Add a link if needed
+                listItem.className = 'list-group-item list-group-item-action bus-stop-code';
+                listItem.setAttribute('data-code', busStop.BusStopCode); // Add bus stop code as a data attribute
+                listItem.setAttribute('data-description', busStop.Description); // Add description as a data attribute
+                listItem.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
+                listGroup.appendChild(listItem);
+            });
+
+            // Add click event listeners to the dynamically created bus stop codes
+            addClickListeners();
+        }
+
+        // Function to add click event listeners to bus stop codes
+        function addClickListeners() {
+            document.querySelectorAll('.bus-stop-code').forEach((element) => {
+                element.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    const busStopCode = event.target.getAttribute('data-code');
+                    const description = event.target.getAttribute('data-description');
+                    // Navigate to bat.html with the bus stop code and description as query parameters
+                    window.location.href = `bat.html?BusStopCode=${encodeURIComponent(busStopCode)}&Description=${encodeURIComponent(description)}`;
                 });
-            }
+            });
+        }
 
-            // Function to update pagination controls
-            function updatePagination(currentSkip, itemsFetched) {
-                paginationContainer.innerHTML = ''; // Clear existing pagination controls
+        // Function to update pagination controls
+function updatePagination(currentSkip, itemsFetched, totalRecords) {
+    paginationContainer.innerHTML = ''; // Clear existing pagination controls
 
-                // Previous button
-                if (currentSkip > 0) {
-                    const prevButton = document.createElement('button');
-                    prevButton.className = 'btn btn-primary pagination-btn';
-                    prevButton.textContent = 'Previous';
-                    prevButton.addEventListener('click', () => {
-                        skip = Math.max(0, currentSkip - limit); // Decrement skip, ensuring it doesn't go below 0
-                        fetchBusStops(skip); // Fetch the previous set of bus stops
-                    });
-                    paginationContainer.appendChild(prevButton);
-                }
-
-                // Next button
-                if (itemsFetched === limit) {
-                    const nextButton = document.createElement('button');
-                    nextButton.className = 'btn btn-primary pagination-btn';
-                    nextButton.textContent = 'Next';
-                    nextButton.addEventListener('click', () => {
-                        skip = currentSkip + limit; // Increment skip
-                        fetchBusStops(skip); // Fetch the next set of bus stops
-                    });
-                    paginationContainer.appendChild(nextButton);
-                }
-            }
-
-            // Fetch the first set of bus stops on page load
-            await fetchBusStops(skip);
+    // Previous button
+    if (currentSkip > 0) {
+        const prevButton = document.createElement('button');
+        prevButton.className = 'btn btn-primary pagination-btn';
+        prevButton.textContent = 'Previous';
+        prevButton.addEventListener('click', () => {
+            skip = Math.max(0, currentSkip - limit); // Decrement skip, ensuring it doesn't go below 0
+            fetchBusStops(skip); // Fetch the previous set of bus stops
         });
-    </script>
+        paginationContainer.appendChild(prevButton);
+    }
+
+    // Next button
+    if (itemsFetched === limit) {
+        const nextButton = document.createElement('button');
+        nextButton.className = 'btn btn-primary pagination-btn';
+        nextButton.textContent = 'Next';
+        nextButton.addEventListener('click', () => {
+            skip = currentSkip + limit; // Increment skip
+            fetchBusStops(skip); // Fetch the next set of bus stops
+        });
+        paginationContainer.appendChild(nextButton);
+    }
+
+    // Last button (optional)
+    if (totalRecords && currentSkip + itemsFetched < totalRecords) {
+        const lastButton = document.createElement('button');
+        lastButton.className = 'btn btn-primary pagination-btn';
+        lastButton.textContent = 'Last';
+        lastButton.addEventListener('click', () => {
+            skip = Math.floor(totalRecords / limit) * limit; // Calculate the skip for the last page
+            fetchBusStops(skip); // Fetch the last set of bus stops
+        });
+        paginationContainer.appendChild(lastButton);
+    }
+}
+
+        // Function to filter bus stops based on search input
+        function filterBusStops(query) {
+            const filteredBusStops = allBusStops.filter((busStop) => {
+                const busStopCode = busStop.BusStopCode.toLowerCase();
+                const description = busStop.Description.toLowerCase();
+                return busStopCode.includes(query) || description.includes(query);
+            });
+
+            // Display the filtered bus stops
+            displayBusStops(filteredBusStops);
+        }
+
+        // Add event listener to the search input
+        searchInput.addEventListener('input', async (event) => {
+            const query = event.target.value.toLowerCase(); // Get the search query in lowercase
+
+            // If the user starts typing, fetch all bus stops if not already fetched
+            if (query && !isFetchingAll) {
+                isFetchingAll = true;
+                await fetchBusStops(0, true); // Fetch all bus stops
+            }
+
+            // Filter the bus stops based on the search query
+            filterBusStops(query);
+        });
+
+        // Fetch the first set of bus stops on page load
+        await fetchBusStops(skip);
+    });
+</script>
 
 </body>
 

@@ -38,14 +38,16 @@ app.get('/bus-arrivals', async (req, res) => {
 // Define the /bus-stops route with $skip support
 app.get('/bus-stops', async (req, res) => {
   try {
-    // Use $skip and $limit as query parameters
+    // Use $skip, $limit, and $end as query parameters
     const skip = parseInt(req.query.$skip) || 0;
     const limit = parseInt(req.query.$limit) || 500;
+    const end = req.query.$end === 'true'; // Check if $end is set to true
 
     let busStops = [];
     let currentSkip = 0;
     let hasMoreData = true;
 
+    // Fetch all bus stops
     while (hasMoreData) {
       const response = await axios.get(`https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=${currentSkip}`, {
         headers: {
@@ -64,8 +66,14 @@ app.get('/bus-stops', async (req, res) => {
       }
     }
 
-    // Slice the data based on the $skip and $limit parameters
-    const paginatedBusStops = busStops.slice(skip, skip + limit);
+    // If $end is true, slice the last `limit` records
+    let paginatedBusStops;
+    if (end) {
+      paginatedBusStops = busStops.slice(-limit);
+    } else {
+      // Otherwise, slice based on $skip and $limit
+      paginatedBusStops = busStops.slice(skip, skip + limit);
+    }
 
     // Return the data wrapped in an object with a "value" property
     res.json({ value: paginatedBusStops });
