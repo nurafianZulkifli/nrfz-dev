@@ -220,7 +220,7 @@
                             <a href="bat.html" id="search-bus-stop-button">Search Bus Stop</a>
                         </li>
 
-                                                <li>
+                        <li>
                             <a href="abs.html">Bus Stops</a>
                         </li>
                     </ul>
@@ -294,6 +294,8 @@
 
 
     <script src="../js/dstabs.js"></script>
+
+    <script src="../js/utils.js"></script>
 
     <script>
         const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/nearby-bus-stops'; // Update with your server URL
@@ -416,8 +418,8 @@
             document.querySelectorAll('.bus-stop-code').forEach((element) => {
                 element.addEventListener('click', (event) => {
                     const busStopCode = event.target.getAttribute('data-code');
-                    const description = event.target.getAttribute('data-description');
-                    // Navigate to bat.html with the bus stop code and description as query parameters
+
+                    // Navigate to bat.html with the BusStopCode as a query parameter
                     window.location.href = `bat.html?BusStopCode=${encodeURIComponent(busStopCode)}`;
                 });
             });
@@ -435,8 +437,23 @@
                 });
             }
         });
-    </script>
 
+        // Populate the search bar with the BusStopCode from query parameters
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const busStopCode = urlParams.get('BusStopCode'); // Get the BusStopCode from the query parameters
+
+            if (busStopCode) {
+                const searchInput = document.getElementById('bus-stop-search'); // Select the search bar
+                if (searchInput) {
+                    searchInput.value = busStopCode; // Populate the search bar with the BusStopCode
+                }
+            }
+        });
+
+
+
+    </script>
 </body>
 
 </html>

@@ -322,97 +322,114 @@
 
     <script src="../js/dstabs.js"></script>
 
-    <script>
-// Function to get query parameters from the URL
-function getQueryParam(param) {
+    <script src="../js/utils.js"></script>
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('bus-stop-search'); // Search input field
+        const tableBody = document.querySelector('table tbody'); // Table body
+        const footer = document.querySelector('.footer'); // Footer
+
+    // Get the BusStopCode from the URL
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('bus-stop-search'); // Search input field
-    const tableBody = document.querySelector('table tbody'); // Table body
-    const footer = document.querySelector('.footer'); // Footer
-
-    // Get BusStopCode from the URL
-    const busStopCode = getQueryParam('busStopCode');
+    const busStopCode = urlParams.get('BusStopCode');
 
     if (busStopCode) {
-        // If BusStopCode exists in the URL, set it in the search bar and sessionStorage
+        // Populate the search bar with the BusStopCode
         searchInput.value = busStopCode;
-        sessionStorage.setItem('busStopSearch', busStopCode);
-        fetchBusArrivals(); // Trigger the search
-    } else {
-        // Restore the search input value from sessionStorage if available
-        const savedSearch = sessionStorage.getItem('busStopSearch');
-        if (savedSearch) {
-            searchInput.value = savedSearch;
-            fetchBusArrivals(); // Fetch data for the saved search value
-        } else {
-            // Show "Enter Bus Stop Code" message if no value is present
-            tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code</td></tr>';
-            footer.style.display = 'block'; // Show footer even if no search is performed
-        }
+
+        // Trigger the search
+        fetchBusArrivals();
     }
 
-    // Update the URL with the current search input value
-    const updateUrl = () => {
-        const url = new URL(window.location.href);
-        const currentValue = searchInput.value.trim();
 
-        if (currentValue) {
-            url.searchParams.set('busStopCode', currentValue); // Set or update the parameter
+        if (busStopCode) {
+            // If BusStopCode exists in the URL, set it in the search bar and sessionStorage
+            searchInput.value = busStopCode;
+            sessionStorage.setItem('busStopSearch', busStopCode);
+            fetchBusArrivals(); // Trigger the search
         } else {
-            url.searchParams.delete('busStopCode'); // Remove the parameter if the input is empty
+            // Restore the search input value from sessionStorage if available
+            const savedSearch = sessionStorage.getItem('busStopSearch');
+            if (savedSearch) {
+                searchInput.value = savedSearch;
+                fetchBusArrivals(); // Fetch data for the saved search value
+            } else {
+                // Show "Enter Bus Stop Code" message if no value is present
+                tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code</td></tr>';
+                footer.style.display = 'block'; // Show footer even if no search is performed
+            }
         }
 
-        window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
-    };
+        // Update the URL with the current search input value
+        const updateUrl = () => {
+            const url = new URL(window.location.href);
+            const currentValue = searchInput.value.trim();
 
-    // Add event listener for the search input to update the URL dynamically
-    searchInput.addEventListener('input', debounce(() => {
-        updateUrl();
-        fetchBusArrivals(); // Fetch data after updating the URL
-    }, 300));
-});
+            if (currentValue) {
+                url.searchParams.set('busStopCode', currentValue); // Set or update the parameter
+            } else {
+                url.searchParams.delete('busStopCode'); // Remove the parameter if the input is empty
+            }
 
-// Fetch data from the backend API
-async function fetchBusArrivals() {
-    try {
-        const searchInput = document.getElementById('bus-stop-search').value.trim();
-        const tableBody = document.querySelector('table tbody');
-        const footer = document.querySelector('.footer'); // Select the footer
+            window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
+        };
 
-        // If no input, show a message, hide the footer, and stop further execution
-        if (!searchInput) {
-            tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code</td></tr>';
-            footer.style.display = 'none'; // Hide footer if search bar is empty
-            return;
-        }
+        // Add event listener for the search input to update the URL dynamically
+        searchInput.addEventListener('input', debounce(() => {
+            updateUrl();
+            fetchBusArrivals(); // Fetch data after updating the URL
+        }, 300));
+    });
 
-        const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
-        url.searchParams.append('BusStopCode', searchInput);
+    // Debounce function
+    function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
 
-        const response = await fetch(url);
+    // Fetch data from the backend API
+    async function fetchBusArrivals() {
+        try {
+            const searchInput = document.getElementById('bus-stop-search').value.trim();
+            const tableBody = document.querySelector('table tbody');
+            const footer = document.querySelector('.footer'); // Select the footer
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch bus arrivals');
-        }
+            // If no input, show a message, hide the footer, and stop further execution
+            if (!searchInput) {
+                tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code</td></tr>';
+                footer.style.display = 'none'; // Hide footer if search bar is empty
+                return;
+            }
 
-        const data = await response.json();
-        console.log('API Response:', data);
+            const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
+            url.searchParams.append('BusStopCode', searchInput);
 
-        tableBody.innerHTML = '';
+            const response = await fetch(url);
 
-        if (!data.Services || data.Services.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="3">No data available</td></tr>';
-            footer.style.display = 'block';
-            return;
-        }
+            if (!response.ok) {
+                throw new Error('Failed to fetch bus arrivals');
+            }
 
-        data.Services.forEach((service) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
+            const data = await response.json();
+            console.log('API Response:', data);
+
+            tableBody.innerHTML = '';
+
+            if (!data.Services || data.Services.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="3">No data available</td></tr>';
+                footer.style.display = 'block';
+                return;
+            }
+
+            data.Services.forEach((service) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
                 <td class="svcNumtd">
                     <p class="svcNum">${service.ServiceNo}</p>
                 </td>
@@ -432,75 +449,38 @@ async function fetchBusArrivals() {
                     ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="operator-logo">` : ''}
                 </td>
             `;
-            tableBody.appendChild(row);
-        });
+                tableBody.appendChild(row);
+            });
 
-    } catch (error) {
-        console.error('Error fetching bus arrivals:', error);
-        const tableBody = document.querySelector('table tbody');
-        const footer = document.querySelector('.footer');
-        tableBody.innerHTML = '<tr><td colspan="3">Error loading data</td></tr>';
-        footer.style.display = 'block';
-    }
-}
-
-// Debounce function
-function debounce(func, delay) {
-    let timeout;
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
-// Function to format ISO string to hh:mm and show "Arr" if the time matches the current time
-function formatArrivalTime(isoString) {
-    const date = new Date(isoString);
-    const hours = date.getHours().toString().padStart(2, '0'); // Ensure 2-digit format
-    const minutes = date.getMinutes().toString().padStart(2, '0'); // Ensure 2-digit format
-    const formattedTime = `${hours}:${minutes}`;
-
-    // Get the current time in hh:mm format
-    const now = new Date();
-    const currentHours = now.getHours().toString().padStart(2, '0');
-    const currentMinutes = now.getMinutes().toString().padStart(2, '0');
-    const currentTime = `${currentHours}:${currentMinutes}`;
-
-    // Compare the times and return "Arr" if they match
-    if (formattedTime === currentTime) {
-        return `<span class="arrival-now">Arr</span>`;
-    }
-    return formattedTime;
-}
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchBusStopButton = document.getElementById('search-bus-stop-button'); // Select the button by id
-            const searchInput = document.getElementById('bus-stop-search'); // Select the search input field
-            const tableBody = document.querySelector('table tbody'); // Select the table body
-
-            if (searchBusStopButton && searchInput && tableBody) {
-                searchBusStopButton.addEventListener('click', (event) => {
-                    event.preventDefault(); // Prevent default link behavior
-                    searchInput.value = ''; // Clear the search bar
-                    sessionStorage.removeItem('busStopSearch'); // Clear session storage
-                    tableBody.innerHTML = '<tr class="message"><td colspan="3">Enter Bus Stop Code</td></tr>'; // Reset table content
-                });
-            }
-        });
-
-        // Debounce function
-        function debounce(func, delay) {
-            let timeout;
-            return function (...args) {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), delay);
-            };
+        } catch (error) {
+            console.error('Error fetching bus arrivals:', error);
+            const tableBody = document.querySelector('table tbody');
+            const footer = document.querySelector('.footer');
+            tableBody.innerHTML = '<tr><td colspan="3">Error loading data</td></tr>';
+            footer.style.display = 'block';
         }
+    }
 
-        // Attach debounce to the search input
-        const searchInput = document.getElementById('bus-stop-search');
-        searchInput.addEventListener('input', debounce(fetchBusArrivals, 300));
-    </script>
+    // Function to format ISO string to hh:mm and show "Arr" if the time matches the current time
+    function formatArrivalTime(isoString) {
+        const date = new Date(isoString);
+        const hours = date.getHours().toString().padStart(2, '0'); // Ensure 2-digit format
+        const minutes = date.getMinutes().toString().padStart(2, '0'); // Ensure 2-digit format
+        const formattedTime = `${hours}:${minutes}`;
+
+        // Get the current time in hh:mm format
+        const now = new Date();
+        const currentHours = now.getHours().toString().padStart(2, '0');
+        const currentMinutes = now.getMinutes().toString().padStart(2, '0');
+        const currentTime = `${currentHours}:${currentMinutes}`;
+
+        // Compare the times and return "Arr" if they match
+        if (formattedTime === currentTime) {
+            return `<span class="arrival-now">Arr</span>`;
+        }
+        return formattedTime;
+    }
+</script>
 
 </body>
 

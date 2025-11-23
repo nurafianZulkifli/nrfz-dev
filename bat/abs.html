@@ -249,15 +249,15 @@
 
     <!-- Section Contents -->
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
-    <div class="container">
-        <div class="list-group">
-            <p>Fetching Bus Stops List...</p>
+        <div class="container">
+            <div class="list-group">
+                <p>Fetching Bus Stops List...</p>
+            </div>
+            <div class="pagination-buttons" style="text-align: center; margin-top: 20px;">
+                <button id="prev-button" class="btn btn-secondary" disabled>Previous</button>
+                <button id="next-button" class="btn btn-primary">Next</button>
+            </div>
         </div>
-        <div class="pagination-buttons" style="text-align: center; margin-top: 20px;">
-            <button id="prev-button" class="btn btn-secondary" disabled>Previous</button>
-            <button id="next-button" class="btn btn-primary">Next</button>
-        </div>
-    </div>
     </section>
 
     <!-- Footer -->
@@ -308,11 +308,16 @@
 
     <script src="../js/dstabs.js"></script>
 
+    <script src="../js/utils.js"></script>
+
 <script>
+
+
     document.addEventListener('DOMContentLoaded', async () => {
+        const searchInput = document.getElementById('bus-stop-search'); // Search input field
+
         const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops'; // API URL
         const listGroup = document.querySelector('.list-group'); // Select the existing list-group container
-        const searchInput = document.getElementById('bus-stop-search'); // Search input field
         const prevButton = document.getElementById('prev-button'); // Previous button
         const nextButton = document.getElementById('next-button'); // Next button
         const limit = 20; // Number of items per page
@@ -358,28 +363,28 @@
             return allBusStops;
         }
 
-        // Function to display bus stops for the current page
-        function displayBusStops(busStops, page) {
-            const startIndex = (page - 1) * limit;
-            const endIndex = startIndex + limit;
-            const paginatedBusStops = busStops.slice(startIndex, endIndex);
+// Function to display bus stops for the current page
+function displayBusStops(busStops, page) {
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedBusStops = busStops.slice(startIndex, endIndex);
 
-            // Clear the list group and display the bus stops
-            listGroup.innerHTML = '';
-            paginatedBusStops.forEach((busStop) => {
-                const listItem = document.createElement('a');
-                listItem.href = `bat.html?busStopCode=${busStop.BusStopCode}`; // Navigate to bat.html with busStopCode as a query parameter
-                listItem.className = 'list-group-item list-group-item-action bus-stop-code';
-                listItem.setAttribute('data-code', busStop.BusStopCode); // Add bus stop code as a data attribute
-                listItem.setAttribute('data-description', busStop.Description); // Add description as a data attribute
-                listItem.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
-                listGroup.appendChild(listItem);
-            });
+    // Clear the list group and display the bus stops
+    listGroup.innerHTML = '';
+    paginatedBusStops.forEach((busStop) => {
+        const listItem = document.createElement('a');
+        listItem.href = `bat.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`; // Pass BusStopCode as a query parameter
+        listItem.className = 'list-group-item list-group-item-action bus-stop-code';
+        listItem.setAttribute('data-code', busStop.BusStopCode);
+        listItem.setAttribute('data-description', busStop.Description);
+        listItem.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
+        listGroup.appendChild(listItem);
+    });
 
-            // Update button states
-            prevButton.disabled = page === 1;
-            nextButton.disabled = page === totalPages;
-        }
+    // Update button states
+    prevButton.disabled = page === 1;
+    nextButton.disabled = page === totalPages;
+}
 
         // Function to filter bus stops based on search input
         function filterBusStops(query) {
@@ -427,8 +432,16 @@
 
         totalPages = Math.ceil(allBusStops.length / limit); // Calculate total pages
         displayBusStops(allBusStops, currentPage); // Display the first page
+
+        // Reflect the busStopCode in the search bar and filter results
+        if (busStopCode) {
+            searchInput.value = busStopCode; // Set the search input value
+            filterBusStops(busStopCode.toLowerCase());
+        }
     });
 </script>
+
+<script src="../js/utils.js"></script>
 
 </body>
 
