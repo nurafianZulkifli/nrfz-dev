@@ -35,10 +35,12 @@ app.get('/bus-arrivals', async (req, res) => {
 
 
 // Define the /bus-stops route with skip support
+// Define the /bus-stops route with $skip support
 app.get('/bus-stops', async (req, res) => {
   try {
-    const skip = parseInt(req.query.skip) || 0;
-    const limit = parseInt(req.query.limit) || 500;
+    // Use $skip and $limit as query parameters
+    const skip = parseInt(req.query.$skip) || 0;
+    const limit = parseInt(req.query.$limit) || 500;
 
     let busStops = [];
     let currentSkip = 0;
@@ -62,6 +64,7 @@ app.get('/bus-stops', async (req, res) => {
       }
     }
 
+    // Slice the data based on the $skip and $limit parameters
     const paginatedBusStops = busStops.slice(skip, skip + limit);
 
     // Return the data wrapped in an object with a "value" property
