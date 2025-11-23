@@ -37,7 +37,6 @@ app.get('/bus-arrivals', async (req, res) => {
 // Define the /bus-stops route with skip support
 app.get('/bus-stops', async (req, res) => {
   try {
-    // Get the skip and limit parameters from the query string
     const skip = parseInt(req.query.skip) || 0;
     const limit = parseInt(req.query.limit) || 500;
 
@@ -45,7 +44,6 @@ app.get('/bus-stops', async (req, res) => {
     let currentSkip = 0;
     let hasMoreData = true;
 
-    // Fetch all bus stops from the LTA DataMall API
     while (hasMoreData) {
       const response = await axios.get(`https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=${currentSkip}`, {
         headers: {
@@ -56,19 +54,18 @@ app.get('/bus-stops', async (req, res) => {
 
       const data = response.data.value;
 
-      // If no data is returned, stop fetching
       if (data.length === 0) {
         hasMoreData = false;
       } else {
         busStops = busStops.concat(data);
-        currentSkip += 500; // Increment skip by 500 (API's page size)
+        currentSkip += 500;
       }
     }
 
-    // Apply skip and limit manually to the fetched data
     const paginatedBusStops = busStops.slice(skip, skip + limit);
 
-    res.json(paginatedBusStops);
+    // Return the data wrapped in an object with a "value" property
+    res.json({ value: paginatedBusStops });
   } catch (error) {
     console.error('Error fetching bus stops from LTA:', error.message);
     res.status(500).send('Error connecting to LTA DataMall');
