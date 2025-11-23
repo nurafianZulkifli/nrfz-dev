@@ -311,10 +311,14 @@
     <script src="../js/utils.js"></script>
 
 <script>
-
-
     document.addEventListener('DOMContentLoaded', async () => {
         const searchInput = document.getElementById('bus-stop-search'); // Search input field
+        const searchBusStopButton = document.getElementById('search-bus-stop-button'); // Search Bus Stop button
+
+        // Clear the search bar when the "Search Bus Stop" button is clicked
+        searchBusStopButton.addEventListener('click', () => {
+            searchInput.value = ''; // Clear the search input field
+        });
 
         const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops'; // API URL
         const listGroup = document.querySelector('.list-group'); // Select the existing list-group container
@@ -363,28 +367,28 @@
             return allBusStops;
         }
 
-// Function to display bus stops for the current page
-function displayBusStops(busStops, page) {
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const paginatedBusStops = busStops.slice(startIndex, endIndex);
+        // Function to display bus stops for the current page
+        function displayBusStops(busStops, page) {
+            const startIndex = (page - 1) * limit;
+            const endIndex = startIndex + limit;
+            const paginatedBusStops = busStops.slice(startIndex, endIndex);
 
-    // Clear the list group and display the bus stops
-    listGroup.innerHTML = '';
-    paginatedBusStops.forEach((busStop) => {
-        const listItem = document.createElement('a');
-        listItem.href = `bat.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`; // Pass BusStopCode as a query parameter
-        listItem.className = 'list-group-item list-group-item-action bus-stop-code';
-        listItem.setAttribute('data-code', busStop.BusStopCode);
-        listItem.setAttribute('data-description', busStop.Description);
-        listItem.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
-        listGroup.appendChild(listItem);
-    });
+            // Clear the list group and display the bus stops
+            listGroup.innerHTML = '';
+            paginatedBusStops.forEach((busStop) => {
+                const listItem = document.createElement('a');
+                listItem.href = `bat.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`; // Pass BusStopCode as a query parameter
+                listItem.className = 'list-group-item list-group-item-action bus-stop-code';
+                listItem.setAttribute('data-code', busStop.BusStopCode);
+                listItem.setAttribute('data-description', busStop.Description);
+                listItem.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
+                listGroup.appendChild(listItem);
+            });
 
-    // Update button states
-    prevButton.disabled = page === 1;
-    nextButton.disabled = page === totalPages;
-}
+            // Update button states
+            prevButton.disabled = page === 1;
+            nextButton.disabled = page === totalPages;
+        }
 
         // Function to filter bus stops based on search input
         function filterBusStops(query) {
@@ -432,15 +436,8 @@ function displayBusStops(busStops, page) {
 
         totalPages = Math.ceil(allBusStops.length / limit); // Calculate total pages
         displayBusStops(allBusStops, currentPage); // Display the first page
-
-        // Reflect the busStopCode in the search bar and filter results
-        if (busStopCode) {
-            searchInput.value = busStopCode; // Set the search input value
-            filterBusStops(busStopCode.toLowerCase());
-        }
     });
 </script>
-
 <script src="../js/utils.js"></script>
 
 </body>

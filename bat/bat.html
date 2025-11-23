@@ -480,6 +480,17 @@
             }
             return formattedTime;
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('bus-stop-search'); // Search input field
+            const searchBusStopButton = document.getElementById('search-bus-stop-button'); // Search Bus Stop button
+
+            // Clear the search bar when the "Search Bus Stop" button is clicked
+            searchBusStopButton.addEventListener('click', () => {
+                searchInput.value = ''; // Clear the search input field
+                sessionStorage.removeItem('busStopSearch'); // Clear the session storage value
+            });
+        });
     </script>
 
 </body>
