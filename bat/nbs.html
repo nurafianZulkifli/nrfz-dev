@@ -305,12 +305,12 @@
             const busStopsContainer = document.getElementById('bus-stops');
 
             // Display "Searching for nearby bus stops..." message
-            busStopsContainer.innerHTML = '<p>Searching for nearby bus stops...</p>';
+            busStopsContainer.innerHTML = '<p style="text-align:center; display: flex; align-items: center; justify-content: center; gap: 10px;"><span class="spinner"></span> Searching for nearby bus stops...</p>';
 
             // Check if geolocation is available
             if (!navigator.geolocation) {
                 alert('Geolocation is not supported by your browser.');
-                busStopsContainer.innerHTML = '<p>Geolocation is not supported by your browser.</p>';
+                busStopsContainer.innerHTML = '<p style="text-align:center;">Geolocation is not supported by your browser.</p>';
                 return;
             }
 
@@ -378,54 +378,50 @@
                 displayBusStops(busStops);
             } catch (error) {
                 console.error('Error:', error);
-                busStopsContainer.innerHTML = '<p>Failed to fetch nearby bus stops. Please try again later.</p>';
+                busStopsContainer.innerHTML = '<p style="text-align:center;">Failed to fetch nearby bus stops. Please try again later.</p>';
                 footer.style.display = 'block';
             }
         }
 
-        // Display the 3 nearest bus stops
-        function displayBusStops(busStops) {
-            const busStopsContainer = document.getElementById('bus-stops');
-            const footer = document.querySelector('.footer'); // Select the footer
-            busStopsContainer.innerHTML = ''; // Clear previous results
+// Display the 3 nearest bus stops
+function displayBusStops(busStops) {
+    const busStopsContainer = document.getElementById('bus-stops');
+    const footer = document.querySelector('.footer'); // Select the footer
+    busStopsContainer.innerHTML = ''; // Clear previous results
 
-            if (!busStops || busStops.length === 0) {
-                busStopsContainer.innerHTML = '<p>No bus stops found nearby.</p>';
-                footer.style.display = 'block'; // Show footer even if no bus stops are found
-                return;
-            }
+    if (!busStops || busStops.length === 0) {
+        busStopsContainer.innerHTML = '<p>No bus stops found nearby.</p>';
+        footer.style.display = 'block'; // Show footer even if no bus stops are found
+        return;
+    }
 
-            busStops.forEach((busStop, index) => {
-                const distance = busStop.distance < 1
-                    ? `${(busStop.distance * 1000).toFixed(0)} m` // Convert to meters if less than 1 km
-                    : `${busStop.distance.toFixed(2)} km`; // Show in kilometers otherwise
+    busStops.forEach((busStop) => {
+        const distance = busStop.distance < 1
+            ? `${(busStop.distance * 1000).toFixed(0)} m` // Convert to meters if less than 1 km
+            : `${busStop.distance.toFixed(2)} km`; // Show in kilometers otherwise
 
-                const busStopElement = document.createElement('div');
-                busStopElement.className = 'bus-stop';
-                busStopElement.innerHTML = `
-            <strong>Bus Stop Code:</strong> 
-            <span class="bus-stop-code" data-code="${busStop.BusStopCode}" data-description="${busStop.Description}">
-                ${busStop.BusStopCode}
-            </span><br>
-            <strong>Description:</strong> ${busStop.Description}<br>
-            <strong>Road Name:</strong> ${busStop.RoadName}<br>
-            <strong>Distance:</strong> ${distance}
+        const busStopElement = document.createElement('div');
+        busStopElement.className = 'bus-stop';
+        busStopElement.innerHTML = `
+            <p class="bs-name"><span>${busStop.Description}</span> </p>
+            <p class="bs-info">
+                <span style="font-weight:bold;">${busStop.BusStopCode}</span> | 
+                <span>${busStop.RoadName}</span> | 
+                <span>${distance}</span>
+            </p>
         `;
-                busStopsContainer.appendChild(busStopElement);
-            });
 
-            // Add click event listeners to bus stop codes
-            document.querySelectorAll('.bus-stop-code').forEach((element) => {
-                element.addEventListener('click', (event) => {
-                    const busStopCode = event.target.getAttribute('data-code');
+        // Add click event listener to the entire div
+        busStopElement.addEventListener('click', () => {
+            // Navigate to bat.html with the BusStopCode as a query parameter
+            window.location.href = `bat.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
+        });
 
-                    // Navigate to bat.html with the BusStopCode as a query parameter
-                    window.location.href = `bat.html?BusStopCode=${encodeURIComponent(busStopCode)}`;
-                });
-            });
+        busStopsContainer.appendChild(busStopElement);
+    });
 
-            footer.style.display = 'block'; // Show footer after bus stops are loaded
-        }
+    footer.style.display = 'block'; // Show footer after bus stops are loaded
+}
 
         document.addEventListener('DOMContentLoaded', () => {
             const searchBusStopButton = document.querySelector('a[href="bat.html"]'); // Select the "Search Bus Stop" button
