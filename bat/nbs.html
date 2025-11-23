@@ -333,6 +333,50 @@
             });
         });
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const cachedLocation = sessionStorage.getItem('userLocation');
+            const busStopsContainer = document.getElementById('bus-stops');
+
+            if (cachedLocation) {
+                const { latitude, longitude } = JSON.parse(cachedLocation);
+                fetchNearbyBusStops(latitude, longitude);
+            } else {
+                // Get the user's current location
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    // Cache the location
+                    sessionStorage.setItem('userLocation', JSON.stringify({ latitude, longitude }));
+
+                    fetchNearbyBusStops(latitude, longitude);
+                }, (error) => {
+                    console.error('Geolocation error:', error);
+                    busStopsContainer.innerHTML = '<p>Unable to retrieve your location.</p>';
+                }, {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                });
+            }
+        });
+
+        async function fetchNearbyBusStops(latitude, longitude) {
+            try {
+                const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=2`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch nearby bus stops');
+                }
+
+                const busStops = await response.json();
+                displayBusStops(busStops);
+            } catch (error) {
+                console.error('Error:', error);
+                busStopsContainer.innerHTML = '<p>Failed to fetch nearby bus stops. Please try again later.</p>';
+                footer.style.display = 'block';
+            }
+        }
+
         // Display the 3 nearest bus stops
         function displayBusStops(busStops) {
             const busStopsContainer = document.getElementById('bus-stops');
