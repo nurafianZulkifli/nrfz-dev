@@ -41,7 +41,10 @@ app.get('/bus-stops', async (req, res) => {
     const skip = parseInt(req.query.skip) || 0;
     console.log(`Received skip value: ${skip}`); // Log the skip value for debugging
 
-    const response = await axios.get(`https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=${skip}`, {
+    const apiUrl = `https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=${skip}`;
+    console.log(`Fetching data from: ${apiUrl}`); // Log the full API URL
+
+    const response = await axios.get(apiUrl, {
       headers: {
         AccountKey: LTA_API_KEY,
         accept: 'application/json',
