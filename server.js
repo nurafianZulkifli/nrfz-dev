@@ -39,6 +39,7 @@ app.get('/bus-stops', async (req, res) => {
   try {
     // Get the skip parameter from the query string, default to 0
     const skip = parseInt(req.query.skip) || 0;
+    console.log(`Received skip value: ${skip}`); // Log the skip value for debugging
 
     const response = await axios.get(`https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=${skip}`, {
       headers: {
