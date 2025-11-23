@@ -3625,7 +3625,7 @@ table th {
 
 .bus-time {
     display: inline-block;
-    width: 115px;
+    width: 130px;
     text-align: center;
     margin-right: 10em;
     font-size: 20px;
@@ -3647,7 +3647,12 @@ table th {
 
 .departure-spacing {
     padding-left: 3em !important;
-    padding-right: 3em !important;
+    padding-right: 1em !important;
+}
+
+.sch-spacing {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
 }
 
 .operator-logo {
@@ -3672,28 +3677,8 @@ table th {
 }
 
 .arrival-now {
-    color: #9fa102;
+    color: #94d40b;
     font-weight: bold;
-}
-
-.zoom-controls {
-    margin-bottom: 1em;
-    text-align: right;
-}
-
-.zoom-controls button {
-    padding: 0.5em 1em;
-    margin: 0 0.5em;
-    font-size: 1rem;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease;
-}
-
-.zoom-controls button:hover {
-    background-color: #e0e0e0;
 }
 
 .message {

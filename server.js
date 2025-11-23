@@ -8,6 +8,7 @@ const LTA_API_KEY = process.env.LTA_API_KEY;
 
 app.use(cors()); // Enable CORS
 
+
 // Define the /bus-arrivals route
 app.get('/bus-arrivals', async (req, res) => {
   try {
@@ -32,10 +33,14 @@ app.get('/bus-arrivals', async (req, res) => {
   }
 });
 
-// Define the /bus-stops route
+
+// Define the /bus-stops route with skip support
 app.get('/bus-stops', async (req, res) => {
   try {
-    const response = await axios.get('https://datamall2.mytransport.sg/ltaodataservice/BusStops', {
+    // Get the skip parameter from the query string, default to 0
+    const skip = parseInt(req.query.skip) || 0;
+
+    const response = await axios.get(`https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=${skip}`, {
       headers: {
         AccountKey: LTA_API_KEY,
         accept: 'application/json',
