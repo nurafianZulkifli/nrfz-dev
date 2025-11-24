@@ -385,7 +385,7 @@
 
                 paginatedBusStops.forEach((busStop) => {
                     const listItem = document.createElement('a');
-                    listItem.href = `bat.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`; // Pass BusStopCode as a query parameter
+                    listItem.href = `sbs.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`; // Pass BusStopCode as a query parameter
                     listItem.className = 'list-group-item list-group-item-action bus-stop-code';
                     listItem.setAttribute('data-code', busStop.BusStopCode);
                     listItem.setAttribute('data-description', busStop.Description);

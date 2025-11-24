@@ -415,7 +415,7 @@ function displayBusStops(busStops) {
         // Add click event listener to the entire div
         busStopElement.addEventListener('click', () => {
             // Navigate to bat.html with the BusStopCode as a query parameter
-            window.location.href = `bat.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
+            window.location.href = `sbs.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
         });
 
         busStopsContainer.appendChild(busStopElement);
