@@ -153,6 +153,29 @@ app.get('/nearby-bus-stops', async (req, res) => {
   }
 });
 
+
+// Define the /bus-routes route
+app.get('/bus-routes', async (req, res) => {
+  try {
+    // Use $skip as a query parameter for pagination
+    const skip = parseInt(req.query.$skip) || 0;
+
+    const response = await axios.get(`https://datamall2.mytransport.sg/ltaodataservice/BusRoutes?$skip=${skip}`, {
+      headers: {
+        AccountKey: LTA_API_KEY,
+        accept: 'application/json',
+      },
+    });
+
+    // Return the data wrapped in an object with a "value" property
+    res.json({ value: response.data.value });
+  } catch (error) {
+    console.error('Error fetching bus routes from LTA:', error.message);
+    res.status(500).send('Error connecting to LTA DataMall');
+  }
+});
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
