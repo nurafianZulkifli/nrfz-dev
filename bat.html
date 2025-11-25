@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Nearby Bus Stops | BAT</title>
+    <title>Favourites | Buszy</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
@@ -33,16 +33,15 @@
 </head>
 
 <style>
-    #cv-bat-main {
-        background-image: url("img/bg-img/cover-bat.jpg");
-        height: 40vh;
+    #cv-bat {
+        /* background-image: url("../img/bg-img/cover-bat.jpg"); */
+        /* height: 40vh; */
+        height: 10vh;
     }
 
-    /* footer {
+    .footer {
         display: none;
-    } */
-
- 
+    }
 </style>
 
 <body>
@@ -165,7 +164,7 @@
     <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
 
     <!-- Cover Header -->
-    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-bat-main">
+    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-bat">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -174,67 +173,83 @@
         </div>
     </section>
 
-
-    <!-- Section Contents -->
-    <section class="about-me-summ clearfix">
-
-        <div class="pw-portfolio-area-featured clearfix" id="featured">
-            <div class="container-xxl container-fluid">
-                
-                <div class="row pw-portfolio">
-
-                    <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeIn" data-wow-delay="100ms"
-                        data-year="2025">
-                        <div class="single-portfolio-content">
-                            <img src="bat/assets/nbs.png" alt>
-                            <div class="hover-content-blog">
-                                <h4>Nearby Bus Stops</h4>
-                                <a class="info" href="bat/nbs.html" class="portfolio-img"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
+    <!-- Title/Breadcrumbs -->
+    <section class="about-me-sum clearfix">
+        <div class="wbnrfz_eicw">
+            <div class="page-header-section">
+                <div class="container container-xxl container-mobile container-mobile-header">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="bat.html">Bus Arrival Timings</a>
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="page-title-wrapper">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div>
+                                    <h1 class="page-title" id="filter-title">Favourites</h1>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mb-30 wow fadeIn" data-wow-delay="100ms"
-                        data-year="2025">
-                        <div class="single-portfolio-content">
-                            <img src="bat/assets/sbs.png" alt>
-                            <div class="hover-content-blog">
-                                <h4>Search Bus Stops</h4>
-                                <a class="info" href="bat/sbs.html" class="portfolio-img"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-6 col-lg-3 single_gallery_item in mb-30 wow fadeIn" data-wow-delay="300ms"
-                        data-year="2024">
-                        <div class="single-portfolio-content">
-                            <img src="bat/assets/abs.png" alt="tdc-v3">
-                            <div class="hover-content-blog">
-                                <h4>Bus Stop List</h4>
-                                <a class="info" href="bat/abs.html"
-                                    class="portfolio-img"><i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="col-12 col-sm-6 col-lg-3 single_gallery_item ds mc mb-30 wow fadeIn"
-                        data-wow-delay="700ms">
-                        <div class="single-portfolio-content">
-                            <img src="bat/assets/abr.png" alt="bus-routes">
-                            <div class="hover-content-blog">
-                                <h4>Saved Bus Stops</h4>
-                                <a class="info" href="#" class="portfolio-img"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
+
+
+                <div class="scrollable-tabs-container">
+                    <div class="left-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            <a href="bat/nbs.html" class="active"><i class="fa-solid fa-star"></i> Favourites</a>
+                        </li>
+
+                        <li>
+                            <a href="bat/nbs.html"><i class="fa-solid fa-location-dot"></i> Nearby</a>
+                        </li>
+
+                        <li>
+                            <a href="bat/sbs.html" id="search-bus-stop-button"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+                        </li>
+
+                        <li>
+                            <a href="bat/abs.html"><i class="fa-solid fa-bus"></i> Bus Stops</a>
+                        </li>
+                    </ul>
+
+                    <div class="right-arrow active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+
+                    </div>
+                </div>
+                <hr>
             </div>
+
         </div>
 
-            </div>
+    </section>
+    <!-- Section Contents -->
+    <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+
+        <div class="container container-xxl">
+            <div id="bookmarks-container" class="list-group"></div>
         </div>
     </section>
 
@@ -262,7 +277,7 @@
         </div>
     </footer>
 
-    <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom"
+    <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"
         data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
@@ -278,14 +293,74 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/pw.bundle.js"></script>
-    
+
     <script src="js/default-assets/active.js"></script>
 
     <script src="js/isotope.pkgd.min.js"></script>
 
+
     <script src="js/dstabs.js"></script>
 
     <script src="js/utils.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bookmarksContainer = document.getElementById('bookmarks-container');
+
+            // Function to load bookmarks from localStorage
+            function loadBookmarks() {
+                const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
+                bookmarksContainer.innerHTML = '';
+
+                if (bookmarks.length === 0) {
+                    bookmarksContainer.innerHTML = '<p>No bookmarks yet.</p>';
+                    return;
+                }
+
+                bookmarks.forEach((busStop) => {
+                    const listItem = document.createElement('div');
+                    listItem.className = 'list-group-item';
+                    listItem.style.display = 'flex';
+                    listItem.style.justifyContent = 'space-between';
+                    listItem.style.alignItems = 'center';
+
+                    // Make the bus stop details clickable
+                    const link = document.createElement('a');
+                    link.href = `sbs.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
+                    link.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
+                    link.style.flexGrow = '1';
+                    link.style.textDecoration = 'none';
+                    link.style.color = 'inherit';
+
+                    // Remove Bookmark button
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.className = 'btn btn-danger btn-sm';
+                    removeButton.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent the click from triggering the link
+                        event.preventDefault(); // Prevent default link behavior
+                        removeBookmark(busStop.BusStopCode);
+                    });
+
+                    listItem.appendChild(link);
+                    listItem.appendChild(removeButton);
+                    bookmarksContainer.appendChild(listItem);
+                });
+            }
+
+            // Function to remove a bookmark
+            function removeBookmark(busStopCode) {
+                const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
+                const updatedBookmarks = bookmarks.filter((b) => b.BusStopCode !== busStopCode);
+                localStorage.setItem('bookmarkedBusStops', JSON.stringify(updatedBookmarks));
+                loadBookmarks(); // Refresh the displayed list
+                alert('Bus stop removed from bookmarks.');
+            }
+
+            // Load bookmarks on page load
+            loadBookmarks();
+        });
+    </script>
 
 </body>
 
