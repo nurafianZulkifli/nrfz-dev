@@ -397,11 +397,11 @@
 
                     if (isBookmarked) {
                         // If already bookmarked, show as bookmarked
-                        bookmarkButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+                        bookmarkButton.innerHTML = '<i class="fa-solid fa-star"></i>';
                         bookmarkButton.className = 'btn btn-success btn-sm';
                     } else {
                         // If not bookmarked, show as a regular bookmark button
-                        bookmarkButton.innerHTML = '<i class="fa-solid fa-star"></i>';
+                        bookmarkButton.innerHTML = '<i class="fa-regular fa-star"></i>';
                         bookmarkButton.className = 'btn btn-primary btn-sm';
                     }
 
@@ -433,7 +433,7 @@
                     alert('Bus stop bookmarked!');
 
                     // Update the button to indicate the bus stop is bookmarked
-                    button.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    button.innerHTML = '<i class="fa-solid fa-star"></i>';
                     button.classList.remove('btn-primary');
                     button.classList.add('btn-success');
                 } else {
@@ -443,7 +443,7 @@
                     alert('Bus stop removed from bookmarks.');
 
                     // Update the button to indicate the bus stop is not bookmarked
-                    button.innerHTML = '<i class="fa-solid fa-star"></i>';
+                    button.innerHTML = '<i class="fa-regular fa-star"></i>';
                     button.classList.remove('btn-success');
                     button.classList.add('btn-primary');
                 }

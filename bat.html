@@ -330,7 +330,7 @@
 
                     // Remove Bookmark button
                     const removeButton = document.createElement('button');
-                    removeButton.textContent = 'Remove';
+                    removeButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
                     removeButton.className = 'btn btn-danger btn-sm';
                     removeButton.addEventListener('click', (event) => {
                         event.stopPropagation(); // Prevent the click from triggering the link
