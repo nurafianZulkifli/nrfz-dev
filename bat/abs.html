@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Search Bus Stop | BAT</title>
+    <title>Search Bus Stop | Buszy</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
@@ -187,7 +187,7 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="../bat.html">Bus Arrival Timings</a>
+                                    <a href="../bat.html">Buszy</a>
                                 </li>
                             </ol>
                         </nav>
@@ -195,15 +195,14 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
-                                    <h1 class="page-title" id="filter-title">All Bus Stops</h1>
+                                    <h1 class="page-title" id="filter-title">Search</h1>
                                 </div>
                                 <div style="position: relative; max-width: 400px; margin-top: 5px;">
                                     <i class="fa-solid fa-search"
                                         style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #cccccc; z-index: 1;"></i>
                                     <input type="text" id="bus-stop-search" class="form-control"
-                                        placeholder=" Search Bus Stop" style="padding-left: 35px; width: 100%;">
+                                        placeholder="Bus Stop Name, Codes" style="padding-left: 35px;">
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -221,15 +220,16 @@
 
                     <ul>
                         <li>
-                            <a href="nbs.html">Nearby Bus Stops</a>
+                            <a href="../bat.html"><i class="fa-solid fa-star"></i> Favourites</a>
                         </li>
 
                         <li>
-                            <a href="sbs.html" id="search-bus-stop-button">Search Bus Stop</a>
+                            <a href="nbs.html"><i class="fa-solid fa-location-dot"></i> Nearby</a>
                         </li>
 
                         <li>
-                            <a href="abs.html" class="active">Bus Stops</a>
+                            <a href="#" class="active"><i class="fa-solid fa-magnifying-glass"></i>
+                                Search</a>
                         </li>
                     </ul>
 
@@ -250,9 +250,13 @@
 
     <!-- Section Contents -->
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+
         <div class="container">
+            <h2 class="text-center">Bus Stops</h2>
             <div class="list-group">
-                <p style="text-align:center; display: flex; align-items: center; justify-content: center; gap: 10px;"><span class="spinner"></span>Fetching Bus Stops list for the first time...</p>
+                <p style="text-align:center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span class="spinner"></span>Fetching Bus Stops list for the first time...
+                </p>
             </div>
             <div class="pagination-buttons">
                 <button id="prev-button" class="btn pw-btn-prev btn-2 mt-15" style="display: none;">Previous</button>
@@ -311,149 +315,179 @@
 
     <script src="../js/utils.js"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const searchInput = document.getElementById('bus-stop-search');
-        const searchBusStopButton = document.getElementById('search-bus-stop-button');
-        const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops';
-        const listGroup = document.querySelector('.list-group');
-        const prevButton = document.getElementById('prev-button');
-        const nextButton = document.getElementById('next-button');
-        const limit = 20;
-        let allBusStops = [];
-        let currentPage = 1;
-        let totalPages = 1;
-
-        // Function to fetch all bus stops in batches
-        async function fetchAllBusStops() {
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const searchInput = document.getElementById('bus-stop-search');
+            const searchBusStopButton = document.getElementById('search-bus-stop-button');
+            const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops';
+            const listGroup = document.querySelector('.list-group');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const limit = 20;
             let allBusStops = [];
-            let skip = 0;
-            const batchSize = 500;
+            let currentPage = 1;
+            let totalPages = 1;
 
-            while (true) {
-                try {
-                    const response = await fetch(`${apiUrl}?$skip=${skip}&$top=${batchSize}`, {
-                        method: 'GET',
-                        headers: { accept: 'application/json' },
+            // Function to fetch all bus stops in batches
+            async function fetchAllBusStops() {
+                let allBusStops = [];
+                let skip = 0;
+                const batchSize = 500;
+
+                while (true) {
+                    try {
+                        const response = await fetch(`${apiUrl}?$skip=${skip}&$top=${batchSize}`, {
+                            method: 'GET',
+                            headers: { accept: 'application/json' },
+                        });
+
+                        if (!response.ok) throw new Error('Failed to fetch bus stops');
+
+                        const data = await response.json();
+                        allBusStops = allBusStops.concat(data.value);
+
+                        if (data.value.length < batchSize) break;
+
+                        skip += batchSize;
+                    } catch (error) {
+                        console.error('Error fetching bus stops:', error);
+                        break;
+                    }
+                }
+
+                localStorage.setItem('allBusStops', JSON.stringify(allBusStops));
+                return allBusStops;
+            }
+
+            // Function to display bus stops for the current page
+            function displayBusStops(busStops, page) {
+                const startIndex = (page - 1) * limit;
+                const endIndex = startIndex + limit;
+                const paginatedBusStops = busStops.slice(startIndex, endIndex);
+
+                listGroup.innerHTML = '';
+                if (busStops.length === 0) {
+                    listGroup.innerHTML = '<p style="text-align:center;">No bus stops found.</p>';
+                    prevButton.style.display = 'none';
+                    nextButton.style.display = 'none';
+                    return;
+                }
+
+                // Get bookmarked bus stops from localStorage
+                const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
+
+                paginatedBusStops.forEach((busStop) => {
+                    const listItem = document.createElement('div');
+                    listItem.className = 'list-group-item';
+                    listItem.style.display = 'flex';
+                    listItem.style.justifyContent = 'space-between';
+                    listItem.style.alignItems = 'center';
+
+                    // Make the bus stop details clickable
+                    const link = document.createElement('a');
+                    link.href = `sbs.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
+                    link.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
+                    link.style.flexGrow = '1';
+                    link.style.textDecoration = 'none';
+                    link.style.color = 'inherit';
+
+                    // Bookmark button
+                    const bookmarkButton = document.createElement('button');
+                    const isBookmarked = bookmarks.some((b) => b.BusStopCode === busStop.BusStopCode);
+
+                    if (isBookmarked) {
+                        // If already bookmarked, show as bookmarked
+                        bookmarkButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+                        bookmarkButton.className = 'btn btn-success btn-sm';
+                    } else {
+                        // If not bookmarked, show as a regular bookmark button
+                        bookmarkButton.innerHTML = '<i class="fa-solid fa-star"></i>';
+                        bookmarkButton.className = 'btn btn-primary btn-sm';
+                    }
+
+                    // Add event listener to toggle bookmark
+                    bookmarkButton.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent the click from triggering the link
+                        event.preventDefault(); // Prevent default link behavior
+                        toggleBookmark(busStop, bookmarkButton);
                     });
 
-                    if (!response.ok) throw new Error('Failed to fetch bus stops');
+                    listItem.appendChild(link);
+                    listItem.appendChild(bookmarkButton);
+                    listGroup.appendChild(listItem);
+                });
 
-                    const data = await response.json();
-                    allBusStops = allBusStops.concat(data.value);
+                prevButton.style.display = page > 1 ? 'inline-block' : 'none';
+                nextButton.style.display = page < totalPages ? 'inline-block' : 'none';
+            }
 
-                    if (data.value.length < batchSize) break;
+            // Function to toggle a bookmark
+            function toggleBookmark(busStop, button) {
+                const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
+                const bookmarkIndex = bookmarks.findIndex((b) => b.BusStopCode === busStop.BusStopCode);
 
-                    skip += batchSize;
-                } catch (error) {
-                    console.error('Error fetching bus stops:', error);
-                    break;
+                if (bookmarkIndex === -1) {
+                    // Add the bookmark
+                    bookmarks.push(busStop);
+                    localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
+                    alert('Bus stop bookmarked!');
+
+                    // Update the button to indicate the bus stop is bookmarked
+                    button.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-success');
+                } else {
+                    // Remove the bookmark
+                    bookmarks.splice(bookmarkIndex, 1);
+                    localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
+                    alert('Bus stop removed from bookmarks.');
+
+                    // Update the button to indicate the bus stop is not bookmarked
+                    button.innerHTML = '<i class="fa-solid fa-star"></i>';
+                    button.classList.remove('btn-success');
+                    button.classList.add('btn-primary');
                 }
             }
 
-            localStorage.setItem('allBusStops', JSON.stringify(allBusStops));
-            return allBusStops;
-        }
-
-        // Function to display bus stops for the current page
-        function displayBusStops(busStops, page) {
-            const startIndex = (page - 1) * limit;
-            const endIndex = startIndex + limit;
-            const paginatedBusStops = busStops.slice(startIndex, endIndex);
-
-            listGroup.innerHTML = '';
-            if (busStops.length === 0) {
-                listGroup.innerHTML = '<p style="text-align:center;">No bus stops found.</p>';
-                prevButton.style.display = 'none';
-                nextButton.style.display = 'none';
-                return;
+            // Load bus stops from localStorage or fetch from API
+            const cachedBusStops = localStorage.getItem('allBusStops');
+            if (cachedBusStops) {
+                allBusStops = JSON.parse(cachedBusStops);
+            } else {
+                allBusStops = await fetchAllBusStops();
             }
 
-            paginatedBusStops.forEach((busStop) => {
-                const listItem = document.createElement('div');
-                listItem.className = 'list-group-item';
-                listItem.style.display = 'flex';
-                listItem.style.justifyContent = 'space-between';
-                listItem.style.alignItems = 'center';
+            totalPages = Math.ceil(allBusStops.length / limit);
+            displayBusStops(allBusStops, currentPage);
 
-                // Make the bus stop details clickable
-                const link = document.createElement('a');
-                link.href = `sbs.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
-                link.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
-                link.style.flexGrow = '1';
-                link.style.textDecoration = 'none';
-                link.style.color = 'inherit';
-
-                // Bookmark button
-                const bookmarkButton = document.createElement('button');
-                bookmarkButton.textContent = 'Bookmark';
-                bookmarkButton.className = 'btn btn-primary btn-sm';
-                bookmarkButton.addEventListener('click', (event) => {
-                    event.stopPropagation(); // Prevent the click from triggering the link
-                    event.preventDefault(); // Prevent default link behavior
-                    addBookmark(busStop);
-                });
-
-                listItem.appendChild(link);
-                listItem.appendChild(bookmarkButton);
-                listGroup.appendChild(listItem);
+            // Pagination
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayBusStops(allBusStops, currentPage);
+                }
             });
 
-            prevButton.style.display = page > 1 ? 'inline-block' : 'none';
-            nextButton.style.display = page < totalPages ? 'inline-block' : 'none';
-        }
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayBusStops(allBusStops, currentPage);
+                }
+            });
 
-        // Function to add a bookmark
-        function addBookmark(busStop) {
-            const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
-            if (!bookmarks.some((b) => b.BusStopCode === busStop.BusStopCode)) {
-                bookmarks.push(busStop);
-                localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
-                alert('Bus stop bookmarked!');
-            } else {
-                alert('This bus stop is already bookmarked.');
-            }
-        }
-
-        // Load bus stops from localStorage or fetch from API
-        const cachedBusStops = localStorage.getItem('allBusStops');
-        if (cachedBusStops) {
-            allBusStops = JSON.parse(cachedBusStops);
-        } else {
-            allBusStops = await fetchAllBusStops();
-        }
-
-        totalPages = Math.ceil(allBusStops.length / limit);
-        displayBusStops(allBusStops, currentPage);
-
-        // Pagination
-        prevButton.addEventListener('click', () => {
-            if (currentPage > 1) {
-                currentPage--;
-                displayBusStops(allBusStops, currentPage);
-            }
+            // Search functionality
+            searchInput.addEventListener('input', (event) => {
+                const query = event.target.value.toLowerCase();
+                const filteredBusStops = allBusStops.filter((busStop) =>
+                    busStop.BusStopCode.toLowerCase().includes(query) ||
+                    busStop.Description.toLowerCase().includes(query)
+                );
+                totalPages = Math.ceil(filteredBusStops.length / limit);
+                currentPage = 1;
+                displayBusStops(filteredBusStops, currentPage);
+            });
         });
-
-        nextButton.addEventListener('click', () => {
-            if (currentPage < totalPages) {
-                currentPage++;
-                displayBusStops(allBusStops, currentPage);
-            }
-        });
-
-        // Search functionality
-        searchInput.addEventListener('input', (event) => {
-            const query = event.target.value.toLowerCase();
-            const filteredBusStops = allBusStops.filter((busStop) =>
-                busStop.BusStopCode.toLowerCase().includes(query) ||
-                busStop.Description.toLowerCase().includes(query)
-            );
-            totalPages = Math.ceil(filteredBusStops.length / limit);
-            currentPage = 1;
-            displayBusStops(filteredBusStops, currentPage);
-        });
-    });
-</script>
+    </script>
 
 </body>
 
