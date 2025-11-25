@@ -294,7 +294,6 @@
 
     <script src="js/isotope.pkgd.min.js"></script>
 
-
     <script src="js/dstabs.js"></script>
 
     <script src="js/utils.js"></script>
@@ -322,7 +321,7 @@
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
-                    link.href = `bat/sbs.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
+                    link.href = `bat/art.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
                     link.textContent = `${busStop.BusStopCode} - ${busStop.Description} (${busStop.RoadName})`;
                     link.style.flexGrow = '1';
                     link.style.textDecoration = 'none';
