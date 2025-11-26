@@ -4041,3 +4041,10 @@ table th {
     color: #fff;
     transform: translateY(-2px);
 }
+
+/*  */
+.list-group-item.active {
+    z-index: 2;
+    color: #000;
+    background-color: #c7e3fb;
+}
