@@ -166,9 +166,9 @@
             </div>
     </section>
     <main class="main-content">
-        <section class="create-new">
+        <section class="all-apps">
             <div class="container container-xxl">
-                <h2>Apps</h2>
+                <h2></h2>
                 <div class="card-container">
                     <div class="card-bz card-nbs">
                         <img src="bat/assets/nbs.png" alt="nbs" class="card-icon" />
@@ -193,9 +193,9 @@
             </div>
         </section>
 
-        <section class="quick-access">
+        <section class="pinned">
             <div class="container container-xxl">
-                <h2>Pinned Bus Stops</h2>
+                <h2><i class="fa-solid fa-location-pin"></i>&nbsp; Pinned Bus Stops</h2>
                 <!-- Section Contents -->
                 <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
 
@@ -313,6 +313,27 @@
             // Load bookmarks on page load
             loadBookmarks();
         });
+
+            document.addEventListener('DOMContentLoaded', () => {
+        const allappsElement = document.querySelector('h2'); // Select the <h2> element
+
+        // Function to determine the all-apps based on the current time
+        function getGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+
+            if (hours >= 5 && hours < 12) {
+                return 'Good Morning!';
+            } else if (hours >= 12 && hours < 18) {
+                return 'Good Afternoon!!';
+            } else {
+                return 'Good Evening!';
+            }
+        }
+
+        // Update the <h2> element with the all-apps
+        allappsElement.textContent = getGreeting();
+    });
     </script>
 
 </body>

@@ -3917,24 +3917,28 @@ table th {
     padding: 2em;
 }
 
-.create-new,
-.quick-access {
+.all-apps,
+.pinned {
     margin-bottom: 2em;
 }
 
-.create-new h2,
-.quick-access h2 {
-    font-size: 1.5em;
+.all-apps h2 {
+    font-size: 30px;
     margin-bottom: 1em;
+}
+
+.pinned h2 {
+    font-size: 25px;
 }
 
 .card-container {
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
+    margin-bottom: 4em;
 }
 
-.quick-access p {
+.pinned p {
     text-align: right;
     color: #0078d4;
     cursor: pointer;
