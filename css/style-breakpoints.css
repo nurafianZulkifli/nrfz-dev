@@ -333,7 +333,7 @@
         width: calc(100% - 30px);
     }
 
-    
+
 }
 
 /* ---- */
@@ -1272,6 +1272,11 @@
 
     .table tr:last-child td:last-child {
         border-bottom-right-radius: 15px;
+    }
+
+    .all-apps h2 {
+        text-align: center;
+        margin-left: 0em;
     }
 
 }
