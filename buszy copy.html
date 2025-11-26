@@ -3,38 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage Design</title>
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Favourites | Buszy</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
 
+    <link rel="icon" href="img/core-img/favicon.png">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
     <link rel="stylesheet" href="css/dark-mode.css">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WN76281P3Q');
+    </script>
 
 </head>
 
 <style>
     #cv-bat {
-        background-image: url("../img/bg-img/cover-bat.jpg");
-        height: 40vh;
-        /* height: 10vh; */
+        /* background-image: url("../img/bg-img/cover-bat.jpg"); */
+        /* height: 40vh; */
+        height: 10vh;
     }
 
-    @media only screen and (min-width: 570px) and (max-width: 816px) {
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            /* 2 cards per row */
-            gap: 20px;
-            /* Add spacing between cards */
-        }
-
-        .card-bz {
-            width: 100%;
-            /* Ensure cards take full width of their grid cell */
-        }
+    .footer {
+        display: none;
     }
 </style>
 
@@ -164,48 +170,84 @@
                 <div class="col-12">
                 </div>
             </div>
+        </div>
     </section>
-    <main class="main-content">
-        <section class="create-new">
-            <div class="container container-xxl">
-                <h2>Apps</h2>
-                <div class="card-container">
-                    <div class="card-bz card-nbs">
-                        <img src="bat/assets/nbs.png" alt="nbs" class="card-icon" />
-                        <p>Nearby Bus Stops</p>
-                        <a href="./works-by-nrfz.html" class="btn bz-btn btn-2 mt-15"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                    <div class="card-bz card-sbs">
-                        <img src="bat/assets/sbs.png" alt="sbs" class="card-icon" />
-                        <p>Search Bus Stops</p>
-                        <a href="./works-by-nrfz.html" class="btn bz-btn btn-2 mt-15"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                    <div class="card-bz card-abs">
-                        <img src="bat/assets/abs.png" alt="abs" class="card-icon" />
-                        <p>Announcements</p>
-                        <a href="./works-by-nrfz.html" class="btn bz-btn btn-2 mt-15"><i
-                                class="fa-solid fa-arrow-right"></i></a>
+
+    <!-- Title/Breadcrumbs -->
+    <section class="about-me-sum clearfix">
+        <div class="wbnrfz_eicw">
+            <div class="page-header-section">
+                <div class="container container-xxl container-mobile container-mobile-header">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="buszy.html">Buszy</a>
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="page-title-wrapper">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div>
+                                    <h1 class="page-title" id="filter-title">Favourites</h1>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
+
+
+                <div class="scrollable-tabs-container">
+                    <div class="left-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            <a href="#" class="active"><i class="fa-solid fa-star"></i> Favourites</a>
+                        </li>
+
+                        <li>
+                            <a href="bat/nbs.html"><i class="fa-solid fa-location-dot"></i> Nearby</a>
+                        </li>
+
+                        <li>
+                            <a href="bat/abs.html"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+                        </li>
+                    </ul>
+
+                    <div class="right-arrow active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+
+                    </div>
+                </div>
+                <hr>
             </div>
-        </section>
 
-        <section class="quick-access">
-            <div class="container container-xxl">
-                <h2>Pinned Bus Stops</h2>
-                <!-- Section Contents -->
-                <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+        </div>
 
+    </section>
+    <!-- Section Contents -->
+    <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
 
-                    <div id="bookmarks-container" class="list-group"></div>
-
-                </section>
-            </div>
-        </section>
-    </main>
+        <div class="container container-xxl">
+            <div id="bookmarks-container" class="list-group"></div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
