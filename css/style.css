@@ -3991,3 +3991,36 @@ table th {
 .card-icon {
     border-radius: 25px;
 }
+
+.btn-bin {
+    position: relative;
+    z-index: 1;
+    min-width: 50px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0 30px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #ec451b;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-radius: 60px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: none;
+    margin-left: 1em;
+}
+
+.btn-bin.btn-2 {
+    color: #fff;
+}
+
+.btn-bin:focus,
+.btn-bin:hover {
+    font-weight: 500;
+    background-color: #6d99c0 !important;
+    color: #fff;
+    transform: translateY(-2px);
+}

@@ -3,21 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage Design</title>
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Buszy | Home</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
 
+    <link rel="icon" href="img/core-img/favicon.png">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
     <link rel="stylesheet" href="css/dark-mode.css">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WN76281P3Q');
+    </script>
 
 </head>
 
 <style>
     #cv-bat {
-        background-image: url("../img/bg-img/cover-bat.jpg");
+        background-image: url("img/bg-img/cover-bat.jpg");
         height: 40vh;
         /* height: 10vh; */
     }
@@ -173,19 +190,19 @@
                     <div class="card-bz card-nbs">
                         <img src="bat/assets/nbs.png" alt="nbs" class="card-icon" />
                         <p>Nearby Bus Stops</p>
-                        <a href="./works-by-nrfz.html" class="btn bz-btn btn-2 mt-15"><i
+                        <a href="bat/nbs.html" class="btn bz-btn btn-2 mt-15"><i
                                 class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="card-bz card-sbs">
                         <img src="bat/assets/sbs.png" alt="sbs" class="card-icon" />
                         <p>Search Bus Stops</p>
-                        <a href="./works-by-nrfz.html" class="btn bz-btn btn-2 mt-15"><i
+                        <a href="bat/abs.html" class="btn bz-btn btn-2 mt-15"><i
                                 class="fa-solid fa-arrow-right"></i></a>
                     </div>
-                    <div class="card-bz card-abs">
-                        <img src="bat/assets/abs.png" alt="abs" class="card-icon" />
+                    <div class="card-bz card-ann">
+                        <img src="bat/assets/ann.png" alt="ann" class="card-icon" />
                         <p>Announcements</p>
-                        <a href="./works-by-nrfz.html" class="btn bz-btn btn-2 mt-15"><i
+                        <a href="#" class="btn bz-btn btn-2 mt-15"><i
                                 class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
@@ -288,7 +305,7 @@
                     // Remove Bookmark button
                     const removeButton = document.createElement('button');
                     removeButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-                    removeButton.className = 'btn btn-danger btn-sm';
+                    removeButton.className = 'btn btn-bin btn-2';
                     removeButton.addEventListener('click', (event) => {
                         event.stopPropagation(); // Prevent the click from triggering the link
                         event.preventDefault(); // Prevent default link behavior
@@ -314,26 +331,26 @@
             loadBookmarks();
         });
 
-            document.addEventListener('DOMContentLoaded', () => {
-        const allappsElement = document.querySelector('h2'); // Select the <h2> element
+        document.addEventListener('DOMContentLoaded', () => {
+            const allappsElement = document.querySelector('h2'); // Select the <h2> element
 
-        // Function to determine the all-apps based on the current time
-        function getGreeting() {
-            const now = new Date();
-            const hours = now.getHours();
+            // Function to determine the all-apps based on the current time
+            function getGreeting() {
+                const now = new Date();
+                const hours = now.getHours();
 
-            if (hours >= 5 && hours < 12) {
-                return 'Good Morning!';
-            } else if (hours >= 12 && hours < 18) {
-                return 'Good Afternoon!!';
-            } else {
-                return 'Good Evening!';
+                if (hours >= 5 && hours < 12) {
+                    return 'Good Morning!';
+                } else if (hours >= 12 && hours < 18) {
+                    return 'Good Afternoon!!';
+                } else {
+                    return 'Good Evening!';
+                }
             }
-        }
 
-        // Update the <h2> element with the all-apps
-        allappsElement.textContent = getGreeting();
-    });
+            // Update the <h2> element with the all-apps
+            allappsElement.textContent = getGreeting();
+        });
     </script>
 
 </body>
