@@ -1217,12 +1217,8 @@
     }
 
     #cv-bat {
-        /* height: 25vh !important; */
-        height: 10vh !important;
-    }
-
-    #cv-bat-main {
         height: 50vh !important;
+        /* height: 10vh !important; */
     }
 
     .single_gallery_item {

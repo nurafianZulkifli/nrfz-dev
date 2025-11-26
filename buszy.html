@@ -39,18 +39,25 @@
         /* height: 10vh; */
     }
 
-    @media only screen and (min-width: 570px) and (max-width: 816px) {
+    @media only screen and (min-width: 489px) and (max-width: 816px) {
+        .all-apps h2 {
+            margin-left: 0em;
+        }
+
         .card-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            /* 2 cards per row */
             gap: 20px;
-            /* Add spacing between cards */
+            margin-bottom: 4em;
+            padding: 0 0em;
         }
 
         .card-bz {
             width: 100%;
-            /* Ensure cards take full width of their grid cell */
+        }
+
+        .card-bz p {
+            font-size: 20px;
         }
     }
 </style>
@@ -182,46 +189,40 @@
                 </div>
             </div>
     </section>
-    <main class="main-content">
-        <section class="all-apps">
-            <div class="container container-xxl">
-                <h2></h2>
-                <div class="card-container">
-                    <div class="card-bz card-nbs">
-                        <img src="bat/assets/nbs.png" alt="nbs" class="card-icon" />
-                        <p>Nearby Bus Stops</p>
-                        <a href="bat/nbs.html" class="btn bz-btn btn-2 mt-15"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                    <div class="card-bz card-sbs">
-                        <img src="bat/assets/sbs.png" alt="sbs" class="card-icon" />
-                        <p>Search Bus Stops</p>
-                        <a href="bat/abs.html" class="btn bz-btn btn-2 mt-15"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                    <div class="card-bz card-ann">
-                        <img src="bat/assets/ann.png" alt="ann" class="card-icon" />
-                        <p>Announcements</p>
-                        <a href="#" class="btn bz-btn btn-2 mt-15"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
 
+    <section class="all-apps">
+        <div class="container">
+            <h2></h2>
+            <div class="card-container">
+                <div class="card-bz card-nbs">
+                    <img src="bat/assets/nbs.png" alt="nbs" class="card-icon" />
+                    <p>Nearby Bus Stops</p>
+                    <a href="bat/nbs.html" class="btn bz-btn btn-2 mt-15"><i class="fa-solid fa-arrow-right"></i></a>
                 </div>
+                <div class="card-bz card-sbs">
+                    <img src="bat/assets/sbs.png" alt="sbs" class="card-icon" />
+                    <p>Search Bus Stops</p>
+                    <a href="bat/abs.html" class="btn bz-btn btn-2 mt-15"><i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="card-bz card-ann">
+                    <img src="bat/assets/ann.png" alt="ann" class="card-icon" />
+                    <p>Announcements</p>
+                    <a href="#" class="btn bz-btn btn-2 mt-15"><i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="pinned">
-            <div class="container container-xxl">
-                <h2><i class="fa-solid fa-location-pin"></i>&nbsp; Pinned Bus Stops</h2>
-                <!-- Section Contents -->
-                <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
-
-
-                    <div id="bookmarks-container" class="list-group"></div>
-
-                </section>
-            </div>
-        </section>
+    <section class="pinned" id="pinned">
+        <div class="container">
+            <h2><i class="fa-solid fa-location-pin"></i>&nbsp; Pinned Bus Stops</h2>
+            <!-- Section Contents -->
+            <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+                <div id="bookmarks-container" class="list-group"></div>
+            </section>
+        </div>
+    </section>
     </main>
 
     <!-- Footer -->
@@ -283,7 +284,7 @@
                 bookmarksContainer.innerHTML = '';
 
                 if (bookmarks.length === 0) {
-                    bookmarksContainer.innerHTML = '<p>No bookmarks yet.</p>';
+                    bookmarksContainer.innerHTML = '<p>Pin a Bus Stop to get started!</p>';
                     return;
                 }
 
@@ -304,8 +305,8 @@
 
                     // Remove Bookmark button
                     const removeButton = document.createElement('button');
-                    removeButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-                    removeButton.className = 'btn btn-bin btn-2';
+                    removeButton.innerHTML = '<i class="fa-solid fa-thumbtack-angle-slash"></i>';
+                    removeButton.className = 'btn btn-unpin btn-2';
                     removeButton.addEventListener('click', (event) => {
                         event.stopPropagation(); // Prevent the click from triggering the link
                         event.preventDefault(); // Prevent default link behavior
@@ -324,7 +325,7 @@
                 const updatedBookmarks = bookmarks.filter((b) => b.BusStopCode !== busStopCode);
                 localStorage.setItem('bookmarkedBusStops', JSON.stringify(updatedBookmarks));
                 loadBookmarks(); // Refresh the displayed list
-                alert('Bus stop removed from bookmarks.');
+                alert('Bus Stop Unpinned.');
             }
 
             // Load bookmarks on page load
