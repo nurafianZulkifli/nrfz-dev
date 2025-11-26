@@ -419,7 +419,6 @@
         }
 
         // Updated fetchBusArrivals function
-        // Updated fetchBusArrivals function
         async function fetchBusArrivals() {
             try {
                 const searchInput = document.getElementById('bus-stop-search').value.trim();
@@ -457,25 +456,25 @@
                 data.Services.forEach((service) => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                <td class="svcNumtd">
-                    <p class="svcNum">${service.ServiceNo}</p>
-                </td>
-                <td class="departure-spacing">
-                    <span class="bus-time">
-                        ${service.NextBus.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '-'} 
-                        &nbsp; 
-                        ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;" onerror="this.src='assets/placeholder.png';">` : ''}
-                    </span>
-                    <span class="bus-time">
-                        ${service.NextBus2.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : ''} 
-                        &nbsp; 
-                        ${service.NextBus2.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus2.Type}" style="width: 30px; height: auto;" onerror="this.src='assets/placeholder.png';">` : ''}
-                    </span>
-                </td>
-                <td> 
-                    ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="operator-logo" onerror="this.src='assets/placeholder.png';">` : ''}
-                </td>
-            `;
+            <td class="svcNumtd">
+                <p class="svcNum">${service.ServiceNo}</p>
+            </td>
+            <td class="departure-spacing">
+                <span class="bus-time">
+                    ${service.NextBus.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '-'} 
+                    &nbsp; 
+                    ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" style="width: 30px; height: auto;">` : ''}
+                </span>
+                <span class="bus-time">
+                    ${service.NextBus2.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : ''} 
+                    &nbsp; 
+                    ${service.NextBus2.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus2.Type}" style="width: 30px; height: auto;">` : ''}
+                </span>
+            </td>
+            <td> 
+                ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="operator-logo">` : ''}
+            </td>
+        `;
                     tableBody.appendChild(row);
                 });
 
@@ -508,25 +507,22 @@
             return `${hours}:${minutes}`;
         }
 
-        // Function to update the displayed times in real-time
-        function updateArrivalTimes() {
+        function formatArrivalTime(isoString) {
+            const date = new Date(isoString);
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            const formattedTime = `${hours}:${minutes}`;
+
             const now = new Date();
-            const timeElements = document.querySelectorAll('.bus-time');
+            const currentHours = now.getHours().toString().padStart(2, '0');
+            const currentMinutes = now.getMinutes().toString().padStart(2, '0');
+            const currentTime = `${currentHours}:${currentMinutes}`;
 
-            timeElements.forEach((element) => {
-                const timeText = element.textContent.trim();
-                if (timeText && timeText !== 'Arr') {
-                    const [hours, minutes] = timeText.split(':');
-                    const arrivalTime = new Date();
-                    arrivalTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
-
-                    if (now >= arrivalTime && now - arrivalTime < 60000) {
-                        element.innerHTML = `<span class="arrival-now">Arr</span>`;
-                    }
-                }
-            });
+            if (formattedTime === currentTime) {
+                return `<span class="arrival-now">Arr</span>`;
+            }
+            return formattedTime;
         }
-
 
         document.addEventListener('DOMContentLoaded', () => {
             const searchBusStopButton = document.getElementById('search-bus-stop-button'); // Select the "Search Bus Stop" button
