@@ -2586,7 +2586,8 @@ select:focus {
 #summary,
 #time,
 #conc-rea,
-#descol {
+#descol,
+#pinned {
     scroll-margin-top: 12vh;
 }
 
