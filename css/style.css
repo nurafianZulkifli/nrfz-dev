@@ -4045,3 +4045,15 @@ table th {
     color: #000;
     background-color: #c7e3fb;
 }
+
+.lg-ann {
+    font-size: 25px;
+    margin-bottom: 0px;
+    font-weight: bolder;
+}
+
+.lg-date {
+    font-size: 15px;
+    margin-bottom: 0px;
+    color: #757575;
+}

@@ -338,6 +338,12 @@
         padding-right: 3em;
     }
 
+    .lg-ann {
+        font-size: 20px;
+        margin-bottom: 0px;
+        font-weight: bolder;
+    }
+
 }
 
 /* ---- */
