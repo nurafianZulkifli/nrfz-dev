@@ -193,7 +193,7 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
-                                    <h1 class="page-title" id="filter-title">Nearby Bus Stops</h1>
+                                    <h1 class="page-title" id="filter-title">Settings</h1>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +217,7 @@
                         </li>
 
                         <li>
-                            <a href="#" class="active"><i class="fa-solid fa-location-dot"></i> Nearby</a>
+                            <a href="#"><i class="fa-solid fa-location-dot"></i> Nearby</a>
                         </li>
 
                         <li>
@@ -228,6 +228,10 @@
                         <li>
                             <a href="ann.html"><i class="fa-solid fa-bullhorn"></i>
                                 Announcements</a>
+                        </li>
+                        <li>
+                            <a href="settings.html" class="active"><i class="fa-solid fa-gear"></i>
+                                Settings</a>
                         </li>
                     </ul>
 
@@ -249,9 +253,34 @@
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
 
         <div class="container">
-            <h2 class="text-center" style="padding-top: 1em;">Bus Stops</h2>
-            <div id="bus-stops"></div>
+            <h2 class="text-center" style="padding-top: 1em;">Time Formats</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label for="time-format-12">
+                        <input type="radio" id="time-format-12" name="time-format" value="12-hour" checked>
+                        12-Hour Format (e.g. 2:30 PM) <br>
+                        <label for="time-format-24">
+                            <input type="radio" id="time-format-24" name="time-format" value="24-hour">
+                            24-Hour Format (e.g. 14:30)
+                        </label><br>
+                        <label for="time-format-mins">
+                            <input type="radio" id="time-format-mins" name="time-format" value="mins">
+                            Mins (e.g., 5 mins)
+                        </label>
+                    </label>
+                </li>
+
+            </ul>
+
+            <h2 class="text-center" style="padding-top: 1em;">Data</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <button id="clear-cache-btn" class="btn btn-danger">Re-fetch data</button><br>
+                    <small>Clear cached bus stop data to ensure you have the latest information.</small>
+                </li>
+            </ul>
         </div>
+
     </section>
 
     <!-- Footer -->
@@ -303,152 +332,56 @@
 
     <script src="../js/utils.js"></script>
 
-    <script>
-        const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/nearby-bus-stops'; // Update with your server URL
+<script>
+    // Function to handle time format change
+    document.addEventListener('DOMContentLoaded', () => {
+        const timeFormatRadios = document.querySelectorAll('input[name="time-format"]');
 
-        // Automatically fetch nearby bus stops on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const busStopsContainer = document.getElementById('bus-stops');
+        // Load the saved time format from localStorage
+        const savedFormat = localStorage.getItem('timeFormat');
+        if (savedFormat) {
+            document.querySelector(`input[value="${savedFormat}"]`).checked = true;
+        }
 
-            // Display "Searching for nearby bus stops..." message
-            busStopsContainer.innerHTML = '<p class="pin-msg"><span class="spinner"></span>Searching for nearby bus stops...</p>';
+        // Add event listeners to update the time format
+        timeFormatRadios.forEach(radio => {
+            radio.addEventListener('change', (event) => {
+                const selectedFormat = event.target.value;
+                localStorage.setItem('timeFormat', selectedFormat);
+                alert(`Time format updated to ${selectedFormat}`);
+            });
+        });
 
-            // Check if geolocation is available
-            if (!navigator.geolocation) {
-                alert('Geolocation is not supported by your browser.');
-                busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-triangle-exclamation"></i>Geolocation is not supported by your browser.</p>';
-                return;
-            }
-
-            // Get the user's current location
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-
+        // Handle re-fetch data button
+        const clearCacheBtn = document.getElementById('clear-cache-btn');
+        clearCacheBtn.addEventListener('click', async () => {
+            if (confirm('Are you sure you want to re-fetch data? This will delete existing cached data.')) {
                 try {
-                    // Fetch nearby bus stops from the backend
-                    const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=2`);
+                    // Clear cached data
+                    localStorage.removeItem('allBusStops');
+
+                    // Fetch updated data from the API
+                    const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops'); // Replace with your API URL
                     if (!response.ok) {
-                        throw new Error('Failed to fetch nearby bus stops');
+                        throw new Error('Failed to fetch data from the API.');
                     }
 
-                    const busStops = await response.json();
-                    displayBusStops(busStops);
+                    const updatedData = await response.json();
+
+                    // Save the updated data to localStorage
+                    localStorage.setItem('allBusStops', JSON.stringify(updatedData));
+
+                    alert('Data successfully re-fetched and updated.');
                 } catch (error) {
-                    console.error('Error:', error);
-                    busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-triangle-exclamation"></i>Failed to fetch nearby bus stops. Please try again later.</p>';
-                }
-            }, (error) => {
-                console.error('Geolocation error:', error);
-                busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-triangle-exclamation"></i>Unable to retrieve your location.</p>';
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const cachedLocation = sessionStorage.getItem('userLocation');
-            const busStopsContainer = document.getElementById('bus-stops');
-
-            if (cachedLocation) {
-                const { latitude, longitude } = JSON.parse(cachedLocation);
-                fetchNearbyBusStops(latitude, longitude);
-            } else {
-                // Get the user's current location
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-
-                    // Cache the location
-                    sessionStorage.setItem('userLocation', JSON.stringify({ latitude, longitude }));
-
-                    fetchNearbyBusStops(latitude, longitude);
-                }, (error) => {
-                    console.error('Geolocation error:', error);
-                    busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-triangle-exclamation"></i>Unable to retrieve your location.</p>';
-                }, {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 0
-                });
-            }
-        });
-
-        async function fetchNearbyBusStops(latitude, longitude) {
-            try {
-                const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=2`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch nearby bus stops');
-                }
-
-                const busStops = await response.json();
-                displayBusStops(busStops);
-            } catch (error) {
-                console.error('Error:', error);
-                busStopsContainer.innerHTML = '<p class="pin-msg"<i class="fa-solid fa-triangle-exclamation"></i>Failed to fetch nearby bus stops. Please try again later.</p>';
-            }
-        }
-
-        // Display the 3 nearest bus stops
-        function displayBusStops(busStops) {
-            const busStopsContainer = document.getElementById('bus-stops');
-            busStopsContainer.innerHTML = ''; // Clear previous results
-
-            if (!busStops || busStops.length === 0) {
-                busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-circle-info"></i>No Bus Stops found nearby.</p>';
-                return;
-            }
-
-            busStops.forEach((busStop) => {
-                const distance = busStop.distance < 1
-                    ? `${(busStop.distance * 1000).toFixed(0)} m` // Convert to meters if less than 1 km
-                    : `${busStop.distance.toFixed(2)} km`; // Show in kilometers otherwise
-
-                const busStopElement = document.createElement('div');
-                busStopElement.className = 'bus-stop';
-                busStopElement.innerHTML = `
-            <p class="bs-name"><span>${busStop.Description}</span> </p>
-            <p class="bs-info">
-                <span style="font-weight:bold;">${busStop.BusStopCode}</span> | 
-                <span>${busStop.RoadName}</span> | 
-                <span>${distance}</span>
-            </p>
-        `;
-
-                // Add click event listener to the entire div
-                busStopElement.addEventListener('click', () => {
-                    // Navigate to buszy.html with the BusStopCode as a query parameter
-                    window.location.href = `art.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
-                });
-
-                busStopsContainer.appendChild(busStopElement);
-            });
-
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchBusStopButton = document.querySelector('a[href="buszy.html"]'); // Select the "Search Bus Stop" button
-            const searchInput = document.getElementById('bus-stop-search'); // Select the search input field
-
-            if (searchBusStopButton && searchInput) {
-                searchBusStopButton.addEventListener('click', () => {
-                    searchInput.value = ''; // Clear the search bar
-                });
-            }
-        });
-
-        // Populate the search bar with the BusStopCode from query parameters
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const busStopCode = urlParams.get('BusStopCode'); // Get the BusStopCode from the query parameters
-
-            if (busStopCode) {
-                const searchInput = document.getElementById('bus-stop-search'); // Select the search bar
-                if (searchInput) {
-                    searchInput.value = busStopCode; // Populate the search bar with the BusStopCode
+                    console.error('Error re-fetching data:', error);
+                    alert('An error occurred while re-fetching data. Please try again later.');
                 }
             }
         });
+    });
+</script>
 
-    </script>
+
 </body>
 
 </html>

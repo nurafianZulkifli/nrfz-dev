@@ -236,6 +236,11 @@
                             <a href="ann.html"><i class="fa-solid fa-bullhorn"></i>
                                 Announcements</a>
                         </li>
+
+                        <li>
+                            <a href="settings.html"><i class="fa-solid fa-gear"></i>
+                                Settings</a>
+                        </li>
                     </ul>
 
                     <div class="right-arrow active">
@@ -377,6 +382,13 @@
 
             // Refresh data every 5 seconds
             setInterval(fetchBusArrivals, 5000);
+
+            // Listen for changes in localStorage to update time format dynamically
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'timeFormat') {
+                    fetchBusArrivals(); // Re-fetch and update the table with the new format
+                }
+            });
         });
 
         function debounce(func, delay) {
@@ -465,10 +477,21 @@
                 return `<span class="arrival-now">Arr</span>`;
             }
 
-            // Format the time as hh:mm for future arrivals
-            const hours = arrivalTime.getHours().toString().padStart(2, '0');
-            const minutes = arrivalTime.getMinutes().toString().padStart(2, '0');
-            return `${hours}:${minutes}`;
+            // Get the saved time format from localStorage
+            const savedFormat = localStorage.getItem('timeFormat') || '12-hour';
+
+            if (savedFormat === 'mins') {
+                // Calculate the time difference in minutes
+                const minutes = Math.ceil(timeDifference / (1000 * 60));
+                return `${minutes} min${minutes === 1 ? '' : 's'}`; // Singular/plural handling
+            }
+
+            // Format the time based on the saved format
+            const options = savedFormat === '24-hour'
+                ? { hour: '2-digit', minute: '2-digit', hour12: false }
+                : { hour: '2-digit', minute: '2-digit', hour12: true };
+
+            return arrivalTime.toLocaleTimeString('en-US', options);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
