@@ -3692,6 +3692,11 @@ table th {
     font-weight: bold;
 }
 
+.arrival-grey {
+    color: #8d8d8d;
+    font-weight: bold;
+}
+
 .message {
     font-size: 15px;
     text-align: center;
