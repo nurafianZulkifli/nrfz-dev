@@ -497,11 +497,11 @@
             });
         });
 
-// Auto-reload the scrollbar tabs every 2 seconds
+// Auto-reload only the active tab every 2 seconds
 setInterval(() => {
-    const scrollableTabsContainer = document.querySelector('.scrollable-tabs-container');
-    if (scrollableTabsContainer) {
-        scrollableTabsContainer.innerHTML = scrollableTabsContainer.innerHTML; // Re-render the tabs
+    const activeTab = document.querySelector('.scrollable-tabs-container .active');
+    if (activeTab) {
+        activeTab.innerHTML = activeTab.innerHTML; // Re-render the active tab
     }
 }, 2000);
     </script>
