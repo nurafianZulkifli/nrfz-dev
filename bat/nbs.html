@@ -454,13 +454,25 @@
         });
 
 
-        // Auto-reload the scrollbar tabs after 2 seconds
-        setTimeout(() => {
-            const scrollableTabsContainer = document.querySelector('.scrollable-tabs-container');
-            if (scrollableTabsContainer) {
-                scrollableTabsContainer.innerHTML = scrollableTabsContainer.innerHTML; // Re-render the tabs
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-menu-link');
+
+        // Get the current page URL
+        const currentPage = window.location.pathname;
+
+        // Remove 'active' class from all links
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Add 'active' class to the link that matches the current page
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') && currentPage.endsWith(link.getAttribute('href'))) {
+                link.classList.add('active');
             }
-        }, 2000);
+        });
+    });
     </script>
 </body>
 
