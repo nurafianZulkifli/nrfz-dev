@@ -453,18 +453,16 @@
             }
         });
 
-        // Refresh the active tab when the back button is pressed
-        window.addEventListener('popstate', () => {
-            // Force a full page reload by appending a unique query string
+// Update the browser history state when navigating tabs
+history.replaceState({ tab: 'activeTab' }, '', location.href);
 
-window.addEventListener('popstate', () => {
-    console.log('Popstate event triggered');
-    location.reload();
+// Handle the back button
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.tab) {
+        console.log(`Navigated to tab: ${event.state.tab}`);
+        location.reload(); // Reload the page or handle the tab change
+    }
 });
-            location.href = location.href.split('?')[0] + '?reload=' + new Date().getTime();
-        });
-
-
     </script>
 </body>
 

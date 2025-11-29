@@ -288,7 +288,7 @@
         </div>
     </footer>
 
-    <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"
+    <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom"
         data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
@@ -392,18 +392,16 @@
             allappsElement.textContent = getGreeting();
         });
 
-        // Refresh the active tab when the back button is pressed
-        window.addEventListener('popstate', () => {
-            // Force a full page reload by appending a unique query string
+// Update the browser history state when navigating tabs
+history.replaceState({ tab: 'activeTab' }, '', location.href);
 
-window.addEventListener('popstate', () => {
-    console.log('Popstate event triggered');
-    location.reload();
-});
-            location.href = location.href.split('?')[0] + '?reload=' + new Date().getTime();
-        });
-
-    </script>
+// Handle the back button
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.tab) {
+        console.log(`Navigated to tab: ${event.state.tab}`);
+        location.reload(); // Reload the page or handle the tab change
+    }
+});    </script>
 
 </body>
 
