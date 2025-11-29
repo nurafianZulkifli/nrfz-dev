@@ -509,8 +509,14 @@
         // Refresh the active tab when the back button is pressed
         window.addEventListener('popstate', () => {
             // Force a full page reload by appending a unique query string
+
+window.addEventListener('popstate', () => {
+    console.log('Popstate event triggered');
+    location.reload();
+});
             location.href = location.href.split('?')[0] + '?reload=' + new Date().getTime();
         });
+
     </script>
 
 </body>
