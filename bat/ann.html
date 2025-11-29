@@ -255,8 +255,8 @@
     <!-- Section Contents -->
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
         <div class="container">
-            <div class="alert alert-warning" role="alert">
-                A simple warning alert—check it out!
+            <div class="alert alert-warning" role="alert" id="train-alert">
+                Loading train service alerts...
             </div>
             <div class="list-group">
                 <a href="https://www.ptc.gov.sg/newsroom/news-releases/newsroom-view/fare-review-exercise-2025"
@@ -267,9 +267,7 @@
                             <small class="lg-date">14 Oct 2025</small>
                         </div>
                     </div>
-                    <p class="mb-1" style="cursor: pointer;">
-                        PTC grants overall fare adjustment of 5.0% - below the maximum allowable quantum of 14.4%;
-                        deferment of remaining quantum (9.4%) supported by additional Government subsidies...</p>
+                    <p class="mb-1">PTC grants overall fare adjustment of 5.0%...</p>
                 </a>
                 <a href="https://landtransportguru.net/ecid-ewl-closure-nov25/"
                     class="list-group-item list-group-item-action flex-column align-items-start">
@@ -279,23 +277,9 @@
                             <small class="lg-date">03 Oct 2025</small>
                         </div>
                     </div>
-                    <p class="mb-1">No Train Service will be available on the East-West Line (EWL) between Bedok –
-                        Tampines & Tanah Merah – Expo from Saturday, 29 November 2025 to Monday, 8 December 2025.</p>
-                </a>
-                <a href="https://landtransportguru.net/shortened-ops-hours-ccl-sep-dec-2025/"
-                    class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-ann">Service Adjustments - CCL</h5>
-                            <small class="lg-date">12 Aug 2025</small>
-                        </div>
-                    </div>
-                    <p class="mb-1">Early Closures & Late Openings (ECLO) along the entire Circle Line (CCL), between
-                        Dhoby Ghaut / Marina Bay and HarbourFront, will take place across 14 Fridays, Saturdays &
-                        Sundays between 5 September 2025 and 28 December 2025.</p>
+                    <p class="mb-1">No Train Service will be available on the East-West Line...</p>
                 </a>
             </div>
-
         </div>
     </section>
 
@@ -348,6 +332,33 @@
 
     <script src="../js/utils.js"></script>
 
+    <script>
+        // Fetch train service alerts and update the alert box
+        async function fetchTrainServiceAlerts() {
+            const alertBox = document.getElementById('train-alert');
+            try {
+                const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch train service alerts');
+                }
+                const data = await response.json();
+
+                // Check if there are any active alerts
+                if (data && data.value && data.value.length > 0) {
+                    const alerts = data.value.map(alert => alert.Message).join('<br>');
+                    alertBox.innerHTML = alerts;
+                } else {
+                    alertBox.innerHTML = 'No active train service alerts.';
+                }
+            } catch (error) {
+                console.error('Error fetching train service alerts:', error);
+                alertBox.innerHTML = 'Unable to load train service alerts.';
+            }
+        }
+
+        // Call the function to fetch train service alerts
+        fetchTrainServiceAlerts();
+    </script>
 
 </body>
 
