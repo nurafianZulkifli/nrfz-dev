@@ -295,17 +295,17 @@
                         <input class="form-check-input" type="radio" id="time-format-12" name="time-format"
                             value="12-hour" checked>&nbsp;
                         12-Hour Format (02:30 PM)
-                        </label><br>
-                        <label for="time-format-24" class="label-set">
-                            <input class="form-check-input" type="radio" id="time-format-24" name="time-format"
-                                value="24-hour">&nbsp;
-                            24-Hour Format (14:30)
-                        </label><br>
-                        <label for="time-format-mins" class="label-set">
-                            <input class="form-check-input" type="radio" id="time-format-mins" name="time-format"
-                                value="mins">&nbsp;
-                            Mins (5 mins)
-                        </label>
+                    </label><br>
+                    <label for="time-format-24" class="label-set">
+                        <input class="form-check-input" type="radio" id="time-format-24" name="time-format"
+                            value="24-hour">&nbsp;
+                        24-Hour Format (14:30)
+                    </label><br>
+                    <label for="time-format-mins" class="label-set">
+                        <input class="form-check-input" type="radio" id="time-format-mins" name="time-format"
+                            value="mins">&nbsp;
+                        Mins (5 mins)
+                    </label>
                     </label>
                 </li>
 
@@ -421,7 +421,8 @@
 
         // Refresh the active tab when the back button is pressed
         window.addEventListener('popstate', () => {
-            location.reload();
+            // Force a full page reload by appending a unique query string
+            location.href = location.href.split('?')[0] + '?reload=' + new Date().getTime();
         });
     </script>
 
