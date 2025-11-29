@@ -506,12 +506,13 @@
             }
         });
 
-        // Handle the back button
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.tab) {
-                location.reload(); // Reload the page or handle the tab change
-            }
-        });
+// Auto-reload the scrollbar tabs after 2 seconds
+setTimeout(() => {
+    const scrollableTabsContainer = document.querySelector('.scrollable-tabs-container');
+    if (scrollableTabsContainer) {
+        scrollableTabsContainer.innerHTML = scrollableTabsContainer.innerHTML; // Re-render the tabs
+    }
+}, 2000);
     </script>
 
 </body>
