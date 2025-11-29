@@ -40,6 +40,35 @@
     .footer {
         display: none;
     }
+
+    .btn-rfetch {
+        position: relative;
+        z-index: 1;
+        min-width: 50px;
+        width: 170px;
+        height: 46px;
+        line-height: 46px;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-block;
+        padding: 0 30px;
+        text-align: center;
+        text-transform: capitalize;
+        color: #fff;
+        border-radius: 60px;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #bb2d3b;
+    }
+
+    .btn-rfetch:focus,
+    .btn-rfetch:hover {
+        font-weight: 500;
+        background-color: #6d99c0 !important;
+        color: #fff;
+        transform: translateY(-2px);
+    }
 </style>
 
 <body>
@@ -275,8 +304,8 @@
             <h2 class="text-center" style="padding-top: 1em;">Data</h2>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <button id="clear-cache-btn" class="btn btn-danger">Re-fetch data</button><br>
-                    <small>Clear cached bus stop data to ensure you have the latest information.</small>
+                    <button id="clear-cache-btn" class="btn btn-rfetch">Re-fetch data</button><br>
+                    <p class="fetch">Clear cached bus stop data to ensure you have the latest information.</p>
                 </li>
             </ul>
         </div>
@@ -332,54 +361,54 @@
 
     <script src="../js/utils.js"></script>
 
-<script>
-    // Function to handle time format change
-    document.addEventListener('DOMContentLoaded', () => {
-        const timeFormatRadios = document.querySelectorAll('input[name="time-format"]');
+    <script>
+        // Function to handle time format change
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeFormatRadios = document.querySelectorAll('input[name="time-format"]');
 
-        // Load the saved time format from localStorage
-        const savedFormat = localStorage.getItem('timeFormat');
-        if (savedFormat) {
-            document.querySelector(`input[value="${savedFormat}"]`).checked = true;
-        }
+            // Load the saved time format from localStorage
+            const savedFormat = localStorage.getItem('timeFormat');
+            if (savedFormat) {
+                document.querySelector(`input[value="${savedFormat}"]`).checked = true;
+            }
 
-        // Add event listeners to update the time format
-        timeFormatRadios.forEach(radio => {
-            radio.addEventListener('change', (event) => {
-                const selectedFormat = event.target.value;
-                localStorage.setItem('timeFormat', selectedFormat);
-                alert(`Time format updated to ${selectedFormat}`);
+            // Add event listeners to update the time format
+            timeFormatRadios.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    const selectedFormat = event.target.value;
+                    localStorage.setItem('timeFormat', selectedFormat);
+                    alert(`Time format updated to ${selectedFormat}`);
+                });
+            });
+
+            // Handle re-fetch data button
+            const clearCacheBtn = document.getElementById('clear-cache-btn');
+            clearCacheBtn.addEventListener('click', async () => {
+                if (confirm('Are you sure you want to re-fetch data? This will delete existing cached data.')) {
+                    try {
+                        // Clear cached data
+                        localStorage.removeItem('allBusStops');
+
+                        // Fetch updated data from the API
+                        const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops'); // Replace with your API URL
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch data from the API.');
+                        }
+
+                        const updatedData = await response.json();
+
+                        // Save the updated data to localStorage
+                        localStorage.setItem('allBusStops', JSON.stringify(updatedData));
+
+                        alert('Data successfully re-fetched and updated.');
+                    } catch (error) {
+                        console.error('Error re-fetching data:', error);
+                        alert('An error occurred while re-fetching data. Please try again later.');
+                    }
+                }
             });
         });
-
-        // Handle re-fetch data button
-        const clearCacheBtn = document.getElementById('clear-cache-btn');
-        clearCacheBtn.addEventListener('click', async () => {
-            if (confirm('Are you sure you want to re-fetch data? This will delete existing cached data.')) {
-                try {
-                    // Clear cached data
-                    localStorage.removeItem('allBusStops');
-
-                    // Fetch updated data from the API
-                    const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops'); // Replace with your API URL
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch data from the API.');
-                    }
-
-                    const updatedData = await response.json();
-
-                    // Save the updated data to localStorage
-                    localStorage.setItem('allBusStops', JSON.stringify(updatedData));
-
-                    alert('Data successfully re-fetched and updated.');
-                } catch (error) {
-                    console.error('Error re-fetching data:', error);
-                    alert('An error occurred while re-fetching data. Please try again later.');
-                }
-            }
-        });
-    });
-</script>
+    </script>
 
 
 </body>
