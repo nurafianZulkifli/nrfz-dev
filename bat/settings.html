@@ -439,6 +439,32 @@
         });
     });
     </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get the breadcrumb element
+        const breadcrumb = document.querySelector('.breadcrumb');
+
+        // Get the last visited page from localStorage
+        const lastVisitedPage = localStorage.getItem('lastVisitedPage');
+
+        // If there's a last visited page, update the breadcrumb dynamically
+        if (lastVisitedPage) {
+            const lastPage = JSON.parse(lastVisitedPage);
+            const breadcrumbItem = document.createElement('li');
+            breadcrumbItem.classList.add('breadcrumb-item');
+            breadcrumbItem.innerHTML = `<a href="${lastPage.url}">${lastPage.name}</a>`;
+            breadcrumb.appendChild(breadcrumbItem);
+        }
+
+        // Save the current page as the last visited page
+        const currentPage = {
+            name: document.title.split('|')[1].trim(), // Extract the page name from the title
+            url: window.location.pathname
+        };
+        localStorage.setItem('lastVisitedPage', JSON.stringify(currentPage));
+    });
+</script>
 </body>
 
 </html>

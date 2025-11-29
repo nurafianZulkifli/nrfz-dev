@@ -496,26 +496,32 @@
                 displayBusStops(filteredBusStops, currentPage);
             });
         });
+    </script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Get all navigation links
-        const navLinks = document.querySelectorAll('.nav-link, .mobile-menu-link');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get the breadcrumb element
+            const breadcrumb = document.querySelector('.breadcrumb');
 
-        // Get the current page URL
-        const currentPage = window.location.pathname;
+            // Get the last visited page from localStorage
+            const lastVisitedPage = localStorage.getItem('lastVisitedPage');
 
-        // Remove 'active' class from all links
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-
-        // Add 'active' class to the link that matches the current page
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') && currentPage.endsWith(link.getAttribute('href'))) {
-                link.classList.add('active');
+            // If there's a last visited page, update the breadcrumb dynamically
+            if (lastVisitedPage) {
+                const lastPage = JSON.parse(lastVisitedPage);
+                const breadcrumbItem = document.createElement('li');
+                breadcrumbItem.classList.add('breadcrumb-item');
+                breadcrumbItem.innerHTML = `<a href="${lastPage.url}">${lastPage.name}</a>`;
+                breadcrumb.appendChild(breadcrumbItem);
             }
+
+            // Save the current page as the last visited page
+            const currentPage = {
+                name: document.title.split('|')[1].trim(), // Extract the page name from the title
+                url: window.location.pathname
+            };
+            localStorage.setItem('lastVisitedPage', JSON.stringify(currentPage));
         });
-    });
     </script>
 
 </body>
