@@ -74,18 +74,18 @@ function updateThemeIcon(theme) {
 
 function updateHrefForDarkMode() {
     /* Banners */
-    // const aboutPage = document.getElementById('cv-bat');
+    const aboutPage = document.getElementById('cv-bat');
 
     const isDarkMode = document.body.classList.contains('dark-mode');
 
     if (isDarkMode) {
         /* Banners */
-        // aboutPage.style.backgroundImage = "url('../img/bg-img/cover-bat.jpg')";
+        aboutPage.style.backgroundImage = "url('img/bg-img/hero-buszy-dark.png')";
 
 
     } else {
         /* Banners */
-        // aboutPage.style.backgroundImage = "url('../img/bg-img/cover-bat.jpg')";
+        aboutPage.style.backgroundImage = "url('img/bg-img/hero-buszy.png')";
     }
 
 
