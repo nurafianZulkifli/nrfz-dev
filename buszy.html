@@ -36,20 +36,73 @@
     #cv-bat {
         background-image: url("img/bg-img/hero-buszy.png");
         height: 40vh;
-        /* height: 10vh; */
     }
 
-    @media only screen and (min-width: 455px) and (max-width: 816px) {
+    @media only screen and (min-width: 1001px) and (max-width: 1199px) {
+        .card-container {
+            display: grid;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
+            margin-bottom: 4em;
+            padding: 0 4em;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
+        }
+
+    }
+
+    @media only screen and (min-width: 844px) and (max-width: 1000px) {
+        .card-container {
+            display: grid;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
+            margin-bottom: 4em;
+            padding: 0 5em;
+        }
+
+        .card-bz p {
+            font-size: 20px;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
+        }
+
+    }
+
+    @media only screen and (min-width: 801px) and (max-width: 843px) {
+        .card-container {
+            display: grid;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
+            margin-bottom: 4em;
+            padding: 0 3em;
+        }
+
+        .card-bz p {
+            font-size: 19px;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
+        }
+    }
+
+    @media only screen and (min-width: 455px) and (max-width: 800px) {
         .all-apps h2 {
             margin-left: 0em;
         }
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
             margin-bottom: 4em;
-            padding: 0 0em;
         }
 
         .card-bz {
@@ -57,7 +110,17 @@
         }
 
         .card-bz p {
-            font-size: 20px;
+            font-size: 19px;
+        }
+
+        .bz-btn {
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
         }
     }
 
