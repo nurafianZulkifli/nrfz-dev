@@ -3638,11 +3638,14 @@ table th {
 
 .bus-time {
     display: inline-flex;
-    width: 190px;
+    width: 200px;
     text-align: center;
     margin-right: 4em;
     font-size: 20px;
     justify-content: space-between;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 .svcNum {
