@@ -3642,7 +3642,7 @@ table th {
     text-align: center;
     margin-right: 4em;
     font-size: 20px;
-    justify-content: space-between;
+    justify-content: space-evenly;
     font-weight: bold;
     margin-top: 2px;
     margin-bottom: 2px;
@@ -4115,27 +4115,38 @@ table th {
 }
 
 /* Seats Available (SEA) - Green */
-.load-indicator.sea {
-    background-color: #28a745;
-    /* Green */
+.load-indicator.sea i {
+    color: #28a745;
+    font-size: 20px;
 }
 
 /* Standing Available (SDA) - Yellow */
-.load-indicator.sda {
-    background-color: #ffc107;
-    /* Yellow */
-    color: #000;
-    /* Black text for better contrast */
+.load-indicator.sda i {
+    color: #dfa908;
+    font-size: 20px;
 }
 
 /* Limited Standing (LSD) - Red */
-.load-indicator.lsd {
-    background-color: #dc3545;
-    /* Red */
+.load-indicator.lsd i {
+    color: #dc3545;
+    font-size: 20px;
 }
 
 /* Default Load Indicator (Fallback) */
-.load-indicator.default {
-    background-color: #6c757d;
-    /* Grey */
+.load-indicator.default i {
+    color: #6c757d;
+}
+
+.alert-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.alert-btn.alerting {
+    background-color: #ffc107; /* Yellow for "Alerting" state */
+    color: black;
 }
