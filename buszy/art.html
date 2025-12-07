@@ -48,8 +48,6 @@
     .footer {
         display: none;
     }
-
-
 </style>
 
 <body>
@@ -391,13 +389,14 @@
                     const busStop = busStops.find(stop => stop.BusStopCode === busStopCode);
 
                     if (busStop) {
-                        filterTitle.textContent = busStop.Description || 'Arrival Timings'; // Update title with bus stop name
+                        // Update title with bus stop name and code
+                        filterTitle.textContent = `${busStop.BusStopCode} - ${busStop.Description}`;
                     } else {
-                        filterTitle.textContent = 'Bus Stop Not Found';
+                        filterTitle.textContent = `Bus Stop Not Found (${busStopCode})`;
                     }
                 } catch (error) {
                     console.error('Error fetching bus stop name:', error);
-                    filterTitle.textContent = 'Error Loading Bus Stop Name';
+                    filterTitle.textContent = `Error Loading Bus Stop Name (${busStopCode})`;
                 }
 
                 fetchBusArrivals(); // Fetch bus arrival timings
