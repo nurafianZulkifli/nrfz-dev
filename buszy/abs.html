@@ -579,17 +579,16 @@
             });
         });
 
-        searchInput.addEventListener('blur', () => {
-            // Hide the keyboard on mobile by blurring the input
-            searchInput.blur();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Detect taps outside the input field
+            document.addEventListener('touchstart', (event) => {
+                const activeElement = document.activeElement;
+                if (activeElement && activeElement.tagName === 'INPUT' && !activeElement.contains(event.target)) {
+                    activeElement.blur(); // Hide the keyboard by blurring the input
+                }
+            });
         });
 
-        // Modify the debounce function to blur the input after the search
-        searchInput.addEventListener('input', debounce(() => {
-            updateUrl();
-            fetchBusArrivals();
-            searchInput.blur(); // Automatically hide the keyboard after input
-        }, 300));
     </script>
 
 </body>
