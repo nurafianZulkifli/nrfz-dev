@@ -106,7 +106,62 @@
         font-weight: bold;
         padding: 5px 10px;
     }
-    
+
+    .bus-time {
+        display: inline-flex;
+        width: 200px;
+        text-align: center;
+        margin-right: 0em;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .bus-stop-code {
+        display: inline-flex;
+        align-items: center;
+        background-color: #94d40b;
+        color: #000;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 5px 4px;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: default;
+    }
+
+    .bus-stop-code img {
+        width: 35px;
+        height: auto;
+        cursor: default;
+    }
+
+    .bus-stop-code-text,
+    body.dark-mode .bus-stop-code-text {
+        font-size: 25px;
+        font-weight: bold;
+        color: #000;
+        background-color: #fff;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 2px 6px;
+        cursor: default;
+    }
+
+    .bus-stop-description,
+    body.dark-mode .bus-stop-description {
+        font-size: 35px;
+        font-weight: bold;
+        margin-left: 12px;
+        cursor: default;
+    }
+
+    .bus-stop-info {
+    display: flex;
+    align-items: center;
+}
+
 </style>
 
 <body>
@@ -484,8 +539,16 @@
                     const busStop = busStops.find(stop => stop.BusStopCode === busStopCode);
 
                     if (busStop) {
-                        // Update title with bus stop name and code
-                        filterTitle.textContent = `${busStop.BusStopCode} - ${busStop.Description}`;
+                        // Update title with styled bus stop code and name
+                        filterTitle.innerHTML = `
+<div class="bus-stop-info">
+    <span class="bus-stop-code">
+        <img src="assets/bus-icon.png" alt="Bus Icon"> <!-- Replace with your bus icon path -->
+        <span class="bus-stop-code-text">${busStop.BusStopCode}</span>
+    </span>
+    <span class="bus-stop-description">${busStop.Description}</span>
+</div>
+                `;
                     } else {
                         filterTitle.textContent = `Bus Stop Not Found (${busStopCode})`;
                     }
@@ -518,7 +581,7 @@
             }, 300));
 
             // Refresh data every 5 seconds
-            setInterval(fetchBusArrivals, 5000);
+            // setInterval(fetchBusArrivals, 5000);
 
             // Listen for changes in localStorage to update time format dynamically
             window.addEventListener('storage', (event) => {
@@ -544,14 +607,14 @@
 
                 if (!searchInput) {
                     container.innerHTML = `
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">No Data</div>
-                            <div class="card-body">
-                                <p class="card-text">Pick a Bus stop in the Search Page.</p>
-                            </div>
-                        </div>
-                    </div>`;
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">No Data</div>
+                    <div class="card-body">
+                        <p class="card-text">Pick a Bus stop in the Search Page.</p>
+                    </div>
+                </div>
+            </div>`;
                     return;
                 }
 
@@ -571,14 +634,14 @@
 
                 if (!data.Services || data.Services.length === 0) {
                     container.innerHTML = `
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">No Data Available</div>
-                            <div class="card-body">
-                                <p class="card-text">No Data Available</p>
-                            </div>
-                        </div>
-                    </div>`;
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">No Data Available</div>
+                    <div class="card-body">
+                        <p class="card-text">No Data Available</p>
+                    </div>
+                </div>
+            </div>`;
                     return;
                 }
 
@@ -588,25 +651,31 @@
                     const card = document.createElement('div');
                     card.classList.add('col-12', 'col-sm-6', 'col-md-4', 'col-xl-3', 'card-bt'); // Add col-sm-6 for 2 cards per row on small screens
                     card.innerHTML = `
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <span class="service-no">${service.ServiceNo}</span>
-                        ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="img-fluid" style="width: 50px;">` : ''}
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">
-                            <span>${service.NextBus.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : ''}</span>
-                            ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" class="img-fluid" style="width: 50px;">` : ''}
-                            ${service.NextBus.Load ? `<span class="load-indicator ${service.NextBus.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus.Load)}</span>` : ''}
-                        </p>
-                        <p class="card-text">
-                            <span>${service.NextBus2.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : ''}</span>
-                            ${service.NextBus2.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus2.Type}" class="img-fluid" style="width: 50px;">` : ''}
-                            ${service.NextBus2.Load ? `<span class="load-indicator ${service.NextBus2.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus2.Load)}</span>` : ''}
-                        </p>
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <span class="service-no">${service.ServiceNo}</span>
+                    ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="img-fluid" style="width: 50px;">` : ''}
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="d-flex justify-content-between">
+                            <span class="bus-time">${service.NextBus.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : 'N/A'}</span>
+                            <span>
+                                ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" class="img-fluid" style="width: 50px;">` : ''}
+                                ${service.NextBus.Load ? `<span class="load-indicator ${service.NextBus.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus.Load)}</span>` : ''}
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="bus-time">${service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : 'N/A'}</span>
+                            <span>
+                                ${service.NextBus2?.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus2.Type}" class="img-fluid" style="width: 50px;">` : ''}
+                                ${service.NextBus2?.Load ? `<span class="load-indicator ${service.NextBus2.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus2.Load)}</span>` : ''}
+                            </span>
+                        </div>
                     </div>
                 </div>
-            `;
+            </div>
+        `;
                     container.appendChild(card);
                 });
             } catch (error) {

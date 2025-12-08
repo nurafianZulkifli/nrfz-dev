@@ -918,6 +918,7 @@ body.dark-mode .card {
 
 body.dark-mode .card .card-header {
     background-color: #0000002c;
+    border-radius: 15px;
 }
 
 body.dark-mode .service-no {
