@@ -578,6 +578,18 @@
                 displayBusStops(filteredBusStops, currentPage);
             });
         });
+
+        searchInput.addEventListener('blur', () => {
+            // Hide the keyboard on mobile by blurring the input
+            searchInput.blur();
+        });
+
+        // Modify the debounce function to blur the input after the search
+        searchInput.addEventListener('input', debounce(() => {
+            updateUrl();
+            fetchBusArrivals();
+            searchInput.blur(); // Automatically hide the keyboard after input
+        }, 300));
     </script>
 
 </body>
