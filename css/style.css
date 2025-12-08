@@ -1381,6 +1381,7 @@ h4.timeline-date-aa {
     flex: 1 1 calc(25% - 15px);
     max-width: calc(25% - 15px);
     box-sizing: border-box;
+    padding: 1em;
 }
 
 .pw-portfolio-area .container-fluid {

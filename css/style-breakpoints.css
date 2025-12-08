@@ -80,6 +80,7 @@
     .single_gallery_item {
         flex: 1 1 calc(33.33% - 20px);
         max-width: calc(33.33% - 20px);
+        padding: 1em;
     }
 
     .portfolio-sort {
