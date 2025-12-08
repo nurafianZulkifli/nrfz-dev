@@ -682,8 +682,8 @@
     }
 
     .bus-stop-description,
-    body.dark-mode .bus-stop-description {
-        font-size: 25px !important;
+    body.dark-mode .bus-stop-description-title {
+        font-size: 25px;
     }
 }
 

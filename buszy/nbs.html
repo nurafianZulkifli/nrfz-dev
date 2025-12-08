@@ -97,7 +97,7 @@
     }
 
     .bus-stop-description,
-    body.dark-mode .bus-stop-description {
+    body.dark-mode .bus-stop-description-title {
         font-size: 20px;
         font-weight: bold;
         margin-left: 12px;
@@ -118,6 +118,11 @@
         .bus-stop-info {
             flex-direction: column;
             align-items: flex-start;
+        }
+
+        .bus-stop-details {
+            padding-right: 1em;
+            padding-top: 0.5em;
         }
 
         .bus-stop-description,
@@ -526,7 +531,7 @@
 
             busStops.forEach((busStop) => {
                 const distance = busStop.distance < 1
-                    ? `${(busStop.distance * 1000).toFixed(0)} m` // Convert to meters if less than 1 km
+                    ? `${(busStop.distance * 1000).toFixed(0)}m` // Convert to meters if less than 1 km
                     : `${busStop.distance.toFixed(2)} km`; // Show in kilometers otherwise
 
                 const isPinned = pinnedBusStops.some((stop) => stop.BusStopCode === busStop.BusStopCode);
