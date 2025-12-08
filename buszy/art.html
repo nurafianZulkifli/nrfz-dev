@@ -204,6 +204,13 @@
         background-color: #7db603;
         color: #000;
     }
+
+    body.dark-mode .leaflet-touch .leaflet-bar a {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background-color: #2e2e2e;
+    }
 </style>
 
 <body>
@@ -666,8 +673,14 @@
                                 <span>
                                     ${service.NextBus.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" class="img-fluid" style="width: 50px;">` : ''}
                                     ${service.NextBus.Load ? `<span class="load-indicator ${service.NextBus.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus.Load)}</span>` : ''}
-                                    <button class="btn btn-primary btn-sm view-location-btn" data-lat="${service.NextBus.Latitude}" data-lng="${service.NextBus.Longitude}" data-bus="${service.ServiceNo}">
-                                        <i class="fa-solid fa-location-crosshairs"></i>
+                                    <button class="btn btn-busloc btn-sm view-location-btn" 
+                                        data-lat="${service.NextBus.Latitude}" 
+                                        data-lng="${service.NextBus.Longitude}" 
+                                        data-bus="${service.ServiceNo}" 
+                                        data-type="${service.NextBus.Type}" 
+                                        data-load="${service.NextBus.Load}"
+                                        ${service.NextBus.Latitude === "0.0" && service.NextBus.Longitude === "0.0" || !service.NextBus.EstimatedArrival ? 'disabled' : ''}> 
+                                        <i class="fa-solid fa-location-dot"></i>
                                     </button>
                                 </span>
                             </div>
@@ -676,8 +689,14 @@
                                 <span>
                                     ${service.NextBus2?.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus2.Type}" class="img-fluid" style="width: 50px;">` : ''}
                                     ${service.NextBus2?.Load ? `<span class="load-indicator ${service.NextBus2.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus2.Load)}</span>` : ''}
-                                    <button class="btn btn-primary btn-sm view-location-btn" data-lat="${service.NextBus2.Latitude}" data-lng="${service.NextBus2.Longitude}" data-bus="${service.ServiceNo}">
-                                        <i class="fa-solid fa-location-crosshairs"></i>
+                                    <button class="btn btn-busloc btn-sm view-location-btn" 
+                                        data-lat="${service.NextBus2.Latitude}" 
+                                        data-lng="${service.NextBus2.Longitude}" 
+                                        data-bus="${service.ServiceNo}" 
+                                        data-type="${service.NextBus2.Type}" 
+                                        data-load="${service.NextBus2.Load}"
+                                        ${service.NextBus2.Latitude === "0.0" && service.NextBus2.Longitude === "0.0" || !service.NextBus2.EstimatedArrival ? 'disabled' : ''}>
+                                        <i class="fa-solid fa-location-dot"></i>
                                     </button>
                                 </span>
                             </div>
@@ -689,40 +708,46 @@
                     container.appendChild(card);
                 });
 
-// Add event listeners to "View Bus Location" buttons
-const viewLocationButtons = document.querySelectorAll('.view-location-btn');
-viewLocationButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-        const latitude = parseFloat(button.getAttribute('data-lat'));
-        const longitude = parseFloat(button.getAttribute('data-lng'));
-        const busNumber = button.getAttribute('data-bus');
+                // Add event listeners to "View Bus Location" buttons
+                const viewLocationButtons = document.querySelectorAll('.view-location-btn');
+                viewLocationButtons.forEach((button) => {
+                    button.addEventListener('click', (event) => {
+                        const latitude = parseFloat(button.getAttribute('data-lat'));
+                        const longitude = parseFloat(button.getAttribute('data-lng'));
+                        const busNumber = button.getAttribute('data-bus');
+                        const busType = button.getAttribute('data-type'); // Extract bus type
+                        const busLoad = button.getAttribute('data-load'); // Extract bus load
 
-        if (!isNaN(latitude) && !isNaN(longitude)) {
-            // Show the map section
-            const mapSection = document.querySelector('.bus-location-section');
-            mapSection.style.display = 'block';
+                        if (!isNaN(latitude) && !isNaN(longitude)) {
+                            // Show the map section
+                            const mapSection = document.querySelector('.bus-location-section');
+                            mapSection.style.display = 'block';
 
-            // Invalidate the map size to fix grey areas
-            setTimeout(() => {
-                map.invalidateSize();
-            }, 100); // Small delay to ensure the map container is fully visible
+                            // Invalidate the map size to fix grey areas
+                            setTimeout(() => {
+                                map.invalidateSize();
+                            }, 100); // Small delay to ensure the map container is fully visible
 
-            // Clear all existing markers
-            map.eachLayer((layer) => {
-                if (layer instanceof L.Marker) {
-                    map.removeLayer(layer);
-                }
-            });
+                            // Clear all existing markers
+                            map.eachLayer((layer) => {
+                                if (layer instanceof L.Marker) {
+                                    map.removeLayer(layer);
+                                }
+                            });
 
-            // Center the map on the selected bus location and add a marker
-            map.setView([latitude, longitude], 15);
-            const marker = L.marker([latitude, longitude]).addTo(map);
-            marker.bindPopup(`<b>Bus ${busNumber}</b><br>Lat: ${latitude}, Lng: ${longitude}`).openPopup();
-        } else {
-            alert('Bus location not available.');
-        }
-    });
-});
+                            // Center the map on the selected bus location and add a marker
+                            map.setView([latitude, longitude], 15);
+                            const marker = L.marker([latitude, longitude]).addTo(map);
+                            marker.bindPopup(`
+                                <b>Bus ${busNumber}</b><br>
+                                Type: ${busType || 'N/A'}<br>
+                                Load: ${busLoad || 'N/A'}
+                            `).openPopup();
+                        } else {
+                            alert('Bus location not available.');
+                        }
+                    });
+                });
             } catch (error) {
                 console.error('Error fetching bus arrivals:', error);
                 const container = document.getElementById('bus-arrivals-container');
@@ -805,18 +830,15 @@ viewLocationButtons.forEach((button) => {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Function to add a bus marker
-        function addBusMarker(latitude, longitude, busNumber) {
-            const marker = L.marker([latitude, longitude]).addTo(map);
-            marker.bindPopup(`<b>Bus ${busNumber}</b><br>Lat: ${latitude}, Lng: ${longitude}`).openPopup();
-        }
-
         // Fetch bus locations and plot them on the map
         async function fetchBusLocations() {
             try {
                 const searchInput = document.getElementById('bus-stop-search').value.trim();
+                const mapSection = document.querySelector('.bus-location-section'); // Map section container
+
                 if (!searchInput) {
                     console.warn('No Bus Stop Code provided.');
+                    mapSection.style.display = 'none'; // Hide the map if no input is provided
                     return;
                 }
 
@@ -837,38 +859,70 @@ viewLocationButtons.forEach((button) => {
                     }
                 });
 
-                // Plot each bus location from nextBus and nextBus2
+                let hasValidLocation = false; // Flag to check if any valid location exists
+
+                // Plot each bus location from NextBus and NextBus2
                 data.Services.forEach((service) => {
                     const { ServiceNo, NextBus, NextBus2 } = service;
 
-                    // Add marker for NextBus
-                    if (NextBus.Latitude && NextBus.Longitude) {
-                        addBusMarker(parseFloat(NextBus.Latitude), parseFloat(NextBus.Longitude), ServiceNo);
+                    // Check NextBus location
+                    if (NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
+                        addBusMarker(
+                            parseFloat(NextBus.Latitude),
+                            parseFloat(NextBus.Longitude),
+                            ServiceNo,
+                            NextBus.Type,
+                            NextBus.Load
+                        );
+                        hasValidLocation = true; // Set flag to true if a valid location is found
                     }
 
-                    // Add marker for NextBus2
-                    if (NextBus2.Latitude && NextBus2.Longitude) {
-                        addBusMarker(parseFloat(NextBus2.Latitude), parseFloat(NextBus2.Longitude), ServiceNo);
+                    // Check NextBus2 location
+                    if (NextBus2.Latitude !== "0.0" && NextBus2.Longitude !== "0.0") {
+                        addBusMarker(
+                            parseFloat(NextBus2.Latitude),
+                            parseFloat(NextBus2.Longitude),
+                            ServiceNo,
+                            NextBus2.Type,
+                            NextBus2.Load
+                        );
+                        hasValidLocation = true; // Set flag to true if a valid location is found
                     }
                 });
 
-                // Adjust map bounds to fit all markers
-                const bounds = [];
-                data.Services.forEach((service) => {
-                    const { NextBus, NextBus2 } = service;
-                    if (NextBus.Latitude && NextBus.Longitude) {
-                        bounds.push([parseFloat(NextBus.Latitude), parseFloat(NextBus.Longitude)]);
-                    }
-                    if (NextBus2.Latitude && NextBus2.Longitude) {
-                        bounds.push([parseFloat(NextBus2.Latitude), parseFloat(NextBus2.Longitude)]);
-                    }
-                });
+                console.log('Has valid location:', hasValidLocation); // Debugging
 
-                if (bounds.length > 0) {
-                    map.fitBounds(bounds);
+                // Force hide the map if no valid locations exist
+                if (!hasValidLocation) {
+                    mapSection.style.display = 'none'; // Hide the map section
+                    console.warn('No valid bus locations available.');
+                    alert('No bus locations available for this stop.');
+                } else {
+                    // Adjust map bounds to fit all markers
+                    const bounds = [];
+                    data.Services.forEach((service) => {
+                        const { NextBus, NextBus2 } = service;
+                        if (NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
+                            bounds.push([parseFloat(NextBus.Latitude), parseFloat(NextBus.Longitude)]);
+                        }
+                        if (NextBus2.Latitude !== "0.0" && NextBus2.Longitude !== "0.0") {
+                            bounds.push([parseFloat(NextBus2.Latitude), parseFloat(NextBus2.Longitude)]);
+                        }
+                    });
+
+                    if (bounds.length > 0) {
+                        map.fitBounds(bounds);
+                    }
+
+                    mapSection.style.display = 'block'; // Show the map section if valid locations exist
+                    setTimeout(() => {
+                        map.invalidateSize(); // Fix map rendering issues
+                    }, 100); // Small delay to ensure the map container is fully visible
                 }
             } catch (error) {
                 console.error('Error fetching bus locations:', error);
+                const mapSection = document.querySelector('.bus-location-section');
+                mapSection.style.display = 'none'; // Hide the map in case of an error
             }
         }
 

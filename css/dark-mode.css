@@ -908,3 +908,9 @@ body.dark-mode .alert-warning {
     color: #ffda6a;
     border-color: #997404;
 }
+
+body.dark-mode .btn-busloc {
+    border: 1px solid #2b2b2b33;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(61, 61, 61, 0.384);
+    color: #fff;
+}
