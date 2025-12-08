@@ -908,20 +908,3 @@ body.dark-mode .alert-warning {
     color: #ffda6a;
     border-color: #997404;
 }
-
-/* -----------Card ART-------------------------- */
-body.dark-mode .card {
-    background-color: #2e2e2e;
-    border: 1px solid #2b2b2b33;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .card .card-header {
-    background-color: #0000002c;
-    border-radius: 15px;
-}
-
-body.dark-mode .service-no {
-    background-color: #7db603;
-    color: #000;
-}
