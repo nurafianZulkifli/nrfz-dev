@@ -432,6 +432,10 @@
     <!-- Add a container for the map -->
     <section class="bus-location-section">
         <div class="container">
+            <button id="current-location-btn"
+                style="padding: 10px; margin-bottom: 1em;" class="btn btn-busloc btn-sm" title="Go to Current Location">
+                <i class="fa-solid fa-location-crosshairs"></i>
+            </button>
             <div id="bus-map" style="height: 400px; width: 100%;"></div>
         </div>
     </section>
@@ -829,6 +833,28 @@
             maxZoom: 18,
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
+
+        // Add "Current Location" button functionality
+        const currentLocationBtn = document.getElementById('current-location-btn');
+        currentLocationBtn.addEventListener('click', () => {
+            map.locate({ setView: true, maxZoom: 15 });
+
+            map.on('locationfound', (e) => {
+                const radius = e.accuracy;
+
+                // Add a marker for the current location
+                L.marker(e.latlng).addTo(map)
+                    .bindPopup(`You are within ${Math.round(radius)} meters from this point.`)
+                    .openPopup();
+
+                // Add a circle to show the accuracy radius
+                L.circle(e.latlng, radius).addTo(map);
+            });
+
+            map.on('locationerror', () => {
+                alert('Unable to retrieve your location. Please ensure location services are enabled.');
+            });
+        });
 
         // Fetch bus locations and plot them on the map
         async function fetchBusLocations() {
