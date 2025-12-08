@@ -683,7 +683,7 @@
 
     .bus-stop-description,
     body.dark-mode .bus-stop-description {
-        font-size: 18px !important;
+        font-size: 25px !important;
     }
 }
 
