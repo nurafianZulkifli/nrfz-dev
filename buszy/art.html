@@ -96,8 +96,17 @@
     }
 
     .card-bt {
-        margin-top: 1em;
+        margin-top: 2em;
     }
+
+    .service-no {
+        background-color: #94d40b;
+        border-radius: 5px;
+        color: #000;
+        font-weight: bold;
+        padding: 5px 10px;
+    }
+    
 </style>
 
 <body>
@@ -581,7 +590,7 @@
                     card.innerHTML = `
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <span>${service.ServiceNo}</span>
+                        <span class="service-no">${service.ServiceNo}</span>
                         ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="img-fluid" style="width: 50px;">` : ''}
                     </div>
                     <div class="card-body">
