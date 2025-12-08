@@ -131,6 +131,19 @@
         cursor: default;
     }
 
+    body.dark-mode .bus-stop-code {
+        display: inline-flex;
+        align-items: center;
+        background-color: #7db603;
+        color: #000;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 5px 4px;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: default;
+    }
+
     .bus-stop-code img {
         width: 35px;
         height: auto;
@@ -540,13 +553,13 @@
                     if (busStop) {
                         // Update title with styled bus stop code and name
                         filterTitle.innerHTML = `
-<div class="bus-stop-info">
-    <span class="bus-stop-code">
-        <img src="assets/bus-icon.png" alt="Bus Icon"> <!-- Replace with your bus icon path -->
-        <span class="bus-stop-code-text">${busStop.BusStopCode}</span>
-    </span>
-    <span class="bus-stop-description">${busStop.Description}</span>
-</div>
+                    <div class="bus-stop-info">
+                        <span class="bus-stop-code">
+                            <img src="assets/bus-icon.png" alt="Bus Icon"> <!-- Replace with your bus icon path -->
+                            <span class="bus-stop-code-text">${busStop.BusStopCode}</span>
+                        </span>
+                        <span class="bus-stop-description">${busStop.Description}</span>
+                    </div>
                 `;
                     } else {
                         filterTitle.textContent = `Bus Stop Not Found (${busStopCode})`;
