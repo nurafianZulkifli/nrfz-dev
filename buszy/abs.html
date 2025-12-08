@@ -86,16 +86,17 @@
     }
 
     @media (max-width: 545px) {
-    .bus-stop-info {
-        flex-direction: column; /* Stack items vertically */
-        align-items: flex-start; /* Align items to the start */
-    }
+        .bus-stop-info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-    .bus-stop-description {
-        margin-left: 0; /* Remove left margin */
-        margin-top: 5px; /* Add spacing above the description */
+        .bus-stop-description,
+        body.dark-mode .bus-stop-description {
+            margin-left: 0px;
+            margin-top: 5px;
+        }
     }
-}
 </style>
 
 <body>
