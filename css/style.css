@@ -3721,8 +3721,11 @@ table th {
 .fleet-legend span {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 14px; /* Adjust font size for better fit */
+    gap: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.5em;
+    border-radius: 15px;
 }
 
 .fleet-icon {
