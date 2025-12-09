@@ -334,8 +334,8 @@
         <div class="container">
             <h2 class="text-center" style="padding-top: 1em;">Bus Stops</h2>
             <div class="list-group">
-                <p class="pin-msg">
-                    <span class="spinner"></span>Fetching Bus Stops list for the first time...
+                <p class="pin-msg" id="loading-message" style="display: flex; align-items: center; justify-content: center;">
+                    <span class="spinner-border" role="status" style="margin-right: 1em;"></span>Loading Data...
                 </p>
             </div>
             <div class="pagination-buttons">
@@ -589,6 +589,34 @@
             });
         });
 
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingMessages = [
+                "Loading Bus Stop Data...",
+                "Fetching All Bus Stop Data...",
+                "As this is the first time, it will take a bit longer...",
+                "This will be cached for faster access next time.",
+            ];
+
+            const loadingMessageElement = document.getElementById('loading-message');
+            let messageIndex = 0;
+
+            // Function to update the loading message
+            const updateLoadingMessage = () => {
+                loadingMessageElement.innerHTML = `
+                <span class="spinner-border" role="status" style="margin-right: 1em;"></span>${loadingMessages[messageIndex]}
+            `;
+                messageIndex = (messageIndex + 1) % loadingMessages.length; // Cycle through messages
+            };
+
+            // Show the first message immediately
+            updateLoadingMessage();
+
+            // Change the message every 4 seconds
+            setInterval(updateLoadingMessage, 4000);
+        });
     </script>
 
 </body>

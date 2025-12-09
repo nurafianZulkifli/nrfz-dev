@@ -156,7 +156,6 @@
 
     .bus-location-section {
         display: none;
-        /* Hide the map section initially */
     }
 
     #bus-map {
@@ -432,8 +431,8 @@
     <!-- Add a container for the map -->
     <section class="bus-location-section">
         <div class="container">
-            <button id="current-location-btn"
-                style="padding: 10px; margin-bottom: 1em;" class="btn btn-busloc btn-sm" title="Go to Current Location">
+            <button id="current-location-btn" style="padding: 10px; margin-bottom: 1em;" class="btn btn-busloc btn-sm"
+                title="Go to Current Location">
                 <i class="fa-solid fa-location-crosshairs"></i>
             </button>
             <div id="bus-map" style="height: 400px; width: 100%;"></div>
@@ -445,16 +444,17 @@
         <div class="container">
             <div class="fleet-legend">
                 <span><img src="assets/dd.png" alt="BD Icon" class="fleet-icon"> Double</span>
-                <span><img src="assets/bd.png" alt="SMRT Icon" class="fleet-icon"> Bendy</span>
+                <span style="gap: 2px;"><img src="assets/bd.png" alt="SMRT Icon" class="fleet-icon"> Bendy</span>
                 <span><img src="assets/sd.png" alt="Other Icon" class="fleet-icon"> Single</span>
             </div>
 
             <!-- Responsive Cards -->
             <div class="row" id="bus-arrivals-container">
                 <div class="col-12 text-center">
-                    <p style="display: flex; align-items: center; justify-content: center;">
+                    <p id="loading-message" style="display: flex; align-items: center; justify-content: center;">
                         <span class="spinner-border" role="status" style="margin-right: 1em;"></span>Loading Data...
                     </p>
+
                 </div>
             </div>
         </div>
@@ -595,7 +595,7 @@
             }, 300));
 
             // Refresh data every 5 seconds
-            // setInterval(fetchBusArrivals, 5000);
+            setInterval(fetchBusArrivals, 5000);
 
             // Listen for changes in localStorage to update time format dynamically
             window.addEventListener('storage', (event) => {
@@ -954,6 +954,34 @@
 
         // Fetch bus locations every 10 seconds
         fetchBusLocations();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingMessages = [
+                "Loading Bus Arrival Data...",
+                "Fetching All Bus Stop Data...",
+                "As this is the first time, it will take a bit longer...",
+                "This will be cached for faster access next time.",
+            ];
+
+            const loadingMessageElement = document.getElementById('loading-message');
+            let messageIndex = 0;
+
+            // Function to update the loading message
+            const updateLoadingMessage = () => {
+                loadingMessageElement.innerHTML = `
+                <span class="spinner-border" role="status" style="margin-right: 1em;"></span>${loadingMessages[messageIndex]}
+            `;
+                messageIndex = (messageIndex + 1) % loadingMessages.length; // Cycle through messages
+            };
+
+            // Show the first message immediately
+            updateLoadingMessage();
+
+            // Change the message every 4 seconds
+            setInterval(updateLoadingMessage, 4000);
+        });
     </script>
 
 </body>
