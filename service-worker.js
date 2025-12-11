@@ -1,12 +1,12 @@
 const CACHE_NAME = "buszy-cache-v1";
 const urlsToCache = [
-  "/buszy.html",
-  "/css/style.css",
-  "/css/style-breakpoints.css",
-  "/css/dark-mode.css",
-  "/js/navtabs.js",
-  "/buszy/buszy.js",
-  "/img/core-img/favicon.png"
+  "/nrfz-dev/buszy.html",
+  "/nrfz-dev/css/style.css",
+  "/nrfz-dev/css/style-breakpoints.css",
+  "/nrfz-dev/css/dark-mode.css",
+  "/nrfz-dev/js/navtabs.js",
+  "/nrfz-dev/buszy/buszy.js",
+  "/nrfz-dev/img/core-img/favicon.png"
 ];
 
 self.addEventListener("install", (event) => {
