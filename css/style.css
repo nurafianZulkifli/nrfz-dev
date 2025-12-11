@@ -1252,8 +1252,24 @@ h4.timeline-date-aa {
     padding-bottom: 2em;
 }
 
+.wbnrfz-grid .card {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+  position: relative;
+}
+
+.wbnrfz-grid .card.is-hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  visibility: hidden;
+  position: absolute;
+  pointer-events: none;
+}
+
 .wbnrfz-grid.two-cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     max-width: 600px;
     margin: 0;
     justify-content: start;
@@ -1323,40 +1339,21 @@ h4.timeline-date-aa {
     line-height: 1.6;
 }
 
-/* Fade-in animation */
-@keyframes fade-In {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.fade-in {
-    animation: fade-In 0.3s ease-in-out;
+.card {
+    transition: opacity 0.35s, transform 0.35s;
     opacity: 1;
     transform: scale(1);
 }
 
-/* Fade-out animation */
-@keyframes fade-Out {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-    to {
-        opacity: 0;
-        transform: scale(0.9);
-    }
+.card.fade-in {
+    opacity: 1;
+    transform: scale(1);
 }
 
-.fade-out {
-    animation: fade-Out 0.3s ease-in-out;
+.card.fade-out {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.97);
+    pointer-events: none;
 }
 
 

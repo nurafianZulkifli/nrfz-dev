@@ -5,42 +5,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const cardsContainer = document.querySelector(".wbnrfz-grid");
     const cards = Array.from(cardsContainer.querySelectorAll(".card"));
 
+    // Helper to update grid class after fade animations
+    function updateGridClass() {
+        setTimeout(() => {
+            const visibleCards = cards.filter(card => card.style.display !== "none");
+            cardsContainer.classList.remove("two-cards", "one-card");
+            if (visibleCards.length === 2) {
+                cardsContainer.classList.add("two-cards");
+            } else if (visibleCards.length === 1) {
+                cardsContainer.classList.add("one-card");
+            }
+        }, 350); // Wait for fade-out animation to finish
+    }
+
     // Filter functionality
     filterButtons.forEach(button => {
         button.addEventListener("click", function (e) {
             e.preventDefault();
 
-            // Remove active class from all buttons and add to the clicked one
             filterButtons.forEach(btn => btn.classList.remove("active"));
             this.classList.add("active");
 
             const filter = this.getAttribute("data-filter");
 
-            let visibleCards = 0;
             cards.forEach(card => {
                 if (filter === "*" || card.classList.contains(filter.substring(1))) {
                     card.style.display = "block";
                     card.classList.remove("fade-out");
                     card.classList.add("fade-in");
-                    visibleCards++;
                 } else {
                     card.classList.remove("fade-in");
                     card.classList.add("fade-out");
                     setTimeout(() => {
                         card.style.display = "none";
-                    }, 300); // Match the animation duration
+                    }, 300);
                 }
             });
 
-            // Adjust container size dynamically based on visible cards
-            if (visibleCards === 2) {
-                cardsContainer.classList.add("two-cards");
-            } else if (visibleCards === 1) {
-                cardsContainer.classList.add("one-card");
-            } else {
-                cardsContainer.classList.remove("two-cards");
-                cardsContainer.classList.remove("one-card");
-            }
+            updateGridClass();
         });
     });
 
@@ -60,9 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Clear and re-append sorted cards
         cardsContainer.innerHTML = "";
         sortedCards.forEach(card => cardsContainer.appendChild(card));
+        updateGridClass();
     });
 
     // Search functionality
@@ -80,8 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.classList.add("fade-out");
                 setTimeout(() => {
                     card.style.display = "none";
-                }, 300); // Match the animation duration
+                }, 300);
             }
         });
+
+        updateGridClass();
     });
 });
