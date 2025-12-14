@@ -110,6 +110,15 @@
             margin-top: 5px;
         }
     }
+
+    @media screen and (max-width: 400px) {
+        .pin-msg {
+            font-size: 12px !important;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+    }
 </style>
 
 <body>
@@ -299,17 +308,17 @@
 
                         <li>
                             <a href="#" class="active"><i class="fa-solid fa-magnifying-glass"></i>
-                                Search</a>
+                            Search</a>
                         </li>
 
                         <li>
                             <a href="ann.html"><i class="fa-solid fa-bullhorn"></i>
-                                Announcements</a>
+                             Announcements</a>
                         </li>
 
                         <li>
                             <a href="settings.html"><i class="fa-solid fa-gear"></i>
-                                Settings</a>
+                            Settings</a>
                         </li>
                     </ul>
 
@@ -334,8 +343,9 @@
         <div class="container">
             <h2 class="text-center" style="padding-top: 1em;">Bus Stops</h2>
             <div class="list-group">
-                <p class="pin-msg" id="loading-message" style="display: flex; align-items: center; justify-content: center;">
-                    <span class="spinner-border" role="status" style="margin-right: 1em;"></span>Loading Data...
+                <p class="pin-msg" id="loading-message"
+                    style="display: flex; align-items: center; justify-content: center;">
+                    <span class="spinner" role="status" style="margin-right: 1em;"></span>Loading Data...
                 </p>
             </div>
             <div class="pagination-buttons">

@@ -114,6 +114,14 @@
         padding-right: 1em;
     }
 
+    .road-name {
+        font-size: 15px;
+    }
+
+    .distance {
+        font-weight: bold;
+    }
+
     @media (max-width: 700px) {
         .bus-stop-info {
             flex-direction: column;
@@ -129,6 +137,14 @@
         body.dark-mode .bus-stop-description {
             margin-left: 0px;
             margin-top: 5px;
+            font-size: 20px;
+        }
+
+        .bus-stop-description span,
+        body.dark-mode .bus-stop-description span {
+            margin-left: 0px;
+            margin-top: 5px;
+            font-size: 15px;
         }
     }
 </style>
@@ -303,8 +319,8 @@
 
                     <ul>
                         <li>
-                            <a href="../buszy.html#pinned"><i class="fa-sharp fa-solid fa-thumbtack-angle"></i>
-                                Pinned</a>
+                            <a href="../buszy.html#pinned"><i class="fa-sharp fa-solid fa-thumbtack-angle" title="Pinned"></i>
+                            Pinned</a>
                         </li>
 
                         <li>
@@ -313,17 +329,17 @@
 
                         <li>
                             <a href="abs.html"><i class="fa-solid fa-magnifying-glass"></i>
-                                Search</a>
+                            Search</a>
                         </li>
 
                         <li>
                             <a href="ann.html"><i class="fa-solid fa-bullhorn"></i>
-                                Announcements</a>
+                            Announcements</a>
                         </li>
 
                         <li>
                             <a href="settings.html"><i class="fa-solid fa-gear"></i>
-                                Settings</a>
+                            Settings</a>
                         </li>
                     </ul>
 

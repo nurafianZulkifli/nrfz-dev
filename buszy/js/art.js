@@ -152,7 +152,7 @@ async function fetchBusArrivals() {
 
         data.Services.forEach((service) => {
             const card = document.createElement('div');
-            card.classList.add('col-12', 'col-sm-6', 'col-md-4', 'col-xl-3', 'card-bt'); // Add col-sm-6 for 2 cards per row on small screens
+            card.classList.add('col-12', 'col-md-4', 'col-xl-3', 'card-bt'); // Add col-sm-6 for 2 cards per row on small screens
             card.innerHTML = `
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
@@ -453,14 +453,15 @@ fetchBusLocations();
 
 
 // ****************************
-// :: Loading Messages
+// :: Loading Messages Rotation
 // ****************************
 document.addEventListener('DOMContentLoaded', () => {
     const loadingMessages = [
         "Loading Bus Arrival Data...",
         "Fetching All Bus Stop Data...",
-        "As this is the first time, it will take a bit longer...",
-        "This will be cached for faster access next time.",
+        "First time use will take a lot longer...",
+        "Once loaded, everything will be cached.",
+        "Cached data means faster load times!"
     ];
 
     const loadingMessageElement = document.getElementById('loading-message');
@@ -469,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update the loading message
     const updateLoadingMessage = () => {
         loadingMessageElement.innerHTML = `
-                <span class="spinner-border" role="status" style="margin-right: 1em;"></span>${loadingMessages[messageIndex]}
+                <span class="spinner" role="status" style="margin-right: 1em;"></span>${loadingMessages[messageIndex]}
             `;
         messageIndex = (messageIndex + 1) % loadingMessages.length; // Cycle through messages
     };

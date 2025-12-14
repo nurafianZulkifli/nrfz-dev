@@ -204,10 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // ****************************
 document.addEventListener('DOMContentLoaded', () => {
     const loadingMessages = [
-        "Loading Bus Stop Data...",
+        "Loading Bus Arrival Data...",
         "Fetching All Bus Stop Data...",
-        "As this is the first time, it will take a bit longer...",
-        "This will be cached for faster access next time.",
+        "First time use will take a lot longer...",
+        "Once loaded, everything will be cached.",
+        "Cached data means faster load times!"
     ];
 
     const loadingMessageElement = document.getElementById('loading-message');
@@ -216,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update the loading message
     const updateLoadingMessage = () => {
         loadingMessageElement.innerHTML = `
-                <span class="spinner-border" role="status" style="margin-right: 1em;"></span>${loadingMessages[messageIndex]}
+                <span class="spinner" role="status" style="margin-right: 0.5em;"></span>${loadingMessages[messageIndex]}
             `;
         messageIndex = (messageIndex + 1) % loadingMessages.length; // Cycle through messages
     };
