@@ -350,16 +350,7 @@
                 </li>
             </ul>
 
-            <h2 class="text-center" style="padding-top: 1em;">For Dev Only</h2>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <button class="btn btn-rfetch"> <a href="smrt-mdp/smrt-mdp.html">Hehehehe</a></button><br>
-                    
-                </li>
-            </ul>
-
-
-            <h2 class="text-center" style="padding-top: 1em;">Install</h2>
+            <h2 id="install-header" class="text-center" style="padding-top: 1em;">Install</h2>
             <ul class="list-group">
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -371,6 +362,20 @@
                         <p class="fetch">Install this web app on your device for a better experience.</p>
                     </li>
                 </ul>
+
+<h2 class="text-center" style="padding-top: 1em;">For Developers</h2>
+<div id="dev-pin-section" class="text-center" style="margin-bottom:1em; display:none;">
+    <input type="password" id="dev-pin-input" placeholder="Enter PIN"
+        style="padding:0.5em; font-size:1em;">
+    <button id="dev-pin-btn" class="btn btn-rfetch" style="margin-left:0.5em;">Unlock</button>
+    <div id="dev-pin-error" style="color:red; display:none; margin-top:0.5em;">Incorrect PIN.</div>
+</div>
+<ul class="list-group" id="dev-section" style="display:none;">
+    <li class="list-group-item">
+        <a href="smrt-mdp/smrt-mdp-cck.html"><button class="btn btn-rfetch">CCK MDP</button></a><br>
+    </li>
+</ul>
+
         </div>
 
     </section>

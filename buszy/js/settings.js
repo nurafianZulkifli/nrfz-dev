@@ -111,3 +111,29 @@ refreshBtn.addEventListener('click', () => {
     window.location.reload();
 });
 
+
+// Reveal dev PIN section after clicking Install header 3 times
+document.addEventListener('DOMContentLoaded', () => {
+    let installHeaderClickCount = 0;
+    const installHeader = document.getElementById('install-header');
+    const devPinSection = document.getElementById('dev-pin-section');
+    if (installHeader && devPinSection) {
+        installHeader.addEventListener('click', () => {
+            installHeaderClickCount++;
+            if (installHeaderClickCount === 3) {
+                devPinSection.style.display = '';
+            }
+        });
+    }
+});
+
+document.getElementById('dev-pin-btn').onclick = function() {
+    const pin = document.getElementById('dev-pin-input').value;
+    // Change '46009' to your desired PIN
+    if (pin === '46009') {
+        document.getElementById('dev-section').style.display = '';
+        document.getElementById('dev-pin-section').style.display = 'none';
+    } else {
+        document.getElementById('dev-pin-error').style.display = '';
+    }
+};
