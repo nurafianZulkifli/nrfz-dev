@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            font-family: system-ui, Helvetica, Arial, sans-serif;
+            font-family: system-ui, Avenir, Arial, sans-serif;
             margin: 0;
             background: #fff;
             color: #000;
@@ -201,7 +201,165 @@
             }
         }
 
+        /* Responsive breakpoints */
+        @media (max-width: 1099px) {
+            thead .redbar-head th {
+                font-size: 33px;
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+                padding-bottom: 0.5em;
+                padding-top: 0.5em;
+            }
 
+            .time-icon-wrap span {
+                font-size: 40px;
+            }
+
+            th,
+            td {
+                padding-top: 0.1em;
+                padding-bottom: 0.3em;
+                text-align: center;
+                font-size: 40px;
+            }
+
+        }
+
+        @media (max-width: 900px) {
+            .header {
+                flex-direction: row;
+                align-items: center;
+                padding: 10px 2vw 0 2vw;
+            }
+
+            .logo img {
+                height: clamp(60px, 12vw, 70px);
+                margin-bottom: 10px;
+            }
+
+            .title {
+                font-size: 50px;
+                margin-bottom: 10px;
+            }
+
+            thead .redbar-head th {
+                font-size: 27px;
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+                padding-bottom: 0.5em;
+                padding-top: 0.5em;
+            }
+
+            .clock-time {
+                font-size: clamp(1rem, 7vw, 70px);
+            }
+
+            .clock-date {
+                font-size: clamp(0.7rem, 3vw, 50px);
+            }
+
+            .time-icon-wrap span {
+                font-size: 40px;
+            }
+
+            th,
+            td {
+                padding-top: 0.1em;
+                padding-bottom: 0.3em;
+                text-align: center;
+                font-size: 40px;
+            }
+
+            td:first-child {
+                font-size: 40px;
+            }
+
+            .bustype-icon {
+                width: clamp(16px, 6vw, 40px) !important;
+                margin-left: 16px;
+            }
+
+            .ticker {
+                font-size: 30px;
+                line-height: 2.2rem;
+            }
+
+            .ticker-wrap {
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 741px) {
+            html,
+            body {
+                min-width: 1024px;
+                width: 1024px;
+                overflow-x: auto;
+            }
+
+            .header {
+                flex-direction: row !important;
+                align-items: center !important;
+                padding: 0px 30px 0 30px !important;
+            }
+
+            .logo img {
+                height: 90px !important;
+                margin-bottom: 0 !important;
+            }
+
+            .title {
+                font-size: 60px !important;
+                margin-bottom: 0 !important;
+            }
+
+            .clock-time {
+                font-size: 80px !important;
+            }
+
+            .clock-date {
+                font-size: 30px !important;
+            }
+
+            thead .redbar-head th {
+                font-size: 35px !important;
+            }
+
+            th,
+            td {
+                font-size: 50px !important;
+                padding-top: 0.1em !important;
+                padding-bottom: 0.3em !important;
+            }
+
+            td:first-child {
+                font-size: 55px !important;
+            }
+
+            .bustype-icon {
+                width: 80px !important;
+                margin-left: 50px !important;
+            }
+
+            .ticker {
+                font-size: 35px !important;
+                line-height: 48px !important;
+            }
+
+            .ticker-wrap {
+                height: 60px !important;
+            }
+
+            .time-icon-wrap span {
+                min-width: 115px !important;
+                font-size: 50px !important;
+            }
+
+            .table-responsive {
+                width: 100% !important;
+                overflow-x: auto !important;
+            }
+        }
     </style>
     <!-- Font Awesome for bus icon -->
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
@@ -331,42 +489,42 @@
 
 
 
-  function renderTable() {
-    const tbody = document.getElementById('bus-table-body');
-    tbody.innerHTML = '';
-    if (!allServices.length) {
-        tbody.innerHTML = '<tr><td colspan="4">No bus data available</td></tr>';
-        document.getElementById('page-indicator').textContent = 'Page 1/1';
-        return;
-    }
-
-    // --- Step 1: Render all rows offscreen to measure how many fit ---
-    // Create a fragment to avoid flicker
-    const fragment = document.createDocumentFragment();
-    allServices.forEach(bus => {
-        const service = bus.ServiceNo || bus.service || '';
-        const berth = berthMap[service] || bus.Berth || bus.berth || '';
-        let next = bus.NextBus?.EstimatedArrival || bus.next || '';
-        let next2 = bus.NextBus2?.EstimatedArrival || bus.next2 || '';
-        function formatTime(val) {
-            if (!val) return '';
-            if (val === 'Arr') return 'Arr';
-            if (val.length > 5 && val.includes('T')) {
-                const d = new Date(val);
-                if (isNaN(d)) return '';
-                const now = new Date();
-                const diff = Math.round((d - now) / 60000);
-                if (diff <= 0) return 'Arr';
-                const h = d.getHours().toString().padStart(2, '0');
-                const m = d.getMinutes().toString().padStart(2, '0');
-                return `${h}:${m}`;
+        function renderTable() {
+            const tbody = document.getElementById('bus-table-body');
+            tbody.innerHTML = '';
+            if (!allServices.length) {
+                tbody.innerHTML = '<tr><td colspan="4">No bus data available</td></tr>';
+                document.getElementById('page-indicator').textContent = 'Page 1/1';
+                return;
             }
-            return val;
-        }
-        next = next ? formatTime(next) : '';
-        next2 = next2 ? formatTime(next2) : '';
-        const row = document.createElement('tr');
-        row.innerHTML = `
+
+            // --- Step 1: Render all rows offscreen to measure how many fit ---
+            // Create a fragment to avoid flicker
+            const fragment = document.createDocumentFragment();
+            allServices.forEach(bus => {
+                const service = bus.ServiceNo || bus.service || '';
+                const berth = berthMap[service] || bus.Berth || bus.berth || '';
+                let next = bus.NextBus?.EstimatedArrival || bus.next || '';
+                let next2 = bus.NextBus2?.EstimatedArrival || bus.next2 || '';
+                function formatTime(val) {
+                    if (!val) return '';
+                    if (val === 'Arr') return 'Arr';
+                    if (val.length > 5 && val.includes('T')) {
+                        const d = new Date(val);
+                        if (isNaN(d)) return '';
+                        const now = new Date();
+                        const diff = Math.round((d - now) / 60000);
+                        if (diff <= 0) return 'Arr';
+                        const h = d.getHours().toString().padStart(2, '0');
+                        const m = d.getMinutes().toString().padStart(2, '0');
+                        return `${h}:${m}`;
+                    }
+                    return val;
+                }
+                next = next ? formatTime(next) : '';
+                next2 = next2 ? formatTime(next2) : '';
+                const row = document.createElement('tr');
+                row.innerHTML = `
             <td>${service}</td>
             <td>${berth}</td>
             <td>
@@ -382,60 +540,60 @@
                 </span>
             </td>
         `;
-        fragment.appendChild(row);
-    });
-    // Add to DOM but keep hidden for measurement
-    tbody.appendChild(fragment);
-    tbody.style.visibility = 'hidden';
+                fragment.appendChild(row);
+            });
+            // Add to DOM but keep hidden for measurement
+            tbody.appendChild(fragment);
+            tbody.style.visibility = 'hidden';
 
-    // --- Step 2: Measure how many rows fit before the ticker ---
-    const ticker = document.querySelector('.ticker-wrap');
-    const tickerRect = ticker.getBoundingClientRect();
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-    let maxRows = rows.length;
-    for (let i = 0; i < rows.length; i++) {
-        const rowRect = rows[i].getBoundingClientRect();
-        if (rowRect.bottom > tickerRect.top) {
-            maxRows = i;
-            break;
-        }
-    }
-    // Fallback if none fit
-    if (maxRows < 1) maxRows = 1;
-    window.dynamicPageSize = maxRows;
-
-    // --- Step 3: Render only the rows for the current page ---
-    const totalPages = Math.max(1, Math.ceil(allServices.length / window.dynamicPageSize));
-    if (currentPage > totalPages) currentPage = 1;
-    if (currentPage < 1) currentPage = 1;
-    const start = (currentPage - 1) * window.dynamicPageSize;
-    const end = start + window.dynamicPageSize;
-    tbody.innerHTML = '';
-    for (let i = start; i < end && i < allServices.length; i++) {
-        const bus = allServices[i];
-        const service = bus.ServiceNo || bus.service || '';
-        const berth = berthMap[service] || bus.Berth || bus.berth || '';
-        let next = bus.NextBus?.EstimatedArrival || bus.next || '';
-        let next2 = bus.NextBus2?.EstimatedArrival || bus.next2 || '';
-        function formatTime(val) {
-            if (!val) return '';
-            if (val === 'Arr') return 'Arr';
-            if (val.length > 5 && val.includes('T')) {
-                const d = new Date(val);
-                if (isNaN(d)) return '';
-                const now = new Date();
-                const diff = Math.round((d - now) / 60000);
-                if (diff <= 0) return 'Arr';
-                const h = d.getHours().toString().padStart(2, '0');
-                const m = d.getMinutes().toString().padStart(2, '0');
-                return `${h}:${m}`;
+            // --- Step 2: Measure how many rows fit before the ticker ---
+            const ticker = document.querySelector('.ticker-wrap');
+            const tickerRect = ticker.getBoundingClientRect();
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            let maxRows = rows.length;
+            for (let i = 0; i < rows.length; i++) {
+                const rowRect = rows[i].getBoundingClientRect();
+                if (rowRect.bottom > tickerRect.top) {
+                    maxRows = i;
+                    break;
+                }
             }
-            return val;
-        }
-        next = next ? formatTime(next) : '';
-        next2 = next2 ? formatTime(next2) : '';
-        const row = document.createElement('tr');
-        row.innerHTML = `
+            // Fallback if none fit
+            if (maxRows < 1) maxRows = 1;
+            window.dynamicPageSize = maxRows;
+
+            // --- Step 3: Render only the rows for the current page ---
+            const totalPages = Math.max(1, Math.ceil(allServices.length / window.dynamicPageSize));
+            if (currentPage > totalPages) currentPage = 1;
+            if (currentPage < 1) currentPage = 1;
+            const start = (currentPage - 1) * window.dynamicPageSize;
+            const end = start + window.dynamicPageSize;
+            tbody.innerHTML = '';
+            for (let i = start; i < end && i < allServices.length; i++) {
+                const bus = allServices[i];
+                const service = bus.ServiceNo || bus.service || '';
+                const berth = berthMap[service] || bus.Berth || bus.berth || '';
+                let next = bus.NextBus?.EstimatedArrival || bus.next || '';
+                let next2 = bus.NextBus2?.EstimatedArrival || bus.next2 || '';
+                function formatTime(val) {
+                    if (!val) return '';
+                    if (val === 'Arr') return 'Arr';
+                    if (val.length > 5 && val.includes('T')) {
+                        const d = new Date(val);
+                        if (isNaN(d)) return '';
+                        const now = new Date();
+                        const diff = Math.round((d - now) / 60000);
+                        if (diff <= 0) return 'Arr';
+                        const h = d.getHours().toString().padStart(2, '0');
+                        const m = d.getMinutes().toString().padStart(2, '0');
+                        return `${h}:${m}`;
+                    }
+                    return val;
+                }
+                next = next ? formatTime(next) : '';
+                next2 = next2 ? formatTime(next2) : '';
+                const row = document.createElement('tr');
+                row.innerHTML = `
             <td>${service}</td>
             <td>${berth}</td>
             <td>
@@ -451,24 +609,24 @@
                 </span>
             </td>
         `;
-        tbody.appendChild(row);
-    }
-    tbody.style.visibility = '';
+                tbody.appendChild(row);
+            }
+            tbody.style.visibility = '';
 
-    // --- Step 4: Update page indicator ---
-    document.getElementById('page-indicator').textContent = `Page ${currentPage}/${totalPages}`;
-}
+            // --- Step 4: Update page indicator ---
+            document.getElementById('page-indicator').textContent = `Page ${currentPage}/${totalPages}`;
+        }
 
-// Patch startPageLoop to use dynamicPageSize if set
-function startPageLoop() {
-    if (pageInterval) clearInterval(pageInterval);
-    pageInterval = setInterval(() => {
-        const dynamicSize = window.dynamicPageSize || pageSize;
-        const totalPages = Math.ceil(allServices.length / dynamicSize) || 1;
-        currentPage = currentPage >= totalPages ? 1 : currentPage + 1;
-        renderTable();
-    }, 6000);
-}
+        // Patch startPageLoop to use dynamicPageSize if set
+        function startPageLoop() {
+            if (pageInterval) clearInterval(pageInterval);
+            pageInterval = setInterval(() => {
+                const dynamicSize = window.dynamicPageSize || pageSize;
+                const totalPages = Math.ceil(allServices.length / dynamicSize) || 1;
+                currentPage = currentPage >= totalPages ? 1 : currentPage + 1;
+                renderTable();
+            }, 6000);
+        }
 
         async function init() {
             await fetchBerthMap();
@@ -476,6 +634,22 @@ function startPageLoop() {
             setInterval(fetchBusData, 30000);
         }
         init();
+
+        // Responsive title for < 1500px
+        function updateTitleText() {
+            const titleEl = document.querySelector('.title');
+            if (!titleEl) return;
+            if (window.innerWidth < 1120) {
+                titleEl.textContent = "CCK Int";
+            } else if (window.innerWidth < 1500) {
+                titleEl.textContent = "CCK Interchange";
+            } else {
+                titleEl.textContent = "Choa Chu Kang Interchange";
+            }
+        }
+        window.addEventListener('resize', updateTitleText);
+        window.addEventListener('DOMContentLoaded', updateTitleText);
+        updateTitleText();
     </script>
 </body>
 
