@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Berth 3 | SMRT Buses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bdp.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="../../assets/smrt.png" alt="SMRT Logo">
+        </div>
+        <div class="title">Berth 3</div>
+        <div class="clock">
+            <div class="clock-time" id="clock-time">20:18</div>
+            <div class="clock-date" id="clock-date">Wed, Dec 17</div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table>
+            <colgroup>
+                <col class="col-service">
+                <col class="col-departure1">
+                <col class="col-departure2">
+            </colgroup>
+            <thead>
+                <tr class="redbar-head">
+                    <th>Services</th>
+                    <th>Departure Times</th>
+                    <th id="page-indicator"></th>
+                </tr>
+            </thead>
+            <tbody id="bus-table-body">
+                <!-- Dynamic rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span id="ticker-text">
+                Welcome to Choa Chu Kang Bus Interchange!&nbsp;&nbsp;&nbsp;Thank you for travelling with SMRT Buses.
+            </span>
+        </div>
+    </div>
+
+    <script>
+        // Live clock
+        function updateClock() {
+            const now = new Date();
+            const pad = n => n.toString().padStart(2, '0');
+            document.getElementById('clock-time').textContent = pad(now.getHours()) + ':' + pad(now.getMinutes());
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            document.getElementById('clock-date').textContent =
+                days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        let allServices = [];
+        let currentPage = 1;
+        const pageSize = 6;
+        let pageInterval = null;
+
+        let berthMap = {};
+        let serviceOrder = [];
+
+        let allowedServices = [];
+
+        async function fetchAllowedServices() {
+            try {
+                const response = await fetch('berth3.json');
+                allowedServices = await response.json();
+            } catch (err) {
+                console.error('Failed to fetch allowed services', err);
+                allowedServices = [];
+            }
+        }
+
+        async function fetchBerthMap() {
+            try {
+                const response = await fetch('berth-allocation-cck.json');
+                const data = await response.json();
+                berthMap = data;
+                serviceOrder = Array.isArray(data.order) ? data.order : [];
+            } catch (err) {
+                console.error('Failed to fetch berth allocation', err);
+                berthMap = {};
+                serviceOrder = [];
+            }
+        }
+
+        // Modify fetchBusData to filter by allowedServices
+        async function fetchBusData() {
+            try {
+                const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals?BusStopCode=44009');
+                const data = await response.json();
+                let services = [];
+                if (Array.isArray(data)) {
+                    services = data;
+                } else if (Array.isArray(data.Services)) {
+                    services = data.Services;
+                } else if (Array.isArray(data.services)) {
+                    services = data.services;
+                } else if (Array.isArray(data.result)) {
+                    services = data.result;
+                } else {
+                    for (const key in data) {
+                        if (Array.isArray(data[key])) {
+                            services = data[key];
+                            break;
+                        }
+                    }
+                }
+
+                // Filter by allowedServices if set
+                if (allowedServices.length) {
+                    services = services.filter(bus =>
+                        allowedServices.includes(bus.ServiceNo || bus.service || "")
+                    );
+                }
+
+                // Custom sort if order is defined
+                if (allowedServices.length) {
+                    services.sort((a, b) => {
+                        const aIdx = allowedServices.indexOf(a.ServiceNo || a.service || "");
+                        const bIdx = allowedServices.indexOf(b.ServiceNo || b.service || "");
+                        if (aIdx === -1 && bIdx === -1) return 0;
+                        if (aIdx === -1) return 1;
+                        if (bIdx === -1) return -1;
+                        return aIdx - bIdx;
+                    });
+                } else if (serviceOrder.length) {
+                    // fallback to serviceOrder if allowedServices is not set
+                    services.sort((a, b) => {
+                        const aIdx = serviceOrder.indexOf(a.ServiceNo || a.service || "");
+                        const bIdx = serviceOrder.indexOf(b.ServiceNo || b.service || "");
+                        if (aIdx === -1 && bIdx === -1) return 0;
+                        if (aIdx === -1) return 1;
+                        if (bIdx === -1) return -1;
+                        return aIdx - bIdx;
+                    });
+                }
+                allServices = services;
+                renderTable();
+                startPageLoop();
+            } catch (err) {
+                console.error('Failed to fetch bus data', err);
+                document.getElementById('bus-table-body').innerHTML = '<tr><td colspan="3">Unable to load data</td></tr>';
+                document.getElementById('page-indicator').textContent = 'Page 1/1';
+            }
+        }
+
+
+
+
+        function renderTable() {
+            const tbody = document.getElementById('bus-table-body');
+            tbody.innerHTML = '';
+            if (!allServices.length) {
+                tbody.innerHTML = '<tr><td colspan="3">No bus data available</td></tr>';
+                document.getElementById('page-indicator').textContent = 'Page 1/1';
+                return;
+            }
+
+            // --- Step 1: Render all rows offscreen to measure how many fit ---
+            // Create a fragment to avoid flicker
+            const fragment = document.createDocumentFragment();
+            allServices.forEach(bus => {
+                const service = bus.ServiceNo || bus.service || '';
+                let next = bus.NextBus?.EstimatedArrival || bus.next || '';
+                let next2 = bus.NextBus2?.EstimatedArrival || bus.next2 || '';
+                function formatTime(val) {
+                    if (!val) return '';
+                    if (val === 'Arr') return 'Arr';
+                    if (val.length > 5 && val.includes('T')) {
+                        const d = new Date(val);
+                        if (isNaN(d)) return '';
+                        const now = new Date();
+                        const diff = Math.round((d - now) / 60000);
+                        if (diff <= 0) return 'Arr';
+                        const h = d.getHours().toString().padStart(2, '0');
+                        const m = d.getMinutes().toString().padStart(2, '0');
+                        return `${h}:${m}`;
+                    }
+                    return val;
+                }
+                next = next ? formatTime(next) : '';
+                next2 = next2 ? formatTime(next2) : '';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${service}</td>
+            <td>
+                <span class="time-icon-wrap">
+                    <span>${next ? next : ''}</span>
+                    ${bus.NextBus?.Type ? `<img src="../../assets/${bus.NextBus.Type.toLowerCase()}-mono.png" alt="${bus.NextBus.Type}" class="img-fluid bustype-icon" style="width: 100px;">` : ''}
+                </span>
+            </td>
+            <td>
+                <span class="time-icon-wrap">
+                    <span>${next2 ? next2 : ''}</span>
+                    ${bus.NextBus2?.Type ? `<img src="../../assets/${bus.NextBus2.Type.toLowerCase()}-mono.png" alt="${bus.NextBus2.Type}" class="img-fluid bustype-icon" style="width: 100px;">` : ''}
+                </span>
+            </td>
+        `;
+                fragment.appendChild(row);
+            });
+            // Add to DOM but keep hidden for measurement
+            tbody.appendChild(fragment);
+            tbody.style.visibility = 'hidden';
+
+            // --- Step 2: Measure how many rows fit before the ticker ---
+            const ticker = document.querySelector('.ticker-wrap');
+            const tickerRect = ticker.getBoundingClientRect();
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            let maxRows = rows.length;
+            for (let i = 0; i < rows.length; i++) {
+                const rowRect = rows[i].getBoundingClientRect();
+                if (rowRect.bottom > tickerRect.top) {
+                    maxRows = i;
+                    break;
+                }
+            }
+            // Fallback if none fit
+            if (maxRows < 1) maxRows = 1;
+            window.dynamicPageSize = maxRows;
+
+            // --- Step 3: Render only the rows for the current page ---
+            const totalPages = Math.max(1, Math.ceil(allServices.length / window.dynamicPageSize));
+            if (currentPage > totalPages) currentPage = 1;
+            if (currentPage < 1) currentPage = 1;
+            const start = (currentPage - 1) * window.dynamicPageSize;
+            const end = start + window.dynamicPageSize;
+            tbody.innerHTML = '';
+            for (let i = start; i < end && i < allServices.length; i++) {
+                const bus = allServices[i];
+                const service = bus.ServiceNo || bus.service || '';
+                let next = bus.NextBus?.EstimatedArrival || bus.next || '';
+                let next2 = bus.NextBus2?.EstimatedArrival || bus.next2 || '';
+                function formatTime(val) {
+                    if (!val) return '';
+                    if (val === 'Arr') return 'Arr';
+                    if (val.length > 5 && val.includes('T')) {
+                        const d = new Date(val);
+                        if (isNaN(d)) return '';
+                        const now = new Date();
+                        const diff = Math.round((d - now) / 60000);
+                        if (diff <= 0) return 'Arr';
+                        const h = d.getHours().toString().padStart(2, '0');
+                        const m = d.getMinutes().toString().padStart(2, '0');
+                        return `${h}:${m}`;
+                    }
+                    return val;
+                }
+                next = next ? formatTime(next) : '';
+                next2 = next2 ? formatTime(next2) : '';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${service}</td>
+            <td>
+                <span class="time-icon-wrap">
+                    <span>${next ? next : ''}</span>
+                    ${bus.NextBus?.Type ? `<img src="../../assets/${bus.NextBus.Type.toLowerCase()}-mono.png" alt="${bus.NextBus.Type}" class="img-fluid bustype-icon" style="width: 100px;">` : ''}
+                </span>
+            </td>
+            <td>
+                <span class="time-icon-wrap">
+                    <span>${next2 ? next2 : ''}</span>
+                    ${bus.NextBus2?.Type ? `<img src="../../assets/${bus.NextBus2.Type.toLowerCase()}-mono.png" alt="${bus.NextBus2.Type}" class="img-fluid bustype-icon" style="width: 100px;">` : ''}
+                </span>
+            </td>
+        `;
+                tbody.appendChild(row);
+            }
+            tbody.style.visibility = '';
+
+            // --- Step 4: Update page indicator ---
+            // document.getElementById('page-indicator').textContent = `Page ${currentPage}/${totalPages}`;
+        }
+
+        // Patch startPageLoop to use dynamicPageSize if set
+        function startPageLoop() {
+            if (pageInterval) clearInterval(pageInterval);
+            pageInterval = setInterval(() => {
+                const dynamicSize = window.dynamicPageSize || pageSize;
+                const totalPages = Math.ceil(allServices.length / dynamicSize) || 1;
+                currentPage = currentPage >= totalPages ? 1 : currentPage + 1;
+                renderTable();
+            }, 6000);
+        }
+
+        async function init() {
+            await fetchAllowedServices();
+            await fetchBerthMap();
+            await fetchBusData();
+            setInterval(fetchBusData, 30000);
+        }
+        init();
+    </script>
+</body>
+
+</html>

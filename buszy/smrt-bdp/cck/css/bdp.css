@@ -1,0 +1,383 @@
+body {
+    font-family: system-ui, Avenir, Arial, sans-serif;
+    margin: 0;
+    background: #fff;
+    color: #000;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px 0 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 90px;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 90px;
+    font-weight: bold;
+    color: #e60012;
+    text-align: center;
+    flex: 1;
+}
+
+.clock {
+    text-align: center;
+    font-weight: normal;
+}
+
+.clock-time {
+    font-size: 80px;
+    color: #e60012;
+    font-weight: normal;
+}
+
+.clock-date {
+    font-size: 30px;
+    color: #e60012;
+}
+
+thead .redbar-head th {
+    background: #e60012;
+    color: #fff;
+    font-size: 45px;
+    font-weight: 500;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    padding-bottom: 0.3em;
+    padding-top: 0.3em;
+    border: none;
+    text-align: center;
+}
+
+thead .redbar-head th:first-child {
+    text-align: center;
+}
+
+thead .redbar-head th:last-child {
+    text-align: right;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5em;
+    font-size: 2rem;
+}
+
+th,
+td {
+    padding-top: 0.1em;
+    padding-bottom: 0.3em;
+    text-align: center;
+    font-size: 70px;
+}
+
+th {
+    font-size: 1.2rem;
+    font-weight: 500;
+    background: #fff;
+    color: #e60012;
+}
+
+tr {
+    border-bottom: 1px solid #000;
+}
+
+td:first-child {
+    font-weight: bold;
+    font-size: 80px;
+    text-align: center;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+.bus-icon {
+    font-size: 1.7rem;
+    color: #2e8b57;
+    vertical-align: middle;
+}
+
+.col-service {
+    width: 7vw;
+    /* Reduced from 16vw */
+    min-width: 60px;
+    /* Reduced from 90px */
+    max-width: 100px;
+    /* Reduced from 180px */
+}
+
+.col-berth {
+    width: 10vw;
+    min-width: 60px;
+    max-width: 120px;
+}
+
+.col-departure1,
+.col-departure2 {
+    width: 18vw;
+    min-width: 120px;
+    max-width: 220px;
+}
+
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.ticker {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    animation: ticker-scroll 25s linear infinite;
+    font-size: 35px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 48px;
+    background-color: #000;
+}
+
+.bustype-icon {
+    margin-left: 50px;
+    vertical-align: middle;
+}
+
+.time-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.time-icon-wrap span {
+    min-width: 115px;
+    /* Ensures "Arr" and time have same width */
+    text-align: left;
+    display: inline-block;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1050px) {
+    thead .redbar-head th {
+        font-size: 33px;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+    }
+
+    .time-icon-wrap span {
+        font-size: 60px;
+    }
+
+    th,
+    td {
+        padding-top: 0.1em;
+        padding-bottom: 0.3em;
+        text-align: center;
+        font-size: 50px;
+    }
+
+}
+
+@media (max-width: 1049px) {
+    thead .redbar-head th {
+        font-size: 33px;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+    }
+
+    .title {
+        font-size: 70px;
+        margin-bottom: 10px;
+    }
+
+    .time-icon-wrap span {
+        font-size: 60px;
+    }
+
+    th,
+    td {
+        padding-top: 0.1em;
+        padding-bottom: 0.3em;
+        text-align: center;
+        font-size: 50px;
+    }
+
+}
+
+@media (max-width: 900px) {
+    .header {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 2vw 0 2vw;
+    }
+
+    .logo img {
+        height: clamp(60px, 12vw, 70px);
+        margin-bottom: 10px;
+    }
+
+    .title {
+        font-size: 70px;
+        margin-bottom: 10px;
+    }
+
+    thead .redbar-head th {
+        font-size: 27px;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+    }
+
+    .clock-time {
+        font-size: clamp(1rem, 7vw, 70px);
+    }
+
+    .clock-date {
+        font-size: clamp(0.7rem, 3vw, 50px);
+    }
+
+    .time-icon-wrap span {
+        font-size: 40px;
+    }
+
+    th,
+    td {
+        padding-top: 0.1em;
+        padding-bottom: 0.3em;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    td:first-child {
+        font-size: 40px;
+    }
+
+    .bustype-icon {
+        width: clamp(16px, 6vw, 40px) !important;
+        margin-left: 16px;
+    }
+
+    .ticker {
+        font-size: 30px;
+        line-height: 2.2rem;
+    }
+
+    .ticker-wrap {
+        height: 50px;
+    }
+}
+
+@media (max-width: 741px) {
+
+    html,
+    body {
+        min-width: 1024px;
+        width: 1024px;
+        overflow-x: auto;
+    }
+
+    .header {
+        flex-direction: row !important;
+        align-items: center !important;
+        padding: 0px 30px 0 30px !important;
+    }
+
+    .logo img {
+        height: 90px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .title {
+        font-size: 60px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .clock-time {
+        font-size: 80px !important;
+    }
+
+    .clock-date {
+        font-size: 30px !important;
+    }
+
+    thead .redbar-head th {
+        font-size: 35px !important;
+    }
+
+    th,
+    td {
+        font-size: 50px !important;
+        padding-top: 0.1em !important;
+        padding-bottom: 0.3em !important;
+    }
+
+    td:first-child {
+        font-size: 55px !important;
+    }
+
+    .bustype-icon {
+        width: 80px !important;
+        margin-left: 50px !important;
+    }
+
+    .ticker {
+        font-size: 35px !important;
+        line-height: 48px !important;
+    }
+
+    .ticker-wrap {
+        height: 60px !important;
+    }
+
+    .time-icon-wrap span {
+        min-width: 115px !important;
+        font-size: 50px !important;
+    }
+
+    .table-responsive {
+        width: 100% !important;
+        overflow-x: auto !important;
+    }
+}
