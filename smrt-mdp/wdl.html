@@ -163,7 +163,7 @@
         updateClock();
 
         let allServices = [];
-        let currentPage = 2;
+        let currentPage = 1;
         const pageSize = 6;
         let pageInterval = null;
 
@@ -375,7 +375,7 @@
                 const totalPages = Math.ceil(allServices.length / dynamicSize) || 1;
                 currentPage = currentPage >= totalPages ? 1 : currentPage + 1;
                 renderTable();
-            }, 800000);
+            }, 8000);
         }
 
         async function init() {
