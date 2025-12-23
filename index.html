@@ -42,12 +42,15 @@
         }
 
         .add-form {
-            margin: 20px 0;
+            padding-left: 3em;
+            padding-right: 3em;
         }
 
         .add-form input {
             padding: 6px;
             margin-right: 8px;
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
     </style>
 </head>
@@ -72,6 +75,25 @@
 
     <!-- Add Screen Modal Trigger -->
     <button onclick="openAddModal()" style="margin-bottom:16px;">Add Screen</button>
+
+    <!-- Add Screen Modal -->
+    <div id="addScreenModal"
+        style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1000; align-items:center; justify-content:center;">
+        <div
+            style="background:#fff; padding:32px 24px; border-radius:8px; min-width:320px; max-width:90vw; margin:40px auto; position:relative;">
+            <h2 style="margin-top:0;">Add Screen</h2>
+            <div class="add-form">
+                <input id="category" placeholder="Category (e.g. BPJ)" style="width:100%;margin-bottom:8px;" />
+                <input id="screenType" placeholder="Type (BDP/MDP)" style="width:100%;margin-bottom:8px;" />
+                <input id="screenName" placeholder="Screen Name" style="width:100%;margin-bottom:8px;" />
+                <input id="screenUrl" placeholder="Screen URL" style="width:100%;margin-bottom:16px;" />
+                <div style="text-align:right;">
+                    <button onclick="addScreen()">Add</button>
+                    <button onclick="closeAddModal()" style="margin-left:8px;">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Import Config Button and File Input -->
     <input type="file" id="importConfigInput" accept=".json" style="display:none" onchange="importConfigFile(event)">
