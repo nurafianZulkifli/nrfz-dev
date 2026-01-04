@@ -366,7 +366,7 @@
                     <table class="commitments-table table table-bordered table-hover align-middle">
                         <thead>
                             <tr>
-                                <th colspan="6" class="header-amount">
+                                <th colspan="5" class="header-amount">
                                     Allocated Amount:
                                     <input id="allocatedAmountInput" type="text" class="form-control d-inline-block"
                                         style="width:200px; font-weight:bold; text-align:center;" />
@@ -378,7 +378,6 @@
                                 <th>Deduction Period</th>
                                 <th>Paid?</th>
                                 <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -386,11 +385,11 @@
                         </tbody>
                         <tfoot>
                             <tr class="grand-total">
-                                <td colspan="5">Grand Total</td>
+                                <td colspan="4">Grand Total</td>
                                 <td id="grandTotalCell"></td>
                             </tr>
                             <tr class="grand-total">
-                                <td colspan="5">Balance Remaining</td>
+                                <td colspan="4">Balance Remaining</td>
                                 <td id="balanceRemainingCell"></td>
                             </tr>
                         </tfoot>
@@ -602,7 +601,7 @@
                     headerTr.className = 'category-header-row table-primary';
                     headerTr.setAttribute('draggable', 'true');
                     headerTr.innerHTML = `
-                        <td colspan="6">
+                        <td colspan="5">
                             <input value="${catName}" class="cat-name form-control-plaintext" style="font-weight:bold;" />
                         </td>
                     `;
@@ -617,7 +616,6 @@
                             <td contenteditable="true">${detail.amount}</td>
                             <td contenteditable="true">${detail.period}</td>
                             <td class="text-center"><input type="checkbox" ${detail.checked ? 'checked' : ''}></td>
-                            <td></td>
                             <td>
                                 <button class="delete-btn btn btn-danger btn-sm" title="Delete"><i class="fa-solid fa-trash"></i></button>
                             </td>
