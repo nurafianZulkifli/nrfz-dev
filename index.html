@@ -39,10 +39,123 @@
 </head>
 
 <style>
-   
+    .commitments-container {
+        max-width: 500px;
+        margin: 2rem auto;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
 
+    .commitments-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        background: #fff;
+    }
 
+    .commitments-table th,
+    .commitments-table td {
+        padding: 0.7em 1em;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
 
+    .header-main {
+        background: #bdbdbd;
+        color: #222;
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    .header-amount {
+        background: #f48fb1;
+        color: #fff;
+        text-align: center;
+    }
+
+    .section-header.telco {
+        background: #9575cd;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .section-header.subs {
+        background: #c8e6c9;
+        color: #222;
+        font-weight: bold;
+    }
+
+    .total-row {
+        background: #ede7f6;
+        font-weight: bold;
+    }
+
+    .grand-total {
+        background: #ffe082;
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.2);
+        accent-color: #7e57c2;
+    }
+
+    .delete-btn {
+        background: none;
+        border: none;
+        color: #c62828;
+        font-size: 1.1em;
+        cursor: pointer;
+        margin-left: 0.5em;
+        display: none;
+        vertical-align: middle;
+    }
+
+    tr:hover .delete-btn,
+    tr.section-header:hover .delete-btn {
+        display: inline;
+    }
+
+    .cat-name {
+        background: #b2dfdb;
+        color: #222;
+        font-weight: bold;
+    }
+
+    .move-btn {
+        background: none;
+        border: none;
+        color: #1976d2;
+        font-size: 1.1em;
+        cursor: pointer;
+        margin-left: 0.3em;
+        vertical-align: middle;
+    }
+
+    .category-row {
+        background: #b2dfdb;
+        font-weight: bold;
+    }
+
+    .category-header-row td {
+        background: #b2dfdb;
+        font-weight: bold;
+        font-size: 1.08em;
+        border-bottom: 2px solid #80cbc4;
+        padding-top: 1em;
+        padding-bottom: 0.5em;
+    }
+
+    .category-header-row input.cat-name {
+        background: transparent;
+        border: none;
+        font-weight: bold;
+        font-size: 1.08em;
+        width: 100%;
+        color: #222;
+        outline: none;
+        padding: 0.2em 0;
+    }
 </style>
 
 <body>
@@ -160,156 +273,139 @@
 
 
     <!-- ============================================= Hero Section ============================================= -->
-    <section id="hero" class="d-flex flex-column justify-content-center">
-    </section><!-- End Hero -->
+    <!-- <section id="hero" class="d-flex flex-column justify-content-center">
+    </section> -->
 
     <div class="main-content">
-        <section class="wbnrfz-works">
-            <div class="container">
-                <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms">
-                    <h2>Featured Works</h2>
+
+        <!-- Title/Breadcrumbs -->
+        <section class="about-me-sum clearfix" style="margin-top: 7em;">
+            <div class="wbnrfz_eicw">
+                <div class="page-header-section">
+                    <div class="container-xxl container-mobile container-mobile-header">
+                        <div class="breadcrumb-wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="index.html">
+                                            <i class="fa-solid fa-house"></i>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="#">Commitments Tracker</a>
+                                    </li>
+                                    <!-- <li class="breadcrumb-item active" aria-current="page">
+                                    EICW
+                                </li> -->
+                                </ol>
+                            </nav>
+                            <div class="page-title-wrapper">
+                                <h1 class="page-title-single">Commitments Tracker</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scrollable-tabs-container">
+                        <div class="left-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                            </svg>
+
+                        </div>
+
+                        <ul>
+                            <li>
+                                <a href="#" class="active">Commitments Breakdown</a>
+                            </li>
+
+                            <li>
+                                <a href="#">Pay Breakdown</a>
+                            </li>
+
+                            <li>
+                                <a href="#">Repayments Tracker</a>
+                            </li>
+                        </ul>
+
+                        <div class="right-arrow active">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+
+                        </div>
+                    </div>
+                    <hr>
                 </div>
-                <div class="wbnrfz-grid wow fadeIn" data-wow-delay="300ms">
-                    <div class="card">
-                        <img src="https://i.imgur.com/TBlQxOJ.png" alt="Work 1">
-                        <div class="card-content">
-                            <h3>Buszy - Bus Arrival Timings</h3>
-                            <a href="buszy.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://i.imgur.com/HaCQ71l.png" alt="Work 2">
-                        <div class="card-content">
-                            <h3>EICW - Implementation Brainstorming</h3>
-                            <a href="eicw/eicw.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://i.imgur.com/Dlkjslp.png" alt="Work 3">
-                        <div class="card-content">
-                            <h3>Train Delays Tracker</h3>
-                            <a href="https://nurafianzulkifli.github.io/train-delays-checker/" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://i.imgur.com/IeRTJiV.png" alt="Work 4">
-                        <div class="card-content">
-                            <h3>LTA Bus Stop Pole Design Refresh</h3>
-                            <a href="worksbynrfz/lta-bp.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
         </section>
 
+        <section>
 
-        <section class="about-me-area clearfix">
-            <div class="container container-xxl">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms"
-                            style="margin-bottom: 18px;">
-                            <h2>Likes & Interests</h2>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms">
-                            <h1><a href="https://en.wikipedia.org/wiki/Jack_of_all_trades"
-                                    style="font-size: 20px; color: #5f6051;">"Jack of all trades, master of
-                                    none"</a></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-6 col-lg-4">
-                        <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="100ms">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-signs-post"></i>
-                            </div>
-                            <h4>Wayfinding Signage Designs</h4>
-                            <p>Great Wayfinding Signage guides people smoothly while enhancing their overall experience.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="300ms">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-pen-ruler"></i>
-                            </div>
-                            <h4>User Interface (UI) Designs</h4>
-                            <p>Involves designing attractive, practical and user-friendly interfaces.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="500ms">
-                            <div class="ux-icon">
-                                <i class="fa-regular fa-face-smile-beam"></i>
-                            </div>
-                            <h4>User Experience (UX) Design Research</h4>
-                            <p> Involves carefully studying the target users and each of their
-                                needs.</p>
-                        </div>
-                    </div>
-                </div>
+            <div style="text-align:center; margin-bottom:1em;">
+                <button id="addCategoryBtn" type="button" class="btn btn-primary">Add Category</button>
             </div>
-        </section>
 
-
-        <section class="follow-area clearfix">
-            <div class="container container-xxl">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-heading text-center">
-                            <h2 style="font-size: 30px">Skills & Design Proficiency</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-ara wow fadeIn" data-wow-delay="100ms">
-                    <div class="skill">
-                        <div class="single-skill">
-                            <div class="progress-count">
-                                <p>User Interface Design</p><span>70%</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".5s"
-                                    aria-valuenow="25" role="progressbar" style="width: 70%" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="single-skill">
-                            <div class="progress-count">
-                                <p>User Experience</p><span>95%</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s"
-                                    role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="single-skill">
-                            <div class="progress-count">
-                                <p>Illustration</p><span>85%</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".6s"
-                                    role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="addModal"
+                style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); align-items:center; justify-content:center;">
+                <div
+                    style="background:#fff; padding:2em 1.5em; border-radius:8px; max-width:90vw; width:350px; margin:auto; position:relative;">
+                    <button id="closeModalBtn"
+                        style="position:absolute; right:1em; top:1em; background:none; border:none; font-size:1.2em; cursor:pointer;">&times;</button>
+                    <div id="modalContent"></div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12 text-center wow fadeIn" data-wow-delay="700ms">
-                    <a href="./about.html" class="btn pw-btn btn-2 mt-15">About Me &nbsp;<i
-                            class="fa-solid fa-arrow-right"></i></a>
-                </div>
+            <!-- Commitments Table Example -->
+            <div class="commitments-container">
+                <table class="commitments-table">
+                    <thead>
+                        <th colspan="6" class="header-amount">
+                            Allocated Amount:
+                            <input id="allocatedAmountInput" type="text"
+                                style="width:100px; font-weight:bold; text-align:right;" />
+                        </th>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Deduction Period</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example category row -->
+                        <!--
+                        <tr class="category-row">
+                            <td><input value="Category Name" class="cat-name"></td>
+                            <td contenteditable="true">Description</td>
+                            <td contenteditable="true">$0.00</td>
+                            <td contenteditable="true">every ...</td>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                <button class="move-btn up" title="Move Up"><i class="fa-solid fa-arrow-up"></i></button>
+                                <button class="move-btn down" title="Move Down"><i class="fa-solid fa-arrow-down"></i></button>
+                                <button class="delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        -->
+
+                    </tbody>
+                    <tfoot>
+                        <tr class="grand-total">
+                            <td colspan="5">Grand Total</td>
+                            <td id="grandTotalCell"></td>
+                        </tr>
+                        <tr class="grand-total">
+                            <td colspan="5">Balance Remaining</td>
+                            <td id="balanceRemainingCell"></td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </section>
 
@@ -356,6 +452,409 @@
     <script src="js/pw.bundle.js"></script>
 
     <script src="js/default-assets/active.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Modal logic
+            const modal = document.getElementById('addModal');
+            const modalContent = document.getElementById('modalContent');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            function openModal(html, onSubmit) {
+                modalContent.innerHTML = html;
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    const form = modalContent.querySelector('form');
+                    if (form) {
+                        form.onsubmit = function (e) {
+                            e.preventDefault();
+                            onSubmit(new FormData(form));
+                            modal.style.display = 'none';
+                        };
+                    }
+                }, 10);
+            }
+            closeModalBtn.onclick = () => { modal.style.display = 'none'; };
+            window.onclick = function (event) {
+                if (event.target === modal) modal.style.display = 'none';
+            };
+
+            // Helper: parse $amount string to float
+            function parseAmount(str) {
+                if (!str) return 0;
+                let n = str.replace(/[^0-9.\-]/g, '');
+                return parseFloat(n) || 0;
+            }
+
+            // --- Allocated Amount Logic ---
+            const allocatedAmountInput = document.getElementById('allocatedAmountInput');
+            function getAllocatedAmount() {
+                let val = allocatedAmountInput.value || "0";
+                val = val.replace(/[^0-9.\-]/g, '');
+                return parseFloat(val) || 0;
+            }
+            function saveAllocatedAmount() {
+                localStorage.setItem('commitments_allocated_amount', allocatedAmountInput.value);
+            }
+            function loadAllocatedAmount() {
+                let val = localStorage.getItem('commitments_allocated_amount');
+                allocatedAmountInput.value = val !== null ? val : "0.00";
+            }
+            allocatedAmountInput.addEventListener('input', function () {
+                saveAllocatedAmount();
+                recalcTotals();
+            });
+
+
+            // --- Table Data Persistence ---
+            function getTableData() {
+                const tbody = document.querySelector('.commitments-table tbody');
+                let data = [];
+                let rows = Array.from(tbody.children);
+                for (let i = 0; i < rows.length; i++) {
+                    if (rows[i].classList.contains('category-header-row')) {
+                        const catName = rows[i].querySelector('.cat-name').value;
+                        let details = [];
+                        let j = i + 1;
+                        while (j < rows.length && rows[j].classList.contains('category-detail-row')) {
+                            const tds = rows[j].children;
+                            details.push({
+                                desc: tds[0].textContent.trim(),
+                                amount: tds[1].textContent.trim(),
+                                period: tds[2].textContent.trim(),
+                                checked: tds[3].querySelector('input[type="checkbox"]').checked
+                            });
+                            j++;
+                        }
+                        data.push({
+                            category: catName,
+                            details: details
+                        });
+                        i = j - 1;
+                    }
+                }
+                return data;
+            }
+
+            function setTableData(rawData) {
+                // Always flatten to a flat array of {category, desc, amount, period, checked}
+                let flat = [];
+                if (Array.isArray(rawData)) {
+                    rawData.forEach(group => {
+                        if (group.category && group.details) {
+                            group.details.forEach(detail => {
+                                flat.push({
+                                    category: group.category,
+                                    desc: detail.desc,
+                                    amount: detail.amount,
+                                    period: detail.period,
+                                    checked: detail.checked
+                                });
+                            });
+                        } else if (group.category && group.desc !== undefined) {
+                            flat.push({
+                                category: group.category,
+                                desc: group.desc,
+                                amount: group.amount,
+                                period: group.period,
+                                checked: group.checked
+                            });
+                        } else if (typeof group === "object" && !Array.isArray(group)) {
+                            // If group is a grouped object (shouldn't happen, but just in case)
+                            Object.entries(group).forEach(([catName, details]) => {
+                                details.forEach(detail => {
+                                    flat.push({
+                                        category: catName,
+                                        desc: detail.desc,
+                                        amount: detail.amount,
+                                        period: detail.period,
+                                        checked: detail.checked
+                                    });
+                                });
+                            });
+                        }
+                    });
+                } else if (rawData && typeof rawData === "object") {
+                    // If rawData is an object (grouped by category)
+                    Object.entries(rawData).forEach(([catName, details]) => {
+                        if (Array.isArray(details)) {
+                            details.forEach(detail => {
+                                flat.push({
+                                    category: catName,
+                                    desc: detail.desc,
+                                    amount: detail.amount,
+                                    period: detail.period,
+                                    checked: detail.checked
+                                });
+                            });
+                        }
+                    });
+                }
+
+                // Now group by category name
+                const grouped = {};
+                flat.forEach(entry => {
+                    if (!grouped[entry.category]) grouped[entry.category] = [];
+                    grouped[entry.category].push({
+                        desc: entry.desc,
+                        amount: entry.amount,
+                        period: entry.period,
+                        checked: entry.checked
+                    });
+                });
+
+                const tbody = document.querySelector('.commitments-table tbody');
+                tbody.innerHTML = '';
+                Object.entries(grouped).forEach(([catName, details]) => {
+                    // Category name row
+                    const headerTr = document.createElement('tr');
+                    headerTr.className = 'category-header-row';
+                    headerTr.setAttribute('draggable', 'true');
+                    headerTr.innerHTML = `
+                        <td colspan="6">
+                            <input value="${catName}" class="cat-name" />
+                        </td>
+                    `;
+                    tbody.appendChild(headerTr);
+
+                    // Details rows
+                    details.forEach(detail => {
+                        const detailTr = document.createElement('tr');
+                        detailTr.className = 'category-detail-row';
+                        detailTr.innerHTML = `
+                <td contenteditable="true">${detail.desc}</td>
+                <td contenteditable="true">${detail.amount}</td>
+                <td contenteditable="true">${detail.period}</td>
+                <td><input type="checkbox"${detail.checked ? ' checked' : ''}></td>
+                <td></td>
+                <td>
+                    <button class="delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            `;
+                        tbody.appendChild(detailTr);
+                    });
+                });
+                addRowHandlers();
+                recalcTotals();
+                addDragAndDropHandlers();
+            }
+
+            function saveTableToLocalStorage() {
+                const data = getTableData();
+                localStorage.setItem('commitments_table_data', JSON.stringify(data));
+            }
+
+            function loadTableFromLocalStorage() {
+                const data = localStorage.getItem('commitments_table_data');
+                if (data) setTableData(JSON.parse(data));
+            }
+
+            function recalcTotals() {
+                let grandTotal = 0;
+                document.querySelectorAll('.commitments-table tbody tr.category-detail-row').forEach(tr => {
+                    const amt = parseAmount(tr.children[1].textContent);
+                    grandTotal += amt;
+                });
+                // Update grand total
+                const grandTotalCell = document.getElementById('grandTotalCell');
+                if (grandTotalCell) {
+                    grandTotalCell.textContent = '$' + grandTotal.toFixed(2);
+                }
+                // Update balance remaining
+                const balanceCell = document.getElementById('balanceRemainingCell');
+                if (balanceCell) {
+                    const allocated = getAllocatedAmount();
+                    const balance = allocated - grandTotal;
+                    balanceCell.textContent = '$' + balance.toFixed(2);
+                }
+            }
+
+            function addRowHandlers() {
+                // Editable fields
+                document.querySelectorAll('.commitments-table td[contenteditable]').forEach(cell => {
+                    cell.onblur = function () {
+                        saveTableToLocalStorage();
+                        recalcTotals();
+                    };
+                    cell.onkeydown = function (e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            cell.blur();
+                        }
+                    };
+                });
+                // Category name input
+                document.querySelectorAll('.cat-name').forEach(input => {
+                    input.onblur = saveTableToLocalStorage;
+                });
+                // Checkbox
+                document.querySelectorAll('.commitments-table input[type="checkbox"]').forEach(cb => {
+                    cb.onchange = saveTableToLocalStorage;
+                });
+                // Delete
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.onclick = function (e) {
+                        e.stopPropagation();
+                        const detailTr = btn.closest('tr');
+                        const headerTr = detailTr.previousElementSibling;
+                        // If previous row is header and next row is not header, just remove detail row
+                        // If this is the last detail row for a category, also remove header
+                        if (
+                            headerTr &&
+                            headerTr.classList.contains('category-header-row') &&
+                            (!detailTr.nextElementSibling ||
+                                detailTr.nextElementSibling.classList.contains('category-header-row'))
+                        ) {
+                            headerTr.remove();
+                        }
+                        detailTr.remove();
+                        saveTableToLocalStorage();
+                        recalcTotals();
+                    };
+                });
+            }
+
+            // --- Drag and Drop Logic ---
+            function addDragAndDropHandlers() {
+                const headerRows = document.querySelectorAll('.commitments-table tbody tr.category-header-row');
+                let dragSrc = null;
+
+                headerRows.forEach(headerRow => {
+                    headerRow.addEventListener('dragstart', function (e) {
+                        dragSrc = headerRow;
+                        headerRow.style.opacity = '0.5';
+                        e.dataTransfer.effectAllowed = 'move';
+                    });
+
+                    headerRow.addEventListener('dragend', function () {
+                        dragSrc = null;
+                        headerRow.style.opacity = '';
+                    });
+
+                    headerRow.addEventListener('dragover', function (e) {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                        headerRow.style.borderTop = '2px solid #1976d2';
+                    });
+
+                    headerRow.addEventListener('dragleave', function () {
+                        headerRow.style.borderTop = '';
+                    });
+
+                    headerRow.addEventListener('drop', function (e) {
+                        e.preventDefault();
+                        headerRow.style.borderTop = '';
+                        if (dragSrc && dragSrc !== headerRow) {
+                            const tbody = headerRow.parentNode;
+                            // Move header and all its detail rows
+                            let srcDetailRows = [];
+                            let next = dragSrc.nextElementSibling;
+                            while (next && next.classList.contains('category-detail-row')) {
+                                srcDetailRows.push(next);
+                                next = next.nextElementSibling;
+                            }
+                            // Insert before target header
+                            tbody.insertBefore(dragSrc, headerRow);
+                            srcDetailRows.forEach(row => {
+                                tbody.insertBefore(row, headerRow);
+                            });
+                            saveTableToLocalStorage();
+                            recalcTotals();
+                        }
+                    });
+                });
+            }
+
+
+
+            // --- Initial load ---
+            loadAllocatedAmount();
+            loadTableFromLocalStorage();
+            addRowHandlers();
+            addDragAndDropHandlers();
+            recalcTotals();
+
+
+            // Add Category Button
+            document.getElementById('addCategoryBtn').onclick = function () {
+                openModal(`
+            <form>
+                <h3 style="margin-top:0;">Add Category</h3>
+                <label>Category Name:<br><input name="cat" required style="width:100%;"></label><br><br>
+                <label>Description:<br><input name="desc" required style="width:100%;"></label><br><br>
+                <label>Amount:<br><input name="amount" required value="$0.00" style="width:100%;"></label><br><br>
+                <label>Deduction Period:<br><input name="period" required value="every ..." style="width:100%;"></label><br><br>
+                <label><input type="checkbox" name="checked"> Checked</label><br><br>
+                <button type="submit">Add</button>
+            </form>
+        `, function (formData) {
+                    // Load current data, add new entry, then re-group and render
+                    let rawData = getTableData();
+                    // Flatten to array of entries for grouping
+                    let flat = [];
+                    rawData.forEach(group => {
+                        if (group.category && group.details) {
+                            // grouped format
+                            group.details.forEach(detail => {
+                                flat.push({
+                                    category: group.category,
+                                    desc: detail.desc,
+                                    amount: detail.amount,
+                                    period: detail.period,
+                                    checked: detail.checked
+                                });
+                            });
+                        } else if (group.category && group.desc !== undefined) {
+                            // flat format (single entry)
+                            flat.push({
+                                category: group.category,
+                                desc: group.desc,
+                                amount: group.amount,
+                                period: group.period,
+                                checked: group.checked
+                            });
+                        } else if (group.details === undefined) {
+                            // grouped object format (from setTableData's grouped object)
+                            Object.entries(group).forEach(([catName, details]) => {
+                                details.forEach(detail => {
+                                    flat.push({
+                                        category: catName,
+                                        desc: detail.desc,
+                                        amount: detail.amount,
+                                        period: detail.period,
+                                        checked: detail.checked
+                                    });
+                                });
+                            });
+                        }
+                    });
+                    // Add new entry
+                    flat.push({
+                        category: formData.get('cat'),
+                        desc: formData.get('desc'),
+                        amount: formData.get('amount'),
+                        period: formData.get('period'),
+                        checked: !!formData.get('checked')
+                    });
+                    setTableData(flat);
+                    saveTableToLocalStorage();
+                    recalcTotals();
+                });
+            };
+
+            // Remove "Add Item" button if not needed
+            document.getElementById('addItemBtn').style.display = 'none';
+
+            // Save on direct edits
+            document.querySelectorAll('.commitments-table').forEach(table => {
+                table.addEventListener('input', function (e) {
+                    if (e.target.matches('td[contenteditable]')) {
+                        recalcTotals();
+                        saveTableToLocalStorage();
+                    }
+                });
+            });
+        });
+    </script>
 
 
 
