@@ -39,12 +39,6 @@
 </head>
 
 <style>
-    .commitments-container {
-        margin: 2em;
-        padding-left: 5em;
-        padding-right: 5em;
-    }
-
     .commitments-table {
         width: 100%;
         border-collapse: collapse;
@@ -345,60 +339,63 @@
 
         <section>
 
-            <div style="text-align:center; margin-bottom:1em;">
-                <button id="addCategoryBtn" type="button" class="btn btn-primary">Add Category</button>
-            </div>
+            <div class="container container-xxl">
 
-            <div style="text-align:center; margin-bottom:1em;">
-                <button id="exportBtn" class="btn btn-success">Export Data</button>
-                <button id="importBtn" class="btn btn-info">Import Data</button>
-                <input type="file" id="importFileInput" style="display:none" accept=".json" />
-            </div>
-
-            <div id="addModal"
-                style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); align-items:center; justify-content:center;">
-                <div
-                    style="background:#fff; padding:2em 1.5em; border-radius:8px; max-width:90vw; width:350px; margin:auto; position:relative;">
-                    <button id="closeModalBtn"
-                        style="position:absolute; right:1em; top:1em; background:none; border:none; font-size:1.2em; cursor:pointer;">&times;</button>
-                    <div id="modalContent"></div>
+                <div style="text-align:left; margin-bottom:1em;">
+                    <button id="exportBtn" class="btn btn-success">Export Data</button>
+                    <button id="importBtn" class="btn btn-info">Import Data</button>
+                    <input type="file" id="importFileInput" style="display:none" accept=".json" />
                 </div>
-            </div>
 
-            <!-- Commitments Table Example -->
-            <div class="commitments-container">
-                <table class="commitments-table table table-bordered table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th colspan="6" class="header-amount">
-                                Allocated Amount:
-                                <input id="allocatedAmountInput" type="text" class="form-control d-inline-block"
-                                    style="width:200px; font-weight:bold; text-align:center;" />
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Deduction Period</th>
-                            <th>Paid?</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Table rows are generated dynamically by JS -->
-                    </tbody>
-                    <tfoot>
-                        <tr class="grand-total">
-                            <td colspan="5">Grand Total</td>
-                            <td id="grandTotalCell"></td>
-                        </tr>
-                        <tr class="grand-total">
-                            <td colspan="5">Balance Remaining</td>
-                            <td id="balanceRemainingCell"></td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div style="text-align:right; margin-bottom:1em;">
+                    <button id="addCategoryBtn" type="button" class="btn btn-primary">Add Category</button>
+                </div>
+
+                <div id="addModal"
+                    style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); align-items:center; justify-content:center;">
+                    <div
+                        style="background:#fff; padding:2em 1.5em; border-radius:8px; max-width:90vw; width:350px; margin:auto; position:relative;">
+                        <button id="closeModalBtn"
+                            style="position:absolute; right:1em; top:1em; background:none; border:none; font-size:1.2em; cursor:pointer;">&times;</button>
+                        <div id="modalContent"></div>
+                    </div>
+                </div>
+
+                <!-- Commitments Table Example -->
+                <div class="commitments-container">
+                    <table class="commitments-table table table-bordered table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th colspan="6" class="header-amount">
+                                    Allocated Amount:
+                                    <input id="allocatedAmountInput" type="text" class="form-control d-inline-block"
+                                        style="width:200px; font-weight:bold; text-align:center;" />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Deduction Period</th>
+                                <th>Paid?</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows are generated dynamically by JS -->
+                        </tbody>
+                        <tfoot>
+                            <tr class="grand-total">
+                                <td colspan="5">Grand Total</td>
+                                <td id="grandTotalCell"></td>
+                            </tr>
+                            <tr class="grand-total">
+                                <td colspan="5">Balance Remaining</td>
+                                <td id="balanceRemainingCell"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </section>
 
