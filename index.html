@@ -2,397 +2,364 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Screen Management | SMRT Buses</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background: #f7f7f7;
-        }
+    <meta name="description" content>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>NRFZ | Home</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
 
-        h1 {
-            color: #b00;
-        }
+    <link rel="icon" href="./img/core-img/favicon.png">
 
-        .screen-list {
-            margin: 20px 0;
-        }
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-        }
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-breakpoints.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
 
-        th,
-        td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/carousel.css">
 
-        th {
-            background: #eee;
-        }
 
-        .actions button {
-            margin-right: 8px;
-        }
+    <link rel="stylesheet" type="text/css"
+        href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 
-        .add-form {
-            padding-left: 3em;
-            padding-right: 3em;
-        }
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-        .add-form input {
-            padding: 6px;
-            margin-right: 8px;
-            margin-top: 1em;
-            margin-bottom: 1em;
-        }
-    </style>
+        gtag('config', 'G-WN76281P3Q');
+    </script>
+
 </head>
 
-<body>
-    <h1>Screen Management</h1>
-    <div>
-        <!-- Type Dropdown -->
-        <label for="typeSelect" style="font-weight:bold;">Type:</label>
-        <select id="typeSelect" onchange="renderScreens()" style="margin: 0 16px 16px 8px; padding:4px 8px;">
-            <option value="ALL">All</option>
-            <option value="BDP">BDP</option>
-            <option value="MDP">MDP</option>
-        </select>
+<style>
+   
 
-        <!-- Location Dropdown -->
-        <label for="locationSelect" style="font-weight:bold;">Location:</label>
-        <select id="locationSelect" onchange="renderScreens()" style="margin: 0 0 16px 8px; padding:4px 8px;">
-            <option value="ALL">All</option>
-        </select>
+
+
+</style>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="index.html"><img src="img/core-img/logo.png" alt="logo" class="logo" /></a>
+
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="works-by-nrfz.html" class="nav-link">
+                        <i class="fa-solid fa-pen-paintbrush"></i>
+                        <span>Works By NRFZ</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="eicw/eicw.html" class="nav-link">
+                        <i class="fa-solid fa-map-location"></i>
+                        <span>EICW</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item-toggle">
+                    <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
+                        <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Mobile Toggle -->
+            <button class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <li class="mobile-menu-item mobile-theme-toggle">
+                <a href="#" class="nav-link-toggle" id="dark-mode-toggle-mobile" title="Toggle Dark/Light Mode!">
+                    <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+                </a>
+            </li>
+            <a href="#" class="mobile-menu-brand">
+                <span class="brand-text"></span>
+            </a>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <span>×</span>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-nav">
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link active">
+                    <i class="fa-solid fa-regular fa-house"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="about.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-regular fa-circle-user"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="works-by-nrfz.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-pen-paintbrush"></i>
+                    <span>Works By NRFZ</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="eicw/eicw.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-map-location"></i>
+                    <span>EICW</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="blog.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
     </div>
 
-    <!-- Add Screen Modal Trigger -->
-    <button onclick="openAddModal()" style="margin-bottom:16px;">Add Screen</button>
 
-    <!-- Add Screen Modal -->
-    <div id="addScreenModal"
-        style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1000; align-items:center; justify-content:center;">
-        <div
-            style="background:#fff; padding:32px 24px; border-radius:8px; min-width:320px; max-width:90vw; margin:40px auto; position:relative;">
-            <h2 style="margin-top:0;">Add Screen</h2>
-            <div class="add-form">
-                <input id="category" placeholder="Category (e.g. BPJ)" style="width:100%;margin-bottom:8px;" />
-                <input id="screenType" placeholder="Type (BDP/MDP)" style="width:100%;margin-bottom:8px;" />
-                <input id="screenName" placeholder="Screen Name" style="width:100%;margin-bottom:8px;" />
-                <input id="screenUrl" placeholder="Screen URL" style="width:100%;margin-bottom:16px;" />
-                <div style="text-align:right;">
-                    <button onclick="addScreen()">Add</button>
-                    <button onclick="closeAddModal()" style="margin-left:8px;">Cancel</button>
+    <!-- ============================================= Hero Section ============================================= -->
+    <section id="hero" class="d-flex flex-column justify-content-center">
+    </section><!-- End Hero -->
+
+    <div class="main-content">
+        <section class="wbnrfz-works">
+            <div class="container">
+                <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms">
+                    <h2>Featured Works</h2>
+                </div>
+                <div class="wbnrfz-grid wow fadeIn" data-wow-delay="300ms">
+                    <div class="card">
+                        <img src="https://i.imgur.com/TBlQxOJ.png" alt="Work 1">
+                        <div class="card-content">
+                            <h3>Buszy - Bus Arrival Timings</h3>
+                            <a href="buszy.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://i.imgur.com/HaCQ71l.png" alt="Work 2">
+                        <div class="card-content">
+                            <h3>EICW - Implementation Brainstorming</h3>
+                            <a href="eicw/eicw.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://i.imgur.com/Dlkjslp.png" alt="Work 3">
+                        <div class="card-content">
+                            <h3>Train Delays Tracker</h3>
+                            <a href="https://nurafianzulkifli.github.io/train-delays-checker/" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://i.imgur.com/IeRTJiV.png" alt="Work 4">
+                        <div class="card-content">
+                            <h3>LTA Bus Stop Pole Design Refresh</h3>
+                            <a href="worksbynrfz/lta-bp.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+
+        <section class="about-me-area clearfix">
+            <div class="container container-xxl">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms"
+                            style="margin-bottom: 18px;">
+                            <h2>Likes & Interests</h2>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms">
+                            <h1><a href="https://en.wikipedia.org/wiki/Jack_of_all_trades"
+                                    style="font-size: 20px; color: #5f6051;">"Jack of all trades, master of
+                                    none"</a></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                            <div class="wsd-icon">
+                                <i class="fa-solid fa-signs-post"></i>
+                            </div>
+                            <h4>Wayfinding Signage Designs</h4>
+                            <p>Great Wayfinding Signage guides people smoothly while enhancing their overall experience.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="300ms">
+                            <div class="ui-icon">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                            </div>
+                            <h4>User Interface (UI) Designs</h4>
+                            <p>Involves designing attractive, practical and user-friendly interfaces.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="about-me-content text-center mb-80 wow fadeIn" data-wow-delay="500ms">
+                            <div class="ux-icon">
+                                <i class="fa-regular fa-face-smile-beam"></i>
+                            </div>
+                            <h4>User Experience (UX) Design Research</h4>
+                            <p> Involves carefully studying the target users and each of their
+                                needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="follow-area clearfix">
+            <div class="container container-xxl">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-center">
+                            <h2 style="font-size: 30px">Skills & Design Proficiency</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-ara wow fadeIn" data-wow-delay="100ms">
+                    <div class="skill">
+                        <div class="single-skill">
+                            <div class="progress-count">
+                                <p>User Interface Design</p><span>70%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".5s"
+                                    aria-valuenow="25" role="progressbar" style="width: 70%" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="progress-count">
+                                <p>User Experience</p><span>95%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s"
+                                    role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="progress-count">
+                                <p>Illustration</p><span>85%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".6s"
+                                    role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center wow fadeIn" data-wow-delay="700ms">
+                    <a href="./about.html" class="btn pw-btn btn-2 mt-15">About Me &nbsp;<i
+                            class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="https://github.com/nurafianZulkifli" class="social-link">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com/nrfzlkf_" class="social-link">
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.facebook.com/Nrfnzlkf/" class="social-link">
+                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/nrfzlkf/" class="social-link">
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-copy">
+                © 2025 Nurafian Zulkifli
+            </div>
+        </footer>
     </div>
 
-    <!-- Import Config Button and File Input -->
-    <input type="file" id="importConfigInput" accept=".json" style="display:none" onchange="importConfigFile(event)">
-    <button onclick="document.getElementById('importConfigInput').click()" style="margin-left:8px;">Import
-        Config</button>
-    <button onclick="exportConfig()" style="margin-left:8px;">Export Config</button>
+    <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
+        data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
+
+    <script src="js/navtabs.js"></script>
+
+    <script src="js/theme-index.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/popper.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/pw.bundle.js"></script>
+
+    <script src="js/default-assets/active.js"></script>
 
 
-    <!-- Ticker Message Setting -->
-    <div
-        style="margin: 24px 0 16px 0; padding: 40px 40px 40px 30px; background: #fff; border: 1px solid #ddd; border-radius: 8px;">
-        <h3 style="margin-top:0;">Override Ticker Message</h3>
-        <textarea id="tickerOverride" rows="2" style="width:100%;padding:8px;resize: vertical;"
-            placeholder="Leave blank to use default/unified ticker message"></textarea>
-        <div style="margin-top:8px; text-align:right;">
-            <button onclick="saveTickerOverride()" style="margin-right:8px;">Save</button>
-            <button onclick="clearTickerOverride()">Clear</button>
-        </div>
-        <div id="tickerStatus" style="color:green; margin-top:8px; display:none;"></div>
-    </div>
-
-    <!-- Modal Structure -->
-    <!-- ...existing modal code... -->
-
-    <div id="sectionsContainer">
-        <!-- Sections will be rendered here -->
-    </div>
 
 
-    <!------------------------------------ Functionalities ------------------------------------>
-    <script>
-        // Load from localStorage or use example initial data
-        let screens = [];
-        const STORAGE_KEY = 'screenManagerScreens';
-
-        function loadScreens() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            if (data) {
-                try {
-                    screens = JSON.parse(data);
-                } catch {
-                    screens = [];
-                }
-            } else {
-                screens = [];
-            }
-        }
-
-        function saveScreens() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(screens));
-        }
-
-        function getSections() {
-            const sections = {};
-            screens.forEach((screen, idx) => {
-                const section = screen.name.split('-')[0].toUpperCase();
-                if (!sections[section]) sections[section] = [];
-                sections[section].push({ ...screen, idx });
-            });
-            return sections;
-        }
-
-        function getAllLocations(typeFilter = "ALL") {
-            // Get unique section names from screens, filtered by type if needed
-            const locations = new Set();
-            screens.forEach(screen => {
-                if (typeFilter === "ALL" || (screen.type && screen.type.toUpperCase() === typeFilter)) {
-                    const section = screen.name.split('-')[0].toUpperCase();
-                    locations.add(section);
-                }
-            });
-            return Array.from(locations).sort();
-        }
-
-        function renderLocationDropdown() {
-            const select = document.getElementById('locationSelect');
-            const type = document.getElementById('typeSelect').value;
-            // Save current selection
-            const prev = select.value;
-            // Remove all except "All"
-            select.innerHTML = '<option value="ALL">All</option>';
-            getAllLocations(type).forEach(loc => {
-                const opt = document.createElement('option');
-                opt.value = loc;
-                opt.textContent = loc;
-                select.appendChild(opt);
-            });
-            // Restore previous selection if possible
-            if ([...select.options].some(o => o.value === prev)) {
-                select.value = prev;
-            }
-        }
-
-        function renderScreens() {
-            renderLocationDropdown();
-            const container = document.getElementById('sectionsContainer');
-            container.innerHTML = '';
-            const sections = getSections();
-            const selectedLoc = document.getElementById('locationSelect').value;
-            const selectedType = document.getElementById('typeSelect').value;
-            let filteredSections = {};
-
-            // Filter screens by type and location
-            Object.keys(sections).forEach(section => {
-                const filtered = sections[section].filter(screen => {
-                    const typeMatch = selectedType === "ALL" || (screen.type && screen.type.toUpperCase() === selectedType);
-                    const locMatch = selectedLoc === "ALL" || section === selectedLoc;
-                    return typeMatch && locMatch;
-                });
-                if (filtered.length) filteredSections[section] = filtered;
-            });
-
-            Object.keys(filteredSections).sort().forEach(section => {
-                const div = document.createElement('div');
-                div.className = 'screen-list';
-                div.innerHTML = `
-                <h2>${section}</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Screen Name</th>
-                            <th>Type</th>
-                            <th>Screen URL</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${filteredSections[section].map(screen => `
-                            <tr>
-                                <td>${screen.name}</td>
-                                <td>${screen.type ? screen.type.toUpperCase() : ''}</td>
-                                <td><a href="${screen.url}" target="_blank">${screen.url}</a></td>
-                                <td class="actions">
-                                    <button onclick="editScreen(${screen.idx})">Edit</button>
-                                    <button onclick="removeScreen(${screen.idx})">Remove</button>
-                                </td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            `;
-                container.appendChild(div);
-            });
-        }
-
-        // Modal logic
-        function openAddModal() {
-            document.getElementById('addScreenModal').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('category').focus();
-            }, 100);
-        }
-        function closeAddModal() {
-            document.getElementById('addScreenModal').style.display = 'none';
-            document.getElementById('category').value = '';
-            document.getElementById('screenType').value = '';
-            document.getElementById('screenName').value = '';
-            document.getElementById('screenUrl').value = '';
-        }
-
-        // Override addScreen to close modal after adding
-        function addScreen() {
-            const category = document.getElementById('category').value.trim();
-            const type = document.getElementById('screenType').value.trim().toUpperCase();
-            const name = document.getElementById('screenName').value.trim();
-            const url = document.getElementById('screenUrl').value.trim();
-            if (!category || !type || !name || !url) {
-                alert('Please enter category, type, name and URL.');
-                return;
-            }
-            // Ensure screen name starts with category
-            let finalName = name;
-            if (!name.toLowerCase().startsWith(category.toLowerCase() + '-')) {
-                finalName = category.toLowerCase() + '-' + name;
-            }
-            screens.push({ name: finalName, url, type });
-            saveScreens();
-            closeAddModal();
-            renderScreens();
-        }
-
-        function removeScreen(idx) {
-            if (confirm('Remove this screen?')) {
-                screens.splice(idx, 1);
-                saveScreens();
-                renderScreens();
-            }
-        }
-
-        function editScreen(idx) {
-            const screen = screens[idx];
-            const newName = prompt('Edit screen name:', screen.name);
-            if (newName === null) return;
-            const newType = prompt('Edit type (BDP/MDP):', screen.type || '');
-            if (newType === null) return;
-            const newUrl = prompt('Edit screen URL:', screen.url);
-            if (newUrl === null) return;
-            screens[idx] = { name: newName.trim(), url: newUrl.trim(), type: newType.trim().toUpperCase() };
-            saveScreens();
-            renderScreens();
-        }
-
-        loadScreens();
-        renderScreens();
-
-        function importConfigFile(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    let importedScreens = [];
-                    let importedTicker = '';
-                    if (Array.isArray(imported)) {
-                        // Backward compatibility: old format (array)
-                        importedScreens = imported;
-                    } else if (imported && Array.isArray(imported.screens)) {
-                        importedScreens = imported.screens;
-                        importedTicker = imported.tickerOverride || '';
-                    } else {
-                        alert('Invalid config file format.');
-                        return;
-                    }
-                    // Ensure each screen has a category field
-                    screens = importedScreens.map(screen => {
-                        let category = screen.category;
-                        if (!category && screen.name) {
-                            category = screen.name.split('-')[0].toLowerCase();
-                        }
-                        return { ...screen, category };
-                    });
-                    saveScreens();
-                    if (typeof importedTicker === 'string') {
-                        localStorage.setItem('screenManagerTickerOverride', importedTicker);
-                        document.getElementById('tickerOverride').value = importedTicker;
-                    }
-                    renderScreens();
-                    alert('Config imported successfully.');
-                } catch (err) {
-                    alert('Error parsing config file.');
-                }
-                event.target.value = ''; // Reset input
-            };
-            reader.readAsText(file);
-        }
-        // --- Ticker Message Override Logic ---
-        const TICKER_KEY = 'screenManagerTickerOverride';
-
-        function loadTickerOverride() {
-            const val = localStorage.getItem(TICKER_KEY) || '';
-            document.getElementById('tickerOverride').value = val;
-        }
-
-        function saveTickerOverride() {
-            const val = document.getElementById('tickerOverride').value.trim();
-            localStorage.setItem(TICKER_KEY, val);
-            showTickerStatus('Ticker override saved.');
-        }
-
-        function clearTickerOverride() {
-            localStorage.removeItem(TICKER_KEY);
-            document.getElementById('tickerOverride').value = '';
-            showTickerStatus('Ticker override cleared.');
-        }
-
-        function showTickerStatus(msg) {
-            const el = document.getElementById('tickerStatus');
-            el.textContent = msg;
-            el.style.display = 'block';
-            setTimeout(() => { el.style.display = 'none'; }, 2000);
-        }
-
-        // --- Export ticker override for use by other screens ---
-        function getTickerOverride() {
-            return localStorage.getItem(TICKER_KEY) || '';
-        }
-
-        loadScreens();
-        renderScreens();
-        loadTickerOverride();
-
-        function exportConfig() {
-            const tickerOverride = localStorage.getItem('screenManagerTickerOverride') || '';
-            const config = {
-                screens: screens,
-                tickerOverride: tickerOverride
-            };
-            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'screen-config.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-    </script>
 </body>
 
 </html>
