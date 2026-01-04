@@ -40,9 +40,9 @@
 
 <style>
     .commitments-container {
-        max-width: 500px;
-        margin: 2rem auto;
-        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 2em;
+        padding-left: 5em;
+        padding-right: 5em;
     }
 
     .commitments-table {
@@ -367,13 +367,15 @@
 
             <!-- Commitments Table Example -->
             <div class="commitments-container">
-                <table class="commitments-table">
+                <table class="commitments-table table table-bordered table-hover align-middle">
                     <thead>
-                        <th colspan="6" class="header-amount">
-                            Allocated Amount:
-                            <input id="allocatedAmountInput" type="text"
-                                style="width:100px; font-weight:bold; text-align:right;" />
-                        </th>
+                        <tr>
+                            <th colspan="6" class="header-amount">
+                                Allocated Amount:
+                                <input id="allocatedAmountInput" type="text" class="form-control d-inline-block"
+                                    style="width:200px; font-weight:bold; text-align:center;" />
+                            </th>
+                        </tr>
                         <tr>
                             <th>Description</th>
                             <th>Amount</th>
@@ -384,22 +386,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Example category row -->
-                        <!--
-                        <tr class="category-row">
-                            <td><input value="Category Name" class="cat-name"></td>
-                            <td contenteditable="true">Description</td>
-                            <td contenteditable="true">$0.00</td>
-                            <td contenteditable="true">every ...</td>
-                            <td><input type="checkbox"></td>
-                            <td>
-                                <button class="move-btn up" title="Move Up"><i class="fa-solid fa-arrow-up"></i></button>
-                                <button class="move-btn down" title="Move Down"><i class="fa-solid fa-arrow-down"></i></button>
-                                <button class="delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        -->
-
+                        <!-- Table rows are generated dynamically by JS -->
                     </tbody>
                     <tfoot>
                         <tr class="grand-total">
@@ -615,11 +602,11 @@
                 Object.entries(grouped).forEach(([catName, details]) => {
                     // Category name row
                     const headerTr = document.createElement('tr');
-                    headerTr.className = 'category-header-row';
+                    headerTr.className = 'category-header-row table-primary';
                     headerTr.setAttribute('draggable', 'true');
                     headerTr.innerHTML = `
                         <td colspan="6">
-                            <input value="${catName}" class="cat-name" />
+                            <input value="${catName}" class="cat-name form-control-plaintext" style="font-weight:bold;" />
                         </td>
                     `;
                     tbody.appendChild(headerTr);
@@ -629,15 +616,15 @@
                         const detailTr = document.createElement('tr');
                         detailTr.className = 'category-detail-row';
                         detailTr.innerHTML = `
-                <td contenteditable="true">${detail.desc}</td>
-                <td contenteditable="true">${detail.amount}</td>
-                <td contenteditable="true">${detail.period}</td>
-                <td><input type="checkbox"${detail.checked ? ' checked' : ''}></td>
-                <td></td>
-                <td>
-                    <button class="delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
-                </td>
-            `;
+                            <td contenteditable="true">${detail.desc}</td>
+                            <td contenteditable="true">${detail.amount}</td>
+                            <td contenteditable="true">${detail.period}</td>
+                            <td class="text-center"><input type="checkbox" ${detail.checked ? 'checked' : ''}></td>
+                            <td></td>
+                            <td>
+                                <button class="delete-btn btn btn-danger btn-sm" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        `;
                         tbody.appendChild(detailTr);
                     });
                 });
@@ -858,53 +845,53 @@
                     }
                 });
             });
-            
-        // --- Export/Import Logic ---
-        document.getElementById('exportBtn').onclick = function () {
-            const data = {
-                table: getTableData(),
-                allocated: allocatedAmountInput.value
+
+            // --- Export/Import Logic ---
+            document.getElementById('exportBtn').onclick = function () {
+                const data = {
+                    table: getTableData(),
+                    allocated: allocatedAmountInput.value
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = "commitments-export.json";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
             };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = "commitments-export.json";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        };
 
-        document.getElementById('importBtn').onclick = function () {
-            document.getElementById('importFileInput').click();
-        };
+            document.getElementById('importBtn').onclick = function () {
+                document.getElementById('importFileInput').click();
+            };
 
-        document.getElementById('importFileInput').onchange = function (e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function (evt) {
-                try {
-                    const data = JSON.parse(evt.target.result);
-                    if (data.table && data.allocated !== undefined) {
-                        setTableData(data.table);
-                        allocatedAmountInput.value = data.allocated;
-                        saveAllocatedAmount();
-                        saveTableToLocalStorage();
-                        recalcTotals();
-                        alert("Data imported!");
-                    } else {
-                        alert("Invalid file format.");
+            document.getElementById('importFileInput').onchange = function (e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function (evt) {
+                    try {
+                        const data = JSON.parse(evt.target.result);
+                        if (data.table && data.allocated !== undefined) {
+                            setTableData(data.table);
+                            allocatedAmountInput.value = data.allocated;
+                            saveAllocatedAmount();
+                            saveTableToLocalStorage();
+                            recalcTotals();
+                            alert("Data imported!");
+                        } else {
+                            alert("Invalid file format.");
+                        }
+                    } catch (err) {
+                        alert("Failed to import: " + err);
                     }
-                } catch (err) {
-                    alert("Failed to import: " + err);
-                }
+                };
+                reader.readAsText(file);
             };
-            reader.readAsText(file);
-        };
-    });
-</script>
+        });
+    </script>
 
 
 </body>
