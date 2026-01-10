@@ -5,7 +5,7 @@
     <meta name="description" content>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NRFZ | Home</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-tracker.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
     <link rel="stylesheet" href="css/dark-mode.css">
 
@@ -37,120 +38,6 @@
     </script>
 
 </head>
-
-<style>
-    .commitments-table {
-        width: 100%;
-        border-collapse: collapse;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        background: #fff;
-    }
-
-    .commitments-table th,
-    .commitments-table td {
-        padding: 0.7em 1em;
-        text-align: left;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    .header-main {
-        background: #bdbdbd;
-        color: #222;
-        font-size: 1.2em;
-        text-align: center;
-    }
-
-    .header-amount {
-        background: #f48fb1;
-        color: #fff;
-        text-align: center;
-    }
-
-    .section-header.telco {
-        background: #9575cd;
-        color: #fff;
-        font-weight: bold;
-    }
-
-    .section-header.subs {
-        background: #c8e6c9;
-        color: #222;
-        font-weight: bold;
-    }
-
-    .total-row {
-        background: #ede7f6;
-        font-weight: bold;
-    }
-
-    .grand-total {
-        background: #ffe082;
-        font-size: 1.1em;
-        font-weight: bold;
-    }
-
-    input[type="checkbox"] {
-        transform: scale(1.2);
-        accent-color: #7e57c2;
-    }
-
-    .delete-btn {
-        background: none;
-        border: none;
-        color: #c62828;
-        font-size: 1.1em;
-        cursor: pointer;
-        margin-left: 0.5em;
-        display: none;
-        vertical-align: middle;
-    }
-
-    tr:hover .delete-btn,
-    tr.section-header:hover .delete-btn {
-        display: inline;
-    }
-
-    .cat-name {
-        background: #b2dfdb;
-        color: #222;
-        font-weight: bold;
-    }
-
-    .move-btn {
-        background: none;
-        border: none;
-        color: #1976d2;
-        font-size: 1.1em;
-        cursor: pointer;
-        margin-left: 0.3em;
-        vertical-align: middle;
-    }
-
-    .category-row {
-        background: #b2dfdb;
-        font-weight: bold;
-    }
-
-    .category-header-row td {
-        background: #b2dfdb;
-        font-weight: bold;
-        font-size: 1.08em;
-        border-bottom: 2px solid #80cbc4;
-        padding-top: 1em;
-        padding-bottom: 0.5em;
-    }
-
-    .category-header-row input.cat-name {
-        background: transparent;
-        border: none;
-        font-weight: bold;
-        font-size: 1.08em;
-        width: 100%;
-        color: #222;
-        outline: none;
-        padding: 0.2em 0;
-    }
-</style>
 
 <body>
 
@@ -339,16 +226,18 @@
 
         <section>
 
-            <div class="container container-xxl">
+            <div class="container">
 
                 <div style="text-align:left; margin-bottom:1em;">
-                    <button id="exportBtn" class="btn btn-success">Export Data</button>
-                    <button id="importBtn" class="btn btn-info">Import Data</button>
+                    <button id="exportBtn" class="btn btn-success"><i class="fa-solid fa-file-export"></i></button>
+                    <button id="importBtn" class="btn btn-info"><i class="fa-solid fa-arrow-up-from-line"></i></button>
                     <input type="file" id="importFileInput" style="display:none" accept=".json" />
-                </div>
 
-                <div style="text-align:right; margin-bottom:1em;">
-                    <button id="addCategoryBtn" type="button" class="btn btn-primary">Add Category</button>
+
+
+                    <button id="addCategoryBtn" type="button" class="btn btn-primary" style="float: right;"><i
+                            class="fa-solid fa-plus"></i></button>
+
                 </div>
 
                 <div id="addModal"
@@ -368,8 +257,9 @@
                             <tr>
                                 <th colspan="5" class="header-amount">
                                     Allocated Amount:
-                                    <input id="allocatedAmountInput" type="text" class="form-control d-inline-block"
-                                        style="width:200px; font-weight:bold; text-align:center;" />
+                                    <input id="allocatedAmountInput" type="text"
+                                        class="form-control d-inline-block allocated-amount-input"
+                                        style="font-weight:bold; text-align:center;" />
                                 </th>
                             </tr>
                             <tr>
@@ -395,11 +285,12 @@
                         </tfoot>
                     </table>
                 </div>
+
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="footer">
+        <!-- <footer class="footer">
             <div class="footer-content">
                 <div class="footer-social">
                     <a href="https://github.com/nurafianZulkifli" class="social-link">
@@ -420,7 +311,7 @@
             <div class="footer-copy">
                 © 2025 Nurafian Zulkifli
             </div>
-        </footer>
+        </footer> -->
     </div>
 
     <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
@@ -678,7 +569,20 @@
                 });
                 // Checkbox
                 document.querySelectorAll('.commitments-table input[type="checkbox"]').forEach(cb => {
-                    cb.onchange = saveTableToLocalStorage;
+                    cb.onchange = function () {
+                        const tr = cb.closest('tr');
+                        if (cb.checked) {
+                            showCongratsModal("This commitment is marked as paid.");
+                            tr.style.backgroundColor = "#c8e6c9";
+                        } else {
+                            tr.style.backgroundColor = "";
+                        }
+                        saveTableToLocalStorage();
+                    };
+                    // On load, set color if already checked
+                    if (cb.checked) {
+                        cb.closest('tr').style.backgroundColor = "#c8e6c9";
+                    }
                 });
                 // Delete
                 document.querySelectorAll('.delete-btn').forEach(btn => {
@@ -701,6 +605,23 @@
                         recalcTotals();
                     };
                 });
+            }
+
+
+            function showCongratsModal(message) {
+                modalContent.innerHTML = `
+        <div style="text-align:center;">
+            <h3>🎉 Congratulations!</h3>
+            <p>${message}</p>
+            <button id="closeCongratsBtn" class="btn btn-success" style="margin-top:1em;">OK</button>
+        </div>
+    `;
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    document.getElementById('closeCongratsBtn').onclick = () => {
+                        modal.style.display = 'none';
+                    };
+                }, 10);
             }
 
             // --- Drag and Drop Logic ---
@@ -885,6 +806,47 @@
                 };
                 reader.readAsText(file);
             };
+        });
+
+
+        function updateCommitmentsBlur() {
+            const container = document.querySelector('.commitments-container');
+            if (!container) return;
+            const scrollLeft = container.scrollLeft;
+            const maxScroll = container.scrollWidth - container.clientWidth;
+            if (scrollLeft > 2) {
+                container.classList.add('has-left-blur');
+            } else {
+                container.classList.remove('has-left-blur');
+            }
+            if (scrollLeft < maxScroll - 2) {
+                container.classList.add('has-right-blur');
+            } else {
+                container.classList.remove('has-right-blur');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.querySelector('.commitments-container');
+            if (container) {
+                container.addEventListener('scroll', updateCommitmentsBlur);
+                window.addEventListener('resize', updateCommitmentsBlur);
+                // Initial check
+                setTimeout(updateCommitmentsBlur, 100);
+            }
+        });
+
+        // Auto-resize allocated amount input
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.getElementById('allocatedAmountInput');
+            if (input) {
+                function resizeInput() {
+                    input.style.width = '1px'; // reset to shrink if needed
+                    input.style.width = (input.value.length + 2) + 'ch';
+                }
+                input.addEventListener('input', resizeInput);
+                resizeInput(); // initial sizing
+            }
         });
     </script>
 
