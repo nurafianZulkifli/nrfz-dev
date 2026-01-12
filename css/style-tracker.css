@@ -16,6 +16,13 @@
     text-overflow: ellipsis;
 }
 
+table th {
+    background-color: #94d40b !important;
+    color: #000;
+    font-size: 18px;
+    margin: 5px;
+}
+
 .commitments-table td {
     word-break: break-word;
     white-space: normal;
@@ -140,7 +147,8 @@ tr.section-header:hover .delete-btn {
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
     word-break: break-word;
-    max-width: 1px; /* allows cells to shrink */
+    max-width: 1px;
+    /* allows cells to shrink */
 }
 
 .form-control {
@@ -172,8 +180,87 @@ tr.section-header:hover .delete-btn {
     transition: width 0.2s;
 }
 
+.commitments-table th:nth-child(1),
+.commitments-table td:nth-child(1) {
+    width: 60px;
+    min-width: 50px;
+    max-width: 260px;
+    text-align: left;
+    padding-left: 1em;
+    padding-right: 0.2em;
+}
+
+.commitments-table th:nth-child(2),
+.commitments-table td:nth-child(2) {
+    width: 60px;
+    min-width: 50px;
+    max-width: 260px;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    font-weight: bolder;
+}
+
+.commitments-table th:nth-child(3),
+.commitments-table td:nth-child(3) {
+    width: 60px;
+    min-width: 50px;
+    max-width: 70px;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.commitments-table th:nth-child(4),
+.commitments-table td:nth-child(4) {
+    width: 90px;
+    min-width: 36px;
+    max-width: 36px;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.commitments-table th:nth-child(5),
+.commitments-table td:nth-child(5) {
+    width: 60px;
+    min-width: 50px;
+    max-width: 70px;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.commitments-totals {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    max-width: 100vw;
+}
+
+.grand-total-row {
+    background: #ffffff;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.negative-balance {
+    color: #c62828 !important;
+    font-weight: bold;
+}
+
+
+
 /* Responsive styles for commitments table */
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
     .commitments-container {
         width: 100%;
         overflow-x: auto;
@@ -210,6 +297,17 @@ tr.section-header:hover .delete-btn {
         padding-top: 0.7em;
         padding-bottom: 0.3em;
     }
+} */
+
+
+/*  */
+@media (max-width: 767px) {
+    table th {
+    background-color: #94d40b !important;
+    color: #000;
+    font-size: 15px;
+    margin: 5px;
+}
 }
 
 /* Extra small screens (phones) */
