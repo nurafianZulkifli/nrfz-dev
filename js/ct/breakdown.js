@@ -475,15 +475,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     category: "Monthly Bills",
                     details: [
-                        { desc: "Rent", amount: "1200.00", period: "Monthly", checked: false },
-                        { desc: "Utilities", amount: "150.00", period: "Monthly", checked: true }
+                        { desc: "Rent", amount: "1200.00", period: "every 6th", checked: false },
+                        { desc: "Utilities", amount: "150.00", period: "every 7th", checked: true }
                     ]
                 },
                 {
                     category: "Subscriptions",
                     details: [
-                        { desc: "Streaming Service", amount: "15.99", period: "Monthly", checked: false },
-                        { desc: "Cloud Storage", amount: "9.99", period: "Yearly", checked: false }
+                        { desc: "Streaming Service", amount: "15.99", period: "every 15th", checked: false },
+                        { desc: "Cloud Storage", amount: "9.99", period: "every 19th", checked: false }
                     ]
                 }
             ],
