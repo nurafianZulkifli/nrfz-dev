@@ -181,7 +181,7 @@
                                 </ol>
                             </nav>
                             <div class="page-title-wrapper">
-                                <h1 class="page-title-single">Commitments Breakdown</h1>
+                                <h1 class="page-title-single">Pay Breakdown</h1>
                             </div>
                         </div>
                     </div>
@@ -197,11 +197,11 @@
 
                         <ul>
                             <li>
-                                <a href="#" class="active">Commitments Breakdown</a>
+                                <a href="index.html">Commitments Breakdown</a>
                             </li>
 
                             <li>
-                                <a href="pay-brkdwn.html">Pay Breakdown</a>
+                                <a href="pay-brkdwn.html" class="active">Pay Breakdown</a>
                             </li>
 
                             <li>
@@ -228,73 +228,62 @@
 
             <div class="container">
 
-                <div style="text-align:left; margin-bottom:1em;">
-                    <button id="exportBtn" class="btn btn-primary"><i class="fa-solid fa-file-export"></i>
-                        Export</button>
-                    <div class="btn-group">
-                        <button id="importBtn" class="btn btn-primary"><i class="fa-solid fa-arrow-up-from-line"></i>
-                            Import</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" id="importFromFileBtn"><i class="fa-solid fa-file-import me-2"></i>Import from File</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" id="downloadSampleBtn"><i class="fa-solid fa-download me-2"></i>Download Sample Template</a></li>
-                        </ul>
-                    </div>
-                    <input type="file" id="importFileInput" style="display:none" accept=".json" />
-
-
-
-                    <button id="addCategoryBtn" type="button" class="btn btn-primary" style="float: right;"><i
-                            class="fa-solid fa-plus"></i></button>
-
-                </div>
-
-                <div id="addModal" class="modal-overlay">
-                    <div class="modal-box">
-                        <button id="closeModalBtn" class="btn btn-primary"
-                            style="position:absolute; right:1em; top:1em; font-size:1.2em; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
-                        <div id="modalContent"></div>
-                    </div>
-                </div>
-
-                <!-- Commitments Table Example -->
-                <div class="commitments-container">
-                    <table class="commitments-table table table-bordered table-hover align-middle">
+                <div class="pay-breakdown-table-wrapper" style="max-width:400px;margin:auto;">
+                    <table class="table table-bordered" id="payBreakdownTable" style="text-align:center;font-size:1.15em;">
                         <thead>
                             <tr>
-                                <th colspan="5" class="header-amount">
-                                    Allocated Amount:
-                                    <input id="allocatedAmountInput" type="text"
-                                        class="form-control d-inline-block allocated-amount-input"
-                                        style="font-weight:bold; text-align:center;" />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Description</th>
-                                <th>Amount</th>
-                                <th>Deduction Period</th>
-                                <th>Paid?</th>
-                                <th></th>
+                                <th colspan="3" style="background:#e5e5e5;font-size:1.25em;">Pay</th>
                             </tr>
                         </thead>
                         <tbody id="payBreakdownBody">
-                            <!-- Table rows are generated dynamically by JS -->
+                            <tr>
+                                <td>Basic Pay</td>
+                                <td><input type="text" class="form-control d-inline-block allocated-amount-input" id="basicPayInput"  style="text-align:center;font-weight:bold;" /></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>CPF Deduct</td>
+                                <td><input type="text" class="form-control d-inline-block allocated-amount-input" id="cpfDeductInput"  style="text-align:center;font-weight:bold;" /></td>
+                                <td></td>
+                            </tr>
+                            <tr style="background:#c8e6c9;font-weight:bold;">
+                                <td>Final Amount for Spending</td>
+                                <td><input type="text" class="form-control d-inline-block allocated-amount-input" id="finalSpendingInput"  style="text-align:center;font-weight:bold;" /></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
-                </div>
-
-                <!-- Final Amount Section -->
-                <div class="final-amount-container" style="margin-top: 1em; text-align: center;">
-                    <label for="finalSpendingInput" style="font-weight: bold;">Final Amount for Spending:</label>
-                    <input id="finalSpendingInput" type="text" class="form-control d-inline-block" style="font-weight:bold; text-align:center; width: 150px;" readonly />
+                    <div style="text-align:right;margin-top:0.5em;">
+                        <button id="addRowBtn" class="btn btn-success btn-sm" title="Add Row">+ Add Row</button>
+                    </div>
                 </div>
 
             </div>
         </section>
+
+        <!-- Footer -->
+        <!-- <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="https://github.com/nurafianZulkifli" class="social-link">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com/nrfzlkf_" class="social-link">
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.facebook.com/Nrfnzlkf/" class="social-link">
+                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/nrfzlkf/" class="social-link">
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-copy">
+                © 2026 Nurafian Zulkifli
+            </div>
+        </footer> -->
     </div>
 
     <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
@@ -318,7 +307,7 @@
 
     <script src="js/dstabs.js"></script>
 
-    <script src="js/ct/breakdown.js"></script>
+    <script src="js/ct/pay-brkdwn.js"></script>
 
 
 
