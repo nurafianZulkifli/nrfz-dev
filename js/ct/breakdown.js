@@ -367,13 +367,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('addCategoryBtn').onclick = function () {
         openModal(`
             <form>
-                <h3 style="margin-top:0;">Add Category</h3>
-                <label>Category Name:<br><input name="cat" required style="width:100%;"></label><br><br>
-                <label>Description:<br><input name="desc" required style="width:100%;"></label><br><br>
-                <label>Amount:<br><input name="amount" required value="$0.00" style="width:100%;"></label><br><br>
-                <label>Deduction Period:<br><input name="period" required value="every ..." style="width:100%;"></label><br><br>
+                <h3 style="margin-bottom:1em;font-weight:bold;">Add Category</h3>
+                <label>Category Name:<br><input class="form-control" name="cat" required style="width:100%;"></label><br><br>
+                <label>Description:<br><input class="form-control" name="desc" required style="width:100%;"></label><br><br>
+                <label>Amount:<br><input class="form-control" name="amount" required value="$0.00" style="width:100%;"></label><br><br>
+                <label>Deduction Period:<br><input class="form-control" name="period" required value="every ..." style="width:100%;"></label><br><br>
                 <label><input type="checkbox" name="checked"> Checked</label><br><br>
-                <button type="submit">Add</button>
+                <button class="btn btn-primary" type="submit">Add</button>
             </form>
         `, function (formData) {
             // Load current data, add new entry, then re-group and render
@@ -457,8 +457,47 @@ document.addEventListener('DOMContentLoaded', function () {
         URL.revokeObjectURL(url);
     };
 
+    // Import button and dropdown item both trigger file input
     document.getElementById('importBtn').onclick = function () {
         document.getElementById('importFileInput').click();
+    };
+
+    document.getElementById('importFromFileBtn').onclick = function (e) {
+        e.preventDefault();
+        document.getElementById('importFileInput').click();
+    };
+
+    // Download sample JSON template
+    document.getElementById('downloadSampleBtn').onclick = function (e) {
+        e.preventDefault();
+        const sampleData = {
+            table: [
+                {
+                    category: "Monthly Bills",
+                    details: [
+                        { desc: "Rent", amount: "1200.00", period: "Monthly", checked: false },
+                        { desc: "Utilities", amount: "150.00", period: "Monthly", checked: true }
+                    ]
+                },
+                {
+                    category: "Subscriptions",
+                    details: [
+                        { desc: "Streaming Service", amount: "15.99", period: "Monthly", checked: false },
+                        { desc: "Cloud Storage", amount: "9.99", period: "Yearly", checked: false }
+                    ]
+                }
+            ],
+            allocated: "2000.00"
+        };
+        const blob = new Blob([JSON.stringify(sampleData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "sample-template.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     };
 
     document.getElementById('importFileInput').onchange = function (e) {
@@ -524,5 +563,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         input.addEventListener('input', resizeInput);
         resizeInput(); // initial sizing
+    }
+});
+
+
+// Only allow closing modal via the X button
+document.addEventListener('DOMContentLoaded', function () {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const closeBtn = document.querySelector('.modal-box .close-btn'); // Adjust selector as needed
+
+    // Prevent click on overlay from closing modal
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === modalOverlay) {
+                // Do nothing
+                e.stopPropagation();
+            }
+        });
+    }
+
+    // Prevent Escape key from closing modal
+    document.addEventListener('keydown', function (e) {
+        if (modalOverlay && modalOverlay.style.display !== 'none' && e.key === 'Escape') {
+            e.preventDefault();
+        }
+    });
+
+    // Only close on X button
+    if (closeBtn && modalOverlay) {
+        closeBtn.addEventListener('click', function () {
+            modalOverlay.style.display = 'none';
+        });
     }
 });

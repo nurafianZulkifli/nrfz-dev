@@ -229,10 +229,21 @@
             <div class="container">
 
                 <div style="text-align:left; margin-bottom:1em;">
-                    <button id="exportBtn" class="btn btn-success"><i class="fa-solid fa-file-export"></i>
+                    <button id="exportBtn" class="btn btn-primary"><i class="fa-solid fa-file-export"></i>
                         Export</button>
-                    <button id="importBtn" class="btn btn-info"><i class="fa-solid fa-arrow-up-from-line"></i>
-                        Import</button>
+                    <div class="btn-group">
+                        <button id="importBtn" class="btn btn-primary"><i class="fa-solid fa-arrow-up-from-line"></i>
+                            Import</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="importFromFileBtn"><i class="fa-solid fa-file-import me-2"></i>Import from File</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="downloadSampleBtn"><i class="fa-solid fa-download me-2"></i>Download Sample Template</a></li>
+                        </ul>
+                    </div>
                     <input type="file" id="importFileInput" style="display:none" accept=".json" />
 
 
@@ -242,12 +253,10 @@
 
                 </div>
 
-                <div id="addModal"
-                    style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); align-items:center; justify-content:center;">
-                    <div
-                        style="background:#fff; padding:2em 1.5em; border-radius:8px; max-width:90vw; width:350px; margin:auto; position:relative;">
-                        <button id="closeModalBtn"
-                            style="position:absolute; right:1em; top:1em; background:none; border:none; font-size:1.2em; cursor:pointer;">&times;</button>
+                <div id="addModal" class="modal-overlay">
+                    <div class="modal-box">
+                        <button id="closeModalBtn" class="btn btn-primary"
+                            style="position:absolute; right:1em; top:1em; font-size:1.2em; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
                         <div id="modalContent"></div>
                     </div>
                 </div>
@@ -312,7 +321,7 @@
             </div>
 
             <div class="footer-copy">
-                © 2025 Nurafian Zulkifli
+                © 2026 Nurafian Zulkifli
             </div>
         </footer> -->
     </div>
