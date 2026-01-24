@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // :: Dynamic Greeting Based on Time of Day
 // ****************************
 document.addEventListener('DOMContentLoaded', () => {
-    const allappsElement = document.querySelector('h2'); // Select the <h2> element
+    const pinnedBusElement = document.querySelector('h2'); // Select the <h2> element
 
     // Function to determine the all-apps based on the current time
     function getGreeting() {
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update the <h2> element with the all-apps
-    allappsElement.textContent = getGreeting();
+    pinnedBusElement.textContent = getGreeting();
 });
 
 

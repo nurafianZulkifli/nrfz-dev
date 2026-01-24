@@ -695,6 +695,12 @@
        color: #757575;
    }
 
+      .lg-menu {
+       font-size: 20px;
+       margin-bottom: 0px;
+       font-weight: bolder;
+   }
+
    .pin-msg {
        background-color: #fff;
        border: 1px solid #ddd;

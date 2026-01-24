@@ -46,14 +46,24 @@
         margin-bottom: 0rem !important;
     }
 
+    .alert-warning a {
+        color: #000;
+        text-decoration: underline;
+    }
+
     body.dark-mode .alert-warning p {
         color: #ffda6a;
         font-size: 16px;
         overflow-wrap: break-word;
         line-height: 1.7;
         margin-bottom: 0rem !important;
+        text-align: left;
     }
 
+    body.dark-mode .alert-warning a {
+        color: #fff;
+        text-decoration: underline;
+    }
 
     .footer {
         display: none;
@@ -197,7 +207,7 @@
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
         <div class="container">
                         <div class="alert alert-warning" role="alert" id="train-alert">
-                <i class="fa-solid fa-bullhorn"></i> Loading train service alerts...
+                <i class="fa-solid fa-bullhorn"></i> Loading Alerts...
             </div>
             <div class="list-group">
                 <a href="settings.html#refetch-stops"

@@ -2,7 +2,7 @@
     function updateDisplayModeMenu() {
         var a = document.getElementById('dark-mode-toggle-desktop');
         if (!a) return;
-        var h5 = a.querySelector('h5.lg-ann');
+        var h5 = a.querySelector('h5.lg-menu');
         var icon = h5 ? h5.querySelector('i') : null;
         var isDark = document.body.classList.contains('dark-mode');
         if (h5 && icon) {
