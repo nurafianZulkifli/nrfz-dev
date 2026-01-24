@@ -85,7 +85,7 @@
         bottom: 0;
         z-index: 1000;
         background: transparent;
-        display: flex;
+        display: flex !important;
         justify-content: center;
         pointer-events: none;
     }
