@@ -12,17 +12,14 @@
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#007bff">
-
-    <link rel="icon" href="img/core-img/favicon.png">
+    <link rel="icon" href="../img/core-img/favicon.png">
 
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="buszy/css/style-buszy.css">
-    <link rel="stylesheet" href="css/style-breakpoints.css">
-    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style-buszy.css">
+    <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
@@ -37,9 +34,122 @@
 </head>
 
 <style>
-    #cv-bat {
-        background-image: url("img/bg-img/hero-buszy.png");
-        height: 35vh;
+
+    @media only screen and (min-width: 1001px) and (max-width: 1199px) {
+        .card-container {
+            display: grid;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
+            margin-bottom: 4em;
+            padding: 0 4em;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
+        }
+
+    }
+
+    @media only screen and (min-width: 844px) and (max-width: 1000px) {
+        .card-container {
+            display: grid;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
+            margin-bottom: 4em;
+            padding: 0 5em;
+        }
+
+        .card-bz p {
+            font-size: 20px;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
+        }
+
+    }
+
+    @media only screen and (min-width: 801px) and (max-width: 843px) {
+        .card-container {
+            display: grid;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
+            margin-bottom: 4em;
+            padding: 0 3em;
+        }
+
+        .card-bz p {
+            font-size: 19px;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
+        }
+    }
+
+    @media only screen and (min-width: 455px) and (max-width: 800px) {
+        .all-apps h2 {
+            margin-left: 0em;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: 47% 48%;
+            gap: 2em;
+            margin-bottom: 4em;
+        }
+
+        .card-bz {
+            width: 100%;
+        }
+
+        .card-bz p {
+            font-size: 19px;
+        }
+
+        .bz-btn {
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+
+        .all-apps h2 {
+            text-align: center;
+            margin-left: 0em;
+        }
+    }
+
+    @media only screen and (min-width: 320px) and (max-width: 454px) {
+        .all-apps h2 {
+            margin-top: 1em;
+            margin-left: 0em;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            gap: 20px;
+            margin-bottom: 4em;
+            padding-left: 0em;
+
+        }
+
+        .card-bz {
+            width: 100%;
+        }
+
+        .card-bz p {
+            font-size: 17px;
+        }
+
+        .bz-btn {
+            margin-left: 0em;
+            margin-right: 0em;
+            width: 100px;
+        }
+
     }
 
     .footer {
@@ -119,6 +229,23 @@
 </style>
 
 <body>
+    <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
+    <div class="breadcrumb-fixed-placeholder">
+        <nav aria-label="breadcrumb" style="margin-bottom:0;">
+            <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="../buszy.html">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="menu.html"><i class="fa-solid fa-bars"></i>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="navbar-container">
         <div class="navbar">
@@ -128,7 +255,7 @@
             <!-- Navigation Links -->
             <ul class="navbar-nav" id="navbarNav">
                 <li class="nav-item">
-                    <a href="pinned.html" class="nav-link active">
+                    <a href="pinned.html" class="nav-link">
                         <i class="fa-sharp fa-solid fa-thumbtack-angle"></i>
                         <span>Pinned</span>
                     </a>
@@ -146,7 +273,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a href="buszy/menu.html" class="nav-link">
+                    <a href="menu.html" class="nav-link active">
                         <i class="fa-solid fa-bars"></i>
                         <span>Menu</span>
                     </a>
@@ -164,7 +291,7 @@
     <!-- Mobile Bottom Navigation Bar -->
     <nav class="mobile-bottom-nav">
         <ul>
-            <li class="active">
+            <li>
                 <a href="pinned.html">
                     <span class="icon">
                         <i class="fa-sharp fa-solid fa-thumbtack-angle"></i>
@@ -188,8 +315,8 @@
                     <span class="label">Search</span>
                 </a>
             </li>
-            <li>
-                <a href="buszy/menu.html">
+            <li class="active">
+                <a href="menu.html">
                     <span class="icon">
                         <i class="fa-solid fa-bars"></i>
                     </span>
@@ -203,15 +330,6 @@
 
     <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
 
-    <!-- Cover Header -->
-    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-bat">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                </div>
-            </div>
-    </section>
-
     <section class="pinned" id="pinned">
         <div class="container">
             <h2><i class="fa-solid fa-location-pin"></i>&nbsp;Pinned Bus Stops</h2>
@@ -221,35 +339,34 @@
             </section>
         </div>
     </section>
-    </main>
 
 
-    <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
+    <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
         data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
 
-    <script src="buszy/js/mob-navtabs.js"></script>
+    <script src="js/mob-navtabs.js"></script>
 
-    <script src="buszy/buszy.js"></script>
+    <!-- <script src="buszy.js"></script> -->
 
-    <script src="js/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
-    <script src="js/popper.min.js"></script>
+    <script src="../js/popper.min.js"></script>
 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
-    <script src="js/pw.bundle.js"></script>
+    <script src="../js/pw.bundle.js"></script>
 
-    <script src="js/default-assets/active.js"></script>
+    <script src="../js/default-assets/active.js"></script>
 
-    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="../js/isotope.pkgd.min.js"></script>
 
-    <script src="js/dstabs.js"></script>
+    <script src="../js/dstabs.js"></script>
 
-    <script src="js/utils.js"></script>
+    <script src="../js/utils.js"></script>
 
-    <script src="buszy/js/buszy-main.js"></script>
+    <script src="js/pinned.js"></script>
 
 </body>
 
