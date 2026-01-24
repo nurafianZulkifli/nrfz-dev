@@ -47,6 +47,80 @@
     .footer {
         display: none;
     }
+
+
+
+
+
+    @media (max-width: 600px) {
+    .mobile-bottom-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+    }
+    .mobile-bottom-nav ul {
+        background: #fff;
+        border-radius: 32px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+        display: flex;
+        margin: 12px 8px;
+        padding: 0 8px;
+        width: 100%;
+        max-width: 420px;
+        justify-content: space-between;
+        pointer-events: auto;
+    }
+    .mobile-bottom-nav li {
+        list-style: none;
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 0 6px 0;
+        margin: 4px 2px;
+        border-radius: 24px;
+        transition: background 0.2s;
+        cursor: pointer;
+    }
+    .mobile-bottom-nav li.active {
+        background: #F8C7E2;
+    }
+    .mobile-bottom-nav .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2px;
+    }
+    .mobile-bottom-nav li.active .icon svg path,
+    .mobile-bottom-nav li.active .icon svg rect,
+    .mobile-bottom-nav li.active .icon svg circle {
+        fill: #A8005A;
+    }
+    .mobile-bottom-nav li .icon svg path,
+    .mobile-bottom-nav li .icon svg rect,
+    .mobile-bottom-nav li .icon svg circle {
+        fill: #888;
+        transition: fill 0.2s;
+    }
+    .mobile-bottom-nav li.active .label {
+        color: #A8005A;
+        font-weight: bold;
+    }
+    .mobile-bottom-nav .label {
+        font-size: 13px;
+        color: #888;
+        margin-top: 0px;
+        letter-spacing: 0.01em;
+        transition: color 0.2s, font-weight 0.2s;
+    }
+}
 </style>
 
 <body>
@@ -163,6 +237,43 @@
             </li>
         </ul>
     </div>
+
+
+
+
+    <!-- Mobile Bottom Navigation Bar -->
+<nav class="mobile-bottom-nav">
+    <ul>
+        <li class="active">
+            <span class="icon">
+                <!-- Explore Icon (Paper Plane) -->
+                <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20.5L21 12 3 3.5 3 10.5 17 12 3 13.5 3 20.5Z" fill="#A8005A"/></svg>
+            </span>
+            <span class="label">Explore</span>
+        </li>
+        <li>
+            <span class="icon">
+                <!-- Hotels Icon (Bed) -->
+                <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="10" width="18" height="7" rx="2" fill="#888"/><rect x="5" y="7" width="4" height="3" rx="1.5" fill="#888"/></svg>
+            </span>
+            <span class="label">Hotels</span>
+        </li>
+        <li>
+            <span class="icon">
+                <!-- Trips Icon (Suitcase) -->
+                <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="7" width="14" height="10" rx="2" fill="#888"/><rect x="9" y="4" width="6" height="3" rx="1.5" fill="#888"/></svg>
+            </span>
+            <span class="label">Trips</span>
+        </li>
+        <li>
+            <span class="icon">
+                <!-- Profile Icon (User) -->
+                <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="10" r="4" fill="#888"/><rect x="6" y="16" width="12" height="4" rx="2" fill="#888"/></svg>
+            </span>
+            <span class="label">Profile</span>
+        </li>
+    </ul>
+</nav>
 
 
 
