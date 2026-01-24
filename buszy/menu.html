@@ -59,6 +59,12 @@
         box-shadow: none;
     }
 
+    body.dark-mode .breadcrumb.breadcrumb-fixed {
+        background: none;
+        backdrop-filter: none;
+        box-shadow: none;
+    }
+
 
     body.dark-mode .alert-warning p {
         color: #ffda6a;
@@ -142,7 +148,7 @@
     <nav class="mobile-bottom-nav">
         <ul>
             <li>
-                <a href="pinned.html">
+                <a href="../buszy.html">
                     <span class="icon">
                         <i class="fa-sharp fa-solid fa-thumbtack-angle"></i>
                     </span>
@@ -206,7 +212,6 @@
                                 <div>
                                     <h1 class="page-title" id="filter-title">Menu</h1>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -237,9 +242,22 @@
                         </div>
                     </div>
                 </a>
-            </div>
 
-        </div>
+                <a href="" class="list-group-item list-group-item-action flex-column align-items-start"
+                    id="dark-mode-toggle-desktop">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="lg-ann"><i class="fa-solid fa-sun-bright"></i> Display: Light</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <hr>
+
+            <div style="text-align: center; color: gray; font-size: 14px; margin-top: 1em; margin-bottom: 2em;">
+                Version 3.0.0-DEV
+
+            </div>
     </section>
 
 
@@ -267,7 +285,7 @@
 
     <script src="../js/utils.js"></script>
 
-    <script src="js/ann.js"></script>
+    <script src="js/menu.js"></script>
 
 </body>
 
