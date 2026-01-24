@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Arrival Timings | Buszy</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
+
+    <link rel="icon" href="../img/core-img/favicon.png">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WN76281P3Q');
+    </script>
+
+</head>
+
+<style>
+    #cv-bat-subp {
+        height: 10vh;
+    }
+
+    .fl {
+        font-size: 15px;
+        background-color: #000;
+        color: #fff;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    .footer {
+        display: none;
+    }
+
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        padding: 1rem;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        border-radius: 15px;
+    }
+
+    .card .card-content-art {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .card .card-content-art span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .card .operator-logo {
+        width: 50px;
+        height: auto;
+    }
+
+    .card-text {
+        text-align: left !important;
+    }
+
+    .card-bt {
+        margin-top: 2em;
+    }
+
+    .service-no {
+        background-color: #94d40b;
+        border-radius: 5px;
+        color: #000;
+        font-weight: bold;
+        padding: 5px 10px;
+    }
+
+    .bus-time {
+        display: inline-flex;
+        width: 125px;
+        text-align: center;
+        margin-right: 0em;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .bus-stop-code {
+        display: inline-flex;
+        align-items: center;
+        background-color: #94d40b;
+        color: #000;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 5px 4px;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: default;
+    }
+
+    body.dark-mode .bus-stop-code {
+        display: inline-flex;
+        align-items: center;
+        background-color: #7db603;
+        color: #000;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 5px 4px;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: default;
+    }
+
+    .bus-stop-code img {
+        width: 35px;
+        height: auto;
+        cursor: default;
+    }
+
+    .bus-location-section {
+        display: none;
+    }
+
+    #bus-map {
+        margin-bottom: 2em;
+        border-radius: 25px;
+    }
+
+    .bus-stop-code-text,
+    body.dark-mode .bus-stop-code-text {
+        font-size: 25px;
+        font-weight: bold;
+        color: #000;
+        background-color: #fff;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 2px 6px;
+        cursor: default;
+    }
+
+    .bus-stop-description,
+    body.dark-mode .bus-stop-description {
+        font-size: 35px;
+        font-weight: bold;
+        margin-left: 12px;
+        cursor: default;
+    }
+
+    .bus-stop-info {
+        display: flex;
+        align-items: center;
+    }
+
+    #collapse-map-btn,
+    #current-location-btn {
+        padding: 10px;
+        margin-bottom: 1em;
+        margin-right: 1em
+    }
+
+
+    body.dark-mode .card {
+        background-color: #2e2e2e;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .card .card-header {
+        background-color: #0000002c;
+        border-radius: 15px;
+        color: #fff;
+    }
+
+    body.dark-mode .service-no {
+        background-color: #7db603;
+        color: #000;
+    }
+
+    body.dark-mode .leaflet-touch .leaflet-bar a {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background-color: #2e2e2e;
+    }
+
+    @media (min-width: 1200px) {
+        .col-xl-3 {
+            flex: 0 0 auto;
+            width: 30%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .fleet-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1em;
+            padding-bottom: 1em;
+
+        }
+
+        .fleet-legend span {
+            font-size: 12px;
+        }
+
+        .img-fluid {
+            width: 40px !important;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card .card-content-art span {
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 485px) {
+        .card .card-content-art span {
+            font-size: 17px;
+        }
+
+        .bus-stop-info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .bus-stop-description,
+        body.dark-mode .bus-stop-description {
+            font-size: 35px;
+            font-weight: bold;
+            margin-left: 0px;
+            margin-top: 10px;
+            cursor: default;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .btn {
+            width: 35px;
+        }
+
+        #collapse-map-btn,
+        #current-location-btn {
+            width: auto;
+            padding: 10px;
+            margin-bottom: 1em;
+            margin-right: 1em
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .pin-msg {
+            font-size: 12px !important;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="../index.html"><img src="../img/core-img/logo.png" alt="logo" class="logo" /></a>
+
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../about.html" class="nav-link">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../works-by-nrfz.html" class="nav-link">
+                        <i class="fa-solid fa-pen-paintbrush"></i>
+                        <span>Works By NRFZ</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../eicw/eicw.html" class="nav-link">
+                        <i class="fa-solid fa-map-location"></i>
+                        <span>EICW</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../blog.html" class="nav-link">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item-toggle">
+                    <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
+                        <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Mobile Toggle -->
+            <button class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="#" class="mobile-menu-brand">
+                <span class="brand-text">
+                    <li class="mobile-menu-item mobile-theme-toggle">
+                        <button class="wbnrfz_btn_theme mobile-theme-btn" id="dark-mode-toggle-mobile"
+                            title="Toggle Dark/Light Mode!">
+                            <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+                        </button>
+                    </li>
+                </span>
+            </a>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <span>×</span>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-nav">
+            <li class="mobile-menu-item">
+                <a href="../index.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-regular fa-house"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="../about.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-regular fa-circle-user"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="../works-by-nrfz.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-pen-paintbrush"></i>
+                    <span>Works By NRFZ</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="../eicw/eicw.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-map-location"></i>
+                    <span>EICW</span>
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="../blog.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
+
+    <!-- Cover Header -->
+    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-bat-subp">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Title/Breadcrumbs -->
+    <section class="about-me-sum clearfix">
+        <div class="wbnrfz_eicw">
+            <div class="page-header-section">
+                <div class="container container-xxl container-mobile container-mobile-header">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../index.html">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="../buszy.html">Buszy</a>
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="page-title-wrapper">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div>
+                                    <h1 class="page-title" id="filter-title">Arrival Timings</h1>
+                                </div>
+                                <div style="position: relative; max-width: 400px; margin-top: 5px; display: none;">
+                                    <i class="fa-solid fa-search"
+                                        style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #cccccc; z-index: 1;"></i>
+                                    <input type="text" id="bus-stop-search" class="form-control"
+                                        placeholder=" Search Bus Stop Code" style="padding-left: 35px; width: 100%;">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="scrollable-tabs-container">
+                    <div class="left-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+
+                    <ul id="scrollable-tabs">
+                        <li>
+                            <a href="../buszy.html#pinned"><i class="fa-sharp fa-solid fa-thumbtack-angle"
+                                    title="Pinned"></i>
+                                Pinned</a>
+                        </li>
+
+                        <li>
+                            <a href="nbs.html"><i class="fa-solid fa-location-dot" title="Nearby"></i>
+                                Nearby</a>
+                        </li>
+
+                        <li>
+                            <a href="abs.html"><i class="fa-solid fa-magnifying-glass" title="Search"></i>
+                                Search </a>
+                        </li>
+
+                        <li>
+                            <a href="ann.html"><i class="fa-solid fa-bullhorn" title="Announcements"></i>
+                                Announcements </a>
+                        </li>
+
+                        <li>
+                            <a href="settings.html"><i class="fa-solid fa-gear" title="Settings"></i>
+                                Settings </a>
+                        </li>
+                    </ul>
+
+                    <div class="right-arrow active">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Add a container for the map -->
+    <section class="bus-location-section">
+        <div class="container">
+            <button id="collapse-map-btn" class="btn btn-busloc btn-sm" title="Collapse Map">
+                <i class="fa-solid fa-chevron-up"></i>&nbsp;&nbsp;Collapse Map
+            </button>
+            <button id="current-location-btn" class="btn btn-busloc btn-sm" title="Go to Current Location">
+                <i class="fa-solid fa-location-crosshairs"></i>&nbsp;&nbsp;Current Location
+            </button>
+            <div id="bus-map" style="height: 400px; width: 100%;"></div>
+        </div>
+    </section>
+
+
+    <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+        <div class="container">
+            <div class="fleet-legend">
+                <span><img src="assets/dd.png" alt="BD Icon" class="fleet-icon"> Double</span>
+                <span style="gap: 2px;"><img src="assets/bd.png" alt="SMRT Icon" class="fleet-icon"> Bendy</span>
+                <span><img src="assets/sd.png" alt="Other Icon" class="fleet-icon"> Single</span>
+            </div>
+
+            <!-- Responsive Cards -->
+            <div class="row" id="bus-arrivals-container">
+                <div class="col-12 text-center">
+                    <p id="loading-message" style="display: flex; align-items: center; justify-content: center;">
+                        <span class="spinner-border" role="status" style="margin-right: 1em;"></span>Loading Data...
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://github.com/nurafianZulkifli" class="social-link">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com/nrfzlkf_" class="social-link">
+                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.facebook.com/Nrfnzlkf/" class="social-link">
+                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.instagram.com/nrfzlkf/" class="social-link">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-copy">
+            © 2026 Nurafian Zulkifli
+        </div>
+    </footer>
+
+    <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"
+        data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
+
+    <script src="../js/navtabs.js"></script>
+
+    <script src="buszy-subp.js"></script>
+
+    <script src="../js/jquery.min.js"></script>
+
+    <script src="../js/popper.min.js"></script>
+
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/pw.bundle.js"></script>
+
+    <script src="../js/default-assets/active.js"></script>
+
+    <script src="../js/isotope.pkgd.min.js"></script>
+
+    <script src="../js/dstabs.js"></script>
+
+    <script src="../js/utils.js"></script>
+
+    <script src="js/art.js"></script>
+
+    <script>
+        // Collapse map button logic
+        const collapseBtn = document.getElementById('collapse-map-btn');
+        const mapSection = document.querySelector('.bus-location-section');
+        if (collapseBtn && mapSection) {
+            collapseBtn.addEventListener('click', () => {
+                mapSection.style.display = 'none';
+            });
+        }
+    </script>
+
+</body>
+
+</html>
