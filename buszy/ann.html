@@ -49,6 +49,18 @@
     .alert-warning a {
         color: #000;
         text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .list-group-item {
+        transition-duration: 800ms;
+        border-radius: 20px;
+        margin-top: 1em;
+        font-size: 20px;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
 
     body.dark-mode .alert-warning p {
@@ -61,8 +73,9 @@
     }
 
     body.dark-mode .alert-warning a {
-        color: #fff;
+        color: #ffda6a;
         text-decoration: underline;
+        font-weight: bold;
     }
 
     .footer {
@@ -98,7 +111,7 @@
             <!-- Navigation Links -->
             <ul class="navbar-nav" id="navbarNav">
                 <li class="nav-item">
-                    <a href="pinned.html" class="nav-link">
+                    <a href="../buszy.html" class="nav-link">
                         <i class="fa-sharp fa-solid fa-thumbtack-angle"></i>
                         <span>Pinned</span>
                     </a>
@@ -206,7 +219,7 @@
     <!-- Section Contents -->
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
         <div class="container">
-                        <div class="alert alert-warning" role="alert" id="train-alert">
+            <div class="alert alert-warning" role="alert" id="train-alert">
                 <i class="fa-solid fa-bullhorn"></i> Loading Alerts...
             </div>
             <div class="list-group">
@@ -224,19 +237,6 @@
                         your bus stop data to get the most up to date information.</p>
                 </a>
                 <hr>
-                <a href="https://landtransportguru.net/sunday-closure-bplrt-jan-2026/"
-                    class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-ann">Line Closure - BPLRT</h5>
-                            <small class="lg-date">26 Dec 2025</small>
-                        </div>
-                    </div>
-                    <p class="mb-1" style="cursor: pointer;">
-                        A Full-Day Closure of the entire Bukit Panjang LRT Line (BPLRT) will take place on Sunday, 25
-                        January 2026. This is to facilitate the migration of the BPLRT’s Operations Control Centre
-                        (OCC).</p>
-                </a>
                 <a href="https://landtransportguru.net/ccl-degraded-service-jan-apr-26/"
                     class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex">
