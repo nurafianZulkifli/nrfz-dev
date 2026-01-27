@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
         'Downtown Line': 'DTL',
         'Thomson-East Coast Line': 'TEL',
         'North East Line': 'NEL',
-        'Light Rail Transit': 'LRT'
+        'Bukit Panjang LRT': 'BP',
+        'Sengkang LRT': 'SK',
+        'Punggol LRT': 'PG'
       };
       // Support both array and object for value
       let alerts = [];
@@ -21,8 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (typeof data.value === 'object') {
         alerts = [data.value];
       }
+      // Show current date/time for 'Last updated' line
+      const now = new Date();
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      let hours = now.getHours();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      const mins = now.getMinutes().toString().padStart(2, '0');
+      const formatted = `Last updated: ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} ${hours}:${mins} ${ampm}`;
+      const updatedDiv = document.querySelector('.tsu .alert-last-updated');
+      if (updatedDiv) updatedDiv.textContent = formatted;
       alerts.forEach(alert => {
-        if (alert.Status === 1) {
+        if (alert.Status === 1 || alert.Status === 2) {
           let foundLine = null;
           let foundMsg = '';
           if (alert.Message && Array.isArray(alert.Message) && alert.Message.length > 0) {
@@ -42,9 +55,15 @@ document.addEventListener('DOMContentLoaded', function() {
               if (label && label.textContent.trim() === foundLine) {
                 const icon = item.querySelector('.status-icon');
                 if (icon) {
-                  icon.style.background = '#ffb300'; // amber
-                  icon.innerHTML = '&#9888;'; // warning sign
-                  icon.style.color = '#000';
+                  if (alert.Status === 1) {
+                    icon.style.background = '#ffb300'; // amber
+                    icon.innerHTML = '&#9888;'; // warning sign
+                    icon.style.color = '#000';
+                  } else if (alert.Status === 2) {
+                    icon.style.background = '#e53935'; // red
+                    icon.innerHTML = '&#10071;'; // exclamation icon
+                    icon.style.color = '#fff';
+                  }
                 }
                 // Show alert message below the item if not already present
                 if (foundMsg && !item.nextElementSibling?.classList.contains('alert-message-box')) {
@@ -62,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const style = document.createElement('style');
     style.innerHTML = `
     .alert-message-box {
-      background: #fff;
+      background: #f8f8f8;
       border-radius: 40px;
       margin: 0 0 32px 0;
       padding: 24px 28px;
@@ -77,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
       white-space: pre-line;
     }
 
-    body.dark-mode .alert-message-box{
-    background-color: #2e2e2e;
+    body.dark-mode .alert-message-box {
+    background-color: #383838;
     color: #fff !important;
     border: 1px solid #2b2b2b33;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
