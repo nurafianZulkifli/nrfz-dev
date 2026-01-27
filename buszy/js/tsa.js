@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     style.innerHTML = `
     .alert-message-box {
       background: #fff;
-      border-radius: 28px;
+      border-radius: 40px;
       margin: 0 0 32px 0;
       padding: 24px 28px;
       font-size: 1.08em;
@@ -75,6 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
     .alert-message-content {
       display: block;
       white-space: pre-line;
+    }
+
+    body.dark-mode .alert-message-box{
+    background-color: #2e2e2e;
+    color: #fff !important;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     `;
     document.head.appendChild(style);
