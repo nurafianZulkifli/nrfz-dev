@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (icon) {
                   icon.style.background = '#ffb300'; // amber
                   icon.innerHTML = '&#9888;'; // warning sign
+                  icon.style.color = '#000';
                 }
                 // Show alert message below the item if not already present
                 if (foundMsg && !item.nextElementSibling?.classList.contains('alert-message-box')) {
