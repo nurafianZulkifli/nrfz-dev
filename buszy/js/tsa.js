@@ -120,5 +120,5 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
     })
-    .catch(err => { /* Optionally handle error */ });
+    .catch(err => {});
 });
