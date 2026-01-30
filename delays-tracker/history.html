@@ -1,3 +1,15 @@
+.status-minor {
+color: #f7b731;
+font-size: 1.3em;
+margin-right: 8px;
+vertical-align: middle;
+}
+.status-major {
+color: #e74c3c;
+font-size: 1.3em;
+margin-right: 8px;
+vertical-align: middle;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,9 +98,9 @@
         flex: 1;
     }
 
-    .status-icon {
-        background: #43b02a;
-        color: #fff;
+    .status-minor {
+        background: #ffb300;
+        color: #000;
         border-radius: 50%;
         width: 33px;
         height: 33px;
@@ -96,6 +108,26 @@
         align-items: center;
         justify-content: center;
         font-size: 15px;
+    }
+
+    .status-major {
+        background: #ff3b3b;
+        color: #000;
+        border-radius: 50%;
+        width: 33px;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    .status-minor i {
+        color: #000;
+    }
+
+    .status-major i {
+        color: #fff;
     }
 
     .line-label.nsl {
@@ -168,11 +200,13 @@
     .status.resolved {
         color: #27ae60;
         margin-left: auto;
+        font-weight: bold;
     }
 
-    .status.active {
+    .status.ongoing {
         color: #e67e22;
         margin-left: auto;
+        font-weight: bold;
     }
 
     .card-title {
@@ -288,6 +322,26 @@
         border-color: #00bcd4;
         color: #00bcd4;
         background: #223036;
+    }
+
+    #prev-month,
+    #next-month {
+        background-color: #de652e;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+        color: #fff;
+        border-radius: 60px;
+    }
+
+    span#month-label {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin: 0 15px;
+
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 12px;
     }
 
     @keyframes pulse-animation {
@@ -461,9 +515,9 @@
         <div class="container container-xxl container-mobile container-mobile-header">
 
             <div id="history-controls">
-                <button id="prev-month">←</button>
+                <button class="btn" id="prev-month"><i class="fa-solid fa-arrow-left"></i></button>
                 <span id="month-label"></span>
-                <button id="next-month">→</button>
+                <button class="btn" id="next-month"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
             <div id="disruption-cards"></div>
 

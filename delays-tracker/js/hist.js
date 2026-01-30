@@ -23,11 +23,24 @@ function renderDisruptionsByMonth() {
     .forEach(item => {
       const card = document.createElement('div');
       card.className = 'disruption-card';
+      // Determine status icon and class based on item.title
+      let statusIcon = '';
+      let statusClass = '';
+      if (item.title && item.title.toLowerCase().includes('major')) {
+        statusIcon = '<i class="fa-solid fa-diamond-exclamation"></i>';
+        statusClass = 'status-major';
+      } else if (item.title && item.title.toLowerCase().includes('minor')) {
+        statusIcon = '<i class="fa-solid fa-triangle-exclamation"></i>';
+        statusClass = 'status-minor';
+      } else {
+        statusIcon = '<i class="fa-solid fa-triangle-exclamation"></i>';
+        statusClass = 'status-minor';
+      }
       card.innerHTML = `
         <div class="card-header">
-          <span class="icon">⚠️</span>
+          <span class="${statusClass}">${statusIcon}</span>
           <span class="type">${item.type}</span>
-          <span class="status ${item.status === 'Resolved' ? 'resolved' : 'active'}">${item.status}</span>
+          <span class="status ${item.status === 'Resolved' ? 'resolved' : 'ongoing'}">${item.status}</span>
         </div>
         <div class="card-title">${item.title}</div>
               <div class="card-details">
