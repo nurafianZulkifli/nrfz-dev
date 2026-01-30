@@ -3,11 +3,25 @@
 // Load disruption cards
 
 let disruptionsData = [];
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
+const now = new Date();
+const minMonth = 11; // December (0-based)
+const minYear = 2025;
+const maxMonth = now.getMonth();
+const maxYear = now.getFullYear();
+let currentMonth = Math.max(minMonth, Math.min(maxMonth, now.getMonth()));
+let currentYear = Math.max(minYear, Math.min(maxYear, now.getFullYear()));
 
 function renderMonthLabel() {
   const monthLabel = document.getElementById('month-label');
+  // Cap at min (Dec 2025) and max (current month)
+  if (currentYear < minYear || (currentYear === minYear && currentMonth < minMonth)) {
+    currentYear = minYear;
+    currentMonth = minMonth;
+  }
+  if (currentYear > maxYear || (currentYear === maxYear && currentMonth > maxMonth)) {
+    currentYear = maxYear;
+    currentMonth = maxMonth;
+  }
   const date = new Date(currentYear, currentMonth);
   monthLabel.textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
 }
@@ -84,6 +98,15 @@ function changeMonth(offset) {
   } else if (currentMonth > 11) {
     currentMonth = 0;
     currentYear++;
+  }
+  // Cap at min (Dec 2025) and max (current month)
+  if (currentYear < minYear || (currentYear === minYear && currentMonth < minMonth)) {
+    currentYear = minYear;
+    currentMonth = minMonth;
+  }
+  if (currentYear > maxYear || (currentYear === maxYear && currentMonth > maxMonth)) {
+    currentYear = maxYear;
+    currentMonth = maxMonth;
   }
   renderMonthLabel();
   renderDisruptionsByMonth();
