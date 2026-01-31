@@ -22,7 +22,7 @@
         },
         {
             line: "SPLRT",
-            color: "#718472",
+            color: "#b8d8b9",
             data: [
                 { month: "Jan-25", value: 619000 },
                 { month: "Feb-25", value: 825000 },
