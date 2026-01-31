@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Train Service Updates | Buszy</title>
+    <title>Statistics | Train Delays Tracker</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
@@ -243,7 +243,13 @@
             <div class="stats-section">
                 <h2 style="margin-top:50px;">Mean Distance Travelled between Delays &gt; 5 min (train-km)
                 </h2>
-                <div id="mkbf-line-chart"></div>
+                <div id="mkbf-line-chart-mrt"></div>
+            </div>
+
+            <div class="stats-section">
+                <h2 style="margin-top:50px;">Mean Distance Travelled between Delays &gt; 5 min (car-km)<br>LRT Lines -
+                    12 Month Moving Average (MMA)</h2>
+                <div id="mkbf-line-chart-lrt"></div>
             </div>
 
             <hr>
@@ -263,7 +269,8 @@
     <script src="js/mob-navtabs.js"></script>
     <script src="tdt-subp.js"></script>
     <script src="js/delays-bar-chart.js"></script>
-    <script src="js/mkbf-line-chart.js"></script>
+    <script src="js/mrt-mkbf-line-chart.js"></script>
+    <script src="js/lrt-mkbf-line-chart.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

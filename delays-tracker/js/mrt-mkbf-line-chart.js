@@ -1,7 +1,7 @@
 // mkbf-line-chart.js
 // Renders a line chart for MRT MKBF (Mean Distance Travelled between Delays > 5 min)
 
-const mkbfData = [
+const mkbfDataMrt = [
   {
     line: "NSL",
     color: "#e1251b",
@@ -95,8 +95,8 @@ const mkbfData = [
 ];
 
 function renderMkbfLineChart() {
-  const months = mkbfData[0].data.map(d => d.month);
-  const datasets = mkbfData.map(line => ({
+  const months = mkbfDataMrt[0].data.map(d => d.month);
+  const datasets = mkbfDataMrt.map(line => ({
     label: line.line,
     data: line.data.map(d => d.value),
     borderColor: line.color,
@@ -111,7 +111,7 @@ function renderMkbfLineChart() {
   const isDark = document.body.classList.contains('dark-mode');
   const canvasBg = isDark ? '#2e2e2e' : '#fff';
 
-  const chartContainer = document.getElementById('mkbf-line-chart');
+  const chartContainer = document.getElementById('mkbf-line-chart-mrt');
   chartContainer.innerHTML = `
     <div style="background:${canvasBg}; border-radius:12px; padding:24px 16px;">
       <canvas id="mkbfChart" width="600" height="300" style="max-width:100%;"></canvas>
