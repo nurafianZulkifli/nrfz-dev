@@ -185,15 +185,23 @@
     }
 
     .status.resolved {
-        color: #27ae60;
+        color: #48db86;
         margin-left: auto;
         font-weight: bold;
+        background-color: #132e1e;
+        border: 1px solid #27ae60;
+        border-radius: 25px;
+        padding: 4px 12px;
     }
 
     .status.ongoing {
-        color: #e67e22;
+        color: #f89b49;
         margin-left: auto;
         font-weight: bold;
+        background-color: #6b3c12;
+        border: 1px solid #e67e22;
+        border-radius: 25px;
+        padding: 4px 12px;
     }
 
     .fa-circle.fa-beat {
@@ -269,7 +277,7 @@
     }
 
     .card-time {
-        color: #b2bec3;
+        color: #000;
         margin: 10px 0;
     }
 
@@ -319,11 +327,21 @@
         border-radius: 60px;
     }
 
+    .month-nav-disabled {
+        opacity: 0.5;
+        cursor: not-allowed !important;
+        pointer-events: none;
+    }
+
+    .btn:disabled {
+        border: none
+    }
+
     span#month-label {
         font-weight: bold;
         font-size: 1.2em;
         margin: 0 15px;
-
+        cursor: default;
         padding-top: 7px;
         padding-bottom: 7px;
         padding-left: 15px;
@@ -347,7 +365,6 @@
         font-size: 1em;
         gap: 8px;
         min-width: 0;
-        box-shadow: 0 1px 4px #0001;
     }
 
     .route-badge .line-badge {
@@ -356,10 +373,11 @@
     }
 
     .route-badge .route {
-        color: #fff;
+        color: #000;
         font-weight: 500;
         font-size: 1em;
         margin-right: 2px;
+        cursor: default;
     }
 
     @keyframes pulse-animation {
@@ -391,9 +409,15 @@
 
     body.dark-mode .route {
         background: #383838;
+        color: #fff;
         border-radius: 6px;
         padding: 2px 8px;
     }
+
+    body.dark-mode .card-time {
+        color: #fff;
+    }
+
 
     /* .tsu {
         padding: 7em 1em 7em 1em;
@@ -438,11 +462,11 @@
         <nav aria-label="breadcrumb" style="margin-bottom:0;">
             <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="nbs.html"><i class="fa-solid fa-home"></i>
+                    <a href="../delays-tracker.html"><i class="fa-solid fa-house"></i>
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="abs.html"><i class="fa-solid fa-bars"></i>
+                    <a href="history.html"><i class="fa-solid fa-clock-rotate-left"></i>
                     </a>
                 </li>
             </ol>
@@ -465,12 +489,12 @@
                 </li>
                 <li class="nav-item">
                     <a href="history.html" class="nav-link active">
-                        <i class="fa-solid fa-location-dot"></i>
+                        <i class="fa-solid fa-clock-rotate-left"></i>
                         <span>History</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="statistics.html" class="nav-link">
                         <i class="fa-solid fa-chart-bar"></i>
                         <span>Statistics</span>
                     </a>
@@ -506,7 +530,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="statistics.html">
                     <span class="icon">
                         <i class="fa-solid fa-chart-bar"></i>
                     </span>
@@ -537,11 +561,11 @@
                         <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="nbs.html"><i class="fa-solid fa-location-dot"></i>
+                                    <a href="../delays-tracker.html"><i class="fa-solid fa-house"></i>
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="menu.html"><i class="fa-solid fa-bars"></i>
+                                    <a href="history.html"><i class="fa-solid fa-clock-rotate-left"></i>
                                     </a>
                                 </li>
                             </ol>

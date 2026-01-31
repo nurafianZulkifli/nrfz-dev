@@ -12,6 +12,29 @@ let currentMonth = Math.max(minMonth, Math.min(maxMonth, now.getMonth()));
 let currentYear = Math.max(minYear, Math.min(maxYear, now.getFullYear()));
 
 function renderMonthLabel() {
+  // Update prev/next button states
+  const prevBtn = document.getElementById('prev-month');
+  const nextBtn = document.getElementById('next-month');
+  // Disable prev if at min month
+  if (prevBtn) {
+    if (currentYear === minYear && currentMonth === minMonth) {
+      prevBtn.disabled = true;
+      prevBtn.classList.add('month-nav-disabled');
+    } else {
+      prevBtn.disabled = false;
+      prevBtn.classList.remove('month-nav-disabled');
+    }
+  }
+  // Disable next if at max month
+  if (nextBtn) {
+    if (currentYear === maxYear && currentMonth === maxMonth) {
+      nextBtn.disabled = true;
+      nextBtn.classList.add('month-nav-disabled');
+    } else {
+      nextBtn.disabled = false;
+      nextBtn.classList.remove('month-nav-disabled');
+    }
+  }
   const monthLabel = document.getElementById('month-label');
   // Cap at min (Dec 2025) and max (current month)
   if (currentYear < minYear || (currentYear === minYear && currentMonth < minMonth)) {
@@ -23,17 +46,20 @@ function renderMonthLabel() {
     currentMonth = maxMonth;
   }
   const date = new Date(currentYear, currentMonth);
-  monthLabel.textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+  if (monthLabel) {
+    monthLabel.textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+  }
 }
 
 function renderDisruptionsByMonth() {
   const container = document.getElementById('disruption-cards');
+  if (!container) return;
   container.innerHTML = '';
   disruptionsData
-          .filter(item => {
-            const startDate = new Date(item.start);
-            return startDate.getMonth() === currentMonth && startDate.getFullYear() === currentYear;
-          })
+    .filter(item => {
+      const startDate = new Date(item.start);
+      return startDate.getMonth() === currentMonth && startDate.getFullYear() === currentYear;
+    })
     .forEach(item => {
       const card = document.createElement('div');
       card.className = 'disruption-card';
@@ -112,8 +138,8 @@ function changeMonth(offset) {
   renderDisruptionsByMonth();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('delays.json')
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('json/delays.json')
     .then(response => response.json())
     .then(data => {
       disruptionsData = data;
@@ -121,10 +147,16 @@ document.addEventListener('DOMContentLoaded', function() {
       renderDisruptionsByMonth();
     });
 
-  document.getElementById('prev-month').addEventListener('click', function() {
-    changeMonth(-1);
-  });
-  document.getElementById('next-month').addEventListener('click', function() {
-    changeMonth(1);
-  });
+  var prevBtn = document.getElementById('prev-month');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      changeMonth(-1);
+    });
+  }
+  var nextBtn = document.getElementById('next-month');
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      changeMonth(1);
+    });
+  }
 });
