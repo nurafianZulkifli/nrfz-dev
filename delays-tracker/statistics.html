@@ -232,14 +232,23 @@
 
     <section class="stats">
         <div class="container container-xxl container-mobile container-mobile-header">
+
             <div class="stats-section">
-                <h2 style="color:#fff; margin-bottom:20px;">Incident Count by MRT Line</h2>
+                <h2 style="margin-bottom:20px;">Incident Count by MRT Line</h2>
                 <div id="delays-bar-chart"></div>
             </div>
 
             <hr>
 
-            
+            <div class="stats-section">
+                <h2 style="margin-top:50px;">Mean Distance Travelled between Delays &gt; 5 min (train-km)
+                </h2>
+                <div id="mkbf-line-chart"></div>
+            </div>
+
+            <hr>
+
+
         </div>
     </section>
 
@@ -250,9 +259,11 @@
         </script>
 
 
+
     <script src="js/mob-navtabs.js"></script>
     <script src="tdt-subp.js"></script>
     <script src="js/delays-bar-chart.js"></script>
+    <script src="js/mkbf-line-chart.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
