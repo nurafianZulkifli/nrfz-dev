@@ -18,9 +18,9 @@ async function renderDelaysBarChart() {
         CCL: { name: 'CCL', color: '#f39c12' },
         DTL: { name: 'DTL', color: '#3498db' },
         TEL: { name: 'TEL', color: '#9d5918' },
-        BP:  { name: 'BPLRT', color: '#718472' },
-        SK:  { name: 'SKLRT', color: '#718472' },
-        PG:  { name: 'PGLRT', color: '#718472' }
+        BP:  { name: 'BP', color: '#718472' },
+        SK:  { name: 'SK', color: '#718472' },
+        PG:  { name: 'PG', color: '#718472' }
     };
 
     // Prepare chart data for minor/major delays
@@ -147,9 +147,9 @@ async function renderDelaysBarChart() {
             case 'CCL': capletClass = 'ccl'; break;
             case 'DTL': capletClass = 'dtl'; break;
             case 'TEL': capletClass = 'tel'; break;
-            case 'BPLRT': capletClass = 'lrt'; break;
-            case 'SKLRT': capletClass = 'lrt'; break;
-            case 'PGLRT': capletClass = 'lrt'; break;
+            case 'BP': capletClass = 'lrt'; break;
+            case 'SK': capletClass = 'lrt'; break;
+            case 'PG': capletClass = 'lrt'; break;
         }
         const caplet = document.createElement('span');
         caplet.className = `chart-caplet ${capletClass}`;
