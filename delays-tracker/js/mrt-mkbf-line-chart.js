@@ -128,7 +128,7 @@ function renderMkbfLineChart() {
       plugins: {
         legend: { display: true, labels: { color: isDark ? '#fff' : '#222', font: { family: 'Onest, sans-serif', weight: 'bold' } } },
         title: {
-          display: true,
+          display: false,
           text: 'Mean Distance Travelled between Delays > 5 min (train-km)\nMRT Lines - 12 Month Moving Average (MMA)',
           color: isDark ? '#fff' : '#222',
           font: { size: 16, family: 'Onest, sans-serif', weight: 'bold' }
