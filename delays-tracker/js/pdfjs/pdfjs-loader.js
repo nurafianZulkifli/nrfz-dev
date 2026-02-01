@@ -3,10 +3,11 @@ import * as pdfjsLib from './pdf.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc = './pdf.worker.mjs';
 
 const pdfUrl = 'assets/system-map-lta.pdf';
-let currentScale = 1.2;
+let currentScale = 1;
 let pdfDoc = null;
 let currentPageNum = 1;
-const viewerWidth = window.innerWidth > 900 ? 900 : window.innerWidth - 40;
+const isMobile = window.innerWidth < 768;
+const viewerWidth = isMobile ? window.innerWidth - 40 : (window.innerWidth > 900 ? 900 : window.innerWidth - 40);
 
 function renderPage(pageNum, scale) {
   if (!pdfDoc) return;
@@ -47,10 +48,11 @@ function fitToPage() {
   if (!pdfDoc) return;
   pdfDoc.getPage(1).then(page => {
     const viewport = page.getViewport({ scale: 1 });
-    const maxHeight = window.innerHeight * 0.8;
+    // Use a lower scale on mobile to allow room for zooming
+    const targetHeight = isMobile ? 400 : 500;
+    const scaleByHeight = targetHeight / viewport.height;
     const scaleByWidth = (viewerWidth - 20) / viewport.width;
-    const scaleByHeight = maxHeight / viewport.height;
-    currentScale = Math.min(scaleByWidth, scaleByHeight);
+    currentScale = Math.min(scaleByWidth, scaleByHeight, 1.5);
     renderPage(1, currentScale);
   });
 }
