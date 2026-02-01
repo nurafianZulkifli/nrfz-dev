@@ -120,7 +120,6 @@
             border-radius: 8px;
             /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
             text-align: center;
-            touch-action: none;
         }
 
         #pdf-viewer canvas {
@@ -338,12 +337,9 @@
                     <button id="zoom-in" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
                     <button id="fit-width" title="Fit to Width"><i class="fa-solid fa-arrows-alt-h"></i> </button>
                     <button id="fit-page" title="Fit to Page"><i class="fa-solid fa-maximize"></i></button>
-                    <a id="save-pdf" href="assets/system-map-lta.pdf" download title="Download PDF"><i
-                            class="fa-solid fa-download"></i></a>
+                    <a id="external" title="Open PDF in New Tab" href="assets/system-map-lta.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-external-link"></i></a>
                 </div>
                 <div id="pdf-viewer">Loading PDF...</div>
-                <a class="pdf-link" href="assets/system-map-lta.pdf" target="_blank" rel="noopener"><i
-                        class="fa-solid fa-external-link"></i> Open PDF in New Tab</a>
             </div>
         </div>
     </section>
