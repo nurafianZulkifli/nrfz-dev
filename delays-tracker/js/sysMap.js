@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const isDarkMode = document.body.classList.contains('dark-mode');
       const href = isDarkMode ? darkHref : lightHref;
-      window.open(href, '_blank');
+      // Always open in a new tab, prevent download prompt on mobile
+      window.open(href, '_blank', 'noopener,noreferrer');
     });
   }
 });
