@@ -112,9 +112,13 @@ function renderMkbfLineChart() {
   const canvasBg = isDark ? '#2e2e2e' : '#fff';
 
   const chartContainer = document.getElementById('mkbf-line-chart-mrt');
+
+  // Set chart height larger for mobile to ensure all lines are visible
+  const isMobile = window.innerWidth < 600;
+  const chartHeight = isMobile ? 620 : 600;
   chartContainer.innerHTML = `
     <div style="background:${canvasBg}; border-radius:12px; padding:24px 16px;">
-      <canvas id="mkbfChart" width="600" height="300" style="max-width:100%;"></canvas>
+      <canvas id="mkbfChart" width="600" height="${chartHeight}" style="max-width:100%; height:${chartHeight}px;"></canvas>
     </div>
   `;
 
@@ -125,8 +129,8 @@ function renderMkbfLineChart() {
       datasets: datasets
     },
     options: {
-      maintainAspectRatio: true,
-      aspectRatio: 2.5,
+      maintainAspectRatio: !isMobile,
+      aspectRatio: isMobile ? undefined : 2.5,
       plugins: {
         legend: { display: true, labels: { color: isDark ? '#fff' : '#222', font: { family: 'Onest, sans-serif', weight: 'bold' } } },
         title: {
