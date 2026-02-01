@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Singapore Rail System Map</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Onest', Arial, sans-serif;
+      background: #f8f9fa;
+    }
+    .pdf-container {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: #222;
+    }
+    .pdf-embed {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border: none;
+      background: #222;
+    }
+    @media (max-width: 600px) {
+      .pdf-container, .pdf-embed {
+        height: 90vh;
+        min-height: 320px;
+      }
+    }
+    .pdf-link {
+      color: #0055b8;
+      text-align: center;
+      margin: 1em auto;
+      display: block;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="pdf-container">
+    <iframe class="pdf-embed" src="https://docs.google.com/gview?url=https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/rail_network/pdf/SM_20250704_BI.pdf&embedded=true" allowfullscreen></iframe>
+    <a class="pdf-link" href="https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/rail_network/pdf/SM_20250704_BI.pdf" target="_blank" rel="noopener">Open PDF in new tab</a>
+  </div>
+</body>
+</html>
