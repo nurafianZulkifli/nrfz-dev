@@ -1,3 +1,17 @@
+// Ensure clicking the map image itself opens the correct PDF in a new tab
+document.addEventListener('DOMContentLoaded', () => {
+  const mapImg = document.querySelector('.fr-view img[data-light][data-dark]');
+  const lightHref = 'assets/system-map-lta.pdf';
+  const darkHref = 'assets/system-map-lta-dark.pdf';
+  if (mapImg) {
+    mapImg.addEventListener('click', function(e) {
+      e.preventDefault();
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      const href = isDarkMode ? darkHref : lightHref;
+      window.open(href, '_blank');
+    });
+  }
+});
 // Dark Mode Image Switching
 function updateImagesForDarkMode() {
   const isDarkMode = document.body.classList.contains('dark-mode');
