@@ -3,44 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First & Last Train Times | Train Delays Tracker</title>
+    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>System Map | Train Delays Tracker</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
+
+    <link rel="icon" href="assets/icon-512.png">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style-tdt.css">
+    <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WN76281P3Q');
+    </script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
         .selector-section {
             background: white;
             border-radius: 12px;
@@ -154,7 +145,6 @@
             padding: 5px 8px;
             border-radius: 4px;
             text-align: center;
-            font-family: 'Courier New', monospace;
             font-weight: 600;
         }
 
@@ -193,12 +183,132 @@
             100% { transform: rotate(360deg); }
         }
 
+        .search-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            display: none;
+            z-index: 10;
+        }
+
+        .clear-search:hover {
+            color: #667eea;
+        }
+
+        .clear-search.visible {
+            display: block;
+        }
+
+        .search-results-count {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .station-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f9f9f9;
+            transition: all 0.3s;
+        }
+
+        .station-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .station-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .time-item {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .time-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .time-display {
+            background: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .time-display.first {
+            color: #27ae60;
+        }
+
+        .time-display.last {
+            color: #e74c3c;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
             }
 
             .directions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stations-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -215,140 +325,198 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🚇 First & Last Train Times</h1>
-            <p>Select a station to view train schedules</p>
-        </div>
-
-        <div class="selector-section">
-            <label for="stationDropdown">Select Station:</label>
-            <select id="stationDropdown">
-                <option value="">Loading stations...</option>
-            </select>
-        </div>
-
-        <div class="content-section" id="contentSection">
-            <div class="station-title" id="stationTitle">--</div>
-            <div class="station-subtitle" id="stationSubtitle">Select a station to begin</div>
-            <div id="directionsContainer"></div>
-        </div>
+    <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
+    <div class="breadcrumb-fixed-placeholder">
+        <nav aria-label="breadcrumb" style="margin-bottom:0;">
+            <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="nbs.html"><i class="fa-solid fa-home"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="abs.html"><i class="fa-solid fa-bars"></i>
+                    </a>
+                </li>
+            </ol>
+        </nav>
     </div>
 
-    <script>
-        let allStationsData = [];
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="../delays-tracker.html"><img src="assets/logo.png" alt="logo" class="logo" /></a>
 
-        // Load the stations data on page load
-        async function loadStationsData() {
-            try {
-                const response = await fetch('js/all-stations-ft-lt.json');
-                allStationsData = await response.json();
-                populateDropdown();
-            } catch (error) {
-                console.error('Error loading stations data:', error);
-                alert('Failed to load station data. Please refresh the page.');
-            }
-        }
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="../delays-tracker.html" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="history.html" class="nav-link">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="statistics.html" class="nav-link">
+                        <i class="fa-solid fa-chart-bar"></i>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="menu.html" class="nav-link active">
+                        <i class="fa-solid fa-bars"></i>
+                        <span>Menu</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-        // Populate the dropdown with stations
-        function populateDropdown() {
-            const dropdown = document.getElementById('stationDropdown');
-            dropdown.innerHTML = '<option value="">Select a station...</option>';
-            
-            allStationsData.forEach((stationData, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = stationData.station;
-                dropdown.appendChild(option);
-            });
-        }
+    </nav>
 
-        // Display data for selected station
-        function displayStationData(index) {
-            if (index === '') {
-                document.getElementById('contentSection').classList.remove('active');
-                return;
-            }
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li>
+                <a href="../delays-tracker.html">
+                    <span class="icon">
+                        <i class="fa-sharp fa-solid fa-home"></i>
+                    </span>
+                    <span class="label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="history.html">
+                    <span class="icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </span>
+                    <span class="label">History</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <i class="fa-solid fa-chart-bar"></i>
+                    </span>
+                    <span class="label">Statistics</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="menu.html">
+                    <span class="icon">
+                        <i class="fa-solid fa-bars"></i>
+                    </span>
+                    <span class="label">Menu</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-            const stationData = allStationsData[index];
-            const contentSection = document.getElementById('contentSection');
-            
-            document.getElementById('stationTitle').textContent = stationData.station;
-            document.getElementById('stationSubtitle').textContent = `Last updated: ${new Date(stationData.scraped_at).toLocaleDateString()}`;
 
-            const directionsContainer = document.getElementById('directionsContainer');
-            directionsContainer.innerHTML = '';
 
-            if (stationData.directions.length === 0) {
-                directionsContainer.innerHTML = '<div class="no-data">No train timing data available for this station.</div>';
-                contentSection.classList.add('active');
-                return;
-            }
+    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
 
-            stationData.directions.forEach((direction, idx) => {
-                const card = createDirectionCard(direction);
-                directionsContainer.appendChild(card);
-            });
 
-            contentSection.classList.add('active');
-        }
+    <!-- Title/Breadcrumbs -->
+    <section class="about-me-sum clearfix">
+        <div class="wbnrfz_eicw">
+            <div class="page-header-section">
+                <div class="container container-xxl container-mobile container-mobile-header">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../buszy.html">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="menu.html"><i class="fa-solid fa-bars"></i>
+                                    </a>
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="page-title-wrapper">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div>
+                                    <h1 class="page-title" id="filter-title">First & Last Trains</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
 
-        // Create a direction card
-        function createDirectionCard(direction) {
-            const card = document.createElement('div');
-            card.className = 'direction-card';
+        </div>
 
-            const header = document.createElement('div');
-            header.className = 'direction-header';
-            header.textContent = direction.description;
+    </section>
 
-            card.appendChild(header);
+    <!-- Section Contents -->
+    <section class="pdf-section">
+        <div class="container">
+            <div class="header">
+            </div>
 
-            // Get the keys in a specific order
-            const dayKeys = ['monday_to_friday', 'saturday', 'sunday_public_holidays', 'eve_of_public_holidays'];
-            const dayLabels = {
-                'monday_to_friday': 'Mon - Fri',
-                'saturday': 'Saturday',
-                'sunday_public_holidays': 'Sun / Holidays',
-                'eve_of_public_holidays': 'Eve of Holidays'
-            };
+            <div class="selector-section">
+                <div class="search-container">
+                    <input type="text" id="stationSearch" class="search-input" placeholder="Select or enter the station name or code:" autocomplete="on">
+                    <button class="clear-search" id="clearSearch" title="Clear search">&times;</button>
+                    <div class="search-results-count" id="resultsCount"></div>
+                </div>
 
-            dayKeys.forEach(dayKey => {
-                if (direction.first_train[dayKey] !== undefined || direction.last_train[dayKey] !== undefined) {
-                    const row = document.createElement('div');
-                    row.className = 'time-row';
+                <label for="stationDropdown">Station Lists:</label>
+                <select id="stationDropdown">
+                    <option value="">Loading stations...</option>
+                </select>
+            </div>
 
-                    const label = document.createElement('div');
-                    label.className = 'day-label';
-                    label.textContent = dayLabels[dayKey] || dayKey;
+            <div class="content-section" id="contentSection">
+                <div class="station-title" id="stationTitle">--</div>
+                <div class="station-subtitle" id="stationSubtitle">Select a station to begin</div>
+                <div id="directionsContainer"></div>
+            </div>
+        </div>
+    </section>
 
-                    const firstTimeEl = document.createElement('div');
-                    firstTimeEl.className = 'time-value first-train';
-                    firstTimeEl.textContent = 'First: ' + (direction.first_train[dayKey] || '--');
 
-                    const lastTimeEl = document.createElement('div');
-                    lastTimeEl.className = 'time-value last-train';
-                    lastTimeEl.textContent = 'Last: ' + (direction.last_train[dayKey] || '--');
+    <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"
+        data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
 
-                    row.appendChild(label);
-                    row.appendChild(firstTimeEl);
-                    row.appendChild(lastTimeEl);
 
-                    card.appendChild(row);
-                }
-            });
 
-            return card;
-        }
+    <!-- Dark mode image switching for map -->
+    <script src="js/sysMap.js"></script>
+    <script src="tdt-subp.js"></script>
 
-        // Event listener for dropdown
-        document.getElementById('stationDropdown').addEventListener('change', (e) => {
-            displayStationData(e.target.value);
-        });
+    <script src="../js/jquery.min.js"></script>
 
-        // Load data when page loads
-        window.addEventListener('load', loadStationsData);
-    </script>
+    <script src="../js/popper.min.js"></script>
+
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/pw.bundle.js"></script>
+
+    <script src="../js/default-assets/active.js"></script>
+
+    <script src="../js/isotope.pkgd.min.js"></script>
+
+    <script src="../js/dstabs.js"></script>
+
+    <script src="../js/utils.js"></script>
+
+    <script src="js/menu.js"></script>
+
+    <script src="js/ft-lt.js"></script>
+
+
 </body>
 
 </html>

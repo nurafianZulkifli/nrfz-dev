@@ -6,47 +6,47 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 // List of common SMRT stations (can be expanded)
-const stations = [
-  'admiralty', 'aljunied', 'ang-mo-kio', 'bartley', 'bedok', 'bencoolen',
-  'bishan', 'boon-keng', 'boon-lay', 'botanic-gardens', 'braddell', 'buangkok',
-  'bukit-batok', 'bukit-gombak', 'bukit-merah', 'bukit-panjang', 'caldecott',
-  'cashew', 'cecilia', 'changi', 'changi-airport', 'charing-cross', 'cheng-lim',
-  'chia-keng', 'chick-island', 'china-square', 'chinese-garden', 'clementi',
-  'clementi-industrial', 'collyer-quay', 'commonwealth', 'concert-hall', 'coney-island',
-  'cp-residential', 'cumberland', 'daito', 'dhoby-ghaut', 'docker', 'dover',
-  'east-coast', 'eunos', 'eu-tong-sen', 'expo', 'farrer-park', 'farrer-road',
-  'fengshan', 'gek-poh', 'geylang-bahru', 'geylang-lorong-35', 'gibb-street',
-  'goodwood-park', 'grange-park', 'great-world', 'green-ridge', 'henderson',
-  'heng-fai-road', 'hillview', 'holland-village', 'hong-leong-garden', 'hougang',
-  'hung-hom', 'iao-ang-keng', 'iba', 'jalan-besar', 'joo-koon', 'jorong',
-  'jurong-east', 'jurong-port', 'jurong-west', 'kampong-ampat', 'kampung-melayu',
-  'kandang-kerbau', 'kent-ridge', 'keppel', 'kinabalu', 'kle-engineering',
-  'kovan', 'kranji', 'kuala-lumpur', 'labrador-park', 'lakeside', 'lao-ban-seng',
-  'leng-kee', 'leon-road', 'leong-ming-road', 'limau-road', 'lloyd-road',
-  'lornie', 'loyang', 'loyang-industrial', 'lukang-road', 'lumiére', 'lusi-keng',
-  'ma-liu-shui', 'macpherson', 'mahon-road', 'malay-village', 'mandai', 'marina-bay',
-  'marina-centre', 'marina-south', 'marina-south-pier', 'marsiling', 'mattar',
-  'maxwell-road', 'mayflower', 'mc-donald-house', 'meek-road', 'mei-ling-street',
-  'mei-teck', 'meng-boon-road', 'mengembembang-island', 'merchant-road', 'merdeka-bridge',
-  'mereka-road', 'middle-point-road', 'middle-road', 'midview-tower', 'mingde-plaza',
-  'mitre-hotel', 'moberly-road', 'model-road', 'mohawk-road', 'mohan-garden',
-  'monarch-point', 'monmouth-road', 'montfort-drive', 'montt-road', 'moore-road',
-  'moorish-gardens', 'mopsy-lane', 'mornington-crescent', 'mornington-road', 'morses-road',
-  'morton-terrace', 'mossbank', 'mosses-road', 'moth-lane', 'mother-teresa-road',
-  'mountain-avenue', 'mountain-view', 'mountainview', 'mousehole', 'mousley-lane',
-  'mowbray-avenue', 'mowbray-road', 'moyne-avenue', 'moyne-road', 'mrzdn-street',
-  'mt-alvernia', 'mt-faber', 'mt-vernon', 'muchuan-road', 'mugnet-road',
-  'muir-road', 'mulberry-link', 'mulberry-street', 'mulberrybank', 'mule-lane',
-  'mulion-avenue', 'muller-avenue', 'mullikin-avenue', 'muls-road', 'multiview',
-  'multply-road', 'multon-lane', 'multon-road', 'munaroh-road', 'mundane-avenue',
-  'mundia-park', 'mundis-road', 'munga-road', 'mungo-avenue', 'muniadi-road',
-  'munion-lane', 'munroa', 'munro-avenue', 'munro-lane', 'munro-road',
-  'munson-avenue', 'munson-lane', 'munson-road', 'muntri-road', 'muntz-avenue'
-];
+// const stations = [
+//   'admiralty', 'aljunied', 'ang-mo-kio', 'bartley', 'bedok', 'bencoolen',
+//   'bishan', 'boon-keng', 'boon-lay', 'botanic-gardens', 'braddell', 'buangkok',
+//   'bukit-batok', 'bukit-gombak', 'bukit-merah', 'bukit-panjang', 'caldecott',
+//   'cashew', 'cecilia', 'changi', 'changi-airport', 'charing-cross', 'cheng-lim',
+//   'chia-keng', 'chick-island', 'china-square', 'chinese-garden', 'clementi',
+//   'clementi-industrial', 'collyer-quay', 'commonwealth', 'concert-hall', 'coney-island',
+//   'cp-residential', 'cumberland', 'daito', 'dhoby-ghaut', 'docker', 'dover',
+//   'east-coast', 'eunos', 'eu-tong-sen', 'expo', 'farrer-park', 'farrer-road',
+//   'fengshan', 'gek-poh', 'geylang-bahru', 'geylang-lorong-35', 'gibb-street',
+//   'goodwood-park', 'grange-park', 'great-world', 'green-ridge', 'henderson',
+//   'heng-fai-road', 'hillview', 'holland-village', 'hong-leong-garden', 'hougang',
+//   'hung-hom', 'iao-ang-keng', 'iba', 'jalan-besar', 'joo-koon', 'jorong',
+//   'jurong-east', 'jurong-port', 'jurong-west', 'kampong-ampat', 'kampung-melayu',
+//   'kandang-kerbau', 'kent-ridge', 'keppel', 'kinabalu', 'kle-engineering',
+//   'kovan', 'kranji', 'kuala-lumpur', 'labrador-park', 'lakeside', 'lao-ban-seng',
+//   'leng-kee', 'leon-road', 'leong-ming-road', 'limau-road', 'lloyd-road',
+//   'lornie', 'loyang', 'loyang-industrial', 'lukang-road', 'lumiére', 'lusi-keng',
+//   'ma-liu-shui', 'macpherson', 'mahon-road', 'malay-village', 'mandai', 'marina-bay',
+//   'marina-centre', 'marina-south', 'marina-south-pier', 'marsiling', 'mattar',
+//   'maxwell-road', 'mayflower', 'mc-donald-house', 'meek-road', 'mei-ling-street',
+//   'mei-teck', 'meng-boon-road', 'mengembembang-island', 'merchant-road', 'merdeka-bridge',
+//   'mereka-road', 'middle-point-road', 'middle-road', 'midview-tower', 'mingde-plaza',
+//   'mitre-hotel', 'moberly-road', 'model-road', 'mohawk-road', 'mohan-garden',
+//   'monarch-point', 'monmouth-road', 'montfort-drive', 'montt-road', 'moore-road',
+//   'moorish-gardens', 'mopsy-lane', 'mornington-crescent', 'mornington-road', 'morses-road',
+//   'morton-terrace', 'mossbank', 'mosses-road', 'moth-lane', 'mother-teresa-road',
+//   'mountain-avenue', 'mountain-view', 'mountainview', 'mousehole', 'mousley-lane',
+//   'mowbray-avenue', 'mowbray-road', 'moyne-avenue', 'moyne-road', 'mrzdn-street',
+//   'mt-alvernia', 'mt-faber', 'mt-vernon', 'muchuan-road', 'mugnet-road',
+//   'muir-road', 'mulberry-link', 'mulberry-street', 'mulberrybank', 'mule-lane',
+//   'mulion-avenue', 'muller-avenue', 'mullikin-avenue', 'muls-road', 'multiview',
+//   'multply-road', 'multon-lane', 'multon-road', 'munaroh-road', 'mundane-avenue',
+//   'mundia-park', 'mundis-road', 'munga-road', 'mungo-avenue', 'muniadi-road',
+//   'munion-lane', 'munroa', 'munro-avenue', 'munro-lane', 'munro-road',
+//   'munson-avenue', 'munson-lane', 'munson-road', 'muntri-road', 'muntz-avenue'
+// ];
 
 // Keep it short for now - test with common stations
 const testStations = [
-  'admiralty', 'aljunied', 'ang-mo-kio', 'bangkit'
+  'admiralty', 'aljunied', 'ang-mo-kio', 'bangkit', "yew-tee"
 ];
 
 (async () => {
@@ -81,8 +81,8 @@ const testStations = [
           const $container = $(container);
           const header = $container.find('div#divTimeHeader').text().trim();
           
-          // Skip non-target directions
-          if (!header.match(/EW24 Jurong|NS1|NS7|NS19|NS24|EW1|CCL|DTL|NEL|NSL|TEL|LRT/i)) {
+          // Skip empty headers
+          if (!header || header.length === 0) {
             return;
           }
           
@@ -144,7 +144,7 @@ const testStations = [
     }
     
     // Save the data
-    const outputPath = __dirname + '/all-stations-ft-lt.json';
+    const outputPath = __dirname + '/../json/smrt-ft-lt.json';
     fs.writeFileSync(outputPath, JSON.stringify(allStationData, null, 2));
     console.log(`\n✓ Saved data for ${allStationData.length} stations to ${outputPath}`);
     
