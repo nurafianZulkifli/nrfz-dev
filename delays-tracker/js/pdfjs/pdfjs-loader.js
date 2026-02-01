@@ -209,3 +209,4 @@ window.addEventListener('DOMContentLoaded', () => {
     fitPageBtn.addEventListener('click', fitToPage);
   }
 });
+
