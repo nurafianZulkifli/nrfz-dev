@@ -67,7 +67,7 @@
 
             if (smrtStations.length > 0) {
                 const smrtGroup = document.createElement('optgroup');
-                smrtGroup.label = 'SMRT (MRT)';
+                smrtGroup.label = 'SMRT';
                 smrtStations.forEach(station => {
                     const option = document.createElement('option');
                     option.value = station.value;
@@ -89,7 +89,7 @@
 
                 Object.keys(lineGroups).forEach(line => {
                     const optgroup = document.createElement('optgroup');
-                    optgroup.label = `${line} (LRT)`;
+                    optgroup.label = `${line}`;
                     lineGroups[line].forEach(station => {
                         const option = document.createElement('option');
                         option.value = station.value;
@@ -200,6 +200,31 @@
             return card;
         }
 
+        // Format time with leading zeros, convert PM times for last trains (times in JSON are in 12-hour format)
+        function convertTo24Hour(timeString, isLastTrain = false) {
+            if (!timeString || timeString === '--') return timeString;
+            
+            const match = timeString.match(/^(\d{1,2}):(\d{2})$/);
+            if (match) {
+                let hour = parseInt(match[1]);
+                const minute = match[2];
+                
+                // For last trains, times like 11:46, 12:01 are PM/early morning
+                // Convert to 24-hour: 11:46 PM -> 23:46, 12:01 AM -> 00:01
+                if (isLastTrain) {
+                    if (hour === 12) {
+                        hour = 0; // 12:xx AM is 00:xx
+                    } else if (hour < 12) {
+                        hour += 12; // 1-11 PM becomes 13-23
+                    }
+                }
+                
+                return `${String(hour).padStart(2, '0')}:${minute}`;
+            }
+            
+            return timeString;
+        }
+
         // Create SBS station card
         function createSbsStationCard(station) {
             const card = document.createElement('div');
@@ -221,7 +246,7 @@
               firstWeekday.className = 'time-item';
               firstWeekday.innerHTML = `
                 <span class="time-label">First (Weekdays)</span>
-                <span class="time-display first">${station.first_train_weekdays || '--'}</span>
+                <span class="time-display first">${convertTo24Hour(station.first_train_weekdays) || '--'}</span>
               `;
               card.appendChild(firstWeekday);
 
@@ -230,7 +255,7 @@
               firstSat.className = 'time-item';
               firstSat.innerHTML = `
                 <span class="time-label">First (Saturdays)</span>
-                <span class="time-display first">${station.first_train_saturdays || '--'}</span>
+                <span class="time-display first">${convertTo24Hour(station.first_train_saturdays) || '--'}</span>
               `;
               card.appendChild(firstSat);
 
@@ -239,7 +264,7 @@
               firstSun.className = 'time-item';
               firstSun.innerHTML = `
                 <span class="time-label">First (Sundays/Holidays)</span>
-                <span class="time-display first">${station.first_train_sundays || '--'}</span>
+                <span class="time-display first">${convertTo24Hour(station.first_train_sundays) || '--'}</span>
               `;
               card.appendChild(firstSun);
 
@@ -248,7 +273,7 @@
               lastWeekdays.className = 'time-item';
               lastWeekdays.innerHTML = `
                 <span class="time-label">Last (Weekdays)</span>
-                <span class="time-display last">${station.last_train_weekdays || '--'}</span>
+                <span class="time-display last">${convertTo24Hour(station.last_train_weekdays, true) || '--'}</span>
               `;
               card.appendChild(lastWeekdays);
 
@@ -257,7 +282,7 @@
               lastWeekends.className = 'time-item';
               lastWeekends.innerHTML = `
                 <span class="time-label">Last (Weekends/Holidays)</span>
-                <span class="time-display last">${station.last_train_weekends || '--'}</span>
+                <span class="time-display last">${convertTo24Hour(station.last_train_weekends, true) || '--'}</span>
               `;
               card.appendChild(lastWeekends);
             } else {
@@ -268,7 +293,7 @@
               firstWeekday.className = 'time-item';
               firstWeekday.innerHTML = `
                 <span class="time-label">First (Mon-Sat)</span>
-                <span class="time-display first">${station.first_train_weekdays || '--'}</span>
+                <span class="time-display first">${convertTo24Hour(station.first_train_weekdays) || '--'}</span>
               `;
               card.appendChild(firstWeekday);
 
@@ -277,7 +302,7 @@
               firstWeekend.className = 'time-item';
               firstWeekend.innerHTML = `
                 <span class="time-label">First (Sun/Holidays)</span>
-                <span class="time-display first">${station.first_train_weekends || '--'}</span>
+                <span class="time-display first">${convertTo24Hour(station.first_train_weekends) || '--'}</span>
               `;
               card.appendChild(firstWeekend);
 
@@ -286,7 +311,7 @@
               last.className = 'time-item';
               last.innerHTML = `
                 <span class="time-label">Last Train</span>
-                <span class="time-display last">${station.last_train || '--'}</span>
+                <span class="time-display last">${convertTo24Hour(station.last_train, true) || '--'}</span>
               `;
               card.appendChild(last);
             }
