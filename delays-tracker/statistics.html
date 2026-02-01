@@ -34,6 +34,11 @@
 </head>
 
 <style>
+    #delays-bar-chart canvas {
+        height: 230px !important;
+        max-height: 230px;
+    }
+
     #delays-bar-chart {
         position: relative;
     }
@@ -43,9 +48,11 @@
         justify-content: space-around;
         align-items: center;
         margin-top: -20px;
+        gap: 2px;
     }
 
     .chart-caplet {
+        flex: 0 1 auto;
         display: inline-block;
         writing-mode: vertical-rl;
         text-orientation: mixed;
@@ -53,7 +60,7 @@
         background: #e1251b;
         color: #fff;
         font-weight: bold;
-        border-radius: 13.6px / 19.2px;
+        border-radius: 13.6px / 8.2px;
         padding: 6px 4px;
         font-size: 15px;
         letter-spacing: 1px;
@@ -94,11 +101,43 @@
         background: #718472;
     }
 
-    /* @media (max-width: 994px) {
-        canvas#delaysChart {
-            height: 160px !important;
+    .chart-container {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .chart-container canvas {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+
+
+    @media (max-width: 994px) {
+        .chart-caplets {
+            gap: 2px;
+            margin-top: -10px;
+            margin-left: 26px;
+            margin-right: 26px;
         }
-    } */
+
+        .chart-caplet {
+            font-size: 10px !important;
+            flex: 0 1 auto;
+        }
+
+        #delays-bar-chart canvas,
+        #mkbf-line-chart-mrt canvas,
+        #mkbf-line-chart-lrt canvas {
+            height: auto !important;
+            min-height: 120px !important;
+            width: 100% !important;
+        }
+
+    }
 </style>
 
 <body>

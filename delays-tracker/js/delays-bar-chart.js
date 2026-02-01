@@ -85,6 +85,8 @@ async function renderDelaysBarChart() {
             ]
         },
         options: {
+            maintainAspectRatio: true,
+            aspectRatio: 2.5,
             plugins: {
                 legend: { display: true, labels: { color: isDark ? '#fff' : '#222', font: { family: 'Onest, sans-serif', weight: 'bold' } } },
                 title: {

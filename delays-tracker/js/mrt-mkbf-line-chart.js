@@ -125,6 +125,8 @@ function renderMkbfLineChart() {
       datasets: datasets
     },
     options: {
+      maintainAspectRatio: true,
+      aspectRatio: 2.5,
       plugins: {
         legend: { display: true, labels: { color: isDark ? '#fff' : '#222', font: { family: 'Onest, sans-serif', weight: 'bold' } } },
         title: {
@@ -160,7 +162,7 @@ function renderMkbfLineChart() {
           ticks: {
             color: isDark ? '#fff' : '#222',
             font: { family: 'Onest, sans-serif' },
-            callback: function(value) {
+            callback: function (value) {
               return value.toLocaleString();
             }
           },
@@ -172,7 +174,7 @@ function renderMkbfLineChart() {
   });
 }
 
-(function() {
+(function () {
   if (typeof Chart === 'undefined') {
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/chart.js';

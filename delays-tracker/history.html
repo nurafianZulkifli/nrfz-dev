@@ -380,6 +380,18 @@
         cursor: default;
     }
 
+    p.no-incidents-reported {
+        color: #000;
+        margin-top: 1.5em;
+        text-align: center;
+        background: #fff;
+    color: #000;
+    border-radius: 25px;
+    padding: 10px;
+    box-shadow: 0 2px 8px #0002;
+    transition-duration: 800ms;
+    }
+
     @keyframes pulse-animation {
         0% {
             box-shadow: 0 0 0 0px rgba(148, 148, 148, 0.2);
@@ -436,6 +448,10 @@
         border: 1px solid #e67e22;
         border-radius: 25px;
         padding: 4px 12px;
+    }
+
+    body.dark-mode p.no-incidents-reported {
+        color: #fff;
     }
 
 

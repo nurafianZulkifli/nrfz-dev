@@ -1,4 +1,5 @@
 [
+    
     {
         "type": "Disruption",
         "title": "CCL Minor Delay - Bishan to Buona Vista",
@@ -12,6 +13,7 @@
             "Delay"
         ]
     },
+
     {
         "type": "Disruption",
         "title": "NSL Minor delay - Ang Mo Kio to Woodlands",
@@ -26,6 +28,7 @@
             "Train Fault"
         ]
     },
+
     {
         "type": "Disruption",
         "title": "CCL Delay - HarbourFront to Paya Lebar (Public Report)",
