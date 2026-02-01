@@ -165,7 +165,7 @@
             header.textContent = direction.description;
             card.appendChild(header);
 
-            const dayKeys = ['monday_to_friday', 'saturday', 'sunday_public_holidays', 'eve_of_public_holidays'];
+            const dayKeys = ['monday_to_friday', 'saturday', 'sunday_public_holidays'];
             const dayLabels = {
                 'monday_to_friday': 'Mon - Fri',
                 'saturday': 'Saturday',
@@ -184,11 +184,11 @@
 
                     const firstTimeEl = document.createElement('div');
                     firstTimeEl.className = 'time-value first-train';
-                    firstTimeEl.textContent = 'First: ' + (direction.first_train[dayKey] || '--');
+                    firstTimeEl.textContent = (direction.first_train[dayKey] || '--');
 
                     const lastTimeEl = document.createElement('div');
                     lastTimeEl.className = 'time-value last-train';
-                    lastTimeEl.textContent = 'Last: ' + (direction.last_train[dayKey] || '--');
+                    lastTimeEl.textContent = (direction.last_train[dayKey] || '--');
 
                     row.appendChild(label);
                     row.appendChild(firstTimeEl);
