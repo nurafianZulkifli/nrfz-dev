@@ -89,7 +89,7 @@
 
                 Object.keys(lineGroups).forEach(line => {
                     const optgroup = document.createElement('optgroup');
-                    optgroup.label = `${line}`;
+                    optgroup.label = `SBST - ${line}`;
                     lineGroups[line].forEach(station => {
                         const option = document.createElement('option');
                         option.value = station.value;
@@ -407,7 +407,7 @@
 
                 Object.keys(lineGroups).forEach(line => {
                     const optgroup = document.createElement('optgroup');
-                    optgroup.label = `${line}`;
+                    optgroup.label = `SBST - ${line}`;
                     lineGroups[line].forEach(station => {
                         const option = document.createElement('option');
                         option.value = station.value;
