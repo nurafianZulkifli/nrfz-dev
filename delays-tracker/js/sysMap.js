@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Add click event to the map <a> to open the correct PDF for the mode
-  const mapLink = document.querySelector('.fr-view a[href$="system-map-lta.pdf"]');
+  const mapLink = document.querySelector('.sys-map a[href$="system-map-lta.pdf"]');
   if (mapLink) {
     mapLink.addEventListener('click', function(e) {
       const isDarkMode = document.body.classList.contains('dark-mode');
