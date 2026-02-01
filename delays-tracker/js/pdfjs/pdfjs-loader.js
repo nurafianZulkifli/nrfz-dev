@@ -2,7 +2,7 @@
 import * as pdfjsLib from './pdf.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc = './pdf.worker.mjs';
 
-const pdfUrl = 'assets/SM_20250704_BI.pdf';
+const pdfUrl = 'assets/system-map-lta.pdf';
 let currentScale = 1.2;
 let pdfDoc = null;
 let currentPageNum = 1;
@@ -87,7 +87,7 @@ document.addEventListener('touchmove', (e) => {
       touch1.clientY - touch2.clientY
     );
     const ratio = currentDistance / touchStartDistance;
-    const newScale = Math.min(Math.max(touchStartScale * ratio, 0.4), 6);
+    const newScale = Math.min(Math.max(touchStartScale * ratio, 0.4), 10);
     if (Math.abs(newScale - currentScale) > 0.05) {
       currentScale = newScale;
       renderPage(currentPageNum, currentScale);
@@ -96,7 +96,90 @@ document.addEventListener('touchmove', (e) => {
   }
 }, { passive: false });
 
+// Scroll wheel zoom functionality
+document.addEventListener('wheel', (e) => {
+  // Check if we're over the PDF viewer
+  if (!e.target.closest('#pdf-viewer') && !e.target.closest('.pdf-controls')) {
+    return;
+  }
+  
+  e.preventDefault();
+  
+  // Determine zoom direction (negative deltaY = scroll up = zoom in)
+  const zoomDirection = e.deltaY < 0 ? 0.2 : -0.2;
+  const newScale = Math.min(Math.max(currentScale + zoomDirection, 0.4), 10);
+  
+  if (Math.abs(newScale - currentScale) > 0.01) {
+    currentScale = newScale;
+    renderPage(currentPageNum, currentScale);
+  }
+}, { passive: false });
+
+// Drag to pan functionality
+let isDragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let scrollLeft = 0;
+let scrollTop = 0;
+
+const pdfViewerElement = document.getElementById('pdf-viewer');
+
+// Mouse drag events
+document.addEventListener('mousedown', (e) => {
+  if (e.target.closest('#pdf-viewer')) {
+    isDragging = true;
+    dragStartX = e.pageX;
+    dragStartY = e.pageY;
+    scrollLeft = pdfViewerElement.scrollLeft;
+    scrollTop = pdfViewerElement.scrollTop;
+    pdfViewerElement.style.cursor = 'grabbing';
+  }
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (isDragging && pdfViewerElement) {
+    const x = e.pageX - dragStartX;
+    const y = e.pageY - dragStartY;
+    pdfViewerElement.scrollLeft = scrollLeft - x;
+    pdfViewerElement.scrollTop = scrollTop - y;
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  if (pdfViewerElement) {
+    pdfViewerElement.style.cursor = 'grab';
+  }
+});
+
+// Touch drag events (alternative to pinch zoom)
+let touchDragStartX = 0;
+let touchDragStartY = 0;
+let touchScrollLeft = 0;
+let touchScrollTop = 0;
+
+document.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 1 && e.target.closest('#pdf-viewer')) {
+    touchDragStartX = e.touches[0].pageX;
+    touchDragStartY = e.touches[0].pageY;
+    touchScrollLeft = pdfViewerElement.scrollLeft;
+    touchScrollTop = pdfViewerElement.scrollTop;
+  }
+});
+
+document.addEventListener('touchmove', (e) => {
+  if (e.touches.length === 1 && pdfViewerElement) {
+    const x = e.touches[0].pageX - touchDragStartX;
+    const y = e.touches[0].pageY - touchDragStartY;
+    pdfViewerElement.scrollLeft = touchScrollLeft - x;
+    pdfViewerElement.scrollTop = touchScrollTop - y;
+  }
+}, { passive: true });
+
 window.addEventListener('DOMContentLoaded', () => {
+  if (pdfViewerElement) {
+    pdfViewerElement.style.cursor = 'grab';
+  }
   const zoomInBtn = document.getElementById('zoom-in');
   const zoomOutBtn = document.getElementById('zoom-out');
   const fitWidthBtn = document.getElementById('fit-width');
@@ -104,7 +187,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (zoomInBtn) {
     zoomInBtn.addEventListener('click', () => {
-      currentScale = Math.min(currentScale + 0.2, 6);
+      currentScale = Math.min(currentScale + 0.2, 10);
       renderPage(currentPageNum, currentScale);
     });
   }
