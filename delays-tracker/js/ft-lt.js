@@ -128,7 +128,7 @@
         function displaySmrtData(stationData) {
             
             document.getElementById('stationTitle').textContent = stationData.station;
-            document.getElementById('stationSubtitle').textContent = `Last updated: ${new Date(stationData.scraped_at).toLocaleDateString()}`;
+            document.getElementById('stationSubtitle').textContent = `Last updated: ${new Date(stationData.scraped_at).toLocaleDateString('en-SG')}`;
 
             const directionsContainer = document.getElementById('directionsContainer');
 
@@ -148,7 +148,7 @@
             const { line, station, sbsData } = data;
 
             document.getElementById('stationTitle').textContent = station.name;
-            document.getElementById('stationSubtitle').textContent = `${line.service.split('(')[0].trim()} - Last updated: ${new Date(sbsData.scraped_at).toLocaleDateString()}`;
+            document.getElementById('stationSubtitle').textContent = `${line.service.split('(')[0].trim()} - Last updated: ${new Date(sbsData.scraped_at).toLocaleDateString('en-SG')}`;
 
             const directionsContainer = document.getElementById('directionsContainer');
             const card = createSbsStationCard(station);

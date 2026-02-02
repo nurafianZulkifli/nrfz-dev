@@ -112,7 +112,7 @@ function renderDisruptionsByMonth() {
       <div class="card-title">${item.title}</div>
       <div class="card-details-multi">${routeBadges}</div>
       <div class="card-time">
-        ${new Date(item.start).toLocaleDateString()} - ${new Date(item.end).toLocaleDateString()}
+        ${new Date(item.start).toLocaleDateString('en-SG')} - ${new Date(item.end).toLocaleDateString('en-SG')}
       </div>
       <div class="card-tags">
         ${(item.tags || []).map(tag => `<span class="card-tag tag-${tag.toLowerCase().replace(/\s+/g, '-')}">${tag}</span>`).join(' ')}
