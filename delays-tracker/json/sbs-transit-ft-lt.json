@@ -2,7 +2,7 @@
   "operator": "SBS Transit",
   "lines": [
     {
-      "service": "DTL - To DT35 Expo",
+      "service": "To DT35 Expo",
       "stations": [
         {
           "name": "DT1 Bukit Panjang",
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "service": "DTL - To DT1 Bukit Panjang",
+      "service": "To DT1 Bukit Panjang",
       "stations": [
         {
           "name": "DT35 Expo",
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "service": "NEL - To NE1 HarbourFront",
+      "service": "To NE1 HarbourFront",
       "stations": [
         {
           "name": "NE18 Punggol Coast",
@@ -573,7 +573,7 @@
       ]
     },
     {
-      "service": "NEL - To NE18 Punggol Coast",
+      "service": "To NE18 Punggol Coast",
       "stations": [
         {
           "name": "NE1 HarbourFront",
