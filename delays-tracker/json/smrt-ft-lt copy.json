@@ -1,6 +1,6 @@
 [
   {
-    "station": "Admiralty",
+    "station": "NS10 Admiralty",
     "station_slug": "admiralty",
     "directions": [
       {
@@ -82,11 +82,11 @@
     "scraped_at": "2026-02-01T15:04:34.610Z"
   },
   {
-    "station": "Aljunied",
+    "station": "EW9 Aljunied",
     "station_slug": "aljunied",
     "directions": [
       {
-        "description": "First/Last train service terminating at EW33 Tuas Link",
+        "description": "To EW33 Tuas Link",
         "first_train": {
           "monday_to_friday": "05:49",
           "saturday": "05:49",
@@ -134,7 +134,7 @@
     "scraped_at": "2026-02-01T15:04:35.532Z"
   },
   {
-    "station": "Ang Mo Kio",
+    "station": "NS16 Ang Mo Kio",
     "station_slug": "ang-mo-kio",
     "directions": [
       {
@@ -216,7 +216,7 @@
     "scraped_at": "2026-02-01T15:04:36.498Z"
   },
   {
-    "station": "Bangkit",
+    "station": "BP1 Bangkit",
     "station_slug": "bangkit",
     "directions": [
       {
@@ -253,7 +253,7 @@
     "scraped_at": "2026-02-01T15:04:37.449Z"
   },
   {
-    "station": "Yew Tee",
+    "station": "NS5 Yew Tee",
     "station_slug": "yew-tee",
     "directions": [
       {

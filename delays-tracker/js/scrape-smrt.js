@@ -46,7 +46,7 @@ const fs = require('fs');
 
 // Keep it short for now - test with common stations
 const testStations = [
-  'admiralty', 'aljunied', 'ang-mo-kio', 'bangkit', "yew-tee"
+  'admiralty', 'aljunied', 'ang-mo-kio', 'bangkit', 'jurong-east', 'raffles-place', 'yew-tee'
 ];
 
 (async () => {
