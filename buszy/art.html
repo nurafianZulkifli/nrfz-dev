@@ -205,6 +205,10 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
+    #incoming-buses-section p {
+        text-align: left !important;
+    }
+
 
     body.dark-mode .card {
         background-color: #1c1f2b;
@@ -264,6 +268,19 @@
         #incoming-buses-grid {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+    }
+
+    @media (min-width: 440px) and (max-width: 768px) {
+        #incoming-buses-grid {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+            overflow-x: visible !important;
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+        #incoming-buses-grid {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
         }
     }
 
@@ -499,11 +516,12 @@
             <!-- Incoming Buses Section -->
             <div id="incoming-buses-section" style="display: none; margin-bottom: 2em;">
                 <h3 style="font-weight: bold; margin-bottom: 0.5rem;">Incoming Buses</h3>
-                <p style="font-size: 0.9rem; color: #999; margin-bottom: 1rem;">*buses might not arrive in exact order
-                </p>
+                <p style="font-size: 0.9rem; color: #999; margin-bottom: 1rem; text-align: left;">*buses might not
+                    arrive in exact order</p>
                 <div id="incoming-buses-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
                     <!-- Incoming buses will be populated here -->
                 </div>
+                <hr style="margin-top: 2rem;">
             </div>
 
             <div class="fleet-legend">
