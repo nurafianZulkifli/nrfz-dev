@@ -150,6 +150,46 @@ async function fetchBusArrivals() {
 
         const now = new Date();
 
+        // Prepare incoming buses data
+        const incomingBuses = [];
+        data.Services.forEach((service) => {
+            if (service.NextBus?.EstimatedArrival) {
+                incomingBuses.push({
+                    ServiceNo: service.ServiceNo,
+                    EstimatedArrival: new Date(service.NextBus.EstimatedArrival),
+                    TimeStr: formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now)
+                });
+            }
+            if (service.NextBus2?.EstimatedArrival) {
+                incomingBuses.push({
+                    ServiceNo: service.ServiceNo,
+                    EstimatedArrival: new Date(service.NextBus2.EstimatedArrival),
+                    TimeStr: formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now)
+                });
+            }
+        });
+
+        // Sort by arrival time and take top 4
+        incomingBuses.sort((a, b) => a.EstimatedArrival - b.EstimatedArrival);
+        const topFourBuses = incomingBuses.slice(0, 4);
+
+        // Display incoming buses
+        const incomingSection = document.getElementById('incoming-buses-section');
+        const incomingGrid = document.getElementById('incoming-buses-grid');
+        if (topFourBuses.length > 0) {
+            incomingSection.style.display = 'block';
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const bgColor = isDarkMode ? '#7db603' : '#94d40b';
+            incomingGrid.innerHTML = topFourBuses.map(bus => `
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <div style="font-size: 20px; color: #888; text-align: center;">${bus.TimeStr}</div>
+                    <div style="background-color: ${bgColor}; color: #000; font-weight: bold; font-size: 1.5rem; padding: 1rem; border-radius: 8px; text-align: center; width: 100%;">${bus.ServiceNo}</div>
+                </div>
+            `).join('');
+        } else {
+            incomingSection.style.display = 'none';
+        }
+
         data.Services.forEach((service) => {
             const card = document.createElement('div');
             card.classList.add('col-12', 'col-md-4', 'col-xl-3', 'card-bt'); // Add col-sm-6 for 2 cards per row on small screens

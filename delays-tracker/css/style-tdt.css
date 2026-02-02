@@ -199,7 +199,7 @@ body.dark-mode .list-group-item:hover {
     }
 
     body.dark-mode .breadcrumb.breadcrumb-fixed {
-        background: #06070ca1;
+        background: #1f243bc9;
         backdrop-filter: blur(25px);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
         position: fixed;
@@ -262,7 +262,7 @@ body.dark-mode .list-group-item:hover {
 
 
     body.dark-mode .mobile-bottom-nav ul {
-        background: #06070ca1;
+        background: #1f243bc9;
         backdrop-filter: blur(25px);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }

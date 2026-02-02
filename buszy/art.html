@@ -197,6 +197,14 @@
         margin-right: 1em
     }
 
+    #incoming-buses-section {
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        padding: 1rem;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
 
     body.dark-mode .card {
         background-color: #1c1f2b;
@@ -220,6 +228,43 @@
         height: 30px;
         line-height: 30px;
         background-color: #2e2e2e;
+    }
+
+    #incoming-buses-section h3 {
+        color: #000;
+    }
+
+    #incoming-buses-section p {
+        color: #999;
+    }
+
+    body.dark-mode #incoming-buses-section h3 {
+        color: #fff;
+    }
+
+    body.dark-mode #incoming-buses-section hr {
+        border-color: #444;
+    }
+
+    @media (max-width: 768px) {
+        #incoming-buses-grid {
+            grid-template-columns: repeat(4, 80px) !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            gap: 1rem;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar while keeping scroll functionality */
+        #incoming-buses-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        #incoming-buses-grid {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     }
 
     @media (min-width: 1200px) {
@@ -451,6 +496,16 @@
 
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
         <div class="container">
+            <!-- Incoming Buses Section -->
+            <div id="incoming-buses-section" style="display: none; margin-bottom: 2em;">
+                <h3 style="font-weight: bold; margin-bottom: 0.5rem;">Incoming Buses</h3>
+                <p style="font-size: 0.9rem; color: #999; margin-bottom: 1rem;">*buses might not arrive in exact order
+                </p>
+                <div id="incoming-buses-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+                    <!-- Incoming buses will be populated here -->
+                </div>
+            </div>
+
             <div class="fleet-legend">
                 <span><img src="assets/dd.png" alt="BD Icon" class="fleet-icon"> Double</span>
                 <span style="gap: 2px;"><img src="assets/bd.png" alt="SMRT Icon" class="fleet-icon"> Bendy</span>

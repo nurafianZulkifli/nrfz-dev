@@ -1,5 +1,12 @@
 const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/nearby-bus-stops';
 
+// Helper function to detect Instagram in-app browser
+function isInstagramInAppBrowser() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // Instagram in-app browsers include "Instagram" in their user agent
+    return /Instagram/.test(userAgent);
+}
+
 // Unified logic for geolocation and bus stop loading
 document.addEventListener('DOMContentLoaded', () => {
     const busStopsContainer = document.getElementById('bus-stops');
