@@ -8,87 +8,56 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper to show Instagram limitation message
     function showInstagramLimitationMessage() {
         const currentUrl = window.location.href;
-        const encodedUrl = encodeURIComponent(currentUrl);
         
         busStopsContainer.innerHTML = `
-            <p class="pin-msg">
-                <i class="fa-solid fa-mobile"></i>
-                <strong>Instagram Browser Limitation</strong><br>
-                <small>Location access is not available in Instagram's in-app browser. Please open this page in your default browser:</small>
-            </p>
-            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; padding: 10px;">
-                <a href="https://maps.apple.com?q=bus+stops" target="_blank" class="btn btn-rfetch" style="text-decoration: none;">
-                    <i class="fa-solid fa-safari"></i> Open in Safari
-                </a>
-                <a href="https://www.google.com/maps/search/bus+stops" target="_blank" class="btn btn-rfetch" style="text-decoration: none;">
-                    <i class="fa-solid fa-chrome"></i> Open in Chrome
-                </a>
-            </div>
-            <p style="text-align: center; margin-top: 15px; font-size: 12px;">
-                <button id="manual-location-btn" class="btn btn-rfetch">
-                    <i class="fa-solid fa-map-pin"></i> Manual Location
-                </button>
-            </p>
+            <p class="pin-msg"><i class="fa-solid fa-triangle-exclamation"></i>Location access is not available in Instagram's in-app browser.</p>
+            <button id="open-default-browser-btn" class="btn btn-rfetch" style="display: block; margin: 15px auto;">
+                <i class="fa-solid fa-globe"></i> Open in Default Browser
+            </button>
         `;
         
-        const manualBtn = document.getElementById('manual-location-btn');
-        if (manualBtn) {
-            manualBtn.addEventListener('click', () => {
-                showManualLocationInput();
+        const openBtn = document.getElementById('open-default-browser-btn');
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                // Try multiple methods to break out of Instagram's browser
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                
+                if (isIOS) {
+                    // iOS: Try to use Safari schema and fallback to direct navigation
+                    window.location.href = 'safari-' + currentUrl;
+                    setTimeout(() => {
+                        window.location.href = currentUrl;
+                    }, 1000);
+                } else {
+                    // Android: Try Chrome Intent first, then direct navigation
+                    const encodedUrl = encodeURIComponent(currentUrl);
+                    window.location.href = 'intent://' + currentUrl.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodedUrl + ';end';
+                    setTimeout(() => {
+                        window.location.href = currentUrl;
+                    }, 1000);
+                }
             });
         }
     }
 
-    // Helper to show manual location input
-    function showManualLocationInput() {
-        busStopsContainer.innerHTML = `
-            <p class="pin-msg">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <strong>Enter Your Location</strong>
-            </p>
-            <div style="padding: 15px; text-align: center;">
-                <input type="text" id="manual-lat" placeholder="Latitude (e.g., 1.3521)" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px;">
-                <input type="text" id="manual-lon" placeholder="Longitude (e.g., 103.8198)" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px;">
-                <button id="submit-manual-location" class="btn btn-rfetch" style="margin-top: 10px; width: 100%;">Search</button>
-                <button id="cancel-manual-location" class="btn btn-rfetch" style="margin-top: 5px; width: 100%; background-color: #999;">Cancel</button>
-            </div>
-        `;
-        
-        const submitBtn = document.getElementById('submit-manual-location');
-        const cancelBtn = document.getElementById('cancel-manual-location');
-        
-        if (submitBtn) {
-            submitBtn.addEventListener('click', () => {
-                const lat = parseFloat(document.getElementById('manual-lat').value);
-                const lon = parseFloat(document.getElementById('manual-lon').value);
-                
-                if (isNaN(lat) || isNaN(lon)) {
-                    alert('Please enter valid latitude and longitude values');
-                    return;
-                }
-                
-                sessionStorage.setItem('userLocation', JSON.stringify({ latitude: lat, longitude: lon }));
-                fetchNearbyBusStops(lat, lon, showLocationError);
-            });
-        }
-        
-        if (cancelBtn) {
-            cancelBtn.addEventListener('click', () => {
-                showInstagramLimitationMessage();
-            });
-        }
-    }
 
     // Helper to show error only if nothing can be loaded
     function showLocationError() {
-        busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-triangle-exclamation"></i>Unable to retrieve your location.<br><button id="retry-location-btn" class="btn btn-rfetch">Retry</button></p>';
+        busStopsContainer.innerHTML = `
+            <p class="pin-msg"><i class="fa-solid fa-triangle-exclamation"></i>Unable to retrieve your location.</p>
+            <button id="retry-location-btn" class="btn btn-rfetch" style="display: block; margin: 15px auto;">
+                <i class="fa-solid fa-rotate"></i> Retry
+            </button>
+        `;
         const retryBtn = document.getElementById('retry-location-btn');
         if (retryBtn) {
             retryBtn.addEventListener('click', () => {
-                requestLocation();
+                requestLocation(true); // Force location prompt
             });
         }
     }
+
+
 
     function requestLocation(force = false) {
         // Check if running in Instagram in-app browser
@@ -107,13 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Check if geolocation is available
         if (!navigator.geolocation) {
-            busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-circle-info"></i>Geolocation is not supported by your browser.<br><button id="manual-location-fallback-btn" class="btn btn-rfetch">Try Manual Entry</button></p>';
-            const manualBtn = document.getElementById('manual-location-fallback-btn');
-            if (manualBtn) {
-                manualBtn.addEventListener('click', () => {
-                    showManualLocationInput();
-                });
-            }
+            busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-solid fa-circle-info"></i>Geolocation is not supported by your browser.</p>';
             return;
         }
 
