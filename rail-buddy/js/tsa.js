@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (checkNow < firstTrain || checkNow > lastTrain) {
           const items = document.querySelectorAll('.custom-list-item');
           items.forEach(item => {
-            const label = item.querySelector('.line-label');
-            if (label && label.textContent.trim() === timing.line) {
+            const img = item.querySelector('img');
+            if (img && img.alt === timing.line) {
               const icon = item.querySelector('.status-icon');
               if (icon) {
                 icon.style.background = '#888';
@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
           if (foundLine) {
             const items = document.querySelectorAll('.custom-list-item');
             items.forEach(item => {
-              const label = item.querySelector('.line-label');
-              if (label && label.textContent.trim() === foundLine) {
+              const img = item.querySelector('img');
+              if (img && img.alt === foundLine) {
                 const icon = item.querySelector('.status-icon');
                 if (icon) {
                   if (alert.Status === 1) {
