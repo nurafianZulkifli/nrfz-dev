@@ -1,3 +1,19 @@
+// Initialize default preferences for first-time visitors
+function initializeDefaultPreferences() {
+    // Set default time format if not already set
+    if (!localStorage.getItem('timeFormat')) {
+        localStorage.setItem('timeFormat', '24-hour');
+    }
+    
+    // Set default dark mode preference if not already set
+    if (!localStorage.getItem('dark-mode')) {
+        localStorage.setItem('dark-mode', 'disabled');
+    }
+}
+
+// Initialize defaults immediately
+initializeDefaultPreferences();
+
 // ****************************
 // :: Bus Arrivals Fetching and Display
 // ****************************
@@ -83,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 5 seconds
-    setInterval(fetchBusArrivals, 5000);
+    setInterval(fetchBusArrivals, 55000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -182,8 +198,8 @@ async function fetchBusArrivals() {
             const bgColor = isDarkMode ? '#7db603' : '#94d40b';
             incomingGrid.innerHTML = topFourBuses.map(bus => `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                    <div style="font-size: 20px; color: #000; text-align: center;">${bus.TimeStr}</div>
-                    <div style="background-color: ${bgColor}; color: #000; font-weight: bold; font-size: 1.5rem; padding: 1rem; border-radius: 8px; text-align: center; width: 100%;">${bus.ServiceNo}</div>
+                    <div class="ib-time">${bus.TimeStr}</div>
+                    <div class="ib-svc" style="background-color: ${bgColor};" >${bus.ServiceNo}</div>
                 </div>
             `).join('');
         } else {
