@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Menu | Buszy</title>
+    <title>Train Service Updates | Buszy</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/style-buszy.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
@@ -34,57 +35,125 @@
 </head>
 
 <style>
-    html,
-    body {
-        margin: 0;
-        height: 100%;
-        overflow: hidden;
+    .custom-list-item {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 40px;
+        padding: 12px 16px;
+        width: 100%;
+        margin: 24px 0;
+        box-sizing: border-box;
+        gap: 12px;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+        transition-duration: 800ms;
     }
 
-    #cv-bat-subp {
-        height: 10vh;
+    .custom-list-item:hover {
+        background-color: #d8e6f3;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
-    .alert-warning p {
+    body.dark-mode .custom-list-item {
+        background-color: #2e2e2e;
+        color: #fff !important;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .custom-list-item:hover {
+        background-color: #334250;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .line-label {
+        background: #ff3b3b;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 13.6px / 19.2px;
+        padding: 5px 10px;
+        font-size: 15px;
+        letter-spacing: 1px;
+        margin-right: 0px;
+        border: 2px solid #fff;
+    }
+
+    .line-name {
+        font-weight: 600;
+        font-size: 18px;
+        color: #111;
+        flex: 1;
+    }
+
+    .status-icon {
+        background: #43b02a;
+        color: #fff;
+        border-radius: 50%;
+        width: 33px;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    .line-label.nsl {
+        background: #e1251b;
+    }
+
+    .line-label.ewl {
+        background: #00953b;
+    }
+
+    .line-label.ccl {
+        background: #ff9e18;
         color: #000;
-        font-size: 16px;
-        overflow-wrap: break-word;
-        line-height: 1.7;
-        margin-bottom: 0rem !important;
     }
 
-    .breadcrumb.breadcrumb-fixed {
-        background: none;
-        backdrop-filter: none;
-        box-shadow: none;
+    .line-label.dtl {
+        background: #0055b8;
     }
 
-    .list-group-item {
-        padding-top: 0.7em;
-        padding-bottom: 0.7em;
+    .line-label.nel {
+        background: #9e28b5;
     }
 
-    body.dark-mode .breadcrumb.breadcrumb-fixed {
-        background: none;
-        backdrop-filter: none;
-        box-shadow: none;
+    .line-label.tel {
+        background: #9d5918;
     }
 
-
-    body.dark-mode .alert-warning p {
-        color: #ffda6a;
-        font-size: 16px;
-        overflow-wrap: break-word;
-        line-height: 1.7;
-        margin-bottom: 0rem !important;
+    .line-label.lrt {
+        background: #718472;
     }
 
+    .alert-message-content a {
+        color: #000;
+        text-decoration: underline;
+        font-weight: bold;
+    }
 
-    .footer {
-        display: none;
+    .pulse {
+        animation: pulse-animation 2s infinite;
+    }
+
+    @keyframes pulse-animation {
+        0% {
+            box-shadow: 0 0 0 0px rgba(148, 148, 148, 0.2);
+        }
+
+        100% {
+            box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+        }
+    }
+
+    body.dark-mode .alert-message-content a {
+        color: #fff;
+        text-decoration: underline;
+        font-weight: bold;
     }
 </style>
-
 
 <body>
     <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
@@ -92,12 +161,11 @@
         <nav aria-label="breadcrumb" style="margin-bottom:0;">
             <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="../buszy.html">
-                        <i class="fa-solid fa-house"></i>
+                    <a href="nbs.html"><i class="fa-solid fa-location-dot"></i>
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="menu.html"><i class="fa-solid fa-bars"></i>
+                    <a href="abs.html"><i class="fa-solid fa-bars"></i>
                     </a>
                 </li>
             </ol>
@@ -183,7 +251,6 @@
 
     <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
 
-
     <!-- Title/Breadcrumbs -->
     <section class="about-me-sum clearfix">
         <div class="wbnrfz_eicw">
@@ -193,8 +260,7 @@
                         <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="../buszy.html">
-                                        <i class="fa-solid fa-house"></i>
+                                    <a href="nbs.html"><i class="fa-solid fa-location-dot"></i>
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
@@ -207,53 +273,81 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
-                                    <h1 class="page-title" id="filter-title">Menu</h1>
+                                    <h1 class="page-title" id="filter-title">Train Service Updates</h1>
                                 </div>
+                                <div style="position: relative; max-width: 400px; margin-top: 5px; display: none;">
+                                    <i class="fa-solid fa-search"
+                                        style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #cccccc; z-index: 1;"></i>
+                                    <input type="text" id="bus-stop-search" class="form-control"
+                                        placeholder=" Search Bus Stop Code" style="padding-left: 35px; width: 100%;">
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr>
             </div>
-
         </div>
-
     </section>
 
-    <!-- Section Contents -->
-    <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
-        <div class="container">
-            <div class="list-group">
-                <a href="ann.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-solid fa-bullhorn"></i> Announcements</h5>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="settings.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-solid fa-gear"></i> Settings</h5>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="" class="list-group-item list-group-item-action flex-column align-items-start"
-                    id="dark-mode-toggle-desktop">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-solid fa-sun-bright"></i> Display: Light</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
+    <section class="tsu">
+        <div class="container container-xxl container-mobile container-mobile-header">
+            <div class='alert-last-updated' style='margin-top:12px;font-size:0.98em;color:#888;'></div>
+            <li class="custom-list-item">
+                <span class="line-label nsl">NSL</span>
+                <span class="line-name">North-South Line</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
             <hr>
-
-            <div style="text-align: center; color: gray; font-size: 14px; margin-top: 1em; margin-bottom: 2em;">
-                Version 3.1.1
-            </div>
+            <li class="custom-list-item">
+                <span class="line-label ewl">EWL</span>
+                <span class="line-name">East-West Line</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+            <hr>
+            <li class="custom-list-item">
+                <span class="line-label nel">NEL</span>
+                <span class="line-name">North East Line</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+            <hr>
+            <li class="custom-list-item">
+                <span class="line-label ccl">CCL</span>
+                <span class="line-name">Circle Line</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+            <hr>
+            <li class="custom-list-item">
+                <span class="line-label dtl">DTL</span>
+                <span class="line-name">Downtown Line</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+            <hr>
+            <li class="custom-list-item">
+                <span class="line-label tel">TEL</span>
+                <span class="line-name">Thomson-East Coast Line</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+            <hr>
+            <li class="custom-list-item">
+                <span class="line-label lrt">BP</span>
+                <span class="line-name">Bukit Panjang LRT</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+            <hr>
+            <li class="custom-list-item">
+                <span class="line-label lrt">SK</span>
+                <span class="line-name">Sengkang LRT</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+            <hr>
+            <li class="custom-list-item">
+                <span class="line-label lrt">PG</span>
+                <span class="line-name">Punggol LRT</span>
+                <span class="status-icon pulse"><i class="fa-solid fa-check"></i></span>
+            </li>
+        </div>
     </section>
 
 
@@ -262,6 +356,7 @@
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
 
+    <script src="js/mob-navtabs.js"></script>
 
     <script src="buszy-subp.js"></script>
 
@@ -281,7 +376,7 @@
 
     <script src="../js/utils.js"></script>
 
-    <script src="js/menu.js"></script>
+    <script src="js/tsa.js"></script>
 
 </body>
 

@@ -15,11 +15,9 @@
 
 // Ensure DOM is loaded before running script
 document.addEventListener('DOMContentLoaded', function() {
-  // Fetch both service alerts and train timings
-  Promise.all([
-    fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts').then(r => r.json()),
-    fetch('rail-buddy/json/ft-lt.json').then(r => r.json())
-  ]).then(([data, timings]) => {
+  fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts')
+    .then(response => response.json())
+    .then(data => {
       if (!data || !data.value) return;
       // Map line names to codes used in your HTML
       const lineMap = {
@@ -51,51 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const formatted = `Last updated: ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} ${hours}:${mins} ${ampm}`;
       const updatedDiv = document.querySelector('.tsu .alert-last-updated');
       if (updatedDiv) updatedDiv.textContent = formatted;
-
-      // Helper function to parse time
-      function parseTime(str) {
-        const [h, m] = str.split(":").map(Number);
-        return h * 60 + m;
-      }
-
-      // First, grey out lines if they're outside operating hours
-      const nowMins = now.getHours() * 60 + now.getMinutes();
-      const isWeekend = (now.getDay() === 0 || now.getDay() === 6);
-      
-      timings.forEach(timing => {
-        const tdata = isWeekend ? timing.weekends : timing.weekdays;
-        const firstTrain = parseTime(tdata.firstTrain);
-        let lastTrain = parseTime(tdata.lastTrain);
-        
-        // If lastTrain is after midnight (e.g. 01:00), treat as next day
-        if (lastTrain < firstTrain) {
-          lastTrain += 1440; // add 24h in minutes
-        }
-        
-        let checkNow = nowMins;
-        // If after midnight and lastTrain is next day, adjust nowMins
-        if (lastTrain >= 1440 && nowMins < firstTrain) {
-          checkNow = nowMins + 1440;
-        }
-        
-        // Check if outside operating hours
-        if (checkNow < firstTrain || checkNow > lastTrain) {
-          const items = document.querySelectorAll('.custom-list-item');
-          items.forEach(item => {
-            const label = item.querySelector('.line-label');
-            if (label && label.textContent.trim() === timing.line) {
-              const icon = item.querySelector('.status-icon');
-              if (icon) {
-                icon.style.background = '#888';
-                icon.innerHTML = '<i class="fa-solid fa-dash"></i>';
-                icon.style.color = '#fff';
-              }
-            }
-          });
-        }
-      });
-
-      // Then, process alerts (which can override grey status if trains are operating)
       alerts.forEach(alert => {
         if (alert.Status === 1 || alert.Status === 2) {
           let foundLine = null;
@@ -150,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
       font-size: 1.08em;
       color: #222;
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
-      max-width: 100vw;
+      max-width: 90vw;
       word-break: break-word;
     }
     .alert-message-content {
@@ -159,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     body.dark-mode .alert-message-box {
-    background-color: #252836;
+    background-color: #383838;
     color: #fff !important;
     border: 1px solid #2b2b2b33;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
