@@ -96,9 +96,23 @@ function renderDisruptionsByMonth() {
     for (let i = 0; i < Math.max(fromArr.length, toArr.length); i++) {
       let from = fromArr[i] || '';
       let to = toArr[i] || '';
+      // Map line names to caplet filenames
+      const capletMap = {
+        'nsl': 'NSLCap.png',
+        'ewl': 'EWLCap.png',
+        'ccl': 'CCLCap.png',
+        'dtl': 'DTLCap.png',
+        'nel': 'NELCap.png',
+        'tel': 'TELCap.png',
+        'bp': 'BPCap.png',
+        'sk': 'SKCap.png',
+        'pg': 'PGCap.png'
+      };
+      const lineKey = item.line ? item.line.toLowerCase() : '';
+      const capletFile = capletMap[lineKey] || 'NSLCap.png';
       routeBadges += `
         <span class="route-badge">
-          <span class="line-badge line-label ${item.line ? item.line.toLowerCase() : ''}">${item.line}</span>
+          <img src="assets/caplets/${capletFile}" alt="${item.line}" style="height: 35px; width: auto;">
           <span class="route">${from} ⇄ ${to}</span>
         </span>
       `;
