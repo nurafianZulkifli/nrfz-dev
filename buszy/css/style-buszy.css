@@ -324,9 +324,9 @@ table th {
 
 .svcNumtd {
     text-align: center;
-    width: 85px;
+    width: 50px;
     white-space: nowrap;
-    margin-right: 3em;
+    margin-right: 1em;
 }
 
 .departure-spacing {

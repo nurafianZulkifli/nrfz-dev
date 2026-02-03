@@ -166,6 +166,22 @@ async function fetchBusArrivals() {
 
         const now = new Date();
 
+        // Create a map of destination codes to names from cached bus stops
+        let destinationMap = {};
+        try {
+            const allBusStops = JSON.parse(localStorage.getItem('allBusStops')) || [];
+            allBusStops.forEach((stop) => {
+                destinationMap[stop.BusStopCode] = stop.Description;
+            });
+        } catch (error) {
+            console.error('Error creating destination map:', error);
+        }
+
+        // Function to get destination name
+        function getDestinationName(destinationCode) {
+            return destinationMap[destinationCode] || destinationCode;
+        }
+
         // Prepare incoming buses data
         const incomingBuses = [];
         data.Services.forEach((service) => {
@@ -212,7 +228,10 @@ async function fetchBusArrivals() {
             card.innerHTML = `
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <span class="service-no">${service.ServiceNo}</span>
+                        <div>
+                            <span class="service-no">${service.ServiceNo}</span>
+                            ${service.NextBus?.DestinationCode ? `<div class="destination-code">To ${getDestinationName(service.NextBus.DestinationCode)}</div>` : ''}
+                        </div>
                         ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="img-fluid" style="width: 50px;">` : ''}
                     </div>
                     <div class="card-body">
