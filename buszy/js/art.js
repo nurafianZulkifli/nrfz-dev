@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const busStopCode = urlParams.get('BusStopCode');
 
-    if (busStopCode) {
+    // Only process if busStopCode is a non-empty string
+    if (busStopCode && busStopCode.trim() !== '') {
         searchInput.value = busStopCode;
 
         // Fetch the bus stop name from the /bus-stops endpoint
