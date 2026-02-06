@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Our Networks | TDT</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
+
+    <link rel="icon" href="../assets/icon-512.png">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
+    <link rel='stylesheet' href='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.css'>
+
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/style-tdt.css">
+    <link rel="stylesheet" href="../../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../../css/dark-mode.css">
+
+
+</head>
+
+<style>
+    .line-diagram {
+        padding: 40px 20px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        overflow-x: auto;
+    }
+
+    .diagram-wrapper {
+        position: relative;
+        min-width: 1200px;
+        padding: 60px 40px;
+    }
+
+    .phase-section {
+        display: inline-block;
+        margin-right: 30px;
+        position: relative;
+    }
+
+    .phase-label {
+        position: absolute;
+        top: -50px;
+        left: 0;
+        font-size: 12px;
+        font-weight: bold;
+        color: #666;
+        background: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    body.dark-mode .phase-label {
+        background: #2d3242;
+        color: #ccc;
+    }
+
+    .line-track {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        position: relative;
+        height: 100px;
+    }
+
+    /* Horizontal connecting line */
+    .line-track::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 3px;
+        background: linear-gradient(90deg, #c41e3a, #c41e3a);
+        z-index: 1;
+        transform: translateY(-50%);
+    }
+
+    .station {
+        text-align: center;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        min-width: 65px;
+    }
+
+    .station-code {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #c41e3a;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 11px;
+        z-index: 10;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        margin-bottom: 12px;
+    }
+
+    body.dark-mode .station-code {
+        border-color: #1c1f2b;
+    }
+
+    .station-name {
+        font-size: 10px;
+        font-weight: 600;
+        white-space: nowrap;
+        color: #333;
+        margin-top: auto;
+        margin-bottom: 8px;
+    }
+
+    body.dark-mode .station-name {
+        color: #ccc;
+    }
+
+    .station.future .station-code {
+        background: #f0f0f0;
+        color: #999;
+        border: 2px dashed #c41e3a;
+        font-style: italic;
+    }
+
+    .interchanges {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: center;
+        min-height: 24px;
+        margin-top: 8px;
+    }
+
+    .interchange-badge {
+        font-size: 9px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 10px;
+        color: white;
+        white-space: nowrap;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Line colors */
+    .mrt-ewl { background: #009645; }
+    .mrt-ccl { background: #fa7921; }
+    .mrt-tel { background: #926437; }
+    .mrt-dtl { background: #005ec8; }
+    .mrt-nel { background: #8b2e6b; }
+    .mrt-cel { background: #f3c100; color: #333; text-shadow: none; }
+    .mrt-bp { background: #7f7f7f; }
+    .mrt-cr { background: #6b4c9a; }
+    .mrt-js { background: #d4a241; }
+    .mrt-je { background: #d4a241; }
+    .mrt-de { background: #4ba3d4; }
+
+    /* Terminal stations styling */
+    .station.terminal .station-code {
+        border: 3px solid #c41e3a;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .diagram-wrapper {
+            min-width: auto;
+        }
+
+        .line-track {
+            gap: 1px;
+            height: 80px;
+        }
+
+        .station {
+            min-width: 55px;
+        }
+
+        .station-code {
+            width: 32px;
+            height: 32px;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
+
+        .station-name {
+            font-size: 8px;
+            margin-bottom: 6px;
+        }
+
+        .phase-label {
+            font-size: 10px;
+            top: -40px;
+        }
+    }
+
+    body.dark-mode .line-diagram {
+        background: #2d3242;
+    }
+</style>
+
+<body>
+
+    <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
+    <div class="breadcrumb-fixed-placeholder">
+        <nav aria-label="breadcrumb" style="margin-bottom:0;">
+            <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="../../rail-buddy.html"><i class="fa-solid fa-house"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="menu.html"><i class="fa-solid fa-bars"></i>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="../../rail-buddy.html"><img src="../assets/logo.png" alt="logo" class="logo" /></a>
+
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="../../rail-buddy.html" class="nav-link">
+                        <i class="fa-sharp fa-solid fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="history.html" class="nav-link">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="first-last.html" class="nav-link">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Timings</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="menu.html" class="nav-link active">
+                        <i class="fa-solid fa-bars"></i>
+                        <span>Menu</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li>
+                <a href="../../rail-buddy.html">
+                    <span class="icon">
+                        <i class="fa-sharp fa-solid fa-home"></i>
+                    </span>
+                    <span class="label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="history.html">
+                    <span class="icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </span>
+                    <span class="label">History</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="first-last.html">
+                    <span class="icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </span>
+                    <span class="label">Timings</span>
+                </a>
+            </li>
+            <li>
+                <a href="menu.html">
+                    <span class="icon">
+                        <i class="fa-solid fa-bars"></i>
+                    </span>
+                    <span class="label">Menu</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
+
+    <!-- Title/Breadcrumbs -->
+    <section class="about-me-sum clearfix">
+        <div class="wbnrfz_eicw">
+            <div class="page-header-section">
+                <div class="container container-xxl container-mobile container-mobile-header">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../../rail-buddy.html"><i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="menu.html"><i class="fa-solid fa-bars"></i>
+                                    </a>
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="page-title-wrapper">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div>
+                                    <h1 class="page-title" id="filter-title">North-South Line</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </section>
+
+    <!-- Line Diagram Content -->
+    <section class="pdf-section">
+        <div class="container container-xxl container-mobile">
+            <div class="line-diagram">
+                <div class="line-container">
+                    <!-- NS1 -->
+                    <div class="station">
+                        <div class="station-name">Jurong East</div>
+                        <div class="station-code">NS1</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-ewl">EW24</span>
+                        </div>
+                    </div>
+
+                    <!-- NS2 -->
+                    <div class="station">
+                        <div class="station-name">Bukit Batok</div>
+                        <div class="station-code">NS2</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-bp">BP1</span>
+                        </div>
+                    </div>
+
+                    <!-- NS3 -->
+                    <div class="station">
+                        <div class="station-name">Bukit Gombak</div>
+                        <div class="station-code">NS3</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS4 -->
+                    <div class="station">
+                        <div class="station-name">Choa Chu Kang</div>
+                        <div class="station-code">NS4</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS5 -->
+                    <div class="station">
+                        <div class="station-name">Yew Tee</div>
+                        <div class="station-code">NS5</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS6 -->
+                    <div class="station">
+                        <div class="station-name">Kranji</div>
+                        <div class="station-code">NS6</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS7 -->
+                    <div class="station">
+                        <div class="station-name">Marsiling</div>
+                        <div class="station-code">NS7</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS8 -->
+                    <div class="station">
+                        <div class="station-name">Woodlands</div>
+                        <div class="station-code">NS8</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS9 -->
+                    <div class="station">
+                        <div class="station-name">Admiralty</div>
+                        <div class="station-code">NS9</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS10 -->
+                    <div class="station">
+                        <div class="station-name">Sembawang</div>
+                        <div class="station-code">NS10</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS11 -->
+                    <div class="station">
+                        <div class="station-name">Canberra</div>
+                        <div class="station-code">NS11</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS12 -->
+                    <div class="station">
+                        <div class="station-name">Yishun</div>
+                        <div class="station-code">NS12</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS13 -->
+                    <div class="station">
+                        <div class="station-name">Khatib</div>
+                        <div class="station-code">NS13</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS14 -->
+                    <div class="station">
+                        <div class="station-name">Yio Chu Kang</div>
+                        <div class="station-code">NS14</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS15 -->
+                    <div class="station">
+                        <div class="station-name">Ang Mo Kio</div>
+                        <div class="station-code">NS15</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS16 -->
+                    <div class="station">
+                        <div class="station-name">Bishan</div>
+                        <div class="station-code">NS16</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS17 -->
+                    <div class="station">
+                        <div class="station-name">Braddell</div>
+                        <div class="station-code">NS17</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS18 -->
+                    <div class="station">
+                        <div class="station-name">Toa Payoh</div>
+                        <div class="station-code">NS18</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS19 -->
+                    <div class="station">
+                        <div class="station-name">Novena</div>
+                        <div class="station-code">NS19</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS20 -->
+                    <div class="station">
+                        <div class="station-name">Newton</div>
+                        <div class="station-code">NS20</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS21 -->
+                    <div class="station">
+                        <div class="station-name">Orchard</div>
+                        <div class="station-code">NS21</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-tel">TE2</span>
+                        </div>
+                    </div>
+
+                    <!-- NS22 -->
+                    <div class="station">
+                        <div class="station-name">Somerset</div>
+                        <div class="station-code">NS22</div>
+                        <div class="interchanges"></div>
+                    </div>
+
+                    <!-- NS23 -->
+                    <div class="station">
+                        <div class="station-name">Dhoby Ghaut</div>
+                        <div class="station-code">NS23</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-ccl">CC15</span>
+                        </div>
+                    </div>
+
+                    <!-- NS24 -->
+                    <div class="station">
+                        <div class="station-name">City Hall</div>
+                        <div class="station-code">NS24</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-dtl">DT11</span>
+                            <span class="interchange-badge mrt-tel">TE14</span>
+                            <span class="interchange-badge mrt-nel">NE6</span>
+                        </div>
+                    </div>
+
+                    <!-- NS25 -->
+                    <div class="station">
+                        <div class="station-name">Raffles Place</div>
+                        <div class="station-code">NS25</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-ewl">EW13</span>
+                            <span class="interchange-badge mrt-ewl">EW14</span>
+                            <span class="interchange-badge mrt-cel">CE2</span>
+                        </div>
+                    </div>
+
+                    <!-- NS26 -->
+                    <div class="station">
+                        <div class="station-name">Marina Bay</div>
+                        <div class="station-code">NS26</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-ccl">CC1</span>
+                        </div>
+                    </div>
+
+                    <!-- NS27 -->
+                    <div class="station">
+                        <div class="station-name">Marina South Pier</div>
+                        <div class="station-code">NS27</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-tel">TE20</span>
+                        </div>
+                    </div>
+
+                    <!-- NS28 -->
+                    <div class="station">
+                        <div class="station-name">South Pier</div>
+                        <div class="station-code">NS28</div>
+                        <div class="interchanges">
+                            <span class="interchange-badge mrt-ewl">EW</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script type="text/javascript" id="cookiebanner" src="../../js/cookies-banner.js" data-position="bottom"
+        data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
+
+
+    <script src="../js/mob-navtabs.js"></script>
+
+    <script src="../tdt-subp.js"></script>
+
+    <script src="../../js/jquery.min.js"></script>
+
+    <script src='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.js'></script>
+
+    <script src="../../js/dstabs.js"></script>
+
+    <script src="../../js/popper.min.js"></script>
+
+    <script src="../../js/bootstrap.min.js"></script>
+
+    <script src="../../js/pw.bundle.js"></script>
+
+    <script src="../../js/default-assets/active.js"></script>
+
+</body>
+
+</html>
