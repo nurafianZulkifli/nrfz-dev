@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>East-West Line | RailBuddy</title>
+    <title>Bukit Panjang LRT | RailBuddy</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
+    <meta property="og:image" content="https://i.imgur.com/BUKPnjH.png" />
 
     <link rel="icon" href="../assets/icon-512.png">
 
@@ -106,20 +106,25 @@
         flex-direction: column;
         gap: 0;
         position: relative;
-        padding-left: 30px;
+        padding-left: 0px;
         margin-top: 6px;
     }
 
-    /* Vertical line for hidden stations */
-    #hidden-stations::before {
-        content: '';
-        position: absolute;
-        left: 6px;
-        top: -23px;
-        bottom: 22px;
-        width: 3px;
-        background: #009645;
-        z-index: 1;
+    #hidden-stations-b {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        padding-left: 0px;
+        margin-top: 6px;
+    }
+
+    #hidden-stations.show {
+        display: flex;
+    }
+
+    #hidden-stations-b.show {
+        display: flex;
     }
 
     /* Adjust first station in hidden section */
@@ -138,7 +143,7 @@
     }
 
     .show-more-button button {
-        background: #009645;
+        background: #708472;
         color: #fff;
         border: none;
         padding: 10px 20px;
@@ -151,7 +156,7 @@
     }
 
     .show-more-button button:hover {
-        background: #025328;
+        background: #546456;
     }
 
     .line-controls {
@@ -224,9 +229,9 @@
         position: absolute;
         left: 6px;
         top: 22px;
-        bottom: 22px;
+        bottom: 99px;
         width: 3px;
-        background: #009645;
+        background: #708472;
         z-index: 1;
     }
 
@@ -243,7 +248,7 @@
         height: 18px;
         border-radius: 50%;
         background: #fff;
-        border: 3px solid #009645;
+        border: 3px solid #708472;
         position: absolute;
         left: -31px;
         z-index: 10;
@@ -266,7 +271,7 @@
     }
 
     .station-code {
-        background: #009645;
+        background: #708472;
         color: #fff;
         font-weight: bold;
         border-radius: 13.6px / 19.2px;
@@ -623,8 +628,8 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
-                                    <h1 class="filter-title" id="chimes"><img src="../assets/caplets/EWLCap.png"
-                                            alt="EWL" class="caplet"> East-West Line</h1></a>
+                                    <h1 class="filter-title" id="chimes"><img src="../assets/caplets/BPCap.png" alt="BP"
+                                            class="caplet"> Bukit Panjang LRT</h1></a>
                                 </div>
                             </div>
                         </div>
@@ -637,13 +642,10 @@
 
     <!-- Audio Elements -->
     <audio id="chimes-audio">
-        <source src="../assets/chimes/EWL_Chime A_V2.wav" type="audio/wav">
+        <source src="../assets/chimes/BP_Chime.wav" type="audio/wav">
         Your browser does not support the audio element.
     </audio>
-    <audio id="chimes-alt">
-        <source src="../assets/chimes/EWL_Chime B_V2.wav" type="audio/wav">
-        Your browser does not support the audio element.
-    </audio>
+
 
     <!-- Details/Contents Section -->
     <section class="about-me-summ clearfix">
@@ -654,37 +656,35 @@
                     <!-- Summary -->
                     <div class="container container-xxl container-mobile">
                         <div class="row">
-                            <div class="col-md-6 col-lg-4 box-indiv">
-                                <div class="port-summary port-cat text-center mb-80 wow fadeIn" data-wow-delay="100ms">
-                                    <div class="summ-icon">
-                                        <i class="fa-solid fa-calendar"></i>
-                                    </div>
-                                    <h3 style="font-size: 18px; font-weight: bolder;">Opened</h3>
-                                    <h4 style="font-size: 13px;">12 December 1987<br>(in Phases)</h4>
-                                </div>
-                            </div>
+              <div class="col-md-6 col-lg-4 box-indiv">
+                <div class="port-summary port-cat text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                  <div class="summ-icon">
+                    <i class="fa-solid fa-calendar"></i>
+                  </div>
+                  <h3 style="font-size: 18px; font-weight: bolder;">Opened</h3>
+                  <h4 style="font-size: 13px;">6 November 1999<br>(All stations)</h4>
+                </div>
+              </div>
 
-                            <div class="col-md-6 col-lg-4 box-indiv">
-                                <div class="port-summary port-year text-center mb-80 wow fadeIn" data-wow-delay="100ms">
-                                    <div class="summ-icon">
-                                        <i class="fa-regular fa-ruler-horizontal"></i>
-                                    </div>
-                                    <h3 style="font-size: 18px; font-weight: bolder;">Length</h3>
-                                    <h4 style="font-size: 13px;">56.7 km <br>(with 35 stations)</h4>
-                                </div>
-                            </div>
+              <div class="col-md-6 col-lg-4 box-indiv">
+                <div class="port-summary port-year text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                  <div class="summ-icon">
+                    <i class="fa-regular fa-ruler-horizontal"></i>
+                  </div>
+                  <h3 style="font-size: 18px; font-weight: bolder;">Length</h3>
+                  <h4 style="font-size: 13px;">8 km <br>(with 13 stations)</h4>
+                </div>
+              </div>
 
-                            <div class="col-md-6 col-lg-4 box-indiv">
-                                <div class="port-summary port-share text-center mb-80 wow fadeIn"
-                                    data-wow-delay="100ms">
-                                    <div class="summ-icon">
-                                        <i class="fa-solid fa-train-subway"></i>
-                                    </div>
-                                    <h3 style="font-size: 18px; font-weight: bolder;">Operated By</h3>
-                                    <img class="logo-operator" src="../assets/stl.png" id="ops-smrt" alt="smrt"
-                                        width="150px">
-                                </div>
-                            </div>
+              <div class="col-md-6 col-lg-4 box-indiv">
+                <div class="port-summary port-share text-center mb-80 wow fadeIn" data-wow-delay="100ms">
+                  <div class="summ-icon">
+                    <i class="fa-solid fa-train-subway"></i>
+                  </div>
+                  <h3 style="font-size: 18px; font-weight: bolder;">Operated By</h3>
+                  <img class="logo-operator" src="../assets/stl.png" id="ops-smrt" alt="smrt" width="150px">
+                </div>
+              </div>
                         </div>
                     </div>
 
@@ -700,21 +700,23 @@
 
                 <!-- Line Description Box -->
                 <div class="line-description">
-                    <p> Crossing the island from Tuas Link to Pasir Ris, and measuring about 57km, the East-West Line
-                        (EWL) is the longest train line in operation in Singapore. It started as part of the North-South
-                        Line (NSL) and was expanded southwards towards Outram in 1987. <br><br>
+                    <p> The Bukit Panjang Light Rapid Transit (BPLRT) was launched as the first light
+                        rail line in Singapore in 1999. <br><br>
 
-                        The ‘original’ line, ending at Boon Lay MRT station, was completed in 1990. Today, the line will
-                        take you from Changi Airport to recreational spots in Pasir Ris or towards the famous food
-                        enclaves of Geylang and Tiong Bahru. A few stops at major interchanges in the city fringe and
-                        Central Business District later, the line heads west through the ‘school district’ of
-                        polytechnics and universities at Dover and Clementi before it heads into the sprawling Jurong
-                        township and Tuas industrial estate. <br><br>
+                        LRT in Bukit Panjang
+                        The fully automated 8km line connects residential estates within Bukit Panjang and Choa Chu Kang
+                        to the
+                        North-South and Downtown Lines, complementing existing feeder bus services. It is also the first
+                        driverless inter-town train feeder service. <br><br>
 
-                        In all, there are 35 stations on the EWL, with Jurong East MRT station being one of the busiest
-                        rail interchanges/terminal stations on the EW and NS Lines.<br><br> (Source: <a
-                            class="hyperlink"
-                            href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/east_west_line.html">LTA</a>
+                        To cater for the line’s proximity to homes, the trains have special privacy features such as
+                        windows that
+                        automatically dim. <br><br>
+
+                        Having served the residents for 20 years, the BPLRT is currently undergoing a renewal project to
+                        upgrade
+                        its trains, tracks and signalling system<br><br> (Source: <a class="hyperlink"
+                            href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/bukit_panjang_lrt.html">LTA</a>
                         )
                     </p>
 
@@ -722,436 +724,320 @@
                 <!-- Line Diagram -->
                 <div class="line-diagram">
                     <div class="branch-selector">
-                        <label for="branchSelect"><strong>Branch:</strong></label>
-                        <select id="branchSelect" onchange="switchBranch()">
-                            <option value="main">Main Line</option>
-                            <option value="changi">Changi Airport Branch</option>
+                        <label for="serviceSelect"><strong>Service:</strong></label>
+                        <select id="serviceSelect" onchange="switchService()">
+                            <option value="serviceA">Service A (via Senja)</option>
+                            <option value="serviceB">Service B (via Petir)</option>
                         </select>
                     </div>
-                    <div class="line-container show" id="mainBranch">
-                        <!-- EW 1 Pasir Ris -->
+                    <div class="line-container show" id="serviceAContainer">
+                        <!-- BP 1 Choa Chu Kang -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 1</span>
+                                    <span class="station-code">BP 1</span>
+                                    <span class="interchange-badge mrt-nsl">NS 4</span>
                                 </div>
-                                <div class="station-name">Pasir Ris</div>
+                                <div class="station-name">Choa Chu Kang</div>
                             </div>
                         </div>
 
-                        <!-- EW 2 Tampines -->
+                        <!-- BP 2 South View -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes station-connector">
-                                    <span class="station-code">EW 2</span>
-                                    <span class="interchange-badge mrt-dtl">DT 32</span>
+                                    <span class="station-code">BP 2</span>
                                 </div>
-                                <div class="station-name">Tampines</div>
+                                <div class="station-name">South View</div>
                             </div>
                         </div>
 
-                        <!-- EW 3 Simei -->
+                        <!-- BP 3 Keat Hong -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 3</span>
+                                    <span class="station-code">BP 3</span>
                                 </div>
-                                <div class="station-name">Simei</div>
+                                <div class="station-name">Keat Hong</div>
                             </div>
                         </div>
 
-                        <!-- EW 4 Tanah Merah -->
+                        <!-- BP 4 Teck Whye-->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 4</span>
-                                    <span class="interchange-badge mrt-ewl"
-                                        style="border-left: 2px solid #fff;">CG</span>
-                                    <!-- <span class="interchange-badge mrt-jrl">JS1</span> -->
+                                    <span class="station-code">BP 4</span>
                                 </div>
-                                <div class="station-name">Tanah Merah</div>
+                                <div class="station-name">Teck Whye</div>
                             </div>
                         </div>
 
-                        <!-- EW 5 Bedok -->
+                        <!-- BP 5 Phoenix -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 5</span>
+                                    <span class="station-code">BP 5</span>
                                 </div>
-                                <div class="station-name">Bedok</div>
+                                <div class="station-name">Phoenix</div>
                             </div>
                         </div>
 
-                        <!-- EW 6 Kembangan -->
+                        <!-- BP 6 Bukit Panjang -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 6</span>
+                                    <span class="station-code">BP 6</span>
+                                    <span class="interchange-badge mrt-dtl">DT 1</span>
                                 </div>
-                                <div class="station-name">Kembangan</div>
+                                <div class="station-name">Bukit Panjang</div>
                             </div>
                         </div>
 
-                        <!-- EW 7 Eunos -->
+                        <!-- BP 13 Senja -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 7</span>
+                                    <span class="station-code">BP 13</span>
                                 </div>
-                                <div class="station-name">Eunos</div>
+                                <div class="station-name">Senja</div>
                             </div>
                         </div>
 
-                        <!-- EW 8 Paya Lebar -->
+                        <!-- BP 12 Jelapang -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 8</span>
-                                    <span class="interchange-badge mrt-ccl" style="color: #000;">CC 9</span>
+                                    <span class="station-code">BP 12</span>
                                 </div>
-                                <div class="station-name">Paya Lebar</div>
+                                <div class="station-name">Jelapang</div>
                             </div>
+                        </div>
+
+                        <div id="hidden-stations">
+                            <!-- BP 11 Segar -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 11</span>
+                                    </div>
+                                    <div class="station-name">Segar</div>
+                                </div>
+                            </div>
+
+                            <!-- BP 10 Fajar -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 10</span>
+                                    </div>
+                                    <div class="station-name">Fajar</div>
+                                </div>
+                            </div>
+
+                            <!-- BP 9 Bangkit -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 9</span>
+                                    </div>
+                                    <div class="station-name">Bangkit</div>
+                                </div>
+                            </div>
+
+                            <!-- BP 8 Pending -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 8</span>
+                                    </div>
+                                    <div class="station-name">Pending</div>
+                                </div>
+                            </div>
+
+                            <!-- BP 7 Petir -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 7</span>
+                                    </div>
+                                    <div class="station-name">Petir</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-more-button">
+                            <button id="toggleBtn" onclick="toggleStations()">Show More</button>
                         </div>
                     </div>
 
-                    <div id="hidden-stations">
-                        <!-- EW 9 Admiralty -->
+                    <!-- Service B Container -->
+                    <div class="line-container hidden" id="serviceBContainer">
+                        <!-- BP 1 Choa Chu Kang -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 9</span>
+                                    <span class="station-code">BP 1</span>
+                                    <span class="interchange-badge mrt-nsl">NS 4</span>
                                 </div>
-                                <div class="station-name">Aljunied</div>
+                                <div class="station-name">Choa Chu Kang</div>
                             </div>
                         </div>
 
-                        <!-- EW 10 Kallang -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 10</span>
-                                </div>
-                                <div class="station-name">Kallang</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 11 Lavender -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 11</span>
-                                </div>
-                                <div class="station-name">Lavender</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 12 Bugis -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 12</span>
-                                    <span class="interchange-badge mrt-dtl">DT 14</span>
-                                </div>
-                                <div class="station-name">Bugis</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 13 City Hall -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 13</span>
-                                    <span class="interchange-badge mrt-nsl">NS 25</span>
-                                </div>
-                                <div class="station-name">City Hall</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 14 Raffles Place -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 14</span>
-                                    <span class="interchange-badge mrt-nsl">NS 26</span>
-                                </div>
-                                <div class="station-name">Raffles Place</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 15 Tanjong Pagar -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 15</span>
-                                </div>
-                                <div class="station-name">Tanjong Pagar</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 16 Outram Park -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 16</span>
-                                    <span class="interchange-badge mrt-nel">NE 3</span>
-                                    <span class="interchange-badge mrt-tel">TE 17</span>
-                                </div>
-                                <div class="station-name">Outram Park</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 17 Tiong Bahru -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 17</span>
-                                </div>
-                                <div class="station-name">Tiong Bahru</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 18 Redhill -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 18</span>
-                                </div>
-                                <div class="station-name">Redhill</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 19 Queenstown -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 19</span>
-                                </div>
-                                <div class="station-name">Queenstown</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 20 Commonwealth -->
+                        <!-- BP 2 South View -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes station-connector">
-                                    <span class="station-code">EW 20</span>
+                                    <span class="station-code">BP 2</span>
                                 </div>
-                                <div class="station-name">Commonwealth</div>
+                                <div class="station-name">South View</div>
                             </div>
                         </div>
 
-                        <!-- EW 21 Buona Vista -->
+                        <!-- BP 3 Keat Hong -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 21</span>
-                                    <span class="interchange-badge mrt-ccl" style="color: #000;">CC 22</span>
+                                    <span class="station-code">BP 3</span>
                                 </div>
-                                <div class="station-name">Buona Vista</div>
+                                <div class="station-name">Keat Hong</div>
                             </div>
                         </div>
 
-                        <!-- EW 22 Dover -->
+                        <!-- BP 4 Teck Whye-->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 22</span>
+                                    <span class="station-code">BP 4</span>
                                 </div>
-                                <div class="station-name">Dover</div>
+                                <div class="station-name">Teck Whye</div>
                             </div>
                         </div>
 
-                        <!-- EW 23 Clementi -->
+                        <!-- BP 5 Phoenix -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 23</span>
+                                    <span class="station-code">BP 5</span>
                                 </div>
-                                <div class="station-name">Clementi</div>
+                                <div class="station-name">Phoenix</div>
                             </div>
                         </div>
 
-                        <!-- EW 24 Jurong East -->
+                        <!-- BP 6 Bukit Panjang -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 24</span>
-                                    <span class="interchange-badge mrt-nsl">NS 1</span>
+                                    <span class="station-code">BP 6</span>
+                                    <span class="interchange-badge mrt-dtl">DT 1</span>
                                 </div>
-                                <div class="station-name">Jurong East</div>
+                                <div class="station-name">Bukit Panjang</div>
                             </div>
                         </div>
 
-                        <!-- EW 25 Chinese Garden -->
+                        <!-- BP 7 Petir -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 25</span>
+                                    <span class="station-code">BP 7</span>
                                 </div>
-                                <div class="station-name">Chinese Garden</div>
+                                <div class="station-name">Petir</div>
                             </div>
                         </div>
 
-                        <!-- EW 26 Lakeside -->
+                        <!-- BP 8 Pending -->
                         <div class="station">
                             <div class="station-dot"></div>
                             <div class="station-content">
                                 <div class="station-codes">
-                                    <span class="station-code">EW 26</span>
+                                    <span class="station-code">BP 8</span>
                                 </div>
-                                <div class="station-name">Lakeside</div>
+                                <div class="station-name">Pending</div>
                             </div>
                         </div>
 
-                        <!-- EW 27 Boon Lay -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 27</span>
+                        <div id="hidden-stations-b">
+                            <!-- BP 9 Bangkit -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 9</span>
+                                    </div>
+                                    <div class="station-name">Bangkit</div>
                                 </div>
-                                <div class="station-name">Boon Lay</div>
+                            </div>
+
+                            <!-- BP 10 Fajar -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 10</span>
+                                    </div>
+                                    <div class="station-name">Fajar</div>
+                                </div>
+                            </div>
+
+                            <!-- BP 11 Segar -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 11</span>
+                                    </div>
+                                    <div class="station-name">Segar</div>
+                                </div>
+                            </div>
+
+                            <!-- BP 12 Jelapang -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 12</span>
+                                    </div>
+                                    <div class="station-name">Jelapang</div>
+                                </div>
+                            </div>
+
+                            <!-- BP 13 Senja -->
+                            <div class="station">
+                                <div class="station-dot"></div>
+                                <div class="station-content">
+                                    <div class="station-codes">
+                                        <span class="station-code">BP 13</span>
+                                    </div>
+                                    <div class="station-name">Senja</div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- EW 28 Pioneer -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 28</span>
-                                </div>
-                                <div class="station-name">Pioneer</div>
-                            </div>
+                        <div class="show-more-button">
+                            <button id="toggleBtnB" onclick="toggleStationsB()">Show More</button>
                         </div>
-
-                        <!-- EW 29 Joo Koon -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 29</span>
-                                </div>
-                                <div class="station-name">Joo Koon</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 30 Gul Circle -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 30</span>
-                                </div>
-                                <div class="station-name">Gul Circle</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 31 Tuas Crescent -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 31</span>
-                                </div>
-                                <div class="station-name">Tuas Crescent</div>
-                            </div>
-                        </div>
-
-                        <!-- EW 32 Tuas West Road -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 32</span>
-                                </div>
-                                <div class="station-name">Tuas West Road</div>
-                            </div>
-
-                        </div>
-
-                        <!-- EW 33 Tuas Link -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">EW 33</span>
-                                </div>
-                                <div class="station-name">Tuas Link</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Changi Airport Branch -->
-                    <div class="line-container hidden" id="changiBranch">
-                        <!-- CG Tanah Merah -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">CG</span>
-                                    <span class="interchange-badge mrt-ewl">EW 4</span>
-                                </div>
-                                <div class="station-name">Tanah Merah</div>
-                            </div>
-                        </div>
-
-                        <!-- CG 1 Expo -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">CG 1</span>
-                                    <span class="interchange-badge mrt-dtl">DT 35</span>
-                                </div>
-                                <div class="station-name">Expo</div>
-                            </div>
-                        </div>
-
-                        <!-- CG 2 Changi Airport -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">CG 2</span>
-                                </div>
-                                <div class="station-name">Changi Airport</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="show-more-button">
-                        <button id="toggleBtn" onclick="toggleStations()">Show More</button>
                     </div>
                 </div>
             </div>
-        </div>
 
 
     </section>
@@ -1181,38 +1067,54 @@
     <script src="../../js/default-assets/active.js"></script>
 
     <script>
-        function switchBranch() {
-            const selector = document.getElementById('branchSelect');
-            const mainBranch = document.getElementById('mainBranch');
-            const changiBranch = document.getElementById('changiBranch');
-            const showMoreButton = document.querySelector('.show-more-button');
-            const hiddenStations = document.getElementById('hidden-stations');
-            const toggleBtn = document.getElementById('toggleBtn');
+        function switchService() {
+            const selector = document.getElementById('serviceSelect');
+            const serviceAContainer = document.getElementById('serviceAContainer');
+            const serviceBContainer = document.getElementById('serviceBContainer');
+            const hiddenStationsA = document.getElementById('hidden-stations');
+            const hiddenStationsB = document.getElementById('hidden-stations-b');
+            const toggleBtnA = document.getElementById('toggleBtn');
+            const toggleBtnB = document.getElementById('toggleBtnB');
 
-            if (selector.value === 'main') {
-                mainBranch.classList.remove('hidden');
-                mainBranch.classList.add('show');
-                changiBranch.classList.add('hidden');
-                changiBranch.classList.remove('show');
-                showMoreButton.style.display = 'block';
+            if (selector.value === 'serviceA') {
+                serviceAContainer.classList.remove('hidden');
+                serviceAContainer.classList.add('show');
+                serviceBContainer.classList.add('hidden');
+                serviceBContainer.classList.remove('show');
                 // Reset hidden stations
-                hiddenStations.classList.remove('show');
-                toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
+                hiddenStationsA.classList.remove('show');
+                hiddenStationsB.classList.remove('show');
+                toggleBtnA.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
+                toggleBtnB.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
             } else {
-                mainBranch.classList.add('hidden');
-                mainBranch.classList.remove('show');
-                changiBranch.classList.remove('hidden');
-                changiBranch.classList.add('show');
-                showMoreButton.style.display = 'none';
+                serviceAContainer.classList.add('hidden');
+                serviceAContainer.classList.remove('show');
+                serviceBContainer.classList.remove('hidden');
+                serviceBContainer.classList.add('show');
                 // Reset hidden stations
-                hiddenStations.classList.remove('show');
-                toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
+                hiddenStationsA.classList.remove('show');
+                hiddenStationsB.classList.remove('show');
+                toggleBtnA.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
+                toggleBtnB.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
             }
         }
 
         function toggleStations() {
             const hiddenStations = document.getElementById('hidden-stations');
             const toggleBtn = document.getElementById('toggleBtn');
+
+            if (hiddenStations.classList.contains('show')) {
+                hiddenStations.classList.remove('show');
+                toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
+            } else {
+                hiddenStations.classList.add('show');
+                toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-up"></i> Show Less';
+            }
+        }
+
+        function toggleStationsB() {
+            const hiddenStations = document.getElementById('hidden-stations-b');
+            const toggleBtn = document.getElementById('toggleBtnB');
 
             if (hiddenStations.classList.contains('show')) {
                 hiddenStations.classList.remove('show');
