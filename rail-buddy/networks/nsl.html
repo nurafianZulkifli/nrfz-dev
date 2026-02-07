@@ -47,6 +47,7 @@
         background: #3d4556;
         border-radius: 12px;
         margin-bottom: 40px;
+        height: fit-content;
     }
 
     .line-description h3 {
@@ -116,11 +117,70 @@
     }
 
     body.dark-mode .line-diagram {
-        background: #3d4556;
+        transition: all 0.5s ease;
+        background-color: #1c1f2b;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     body.dark-mode .line-description {
-        background: #3d4556;
+        transition: all 0.5s ease;
+        background-color: #1c1f2b;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    #hidden-stations {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        padding-left: 30px;
+        margin-top: 6px;
+    }
+
+    /* Vertical line for hidden stations */
+    #hidden-stations::before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: -23px;
+        bottom: 22px;
+        width: 3px;
+        background: #c41e3a;
+        z-index: 1;
+    }
+
+    /* Adjust first station in hidden section */
+    #hidden-stations .station:first-child {
+        padding-top: 0;
+    }
+
+    #hidden-stations.show {
+        display: flex;
+    }
+
+    .show-more-button {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+    }
+
+    .show-more-button button {
+        background: #ff3b3b;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 24px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        transition: background 0.3s ease;
+        width: 100%;
+    }
+
+    .show-more-button button:hover {
+        background: #a01729;
     }
 
     .line-controls {
@@ -214,6 +274,7 @@
         letter-spacing: 1px;
         margin-right: 0px;
         border: 2px solid #fff;
+        cursor: default;
     }
 
     /* When station-code is followed by an interchange badge, flatten right side */
@@ -324,6 +385,7 @@
         font-weight: 500;
         color: #fff;
         white-space: nowrap;
+        cursor: default;
     }
 
     .logo-operator {
@@ -333,6 +395,33 @@
 
     body.dark-mode .station-name {
         color: #fff;
+    }
+
+    body.dark-mode .port-summary {
+        color: #fff;
+        transition: all 0.5s ease;
+        background-color: #1c1f2b;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .details-section {
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+
+    .caplet {
+        height: 1.05em;
+        width: auto;
+        margin-right: 0.3em;
+        vertical-align: middle;
+    }
+
+    .filter-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
     }
 
     /* Responsive design */
@@ -350,30 +439,9 @@
             max-width: 100%;
         }
 
-        .line-container {
-            padding-left: 35px;
-        }
-
-        .station-dot {
-            width: 14px;
-            height: 14px;
-            border: 2px solid white;
-            left: -36px;
-        }
-
-        .station-code {
-            width: 36px;
-            height: 24px;
-            font-size: 10px;
-        }
-
-        .station-name {
-            font-size: 12px;
-        }
-
-        .interchange-badge {
-            font-size: 9px;
-            padding: 3px 6px;
+        .details-section {
+            padding-left: 4em;
+            padding-right: 4em;
         }
     }
 </style>
@@ -389,7 +457,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="menu.html"><i class="fa-solid fa-bars"></i>
+                    <a href="../menu.html"><i class="fa-solid fa-bars"></i>
                     </a>
                 </li>
             </ol>
@@ -411,19 +479,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="history.html" class="nav-link">
+                    <a href="../history.html" class="nav-link">
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <span>History</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="first-last.html" class="nav-link">
+                    <a href="../first-last.html" class="nav-link">
                         <i class="fa-solid fa-clock"></i>
                         <span>Timings</span>
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a href="menu.html" class="nav-link active">
+                    <a href="../menu.html" class="nav-link active">
                         <i class="fa-solid fa-bars"></i>
                         <span>Menu</span>
                     </a>
@@ -496,8 +564,12 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
-                                    <h1 class="page-title" id="filter-title">North-South Line</h1>
+                                    <h1 class="filter-title"><span id="chimes" style="cursor: pointer;"
+                                            title="Click me to hear the NSL Chimes!"><img
+                                                src="../assets/caplets/NSLCap.png" alt="NSL" class="caplet"> North-South
+                                            Line</h1>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -506,6 +578,16 @@
             </div>
         </div>
     </section>
+
+    <!-- Audio Elements -->
+    <audio id="chimes-audio">
+        <source src="../assets/chimes/NSL_Chime A_V2.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="chimes-alt">
+        <source src="../assets/chimes/NSL_Chime B_V2.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- Details/Contents Section -->
     <section class="about-me-summ clearfix">
@@ -555,9 +637,30 @@
     </section>
 
     <!-- Line Diagram Section -->
-    <section class="pdf-section">
-        <div class="container container-xxl container-mobile">
+    <section class="details-section">
+        <div class="container container-xxl container-mobile wow fadeIn" data-wow-delay="100ms">
             <div class="line-content-wrapper">
+
+                <!-- Line Description Box -->
+                <div class="line-description">
+                    <p>Our extensive MRT system today begun
+                        with only five stations on the North-South Line (NSL) connecting Yio Chu Kang to Toa Payoh in
+                        1987. Though it started small, NSL was the first step in Singapore’s grand vision of an
+                        integrated transport system.
+                        <br><br>
+                        The 27 stations along the 45km line serves a large number of mature residential estates and
+                        takes commuters from Jurong East to Marina South Pier.
+                        <br><br>
+                        Along its route are eight interchanges that connect the NSL to the East-West Line (EWL), Circle
+                        Line
+                        (CCL), Downtown Line (DTL), North East Line (NEL) and Bukit Panjang LRT. <br><br>
+                        (Source: <a class="hyperlink"
+                            href="https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html">LTA</a>
+                        )
+                    </p>
+
+                </div>
+                <!-- Line Diagram -->
                 <div class="line-diagram">
                     <div class="line-container">
                         <!-- NS 1 Jurong East -->
@@ -566,7 +669,7 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 1</span>
-                                    <span class="interchange-badge mrt-ewl">EW24</span>
+                                    <span class="interchange-badge mrt-ewl">EW 24</span>
                                     <!-- <span class="interchange-badge mrt-jrl">JE5</span> -->
                                 </div>
                                 <div class="station-name">Jurong East</div>
@@ -601,7 +704,7 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 4</span>
-                                    <span class="interchange-badge mrt-bp">BP1</span>
+                                    <span class="interchange-badge mrt-bp">BP 1</span>
                                     <!-- <span class="interchange-badge mrt-jrl">JS1</span> -->
                                 </div>
                                 <div class="station-name">Choa Chu Kang</div>
@@ -647,12 +750,14 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 9</span>
-                                    <span class="interchange-badge mrt-tel">TE2</span>
+                                    <span class="interchange-badge mrt-tel">TE 2</span>
                                 </div>
                                 <div class="station-name">Woodlands</div>
                             </div>
                         </div>
+                    </div>
 
+                    <div id="hidden-stations">
                         <!-- NS 10 Admiralty -->
                         <div class="station">
                             <div class="station-dot"></div>
@@ -736,7 +841,7 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 17</span>
-                                    <span class="interchange-badge mrt-ccl" style="color: #000;">CC15</span>
+                                    <span class="interchange-badge mrt-ccl" style="color: #000;">CC 15</span>
                                 </div>
                                 <div class="station-name">Bishan</div>
                             </div>
@@ -793,7 +898,7 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 22</span>
-                                    <span class="interchange-badge mrt-tel">TE14</span>
+                                    <span class="interchange-badge mrt-tel">TE 14</span>
                                 </div>
                                 <div class="station-name">Orchard</div>
                             </div>
@@ -816,8 +921,8 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 24</span>
-                                    <span class="interchange-badge mrt-ccl" style="color: #000;">CC1</span>
-                                    <span class="interchange-badge mrt-nel">NE6</span>
+                                    <span class="interchange-badge mrt-ccl" style="color: #000;">CC 1</span>
+                                    <span class="interchange-badge mrt-nel">NE 6</span>
                                 </div>
                                 <div class="station-name">Dhoby Ghaut</div>
                             </div>
@@ -829,7 +934,7 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 25</span>
-                                    <span class="interchange-badge mrt-ewl">EW13</span>
+                                    <span class="interchange-badge mrt-ewl">EW 13</span>
                                 </div>
                                 <div class="station-name">City Hall</div>
                             </div>
@@ -841,7 +946,7 @@
                             <div class="station-content">
                                 <div class="station-codes">
                                     <span class="station-code">NS 26</span>
-                                    <span class="interchange-badge mrt-ewl">EW14</span>
+                                    <span class="interchange-badge mrt-ewl">EW 14</span>
                                 </div>
                                 <div class="station-name">Raffles Place</div>
                             </div>
@@ -854,7 +959,7 @@
                                 <div class="station-codes">
                                     <span class="station-code">NS 27</span>
                                     <span class="interchange-badge mrt-ccl" style="color: #000;">CE2</span>
-                                    <span class="interchange-badge mrt-tel">TE20</span>
+                                    <span class="interchange-badge mrt-tel">TE 20</span>
                                 </div>
                                 <div class="station-name">Marina Bay</div>
                             </div>
@@ -871,15 +976,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Line Description Box -->
-                <div class="line-description">
-                    <!-- <p>The North-South Line (NSL) is one of Singapore's main rapid transit lines, forming a crucial
-                        north-south corridor through the central region of the island.</p> -->
-
+                    <div class="show-more-button">
+                        <button id="toggleBtn" onclick="toggleStations()">Show More</button>
+                    </div>
                 </div>
             </div>
+        </div>
+
+
     </section>
 
     <script type="text/javascript" id="cookiebanner" src="../../js/cookies-banner.js" data-position="bottom"
@@ -905,6 +1010,23 @@
     <script src="../../js/pw.bundle.js"></script>
 
     <script src="../../js/default-assets/active.js"></script>
+
+    <script>
+        function toggleStations() {
+            const hiddenStations = document.getElementById('hidden-stations');
+            const toggleBtn = document.getElementById('toggleBtn');
+
+            if (hiddenStations.classList.contains('show')) {
+                hiddenStations.classList.remove('show');
+                toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show More';
+            } else {
+                hiddenStations.classList.add('show');
+                toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-up"></i> Show Less';
+            }
+        }
+    </script>
+
+    <script src="../assets/chimes/chimes.js"></script>
 
 </body>
 
