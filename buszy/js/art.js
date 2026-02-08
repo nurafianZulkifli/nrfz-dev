@@ -421,9 +421,19 @@ async function fetchBusArrivals() {
                         : `Notifications disabled for Bus ${serviceNo}${busStopInfo}`;
                     showToast(message, isActive ? 'success' : 'info');
 
-                    // Request notification permission on first toggle
-                    if (monitoredServices[serviceNo] && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
-                        Notification.requestPermission();
+                    // Request notification permission on enabling notifications
+                    if (isActive) {
+                        if (Notification.permission === 'default') {
+                            console.log('Requesting notification permission...');
+                            Notification.requestPermission().then(permission => {
+                                console.log('Notification permission result:', permission);
+                                if (permission === 'granted') {
+                                    showToast('Notifications enabled. You will receive alerts when buses arrive.', 'success');
+                                }
+                            });
+                        } else if (Notification.permission === 'denied') {
+                            showToast('Notifications are blocked in your browser settings. Please enable them to receive alerts.', 'info');
+                        }
                     }
                 });
             });
@@ -469,10 +479,14 @@ function checkMonitoredServices(services, now, busStopCode = '') {
                 const arrivalTime = new Date(service.NextBus.EstimatedArrival);
                 const timeDifference = arrivalTime - now;
                 
-                // Send notification when bus arrives within reasonable window (1 min before to 10 min after)
-                const shouldNotify = timeDifference <= 60000 && timeDifference > -600000;
+                // Send notification when bus is arriving or has just arrived (within 30 secs before to 2 mins after)
+                // This captures the "Arr" moment and shortly after
+                const shouldNotify = timeDifference <= 30000 && timeDifference > -120000;
                 
-                if (shouldNotify && !notifiedServices[`${service.ServiceNo}-nextbus`]) {
+                // Also track if bus was previously monitored to detect state changes
+                const wasNotifiedBefore = notifiedServices[`${service.ServiceNo}-nextbus`];
+                
+                if (shouldNotify && !wasNotifiedBefore) {
                     console.log(`Bus ${service.ServiceNo} arrival detected. Time diff: ${timeDifference}ms. Permission: ${Notification.permission}`);
                     sendNotification(`Bus ${service.ServiceNo} Arrives Now!`, {
                         body: `At ${busStopDescription || busStopCode}\nYour monitored bus has arrived.`,
@@ -482,7 +496,7 @@ function checkMonitoredServices(services, now, busStopCode = '') {
                     localStorage.setItem('notifiedServices', JSON.stringify(notifiedServices));
                 }
             } else if (!service.NextBus) {
-                // Reset the notification flag if NextBus no longer exists (bus has departed)
+                // Reset the notification flag if NextBus no longer exists (bus has left the stop)
                 delete notifiedServices[`${service.ServiceNo}-nextbus`];
                 localStorage.setItem('notifiedServices', JSON.stringify(notifiedServices));
             }
@@ -492,10 +506,14 @@ function checkMonitoredServices(services, now, busStopCode = '') {
                 const arrivalTime = new Date(service.NextBus2.EstimatedArrival);
                 const timeDifference = arrivalTime - now;
                 
-                // Send notification when bus arrives within reasonable window (1 min before to 10 min after)
-                const shouldNotify = timeDifference <= 60000 && timeDifference > -600000;
+                // Send notification when bus is arriving or has just arrived (within 30 secs before to 2 mins after)
+                // This captures the "Arr" moment and shortly after
+                const shouldNotify = timeDifference <= 30000 && timeDifference > -120000;
                 
-                if (shouldNotify && !notifiedServices[`${service.ServiceNo}-nextbus2`]) {
+                // Also track if bus was previously monitored to detect state changes
+                const wasNotifiedBefore = notifiedServices[`${service.ServiceNo}-nextbus2`];
+                
+                if (shouldNotify && !wasNotifiedBefore) {
                     console.log(`Bus ${service.ServiceNo} (2nd) arrival detected. Time diff: ${timeDifference}ms. Permission: ${Notification.permission}`);
                     sendNotification(`Bus ${service.ServiceNo} Arrives Now!`, {
                         body: `At ${busStopDescription || busStopCode}\nYour second monitored bus has arrived.`,
@@ -505,7 +523,7 @@ function checkMonitoredServices(services, now, busStopCode = '') {
                     localStorage.setItem('notifiedServices', JSON.stringify(notifiedServices));
                 }
             } else if (!service.NextBus2) {
-                // Reset the notification flag if NextBus2 no longer exists (bus has departed)
+                // Reset the notification flag if NextBus2 no longer exists (bus has left the stop)
                 delete notifiedServices[`${service.ServiceNo}-nextbus2`];
                 localStorage.setItem('notifiedServices', JSON.stringify(notifiedServices));
             }
