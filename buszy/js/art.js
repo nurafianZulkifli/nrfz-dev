@@ -351,6 +351,11 @@ async function fetchBusArrivals() {
             const viewLocationButtons = document.querySelectorAll('.view-location-btn');
             viewLocationButtons.forEach((button) => {
                 button.addEventListener('click', (event) => {
+                    if (!map) {
+                        alert('Map is not available on this device. Please try on desktop.');
+                        return;
+                    }
+                    
                     const latitude = parseFloat(button.getAttribute('data-lat'));
                     const longitude = parseFloat(button.getAttribute('data-lng'));
                     const busNumber = button.getAttribute('data-bus');
@@ -359,28 +364,32 @@ async function fetchBusArrivals() {
                     if (!isNaN(latitude) && !isNaN(longitude)) {
                         // Show the map section
                         const mapSection = document.querySelector('.bus-location-section');
-                        mapSection.style.display = 'block';
+                        if (mapSection) {
+                            mapSection.style.display = 'block';
 
-                        // Invalidate the map size to fix grey areas
-                        setTimeout(() => {
-                            map.invalidateSize();
-                        }, 100); // Small delay to ensure the map container is fully visible
+                            // Invalidate the map size to fix grey areas
+                            setTimeout(() => {
+                                if (map && map.invalidateSize) {
+                                    map.invalidateSize();
+                                }
+                            }, 100); // Small delay to ensure the map container is fully visible
 
-                        // Clear all existing markers
-                        map.eachLayer((layer) => {
-                            if (layer instanceof L.Marker) {
-                                map.removeLayer(layer);
-                            }
-                        });
+                            // Clear all existing markers
+                            map.eachLayer((layer) => {
+                                if (layer instanceof L.Marker) {
+                                    map.removeLayer(layer);
+                                }
+                            });
 
-                        // Center the map on the selected bus location and add a marker
-                        map.setView([latitude, longitude], 15);
-                        const marker = L.marker([latitude, longitude]).addTo(map);
+                            // Center the map on the selected bus location and add a marker
+                            map.setView([latitude, longitude], 15);
+                            const marker = L.marker([latitude, longitude]).addTo(map);
 
-                        marker.bindPopup(`
-                                    <b>Bus ${busNumber}</b><br>
-                                    ${eta || '--'}
-                                `).openPopup();
+                            marker.bindPopup(`
+                                        <b>Bus ${busNumber}</b><br>
+                                        ${eta || '--'}
+                                    `).openPopup();
+                        }
                     } else {
                         alert('Bus location not available.');
                     }
@@ -693,47 +702,74 @@ document.addEventListener('DOMContentLoaded', () => {
 // ****************************
 // :: Bus Location Map
 // ****************************
-// Initialize the map
-const map = L.map('bus-map').setView([1.3521, 103.8198], 12); // Default view (Singapore)
+// Initialize the map with error handling
+let map;
+try {
+    const mapContainer = document.getElementById('bus-map');
+    if (mapContainer) {
+        map = L.map('bus-map').setView([1.3521, 103.8198], 12); // Default view (Singapore)
+        
+        // Add a tile layer (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+    }
+} catch (error) {
+    console.error('Error initializing map:', error);
+}
 
-// Add a tile layer (OpenStreetMap)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+// Add bus marker to the map
+function addBusMarker(lat, lng, serviceNo, type, load) {
+    const marker = L.marker([lat, lng]).addTo(map);
+    marker.bindPopup(`
+        <b>Bus ${serviceNo}</b><br>
+        Type: ${type || 'N/A'}<br>
+        Load: ${load || 'N/A'}
+    `);
+}
 
 // Add "Current Location" button functionality
 const currentLocationBtn = document.getElementById('current-location-btn');
-currentLocationBtn.addEventListener('click', () => {
-    map.locate({ setView: true, maxZoom: 15 });
+if (currentLocationBtn) {
+    currentLocationBtn.addEventListener('click', () => {
+        map.locate({ setView: true, maxZoom: 15 });
 
-    map.on('locationfound', (e) => {
-        const radius = e.accuracy;
+        map.on('locationfound', (e) => {
+            const radius = e.accuracy;
 
-        // Add a marker for the current location
-        L.marker(e.latlng).addTo(map)
-            .bindPopup(`You are within ${Math.round(radius)} meters from this point.`)
-            .openPopup();
+            // Add a marker for the current location
+            L.marker(e.latlng).addTo(map)
+                .bindPopup(`You are within ${Math.round(radius)} meters from this point.`)
+                .openPopup();
 
-        // Add a circle to show the accuracy radius
-        L.circle(e.latlng, radius).addTo(map);
+            // Add a circle to show the accuracy radius
+            L.circle(e.latlng, radius).addTo(map);
+        });
+
+        map.on('locationerror', () => {
+            alert('Unable to retrieve your location. Please ensure location services are enabled.');
+        });
     });
-
-    map.on('locationerror', () => {
-        alert('Unable to retrieve your location. Please ensure location services are enabled.');
-    });
-});
+}
 
 
 // Fetch bus locations and plot them on the map
 async function fetchBusLocations() {
     try {
+        if (!map) {
+            console.warn('Map not initialized');
+            return;
+        }
+
         const searchInput = document.getElementById('bus-stop-search').value.trim();
         const mapSection = document.querySelector('.bus-location-section'); // Map section container
 
         if (!searchInput) {
             console.warn('No Bus Stop Code provided.');
-            mapSection.style.display = 'none'; // Hide the map if no input is provided
+            if (mapSection) {
+                mapSection.style.display = 'none'; // Hide the map if no input is provided
+            }
             return;
         }
 
@@ -761,7 +797,7 @@ async function fetchBusLocations() {
             const { ServiceNo, NextBus, NextBus2 } = service;
 
             // Check NextBus location
-            if (NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
+            if (NextBus && NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
                 addBusMarker(
                     parseFloat(NextBus.Latitude),
                     parseFloat(NextBus.Longitude),
@@ -773,7 +809,7 @@ async function fetchBusLocations() {
             }
 
             // Check NextBus2 location
-            if (NextBus2.Latitude !== "0.0" && NextBus2.Longitude !== "0.0") {
+            if (NextBus2 && NextBus2.Latitude !== "0.0" && NextBus2.Longitude !== "0.0") {
                 addBusMarker(
                     parseFloat(NextBus2.Latitude),
                     parseFloat(NextBus2.Longitude),
@@ -789,7 +825,9 @@ async function fetchBusLocations() {
 
         // Force hide the map if no valid locations exist
         if (!hasValidLocation) {
-            mapSection.style.display = 'none'; // Hide the map section
+            if (mapSection) {
+                mapSection.style.display = 'none'; // Hide the map section
+            }
             console.warn('No valid bus locations available.');
             alert('No bus locations available for this stop.');
         } else {
@@ -797,10 +835,10 @@ async function fetchBusLocations() {
             const bounds = [];
             data.Services.forEach((service) => {
                 const { NextBus, NextBus2 } = service;
-                if (NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
+                if (NextBus && NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
                     bounds.push([parseFloat(NextBus.Latitude), parseFloat(NextBus.Longitude)]);
                 }
-                if (NextBus2.Latitude !== "0.0" && NextBus2.Longitude !== "0.0") {
+                if (NextBus2 && NextBus2.Latitude !== "0.0" && NextBus2.Longitude !== "0.0") {
                     bounds.push([parseFloat(NextBus2.Latitude), parseFloat(NextBus2.Longitude)]);
                 }
             });
@@ -809,20 +847,28 @@ async function fetchBusLocations() {
                 map.fitBounds(bounds);
             }
 
-            mapSection.style.display = 'block'; // Show the map section if valid locations exist
+            if (mapSection) {
+                mapSection.style.display = 'block'; // Show the map section if valid locations exist
+            }
             setTimeout(() => {
-                map.invalidateSize(); // Fix map rendering issues
+                if (map && map.invalidateSize) {
+                    map.invalidateSize(); // Fix map rendering issues
+                }
             }, 100); // Small delay to ensure the map container is fully visible
         }
     } catch (error) {
         console.error('Error fetching bus locations:', error);
         const mapSection = document.querySelector('.bus-location-section');
-        mapSection.style.display = 'none'; // Hide the map in case of an error
+        if (mapSection) {
+            mapSection.style.display = 'none'; // Hide the map in case of an error
+        }
     }
 }
 
 // Fetch bus locations every 10 seconds
-fetchBusLocations();
+if (map) {
+    fetchBusLocations();
+}
 
 
 // ****************************
