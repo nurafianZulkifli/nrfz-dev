@@ -557,8 +557,8 @@ function checkMonitoredServices(services, now, busStopCode = '') {
                 const arrivalTime = new Date(service.NextBus.EstimatedArrival);
                 const timeDifference = arrivalTime - now;
                 
-                // Send notification when bus is arriving or has just arrived (within 30 secs before to 2 mins after)
-                const shouldNotify = timeDifference <= 30000 && timeDifference > -120000;
+                // Send notification only when bus shows "Arr" status (time difference <= 0)
+                const shouldNotify = timeDifference <= 0;
                 const wasNotifiedBefore = notifiedServices[`${service.ServiceNo}-nextbus`];
                 
                 if (shouldNotify && !wasNotifiedBefore) {
@@ -582,7 +582,8 @@ function checkMonitoredServices(services, now, busStopCode = '') {
                 const arrivalTime = new Date(service.NextBus2.EstimatedArrival);
                 const timeDifference = arrivalTime - now;
                 
-                const shouldNotify = timeDifference <= 30000 && timeDifference > -120000;
+                // Send notification only when bus shows "Arr" status (time difference <= 0)
+                const shouldNotify = timeDifference <= 0;
                 const wasNotifiedBefore = notifiedServices[`${service.ServiceNo}-nextbus2`];
                 
                 if (shouldNotify && !wasNotifiedBefore) {
