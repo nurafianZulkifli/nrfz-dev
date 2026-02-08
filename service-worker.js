@@ -55,22 +55,32 @@ function handleShowNotification(data) {
 
 // Handle notification clicks
 self.addEventListener('notificationclick', event => {
+    console.log('Notification clicked:', event.notification.tag);
     event.notification.close();
 
     // Handle notification click - focus existing window or open new one
     event.waitUntil(
         clients.matchAll({ type: 'window', includeUncontrolled: true })
             .then(clientList => {
-                // Check if a window with the target URL is already open
+                console.log('Found ' + clientList.length + ' clients');
+                
+                // Check if a window with the app is already open
                 for (let client of clientList) {
-                    if (client.url === self.location.origin + '/' && 'focus' in client) {
+                    console.log('Client URL:', client.url);
+                    if (client.url.includes('/buszy/art.html') || client.url.includes('nrfz-dev')) {
+                        console.log('Focusing existing client');
                         return client.focus();
                     }
                 }
-                // If no window is open, open a new one
+                
+                // If no window is open, open the app
+                console.log('Opening new window');
                 if (clients.openWindow) {
-                    return clients.openWindow('/');
+                    return clients.openWindow('/buszy/art.html');
                 }
+            })
+            .catch(error => {
+                console.error('Error handling notification click:', error);
             })
     );
 });
