@@ -481,7 +481,6 @@ async function fetchBusArrivals() {
                                         console.log('Notification permission result:', permission);
                                         if (permission === 'granted') {
                                             console.log('Notifications permission granted for Bus service');
-                                            showToast(`Notifications setup complete for Bus ${serviceNo}. You'll get alerts when it arrives.`, 'success');
                                         } else if (permission === 'denied') {
                                             showToast('Notifications are blocked in your browser settings. Please enable them to receive alerts.', 'info');
                                             // Uncheck the bell if user denied
@@ -496,7 +495,6 @@ async function fetchBusArrivals() {
                                     });
                             } else if (Notification.permission === 'granted') {
                                 console.log('Notifications permission already granted');
-                                showToast(`Notifications setup complete for Bus ${serviceNo}. You'll get alerts when it arrives.`, 'success');
                             } else if (Notification.permission === 'denied') {
                                 showToast('Notifications are blocked in your browser settings. Please enable them to receive alerts.', 'info');
                                 // Uncheck the bell if notifications are blocked
