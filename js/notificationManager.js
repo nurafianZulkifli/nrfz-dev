@@ -216,15 +216,15 @@ class NotificationManager {
         toast.style.cssText = `
             background-color: ${bgColor};
             color: white;
-            padding: 16px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            font-size: 15px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            font-size: 13px;
             font-weight: 500;
             animation: notiSlideIn 0.3s ease;
             word-wrap: break-word;
-            max-width: 100%;
-            margin-bottom: 10px;
+            max-width: 320px;
+            text-align: center;
         `;
         toast.textContent = message;
 
@@ -246,13 +246,14 @@ class NotificationManager {
         container.style.cssText = `
             position: fixed;
             top: 20px;
-            left: 20px;
-            right: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             pointer-events: none;
+            align-items: center;
         `;
         document.body.appendChild(container);
 
@@ -263,21 +264,21 @@ class NotificationManager {
             style.textContent = `
                 @keyframes notiSlideIn {
                     from {
-                        transform: translateX(400px);
+                        transform: translateY(-20px);
                         opacity: 0;
                     }
                     to {
-                        transform: translateX(0);
+                        transform: translateY(0);
                         opacity: 1;
                     }
                 }
                 @keyframes notiSlideOut {
                     from {
-                        transform: translateX(0);
+                        transform: translateY(0);
                         opacity: 1;
                     }
                     to {
-                        transform: translateX(400px);
+                        transform: translateY(-20px);
                         opacity: 0;
                     }
                 }
