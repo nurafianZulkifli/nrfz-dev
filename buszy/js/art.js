@@ -432,14 +432,28 @@ async function fetchBusArrivals() {
 
                     // Request notification permission on enabling notifications
                     if (isActive) {
+                        if (!('Notification' in window)) {
+                            showToast('Notifications not supported on this device.', 'info');
+                            return;
+                        }
+
                         if (Notification.permission === 'default') {
                             console.log('Requesting notification permission...');
-                            Notification.requestPermission().then(permission => {
-                                console.log('Notification permission result:', permission);
-                                if (permission === 'granted') {
-                                    showToast('Notifications enabled. You will receive alerts when buses arrive.', 'success');
-                                }
-                            });
+                            Notification.requestPermission()
+                                .then(permission => {
+                                    console.log('Notification permission result:', permission);
+                                    if (permission === 'granted') {
+                                        showToast('Notifications enabled. You will receive alerts when buses arrive.', 'success');
+                                    } else if (permission === 'denied') {
+                                        showToast('Notifications are blocked in your browser settings. Please enable them to receive alerts.', 'info');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error requesting notification permission:', error);
+                                    showToast('Could not enable notifications on this device.', 'info');
+                                });
+                        } else if (Notification.permission === 'granted') {
+                            showToast('Notifications are already enabled. You will receive alerts when buses arrive.', 'success');
                         } else if (Notification.permission === 'denied') {
                             showToast('Notifications are blocked in your browser settings. Please enable them to receive alerts.', 'info');
                         }
@@ -464,6 +478,11 @@ async function fetchBusArrivals() {
 
 // Function to check monitored services and send notifications
 function checkMonitoredServices(services, now, busStopCode = '') {
+    // Skip if Notifications API is not available
+    if (!('Notification' in window)) {
+        return;
+    }
+
     const monitoredServices = JSON.parse(localStorage.getItem('monitoredServices') || '{}');
     const notifiedServices = JSON.parse(localStorage.getItem('notifiedServices') || '{}');
 
@@ -542,25 +561,59 @@ function checkMonitoredServices(services, now, busStopCode = '') {
 
 // Function to send notification
 function sendNotification(title, options = {}) {
-    if (Notification.permission === 'granted') {
-        new Notification(title, options);
-        console.log('Notification sent:', title);
-    } else if (Notification.permission === 'denied') {
-        console.warn('Notifications are blocked. Permission denied.');
-        // Show toast as fallback
-        showToast(`${title} - ${options.body}`, 'info');
-    } else if (Notification.permission === 'default') {
-        console.log('Notification permission is default, requesting permission...');
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                new Notification(title, options);
-                console.log('Notification sent after permission granted:', title);
+    // Check if Notifications API is supported
+    if (!('Notification' in window)) {
+        console.warn('Notifications not supported on this browser');
+        showToast(`${title} - ${options.body || title}`, 'info');
+        return;
+    }
+
+    try {
+        if (Notification.permission === 'granted') {
+            if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                // Use Service Worker if available
+                navigator.serviceWorker.controller.postMessage({
+                    type: 'SHOW_NOTIFICATION',
+                    title: title,
+                    options: options
+                });
             } else {
-                console.warn('Notification permission was not granted');
-                // Show toast as fallback
-                showToast(`${title} - ${options.body}`, 'info');
+                // Fallback to simple notification
+                new Notification(title, options);
             }
-        });
+            console.log('Notification sent:', title);
+        } else if (Notification.permission === 'denied') {
+            console.warn('Notifications are blocked. Permission denied.');
+            // Show toast as fallback
+            showToast(`${title} - ${options.body || title}`, 'info');
+        } else if (Notification.permission === 'default') {
+            console.log('Notification permission is default, requesting permission...');
+            Notification.requestPermission()
+                .then(permission => {
+                    if (permission === 'granted') {
+                        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                            navigator.serviceWorker.controller.postMessage({
+                                type: 'SHOW_NOTIFICATION',
+                                title: title,
+                                options: options
+                            });
+                        } else {
+                            new Notification(title, options);
+                        }
+                        console.log('Notification sent after permission granted:', title);
+                    } else {
+                        console.warn('Notification permission was not granted');
+                        showToast(`${title} - ${options.body || title}`, 'info');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error requesting notification permission:', error);
+                    showToast(`Notification permission error on this device`, 'info');
+                });
+        }
+    } catch (error) {
+        console.error('Error sending notification:', error);
+        showToast(`${title} - ${options.body || title}`, 'info');
     }
 }
 
