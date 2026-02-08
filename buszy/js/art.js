@@ -169,6 +169,18 @@ async function fetchBusArrivals() {
 
         // Create a map of destination codes to names from cached bus stops
         let destinationMap = {};
+        let customDestinationMap = {};
+        
+        // Load custom destination code mappings
+        try {
+            const response = await fetch('json/destination-codes.json');
+            if (response.ok) {
+                customDestinationMap = await response.json();
+            }
+        } catch (error) {
+            console.warn('Custom destination codes file not found or error loading:', error);
+        }
+        
         try {
             const allBusStops = JSON.parse(localStorage.getItem('allBusStops')) || [];
             allBusStops.forEach((stop) => {
@@ -180,7 +192,16 @@ async function fetchBusArrivals() {
 
         // Function to get destination name
         function getDestinationName(destinationCode) {
-            return destinationMap[destinationCode] || destinationCode;
+            // First try to find in bus stops map
+            if (destinationMap[destinationCode]) {
+                return destinationMap[destinationCode];
+            }
+            // Then try custom destination codes mapping
+            if (customDestinationMap[destinationCode]) {
+                return customDestinationMap[destinationCode];
+            }
+            // Finally return the code itself if not found
+            return destinationCode;
         }
 
         // Prepare incoming buses data
