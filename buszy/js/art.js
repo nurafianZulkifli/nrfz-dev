@@ -119,14 +119,20 @@ function debounce(func, delay) {
     };
 }
 
+// Store previous content for comparison
+let previousContainerHTML = '';
+
 // Updated fetchBusArrivals function
 async function fetchBusArrivals() {
     try {
+        // Save current scroll position at the very start
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        
         const searchInput = document.getElementById('bus-stop-search').value.trim();
         const container = document.getElementById('bus-arrivals-container');
 
         if (!searchInput) {
-            container.innerHTML = `
+            const noDataHTML = `
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">No Data</div>
@@ -135,6 +141,10 @@ async function fetchBusArrivals() {
                         </div>
                     </div>
                 </div>`;
+            // Only update if content has changed
+            if (container.innerHTML !== noDataHTML) {
+                container.innerHTML = noDataHTML;
+            }
             return;
         }
 
@@ -150,10 +160,8 @@ async function fetchBusArrivals() {
         const data = await response.json();
         // console.log('API Response:', data); // Debugging line to check API response
 
-        container.innerHTML = '';
-
         if (!data.Services || data.Services.length === 0) {
-            container.innerHTML = `
+            const noDataHTML = `
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">No Data Available</div>
@@ -162,6 +170,10 @@ async function fetchBusArrivals() {
                         </div>
                     </div>
                 </div>`;
+            // Only update if content has changed
+            if (container.innerHTML !== noDataHTML) {
+                container.innerHTML = noDataHTML;
+            }
             return;
         }
 
@@ -227,23 +239,30 @@ async function fetchBusArrivals() {
         incomingBuses.sort((a, b) => a.EstimatedArrival - b.EstimatedArrival);
         const topFourBuses = incomingBuses.slice(0, 4);
 
-        // Display incoming buses
+        // Display incoming buses - only update if content has changed
         const incomingSection = document.getElementById('incoming-buses-section');
         const incomingGrid = document.getElementById('incoming-buses-grid');
         if (topFourBuses.length > 0) {
             incomingSection.style.display = 'block';
             const isDarkMode = document.body.classList.contains('dark-mode');
             const bgColor = isDarkMode ? '#7db603' : '#94d40b';
-            incomingGrid.innerHTML = topFourBuses.map(bus => `
+            const newIncomingHTML = topFourBuses.map(bus => `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <div class="ib-time">${bus.TimeStr}</div>
                     <div class="ib-svc" style="background-color: ${bgColor};" >${bus.ServiceNo}</div>
                 </div>
             `).join('');
+            // Only update if content has changed
+            if (incomingGrid.innerHTML !== newIncomingHTML) {
+                incomingGrid.innerHTML = newIncomingHTML;
+            }
         } else {
             incomingSection.style.display = 'none';
         }
 
+        // Build new content
+        const tempContainer = document.createElement('div');
+        
         data.Services.forEach((service) => {
             const card = document.createElement('div');
             card.classList.add('col-12', 'col-md-4', 'col-xl-3', 'card-bt'); // Add col-sm-6 for 2 cards per row on small screens
@@ -311,93 +330,104 @@ async function fetchBusArrivals() {
                     </div>
                 </div>
             `;
-            container.appendChild(card);
+            tempContainer.appendChild(card);
         });
+
+        // Only update the DOM if the content has changed
+        const newHTML = tempContainer.innerHTML;
+        let didUpdate = false;
+        if (container.innerHTML !== newHTML) {
+            container.innerHTML = newHTML;
+            didUpdate = true;
+        }
 
         // Check for arrivals and send notifications
         const busStopCode = document.getElementById('bus-stop-search').value.trim();
         checkMonitoredServices(data.Services, now, busStopCode);
 
-        // Add event listeners to "View Bus Location" buttons
-        const viewLocationButtons = document.querySelectorAll('.view-location-btn');
-        viewLocationButtons.forEach((button) => {
-            button.addEventListener('click', (event) => {
-                const latitude = parseFloat(button.getAttribute('data-lat'));
-                const longitude = parseFloat(button.getAttribute('data-lng'));
-                const busNumber = button.getAttribute('data-bus');
-                const eta = button.parentElement.parentElement.querySelector('.bus-time').textContent;
+        // Only add event listeners if the DOM was updated
+        if (didUpdate) {
+            // Add event listeners to "View Bus Location" buttons
+            const viewLocationButtons = document.querySelectorAll('.view-location-btn');
+            viewLocationButtons.forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const latitude = parseFloat(button.getAttribute('data-lat'));
+                    const longitude = parseFloat(button.getAttribute('data-lng'));
+                    const busNumber = button.getAttribute('data-bus');
+                    const eta = button.parentElement.parentElement.querySelector('.bus-time').textContent;
 
-                if (!isNaN(latitude) && !isNaN(longitude)) {
-                    // Show the map section
-                    const mapSection = document.querySelector('.bus-location-section');
-                    mapSection.style.display = 'block';
+                    if (!isNaN(latitude) && !isNaN(longitude)) {
+                        // Show the map section
+                        const mapSection = document.querySelector('.bus-location-section');
+                        mapSection.style.display = 'block';
 
-                    // Invalidate the map size to fix grey areas
-                    setTimeout(() => {
-                        map.invalidateSize();
-                    }, 100); // Small delay to ensure the map container is fully visible
+                        // Invalidate the map size to fix grey areas
+                        setTimeout(() => {
+                            map.invalidateSize();
+                        }, 100); // Small delay to ensure the map container is fully visible
 
-                    // Clear all existing markers
-                    map.eachLayer((layer) => {
-                        if (layer instanceof L.Marker) {
-                            map.removeLayer(layer);
-                        }
-                    });
+                        // Clear all existing markers
+                        map.eachLayer((layer) => {
+                            if (layer instanceof L.Marker) {
+                                map.removeLayer(layer);
+                            }
+                        });
 
-                    // Center the map on the selected bus location and add a marker
-                    map.setView([latitude, longitude], 15);
-                    const marker = L.marker([latitude, longitude]).addTo(map);
+                        // Center the map on the selected bus location and add a marker
+                        map.setView([latitude, longitude], 15);
+                        const marker = L.marker([latitude, longitude]).addTo(map);
 
-                    marker.bindPopup(`
-                                <b>Bus ${busNumber}</b><br>
-                                ${eta || '--'}
-                            `).openPopup();
-                } else {
-                    alert('Bus location not available.');
-                }
+                        marker.bindPopup(`
+                                    <b>Bus ${busNumber}</b><br>
+                                    ${eta || '--'}
+                                `).openPopup();
+                    } else {
+                        alert('Bus location not available.');
+                    }
+                });
             });
-        });
 
-        // Add event listeners to notify buttons
-        const notifyButtons = document.querySelectorAll('.notify-btn');
-        const busStopCodeForToast = document.getElementById('bus-stop-search').value.trim();
-        
-        // Get bus stop description for toast
-        let busStopDescriptionForToast = '';
-        try {
-            const allBusStops = JSON.parse(localStorage.getItem('allBusStops')) || [];
-            const busStop = allBusStops.find(stop => stop.BusStopCode === busStopCodeForToast);
-            if (busStop) {
-                busStopDescriptionForToast = busStop.Description;
+            // Add event listeners to notify buttons
+            const notifyButtons = document.querySelectorAll('.notify-btn');
+            const busStopCodeForToast = document.getElementById('bus-stop-search').value.trim();
+            
+            // Get bus stop description for toast
+            let busStopDescriptionForToast = '';
+            try {
+                const allBusStops = JSON.parse(localStorage.getItem('allBusStops')) || [];
+                const busStop = allBusStops.find(stop => stop.BusStopCode === busStopCodeForToast);
+                if (busStop) {
+                    busStopDescriptionForToast = busStop.Description;
+                }
+            } catch (error) {
+                console.error('Error fetching bus stop description:', error);
             }
-        } catch (error) {
-            console.error('Error fetching bus stop description:', error);
-        }
-        
-        notifyButtons.forEach((button) => {
-            button.addEventListener('click', () => {
-                const serviceNo = button.getAttribute('data-service');
-                const monitoredServices = JSON.parse(localStorage.getItem('monitoredServices') || '{}');
+            
+            notifyButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const serviceNo = button.getAttribute('data-service');
+                    const monitoredServices = JSON.parse(localStorage.getItem('monitoredServices') || '{}');
 
-                monitoredServices[serviceNo] = !monitoredServices[serviceNo];
-                localStorage.setItem('monitoredServices', JSON.stringify(monitoredServices));
+                    monitoredServices[serviceNo] = !monitoredServices[serviceNo];
+                    localStorage.setItem('monitoredServices', JSON.stringify(monitoredServices));
 
-                button.classList.toggle('active');
+                    button.classList.toggle('active');
 
-                // Show toast notification
-                const isActive = monitoredServices[serviceNo];
-                const busStopInfo = busStopDescriptionForToast ? ` at ${busStopDescriptionForToast}` : '';
-                const message = isActive
-                    ? `Notifications enabled for Bus ${serviceNo}${busStopInfo}`
-                    : `Notifications disabled for Bus ${serviceNo}${busStopInfo}`;
-                showToast(message, isActive ? 'success' : 'info');
+                    // Show toast notification
+                    const isActive = monitoredServices[serviceNo];
+                    const busStopInfo = busStopDescriptionForToast ? ` at ${busStopDescriptionForToast}` : '';
+                    const message = isActive
+                        ? `Notifications enabled for Bus ${serviceNo}${busStopInfo}`
+                        : `Notifications disabled for Bus ${serviceNo}${busStopInfo}`;
+                    showToast(message, isActive ? 'success' : 'info');
 
-                // Request notification permission on first toggle
-                if (monitoredServices[serviceNo] && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
-                    Notification.requestPermission();
-                }
+                    // Request notification permission on first toggle
+                    if (monitoredServices[serviceNo] && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+                        Notification.requestPermission();
+                    }
+                });
             });
-        });
+        }
     } catch (error) {
         console.error('Error fetching bus arrivals:', error);
         const container = document.getElementById('bus-arrivals-container');
