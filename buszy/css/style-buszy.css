@@ -776,7 +776,9 @@ table th {
 .btn-toPin:focus,
 .btn-toPin:hover,
 .btn-busloc:focus,
-.btn-busloc:hover {
+.btn-busloc:hover,
+.btn-flt:focus,
+.btn-flt:hover {
     font-weight: 500;
     background-color: #6d99c0 !important;
     color: #fff;
