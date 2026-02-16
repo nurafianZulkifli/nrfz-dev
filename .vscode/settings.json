@@ -7,7 +7,7 @@
     "editor.formatOnSave": true,
     // HTML specific
     "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.defaultFormatter": "Wscats.qf",
         "editor.tabSize": 4
     },
     // CSS specific
