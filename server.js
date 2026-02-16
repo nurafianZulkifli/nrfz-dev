@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const cheerio = require('cheerio');
 const path = require('path');
 
 const app = express();
@@ -164,99 +163,6 @@ app.get('/train-service-alerts', async (req, res) => {
   } catch (error) {
     console.error('Error fetching train service alerts from LTA:', error.message);
     res.status(500).send('Error connecting to LTA DataMall');
-  }
-});
-
-// Define the /first-last-bus route - scrapes businterchange.net
-app.get('/first-last-bus', async (req, res) => {
-  try {
-    const { stop } = req.query;
-
-    if (!stop) {
-      return res.status(400).json({ error: 'Bus stop code is required' });
-    }
-
-    // Fetch the page from businterchange.net
-    const url = `https://businterchange.net/sgbus/stops/busstop.php?stop=${encodeURIComponent(stop)}`;
-    const response = await axios.get(url, {
-      timeout: 10000,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-      }
-    });
-
-    // Parse the HTML
-    const $ = cheerio.load(response.data);
-    const busServices = [];
-
-    // Find all tables with id='routedetails' that contain bus service information
-    $('table[id="routedetails"]').each((tableIndex, table) => {
-      const rows = $(table).find('tr');
-      
-      // Skip the header tables (they don't have service info)
-      if (rows.length < 3) return;
-
-      let serviceNumber = '';
-      let routeName = '';
-      let serviceData = {};
-
-      rows.each((rowIndex, row) => {
-        const cells = $(row).find('td');
-        const cellCount = cells.length;
-
-        if (rowIndex === 0) {
-          // First row has service number and route name
-          if (cellCount >= 2) {
-            const firstCell = $(cells[0]).text().trim();
-            const secondCell = $(cells[1]).text().trim();
-            
-            serviceNumber = firstCell;
-            routeName = secondCell;
-          }
-        } else if (rowIndex === 1) {
-          // Second row is the header row with "First Bus" and "Last Bus"
-          // We'll use this to confirm we're in the right place
-          const headerText = $(row).text();
-          if (!headerText.includes('First Bus') || !headerText.includes('Last Bus')) {
-            return;
-          }
-        } else {
-          // Data rows (Weekdays, Saturdays, etc.)
-          if (cellCount >= 3) {
-            const dayType = $(cells[0]).text().trim();
-            const firstBus = $(cells[1]).text().trim();
-            const lastBus = $(cells[2]).text().trim();
-
-            if (dayType && firstBus && lastBus) {
-              serviceData[dayType] = { firstBus, lastBus };
-            }
-          }
-        }
-      });
-
-      // Only add if we found valid service data
-      if (serviceNumber && Object.keys(serviceData).length > 0) {
-        busServices.push({
-          service: serviceNumber,
-          routeName: routeName,
-          timings: serviceData
-        });
-      }
-    });
-
-    if (busServices.length === 0) {
-      return res.status(404).json({ error: 'No bus services found for this stop' });
-    }
-
-    res.json({
-      busStopCode: stop,
-      busServices: busServices,
-      scrapedAt: new Date().toISOString()
-    });
-
-  } catch (error) {
-    console.error('Error scraping first/last bus data:', error.message);
-    res.status(500).json({ error: 'Error scraping bus timings', details: error.message });
   }
 });
 

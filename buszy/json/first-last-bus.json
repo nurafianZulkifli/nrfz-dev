@@ -1,0 +1,804 @@
+[
+  {
+    "busStopCode": "01139",
+    "description": "Tiong Bahru",
+    "services": [
+      {
+        "service": "7",
+        "routeName": "CLEMENTI",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:05",
+            "lastBus": "00:07"
+          },
+          "Saturdays": {
+            "firstBus": "06:02",
+            "lastBus": "00:07"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:00",
+            "lastBus": "00:06"
+          }
+        }
+      },
+      {
+        "service": "7A",
+        "routeName": "ORCHARD MRT",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:32",
+            "lastBus": "23:18"
+          },
+          "Saturdays": {
+            "firstBus": "06:29",
+            "lastBus": "23:06"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:31",
+            "lastBus": "23:05"
+          }
+        }
+      },
+      {
+        "service": "32",
+        "routeName": "BUONA VISTA",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:07",
+            "lastBus": "00:10"
+          },
+          "Saturdays": {
+            "firstBus": "06:03",
+            "lastBus": "00:12"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:07",
+            "lastBus": "00:09"
+          }
+        }
+      },
+      {
+        "service": "51",
+        "routeName": "JURONG EAST",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "05:56",
+            "lastBus": "00:19"
+          },
+          "Saturdays": {
+            "firstBus": "05:58",
+            "lastBus": "00:18"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:16",
+            "lastBus": "00:15"
+          }
+        }
+      },
+      {
+        "service": "61",
+        "routeName": "BUKIT BATOK",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:13",
+            "lastBus": "00:13"
+          },
+          "Saturdays": {
+            "firstBus": "06:13",
+            "lastBus": "00:14"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:28",
+            "lastBus": "00:12"
+          }
+        }
+      },
+      {
+        "service": "63",
+        "routeName": "RUMAH TINGGI",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:12",
+            "lastBus": "00:43"
+          },
+          "Saturdays": {
+            "firstBus": "06:10",
+            "lastBus": "00:44"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:10",
+            "lastBus": "00:43"
+          }
+        }
+      },
+      {
+        "service": "80",
+        "routeName": "HARBOURFRONT",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:19",
+            "lastBus": "00:36"
+          },
+          "Saturdays": {
+            "firstBus": "06:20",
+            "lastBus": "00:38"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:16",
+            "lastBus": "00:33"
+          }
+        }
+      },
+      {
+        "service": "145",
+        "routeName": "BUONA VISTA",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "05:55",
+            "lastBus": "00:24"
+          },
+          "Saturdays": {
+            "firstBus": "05:53",
+            "lastBus": "00:22"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "05:53",
+            "lastBus": "00:22"
+          }
+        }
+      },
+      {
+        "service": "175",
+        "routeName": "CLEMENTI",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:19",
+            "lastBus": "23:49"
+          },
+          "Saturdays": {
+            "firstBus": "06:19",
+            "lastBus": "23:49"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:17",
+            "lastBus": "23:48"
+          }
+        }
+      },
+      {
+        "service": "197",
+        "routeName": "JURONG EAST",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "05:35",
+            "lastBus": "00:26"
+          },
+          "Saturdays": {
+            "firstBus": "05:32",
+            "lastBus": "00:28"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "05:34",
+            "lastBus": "00:24"
+          }
+        }
+      },
+      {
+        "service": "851",
+        "routeName": "BUKIT MERAH",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:16",
+            "lastBus": "00:27"
+          },
+          "Saturdays": {
+            "firstBus": "06:26",
+            "lastBus": "00:27"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:26",
+            "lastBus": "00:27"
+          }
+        }
+      },
+      {
+        "service": "851e",
+        "routeName": "NEW BRIDGE ROAD",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "07:17",
+            "lastBus": "12:48"
+          },
+          "Saturdays": {
+            "firstBus": "09:16",
+            "lastBus": "18:49"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "09:11",
+            "lastBus": "18:45"
+          }
+        }
+      },
+      {
+        "service": "63A",
+        "routeName": "JALAN RUMAH TINGGI",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "-",
+            "lastBus": "-"
+          },
+          "Saturdays": {
+            "firstBus": "-",
+            "lastBus": "-"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "-",
+            "lastBus": "-"
+          }
+        }
+      }
+    ],
+    "scrapedAt": "2026-02-16T14:00:49.283Z"
+  },
+  {
+    "busStopCode": "01219",
+    "description": "Clementi",
+    "services": [
+      {
+        "service": "2",
+        "routeName": "KAMPONG BAHRU",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:25",
+            "lastBus": "00:45"
+          },
+          "Saturdays": {
+            "firstBus": "06:25",
+            "lastBus": "00:43"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:45",
+            "lastBus": "00:28"
+          }
+        }
+      },
+      {
+        "service": "12",
+        "routeName": "KAMPONG BAHRU",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:47",
+            "lastBus": "00:36"
+          },
+          "Saturdays": {
+            "firstBus": "06:38",
+            "lastBus": "00:37"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:38",
+            "lastBus": "00:34"
+          }
+        }
+      },
+      {
+        "service": "33",
+        "routeName": "KENT RIDGE",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "05:56",
+            "lastBus": "00:14"
+          },
+          "Saturdays": {
+            "firstBus": "05:56",
+            "lastBus": "00:14"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:28",
+            "lastBus": "00:14"
+          }
+        }
+      },
+      {
+        "service": "107",
+        "routeName": "SHENTON WAY",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:12",
+            "lastBus": "20:20"
+          },
+          "Saturdays": {
+            "firstBus": "06:10",
+            "lastBus": "14:19"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "107M",
+        "routeName": "MARINA CENTRE (LOOP)",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "20:32",
+            "lastBus": "23:49"
+          },
+          "Saturdays": {
+            "firstBus": "14:29",
+            "lastBus": "23:53"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:23",
+            "lastBus": "23:50"
+          }
+        }
+      },
+      {
+        "service": "133",
+        "routeName": "SHENTON WAY",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:14",
+            "lastBus": "00:24"
+          },
+          "Saturdays": {
+            "firstBus": "06:12",
+            "lastBus": "00:28"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:10",
+            "lastBus": "00:26"
+          }
+        }
+      }
+    ],
+    "scrapedAt": "2026-02-16T14:00:50.391Z"
+  },
+  {
+    "busStopCode": "02161",
+    "description": "Yishun",
+    "services": [
+      {
+        "service": "36",
+        "routeName": "CHANGI AIRPORT",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "05:42",
+            "lastBus": "00:10"
+          },
+          "Saturdays": {
+            "firstBus": "05:46",
+            "lastBus": "00:26"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "05:44",
+            "lastBus": "00:12"
+          }
+        }
+      },
+      {
+        "service": "36B",
+        "routeName": "SIGLAP ROAD",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "09:15",
+            "lastBus": "18:59"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "70A",
+        "routeName": "TEMASEK AVENUE",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "00:19",
+            "lastBus": "00:49"
+          },
+          "Saturdays": {
+            "firstBus": "00:25",
+            "lastBus": "00:49"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "00:20",
+            "lastBus": "00:47"
+          }
+        }
+      },
+      {
+        "service": "70M",
+        "routeName": "YIO CHU KANG",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "19:35",
+            "lastBus": "00:46"
+          },
+          "Saturdays": {
+            "firstBus": "19:25",
+            "lastBus": "00:49"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:47",
+            "lastBus": "00:59"
+          }
+        }
+      },
+      {
+        "service": "97",
+        "routeName": "JURONG EAST",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:07",
+            "lastBus": "23:57"
+          },
+          "Saturdays": {
+            "firstBus": "06:08",
+            "lastBus": "23:57"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:07",
+            "lastBus": "23:57"
+          }
+        }
+      },
+      {
+        "service": "97e",
+        "routeName": "JURONG EAST",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:17",
+            "lastBus": "19:05"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "106",
+        "routeName": "SHENTON WAY",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:32",
+            "lastBus": "00:27"
+          },
+          "Saturdays": {
+            "firstBus": "06:26",
+            "lastBus": "00:25"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:28",
+            "lastBus": "00:25"
+          }
+        }
+      },
+      {
+        "service": "111",
+        "routeName": "GHIM MOH",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:37",
+            "lastBus": "00:35"
+          },
+          "Saturdays": {
+            "firstBus": "06:37",
+            "lastBus": "00:36"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:36",
+            "lastBus": "00:33"
+          }
+        }
+      },
+      {
+        "service": "133",
+        "routeName": "SHENTON WAY",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:24",
+            "lastBus": "00:33"
+          },
+          "Saturdays": {
+            "firstBus": "06:22",
+            "lastBus": "00:36"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:21",
+            "lastBus": "00:36"
+          }
+        }
+      },
+      {
+        "service": "502",
+        "routeName": "SHENTON WAY (LOOP)",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:44",
+            "lastBus": "00:18"
+          },
+          "Saturdays": {
+            "firstBus": "06:41",
+            "lastBus": "00:20"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "07:32",
+            "lastBus": "00:18"
+          }
+        }
+      },
+      {
+        "service": "502A",
+        "routeName": "DOWNTOWN MRT",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "08:41",
+            "lastBus": "09:18"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "518",
+        "routeName": "MARINA BAY SANDS (LOOP)",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "07:46",
+            "lastBus": "00:22"
+          },
+          "Saturdays": {
+            "firstBus": "07:23",
+            "lastBus": "00:28"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "08:23",
+            "lastBus": "00:24"
+          }
+        }
+      },
+      {
+        "service": "518A",
+        "routeName": "MARINA BAY SANDS",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "08:41",
+            "lastBus": "09:05"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "666",
+        "routeName": "PUNGGOL DRIVE",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:01",
+            "lastBus": "18:16"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "671",
+        "routeName": "PUNGGOL ROAD",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "17:29",
+            "lastBus": "18:28"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "672",
+        "routeName": "HOUGANG STREET 51",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "17:58",
+            "lastBus": "18:28"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "857",
+        "routeName": "YISHUN",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "06:21",
+            "lastBus": "23:30"
+          },
+          "Saturdays": {
+            "firstBus": "06:22",
+            "lastBus": "23:30"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "06:35",
+            "lastBus": "23:29"
+          }
+        }
+      },
+      {
+        "service": "673",
+        "routeName": "PUNGGOL WAY",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:03",
+            "lastBus": "18:18"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "675",
+        "routeName": "YIO CHU KANG ROAD",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:11",
+            "lastBus": "18:26"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "676",
+        "routeName": "UPPER SERANGOON ROAD",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:12",
+            "lastBus": "18:27"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "677",
+        "routeName": "PUNGGOL ROAD",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:07",
+            "lastBus": "18:22"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "678",
+        "routeName": "PUNGGOL CENTRAL",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:03",
+            "lastBus": "18:18"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      },
+      {
+        "service": "679",
+        "routeName": "SENGKANG WEST WAY",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "18:02",
+            "lastBus": "18:17"
+          },
+          "Saturdays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "No Operation",
+            "lastBus": "No Operation"
+          }
+        }
+      }
+    ],
+    "scrapedAt": "2026-02-16T14:00:51.611Z"
+  },
+  {
+    "busStopCode": "45231",
+    "description": "Kampong Bahru",
+    "services": [
+      {
+        "service": "302",
+        "routeName": "CHOA CHU KANG CRESCENT (LOOP)",
+        "timings": {
+          "Weekdays": {
+            "firstBus": "05:32",
+            "lastBus": "01:07"
+          },
+          "Saturdays": {
+            "firstBus": "05:32",
+            "lastBus": "01:07"
+          },
+          "Sundays & Public Holidays": {
+            "firstBus": "05:31",
+            "lastBus": "01:07"
+          }
+        }
+      }
+    ],
+    "scrapedAt": "2026-02-16T14:00:52.701Z"
+  }
+]

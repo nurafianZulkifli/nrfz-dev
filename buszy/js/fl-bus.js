@@ -90,30 +90,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             servicesContainer.classList.add('services-grid');
             servicesContainer.innerHTML = '<div class="loading" style="grid-column: 1/-1;"><div class="spinner"></div><p>Loading...</p></div>';
 
-            // Fetch first/last bus data from the API
-            // Development (localhost): use local server
-            // All production environments (GitHub Pages, mobile, etc): use Heroku backend
-            const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('127.');
-            const apiBaseUrl = isLocalDev ? 'http://localhost:3000' : 'https://bat-lta.herokuapp.com';
-            const fetchUrl = `${apiBaseUrl}/first-last-bus?stop=${busStopCode}`;
-            console.log('Fetching from:', fetchUrl, '(Environment:', isLocalDev ? 'Development' : 'Production', ')');
+            // Fetch first/last bus data from pre-generated JSON file
+            // This avoids CORS, API, and backend complexity
+            const jsonUrl = '../json/first-last-bus.json';
+            console.log('Fetching from JSON file:', jsonUrl);
             
-            const response = await fetch(fetchUrl);
+            const response = await fetch(jsonUrl);
             
             if (!response.ok) {
                 console.error('Response not OK:', response.status, response.statusText);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
-            const data = await response.json();
-            console.log('API Response:', data);
+            const allStopsData = await response.json();
+            console.log('All stops data loaded:', allStopsData.length, 'stops');
 
-            if (data.error) {
-                servicesContainer.innerHTML = `<div class="no-data" style="grid-column: 1/-1;">Unable to fetch bus timings for this stop: ${data.error}</div>`;
+            // Find data for the selected bus stop
+            const stopData = allStopsData.find(stop => stop.busStopCode === busStopCode);
+            
+            if (!stopData) {
+                servicesContainer.innerHTML = `<div class="no-data" style="grid-column: 1/-1;">No data found for this bus stop. Data may need to be refreshed.</div>`;
                 return;
             }
 
-            currentStopData = data;
+            const busServices = stopData.services || [];
+            
+            if (busServices.length === 0) {
+                servicesContainer.innerHTML = '<div class="no-data" style="grid-column: 1/-1;">No bus services found for this stop.</div>';
+                return;
+            }
+            
+            currentStopData = stopData;
 
             // Find the bus stop details for the title
             const stop = allBusStops.find(s => s.BusStopCode === busStopCode);
@@ -125,17 +132,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 busStopTitle.textContent = busStopCode;
             }
-            // busStopSubtitle.textContent = `Last updated: ${new Date(data.scrapedAt).toLocaleDateString('en-SG')}`;
+            // busStopSubtitle.textContent = `Last updated: ${new Date().toLocaleDateString('en-SG')}`;
 
             // Display services
             servicesContainer.innerHTML = '';
 
-            if (!data.busServices || data.busServices.length === 0) {
-                servicesContainer.innerHTML = '<div class="no-data" style="grid-column: 1/-1;">No bus services found for this stop.</div>';
-                return;
-            }
-
-            data.busServices.forEach((service, idx) => {
+            busServices.forEach((service, idx) => {
                 const card = createServiceCard(service);
                 servicesContainer.appendChild(card);
             });
