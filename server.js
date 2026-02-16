@@ -8,7 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const LTA_API_KEY = process.env.LTA_API_KEY;
 
-app.use(cors()); // Enable CORS
+// Enable CORS with explicit configuration
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+}));
 
 // Define all API routes BEFORE static file serving
 // Define the /bus-arrivals route
