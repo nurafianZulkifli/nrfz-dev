@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     let allBusStops = [];
     let filteredStops = [];
-    let currentStopData = null;
 
     const busStopSearch = document.getElementById('busStopSearch');
     const busStopDropdown = document.getElementById('busStopDropdown');
@@ -119,8 +118,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 servicesContainer.innerHTML = '<div class="no-data" style="grid-column: 1/-1;">No bus services found for this stop.</div>';
                 return;
             }
-            
-            currentStopData = stopData;
 
             // Find the bus stop details for the title
             const stop = allBusStops.find(s => s.BusStopCode === busStopCode);
@@ -137,7 +134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Display services
             servicesContainer.innerHTML = '';
 
-            busServices.forEach((service, idx) => {
+            busServices.forEach(service => {
                 const card = createServiceCard(service);
                 servicesContainer.appendChild(card);
             });
