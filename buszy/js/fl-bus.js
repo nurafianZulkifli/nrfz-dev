@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Fetch first/last bus data from pre-generated JSON file
             // This avoids CORS, API, and backend complexity
-            const jsonUrl = '../json/first-last-bus.json';
+            const jsonUrl = 'json/first-last-bus.json';
             console.log('Fetching from JSON file:', jsonUrl);
             
             const response = await fetch(jsonUrl);
