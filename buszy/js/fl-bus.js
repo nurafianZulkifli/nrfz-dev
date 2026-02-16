@@ -92,14 +92,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Fetch first/last bus data from the API
             // Development: use localhost:3000
-            // Production (web & mobile): use current origin (same protocol, domain, port)
+            // GitHub Pages (production): use Heroku backend
+            // Other: use current origin
             const hostname = window.location.hostname;
             const isLocalDev = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('127.');
-            const apiBaseUrl = isLocalDev 
-                ? 'http://localhost:3000'
-                : window.location.origin;
+            const isGitHubPages = hostname.includes('github.io');
+            
+            let apiBaseUrl;
+            if (isLocalDev) {
+                apiBaseUrl = 'http://localhost:3000';
+            } else if (isGitHubPages) {
+                apiBaseUrl = 'https://bat-lta.herokuapp.com';
+            } else {
+                apiBaseUrl = window.location.origin;
+            }
+            
             const fetchUrl = `${apiBaseUrl}/first-last-bus?stop=${busStopCode}`;
-            console.log('Fetching from:', fetchUrl, '(Environment:', isLocalDev ? 'Development' : 'Production', ')');
+            console.log('Fetching from:', fetchUrl, '(Environment:', isLocalDev ? 'Development' : isGitHubPages ? 'GitHub Pages' : 'Production', ')');
             
             const response = await fetch(fetchUrl);
             
