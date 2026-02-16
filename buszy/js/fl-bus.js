@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Fetch first/last bus data from pre-generated JSON file
             // This avoids CORS, API, and backend complexity
-            const jsonUrl = 'json/first-last-bus.json';
+            const jsonUrl = '../json/first-last-bus.json';
             console.log('Fetching from JSON file:', jsonUrl);
 
             const response = await fetch(jsonUrl);
@@ -122,12 +122,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Find the bus stop details for the title
             const stop = allBusStops.find(s => s.BusStopCode === busStopCode);
-            
+
             // Update title elements
             try {
                 const busStopCodeEl = document.getElementById('busStopCode');
                 const busStopDescriptionEl = document.getElementById('busStopDescription');
-                
+
                 console.log('Elements found:', { busStopCodeEl: !!busStopCodeEl, busStopDescriptionEl: !!busStopDescriptionEl });
 
                 if (busStopCodeEl) {
