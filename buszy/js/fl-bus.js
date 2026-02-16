@@ -91,13 +91,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             servicesContainer.innerHTML = '<div class="loading" style="grid-column: 1/-1;"><div class="spinner"></div><p>Loading...</p></div>';
 
             // Fetch first/last bus data from the API
-            // Use localhost:3000 for development, or relative path for production
+            // Development: use localhost:3000
+            // Production (web & mobile): use current origin (same protocol, domain, port)
             const hostname = window.location.hostname;
             const isLocalDev = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('127.');
-            const fetchUrl = isLocalDev 
-                ? `http://localhost:3000/first-last-bus?stop=${busStopCode}`
-                : `/first-last-bus?stop=${busStopCode}`;
-            console.log('Fetching from:', fetchUrl);
+            const apiBaseUrl = isLocalDev 
+                ? 'http://localhost:3000'
+                : window.location.origin;
+            const fetchUrl = `${apiBaseUrl}/first-last-bus?stop=${busStopCode}`;
+            console.log('Fetching from:', fetchUrl, '(Environment:', isLocalDev ? 'Development' : 'Production', ')');
             
             const response = await fetch(fetchUrl);
             
