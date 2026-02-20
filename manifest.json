@@ -1,20 +1,61 @@
 {
   "name": "Works by NRFZ",
-  "short_name": "Works by NRFZ",
-  "start_url": "index.html",
+  "short_name": "NRFZ Works",
+  "description": "Transportation apps by NRFZ - Buszy (Bus timings) and Rail Buddy (Train timings)",
+  "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#121521",
   "theme_color": "#007bff",
+  "categories": ["travel", "utilities"],
   "icons": [
     {
       "src": "img/core-img/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "img/core-img/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/core-img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "img/core-img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Buszy - Bus Timings",
+      "short_name": "Buszy",
+      "description": "Check bus arrival times",
+      "url": "/buszy.html",
+      "icons": [{ "src": "img/core-img/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Rail Buddy - Train Timings",
+      "short_name": "Rail Buddy",
+      "description": "Check train arrival times",
+      "url": "/rail-buddy.html",
+      "icons": [{ "src": "img/core-img/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "img/core-img/icon-192.png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
     }
   ]
 }
