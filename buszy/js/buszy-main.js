@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
-                    link.href = `buszy/art.html?BusStopCode=${encodeURIComponent(bookmark.BusStopCode)}`;
+                    link.href = `./art.html?BusStopCode=${encodeURIComponent(bookmark.BusStopCode)}`;
                     
                     // Build correct image path for GitHub Pages and Heroku
                     const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
@@ -161,13 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const busStopName = element.getAttribute('data-bus-stop-name'); // Optional: Get the bus stop name
 
             // Redirect to art.html with the bus stop code as a query parameter
-            const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
-            const baseUrl = new URL(window.location.origin + basePath + 'buszy/art.html');
-            baseUrl.searchParams.set('BusStopCode', busStopCode);
+            const url = new URL('./art.html', window.location.href);
+            url.searchParams.set('BusStopCode', busStopCode);
             if (busStopName) {
-                baseUrl.searchParams.set('BusStopName', busStopName); // Optional
+                url.searchParams.set('BusStopName', busStopName); // Optional
             }
-            window.location.href = baseUrl.toString();
+            window.location.href = url.toString();
         });
     });
 });
