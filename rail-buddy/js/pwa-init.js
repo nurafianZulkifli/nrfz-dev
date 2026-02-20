@@ -4,12 +4,20 @@
  */
 
 window.addEventListener('load', () => {
+  // Wait for PWA config to be available
+  if (!window.PWAConfig) {
+    console.error('[RailBuddy] PWA Config not loaded');
+    return;
+  }
+
+  const config = PWAConfig.railBuddy;
+  
   // Initialize PWA Helper for RailBuddy
   window.railbuddyPWA = new PWAHelper({
-    appName: 'RailBuddy',
-    swPath: '/rail-buddy/service-worker.js',
-    scope: '/rail-buddy/',
-    cacheName: 'rail-buddy-cache-v1',
+    appName: config.appName,
+    swPath: config.swPath,
+    scope: config.scope,
+    cacheName: config.cacheName,
     showInstallBanner: true,
     onInstalled: () => {
       console.log('RailBuddy app installed successfully');
@@ -23,6 +31,7 @@ window.addEventListener('load', () => {
   });
 
   console.log('[RailBuddy] PWA initialized');
+  console.log('[RailBuddy] Config:', config);
   console.log('[RailBuddy] Status:', window.railbuddyPWA.getStatus());
 });
 

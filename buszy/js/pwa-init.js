@@ -4,12 +4,20 @@
  */
 
 window.addEventListener('load', () => {
+  // Wait for PWA config to be available
+  if (!window.PWAConfig) {
+    console.error('[Buszy] PWA Config not loaded');
+    return;
+  }
+
+  const config = PWAConfig.buszy;
+  
   // Initialize PWA Helper for Buszy
   window.buszyPWA = new PWAHelper({
-    appName: 'Buszy',
-    swPath: '/buszy/service-worker.js',
-    scope: '/buszy/',
-    cacheName: 'buszy-cache-v1',
+    appName: config.appName,
+    swPath: config.swPath,
+    scope: config.scope,
+    cacheName: config.cacheName,
     showInstallBanner: true,
     onInstalled: () => {
       console.log('Buszy app installed successfully');
@@ -23,6 +31,7 @@ window.addEventListener('load', () => {
   });
 
   console.log('[Buszy] PWA initialized');
+  console.log('[Buszy] Config:', config);
   console.log('[Buszy] Status:', window.buszyPWA.getStatus());
 });
 
