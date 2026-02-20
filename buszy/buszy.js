@@ -115,12 +115,12 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        aboutPage.style.backgroundImage = "url('img/bg-img/hero-buszy-dark.png')";
+        aboutPage.style.backgroundImage = "url('../img/bg-img/hero-buszy-dark.png')";
 
 
     } else {
         /* Banners */
-        aboutPage.style.backgroundImage = "url('img/bg-img/hero-buszy.png')";
+        aboutPage.style.backgroundImage = "url('../img/bg-img/hero-buszy.png')";
     }
 
 

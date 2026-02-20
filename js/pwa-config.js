@@ -3,7 +3,7 @@
  * Dynamically detects deployment environment and sets correct paths
  */
 
-const PWAConfig = (() => {
+window.PWAConfig = (() => {
   // Detect the base path from current URL
   const pathname = window.location.pathname;
   

@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.innerHTML = `
                     <div class="bus-stop-info">
                         <span class="bus-stop-code">
-                            <img src="buszy/assets/bus-icon.png" alt="Bus Icon">
+                            <img src="./assets/bus-icon.png" alt="Bus Icon">
                             <span class="bus-stop-code-text">${busStop.BusStopCode}</span>
                         </span>
                         <span class="bus-stop-description">${busStop.Description}</span>
