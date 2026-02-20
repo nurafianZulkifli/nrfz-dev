@@ -2,26 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <meta name="description" content="Select app page for Works by NRFZ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover, shrink-to-fit=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Works by NRFZ">
-    <meta name="theme-color" content="#121521" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0d0f15" media="(prefers-color-scheme: dark)">
-    <meta name="msapplication-TileColor" content="#121521">
-    <meta name="msapplication-navbutton-color" content="#121521">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Select app | Works by NRFZ</title>
+    <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
 
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="./img/core-img/icon-192.png">
+    <meta name="theme-color" content="#121521">
 
     <link rel="icon" href="./img/core-img/favicon.png">
 
@@ -464,36 +455,6 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/pw.bundle.js"></script>
-
-    <script>
-        // Service Worker Registration for PWA Support
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('[PWA] Service Worker registered:', registration);
-                        
-                        // Check for updates periodically
-                        setInterval(() => {
-                            registration.update();
-                        }, 60000); // Check every minute
-                    })
-                    .catch(err => {
-                        console.error('[PWA] Service Worker registration failed:', err);
-                    });
-            });
-
-            // Handle service worker updates
-            navigator.serviceWorker.addEventListener('controllerchange', () => {
-                console.log('[PWA] Service Worker controller changed');
-            });
-        }
-
-        // Disable zoom pinch on Android for better UX
-        document.addEventListener('gesturestart', (e) => {
-            e.preventDefault();
-        });
-    </script>
 
     <script src="js/default-assets/active.js"></script>
 
