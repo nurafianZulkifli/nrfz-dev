@@ -255,7 +255,8 @@ function displayBusStops(busStops) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const searchBusStopButton = document.querySelector('a[href="buszy.html"]'); // Select the "Search Bus Stop" button
+    // Select the "Search Bus Stop" button - look for links to index or ./
+    const searchBusStopButton = document.querySelector('a[href="./"], a[href="index.html"]'); // Select the "Search Bus Stop" button
     const searchInput = document.getElementById('bus-stop-search'); // Select the search input field
 
     if (searchBusStopButton && searchInput) {
