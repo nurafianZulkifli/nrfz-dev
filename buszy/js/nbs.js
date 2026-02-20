@@ -214,10 +214,15 @@ function displayBusStops(busStops) {
 
         const busStopElement = document.createElement('div');
         busStopElement.className = 'bus-stop';
+        
+        // Build correct image path for GitHub Pages and Heroku
+        const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
+        const busIconPath = basePath + 'buszy/assets/bus-icon.png';
+        
         busStopElement.innerHTML = `
             <div class="bus-stop-info">
                 <div class="bus-stop-code">
-                    <img src="assets/bus-icon.png" alt="Bus Icon">
+                    <img src="${busIconPath}" alt="Bus Icon">
                     <span class="bus-stop-code-text">${busStop.BusStopCode}</span>
                 </div>
                 <div class="bus-stop-details">

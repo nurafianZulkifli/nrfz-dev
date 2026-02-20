@@ -45,7 +45,8 @@
 
 <style>
     #cv-bat {
-        background-image: url("../img/bg-img/hero-buszy.png");
+        background-size: cover;
+        background-position: center;
         height: 50vh;
     }
 
@@ -118,7 +119,6 @@
 
     @media (max-width: 545px) {
         #cv-bat {
-            background-image: url("../img/bg-img/hero-buszy.png");
             height: 35vh;
         }
 
@@ -273,6 +273,25 @@
         <script src="../js/utils.js"></script>
 
         <script src="../js/pwa-config.js"></script>
+
+        <script>
+            // Set background images with correct paths for GitHub Pages and Heroku
+            if (window.PWAConfig) {
+                const basePath = window.PWAConfig.basePath;
+                const bgElement = document.getElementById('cv-bat');
+                
+                // Check dark mode preference
+                const isDarkMode = localStorage.getItem('dark-mode') === 'enabled' || 
+                                  (document.documentElement.classList.contains('dark-mode'));
+                
+                const imageName = isDarkMode ? 'hero-buszy-dark.png' : 'hero-buszy.png';
+                const imageUrl = basePath + 'img/bg-img/' + imageName;
+                
+                if (bgElement) {
+                    bgElement.style.backgroundImage = `url('${imageUrl}')`;
+                }
+            }
+        </script>
 
         <script src="../js/pwa-helper.js"></script>
 

@@ -682,7 +682,7 @@
             <div class="content-section" id="contentSection">
                 <div class="bus-stop-info">
                     <div class="bus-stop-code">
-                        <img alt="bus icon" src="assets/bus-icon.png" />
+                        <img alt="bus icon" src="assets/bus-icon.png" class="bus-icon-img" />
                         <span class="bus-stop-code-text" id="busStopCode">
                             --
                         </span>
@@ -724,6 +724,17 @@
     <script src="../js/isotope.pkgd.min.js"></script>
     <script src="../js/dstabs.js"></script>
     <script src="../js/utils.js"></script>
+    <script src="../js/pwa-config.js"></script>
+    <script>
+        // Fix image paths for GitHub Pages and Heroku compatibility
+        document.addEventListener('DOMContentLoaded', () => {
+            const busIconImg = document.querySelector('.bus-icon-img');
+            if (busIconImg && window.PWAConfig) {
+                const basePath = window.PWAConfig.basePath;
+                busIconImg.src = basePath + 'buszy/assets/bus-icon.png';
+            }
+        });
+    </script>
     <script src="js/fl-bus.js"></script>
 </body>
 </html>
