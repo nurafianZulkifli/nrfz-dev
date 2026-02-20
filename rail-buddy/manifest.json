@@ -2,36 +2,22 @@
   "name": "RailBuddy - Train Status & Alerts",
   "short_name": "RailBuddy",
   "description": "Real-time train line status, delays, and schedules for Singapore MRT and LRT networks",
-  "start_url": "/rail-buddy.html",
-  "scope": "/",
+  "start_url": "/rail-buddy/",
+  "scope": "/rail-buddy/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
   "categories": ["transportation", "utilities"],
-  "screenshots": [
-    {
-      "src": "rail-buddy/assets/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "rail-buddy/assets/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
   "icons": [
     {
-      "src": "rail-buddy/assets/icon-192.png",
+      "src": "/rail-buddy/assets/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "rail-buddy/assets/icon-512.png",
+      "src": "/rail-buddy/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -42,17 +28,17 @@
       "name": "Line Status",
       "short_name": "Status",
       "description": "Check train line status",
-      "url": "/rail-buddy.html",
+      "url": "/rail-buddy/",
       "icons": [
         {
-          "src": "rail-buddy/assets/icon-192.png",
+          "src": "/rail-buddy/assets/icon-192.png",
           "sizes": "192x192"
         }
       ]
     }
   ],
   "share_target": {
-    "action": "/rail-buddy.html",
+    "action": "/rail-buddy/",
     "method": "POST",
     "enctype": "application/x-www-form-urlencoded",
     "params": {

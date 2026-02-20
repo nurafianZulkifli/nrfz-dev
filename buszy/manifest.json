@@ -2,41 +2,22 @@
   "name": "Buszy - Bus Timings & Alerts",
   "short_name": "Buszy",
   "description": "Real-time bus timings, alerts, and pinned bus stops for Singapore buses",
-  "start_url": "/buszy.html",
-  "scope": "/",
+  "start_url": "/buszy/",
+  "scope": "/buszy/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
   "categories": ["transportation", "utilities"],
-  "screenshots": [
-    {
-      "src": "img/core-img/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "img/core-img/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
   "icons": [
     {
-      "src": "img/core-img/favicon.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "img/core-img/icon-192.png",
+      "src": "/buszy/assets/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "img/core-img/icon-512.png",
+      "src": "/buszy/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -47,17 +28,17 @@
       "name": "Bus Timings",
       "short_name": "Timings",
       "description": "Check bus arrival timings",
-      "url": "/buszy.html",
+      "url": "/buszy/",
       "icons": [
         {
-          "src": "img/core-img/icon-192.png",
+          "src": "/buszy/assets/icon-192.png",
           "sizes": "192x192"
         }
       ]
     }
   ],
   "share_target": {
-    "action": "/buszy.html",
+    "action": "/buszy/",
     "method": "POST",
     "enctype": "application/x-www-form-urlencoded",
     "params": {
