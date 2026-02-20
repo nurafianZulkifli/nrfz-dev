@@ -1,61 +1,75 @@
 /**
  * Buszy Service Worker
- * Scope: /buszy/
  * Handles caching and offline functionality for Buszy app
+ * Dynamically detects base path for GitHub Pages and Heroku compatibility
  */
+
+// Detect base path dynamically
+const BASE_PATH = (() => {
+  // Get the scope from the service worker registration
+  const scope = self.registration.scope;
+  // Extract base path from scope (e.g., '/nrfz-dev/buszy/' -> '/nrfz-dev/')
+  const match = scope.match(/^(.*\/)buszy\/$/);
+  return match ? match[1] : '/';
+})();
 
 const CACHE_VERSION = 'v1';
 const CACHE_NAME = `buszy-cache-${CACHE_VERSION}`;
 
+// Helper function to build paths with correct base
+function buildPath(path) {
+  return BASE_PATH + path.replace(/^\//, '');
+}
+
 // Buszy-specific assets to cache
 const STATIC_ASSETS = [
   // Buszy entry
-  '/buszy/',
-  '/buszy/index.html',
-  '/buszy/manifest.json',
+  buildPath('buszy/'),
+  buildPath('buszy/index.html'),
+  buildPath('buszy/manifest.json'),
   
   // Buszy styles
-  '/buszy/css/style-buszy.css',
+  buildPath('buszy/css/style-buszy.css'),
   
   // Buszy scripts
-  '/buszy/js/buszy-main.js',
-  '/buszy/js/menu.js',
-  '/buszy/js/settings.js',
-  '/buszy/js/abs.js',
-  '/buszy/js/ann.js',
-  '/buszy/js/art.js',
-  '/buszy/js/fl-bus.js',
-  '/buszy/js/mob-navtabs.js',
-  '/buszy/js/nbs.js',
-  '/buszy/js/pinned.js',
-  '/buszy/js/scrape-bus-timings.js',
-  '/buszy/js/tsa.js',
+  buildPath('buszy/js/buszy-main.js'),
+  buildPath('buszy/js/menu.js'),
+  buildPath('buszy/js/settings.js'),
+  buildPath('buszy/js/abs.js'),
+  buildPath('buszy/js/ann.js'),
+  buildPath('buszy/js/art.js'),
+  buildPath('buszy/js/fl-bus.js'),
+  buildPath('buszy/js/mob-navtabs.js'),
+  buildPath('buszy/js/nbs.js'),
+  buildPath('buszy/js/pinned.js'),
+  buildPath('buszy/js/scrape-bus-timings.js'),
+  buildPath('buszy/js/tsa.js'),
   
   // Buszy assets
-  '/buszy/assets/',
+  buildPath('buszy/assets/'),
   
   // Shared utilities
-  '/shared/js/utils.js',
-  '/shared/js/pwa-helper.js',
+  buildPath('js/utils.js'),
+  buildPath('js/pwa-helper.js'),
   
   // Shared CSS
-  '/shared/css/style.css',
-  '/shared/css/dark-mode.css',
-  '/shared/css/style-breakpoints.css',
-  '/shared/css/bootstrap.min.css',
-  '/shared/css/animate.css',
-  '/shared/css/carousel.css',
-  '/shared/css/swiper-bundle.min.css',
+  buildPath('css/style.css'),
+  buildPath('css/dark-mode.css'),
+  buildPath('css/style-breakpoints.css'),
+  buildPath('css/bootstrap.min.css'),
+  buildPath('css/animate.css'),
+  buildPath('css/carousel.css'),
+  buildPath('css/swiper-bundle.min.css'),
   
   // Shared JS libraries
-  '/shared/js/bootstrap.min.js',
-  '/shared/js/jquery.min.js',
-  '/shared/js/popper.min.js',
+  buildPath('js/bootstrap.min.js'),
+  buildPath('js/jquery.min.js'),
+  buildPath('js/popper.min.js'),
   
   // Icons
-  '/shared/img/core-img/favicon.png',
-  '/buszy/assets/icon-192.png',
-  '/buszy/assets/icon-512.png'
+  buildPath('img/core-img/favicon.png'),
+  buildPath('buszy/assets/icon-192.png'),
+  buildPath('buszy/assets/icon-512.png')
 ];
 
 // Install: cache Buszy assets
@@ -91,9 +105,10 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
+  const buszyScope = BASE_PATH + 'buszy/';
   
   // Only handle GET requests within Buszy scope
-  if (request.method !== 'GET' || !url.pathname.startsWith('/buszy/')) {
+  if (request.method !== 'GET' || !url.pathname.startsWith(buszyScope)) {
     return;
   }
   

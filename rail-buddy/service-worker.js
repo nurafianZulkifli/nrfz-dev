@@ -1,65 +1,79 @@
 /**
  * RailBuddy Service Worker
- * Scope: /rail-buddy/
  * Handles caching and offline functionality for RailBuddy app
+ * Dynamically detects base path for GitHub Pages and Heroku compatibility
  */
+
+// Detect base path dynamically
+const BASE_PATH = (() => {
+  // Get the scope from the service worker registration
+  const scope = self.registration.scope;
+  // Extract base path from scope (e.g., '/nrfz-dev/rail-buddy/' -> '/nrfz-dev/')
+  const match = scope.match(/^(.*\/)rail-buddy\/$/);
+  return match ? match[1] : '/';
+})();
 
 const CACHE_VERSION = 'v1';
 const CACHE_NAME = `rail-buddy-cache-${CACHE_VERSION}`;
 
+// Helper function to build paths with correct base
+function buildPath(path) {
+  return BASE_PATH + path.replace(/^\//, '');
+}
+
 // RailBuddy-specific assets to cache
 const STATIC_ASSETS = [
   // RailBuddy entry
-  '/rail-buddy/',
-  '/rail-buddy/index.html',
-  '/rail-buddy/manifest.json',
+  buildPath('rail-buddy/'),
+  buildPath('rail-buddy/index.html'),
+  buildPath('rail-buddy/manifest.json'),
   
   // RailBuddy styles
-  '/rail-buddy/css/style-tdt.css',
+  buildPath('rail-buddy/css/style-tdt.css'),
   
   // RailBuddy scripts
-  '/rail-buddy/js/tsa.js',
-  '/rail-buddy/js/menu.js',
-  '/rail-buddy/js/settings.js',
-  '/rail-buddy/js/delays-bar-chart.js',
-  '/rail-buddy/js/ft-lt.js',
-  '/rail-buddy/js/hist.js',
-  '/rail-buddy/js/lrt-mkbf-line-chart.js',
-  '/rail-buddy/js/mob-navtabs.js',
-  '/rail-buddy/js/mrt-mkbf-line-chart.js',
-  '/rail-buddy/js/scrape-sbs-transit.js',
-  '/rail-buddy/js/scrape-smrt.js',
-  '/rail-buddy/js/sysMap.js',
+  buildPath('rail-buddy/js/tsa.js'),
+  buildPath('rail-buddy/js/menu.js'),
+  buildPath('rail-buddy/js/settings.js'),
+  buildPath('rail-buddy/js/delays-bar-chart.js'),
+  buildPath('rail-buddy/js/ft-lt.js'),
+  buildPath('rail-buddy/js/hist.js'),
+  buildPath('rail-buddy/js/lrt-mkbf-line-chart.js'),
+  buildPath('rail-buddy/js/mob-navtabs.js'),
+  buildPath('rail-buddy/js/mrt-mkbf-line-chart.js'),
+  buildPath('rail-buddy/js/scrape-sbs-transit.js'),
+  buildPath('rail-buddy/js/scrape-smrt.js'),
+  buildPath('rail-buddy/js/sysMap.js'),
   
   // RailBuddy assets
-  '/rail-buddy/assets/',
-  '/rail-buddy/networks/',
+  buildPath('rail-buddy/assets/'),
+  buildPath('rail-buddy/networks/'),
   
   // RailBuddy JSON data
-  '/rail-buddy/json/',
+  buildPath('rail-buddy/json/'),
   
   // Shared utilities
-  '/shared/js/utils.js',
-  '/shared/js/pwa-helper.js',
+  buildPath('js/utils.js'),
+  buildPath('js/pwa-helper.js'),
   
   // Shared CSS
-  '/shared/css/style.css',
-  '/shared/css/dark-mode.css',
-  '/shared/css/style-breakpoints.css',
-  '/shared/css/bootstrap.min.css',
-  '/shared/css/animate.css',
-  '/shared/css/carousel.css',
-  '/shared/css/swiper-bundle.min.css',
+  buildPath('css/style.css'),
+  buildPath('css/dark-mode.css'),
+  buildPath('css/style-breakpoints.css'),
+  buildPath('css/bootstrap.min.css'),
+  buildPath('css/animate.css'),
+  buildPath('css/carousel.css'),
+  buildPath('css/swiper-bundle.min.css'),
   
   // Shared JS libraries
-  '/shared/js/bootstrap.min.js',
-  '/shared/js/jquery.min.js',
-  '/shared/js/popper.min.js',
+  buildPath('js/bootstrap.min.js'),
+  buildPath('js/jquery.min.js'),
+  buildPath('js/popper.min.js'),
   
   // Icons
-  '/shared/img/core-img/favicon.png',
-  '/rail-buddy/assets/icon-192.png',
-  '/rail-buddy/assets/icon-512.png'
+  buildPath('img/core-img/favicon.png'),
+  buildPath('rail-buddy/assets/icon-192.png'),
+  buildPath('rail-buddy/assets/icon-512.png')
 ];
 
 // Install: cache RailBuddy assets
@@ -95,9 +109,10 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
+  const railBuddyScope = BASE_PATH + 'rail-buddy/';
   
   // Only handle GET requests within RailBuddy scope
-  if (request.method !== 'GET' || !url.pathname.startsWith('/rail-buddy/')) {
+  if (request.method !== 'GET' || !url.pathname.startsWith(railBuddyScope)) {
     return;
   }
   
