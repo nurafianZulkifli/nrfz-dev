@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pwa-styles.css">
     <link rel="stylesheet" href="/buszy/css/style-buszy.css">
     <link rel="stylesheet" href="/css/style-breakpoints.css">
     <link rel="stylesheet" href="/css/dark-mode.css">
@@ -270,20 +271,13 @@
 
         <script src="/js/utils.js"></script>
 
-        <script src="/js/pwa-helper.js"></script>
-
         <script src="/js/pwa-migration.js"></script>
 
-        <script src="/buszy/js/buszy-main.js"></script>
+        <script src="/js/pwa-helper.js"></script>
 
-        <script>
-            // Register Buszy-specific service worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/buszy/service-worker.js', { scope: '/buszy/' })
-                    .then(reg => console.log('Buszy SW registered'))
-                    .catch(err => console.error('Buszy SW registration failed:', err));
-            }
-        </script>
+        <script src="/buszy/js/pwa-init.js"></script>
+
+        <script src="/buszy/js/buszy-main.js"></script>
 
 </body>
 

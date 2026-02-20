@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pwa-styles.css">
     <link rel="stylesheet" href="/rail-buddy/css/style-tdt.css">
     <link rel="stylesheet" href="/css/style-breakpoints.css">
     <link rel="stylesheet" href="/css/dark-mode.css">
@@ -351,20 +352,13 @@
 
     <script src="/js/utils.js"></script>
 
-    <script src="/js/pwa-helper.js"></script>
-
     <script src="/js/pwa-migration.js"></script>
 
-    <script src="/rail-buddy/js/tsa.js"></script>
+    <script src="/js/pwa-helper.js"></script>
 
-    <script>
-        // Register RailBuddy-specific service worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/rail-buddy/service-worker.js', { scope: '/rail-buddy/' })
-                .then(reg => console.log('RailBuddy SW registered'))
-                .catch(err => console.error('RailBuddy SW registration failed:', err));
-        }
-    </script>
+    <script src="/rail-buddy/js/pwa-init.js"></script>
+
+    <script src="/rail-buddy/js/tsa.js"></script>
 
 </body>
 
