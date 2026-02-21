@@ -1,20 +1,13 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const LTA_API_KEY = process.env.LTA_API_KEY;
 
-// Enable CORS with explicit configuration
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
-}));
+app.use(cors()); // Enable CORS
 
-// Define all API routes BEFORE static file serving
 // Define the /bus-arrivals route
 app.get('/bus-arrivals', async (req, res) => {
   try {
@@ -164,42 +157,6 @@ app.get('/train-service-alerts', async (req, res) => {
     console.error('Error fetching train service alerts from LTA:', error.message);
     res.status(500).send('Error connecting to LTA DataMall');
   }
-});
-
-// Serve static files (after all API routes to prevent conflicts)
-app.use(express.static(path.join(__dirname))); // Serve all static files from root
-
-// Buszy app routes
-app.get('/buszy/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'buszy/index.html'));
-});
-
-app.get('/buszy/service-worker.js', (req, res) => {
-  res.type('application/javascript');
-  res.set('Service-Worker-Allowed', '/buszy/');
-  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(path.join(__dirname, 'buszy/service-worker.js'));
-});
-
-// RailBuddy app routes
-app.get('/rail-buddy/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'rail-buddy/index.html'));
-});
-
-app.get('/rail-buddy/service-worker.js', (req, res) => {
-  res.type('application/javascript');
-  res.set('Service-Worker-Allowed', '/rail-buddy/');
-  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(path.join(__dirname, 'rail-buddy/service-worker.js'));
-});
-
-// Legacy redirects (optional - remove if not needed)
-app.get('/buszy.html', (req, res) => {
-  res.redirect(301, '/buszy/');
-});
-
-app.get('/rail-buddy.html', (req, res) => {
-  res.redirect(301, '/rail-buddy/');
 });
 
 // Start the server

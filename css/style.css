@@ -1229,10 +1229,7 @@ h4.timeline-date-aa {
 
 /* ------------------------------------------ 11.0 Works By NRFZ/Blogs (Featured/Main) ------------------------------------------ */
 .wbnrfz-works {
-    padding-top: 6em;
-    padding-bottom: 0em;
-    padding-left: 1.2em;
-    padding-right: 1.2em;
+    padding: 60px 20px;
     background-color: #ececea;
     text-align: center;
 }
