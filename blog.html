@@ -14,7 +14,7 @@
 
     <link rel="icon" href="./img/core-img/favicon.png">
 
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.2.0/css/all.css" />
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-mobNav.css">
@@ -47,6 +47,10 @@
                     <a href="menu.html"><i class="fa-regular fa-bars"></i>
                     </a>
                 </li>
+                <li class="breadcrumb-item">
+                    <a href="blog.html"><i class="fa-regular fa-comment-dots"></i>
+                    </a>
+                </li>
             </ol>
         </nav>
     </div>
@@ -66,7 +70,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="about.html" class="nav-link active">
+                    <a href="about.html" class="nav-link">
                         <i class="fa-regular fa-circle-user"></i>
                         <span>About</span>
                     </a>
@@ -77,10 +81,10 @@
                         <span>EICW</span>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a href="menu.html" class="nav-link">
-                        <i class="fa-regular fa-bars"></i>
-                        <span>Menu</span>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link active">
+                        <i class="fa-regular fa-comment-dots"></i>
+                        <span>Blog</span>
                     </a>
                 </li>
             </ul>
@@ -99,7 +103,7 @@
                     <span class="label">Home</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="about.html">
                     <span class="icon">
                         <i class="fa-regular fa-circle-user"></i>
@@ -115,7 +119,7 @@
                     <span class="label">EICW</span>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="menu.html">
                     <span class="icon">
                         <i class="fa-regular fa-bars"></i>
@@ -135,28 +139,30 @@
             <div class="page-header-section">
                 <div class="container container-xxl container-mobile container-mobile-header">
                     <div class="breadcrumb-wrapper">
-                        <nav aria-label="breadcrumb">
+                        <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">
-                                        <i class="fa-solid fa-house"></i>
+                                    <a href="./">
+                                        <i class="fa-regular fa-house"></i>
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="#">Blog</a>
+                                    <a href="menu.html"><i class="fa-regular fa-bars"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="blog.html"><i class="fa-regular fa-comment-dots"></i>
+                                    </a>
                                 </li>
                             </ol>
                         </nav>
                         <div class="page-title-wrapper">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                                <div>
-                                    <h1 class="page-title" id="filter-title">All Posts</h1>
-                                </div>
+                            <div>
+                                <h1 class="page-title-single" id="filter-title">All Posts</h1>
                             </div>
+
                         </div>
                     </div>
-
                 </div>
 
 
@@ -170,15 +176,18 @@
 
                     <ul>
                         <li>
-                            <a href="#" class="btn-filter-blog active" data-filter="*">All Posts</a>
+                            <a href="#" class="btn-filter-blog active" data-filter="*"><i
+                                    class="fa-light fa-comment-dots"></i> All Posts</a>
                         </li>
 
                         <li>
-                            <a href="#" class="btn-filter-blog" data-filter=".wbd">Website Design</a>
+                            <a href="#" class="btn-filter-blog" data-filter=".wbd"><i class="fa-regular fa-browser"></i>
+                                Website Design</a>
                         </li>
 
                         <li>
-                            <a href="#" class="btn-filter-blog" data-filter=".wfd">Wayfinding Design</a>
+                            <a href="#" class="btn-filter-blog" data-filter=".wfd"><i
+                                    class="fa-regular fa-map-location"></i> Wayfinding Design</a>
                         </li>
                     </ul>
 
@@ -280,7 +289,7 @@
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
 
-    <script src="js/navtabs.js"></script>
+    <script src="js/mob-navtabs.js"></script>
 
     <script src="js/theme-subPages.js"></script>
 
