@@ -602,12 +602,12 @@ body.dark-mode .scrollable-tabs-container a:hover {
 
 body.dark-mode .scrollable-tabs-container .right-arrow {
     right: 0;
-    background: linear-gradient(to left, #18191a 50%, transparent);
+    background: linear-gradient(to left, #121521 50%, transparent);
     justify-content: flex-end;
 }
 
 body.dark-mode .scrollable-tabs-container .left-arrow {
-    background: linear-gradient(to right, #18191a 50%, transparent);
+    background: linear-gradient(to right, #121521 50%, transparent);
     justify-content: flex-start;
 }
 
