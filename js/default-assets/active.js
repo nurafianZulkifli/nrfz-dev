@@ -196,8 +196,51 @@
     if ($.fn.scrollUp) {
         pw_window.scrollUp({
             scrollSpeed: 1000,
-            scrollText: '<i class="fa-solid fa-arrow-up-to-line"></i>'
+            scrollText: '<i class="fa-solid fa-arrow-up-to-line"></i>',
+            scrollDistance: 9999999, // Disable the plugin's own show/hide; we control it manually
+            animation: 'none',
+            animationSpeed: 0
         });
+
+        // Custom visibility: show when scrolling up (past threshold), hide when scrolling down
+        (function () {
+            var lastScrollY = window.scrollY;
+            var btn = document.getElementById('scrollUp');
+            var visible = false;
+            var THRESHOLD = 200;
+            var ticking = false;
+
+            function syncBtn() {
+                if (!btn) { btn = document.getElementById('scrollUp'); }
+                if (!btn) return;
+                if (visible) {
+                    btn.classList.add('btt-visible');
+                } else {
+                    btn.classList.remove('btt-visible');
+                }
+            }
+
+            window.addEventListener('scroll', function () {
+                if (!ticking) {
+                    window.requestAnimationFrame(function () {
+                        var currentScrollY = window.scrollY;
+                        if (currentScrollY < THRESHOLD) {
+                            visible = false;
+                        } else if (currentScrollY < lastScrollY - 4) {
+                            // Scrolling up
+                            visible = true;
+                        } else if (currentScrollY > lastScrollY + 4) {
+                            // Scrolling down
+                            visible = false;
+                        }
+                        lastScrollY = currentScrollY;
+                        syncBtn();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        })();
     }
 
     // *********************************
