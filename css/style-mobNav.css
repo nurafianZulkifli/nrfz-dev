@@ -27,6 +27,26 @@ body.dark-mode .mobile-bottom-nav {
     color: #67a0bb !important;
 }
 
+/* Portfolio page: title left, search right on desktop */
+.port-search-wrapper {
+    position: relative;
+}
+
+@media (min-width: 995px) {
+    .port-header-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    .port-search-wrapper {
+        max-width: 300px;
+        width: 100%;
+    }
+}
+
 .page-title-wrapper>div>div:first-child {
     margin-bottom: 0px;
 }
