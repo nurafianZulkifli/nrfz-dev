@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css" />
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-mobNav.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
     <link rel="stylesheet" href="css/dark-mode.css">
 
@@ -38,125 +39,82 @@
 
 </head>
 
-<style>
-
-
-
-
-</style>
-
 <body>
 
     <!-- Navigation Bar -->
     <nav class="navbar-container">
         <div class="navbar">
             <!-- Logo -->
-            <a href="index.html"><img src="img/core-img/logo.png" alt="logo" class="logo" /></a>
+            <a href="./"><img src="img/core-img/logo.png" alt="logo" class="logo"></a>
 
             <!-- Navigation Links -->
             <ul class="navbar-nav" id="navbarNav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="fa-solid fa-house"></i>
+                    <a href="./" class="nav-link active">
+                        <i class="fa-sharp fa-regular fa-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="about.html" class="nav-link">
-                        <i class="fa-solid fa-circle-user"></i>
+                        <i class="fa-regular fa-circle-user"></i>
                         <span>About</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="works-by-nrfz.html" class="nav-link">
-                        <i class="fa-solid fa-pen-paintbrush"></i>
-                        <span>Works By NRFZ</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="eicw/eicw.html" class="nav-link">
-                        <i class="fa-solid fa-map-location"></i>
+                        <i class="fa-regular fa-map-location"></i>
                         <span>EICW</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">
-                        <i class="fa-solid fa-comment"></i>
-                        <span>Blog</span>
-                    </a>
-                </li>
-                <li class="nav-item-toggle">
-                    <a href="#" class="nav-link-toggle" id="dark-mode-toggle-desktop" title="Toggle Dark/Light Mode!">
-                        <i class="fa-solid fa-moon-stars" id="theme-icon-desktop"></i>
+                <li class="nav-item ">
+                    <a href="menu.html" class="nav-link">
+                        <i class="fa-regular fa-bars"></i>
+                        <span>Menu</span>
                     </a>
                 </li>
             </ul>
-
-            <!-- Mobile Toggle -->
-            <button class="mobile-toggle" id="mobileToggle">
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
         </div>
 
-        </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <li class="mobile-menu-item mobile-theme-toggle">
-                <a href="#" class="nav-link-toggle" id="dark-mode-toggle-mobile" title="Toggle Dark/Light Mode!">
-                    <i class="fa-solid fa-moon-stars" id="theme-icon-mobile"></i>
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li class="active">
+                <a href="./">
+                    <span class="icon">
+                        <i class="fa-sharp fa-regular fa-house"></i>
+                    </span>
+                    <span class="label">Home</span>
                 </a>
             </li>
-            <a href="#" class="mobile-menu-brand">
-                <span class="brand-text"></span>
-            </a>
-            <button class="mobile-menu-close" id="mobileMenuClose">
-                <span>×</span>
-            </button>
-        </div>
-
-        <ul class="mobile-menu-nav">
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link active">
-                    <i class="fa-solid fa-regular fa-house"></i>
-                    <span>Home</span>
+            <li>
+                <a href="about.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-circle-user"></i>
+                    </span>
+                    <span class="label">About</span>
                 </a>
             </li>
-            <li class="mobile-menu-item">
-                <a href="about.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-regular fa-circle-user"></i>
-                    <span>About</span>
+            <li>
+                <a href="eicw/eicw.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-map-location"></i>
+                    </span>
+                    <span class="label">EICW</span>
                 </a>
             </li>
-            <li class="mobile-menu-item">
-                <a href="works-by-nrfz.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-pen-paintbrush"></i>
-                    <span>Works By NRFZ</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="eicw/eicw.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-map-location"></i>
-                    <span>EICW</span>
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="blog.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-comment"></i>
-                    <span>Blog</span>
+            <li>
+                <a href="menu.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-bars"></i>
+                    </span>
+                    <span class="label">Menu</span>
                 </a>
             </li>
         </ul>
-    </div>
+    </nav>
 
 
     <!-- ============================================= Hero Section ============================================= -->
@@ -174,15 +132,16 @@
                         <img src="https://i.imgur.com/fekfd0k.png" alt="Work 1">
                         <div class="card-content">
                             <h3>Buszy - Bus Arrival Timings</h3>
-                            <a href="https://worksbynrfz.com/buszy" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="https://worksbynrfz.com/buszy" class="pw-btn-small btn-2"><i
+                                    class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="card">
                         <img src="https://i.imgur.com/498xWqm.png" alt="Work 2">
                         <div class="card-content">
                             <h3>RailBuddy - Stay on track, always</h3>
-                            <a href="https://worksbynrfz.com/rail-buddy"
-                                class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="https://worksbynrfz.com/rail-buddy" class="pw-btn-small btn-2"><i
+                                    class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="card">
@@ -315,30 +274,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-social">
-                    <a href="https://github.com/nurafianZulkifli" class="social-link">
-                        <i class="fa-brands fa-github" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://twitter.com/nrfzlkf_" class="social-link">
-                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.facebook.com/Nrfnzlkf/" class="social-link">
-                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.instagram.com/nrfzlkf/" class="social-link">
-                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="footer-copy">
-                © 2026 Nurafian Zulkifli
-            </div>
-        </footer>
     </div>
 
     <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
