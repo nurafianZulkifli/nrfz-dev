@@ -23,10 +23,6 @@ body.dark-mode .mobile-bottom-nav {
     color: #000;
 }
 
-.hyperlink {
-    color: #67a0bb !important;
-}
-
 /* Portfolio page: title left, search right on desktop */
 .port-search-wrapper {
     position: relative;

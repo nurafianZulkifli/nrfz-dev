@@ -374,7 +374,7 @@ body.dark-mode .card {
 }
 
 body.dark-mode .card-content {
-    background: #0e0e0e91;
+    background: #1a1f35be;
     backdrop-filter: blur(25px);
 }
 
