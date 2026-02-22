@@ -1,18 +1,5 @@
 /* Dark Mode Functionality for Individual Pages */
 
-// Inherit theme from worksbynrfz.com if user navigated from there
-(function () {
-    var params = new URLSearchParams(window.location.search);
-    var themeParam = params.get('theme');
-    if (themeParam && document.referrer.indexOf('worksbynrfz.com') !== -1) {
-        localStorage.setItem('dark-mode', themeParam === 'dark' ? 'enabled' : 'disabled');
-        // Clean the URL parameter without reloading
-        var url = new URL(window.location);
-        url.searchParams.delete('theme');
-        history.replaceState(null, '', url);
-    }
-})();
-
 // Check localStorage for dark mode preference
 if (localStorage.getItem('dark-mode') === 'enabled') {
     document.body.classList.add('dark-mode');
