@@ -117,14 +117,14 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        pv6Page.style.backgroundImage = "url(https://i.imgur.com/XPhIYcu.png)";
+        pv6Page.style.backgroundImage = "url(https://i.imgur.com/RlanStH.png)";
 
         /* Images */
-        overview_link.href = 'https://i.imgur.com/XpY3OiV.png';
-        overview_img.src = 'https://i.imgur.com/XpY3OiV.png';
+        overview_link.href = 'https://i.imgur.com/T4zeIqB.png';
+        overview_img.src = 'https://i.imgur.com/T4zeIqB.png';
 
-        evo_link.href = 'https://i.imgur.com/xBSDj13.png';
-        evo_img.src = 'https://i.imgur.com/xBSDj13.png';
+        evo_link.href = 'https://i.imgur.com/Nw7DPni.png';
+        evo_img.src = 'https://i.imgur.com/Nw7DPni.png';
 
         v5_wf.href = 'https://i.imgur.com/pXQBxj3.png';
         v5_wf_img.src = 'https://i.imgur.com/pXQBxj3.png';

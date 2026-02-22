@@ -1592,10 +1592,25 @@ h1.brc {
     padding: 10px !important;
 }
 
+figcaption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+figcaption > a {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
 figcaption p {
     margin-top: 10px;
     font-size: 15px;
     color: #636457;
+    text-align: center;
+    width: 100%;
 }
 
 figcaption p a {
@@ -2565,6 +2580,10 @@ li.breadcrumb-item a:hover {
 
 .video-row {
     display: block;
+}
+
+.row-blog {
+    margin-top: 3em;
 }
 
 /* ------------------------------------------ */
