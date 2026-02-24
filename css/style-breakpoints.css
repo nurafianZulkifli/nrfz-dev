@@ -130,7 +130,7 @@
 /* ---- 1.0.4a Min Width: 992px */
 @media (min-width: 995px) {
     #hero {
-        height: 100vh;
+        height: 90vh;
     }
 }
 
@@ -169,29 +169,37 @@
 
 /* ---- */
 
+@media (max-width: 994px) {
+    #hero {
+        height: 70vh;
+    }
+}
+
 /* ---- 1.0.4a Min Width: 992px */
-  @media (min-width: 992px) {
+@media (min-width: 992px) {
     .video-row {
-      display: flex;
-      gap: 2em;
-      justify-content: center;
-      align-items: flex-start;
+        display: flex;
+        gap: 2em;
+        justify-content: center;
+        align-items: flex-start;
     }
-    .video-row video {
-      width: 48%;
-      max-width: 600px;
-    }
-  }
 
-  /* ---- */
-
-  /* ---- 1.0.4b Max Width: 991.98px */
-  @media (max-width: 991.98px) {
     .video-row video {
-      width: 100%;
-      margin-bottom: 1em;
+        width: 48%;
+        max-width: 600px;
     }
-  }
+}
+
+/* ---- */
+
+/* ---- 1.0.4b Max Width: 991.98px */
+@media (max-width: 991.98px) {
+    .video-row video {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+}
+
 /* ---- */
 
 /* ---- 1.0.5 Max Width: 768px */
@@ -1515,32 +1523,62 @@
 
 /* ------------------------------------------ 4.0 Responsive Columns ------------------------------------------ */
 
-    /* Breakpoints for Responsive Columns */
-    @media (max-width: 992px) {
-        .wbnrfz-grid {
-            grid-template-columns: repeat(auto-fit, minmax(3, 1fr));
-            /* Adjust column size for medium screens */
-        }
+/* Breakpoints for Responsive Columns */
+@media (max-width: 992px) {
+    .wbnrfz-grid {
+        grid-template-columns: repeat(auto-fit, minmax(3, 1fr));
+        /* Adjust column size for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .wbnrfz-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for smaller screens */
+    }
+}
+
+
+@media (max-width: 581px) {
+    .wbnrfz-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for small screens */
+    }
+}
+
+@media (max-width: 580px) {
+    .wbnrfz-grid {
+        grid-template-columns: repeat(1, 1fr);
+        /* Single column for extra small screens */
+    }
+}
+
+/* ------------------------------------------ 5.0 Floating Cards Responsive ------------------------------------------ */
+
+@media (max-width: 1200px) {
+    .wbnrfz-works.floating-cards {
+        margin-top: -300px;
+    }
+}
+
+@media (max-width: 992px) {
+    .wbnrfz-works.floating-cards {
+        margin-top: -250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wbnrfz-works.floating-cards {
+        margin-top: -200px;
+    }
+}
+
+@media (max-width: 580px) {
+    .wbnrfz-works.floating-cards {
+        margin-top: -265px;
     }
 
-    @media (max-width: 768px) {
-        .wbnrfz-grid {
-            grid-template-columns: repeat(2, 1fr);
-            /* 2 columns for smaller screens */
-        }
+    .wbnrfz-works.floating-cards::before {
+        margin-top: -15em;
     }
-
-
-    @media (max-width: 581px) {
-        .wbnrfz-grid {
-            grid-template-columns: repeat(2, 1fr);
-            /* 2 columns for small screens */
-        }
-    }
-
-        @media (max-width: 580px) {
-        .wbnrfz-grid {
-            grid-template-columns: repeat(1, 1fr);
-            /* Single column for extra small screens */
-        }
-    }
+}

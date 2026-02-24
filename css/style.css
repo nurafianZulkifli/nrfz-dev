@@ -1233,6 +1233,67 @@ h4.timeline-date-aa {
     text-align: center;
 }
 
+.wbnrfz-works.floating-cards {
+    margin-top: -350px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    position: relative;
+    z-index: 10;
+    background: transparent;
+}
+
+.wbnrfz-works.floating-cards .section-heading h2 {
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.wbnrfz-works.floating-cards .wbnrfz-grid {
+    padding-top: 0;
+}
+
+.wbnrfz-works.floating-cards::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 15%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.25) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+    );
+    z-index: -1;
+}
+
+.wbnrfz-works.floating-cards .card {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.wbnrfz-works.floating-cards .card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
 .wbnrfz-works .section-title {
     font-size: 2.5rem;
     font-weight: bold;
@@ -1244,8 +1305,8 @@ h4.timeline-date-aa {
 
 .wbnrfz-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 55px;
     justify-content: center;
     padding-top: 1em;
     padding-bottom: 2em;
