@@ -127,67 +127,67 @@ function updateHrefForDarkMode() {
     const isDarkMode = document.body.classList.contains('dark-mode');
 
     if (isDarkMode) {
-        coverSect.style.backgroundImage = "url('./img/cover-dark.png')";
-        eiaSect.style.backgroundImage = "url('./img/eia-dark.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-dark.png')";
+        if (eiaSect) eiaSect.style.backgroundImage = "url('./img/eia-dark.png')";
 
-        tf_link.href = './img/typeface-dark.png';
-        tf_img.src = './img/typeface-dark.png';
+        if (tf_link) tf_link.href = './img/typeface-dark.png';
+        if (tf_img) tf_img.src = './img/typeface-dark.png';
 
-        pl_link.href = './img/palettes-dark.png';
-        pl_img.src = './img/palettes-dark.png';
+        if (pl_link) pl_link.href = './img/palettes-dark.png';
+        if (pl_img) pl_img.src = './img/palettes-dark.png';
 
-        pl2_link.href = './img/palettes-dark2.png';
-        pl2_img.src = './img/palettes-dark2.png';
+        if (pl2_link) pl2_link.href = './img/palettes-dark2.png';
+        if (pl2_img) pl2_img.src = './img/palettes-dark2.png';
 
-        evo_link.href = './img/evo-dark.png';
-        evo_img.src = './img/evo-dark.png';
+        if (evo_link) evo_link.href = './img/evo-dark.png';
+        if (evo_img) evo_img.src = './img/evo-dark.png';
 
-        es_link.href = './img/es-dark.png';
-        es_img.src = './img/es-dark.png';
+        if (es_link) es_link.href = './img/es-dark.png';
+        if (es_img) es_img.src = './img/es-dark.png';
 
-        cp_link.href = './img/cp-dark.png';
-        cp_img.src = './img/cp-dark.png';
+        if (cp_link) cp_link.href = './img/cp-dark.png';
+        if (cp_img) cp_img.src = './img/cp-dark.png';
 
-        ls_link.href = './img/ls-dark.png';
-        ls_img.src = './img/ls-dark.png';
+        if (ls_link) ls_link.href = './img/ls-dark.png';
+        if (ls_img) ls_img.src = './img/ls-dark.png';
 
-        wf1_link.href = './img/wf1-dark.png';
-        wf1_img.src = './img/wf1-dark.png';
+        if (wf1_link) wf1_link.href = './img/wf1-dark.png';
+        if (wf1_img) wf1_img.src = './img/wf1-dark.png';
 
-        wf2_link.href = './img/wf2-dark.png';
-        wf2_img.src = './img/wf2-dark.png';
+        if (wf2_link) wf2_link.href = './img/wf2-dark.png';
+        if (wf2_img) wf2_img.src = './img/wf2-dark.png';
 
 
     } else {
-        coverSect.style.backgroundImage = "url('./img/cover-light.png')";
-        eiaSect.style.backgroundImage = "url('./img/eia-light.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-light.png')";
+        if (eiaSect) eiaSect.style.backgroundImage = "url('./img/eia-light.png')";
 
-        tf_link.href = './img/typeface-light.png';
-        tf_img.src = './img/typeface-light.png';
+        if (tf_link) tf_link.href = './img/typeface-light.png';
+        if (tf_img) tf_img.src = './img/typeface-light.png';
 
-        pl_link.href = './img/palettes-light.png';
-        pl_img.src = './img/palettes-light.png';
+        if (pl_link) pl_link.href = './img/palettes-light.png';
+        if (pl_img) pl_img.src = './img/palettes-light.png';
 
-        pl2_link.href = './img/palettes-light2.png';
-        pl2_img.src = './img/palettes-light2.png';
+        if (pl2_link) pl2_link.href = './img/palettes-light2.png';
+        if (pl2_img) pl2_img.src = './img/palettes-light2.png';
 
-        evo_link.href = './img/evo-light.png';
-        evo_img.src = './img/evo-light.png';
+        if (evo_link) evo_link.href = './img/evo-light.png';
+        if (evo_img) evo_img.src = './img/evo-light.png';
 
-        es_link.href = './img/es-light.png';
-        es_img.src = './img/es-light.png';
+        if (es_link) es_link.href = './img/es-light.png';
+        if (es_img) es_img.src = './img/es-light.png';
 
-        cp_link.href = './img/cp-light.png';
-        cp_img.src = './img/cp-light.png';
+        if (cp_link) cp_link.href = './img/cp-light.png';
+        if (cp_img) cp_img.src = './img/cp-light.png';
 
-        ls_link.href = './img/ls-light.png';
-        ls_img.src = './img/ls-light.png';
+        if (ls_link) ls_link.href = './img/ls-light.png';
+        if (ls_img) ls_img.src = './img/ls-light.png';
 
-        wf1_link.href = './img/wf1-light.png';
-        wf1_img.src = './img/wf1-light.png';
+        if (wf1_link) wf1_link.href = './img/wf1-light.png';
+        if (wf1_img) wf1_img.src = './img/wf1-light.png';
 
-        wf2_link.href = './img/wf2-light.png';
-        wf2_img.src = './img/wf2-light.png';
+        if (wf2_link) wf2_link.href = './img/wf2-light.png';
+        if (wf2_img) wf2_img.src = './img/wf2-light.png';
     }
 }
 

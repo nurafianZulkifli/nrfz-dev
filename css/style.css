@@ -2577,6 +2577,12 @@ li.breadcrumb-item a:hover {
     height: 72vh;
 }
 
+#covbtr-img {
+    background-image: url("../eicw/img/cover-eicw-4-light.png");
+    height: 72vh;
+}
+
+
 .wbnrfz_details_blog {
     background: #ffffffe0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

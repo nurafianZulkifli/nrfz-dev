@@ -123,54 +123,54 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-eicw-5-dark.png')";
-        platSect.style.backgroundImage = "url('./img/plat-dark.png')";
-        entSect.style.backgroundImage = "url('./img/ent-dark.png')";
-        concSect.style.backgroundImage = "url('./img/conc-dark.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-eicw-5-dark.png')";
+        if (platSect) platSect.style.backgroundImage = "url('./img/plat-dark.png')";
+        if (entSect) entSect.style.backgroundImage = "url('./img/ent-dark.png')";
+        if (concSect) concSect.style.backgroundImage = "url('./img/conc-dark.png')";
 
 
         /* Images */
-        cclDiag_link.href = './img/ccl-diag-dark.png';
-        cclDiag_img.src = './img/ccl-diag-dark.png';
+        if (cclDiag_link) cclDiag_link.href = './img/ccl-diag-dark.png';
+        if (cclDiag_img) cclDiag_img.src = './img/ccl-diag-dark.png';
 
-        arrow_link.href = './img/arrow-dark.png';
-        arrow_img.src = './img/arrow-dark.png';
+        if (arrow_link) arrow_link.href = './img/arrow-dark.png';
+        if (arrow_img) arrow_img.src = './img/arrow-dark.png';
 
-        wfm_link.href = './img/ccl6-7aD.png';
-        wfm_img.src = './img/ccl6-7aD.png';
+        if (wfm_link) wfm_link.href = './img/ccl6-7aD.png';
+        if (wfm_img) wfm_img.src = './img/ccl6-7aD.png';
 
-        wfp_link.href = './img/ccl6-7D.png';
-        wfp_img.src = './img/ccl6-7D.png';
+        if (wfp_link) wfp_link.href = './img/ccl6-7D.png';
+        if (wfp_img) wfp_img.src = './img/ccl6-7D.png';
 
-        evo3_link.href = './img/ccl6-overview-dark.png';
-        evo3_img.src = './img/ccl6-overview-dark.png';
+        if (evo3_link) evo3_link.href = './img/ccl6-overview-dark.png';
+        if (evo3_img) evo3_img.src = './img/ccl6-overview-dark.png';
 
         /* Videos */
 
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-eicw-5-light.png')";
-        platSect.style.backgroundImage = "url('./img/plat-light.png')";
-        entSect.style.backgroundImage = "url('./img/ent-light.png')";
-        concSect.style.backgroundImage = "url('./img/conc-light.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-eicw-5-light.png')";
+        if (platSect) platSect.style.backgroundImage = "url('./img/plat-light.png')";
+        if (entSect) entSect.style.backgroundImage = "url('./img/ent-light.png')";
+        if (concSect) concSect.style.backgroundImage = "url('./img/conc-light.png')";
 
 
         /* Images */
-        cclDiag_link.href = './img/ccl-diag-light.png';
-        cclDiag_img.src = './img/ccl-diag-light.png';
+        if (cclDiag_link) cclDiag_link.href = './img/ccl-diag-light.png';
+        if (cclDiag_img) cclDiag_img.src = './img/ccl-diag-light.png';
 
-        arrow_link.href = './img/arrow-light.png';
-        arrow_img.src = './img/arrow-light.png';
+        if (arrow_link) arrow_link.href = './img/arrow-light.png';
+        if (arrow_img) arrow_img.src = './img/arrow-light.png';
 
-        wfm_link.href = './img/ccl6-7aL.png';
-        wfm_img.src = './img/ccl6-7aL.png';
+        if (wfm_link) wfm_link.href = './img/ccl6-7aL.png';
+        if (wfm_img) wfm_img.src = './img/ccl6-7aL.png';
 
-        wfp_link.href = './img/ccl6-7.png';
-        wfp_img.src = './img/ccl6-7.png';
+        if (wfp_link) wfp_link.href = './img/ccl6-7.png';
+        if (wfp_img) wfp_img.src = './img/ccl6-7.png';
 
-        evo3_link.href = './img/ccl6-overview-light.png';
-        evo3_img.src = './img/ccl6-overview-light.png';
+        if (evo3_link) evo3_link.href = './img/ccl6-overview-light.png';
+        if (evo3_img) evo3_img.src = './img/ccl6-overview-light.png';
 
 
         /* Videos */

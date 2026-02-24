@@ -122,51 +122,51 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-eicw-4-dark.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-eicw-4-dark.png')";
 
 
         /* Images */
-        lcd1_link.href = './img/lcd-dark.png';
-        lcd1_img.src = './img/lcd-dark.png';
+        if (lcd1_link) lcd1_link.href = './img/lcd-dark.png';
+        if (lcd1_img) lcd1_img.src = './img/lcd-dark.png';
 
-        lcd2_link.href = './img/lcd2-dark.png';
-        lcd2_img.src = './img/lcd2-dark.png';
+        if (lcd2_link) lcd2_link.href = './img/lcd2-dark.png';
+        if (lcd2_img) lcd2_img.src = './img/lcd2-dark.png';
 
-        lcd3_link.href = './img/lcd3-dark.png';
-        lcd3_img.src = './img/lcd3-dark.png';
+        if (lcd3_link) lcd3_link.href = './img/lcd3-dark.png';
+        if (lcd3_img) lcd3_img.src = './img/lcd3-dark.png';
 
-        bcr1_link.href = './img-2/bcr-dark.png';
-        bcr1_img.src = './img-2/bcr-dark.png';
+        if (bcr1_link) bcr1_link.href = './img-2/bcr-dark.png';
+        if (bcr1_img) bcr1_img.src = './img-2/bcr-dark.png';
 
-        bcr4_link.href = './img-2/bcr-var-dark.png';
-        bcr4_img.src = './img-2/bcr-var-dark.png';
+        if (bcr4_link) bcr4_link.href = './img-2/bcr-var-dark.png';
+        if (bcr4_img) bcr4_img.src = './img-2/bcr-var-dark.png';
 
-        cddbp_link.href = './img-2/cddbp-dark.png';
-        cddbp_img.src = './img-2/cddbp-dark.png';
+        if (cddbp_link) cddbp_link.href = './img-2/cddbp-dark.png';
+        if (cddbp_img) cddbp_img.src = './img-2/cddbp-dark.png';
 
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-eicw-4-light.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-eicw-4-light.png')";
 
         /* Images */
-        lcd1_link.href = './img/lcd-light.png';
-        lcd1_img.src = './img/lcd-light.png';
+        if (lcd1_link) lcd1_link.href = './img/lcd-light.png';
+        if (lcd1_img) lcd1_img.src = './img/lcd-light.png';
 
-        lcd2_link.href = './img/lcd2-light.png';
-        lcd2_img.src = './img/lcd2-light.png';
+        if (lcd2_link) lcd2_link.href = './img/lcd2-light.png';
+        if (lcd2_img) lcd2_img.src = './img/lcd2-light.png';
 
-        lcd3_link.href = './img/lcd3-light.png';
-        lcd3_img.src = './img/lcd3-light.png';
+        if (lcd3_link) lcd3_link.href = './img/lcd3-light.png';
+        if (lcd3_img) lcd3_img.src = './img/lcd3-light.png';
 
-        bcr1_link.href = './img-2/bcr-light.png';
-        bcr1_img.src = './img-2/bcr-light.png';
+        if (bcr1_link) bcr1_link.href = './img-2/bcr-light.png';
+        if (bcr1_img) bcr1_img.src = './img-2/bcr-light.png';
 
-        bcr4_link.href = './img-2/bcr-var-light.png';
-        bcr4_img.src = './img-2/bcr-var-light.png';
+        if (bcr4_link) bcr4_link.href = './img-2/bcr-var-light.png';
+        if (bcr4_img) bcr4_img.src = './img-2/bcr-var-light.png';
 
-        cddbp_link.href = './img-2/cddbp-light.png';
-        cddbp_img.src = './img-2/cddbp-light.png';
+        if (cddbp_link) cddbp_link.href = './img-2/cddbp-light.png';
+        if (cddbp_img) cddbp_img.src = './img-2/cddbp-light.png';
 
     }
 

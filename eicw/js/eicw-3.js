@@ -139,90 +139,90 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-psr-dark.png')";
-        cdSect.style.backgroundImage = "url('./img/cdbus-dark.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-psr-dark.png')";
+        if (cdSect) cdSect.style.backgroundImage = "url('./img/cdbus-dark.png')";
 
 
         /* Images */
-        psr1a_link.href = './img/psr-1a-dark.png';
-        psr1a_img.src = './img/psr-1a-dark.png';
+        if (psr1a_link) psr1a_link.href = './img/psr-1a-dark.png';
+        if (psr1a_img) psr1a_img.src = './img/psr-1a-dark.png';
 
-        psr2_link.href = './img/psr-2-dark.png';
-        psr2_img.src = './img/psr-2-dark.png';
+        if (psr2_link) psr2_link.href = './img/psr-2-dark.png';
+        if (psr2_img) psr2_img.src = './img/psr-2-dark.png';
 
-        psr3a_link.href = './img/psr-3a-dark.png';
-        psr3a_img.src = './img/psr-3a-dark.png';
+        if (psr3a_link) psr3a_link.href = './img/psr-3a-dark.png';
+        if (psr3a_img) psr3a_img.src = './img/psr-3a-dark.png';
 
-        psr3b_link.href = './img/psr-3b-dark.png';
-        psr3b_img.src = './img/psr-3b-dark.png';
+        if (psr3b_link) psr3b_link.href = './img/psr-3b-dark.png';
+        if (psr3b_img) psr3b_img.src = './img/psr-3b-dark.png';
 
-        psr5a_link.href = './img/psr5a-dark.png';
-        psr5a_img.src = './img/psr5a-dark.png';
+        if (psr5a_link) psr5a_link.href = './img/psr5a-dark.png';
+        if (psr5a_img) psr5a_img.src = './img/psr5a-dark.png';
 
-        cck1a_link.href = './img/cck-1a-dark.png';
-        cck1a_img.src = './img/cck-1a-dark.png';
+        if (cck1a_link) cck1a_link.href = './img/cck-1a-dark.png';
+        if (cck1a_img) cck1a_img.src = './img/cck-1a-dark.png';
 
-        cck2_link.href = './img/cck-2-dark.png';
-        cck2_img.src = './img/cck-2-dark.png';
+        if (cck2_link) cck2_link.href = './img/cck-2-dark.png';
+        if (cck2_img) cck2_img.src = './img/cck-2-dark.png';
 
-        cck3a_link.href = './img/cck-3a-dark.png';
-        cck3a_img.src = './img/cck-3a-dark.png';
+        if (cck3a_link) cck3a_link.href = './img/cck-3a-dark.png';
+        if (cck3a_img) cck3a_img.src = './img/cck-3a-dark.png';
 
-        cck4a_link.href = './img/cck-4a-dark.png';
-        cck4a_img.src = './img/cck-4a-dark.png';
+        if (cck4a_link) cck4a_link.href = './img/cck-4a-dark.png';
+        if (cck4a_img) cck4a_img.src = './img/cck-4a-dark.png';
 
-        cs_link.href = './img/cs-dark.png';
-        cs_img.src = './img/cs-dark.png';
+        if (cs_link) cs_link.href = './img/cs-dark.png';
+        if (cs_img) cs_img.src = './img/cs-dark.png';
 
         /* Videos */
-        vid9Source.src = './img/eicw-vid9-dark.mp4';
-        vid10Source.src = './img/eicw-vid10-dark.mp4';
+        if (vid9Source) vid9Source.src = './img/eicw-vid9-dark.mp4';
+        if (vid10Source) vid10Source.src = './img/eicw-vid10-dark.mp4';
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-psr-light.png')";
-        cdSect.style.backgroundImage = "url('./img/cdbus-light.png')";
+        if (coverSect) coverSect.style.backgroundImage = "url('./img/cover-psr-light.png')";
+        if (cdSect) cdSect.style.backgroundImage = "url('./img/cdbus-light.png')";
 
 
         /* Images */
-        psr1a_link.href = './img/psr-1a-light.png';
-        psr1a_img.src = './img/psr-1a-light.png';
+        if (psr1a_link) psr1a_link.href = './img/psr-1a-light.png';
+        if (psr1a_img) psr1a_img.src = './img/psr-1a-light.png';
 
-        psr2_link.href = './img/psr-2-light.png';
-        psr2_img.src = './img/psr-2-light.png';
+        if (psr2_link) psr2_link.href = './img/psr-2-light.png';
+        if (psr2_img) psr2_img.src = './img/psr-2-light.png';
 
-        psr3a_link.href = './img/psr-3a-light.png';
-        psr3a_img.src = './img/psr-3a-light.png';
+        if (psr3a_link) psr3a_link.href = './img/psr-3a-light.png';
+        if (psr3a_img) psr3a_img.src = './img/psr-3a-light.png';
 
-        psr3b_link.href = './img/psr-3b-light.png';
-        psr3b_img.src = './img/psr-3b-light.png';
+        if (psr3b_link) psr3b_link.href = './img/psr-3b-light.png';
+        if (psr3b_img) psr3b_img.src = './img/psr-3b-light.png';
 
-        psr5a_link.href = './img/psr5a-light.png';
-        psr5a_img.src = './img/psr5a-light.png';
+        if (psr5a_link) psr5a_link.href = './img/psr5a-light.png';
+        if (psr5a_img) psr5a_img.src = './img/psr5a-light.png';
 
-        cck1a_link.href = './img/cck-1a-light.png';
-        cck1a_img.src = './img/cck-1a-light.png';
+        if (cck1a_link) cck1a_link.href = './img/cck-1a-light.png';
+        if (cck1a_img) cck1a_img.src = './img/cck-1a-light.png';
 
-        cck2_link.href = './img/cck-2-light.png';
-        cck2_img.src = './img/cck-2-light.png';
+        if (cck2_link) cck2_link.href = './img/cck-2-light.png';
+        if (cck2_img) cck2_img.src = './img/cck-2-light.png';
 
-        cck3a_link.href = './img/cck-3a-light.png';
-        cck3a_img.src = './img/cck-3a-light.png';
+        if (cck3a_link) cck3a_link.href = './img/cck-3a-light.png';
+        if (cck3a_img) cck3a_img.src = './img/cck-3a-light.png';
 
-        cck4a_link.href = './img/cck-4a-light.png';
-        cck4a_img.src = './img/cck-4a-light.png';
+        if (cck4a_link) cck4a_link.href = './img/cck-4a-light.png';
+        if (cck4a_img) cck4a_img.src = './img/cck-4a-light.png';
 
-        cs_link.href = './img/cs-light.png';
-        cs_img.src = './img/cs-light.png';
+        if (cs_link) cs_link.href = './img/cs-light.png';
+        if (cs_img) cs_img.src = './img/cs-light.png';
 
         /* Videos */
-        vid9Source.src = './img/eicw-vid9-light.mp4';
-        vid10Source.src = './img/eicw-vid10-light.mp4';
+        if (vid9Source) vid9Source.src = './img/eicw-vid9-light.mp4';
+        if (vid10Source) vid10Source.src = './img/eicw-vid10-light.mp4';
 
     }
 
-    vid9.load();
-    vid10.load();
+    if (vid9) vid9.load();
+    if (vid10) vid10.load();
 
 }
 

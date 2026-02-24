@@ -1,26 +1,32 @@
 /* Dark Mode Functionality for Individual Pages */
 
-// Inherit theme from worksbynrfz.com if user navigated from there
-(function () {
-    var params = new URLSearchParams(window.location.search);
-    var themeParam = params.get('theme');
-    if (themeParam && document.referrer.indexOf('worksbynrfz.com') !== -1) {
-        localStorage.setItem('dark-mode', themeParam === 'dark' ? 'enabled' : 'disabled');
-        // Clean the URL parameter without reloading
-        var url = new URL(window.location);
-        url.searchParams.delete('theme');
-        history.replaceState(null, '', url);
-    }
-})();
+// Check localStorage for dark mode preference, fall back to system preference
+const _savedTheme = localStorage.getItem('dark-mode');
+const _prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const _isDark = _savedTheme === 'enabled' || (_savedTheme === null && _prefersDark);
 
-// Check localStorage for dark mode preference
-if (localStorage.getItem('dark-mode') === 'enabled') {
+if (_isDark) {
     document.body.classList.add('dark-mode');
     updateThemeIcon('dark');
     updateHrefForDarkMode();
 } else {
     updateThemeIcon('light');
 }
+
+// Follow system theme changes when no manual preference is stored
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (localStorage.getItem('dark-mode') === null) {
+        if (e.matches) {
+            document.body.classList.add('dark-mode');
+            updateThemeIcon('dark');
+            updateHrefForDarkMode();
+        } else {
+            document.body.classList.remove('dark-mode');
+            updateThemeIcon('light');
+            updateHrefForDarkMode();
+        }
+    }
+});
 
 // Get both toggle buttons
 const toggleButtonDesktop = document.getElementById('dark-mode-toggle-desktop');
