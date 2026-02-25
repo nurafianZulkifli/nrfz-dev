@@ -564,6 +564,11 @@
         text-align: center;
     }
 
+    .wbnrfz-works {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
 }
 
 /* ---- */
@@ -1579,6 +1584,6 @@
     }
 
     .wbnrfz-works.floating-cards::before {
-        margin-top: -15em;
+        margin-top: -9em;
     }
 }

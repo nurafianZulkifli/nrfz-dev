@@ -1234,8 +1234,8 @@ h4.timeline-date-aa {
 }
 
 .wbnrfz-works.floating-cards {
-    margin-top: -350px;
-    padding-top: 40px;
+    margin-top: -288px;
+    padding-top: 50px;
     padding-bottom: 60px;
     position: relative;
     z-index: 10;
@@ -1260,38 +1260,58 @@ h4.timeline-date-aa {
     bottom: 0;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.1) 15%,
-        rgba(255, 255, 255, 0.2) 50%,
-        rgba(255, 255, 255, 0.25) 100%
-    );
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 15%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.25) 100%);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-    );
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 20%,
+            black 70%,
+            transparent 100%);
     z-index: -1;
 }
 
 .wbnrfz-works.floating-cards .card {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    min-height: 300px;
+}
+
+.wbnrfz-works.floating-cards .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.wbnrfz-works.floating-cards .card .card-content {
+    position: absolute !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 20px 20px;
+    text-align: center;
+}
+
+.wbnrfz-works.floating-cards .card .card-content h3 {
+    color: #000;
+    font-size: 19px;
+    margin: 0 0 15px 0;
 }
 
 .wbnrfz-works.floating-cards .card:hover {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 }
 
 .wbnrfz-works .section-title {
@@ -1359,7 +1379,7 @@ h4.timeline-date-aa {
     bottom: 0;
     left: 0;
     right: 0;
-    background: #ffffffc5;
+    background: #ffffffdc;
     backdrop-filter: blur(25px);
 }
 
