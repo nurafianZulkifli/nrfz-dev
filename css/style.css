@@ -926,7 +926,7 @@ header {
     position: relative;
     z-index: 1;
     margin-top: 50px;
-    min-height: 200px;
+    min-height: 280px;
     display: flex;
     flex-direction: column;
 }
@@ -1279,7 +1279,7 @@ h4.timeline-date-aa {
 
 .wbnrfz-works.floating-cards .card {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
+    border-radius: 25px;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -1318,7 +1318,6 @@ h4.timeline-date-aa {
 
 .wbnrfz-works.floating-cards .card:hover {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    transform: translateY(-5px);
 }
 
 .wbnrfz-works .section-title {
@@ -1387,7 +1386,7 @@ h4.timeline-date-aa {
     left: 0;
     right: 0;
     background: #ffffffdc;
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(5px);
 }
 
 .card:hover .card-content {

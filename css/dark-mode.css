@@ -390,8 +390,7 @@ body.dark-mode .card {
 }
 
 body.dark-mode .card-content {
-    background: #1a1f35be;
-    /* backdrop-filter: blur(25px); */
+    background: #0f121fda;
 }
 
 /* ------------------------------------------ */
