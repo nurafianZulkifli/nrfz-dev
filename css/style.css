@@ -926,6 +926,9 @@ header {
     position: relative;
     z-index: 1;
     margin-top: 50px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .about-me-content .wsd-icon {
@@ -1299,8 +1302,12 @@ h4.timeline-date-aa {
     bottom: 0;
     left: 0;
     right: 0;
+    min-height: 100px;
     padding: 20px 20px 20px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .wbnrfz-works.floating-cards .card .card-content h3 {
