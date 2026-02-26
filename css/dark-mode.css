@@ -435,11 +435,11 @@ body.dark-mode h2.page-title {
     color: #fff;
 }
 
-body.dark-mode .cp-img {
+/* body.dark-mode .cp-img {
     border-radius: 20px;
     border: 1px solid #2b2b2b33;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(61, 61, 61, 0.384);
-}
+} */
 
 body.dark-mode .ftco-section-otb {
     padding: 5em 0;
