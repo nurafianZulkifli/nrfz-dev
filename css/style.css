@@ -1289,7 +1289,7 @@ h4.timeline-date-aa {
     min-height: 300px;
 }
 
-.wbnrfz-works.floating-cards .card::before {
+/* .wbnrfz-works.floating-cards .card::before {
     content: '';
     position: absolute;
     top: -10px;
@@ -1299,24 +1299,29 @@ h4.timeline-date-aa {
     background: var(--card-bg) center / cover no-repeat;
     filter: blur(15px) brightness(0.9);
     z-index: 0;
-}
+} */
 
 .wbnrfz-works.floating-cards .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* .wbnrfz-works.floating-cards .card img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
-}
+} */
 
 .wbnrfz-works.floating-cards .card .card-content {
     position: absolute !important;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 2;
     min-height: 100px;
     padding: 20px 20px 20px;
     text-align: left;

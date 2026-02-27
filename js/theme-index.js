@@ -88,11 +88,11 @@ function updateThemeIcon(theme) {
 }
 
 // Set blurred background image on floating cards
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.wbnrfz-works.floating-cards .card').forEach(function (card) {
-        var img = card.querySelector('img');
-        if (img) {
-            card.style.setProperty('--card-bg', 'url(' + img.src + ')');
-        }
-    });
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.querySelectorAll('.wbnrfz-works.floating-cards .card').forEach(function (card) {
+//         var img = card.querySelector('img');
+//         if (img) {
+//             card.style.setProperty('--card-bg', 'url(' + img.src + ')');
+//         }
+//     });
+// });
