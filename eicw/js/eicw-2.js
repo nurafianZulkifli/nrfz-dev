@@ -562,3 +562,20 @@ window.addEventListener('scroll', () => {
     const scrollPercentage = Math.min((scrollTop / docHeight) * 100, 100); // Cap at 100%
     document.getElementById('scroll-indicator').style.width = scrollPercentage + '%';
 });
+
+// Play videos only on hover, pause when mouse leaves
+document.addEventListener('DOMContentLoaded', function () {
+    var videos = document.querySelectorAll('video');
+
+    videos.forEach(function (video) {
+        video.addEventListener('mouseenter', function () {
+            video.play().catch(function (error) {
+                console.log('Autoplay was prevented:', error);
+            });
+        });
+
+        video.addEventListener('mouseleave', function () {
+            video.pause();
+        });
+    });
+});

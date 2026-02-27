@@ -188,3 +188,20 @@ window.addEventListener("scroll", function () {
     const scrollPercentage = (scrollTop / scrollHeight) * 100; // Calculate scroll percentage
     scrollIndicator.style.width = scrollPercentage + "%"; // Update the width of the indicator
 });
+
+// Play videos only on hover, pause when mouse leaves
+document.addEventListener('DOMContentLoaded', function () {
+    var videos = document.querySelectorAll('video');
+
+    videos.forEach(function (video) {
+        video.addEventListener('mouseenter', function () {
+            video.play().catch(function (error) {
+                console.log('Autoplay was prevented:', error);
+            });
+        });
+
+        video.addEventListener('mouseleave', function () {
+            video.pause();
+        });
+    });
+});

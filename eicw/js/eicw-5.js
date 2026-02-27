@@ -182,11 +182,19 @@ function updateHrefForDarkMode() {
 
 }
 
+// Play videos only on hover, pause when mouse leaves
 document.addEventListener('DOMContentLoaded', function () {
     var videos = document.querySelectorAll('video');
+
     videos.forEach(function (video) {
-        video.play().catch(function (error) {
-            console.log('Autoplay was prevented:', error);
+        video.addEventListener('mouseenter', function () {
+            video.play().catch(function (error) {
+                console.log('Autoplay was prevented:', error);
+            });
+        });
+
+        video.addEventListener('mouseleave', function () {
+            video.pause();
         });
     });
 });
