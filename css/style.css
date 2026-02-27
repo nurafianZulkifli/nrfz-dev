@@ -178,14 +178,14 @@ ul li {
 .mfp-iframe-holder .mfp-close {
     position: fixed;
     z-index: 100;
-    color: #000;
+    color: #fff;
     right: 20px;
     text-align: center;
     padding-right: 0;
     width: 100%;
     top: 20px;
     width: 30px;
-    background: #b5b69f;
+    background: #7e899a;
     height: 30px;
     line-height: 30px;
 }
@@ -216,6 +216,7 @@ img.mfp-img {
 button.mfp-close,
 button.mfp-arrow {
     background: #000;
+    color: #fff;
     height: 7em;
     border-radius: 20px;
 }
@@ -1288,13 +1289,26 @@ h4.timeline-date-aa {
     min-height: 300px;
 }
 
+.wbnrfz-works.floating-cards .card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: var(--card-bg) center / cover no-repeat;
+    filter: blur(15px) brightness(0.9);
+    z-index: 0;
+}
+
 .wbnrfz-works.floating-cards .card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 
 .wbnrfz-works.floating-cards .card .card-content {
@@ -1302,6 +1316,7 @@ h4.timeline-date-aa {
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 2;
     min-height: 100px;
     padding: 20px 20px 20px;
     text-align: left;

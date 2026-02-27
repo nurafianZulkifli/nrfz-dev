@@ -86,3 +86,13 @@ function updateThemeIcon(theme) {
         if (themeIconMobile) themeIconMobile.classList.remove('animate');
     }, 300); // Match the duration of the CSS transition
 }
+
+// Set blurred background image on floating cards
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.wbnrfz-works.floating-cards .card').forEach(function (card) {
+        var img = card.querySelector('img');
+        if (img) {
+            card.style.setProperty('--card-bg', 'url(' + img.src + ')');
+        }
+    });
+});
