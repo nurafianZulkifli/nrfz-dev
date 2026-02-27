@@ -240,6 +240,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var videos = document.querySelectorAll('video');
 
     videos.forEach(function (video) {
+        video.setAttribute('title', 'Video Autoplays on Hover');
+        video.style.cursor = 'pointer';
+
+        setTimeout(function () {
+            video.removeAttribute('title');
+        }, 5000);
+
         video.addEventListener('mouseenter', function () {
             video.play().catch(function (error) {
                 console.log('Autoplay was prevented:', error);
