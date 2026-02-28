@@ -136,7 +136,7 @@ function updateHrefForDarkMode() {
 
     if (isDarkMode) {
         /* Banners */
-        pv6Page.style.backgroundImage = "url(https://i.imgur.com/RlanStH.png)";
+        pv6Page.style.backgroundImage = "url(https://i.imgur.com/lVcuJD1.png)";
 
         /* Images */
         overview_link.href = 'https://i.imgur.com/T4zeIqB.png';
@@ -177,11 +177,11 @@ function updateHrefForDarkMode() {
 
     } else {
         /* Banners */
-        pv6Page.style.backgroundImage = "url(https://i.imgur.com/oRKQIek.png)";
+        pv6Page.style.backgroundImage = "url(https://i.imgur.com/Fr1urKW.png)";
 
         /* Images */
-        overview_link.href = 'https://i.imgur.com/XTAol50.png';
-        overview_img.src = 'https://i.imgur.com/XTAol50.png';
+        overview_link.href = 'https://i.imgur.com/AWtMgNN.png';
+        overview_img.src = 'https://i.imgur.com/AWtMgNN.png';
 
         evo_link.href = 'https://i.imgur.com/FGFW3cP.png';
         evo_img.src = 'https://i.imgur.com/FGFW3cP.png';

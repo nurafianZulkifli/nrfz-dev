@@ -189,26 +189,76 @@ window.addEventListener("scroll", function () {
     scrollIndicator.style.width = scrollPercentage + "%"; // Update the width of the indicator
 });
 
-// Play videos only on hover, pause when mouse leaves
+// Autoplay videos row by row when scrolled into view
 document.addEventListener('DOMContentLoaded', function () {
-    var videos = document.querySelectorAll('video');
+    var rows = Array.from(document.querySelectorAll('.video-row'));
+    if (rows.length === 0) return;
 
-    videos.forEach(function (video) {
-        video.setAttribute('title', 'Video Autoplays on Hover');
-        video.style.cursor = 'pointer';
+    var currentRowIndex = 0;
+    var isPlaying = false;
 
-        setTimeout(function () {
-            video.removeAttribute('title');
-        }, 5000);
-
-        video.addEventListener('mouseenter', function () {
-            video.play().catch(function (error) {
-                console.log('Autoplay was prevented:', error);
-            });
-        });
-
-        video.addEventListener('mouseleave', function () {
-            video.pause();
+    // Prepare all videos: muted, no loop, inline
+    rows.forEach(function (row) {
+        var videos = row.querySelectorAll('video');
+        videos.forEach(function (video) {
+            video.loop = false;
+            video.muted = true;
+            video.playsInline = true;
         });
     });
+
+    function isRowInViewport(row) {
+        var rect = row.getBoundingClientRect();
+        // Row is considered visible when at least part of it is in the viewport
+        return rect.top < window.innerHeight && rect.bottom > 0;
+    }
+
+    function playRow(index) {
+        if (index >= rows.length) {
+            isPlaying = false;
+            return;
+        }
+
+        currentRowIndex = index;
+
+        // If the row isn't visible yet, wait for scroll
+        if (!isRowInViewport(rows[index])) {
+            isPlaying = false;
+            return;
+        }
+
+        isPlaying = true;
+        var videos = rows[index].querySelectorAll('video');
+        var finishedCount = 0;
+
+        videos.forEach(function (video) {
+            video.addEventListener('ended', function onEnded() {
+                video.removeEventListener('ended', onEnded);
+                finishedCount++;
+                if (finishedCount >= videos.length) {
+                    playRow(index + 1);
+                }
+            });
+
+            video.play().catch(function (error) {
+                console.log('Autoplay was prevented:', error);
+                finishedCount++;
+                if (finishedCount >= videos.length) {
+                    playRow(index + 1);
+                }
+            });
+        });
+    }
+
+    function onScroll() {
+        // If not currently playing and there are rows left, check if the next row is visible
+        if (!isPlaying && currentRowIndex < rows.length && isRowInViewport(rows[currentRowIndex])) {
+            playRow(currentRowIndex);
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Also check immediately in case the first row is already visible on load
+    onScroll();
 });

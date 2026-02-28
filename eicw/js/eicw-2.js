@@ -563,26 +563,61 @@ window.addEventListener('scroll', () => {
     document.getElementById('scroll-indicator').style.width = scrollPercentage + '%';
 });
 
-// Play videos only on hover, pause when mouse leaves
+// Autoplay videos one by one when scrolled into view
 document.addEventListener('DOMContentLoaded', function () {
-    var videos = document.querySelectorAll('video');
+    var videos = Array.from(document.querySelectorAll('video'));
+    if (videos.length === 0) return;
 
+    var currentIndex = 0;
+    var isPlaying = false;
+
+    // Prepare all videos: muted, no loop, inline
     videos.forEach(function (video) {
-        video.setAttribute('title', 'Video Autoplays on Hover');
-        video.style.cursor = 'pointer';
-
-        setTimeout(function () {
-            video.removeAttribute('title');
-        }, 5000);
-
-        video.addEventListener('mouseenter', function () {
-            video.play().catch(function (error) {
-                console.log('Autoplay was prevented:', error);
-            });
-        });
-
-        video.addEventListener('mouseleave', function () {
-            video.pause();
-        });
+        video.loop = false;
+        video.muted = true;
+        video.playsInline = true;
     });
+
+    function isInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
+    }
+
+    function playNext(index) {
+        if (index >= videos.length) {
+            isPlaying = false;
+            return;
+        }
+
+        currentIndex = index;
+
+        if (!isInViewport(videos[index])) {
+            isPlaying = false;
+            return;
+        }
+
+        isPlaying = true;
+        var video = videos[index];
+
+        video.addEventListener('ended', function onEnded() {
+            video.removeEventListener('ended', onEnded);
+            playNext(index + 1);
+        });
+
+        video.play().catch(function (error) {
+            console.log('Autoplay was prevented:', error);
+            playNext(index + 1);
+        });
+    }
+
+    function onScroll() {
+        if (!isPlaying && currentIndex < videos.length && isInViewport(videos[currentIndex])) {
+            playNext(currentIndex);
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Check immediately in case the first video is already visible
+    onScroll();
 });
