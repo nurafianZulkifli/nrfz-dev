@@ -142,15 +142,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Maintain the filtered class and current filter state when searching
+        // When searching, don't apply the filtered class - keep card sizing flexible
         gridContainers.forEach(container => {
-            if (currentFilter !== "*") {
-                container.classList.add("filtered");
-            } else {
-                container.classList.remove("filtered");
-            }
+            container.classList.remove("filtered");
         });
 
-        updateGridClass(currentFilter !== "*");
+        // Only keep consistent sizing when search is active, don't restrict grid columns
+        updateGridClass(false);
     });
 });
