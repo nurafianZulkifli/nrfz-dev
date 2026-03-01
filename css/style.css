@@ -530,7 +530,7 @@ input:required {
 #scroll-indicator {
     height: 100%;
     width: 0;
-    background: linear-gradient(58deg, #97a19f 0%, #606b94 100%);
+    background-image: linear-gradient(to right, #8f1211, #962f14, #9c4519, #a15722, #a6692e);;
     transition: width 0.1s ease;
 }
 
@@ -927,7 +927,7 @@ header {
     position: relative;
     z-index: 1;
     margin-top: 50px;
-    min-height: 180px;
+    min-height: 110px;
     display: flex;
     flex-direction: column;
 }
@@ -1359,6 +1359,11 @@ h4.timeline-date-aa {
     padding-bottom: 2em;
 }
 
+.wbnrfz-grid.filtered {
+    grid-template-columns: repeat(auto-fit, minmax(270px, 270px));
+    justify-content: start;
+}
+
 .wbnrfz-grid.two-cards {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     max-width: 600px;
@@ -1539,7 +1544,7 @@ img.profile-pic {
 
 .skill-ara .single-skill .progress-bar {
     background: #87bee8;
-    background: linear-gradient(58deg, #97a19f 0%, #606b94 100%);
+    background-image: linear-gradient(to right, #8f1211, #962f14, #9c4519, #a15722, #a6692e);;
     width: 0%;
     border-radius: 15px;
 }
@@ -2940,7 +2945,7 @@ li.breadcrumb-item a:hover {
 }
 
 .scrollable-tabs-container a.active {
-    background: linear-gradient(58deg, #97a19f 0%, #606b94 100%);
+    background-image: linear-gradient(to right, #8f1211, #962f14, #9c4519, #a15722, #a6692e);;
     color: #fff;
 }
 

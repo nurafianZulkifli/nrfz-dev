@@ -11,7 +11,7 @@ body.dark-mode .page-header-section {
 }
 
 .nav-link.active {
-    background: linear-gradient(58deg, #97a19f 0%, #606b94 100%) !important;
+    background-image: linear-gradient(to right, #8f1211, #962f14, #9c4519, #a15722, #a6692e); !important;
 }
 
 .mobile-bottom-nav,

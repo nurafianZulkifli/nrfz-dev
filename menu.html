@@ -7,7 +7,7 @@
         window._themePreference = localStorage.getItem('theme-preference') || 'system';
         window._prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const _shouldBeDark = window._themePreference === 'dark' || (window._themePreference === 'system' && window._prefersDark);
-        
+
         if (_shouldBeDark) {
             document.documentElement.classList.add('dark-mode');
             document.documentElement.style.background = '#121521';
@@ -323,7 +323,7 @@
                     class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex">
                         <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-pen-paintbrush"></i>&nbsp; Works By NRFZ</h5>
+                            <h5 class="lg-menu"><i class="fa-regular fa-circle-user"></i>&nbsp; About Us</h5>
                         </div>
                     </div>
                 </a>
@@ -336,11 +336,10 @@
                     </div>
                 </a>
 
-                <a href="https://worksbynrfz.com"
-                    class="list-group-item list-group-item-action flex-column align-items-start">
+                <a href="install-guides.html" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex">
                         <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-external-link"></i>&nbsp; Apps</h5>
+                            <h5 class="lg-menu"><i class="fa-regular fa-comment-dots"></i>&nbsp; Install Guides</h5>
                         </div>
                     </div>
                 </a>
@@ -349,7 +348,8 @@
                     id="theme-toggle-desktop">
                     <div class="d-flex">
                         <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-sun-bright" id="theme-icon-desktop"></i>&nbsp; <span id="theme-text-desktop">Display: Light</span></h5>
+                            <h5 class="lg-menu"><i class="fa-regular fa-sun-bright" id="theme-icon-desktop"></i>&nbsp;
+                                <span id="theme-text-desktop">Display: Light</span></h5>
                         </div>
                     </div>
                 </a>
@@ -357,22 +357,16 @@
                 <hr>
 
                 <div class="footer-social">
-                    <a href="https://github.com/nurafianZulkifli" class="social-link">
-                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    <a href="https://www.youtube.com/@SMRTOsg" class="social-link">
+                        <i class="fa-brands fa-youtube" aria-hidden="true"></i>
                     </a>
-                    <a href="https://twitter.com/nrfzlkf_" class="social-link">
-                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.facebook.com/Nrfnzlkf/" class="social-link">
+                    <a href="https://www.facebook.com/SMRTVRT" class="social-link">
                         <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.instagram.com/nrfzlkf/" class="social-link">
-                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                     </a>
                 </div>
 
                 <div class="footer-copy">
-                    © 2026 Nurafian Zulkifli
+                    © 2026 Illustrations belong to SMRT Corp Ltd
                 </div>
             </div>
     </section>
