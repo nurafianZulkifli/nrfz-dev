@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        if (localStorage.getItem('dark-mode') === 'enabled') {
+        window._themePreference = localStorage.getItem('theme-preference') || 'system';
+        window._prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const _shouldBeDark = window._themePreference === 'dark' || (window._themePreference === 'system' && window._prefersDark);
+        
+        if (_shouldBeDark) {
             document.documentElement.classList.add('dark-mode');
             document.documentElement.style.background = '#121521';
         }
@@ -342,10 +346,10 @@
                 </a>
 
                 <a href="" class="list-group-item list-group-item-action flex-column align-items-start"
-                    id="dark-mode-toggle-desktop">
+                    id="theme-toggle-desktop">
                     <div class="d-flex">
                         <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-sun-bright"></i>&nbsp; Display: Light</h5>
+                            <h5 class="lg-menu"><i class="fa-regular fa-sun-bright" id="theme-icon-desktop"></i>&nbsp; <span id="theme-text-desktop">Display: Light</span></h5>
                         </div>
                     </div>
                 </a>
