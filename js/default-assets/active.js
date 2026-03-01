@@ -281,7 +281,7 @@ var alignParagraphsConfig = {
   // Alignment for paragraphs at or below lineThreshold lines
   fewLinesAlign: "center",
   // Alignment for paragraphs above lineThreshold lines
-  manyLinesAlign: "justify",
+  manyLinesAlign: "left",
 };
 
 function alignParagraphs() {
