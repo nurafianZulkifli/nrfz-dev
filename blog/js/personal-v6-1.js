@@ -1,5 +1,14 @@
 /* Dark Mode Functionality for Individual Pages */
 
+// Check for theme parameter in URL (for cross-domain sync from worksbynrfz.com)
+(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const themeParam = urlParams.get('theme');
+    if (themeParam && ['light', 'dark', 'system'].includes(themeParam)) {
+        localStorage.setItem('theme-preference', themeParam);
+    }
+})();
+
 // Use window properties if they exist from initial script, otherwise create them
 if (typeof window._themePreference === 'undefined') {
     window._themePreference = localStorage.getItem('theme-preference') || 'system';
@@ -230,14 +239,14 @@ function updateHrefForDarkMode() {
         nb2.href = 'https://i.imgur.com/rDKZwWk.png';
         nb2_img.src = 'https://i.imgur.com/rDKZwWk.png';
 
-        hp1.href = 'https://i.imgur.com/P2nO6CK.png';
-        hp1_img.src = 'https://i.imgur.com/P2nO6CK.png';
+        hp1.href = 'https://i.imgur.com/26Sji8H.png';
+        hp1_img.src = 'https://i.imgur.com/26Sji8H.png';
 
-        hp2.href = 'https://i.imgur.com/BKGfaQS.png';
-        hp2_img.src = 'https://i.imgur.com/BKGfaQS.png';
+        hp2.href = 'https://i.imgur.com/xQo48lU.png';
+        hp2_img.src = 'https://i.imgur.com/xQo48lU.png';
 
-        bn1.href = 'https://i.imgur.com/6mvxAKY.png';
-        bn1_img.src = 'https://i.imgur.com/6mvxAKY.png';
+        bn1.href = 'https://i.imgur.com/ILVgJTV.png';
+        bn1_img.src = 'https://i.imgur.com/ILVgJTV.png';
 
         bn2.href = 'https://i.imgur.com/yoEhQpW.png';
         bn2_img.src = 'https://i.imgur.com/yoEhQpW.png';
