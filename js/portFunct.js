@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Filter functionality
     const filterTitle = document.getElementById("filter-title");
     const routesHeading = document.getElementById("routes-heading-section");
-    const trainsHeading = document.getElementById("trains-heading-section");
+    const busesHeading = document.getElementById("buses-heading-section");
+    const devfilesHeading = document.getElementById("devfiles-heading-section");
     let currentFilter = "*"; // Track the current filter
 
     filterButtons.forEach(button => {
@@ -49,8 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (routesHeading) {
                 routesHeading.style.display = isAllReleases ? "block" : "none";
             }
-            if (trainsHeading) {
-                trainsHeading.style.display = isAllReleases ? "block" : "none";
+            if (busesHeading) {
+                busesHeading.style.display = isAllReleases ? "block" : "none";
+            }
+            if (devfilesHeading) {
+                devfilesHeading.style.display = isAllReleases ? "block" : "none";
             }
 
             // Apply/remove filtered class to grids

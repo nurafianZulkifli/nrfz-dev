@@ -48,6 +48,10 @@
         background-color: #ecececea;
     }
 
+    .accordion-body p {
+        text-align: left;
+    }
+
     .accordion-item {
         border-radius: 24px !important;
         margin-bottom: 10px;
@@ -66,6 +70,24 @@
         border-radius: 0 0 24px 24px !important;
     }
 
+    .pw-btn-accord {
+        position: relative;
+        z-index: 1;
+        min-width: 100px;
+        height: 45px;
+        line-height: 40px;
+        font-size: 19px;
+        font-weight: 500;
+        display: inline-block;
+        padding: 2px 30px;
+        text-align: center;
+        text-transform: capitalize;
+        background-color: #e96060;
+        color: #fff;
+        border-radius: 60px;
+        transition-duration: 500ms;
+        margin: 10px;
+    }
 
     body.dark-mode .accordion-body {
         background-color: #292d3d;
@@ -272,11 +294,11 @@
     </section>
 
     <!-- Section Contents -->
-    <section class="about-me-summ clearfix">
+    <section class="about-me-summ clearfix" style="padding-bottom: 4em;">
         <div class="container-xxl">
 
             <!-- Accordion OpenBVE -->
-            <div class="accordion accordion-openbve" id="accordGuide">
+            <div class="accordion accordion-openbve" id="accordGuideOpenBVE">
 
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingGetStarted">
@@ -314,11 +336,13 @@
                                         <a href="./img/tutorials/tutdlop.png" class="portfolio-img"><img
                                                 src="./img/tutorials/tutdlop.png" class="img-fluid accord-img"
                                                 alt="Hero Image Section"></a>
-                                        <p>We recommend downloading the latest stable version of the openBVE main
-                                            program.</p>
-                                        <a href="https://openbve-project.net/download/"
-                                            class="btn pw-btn-accord btn-2 mt-15" target="_blank">
-                                            <i class="fa-solid fa-download"></i>&nbsp;&nbsp;OpenBVE</a>
+                                        <div>
+                                            <p>We recommend downloading the latest stable version of the openBVE main
+                                                program.</p>
+                                            <a href="https://openbve-project.net/download/"
+                                                class="btn pw-btn btn-2 mt-15" target="_blank">
+                                                <i class="fa-solid fa-download"></i>&nbsp;&nbsp;OpenBVE</a>
+                                        </div>
                                     </figcaption>
                                     <br>
                                     <br>
@@ -338,7 +362,7 @@
                                     <br>
                                     <br>
                                     <h4>Staying up to date</h6>
-                                        <p> Simply download the main program again and extract it to
+                                        <p class="no-align"> Simply download the main program again and extract it to
                                             your install directory. You do not have to download the other stuff
                                             again.
                                         </p>
@@ -387,7 +411,7 @@
             </div>
 
             <!-- Accordion OMSI 2 -->
-            <div class="accordion accordion-omsi2" id="accordGuide">
+            <div class="accordion accordion-omsi2" id="accordGuideOMSI2">
 
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingGetStarted">
@@ -538,10 +562,6 @@
     <script src="js/isotope.pkgd.min.js"></script>
 
     <script src="js/dstabs.js"></script>
-
-    <script src="js/portFunct.js"></script>
-
-    <script src="js/copy-to-clipboard.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

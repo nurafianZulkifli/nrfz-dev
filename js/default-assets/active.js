@@ -309,3 +309,17 @@ function alignParagraphs() {
 
 document.addEventListener("DOMContentLoaded", alignParagraphs);
 window.addEventListener("resize", alignParagraphs);
+
+// Recalculate alignment when Bootstrap accordion items are shown
+document.addEventListener('show.bs.collapse', function(event) {
+  if (event.target.classList.contains('accordion-collapse')) {
+    // Realign immediately when accordion opens
+    alignParagraphs();
+    // Also realign during animation (every 50ms) and after
+    var interval = setInterval(alignParagraphs, 50);
+    setTimeout(function() {
+      clearInterval(interval);
+      alignParagraphs();
+    }, 500);
+  }
+}, true);
