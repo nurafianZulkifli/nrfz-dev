@@ -369,7 +369,7 @@
                     <p><strong>Release Date:</strong> <span id="releaseDate"></span></p>
                     <p><strong>Changes:</strong> <span id="changesText"></span></p>
                     <div style="margin-top: 20px;">
-                      <a id="downloadBtn" href="#" class="btn pw-btn btn-2 mt-15" download>
+                      <a id="downloadBtn" href="#" class="btn pw-btn btn-2 mt-15">
                         <i class="fa-solid fa-download"></i>&nbsp; Download
                       </a>
                     </div>
@@ -875,7 +875,7 @@
           '- Updated RATiS UI',
           '- Updated PMTPG for all stations'
         ],
-        downloadUrl: '#'  // Add your download link here
+        downloadUrl: 'https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-HBL.7z'  // Add your download link here
       },
       version1: {
         date: '03/11/24',
@@ -883,7 +883,7 @@
           '- New Chimes Implemented',
           '- Backported the Announcement Trigger update from Retrofitted Routes'
         ],
-        downloadUrl: '#'  // Add your download link here
+        downloadUrl: 'https://github.com/smrtosg/main/releases/download/v2508.1000/Railway.-.HBL.Legacy.7z'  // Add your download link here
       }
     };
 
@@ -896,7 +896,12 @@
         } else {
           changesText.textContent = changes;
         }
-        downloadBtn.href = versionData[this.value].downloadUrl;
+        const downloadUrl = versionData[this.value].downloadUrl;
+        downloadBtn.href = downloadUrl;
+        downloadBtn.onclick = function(e) {
+          e.preventDefault();
+          window.location.href = downloadUrl;
+        };
         versionContent.style.display = 'block';
       } else {
         versionContent.style.display = 'none';
