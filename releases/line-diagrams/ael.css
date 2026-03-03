@@ -155,9 +155,9 @@
       position: absolute;
       left: 6px;
       top: 22px;
-      bottom: 99px;
+      bottom: 25px;
       width: 3px;
-      background: #ffbb00;
+      background: #27279d;
       z-index: 1;
   }
 
@@ -174,7 +174,7 @@
       height: 18px;
       border-radius: 50%;
       background: #fff;
-      border: 3px solid #ffbb00;
+      border: 3px solid #27279d;
       position: absolute;
       left: -31px;
       z-index: 10;
@@ -197,8 +197,8 @@
   }
 
   .station-code {
-      background: #ffbb00;
-      color: #000 !important;
+      background: #27279d;
+      color: #fff !important;
       font-weight: bold;
       border-radius: 13.6px / 19.2px;
       padding: 5px 10px;
