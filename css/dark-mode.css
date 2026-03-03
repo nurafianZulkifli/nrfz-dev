@@ -726,6 +726,14 @@ body.dark-mode .mobile-menu-link {
     color: #fff;
 }
 
+body.dark-mode .hyperlink {
+    color: #ce815a;
+}
+
+body.dark-mode .hyperlink:hover {
+    color: #df9c7b;
+}
+
 /* ------------------------------------------*/
 
 /* ------------------------------------------ 10.0 Footer ------------------------------------------ */
