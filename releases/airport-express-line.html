@@ -68,9 +68,7 @@
     font-weight: 600;
     color: #252525;
     background-color: #fff;
-    border: 1px solid #e9ecef;
     border-radius: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     cursor: pointer;
     transition: all 0.3s ease;
     appearance: none;
@@ -79,6 +77,8 @@
     background-position: right 12px center;
     background-size: 20px;
     padding-right: 40px;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   body.dark-mode .version-dropdown {
@@ -86,6 +86,8 @@
     color: #f0f0f0;
     border-color: #444;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .version-dropdown:hover {
@@ -742,24 +744,41 @@
       }
     };
 
-    versionDropdown.addEventListener('change', function () {
-      if (this.value && versionData[this.value]) {
-        releaseDate.textContent = versionData[this.value].date;
-        const changes = versionData[this.value].changes;
+   // Function to display version content
+    function displayVersion(versionKey) {
+      if (versionKey && versionData[versionKey]) {
+        releaseDate.textContent = versionData[versionKey].date;
+        const changes = versionData[versionKey].changes;
         if (Array.isArray(changes)) {
           changesText.innerHTML = changes.map(change => `<div>${change}</div>`).join('');
         } else {
           changesText.textContent = changes;
         }
-        const downloadUrl = versionData[this.value].downloadUrl;
+        const downloadUrl = versionData[versionKey].downloadUrl;
         downloadBtn.href = downloadUrl;
         downloadBtn.onclick = function (e) {
           e.preventDefault();
           window.location.href = downloadUrl;
         };
         versionContent.style.display = 'block';
+        // Save to sessionStorage for back navigation
+        sessionStorage.setItem('selectedVersion', versionKey);
       } else {
         versionContent.style.display = 'none';
+        sessionStorage.removeItem('selectedVersion');
+      }
+    }
+
+    versionDropdown.addEventListener('change', function () {
+      displayVersion(this.value);
+    });
+
+    // Restore dropdown state on page load/back navigation
+    window.addEventListener('pageshow', function () {
+      const savedVersion = sessionStorage.getItem('selectedVersion');
+      if (savedVersion) {
+        versionDropdown.value = savedVersion;
+        displayVersion(savedVersion);
       }
     });
   </script>
