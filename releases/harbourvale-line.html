@@ -101,6 +101,14 @@
     box-shadow: 0 0 0 3px rgba(109, 153, 192, 0.1);
   }
 
+  .version-dropdown.expanded {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e");
+  }
+
+  body.dark-mode .version-dropdown.expanded {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  }
+
   .version-content {
     margin-top: 20px;
     animation: slideDown 0.3s ease;
@@ -902,10 +910,12 @@
           window.location.href = downloadUrl;
         };
         versionContent.style.display = 'block';
+        versionDropdown.classList.add('expanded');
         // Save to sessionStorage for back navigation
         sessionStorage.setItem('selectedVersion', versionKey);
       } else {
         versionContent.style.display = 'none';
+        versionDropdown.classList.remove('expanded');
         sessionStorage.removeItem('selectedVersion');
       }
     }

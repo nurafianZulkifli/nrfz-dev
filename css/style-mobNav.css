@@ -317,7 +317,7 @@ body.dark-mode .list-group-item:hover {
     }
 
     .mobile-bottom-nav li.active {
-        background: linear-gradient(58deg, #97a19f 0%, #505a7d 100%);
+        background-image: linear-gradient(to right, #8f1211, #962f14, #9c4519, #a15722, #a6692e)
     }
 
     .mobile-bottom-nav .icon {
