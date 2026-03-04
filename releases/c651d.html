@@ -384,7 +384,6 @@
               <div class="version-control-container">
                 <select id="versionDropdown" class="version-dropdown">
                   <option value="">Select a version...</option>
-                  <option value="version1">Version 1.0 - Latest Release</option>
                 </select>
                 <div id="versionContent" class="version-content" style="display: none;">
                   <div class="version-details">
@@ -484,6 +483,8 @@
   <script src="../js/dis.js"></script>
 
   <script src="../js/dstabs.js"></script>
+
+  <script src="../js/releases-loader.js"></script>
 
 
   <!-- Script for Indiv Page - Modes -->
@@ -680,63 +681,9 @@
 
   <!-------------------------- Releases -------------------------->
   <script>
-    // Version dropdown functionality
-    const versionDropdown = document.getElementById('versionDropdown');
-    const versionContent = document.getElementById('versionContent');
-    const releaseDate = document.getElementById('releaseDate');
-    const changesText = document.getElementById('changesText');
-    const downloadBtn = document.getElementById('downloadBtn');
-
-    // Release data for each version
-    const versionData = {
-      version1: {
-        date: '07/09/25',
-        changes: [
-          '- Full train file provided. <a href="https://smrtosg.github.io/blog/refresh-main.html#ul" class="hyperlink">Learn More</a> about this change.',
-          '- Initial Release'
-        ],
-        downloadUrl: 'https://github.com/smrtosg/main/releases/download/v2508.1020/SMRTO.Alstom.MOVIA.C651D.303-304.303F.7z'
-      }
-    };
-
-    // Function to display version content
-    function displayVersion(versionKey) {
-      if (versionKey && versionData[versionKey]) {
-        releaseDate.textContent = versionData[versionKey].date;
-        const changes = versionData[versionKey].changes;
-        if (Array.isArray(changes)) {
-          changesText.innerHTML = changes.map(change => `<div>${change}</div>`).join('');
-        } else {
-          changesText.textContent = changes;
-        }
-        const downloadUrl = versionData[versionKey].downloadUrl;
-        downloadBtn.href = downloadUrl;
-        downloadBtn.onclick = function (e) {
-          e.preventDefault();
-          window.location.href = downloadUrl;
-        };
-        versionContent.style.display = 'block';
-        versionDropdown.classList.add('expanded');
-        // Save to sessionStorage for back navigation
-        sessionStorage.setItem('selectedVersion', versionKey);
-      } else {
-        versionContent.style.display = 'none';
-        versionDropdown.classList.remove('expanded');
-        sessionStorage.removeItem('selectedVersion');
-      }
-    }
-
-    versionDropdown.addEventListener('change', function () {
-      displayVersion(this.value);
-    });
-
-    // Restore dropdown state on page load/back navigation
-    window.addEventListener('pageshow', function () {
-      const savedVersion = sessionStorage.getItem('selectedVersion');
-      if (savedVersion) {
-        versionDropdown.value = savedVersion;
-        displayVersion(savedVersion);
-      }
+    // Initialize releases on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeVersionDropdown('c651d');
     });
   </script>
 

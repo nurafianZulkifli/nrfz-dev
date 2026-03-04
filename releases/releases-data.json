@@ -1,0 +1,93 @@
+{
+  "harbourvale-line": {
+    "title": "Harbourvale Line",
+    "versions": {
+      "version3": {
+        "version": "3.0",
+        "date": "11/08/25",
+        "label": "latest-release",
+        "changes": [
+          "- Updated RATiS UI",
+          "- Updated PMTPG for all stations"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-HBL.7z"
+      },
+      "version1": {
+        "version": "1.0",
+        "date": "03/11/24",
+        "label": "legacy",
+        "changes": [
+          "- New Chimes Implemented",
+          "- Backported the Announcement Trigger update from Retrofitted Routes"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway.-.HBL.Legacy.7z"
+      }
+    }
+  },
+  "airport-express-line": {
+    "title": "Airport Express Line",
+    "versions": {
+      "version3": {
+        "version": "3.2",
+        "date": "18/08/2025",
+        "label": "latest-release",
+        "changes": [
+          "- Added support for Reverse Driving (EHB to STD)",
+          "- Updated RATiS UI"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-AEL_3.2.7z"
+      },
+      "version1": {
+        "version": "1.0",
+        "date": "2022",
+        "label": "legacy",
+        "changes": [
+          "- Initial Release"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway.-.AEL.Legacy.7z"
+      }
+    }
+  },
+  "c651d": {
+    "title": "Alstom Movia C651D",
+    "versions": {
+      "version1": {
+        "version": "1.0",
+        "date": "07/09/25",
+        "label": "latest-release",
+        "changes": [
+          "- Full train file provided. <a href=\"https://smrtosg.github.io/blog/refresh-main.html#ul\" class=\"hyperlink\">Learn More</a> about this change.",
+          "- Initial Release"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1020/SMRTO.Alstom.MOVIA.C651D.303-304.303F.7z"
+      }
+    }
+  },
+  "north-west-line": {
+    "title": "North-West Line",
+    "versions": {
+      "version3": {
+        "version": "3.6",
+        "date": "07/09/25",
+        "label": "latest-release",
+        "changes": [
+          "- Improved Announcement Trigger Points",
+          "- Fixed a Destination Trigger bug at NW7",
+          "- Fixed the incorrect Caplets at NW8"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1020/Railway-NWL_3.6.7z"
+      },
+      "version1": {
+        "version": "0.8",
+        "date": "2010",
+        "label": "legacy",
+        "changes": [
+          "- Initial Release"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/North.West.Line.v0.8.zip"
+      }
+    }
+  }
+
+}
+

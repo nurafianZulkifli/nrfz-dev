@@ -195,7 +195,7 @@ body.dark-mode .single-skill .progress {
 
 /* ------------------------------------------ 1.0 Home Page ------------------------------------------ */
 body.dark-mode .pw-portfolio-area {
-    background-color: #18191a;
+    background-color: #1c1f2b;
     transition: all 0.5s ease;
 }
 
@@ -204,7 +204,7 @@ body.dark-mode .pw-portfolio-area-featured {
 }
 
 body.dark-mode .pw-portfolio-area .container-fluid {
-    background-color: #18191a;
+    background-color: #1c1f2b;
     color: #fff;
     transition: all 0.5s ease;
 }
