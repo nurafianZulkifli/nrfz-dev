@@ -2482,64 +2482,14 @@ select:focus {
     scroll-margin-top: 5vh;
 }
 
-#eia-img,
-#dsb-img,
-#iu-img,
-#ie-img,
-#history,
-#rewrite,
-#ai,
-#typeface,
-#colour,
-#icon-assets,
-#brainstorm,
-#psrith,
-#cckint,
-#br-diag,
+
 #summary,
 #tm,
-#lppl {
+#orp,
+#obf {
     scroll-margin-top: 8vh;
 }
 
-#bat,
-#tv,
-#staris2,
-#cddbp,
-#bcr,
-#changes,
-#tooSoon,
-#conclusion,
-#whathappened,
-#paperSign,
-#v1,
-#v2,
-#v3,
-#v4,
-#whats-next,
-#old-vs-new,
-#context,
-#identify,
-#icons,
-#exit,
-#consist,
-#overall,
-#proposed,
-#summary,
-#time,
-#conc-rea,
-#descol,
-#pinned {
-    scroll-margin-top: 12vh;
-}
-
-#dsi,
-#pct,
-#pcb,
-#pcu,
-#pcc {
-    scroll-margin-top: 35vh;
-}
 
 /* ------------------------------------------ 19.0 EICW ------------------------------------------ */
 
