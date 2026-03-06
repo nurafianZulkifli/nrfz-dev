@@ -119,7 +119,7 @@
         "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/SMRT.Alstom.MOVIA.R151.825-826.825F.7z"
       }
     }
-   },
+  },
   "c151c": {
     "title": "Kawasaki Heavy Industries & CRRC Qingdao Sifang C151C",
     "versions": {
@@ -168,7 +168,7 @@
         "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/SMRT.KSF.C151A.569-570.569F.7z"
       }
     }
-    },
+  },
   "651-leg": {
     "title": "C651/A/B/C/D (Legacy)",
     "versions": {
@@ -180,6 +180,21 @@
           "- Compatibility for new Announcement Trigger update"
         ],
         "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Train.-.HLCG.Legacy.7z"
+      }
+    }
+  },
+  "ryl150": {
+    "title": "Alstom Movia RYL150",
+    "versions": {
+      "version1": {
+        "version": "1.1",
+        "date": "16/08/25",
+        "label": "latest-release",
+        "changes": [
+          "- Full train file provided. <a href=\"https://smrtosg.github.io/blog/refresh-main.html#ul\" class=\"hyperlink\">Learn More</a> about this change.",
+          "- Updated Loop Sound"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Alstom.MOVIA.RYL150.3001.7z"
       }
     }
   }
