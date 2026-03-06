@@ -6,13 +6,15 @@
         border-radius: 25px;
         box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
         margin-bottom: 40px;
-        padding-right: 4em;
+        overflow: visible;
+        min-width: 0;
     }
 
     .line-content-wrapper {
         display: flex;
         gap: 20px;
         margin-bottom: 40px;
+        overflow: visible;
     }
 
     .line-description {
@@ -132,6 +134,7 @@
 
     .line-controls {
         margin-bottom: 25px;
+        overflow: visible;
     }
 
     .line-control-dropdown {
@@ -143,7 +146,12 @@
         color: white;
         font-size: 14px;
         cursor: pointer;
-        min-width: 200px;
+        min-width: auto;
+        max-width: none;
+        white-space: nowrap;
+        overflow: visible;
+        position: relative;
+        z-index: 10;
     }
 
     .line-control-dropdown:hover {
@@ -159,8 +167,9 @@
     .branch-selector {
         margin-bottom: 20px;
         display: flex;
-        align-items: center;
-        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
 
     .branch-selector select {
@@ -174,6 +183,9 @@
         border: 1px solid #2b2b2b33;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
         transition: background 0.3s ease;
+        width: 100%;
+        max-width: 100%;
+        word-break: break-word;
     }
 
     .branch-selector select:hover {
@@ -235,6 +247,8 @@
         align-items: center;
         gap: 8px;
         flex: 1;
+        min-width: 0;
+        overflow: hidden;
     }
 
     .station-codes {
@@ -349,7 +363,9 @@
         font-size: 18px;
         font-weight: 500;
         color: #000;
-        white-space: nowrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: calc(100% - 120px);
         cursor: default;
     }
 
@@ -389,6 +405,9 @@
         border: 1px solid #2b2b2b33;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
         transition: background 0.3s ease;
+        width: 100%;
+        max-width: 100%;
+        word-break: break-word;
     }
 
     body.dark-mode .branch-selector select:hover {
@@ -459,6 +478,7 @@
 
         .line-diagram {
             max-width: 100%;
+            padding: 20px;
         }
 
         .line-description {
