@@ -1,0 +1,17 @@
+{
+  "harbourvale-line": {
+    "title": "Harbourvale Line",
+    "versions": {
+      "version3": {
+        "version": "3.5",
+        "date": "07/03/26",
+        "label": "pre-release",
+        "changes": [
+          "- Updated PSD signages",
+          "- New Re-recorded Announcement PA sequence"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-HBL.7z"
+      }
+    }
+  }
+}

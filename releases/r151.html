@@ -683,12 +683,133 @@
     </script>
 
     <!-------------------------- Releases -------------------------->
-    <script>
-        // Initialize releases on page load
-        document.addEventListener('DOMContentLoaded', function () {
-            initializeVersionDropdown('r151');
-        });
-    </script>
+  <script>
+    // Load labs release data from the labs JSON file
+    async function loadLabsReleaseData(lineKey) {
+      try {
+        const response = await fetch('../releases/releases-data-labs.json');
+        if (!response.ok) throw new Error('Failed to load labs releases data');
+        const data = await response.json();
+        return data[lineKey] || null;
+      } catch (error) {
+        console.error('Error loading labs release data:', error);
+        return null;
+      }
+    }
+
+    // Initialize releases on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if accessed from labs.html
+      const referrer = document.referrer;
+      const isFromLabs = referrer.includes('labs.html');
+      
+      if (isFromLabs) {
+        // Hide main dropdown, show only labs dropdown
+        const mainContainer = document.querySelector('.version-control-container');
+        if (mainContainer) {
+          mainContainer.style.display = 'none';
+        }
+        
+        const labsContainer = document.getElementById('labsVersionContainer');
+        if (labsContainer) {
+          labsContainer.style.display = 'block';
+          initializeLabsVersionDropdown('harbourvale-line');
+        }
+      } else {
+        // Show main dropdown, hide labs dropdown
+        initializeVersionDropdown('harbourvale-line');
+        
+        const labsContainer = document.getElementById('labsVersionContainer');
+        if (labsContainer) {
+          labsContainer.style.display = 'none';
+        }
+      }
+    });
+    
+    // Initialize labs-exclusive version dropdown
+    async function initializeLabsVersionDropdown(lineKey) {
+      const labsVersionDropdown = document.getElementById('labsVersionDropdown');
+      const releaseData = await loadLabsReleaseData(lineKey);
+      
+      if (!releaseData || !labsVersionDropdown) return;
+      
+      // Clear default options first
+      labsVersionDropdown.innerHTML = '<option value="">Select an experimental version...</option>';
+      
+      // Populate dropdown options - you can add different versions or filter as needed
+      Object.entries(releaseData.versions).forEach(([key, versionInfo]) => {
+        const option = document.createElement('option');
+        option.value = key;
+        
+        let label = `Version ${versionInfo.version}`;
+        
+        if (versionInfo.label) {
+          if (versionInfo.label === 'latest-release') label += ' - Latest Release';
+          else if (versionInfo.label === 'legacy') label += ' - Legacy';
+          else if (versionInfo.label === 'pre-release') label += ' - Pre-Release';
+        }
+        
+        option.textContent = label;
+        labsVersionDropdown.appendChild(option);
+      });
+      
+      // Setup version selection for labs dropdown
+      labsVersionDropdown.addEventListener('change', function() {
+        displayLabsVersion(this.value, releaseData.versions);
+      });
+      
+      // Restore from sessionStorage
+      const saved = sessionStorage.getItem('selectedLabsVersion');
+      if (saved && releaseData.versions[saved]) {
+        labsVersionDropdown.value = saved;
+        displayLabsVersion(saved, releaseData.versions);
+      }
+    }
+    
+    // Display labs version content
+    function displayLabsVersion(versionKey, versionData) {
+      const labsVersionContent = document.getElementById('labsVersionContent');
+      const labsReleaseDate = document.getElementById('labsReleaseDate');
+      const labsChangesText = document.getElementById('labsChangesText');
+      const labsDownloadBtn = document.getElementById('labsDownloadBtn');
+      const labsVersionDropdown = document.getElementById('labsVersionDropdown');
+      
+      if (!labsVersionContent || !labsReleaseDate || !labsChangesText || !labsDownloadBtn) return;
+      
+      if (versionKey && versionData[versionKey]) {
+        const version = versionData[versionKey];
+        labsReleaseDate.textContent = version.date;
+        
+        // Handle both string and array changes
+        if (Array.isArray(version.changes)) {
+          labsChangesText.innerHTML = version.changes
+            .map(change => `<div>${change}</div>`)
+            .join('');
+        } else {
+          labsChangesText.innerHTML = `<div>${version.changes}</div>`;
+        }
+        
+        labsDownloadBtn.href = version.downloadUrl;
+        labsDownloadBtn.onclick = (e) => {
+          e.preventDefault();
+          window.location.href = version.downloadUrl;
+        };
+        
+        labsVersionContent.style.display = 'block';
+        if (labsVersionDropdown) {
+          labsVersionDropdown.classList.add('expanded');
+        }
+        
+        sessionStorage.setItem('selectedLabsVersion', versionKey);
+      } else {
+        labsVersionContent.style.display = 'none';
+        if (labsVersionDropdown) {
+          labsVersionDropdown.classList.remove('expanded');
+        }
+        sessionStorage.removeItem('selectedLabsVersion');
+      }
+    }
+  </script>
 
 </body>
 

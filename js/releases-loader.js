@@ -33,6 +33,7 @@ async function initializeVersionDropdown(lineKey) {
     if (versionInfo.label) {
       if (versionInfo.label === 'latest-release') label += ' - Latest Release';
       else if (versionInfo.label === 'legacy') label += ' - Legacy';
+      else if (versionInfo.label === 'pre-release') label += ' - Pre-release';
     } else {
       // Fallback to auto-detection by date if no manual label
       const allVersions = Object.values(releaseData.versions);
