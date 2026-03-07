@@ -552,7 +552,7 @@ input:required {
     position: relative;
     z-index: 1;
     min-width: 160px;
-    height: 46px;
+    height: auto;
     line-height: 46px;
     font-size: 14px;
     font-weight: 500;

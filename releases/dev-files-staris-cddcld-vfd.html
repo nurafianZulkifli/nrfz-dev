@@ -729,7 +729,7 @@
       if (!releaseData || !labsVersionDropdown) return;
       
       // Clear default options first
-      labsVersionDropdown.innerHTML = '<option value="">Select an experimental version...</option>';
+      labsVersionDropdown.innerHTML = '<option value="">Select a pre-release version...</option>';
       
       // Populate dropdown options - you can add different versions or filter as needed
       Object.entries(releaseData.versions).forEach(([key, versionInfo]) => {

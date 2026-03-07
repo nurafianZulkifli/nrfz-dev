@@ -401,7 +401,7 @@
               <!-- Labs-exclusive version dropdown -->
               <div class="version-control-container" id="labsVersionContainer" style="margin-top: 30px; display: none;">
                 <select id="labsVersionDropdown" class="version-dropdown labs">
-                  <option value="">Select an experimental version...</option>
+                  <option value="">Select a pre-release version...</option>
                 </select>
                 <div id="labsVersionContent" class="version-content" style="display: none;">
                   <div class="version-details">
@@ -749,7 +749,7 @@
       if (!releaseData || !labsVersionDropdown) return;
       
       // Clear default options first
-      labsVersionDropdown.innerHTML = '<option value="">Select an experimental version...</option>';
+      labsVersionDropdown.innerHTML = '<option value="">Select a pre-release version...</option>';
       
       // Populate dropdown options - you can add different versions or filter as needed
       Object.entries(releaseData.versions).forEach(([key, versionInfo]) => {

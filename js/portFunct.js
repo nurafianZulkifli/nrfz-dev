@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const routesHeading = document.getElementById("routes-heading-section");
     const trainsHeading = document.getElementById("trains-heading-section");
     const busesHeading = document.getElementById("buses-heading-section");
+    const mapsHeading = document.getElementById("maps-heading-section");
     const devfilesHeading = document.getElementById("devfiles-heading-section");
     let currentFilter = "*"; // Track the current filter
 
@@ -56,6 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             if (busesHeading) {
                 busesHeading.style.display = isAllReleases ? "block" : "none";
+            }
+            if (mapsHeading) {
+                mapsHeading.style.display = isAllReleases ? "block" : "none";
             }
             if (devfilesHeading) {
                 devfilesHeading.style.display = isAllReleases ? "block" : "none";

@@ -391,10 +391,7 @@
                                     <div class="version-details">
                                         <p><strong>Release Date:</strong> <span id="releaseDate"></span></p>
                                         <p><strong>Changes:</strong> <span id="changesText"></span></p>
-                                        <div style="margin-top: 20px;">
-                                            <a id="downloadBtn" href="#" class="btn pw-btn btn-2 mt-15">
-                                                <i class="fa-solid fa-download"></i>&nbsp; Download
-                                            </a>
+                                        <div style="margin-top: 20px;" id="downloadContainer">
                                         </div>
                                     </div>
                                 </div>
@@ -768,7 +765,7 @@
       if (!releaseData || !labsVersionDropdown) return;
       
       // Clear default options first
-      labsVersionDropdown.innerHTML = '<option value="">Select an experimental version...</option>';
+      labsVersionDropdown.innerHTML = '<option value="">Select a pre-release version...</option>';
       
       // Populate dropdown options - you can add different versions or filter as needed
       Object.entries(releaseData.versions).forEach(([key, versionInfo]) => {

@@ -79,10 +79,10 @@ function displayVersion(versionKey, versionData) {
   const versionContent = document.getElementById('versionContent');
   const releaseDate = document.getElementById('releaseDate');
   const changesText = document.getElementById('changesText');
-  const downloadBtn = document.getElementById('downloadBtn');
+  const downloadContainer = document.getElementById('downloadContainer');
   const versionDropdown = document.getElementById('versionDropdown');
   
-  if (!versionContent || !releaseDate || !changesText || !downloadBtn) return;
+  if (!versionContent || !releaseDate || !changesText || !downloadContainer) return;
   
   if (versionKey && versionData[versionKey]) {
     const version = versionData[versionKey];
@@ -97,11 +97,34 @@ function displayVersion(versionKey, versionData) {
       changesText.innerHTML = `<div>${version.changes}</div>`;
     }
     
-    downloadBtn.href = version.downloadUrl;
-    downloadBtn.onclick = (e) => {
-      e.preventDefault();
-      window.location.href = version.downloadUrl;
-    };
+    // Handle multiple downloads or fallback to single download
+    downloadContainer.innerHTML = '';
+    
+    if (version.downloads && Array.isArray(version.downloads)) {
+      // Multiple downloads
+      version.downloads.forEach(download => {
+        const btn = document.createElement('a');
+        btn.href = '#';
+        btn.className = 'btn pw-btn btn-2 mt-15';
+        btn.innerHTML = `<i class="fa-solid fa-download"></i>&nbsp; ${download.name}`;
+        btn.onclick = (e) => {
+          e.preventDefault();
+          window.location.href = download.url;
+        };
+        downloadContainer.appendChild(btn);
+      });
+    } else if (version.downloadUrl) {
+      // Single download (backward compatibility)
+      const btn = document.createElement('a');
+      btn.href = '#';
+      btn.className = 'btn pw-btn btn-2 mt-15';
+      btn.innerHTML = `<i class="fa-solid fa-download"></i>&nbsp; Download`;
+      btn.onclick = (e) => {
+        e.preventDefault();
+        window.location.href = version.downloadUrl;
+      };
+      downloadContainer.appendChild(btn);
+    }
     
     versionContent.style.display = 'block';
     if (versionDropdown) {
