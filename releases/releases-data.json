@@ -249,7 +249,7 @@
         "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1020/STARiS-CDDCLD.Dev.Files.7z"
       }
     }
- },
+  },
   "changi-airport-line": {
     "title": "Changi Airport Line",
     "versions": {
@@ -270,6 +270,43 @@
           "- New Chimes Implemented"
         ],
         "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway.-.CGL.Legacy.7z"
+      }
+    }
+  },
+  "woodlands-town": {
+    "title": "Woodlands Town",
+    "versions": {
+      "version2": {
+        "version": "2.0",
+        "date": "25/03/2024",
+        "label": "latest-release",
+        "changes": [
+          "- New Balmoral, Woodlands Int & International Airport Terminal",
+          "- New Services 881 and 886. Renumbered IKEA Shuttle to 407.",
+          "- EDS formatting switched to SMRT's Mobitec format."
+        ],
+        "downloads": [
+          {
+            "name": "Map",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/Map_WT.7z"
+          },
+          {
+            "name": "Fonts",
+            "url": "https://smrtosg.github.io/releases/omsi-developer-files.html"
+          },
+          {
+            "name": "Sceneryobjects",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/Sceneryobjects_WT.7z"
+          },
+          {
+            "name": "Splines",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/Splines_WT.7z"
+          },
+          {
+            "name": "Vehicles (For Announcements/EDS)",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/Vehicles_WT.7z"
+          }
+        ]
       }
     }
   }

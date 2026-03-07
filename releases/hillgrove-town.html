@@ -175,6 +175,7 @@
     }
 
     @media (max-width: 768px) {
+
         #downloadContainer,
         #labsDownloadContainer {
             flex-direction: column;
@@ -219,12 +220,12 @@
         <nav aria-label="breadcrumb" style="margin-bottom:0;">
             <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="./">
+                    <a href="../index.html">
                         <i class="fa-regular fa-house"></i>
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="omsi2.html"><i class="fa-regular fa-bus"></i>
+                    <a href="../omsi2.html"><i class="fa-regular fa-bus"></i>
                     </a>
                 </li>
             </ol>
@@ -458,7 +459,11 @@
 
                 <!-- Line Description Box -->
                 <div class="line-description">
-                    <p>The Hillgrove Town Bus Package is one of seven bus packages under the SMRTO (SMV).
+                    <p>The Hillgrove Town Bus Package is one of seven bus packages under the SMRTO (SMV). <br><br>
+                        The Default Buses in the AI Lists are the <a href="../releases/vdl-clle.html"
+                            class="hyperlink">VDL Citea 12m</a> and <a href="../releases/solaris-urbino-18.html"
+                            class="hyperlink">Solaris Urbino 18</a>. You may change to
+                        your own buses via ailists.cfg.
                     </p>
 
                     <br>
@@ -494,8 +499,7 @@
 
                 <!-- Line Diagram -->
                 <div class="line-diagram">
-
-                    <div class="about-me-stations text-center" data-wow-delay="300ms">
+                    <div class="about-me-stations text-center">
                         <div class="row justify-content-center">
                             <table class="info-table table">
                                 <thead>
@@ -956,7 +960,7 @@
 
                 // Handle multiple downloads or fallback to single download
                 labsDownloadContainer.innerHTML = '';
-                
+
                 if (version.downloads && Array.isArray(version.downloads)) {
                     // Multiple downloads
                     version.downloads.forEach(download => {
