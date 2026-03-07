@@ -400,11 +400,6 @@
 
               <!-- Labs-exclusive version dropdown -->
               <div class="version-control-container" id="labsVersionContainer" style="margin-top: 30px; display: none;">
-                <div style="margin-bottom: 15px;">
-                  <small style="font-weight: 600;">
-                    <i class="fa-regular fa-flask"></i> Experimental Versions
-                  </small>
-                </div>
                 <select id="labsVersionDropdown" class="version-dropdown labs">
                   <option value="">Select an experimental version...</option>
                 </select>
@@ -733,11 +728,11 @@
         const labsContainer = document.getElementById('labsVersionContainer');
         if (labsContainer) {
           labsContainer.style.display = 'block';
-          initializeLabsVersionDropdown('harbourvale-line');
+          initializeLabsVersionDropdown('c651a');
         }
       } else {
         // Show main dropdown, hide labs dropdown
-        initializeVersionDropdown('harbourvale-line');
+        initializeVersionDropdown('c651a');
         
         const labsContainer = document.getElementById('labsVersionContainer');
         if (labsContainer) {
