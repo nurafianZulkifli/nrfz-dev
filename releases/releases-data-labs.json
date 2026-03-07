@@ -10,7 +10,7 @@
           "- Updated PSD signages",
           "- New Re-recorded Announcement PA sequence"
         ],
-        "downloadUrls": [
+        "downloadUrl": [
           "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-HBL.7z"
         ]
       }
