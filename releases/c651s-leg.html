@@ -396,10 +396,7 @@
                                     <div class="version-details">
                                         <p><strong>Release Date:</strong> <span id="releaseDate"></span></p>
                                         <p><strong>Changes:</strong> <span id="changesText"></span></p>
-                                        <div style="margin-top: 20px;">
-                                            <a id="downloadBtn" href="#" class="btn pw-btn btn-2 mt-15">
-                                                <i class="fa-solid fa-download"></i>&nbsp; Download
-                                            </a>
+                                        <div style="margin-top: 20px;" id="downloadContainer">
                                         </div>
                                     </div>
                                 </div>
@@ -761,10 +758,10 @@
       const labsVersionContent = document.getElementById('labsVersionContent');
       const labsReleaseDate = document.getElementById('labsReleaseDate');
       const labsChangesText = document.getElementById('labsChangesText');
-      const labsDownloadBtn = document.getElementById('labsDownloadBtn');
+      const labsDownloadContainer = document.getElementById('labsDownloadContainer');
       const labsVersionDropdown = document.getElementById('labsVersionDropdown');
       
-      if (!labsVersionContent || !labsReleaseDate || !labsChangesText || !labsDownloadBtn) return;
+      if (!labsVersionContent || !labsReleaseDate || !labsChangesText || !labsDownloadContainer) return;
       
       if (versionKey && versionData[versionKey]) {
         const version = versionData[versionKey];
@@ -779,11 +776,34 @@
           labsChangesText.innerHTML = `<div>${version.changes}</div>`;
         }
         
-        labsDownloadBtn.href = version.downloadUrl;
-        labsDownloadBtn.onclick = (e) => {
-          e.preventDefault();
-          window.location.href = version.downloadUrl;
-        };
+        // Handle multiple downloads or fallback to single download
+        labsDownloadContainer.innerHTML = '';
+        
+        if (version.downloads && Array.isArray(version.downloads)) {
+          // Multiple downloads
+          version.downloads.forEach(download => {
+            const btn = document.createElement('a');
+            btn.href = '#';
+            btn.className = 'btn pw-btn btn-2 mt-15';
+            btn.innerHTML = `<i class="fa-solid fa-download"></i>&nbsp; ${download.name}`;
+            btn.onclick = (e) => {
+              e.preventDefault();
+              window.location.href = download.url;
+            };
+            labsDownloadContainer.appendChild(btn);
+          });
+        } else if (version.downloadUrl) {
+          // Single download (backward compatibility)
+          const btn = document.createElement('a');
+          btn.href = '#';
+          btn.className = 'btn pw-btn btn-2 mt-15';
+          btn.innerHTML = `<i class="fa-solid fa-download"></i>&nbsp; Download`;
+          btn.onclick = (e) => {
+            e.preventDefault();
+            window.location.href = version.downloadUrl;
+          };
+          labsDownloadContainer.appendChild(btn);
+        }
         
         labsVersionContent.style.display = 'block';
         if (labsVersionDropdown) {
