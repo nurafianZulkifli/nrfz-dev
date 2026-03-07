@@ -245,7 +245,7 @@
 
       <!-- Routes & Trains Combined Grid -->
       <div class="container">
-        <div class="wbnrfz-grid">
+        <div class="wbnrfz-grid" id="routes-grid">
           <div class="card rt" data-date="2025-08-11">
             <img src="img/releases-ss/hbl.png" alt="hbl">
             <div class="card-content">
@@ -301,7 +301,7 @@
 
       <!-- Trains Grid -->
       <div class="container">
-        <div class="wbnrfz-grid">
+        <div class="wbnrfz-grid" id="trains-grid">
           <div class="card tr" data-date="2025-09-07T11:53:00">
             <img src="img/releases-ss2/c651d.png" alt="c651d">
             <div class="card-content">
@@ -422,6 +422,87 @@
   <script src="js/portFunct.js"></script>
 
   <script src="js/copy-to-clipboard.js"></script>
+
+  <script>
+    // Hide section heading if no cards are visible
+    function checkVisibleCards() {
+      const sections = [
+        { gridId: 'routes-grid', headingId: 'routes-heading-section' },
+        { gridId: 'trains-grid', headingId: 'trains-heading-section' }
+      ];
+
+      sections.forEach(({ gridId, headingId }) => {
+        const grid = document.getElementById(gridId);
+        const heading = document.getElementById(headingId);
+        
+        if (grid && heading) {
+          const cards = grid.querySelectorAll('.card');
+          const visibleCards = Array.from(cards).filter(card => {
+            return card.offsetParent !== null;
+          });
+
+          if (visibleCards.length === 0) {
+            heading.style.display = 'none';
+          } else {
+            heading.style.display = 'block';
+          }
+        }
+      });
+    }
+
+    // Perform search filtering
+    function performSearch() {
+      const searchInput = document.getElementById('search-input');
+      if (!searchInput) return;
+
+      const searchTerm = searchInput.value.toLowerCase();
+      const cards = document.querySelectorAll('.wbnrfz-grid .card');
+
+      cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        if (title.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      checkVisibleCards();
+    }
+
+    // Wait for page to fully load before initial check
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        checkVisibleCards();
+
+        // Check on search input (keyup and input events)
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+          searchInput.addEventListener('keyup', function() {
+            setTimeout(performSearch, 50);
+          });
+          searchInput.addEventListener('input', function() {
+            setTimeout(performSearch, 50);
+          });
+        }
+
+        // Check on filter change
+        document.querySelectorAll('.btn-filter').forEach(btn => {
+          btn.addEventListener('click', function() {
+            setTimeout(checkVisibleCards, 100);
+          });
+        });
+
+        // Check on sort change
+        const sortOptions = document.getElementById('sort-options');
+        if (sortOptions) {
+          sortOptions.addEventListener('change', function() {
+            setTimeout(checkVisibleCards, 100);
+          });
+        }
+      }, 500);
+    });
+  </script>
 
 </body>
 

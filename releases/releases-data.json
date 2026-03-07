@@ -221,5 +221,56 @@
         "downloadUrl": "https://mega.nz/file/hZlUQRrK#W1iemIcylCStUrtl4J0oWlYV476hep7vj-81eGlUXiY"
       }
     }
+  },
+  "yl150a-b": {
+    "title": "Alstom (Bombardier) Movia YL150/A/B (Legacy)",
+    "versions": {
+      "version1": {
+        "version": "1.1",
+        "date": "17/03/24",
+        "label": "latest-release",
+        "changes": [
+          "- Initial Release"
+        ],
+        "downloadUrl": "https://mega.nz/file/cUc2zD5a#rxKU9FlesTWqAKJR3_js9P--f9A1ZcuDo_7KrVIij-I"
+      }
+    }
+  },
+  "dev-files-staris-cddcld-vfd": {
+    "title": "Dev Files (STARiS/CDD-CLD/VFD)",
+    "versions": {
+      "version1": {
+        "version": "1.8",
+        "date": "07/09/25",
+        "label": "latest-release",
+        "changes": [
+          "- Updated SVG Files for new STARIS 2 designs for KSFC, files for C651A"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1020/STARiS-CDDCLD.Dev.Files.7z"
+      }
+    }
+ },
+  "changi-airport-line": {
+    "title": "Changi Airport Line",
+    "versions": {
+      "version2": {
+        "version": "2.1",
+        "date": "18/08/2025",
+        "label": "latest-release",
+        "changes": [
+          "- New PMTPG announcements"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-CGL_2.1.7z"
+      },
+      "version1": {
+        "version": "1.0.1",
+        "date": "01/06/24",
+        "label": "legacy",
+        "changes": [
+          "- New Chimes Implemented"
+        ],
+        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway.-.CGL.Legacy.7z"
+      }
+    }
   }
 }
