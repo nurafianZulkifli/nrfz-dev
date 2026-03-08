@@ -101,6 +101,14 @@ document.addEventListener("DOMContentLoaded", function () {
     sortDropdown.addEventListener("change", function () {
         const sortValue = this.value;
 
+        // Store original grid for each card
+        const cardGridMap = new Map();
+        gridContainers.forEach(container => {
+            container.querySelectorAll(".card").forEach(card => {
+                cardGridMap.set(card, container);
+            });
+        });
+
         const sortedCards = [...cards].sort((a, b) => {
             if (sortValue === "newest") {
                 return new Date(b.dataset.date) - new Date(a.dataset.date);
@@ -113,19 +121,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Separate sorted cards by type and distribute to respective grids
-        const routesCards = sortedCards.filter(card => card.classList.contains("rt"));
-        const trainsCards = sortedCards.filter(card => card.classList.contains("tr"));
-
-        // Clear both containers
+        // Clear all containers
         gridContainers.forEach(container => container.innerHTML = "");
 
-        // Append routes cards to first grid
-        const firstGrid = gridContainers[0];
-        const secondGrid = gridContainers[1];
-
-        routesCards.forEach(card => firstGrid.appendChild(card));
-        trainsCards.forEach(card => secondGrid.appendChild(card));
+        // Redistribute sorted cards back to their original grids
+        sortedCards.forEach(card => {
+            const originalGrid = cardGridMap.get(card);
+            if (originalGrid) {
+                originalGrid.appendChild(card);
+            }
+        });
 
         // Maintain the filtered class and current filter state when sorting
         gridContainers.forEach(container => {
@@ -166,4 +171,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Only keep consistent sizing when search is active, don't restrict grid columns
         updateGridClass(false);
     });
+
+    // Sort by newest on page load by default
+    if (sortDropdown) {
+        sortDropdown.value = "newest";
+        sortDropdown.dispatchEvent(new Event("change"));
+    }
 });
