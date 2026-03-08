@@ -199,12 +199,12 @@
     "title": "Yishun LRT",
     "versions": {
       "version2": {
-        "version": "2.1",
-        "date": "16/08/25",
+        "version": "2.3",
+        "date": "08/03/26",
         "label": "latest-release",
         "changes": [
-          "- Updated Announcement Trigger",
-          "- New PMTPG announcement; reverted to announcements made by CHY"
+          "- Updated RATiS UI",
+          "- New Announcements to match with the rest of HCRT's Lines"
         ],
         "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-YSLRT_2.1.7z"
       },
