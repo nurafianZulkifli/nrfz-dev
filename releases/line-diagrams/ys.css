@@ -247,8 +247,6 @@
         align-items: center;
         gap: 8px;
         flex: 1;
-        min-width: 0;
-        overflow: hidden;
     }
 
     .station-codes {
@@ -363,6 +361,7 @@
         font-size: 18px;
         font-weight: 500;
         color: #000;
+        white-space: normal;
         word-wrap: break-word;
         overflow-wrap: break-word;
         max-width: calc(100% - 120px);

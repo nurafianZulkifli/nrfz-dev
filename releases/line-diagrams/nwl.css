@@ -322,7 +322,9 @@
       font-size: 18px;
       font-weight: 500;
       color: #000;
-      white-space: nowrap;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
       cursor: default;
   }
 
