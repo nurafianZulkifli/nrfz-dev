@@ -355,5 +355,63 @@
         ]
       }
     }
+  },
+  "jw-b9tl": {
+    "title": "SMRT JW B9TL Ad",
+    "versions": {
+      "version1": {
+        "version": "1.0",
+        "date": "20/09/2024",
+        "label": "latest-release",
+        "changes": [
+          "- Initial Release"
+        ],
+        "downloads": [
+          {
+            "name": "Original Bus",
+            "url": "https://gx7767.wixsite.com/studio/kmb-avbwu"
+          },
+          {
+            "name": "Repaints",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/SMRT.JW.B9TL.7z"
+          }
+        ]
+      }
+    }
+  },
+  "omsi-dev": {
+    "title": "OMSI Developer Files",
+    "versions": {
+      "version1": {
+        "version": "1.3",
+        "date": "16/08/2025",
+        "label": "latest-release",
+        "changes": [
+          "- Re-based to 2025 File Versions"
+        ],
+        "downloads": [
+          {
+            "name": "Fonts Files",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/Fonts.7z"
+          },
+          {
+            "name": "Humans Files",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/Humans.7z"
+          },
+          {
+            "name": "Sceneryobjects Files",
+            "url": "https://mega.nz/file/90hQiA4T#GwiW9ygKllAUMWLBUAX1239TQ6vy7AoT0Q41hWIXEEU"
+          },
+          {
+            "name": "Splines Files",
+            "url": "https://mega.nz/file/tJUwQIZR#rkxL9yS9lrrS6dPCD7MsbAg2K9ELWVmxQh_KBELpPm4"
+          },
+          {
+            "name": "K++ Files",
+            "url": "https://mega.nz/file/RIcymA5T#msKbuxNnYe3Si5VNSZuKk1rZibpc9Ju4RrIRIn1k_5I"
+          }
+        ]
+      }
+    }
   }
 }
