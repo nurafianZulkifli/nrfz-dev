@@ -114,13 +114,13 @@
     animation: slideDown 0.3s ease;
   }
 
-    .version-details {
-        background-color: #fff;
-        padding: 24px;
-        border-radius: 24px;
-        border: 1px solid #e9ecef;
-        box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
-    }
+  .version-details {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid #e9ecef;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+  }
 
   body.dark-mode .version-details {
     background-color: #393e53;
@@ -483,18 +483,18 @@
             </div>
 
             <!-- NW 5 District -->
-            <div id="hidden-stations">
-              <div class="station">
-                <div class="station-dot"></div>
-                <div class="station-content">
-                  <div class="station-codes">
-                    <span class="station-code">NW 5</span>
-                  </div>
-                  <div class="station-name">District</div>
+            <div class="station">
+              <div class="station-dot"></div>
+              <div class="station-content">
+                <div class="station-codes">
+                  <span class="station-code">NW 5</span>
                 </div>
+                <div class="station-name">District</div>
               </div>
+            </div>
 
-              <!-- NW 6 World Plaza -->
+            <!-- NW 6 World Plaza -->
+            <div id="hidden-stations">
               <div class="station">
                 <div class="station-dot"></div>
                 <div class="station-content">
@@ -825,18 +825,18 @@
     }
 
     // Initialize releases on page load
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // Check if accessed from labs.html
       const referrer = document.referrer;
       const isFromLabs = referrer.includes('labs.html');
-      
+
       if (isFromLabs) {
         // Hide main dropdown, show only labs dropdown
         const mainContainer = document.querySelector('.version-control-container');
         if (mainContainer) {
           mainContainer.style.display = 'none';
         }
-        
+
         const labsContainer = document.getElementById('labsVersionContainer');
         if (labsContainer) {
           labsContainer.style.display = 'block';
@@ -845,46 +845,46 @@
       } else {
         // Show main dropdown, hide labs dropdown
         initializeVersionDropdown('north-west-line');
-        
+
         const labsContainer = document.getElementById('labsVersionContainer');
         if (labsContainer) {
           labsContainer.style.display = 'none';
         }
       }
     });
-    
+
     // Initialize labs-exclusive version dropdown
     async function initializeLabsVersionDropdown(lineKey) {
       const labsVersionDropdown = document.getElementById('labsVersionDropdown');
       const releaseData = await loadLabsReleaseData(lineKey);
-      
+
       if (!releaseData || !labsVersionDropdown) return;
-      
+
       // Clear default options first
       labsVersionDropdown.innerHTML = '<option value="">Select a pre-release version...</option>';
-      
+
       // Populate dropdown options - you can add different versions or filter as needed
       Object.entries(releaseData.versions).forEach(([key, versionInfo]) => {
         const option = document.createElement('option');
         option.value = key;
-        
+
         let label = `Version ${versionInfo.version}`;
-        
+
         if (versionInfo.label) {
           if (versionInfo.label === 'latest-release') label += ' - Latest Release';
           else if (versionInfo.label === 'legacy') label += ' - Legacy';
           else if (versionInfo.label === 'pre-release') label += ' - Pre-Release';
         }
-        
+
         option.textContent = label;
         labsVersionDropdown.appendChild(option);
       });
-      
+
       // Setup version selection for labs dropdown
-      labsVersionDropdown.addEventListener('change', function() {
+      labsVersionDropdown.addEventListener('change', function () {
         displayLabsVersion(this.value, releaseData.versions);
       });
-      
+
       // Restore from sessionStorage
       const saved = sessionStorage.getItem('selectedLabsVersion');
       if (saved && releaseData.versions[saved]) {
@@ -892,7 +892,7 @@
         displayLabsVersion(saved, releaseData.versions);
       }
     }
-    
+
     // Display labs version content
     function displayLabsVersion(versionKey, versionData) {
       const labsVersionContent = document.getElementById('labsVersionContent');
@@ -900,13 +900,13 @@
       const labsChangesText = document.getElementById('labsChangesText');
       const labsDownloadContainer = document.getElementById('labsDownloadContainer');
       const labsVersionDropdown = document.getElementById('labsVersionDropdown');
-      
+
       if (!labsVersionContent || !labsReleaseDate || !labsChangesText || !labsDownloadContainer) return;
-      
+
       if (versionKey && versionData[versionKey]) {
         const version = versionData[versionKey];
         labsReleaseDate.textContent = version.date;
-        
+
         // Handle both string and array changes
         if (Array.isArray(version.changes)) {
           labsChangesText.innerHTML = version.changes
@@ -915,10 +915,10 @@
         } else {
           labsChangesText.innerHTML = `<div>${version.changes}</div>`;
         }
-        
+
         // Handle multiple downloads or fallback to single download
         labsDownloadContainer.innerHTML = '';
-        
+
         if (version.downloads && Array.isArray(version.downloads)) {
           // Multiple downloads
           version.downloads.forEach(download => {
@@ -944,12 +944,12 @@
           };
           labsDownloadContainer.appendChild(btn);
         }
-        
+
         labsVersionContent.style.display = 'block';
         if (labsVersionDropdown) {
           labsVersionDropdown.classList.add('expanded');
         }
-        
+
         sessionStorage.setItem('selectedLabsVersion', versionKey);
       } else {
         labsVersionContent.style.display = 'none';

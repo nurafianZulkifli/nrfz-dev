@@ -28,14 +28,13 @@
     "title": "Airport Express Line",
     "versions": {
       "version3": {
-        "version": "3.2",
-        "date": "18/08/2025",
+        "version": "3.3",
+        "date": "08/03/2026",
         "label": "latest-release",
         "changes": [
-          "- Added support for Reverse Driving (EHB to STD)",
-          "- Updated RATiS UI"
+          "- New PMTPG & Announcement Sequence for all stations"
         ],
-        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1000/Railway-AEL_3.2.7z"
+        "downloadUrl": "https://github.com/smrtosg/smrtosg.github.io/releases/download/v6.0.0/Railway-AEL.7z"
       },
       "version1": {
         "version": "1.0",
@@ -67,15 +66,13 @@
     "title": "North-West Line",
     "versions": {
       "version3": {
-        "version": "3.6",
-        "date": "07/09/25",
+        "version": "3.8",
+        "date": "08/03/26",
         "label": "latest-release",
         "changes": [
-          "- Improved Announcement Trigger Points",
-          "- Fixed a Destination Trigger bug at NW7",
-          "- Fixed the incorrect Caplets at NW8"
+          "- Fixed mismatched PMTPG announcements for some stations"
         ],
-        "downloadUrl": "https://github.com/smrtosg/main/releases/download/v2508.1020/Railway-NWL_3.6.7z"
+        "downloadUrl": "https://github.com/smrtosg/smrtosg.github.io/releases/download/v6.0.0/Railway-NWL.7z"
       },
       "version1": {
         "version": "0.8",
