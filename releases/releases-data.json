@@ -309,5 +309,51 @@
         ]
       }
     }
+  },
+  "su18": {
+    "title": "Solaris Urbino 18",
+    "versions": {
+      "version1": {
+        "version": "1.0",
+        "date": "15/09/2024",
+        "label": "latest-release",
+        "changes": [
+          "- Initial Release"
+        ],
+        "downloads": [
+          {
+            "name": "Fonts",
+            "url": "https://smrtosg.github.io/releases/omsi-developer-files.html"
+          },
+          {
+            "name": "Bus",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/Solaris.BVG.7z"
+          }
+        ]
+      }
+    }
+  },
+  "vdl-clle": {
+    "title": "VDL Citea LLE",
+    "versions": {
+      "version1": {
+        "version": "1.0",
+        "date": "15/09/2024",
+        "label": "latest-release",
+        "changes": [
+          "- Initial Release"
+        ],
+        "downloads": [
+          {
+            "name": "Fonts",
+            "url": "https://smrtosg.github.io/releases/omsi-developer-files.html"
+          },
+          {
+            "name": "Bus",
+            "url": "https://github.com/smrtosg/main/releases/download/v2508.1001/VDL.Citea.LLE.Release.2.7z"
+          }
+        ]
+      }
+    }
   }
 }

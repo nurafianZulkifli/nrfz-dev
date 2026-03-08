@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterTitle = document.getElementById("filter-title");
     const routesHeading = document.getElementById("routes-heading-section");
     const trainsHeading = document.getElementById("trains-heading-section");
+    const devfilesopHeading = document.getElementById("devfilesop-heading-section");
     const busesHeading = document.getElementById("buses-heading-section");
     const mapsHeading = document.getElementById("maps-heading-section");
     const devfilesHeading = document.getElementById("devfiles-heading-section");
@@ -63,6 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             if (devfilesHeading) {
                 devfilesHeading.style.display = isAllReleases ? "block" : "none";
+            }
+            if (devfilesopHeading) {
+                devfilesopHeading.style.display = isAllReleases ? "block" : "none";
             }
 
             // Apply/remove filtered class to grids
@@ -119,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Append routes cards to first grid
         const firstGrid = gridContainers[0];
         const secondGrid = gridContainers[1];
-        
+
         routesCards.forEach(card => firstGrid.appendChild(card));
         trainsCards.forEach(card => secondGrid.appendChild(card));
 

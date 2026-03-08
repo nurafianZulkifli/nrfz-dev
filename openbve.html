@@ -237,7 +237,7 @@
       <!-- Routes Section Heading -->
       <div class="row" id="routes-heading-section">
         <div class="col-12">
-          <div class="section-heading text-center wow fadeIn">
+          <div class="section-heading text-center">
             <h2>Routes</h2>
           </div>
         </div>
@@ -268,7 +268,8 @@
             <img src="img/releases-ss/ael2.0.png" alt="ael2.0">
             <div class="card-content">
               <h3>Airport Express Line</h3>
-              <a href="releases/airport-express-line.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+              <a href="releases/airport-express-line.html" class="pw-btn-small btn-2"><i
+                  class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -284,7 +285,8 @@
             <img src="img/releases-ss/cgl.png" alt="cgl">
             <div class="card-content">
               <h3>Changi Airport Line</h3>
-              <a href="releases/changi-airport-line.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
+              <a href="releases/changi-airport-line.html" class="pw-btn-small btn-2"><i
+                  class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -293,7 +295,7 @@
       <!-- Trains Section Heading -->
       <div class="row" id="trains-heading-section">
         <div class="col-12">
-          <div class="section-heading text-center wow fadeIn">
+          <div class="section-heading text-center">
             <h2>Trains</h2>
           </div>
         </div>
@@ -322,8 +324,7 @@
             <img src="img/releases-ss/r151.png" alt="r151">
             <div class="card-content">
               <h3>Alstom Movia R151</h3>
-              <a href="releases/r151.html" class="pw-btn-small btn-2"><i
-                  class="fa-solid fa-arrow-right"></i></a>
+              <a href="releases/r151.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -363,8 +364,7 @@
             <img src="img/releases-ss/ryl150.png" alt="ryl150">
             <div class="card-content">
               <h3>Alstom Movia RYL150</h3>
-              <a href="releases/ryl150.html" class="pw-btn-small btn-2"><i
-                  class="fa-solid fa-arrow-right"></i></a>
+              <a href="releases/ryl150.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -372,13 +372,27 @@
             <img src="img/releases-ss/yl150.png" alt="yl150">
             <div class="card-content">
               <h3>Alstom (Bombardier) Movia YL150/A/B (Legacy)</h3>
-              <a href="releases/yl150a-b.html" class="pw-btn-small btn-2"><i
-                  class="fa-solid fa-arrow-right"></i></a>
+              <a href="releases/yl150a-b.html" class="pw-btn-small btn-2"><i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
+        </div>
+      </div>
+
+      <!-- Developer Files Section Heading -->
+      <div class="row" id="devfilesop-heading-section">
+        <div class="col-12">
+          <div class="section-heading text-center">
+            <h2>Developer Files</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer Files Grid -->
+      <div class="container">
+        <div class="wbnrfz-grid" id="devfiles-grid">
           <div class="card df" data-date="2025-09-07T11:35:00">
-            <img src="img/releases-ss/devfile-op.png" alt="hydration-reg">
+            <img src="img/releases-ss/devfile-op.png" alt="devfile-op">
             <div class="card-content">
               <h3>Dev Files (STARiS/CDD-CLD/VFD)</h3>
               <a href="releases/dev-files-staris-cddcld-vfd.html" class="pw-btn-small btn-2"><i
@@ -428,13 +442,14 @@
     function checkVisibleCards() {
       const sections = [
         { gridId: 'routes-grid', headingId: 'routes-heading-section' },
-        { gridId: 'trains-grid', headingId: 'trains-heading-section' }
+        { gridId: 'trains-grid', headingId: 'trains-heading-section' },
+        { gridId: 'devfiles-grid', headingId: 'devfilesop-heading-section' }
       ];
 
       sections.forEach(({ gridId, headingId }) => {
         const grid = document.getElementById(gridId);
         const heading = document.getElementById(headingId);
-        
+
         if (grid && heading) {
           const cards = grid.querySelectorAll('.card');
           const visibleCards = Array.from(cards).filter(card => {
@@ -471,24 +486,24 @@
     }
 
     // Wait for page to fully load before initial check
-    window.addEventListener('load', function() {
-      setTimeout(function() {
+    window.addEventListener('load', function () {
+      setTimeout(function () {
         checkVisibleCards();
 
         // Check on search input (keyup and input events)
         const searchInput = document.getElementById('search-input');
         if (searchInput) {
-          searchInput.addEventListener('keyup', function() {
+          searchInput.addEventListener('keyup', function () {
             setTimeout(performSearch, 50);
           });
-          searchInput.addEventListener('input', function() {
+          searchInput.addEventListener('input', function () {
             setTimeout(performSearch, 50);
           });
         }
 
         // Check on filter change
         document.querySelectorAll('.btn-filter').forEach(btn => {
-          btn.addEventListener('click', function() {
+          btn.addEventListener('click', function () {
             setTimeout(checkVisibleCards, 100);
           });
         });
@@ -496,7 +511,7 @@
         // Check on sort change
         const sortOptions = document.getElementById('sort-options');
         if (sortOptions) {
-          sortOptions.addEventListener('change', function() {
+          sortOptions.addEventListener('change', function () {
             setTimeout(checkVisibleCards, 100);
           });
         }
