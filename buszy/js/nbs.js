@@ -252,6 +252,17 @@ function displayBusStops(busStops) {
 
         busStopsContainer.appendChild(busStopElement);
     });
+
+    // Apply current search filter if one exists
+    const searchInput = document.getElementById('bus-stop-search');
+    if (searchInput && searchInput.value) {
+        const query = searchInput.value.toLowerCase();
+        busStopsContainer.querySelectorAll('.bus-stop').forEach(item => {
+            const code = item.querySelector('.bus-stop-code-text')?.textContent.toLowerCase() || '';
+            const desc = item.querySelector('.bus-stop-description')?.textContent.toLowerCase() || '';
+            item.style.display = (code.includes(query) || desc.includes(query)) ? '' : 'none';
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -262,6 +273,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchBusStopButton && searchInput) {
         searchBusStopButton.addEventListener('click', () => {
             searchInput.value = ''; // Clear the search bar
+        });
+    }
+
+    // Search filtering for nearby tab
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            const busStopsContainer = document.getElementById('bus-stops');
+            if (busStopsContainer) {
+                busStopsContainer.querySelectorAll('.bus-stop').forEach(item => {
+                    const code = item.querySelector('.bus-stop-code-text')?.textContent.toLowerCase() || '';
+                    const desc = item.querySelector('.bus-stop-description')?.textContent.toLowerCase() || '';
+                    item.style.display = (code.includes(query) || desc.includes(query)) ? '' : 'none';
+                });
+            }
         });
     }
 });

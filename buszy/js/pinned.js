@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // If no bookmarks exist after re-fetching, show the message
                 bookmarksContainer.innerHTML = '<p class="pin-msg">Add a Bus Stop.</p>';
             }
+            applyPinnedSearchFilter();
         } catch (error) {
             console.error('Error fetching bus stops:', error);
             bookmarksContainer.innerHTML = '<p class="error-msg">Error loading bus stop data.</p>';
@@ -117,6 +118,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         localStorage.setItem('bookmarkedBusStops', JSON.stringify(updatedBookmarks));
         loadBookmarks(); // Refresh the displayed list
         alert('Bus Stop Unpinned.');
+    }
+
+    // Search filtering for pinned tab
+    const searchInput = document.getElementById('bus-stop-search');
+
+    function applyPinnedSearchFilter() {
+        if (!searchInput) return;
+        const query = searchInput.value.toLowerCase();
+        bookmarksContainer.querySelectorAll('.list-group-item').forEach(item => {
+            const code = item.querySelector('.bus-stop-code-text')?.textContent.toLowerCase() || '';
+            const desc = item.querySelector('.bus-stop-description')?.textContent.toLowerCase() || '';
+            item.style.display = (code.includes(query) || desc.includes(query)) ? 'flex' : 'none';
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', applyPinnedSearchFilter);
     }
 
     // Load bookmarks on page load
