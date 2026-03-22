@@ -880,6 +880,10 @@ table th {
     font-size: 17px;
 }
 
+.about-me-summ {
+    background-color: transparent;
+}
+
 
 
 /* ---------------- Table ART - Dark ----------------------*/
@@ -1080,7 +1084,7 @@ body.dark-mode .btn-notify.active {
 }
 
 body.dark-mode .about-me-summ {
-    background-color: #121521 !important;
+    background-color: transparent !important;
     transition: all 0.5s ease;
 }
 

@@ -64,39 +64,39 @@
         width: 100vw;
         margin-left: calc(-50vw + 50%);
         background: linear-gradient(to bottom,
-            rgba(236, 236, 234, 0) 0%,
-            rgba(236, 236, 234, 0) 15%,
-            rgba(236, 236, 234, 0.3) 35%,
-            rgba(236, 236, 234, 0.6) 50%,
-            rgba(236, 236, 234, 0.85) 65%,
-            rgba(236, 236, 234, 1) 80%,
-            rgba(236, 236, 234, 1) 100%);
+                rgba(236, 236, 234, 0) 0%,
+                rgba(236, 236, 234, 0) 15%,
+                rgba(236, 236, 234, 0.3) 35%,
+                rgba(236, 236, 234, 0.6) 50%,
+                rgba(236, 236, 234, 0.85) 65%,
+                rgba(236, 236, 234, 1) 80%,
+                rgba(236, 236, 234, 1) 100%);
         -webkit-backdrop-filter: blur(25px);
         backdrop-filter: blur(25px);
         -webkit-mask-image: linear-gradient(to top,
-            black 0%,
-            black 40%,
-            rgba(0, 0, 0, 0.6) 60%,
-            rgba(0, 0, 0, 0.2) 80%,
-            transparent 100%);
+                black 0%,
+                black 40%,
+                rgba(0, 0, 0, 0.6) 60%,
+                rgba(0, 0, 0, 0.2) 80%,
+                transparent 100%);
         mask-image: linear-gradient(to top,
-            black 0%,
-            black 53%,
-            rgba(0, 0, 0, 0.6) 60%,
-            rgba(0, 0, 0, 0.2) 80%,
-            transparent 100%);
+                black 0%,
+                black 53%,
+                rgba(0, 0, 0, 0.6) 60%,
+                rgba(0, 0, 0, 0.2) 80%,
+                transparent 100%);
         z-index: -1;
     }
 
     body.dark-mode #cv-bat::before {
         background: linear-gradient(to bottom,
-            rgba(18, 21, 33, 0) 0%,
-            rgba(18, 21, 33, 0) 15%,
-            rgba(18, 21, 33, 0.3) 35%,
-            rgba(18, 21, 33, 0.6) 50%,
-            rgba(18, 21, 33, 0.85) 65%,
-            rgba(18, 21, 33, 1) 80%,
-            rgba(18, 21, 33, 1) 100%);
+                rgba(18, 21, 33, 0) 0%,
+                rgba(18, 21, 33, 0) 15%,
+                rgba(18, 21, 33, 0.3) 35%,
+                rgba(18, 21, 33, 0.6) 50%,
+                rgba(18, 21, 33, 0.85) 65%,
+                rgba(18, 21, 33, 1) 80%,
+                rgba(18, 21, 33, 1) 100%);
     }
 
     #cv-bat .container {
@@ -452,15 +452,16 @@
         }
 
         .category-tabs {
-            padding: 12px 15px 0;
-            gap: 0;
+            padding: 10px 12px 10px;
+            gap: 10px;
             overflow-x: auto;
         }
 
         .category-tab {
-            padding: 10px 15px;
-            font-size: 0.85rem;
+            padding: 8px 12px;
+            font-size: 0.95rem;
         }
+
 
         .pin-msg {
             flex-direction: column;
@@ -505,6 +506,19 @@
             padding: 10px 16px;
             font-size: 0.9rem;
         }
+
+        .pinned {
+            margin-top: -7rem;
+            margin-bottom: 2em;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container {
+            padding: 0 15px;
+
+        }
+
     }
 
     @media (max-width: 545px) {
@@ -529,8 +543,8 @@
         }
 
         .category-tabs {
-            padding: 10px 12px 0;
-            gap: 0;
+            padding: 10px 12px 10px;
+            gap: 10px;
             overflow-x: auto;
         }
 
@@ -583,14 +597,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="./nbs.html" class="nav-link">
-                        <i class="fa-regular fa-location-dot"></i>
+                    <a href="./first-last.html" class="nav-link">
+                        <i class="fa-regular fa-clock"></i>
                         <span>Timings</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="./abs.html" class="nav-link">
-                        <i class="fa-regular fa-magnifying-glass"></i>
+                    <a href="./ann.html" class="nav-link">
+                        <i class="fa-regular fa-bullhorn"></i>
                         <span>Announcements</span>
                     </a>
                 </li>
@@ -616,19 +630,19 @@
                 </a>
             </li>
             <li>
-                <a href="./nbs.html">
+                <a href="./first-last.html">
                     <span class="icon">
-                        <i class="fa-regular fa-location-dot"></i>
+                        <i class="fa-regular fa-clock"></i>
                     </span>
-                    <span class="label">Nearby</span>
+                    <span class="label">Timings</span>
                 </a>
             </li>
             <li>
-                <a href="./abs.html">
+                <a href="./ann.html">
                     <span class="icon">
-                        <i class="fa-regular fa-magnifying-glass"></i>
+                        <i class="fa-regular fa-bullhorn"></i>
                     </span>
-                    <span class="label">Search</span>
+                    <span class="label">Announcements</span>
                 </a>
             </li>
             <li>
