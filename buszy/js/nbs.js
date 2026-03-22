@@ -171,7 +171,7 @@ function togglePinBusStop(busStop, pinButton) {
             alert(`Bus Stop Unpinned.`);
 
             // Update the button class and icon to "unpin"
-            pinButton.className = 'btn btn-toPin btn-nbs btn-sm';
+            pinButton.className = 'btn btn-toPin btn-2';
             pinButton.innerHTML = '<i class="fa-sharp fa-regular fa-thumbtack-angle"></i>';
         }
     } else {
@@ -181,7 +181,7 @@ function togglePinBusStop(busStop, pinButton) {
         alert(`Bus Stop Pinned.`);
 
         // Update the button class and icon to "pin"
-        pinButton.className = 'btn btn-unpin btn-nbs btn-sm';
+        pinButton.className = 'btn btn-unpin btn-2';
         pinButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
     }
 }
@@ -231,7 +231,7 @@ function displayBusStops(busStops) {
                 <span class="distance${idx === 0 ? ' distance-nearest' : ''}">${distance}</span>
                 </div>
             </div>
-            <button class="${isPinned ? 'btn btn-unpin btn-nbs btn-sm' : 'btn btn-toPin btn-nbs btn-sm'} pin-button">
+            <button class="${isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2'} pin-button">
                 <i class="${isPinned ? 'fa-regular fa-thumbtack-angle-slash' : 'fa-sharp fa-regular fa-thumbtack-angle'}"></i>
             </button>
         `;
