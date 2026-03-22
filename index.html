@@ -2,27 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta name="description" content>
+    <meta charset="UTF-8">
+    <meta name="description" content="Select app page for Works by NRFZ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Home | SMRTO</title>
+    <title>Select app | Works by NRFZ</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
 
-    <link rel="icon" href="./img/core-img/favicon.png">
+    <meta name="theme-color" content="#121521">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Works by NRFZ">
 
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.2.0/css/all.css" />
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./img/core-img/favicon.png">
+    <link rel="apple-touch-icon" href="./img/core-img/icon-192.png">
+
+    <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pwa-styles.css">
     <link rel="stylesheet" href="css/style-mobNav.css">
     <link rel="stylesheet" href="css/style-breakpoints.css">
     <link rel="stylesheet" href="css/dark-mode.css">
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/carousel.css">
-
 
     <link rel="stylesheet" type="text/css"
         href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
@@ -37,42 +46,341 @@
         gtag('config', 'G-WN76281P3Q');
     </script>
 
+    <style>
+        .nav-link.active,
+        .mobile-bottom-nav li.active {
+            background: linear-gradient(58deg, #97a19f 0%, #606b94 100%) !important;
+        }
+
+        .wbnrfz-works {
+            padding-top: 6em;
+            padding-bottom: 0em;
+            padding-left: 1.2em;
+            padding-right: 1.2em;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            text-align: center;
+        }
+
+        .wbnrfz-works::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("../img/bg-img/hero-bg.png") top right no-repeat;
+            background-size: cover;
+            filter: blur(25px);
+            z-index: 0;
+        }
+
+        body.dark-mode .wbnrfz-works::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("../img/bg-img/hero-bg-dark.png") top right no-repeat;
+            background-size: cover;
+            filter: blur(25px);
+            z-index: 0;
+        }
+
+        .select-apps-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .wbnrfz-works .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            min-height: calc(100vh - 300px);
+        }
+
+        .select-apps-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .select-apps-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .select-apps-header p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+            max-width: 500px;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .app-card {
+            background: #ffffff;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .app-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+        }
+
+        .app-thumbnail {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            cursor: pointer;
+            display: block;
+        }
+
+        .app-thumbnail-link {
+            display: block;
+            overflow: hidden;
+            border-radius: 24px;
+            margin: 12px;
+        }
+
+        .app-content {
+            padding: 24px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .app-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 12px 0;
+        }
+
+        .app-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .app-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #1a1a1a;
+            color: white;
+            flex: 1;
+            text-decoration: none;
+        }
+
+        .app-action-btn:hover {
+            background: #333;
+        }
+
+        .app-action-btn.delete {
+            background: #f5f5f5;
+            color: #d32f2f;
+        }
+
+        .app-action-btn.delete:hover {
+            background: #ffe0e0;
+            color: #d32f2f;
+        }
+
+        .add-app-card {
+            background: #f5f7fb;
+            border-radius: 12px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px dashed #ccc;
+            min-height: 200px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .add-app-card:hover {
+            border-color: #007bff;
+            background: #f0f7ff;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15);
+        }
+
+        .add-app-icon {
+            font-size: 3rem;
+            color: #ccc;
+            transition: all 0.3s ease;
+            font-weight: 300;
+        }
+
+        .add-app-card:hover .add-app-icon {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .pwa-install-banner {
+            background: linear-gradient(58deg, #97a19f 0%, #606b94 100%)
+        }
+
+        .pwa-install-btn {
+            background: white;
+            color: #373c4a;
+        }
+
+        @media (max-width: 768px) {
+            .select-apps-container {
+                padding: 40px 15px;
+                min-height: auto;
+            }
+
+            .select-apps-header h1 {
+                font-size: 2rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .app-card,
+            .add-app-card {
+                min-height: auto;
+                padding: 20px 15px;
+            }
+
+            .app-thumbnail-link {
+                margin: 0;
+                height: 220px;
+            }
+
+            .app-thumbnail {
+                height: 220px;
+            }
+
+            .wbnrfz-works {
+                padding-top: 0em;
+            }
+        }
+
+        /* Dark mode support */
+        body.dark-mode .app-card {
+            background: #1c1f2b;
+            border: 1px solid #2b2b2b33;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .app-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .app-name {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .app-description {
+            color: #a0a0a0;
+        }
+
+        body.dark-mode .app-action-btn {
+            background: #4a4a4a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .app-action-btn:hover {
+            background: #555;
+        }
+
+        body.dark-mode .app-action-btn.delete {
+            background: #3a3a3a;
+            color: #ff6b6b;
+        }
+
+        body.dark-mode .add-app-card {
+            background: #2a2a2a;
+            border-color: #444;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .add-app-card:hover {
+            border-color: #4a90e2;
+            background: #1a2a3a;
+        }
+
+        body.dark-mode .select-apps-header h1 {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .select-apps-header p {
+            color: #a0a0a0;
+        }
+
+        body.dark-mode .add-app-icon {
+            color: #555;
+        }
+
+        body.dark-mode .add-app-card:hover .add-app-icon {
+            color: #4a90e2;
+        }
+    </style>
+
 </head>
 
-<style>
-</style>
+
 
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar-container">
         <div class="navbar">
             <!-- Logo -->
-            <a href="./"><img src="img/core-img/logo.png" alt="logo" class="logo"></a>
+            <a href="https://nurafianzulkifli.com"><img src="img/core-img/logo.png" alt="logo" class="logo" /></a>
 
             <!-- Navigation Links -->
             <ul class="navbar-nav" id="navbarNav">
                 <li class="nav-item">
-                    <a href="./" class="nav-link active">
-                        <i class="fa-sharp fa-regular fa-house"></i>
+                    <a href="https://nurafianzulkifli.com" class="nav-link active">
+                        <i class="fa-sharp fa-regular fa-home"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="openbve.html" class="nav-link">
-                        <i class="fa-regular fa-train"></i>
-                        <span>OpenBVE</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="omsi2.html" class="nav-link">
-                        <i class="fa-regular fa-bus"></i>
-                        <span>OMSI 2</span>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a href="menu.html" class="nav-link">
-                        <i class="fa-regular fa-bars"></i>
-                        <span>Menu</span>
+                    <a href="https://nurafianzulkifli.com/works-by-nrfz.html" class="nav-link">
+                        <i class="fa-regular fa-external-link"></i>
+                        <span>Works By NRFZ</span>
                     </a>
                 </li>
             </ul>
@@ -84,265 +392,62 @@
     <nav class="mobile-bottom-nav">
         <ul>
             <li class="active">
-                <a href="./">
+                <a href="https://nurafianzulkifli.com">
                     <span class="icon">
-                        <i class="fa-sharp fa-regular fa-house"></i>
+                        <i class="fa-sharp fa-regular fa-home"></i>
                     </span>
                     <span class="label">Home</span>
                 </a>
             </li>
             <li>
-                <a href="openbve.html">
+                <a href="https://nurafianzulkifli.com/works-by-nrfz.html">
                     <span class="icon">
-                        <i class="fa-regular fa-train"></i>
+                        <i class="fa-regular fa-external-link"></i>
                     </span>
-                    <span class="label">OpenBVE</span>
-                </a>
-            </li>
-            <li>
-                <a href="omsi2.html">
-                    <span class="icon">
-                        <i class="fa-regular fa-bus"></i>
-                    </span>
-                    <span class="label">OMSI 2</span>
-                </a>
-            </li>
-            <li>
-                <a href="menu.html">
-                    <span class="icon">
-                        <i class="fa-regular fa-bars"></i>
-                    </span>
-                    <span class="label">Menu</span>
+                    <span class="label">Works By NRFZ</span>
                 </a>
             </li>
         </ul>
     </nav>
 
 
+
     <!-- ============================================= Hero Section ============================================= -->
-    <section id="hero" class="d-flex flex-column justify-content-center">
-    </section><!-- End Hero -->
-
     <div class="main-content">
-        <section class="wbnrfz-works floating-cards">
-            <div class="container">
-                <div class="wbnrfz-grid wow fadeIn" data-wow-delay="50ms">
-                    <div class="card">
+        <section class="wbnrfz-works">
+            <div class="container" style="padding-top: 0px;">
+                <div class="select-apps-container">
 
-                        <img src="img/core-img/openbvedl.png" alt="Work 1">
-                        <div class="card-content">
-                            <h3>OpenBVE</h3>
-                            <a href="openbve.html" class="pw-btn-small btn-2"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
+                    <div class="apps-grid">
+                        <!-- app 1 -->
+                        <a href="buszy/index.html" class="app-card">
+                            <div class="app-thumbnail-link">
+                                <img src="img/bg-img/buszy-thumb.png" alt="Buszy - Bus Arrival Timings"
+                                    class="app-thumbnail">
+                            </div>
+                            <div class="app-content">
+                                <h3 class="app-name">Buszy - Bus Arrival Timings</h3>
+                                <div class="app-actions">
+                                </div>
+                            </div>
+                        </a>
 
-                    </div>
-                    <div class="card" style="background-color: #6c6c67;">
-                        <img src="img/releases-ss/devfile-opA.png" alt="Work 2">
-                        <div class="card-content">
-                            <h3>OpenBVE Developer Files</h3>
-                            <a href="releases/dev-files-staris-cddcld-vfd.html" class="pw-btn-small btn-2"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="img/core-img/omsidl.png" alt="Work 3">
-                        <div class="card-content">
-                            <h3>OMSI 2</h3>
-                            <a href="omsi2.html" class="pw-btn-small btn-2"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="img/releases-ss/df.png" alt="Work 4">
-                        <div class="card-content">
-                            <h3>OMSI 2 Developer Files</h3>
-                            <a href="releases/omsi-developer-files.html" class="pw-btn-small btn-2"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <!-- app 2 -->
+                        <a href="rail-buddy/index.html" class="app-card">
+                            <div class="app-thumbnail-link">
+                                <img src="img/bg-img/railbuddy-thumb.png" alt="RailBuddy - Stay on track, always"
+                                    class="app-thumbnail">
+                            </div>
+                            <div class="app-content">
+                                <h3 class="app-name">RailBuddy - Stay on track, always</h3>
+                                <div class="app-actions">
+                                </div>
+                            </div>
+                        </a>
+
         </section>
-
-
-    <section class="about-me-area section-padding-80-0 clearfix" id="maps-routes">
-        <div class="container container-xxl">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading text-center wow fadeIn" data-wow-delay="100ms"
-                        style="margin-bottom: 18px;">
-                        <h2>Maps & Routes</h2>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="section-heading text-center wow fadeIn">
-                        <h1 style="font-size: 20px;">We operate over 7 <u>OMSI 2</u> Maps and 7 <u>OpenBVE</u> Train
-                            Routes</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-6 col-lg-3"><a href="releases/hillgrove-town.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="300ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <h4>Hillgrove Town</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3"><a href="releases/woodlands-town.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="500ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <h4>Woodlands Town</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3"><a href="info/berlin-brt.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="700ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <h4>Berlin (BRT)</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3"><a href="info/lemmental.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="900ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <h4>Lemmental</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3"><a href="info/gg2.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="300ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <h4>Great Grundorf 2</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3"><a href="info/hohenkirchen.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="500ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <h4>Hohenkirchen</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3"><a href="info/szczecin.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="700ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="wsd-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <h4>Projekt Szczecin</h4>
-                        </div>
-                </div>
-                </a>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-6 col-lg-3"><a href="releases/harbourvale-line.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="300ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-train"></i>
-                            </div>
-                            <h4>Harbourvale Line</h4>
-                        </div>
-                    </a>
-                </div>
-
-
-                <div class="col-md-6 col-lg-3"><a href="releases/changi-airport-line.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="500ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-train"></i>
-                            </div>
-                            <h4>Changi Airport Line</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3"><a href="releases/yishun-lrt.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="700ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-train"></i>
-                            </div>
-                            <h4>Yishun LRT</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3"><a href="releases/airport-express-line.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="700ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-train"></i>
-                            </div>
-                            <h4>Airport Express Line</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3"><a href="releases/north-west-line.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="700ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-train"></i>
-                            </div>
-                            <h4>North West Line</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3"><a href="info/woodlands-town-line.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="700ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-train"></i>
-                            </div>
-                            <h4>Woodlands Town Line</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3"><a href="info/circle-line.html">
-                        <div class="about-me-content text-center  wow fadeIn" data-wow-delay="700ms"
-                            style="padding-bottom: 1.05em; padding-top: 3.5em; margin-top: 80px;">
-                            <div class="ui-icon">
-                                <i class="fa-solid fa-train"></i>
-                            </div>
-                            <h4>Circle Line</h4>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
     </div>
+
 
     <script type="text/javascript" id="cookiebanner" src="js/cookies-banner.js" data-position="bottom" data-bg="#f2f3e5"
         data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
@@ -363,6 +468,15 @@
 
     <script src="js/default-assets/active.js"></script>
 
+    <script src="js/app-detector.js"></script>
+
+    <script src="js/pwa-config.js"></script>
+
+    <script src="js/pwa-helper.js"></script>
+
+    <script src="js/pwa-migration.js"></script>
+
+    <script src="js/pwa-init-main.js"></script>
 
 
 
