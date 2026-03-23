@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tooltipLabels = {
         'index.html': 'Home',
         './': 'Home',
+        './history.html': 'History',
+        'history.html': 'History',
         './first-last.html': 'Timings',
         'first-last.html': 'Timings',
-        './ann.html': 'Announcements',
-        'ann.html': 'Announcements',
         './menu.html': 'Menu',
         'menu.html': 'Menu'
     };
