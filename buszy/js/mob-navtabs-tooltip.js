@@ -19,7 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navItems.forEach((item) => {
         const link = item.querySelector('a');
-        const href = link?.getAttribute('href') || '';
+        let href = link?.getAttribute('href') || '';
+        
+        // If href is "#", this is the active page, so determine the label from current page
+        if (href === '#') {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            href = currentPage;
+        }
+        
         const tooltipText = tooltipLabels[href] || 'Link';
 
         // Add data attribute for tooltip
