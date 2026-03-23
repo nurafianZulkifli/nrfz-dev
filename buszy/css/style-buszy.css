@@ -873,6 +873,31 @@ table th {
     padding-left: 1em;
 }
 
+.action-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.action-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+body.dark-mode .action-link {
+    color: #4a90e2;
+}
+
+body.dark-mode .action-link:hover {
+    color: #6ba3ff;
+}
+
+.action-links-wrapper {
+    white-space: nowrap;
+}
+
 
 .pinned p {
     text-align: center;
@@ -1145,5 +1170,17 @@ body.dark-mode .list-group-item {
 
     .lg-menu {
         font-size: 18px;
+    }
+}
+
+@media (max-width: 329px) {
+    .pin-msg {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .action-links-wrapper {
+        width: 100%;
+        text-align: center;
     }
 }

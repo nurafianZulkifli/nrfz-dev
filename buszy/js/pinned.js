@@ -4,6 +4,63 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const bookmarksContainer = document.getElementById('bookmarks-container');
 
+    // Function to switch to the "All" tab
+    function switchToAllTab() {
+        const allTabButton = document.querySelector('.category-tab[data-category="all"]');
+        if (allTabButton) {
+            allTabButton.click();
+        }
+    }
+
+    // Function to navigate to settings
+    function goToSettings() {
+        window.location.href = './settings.html';
+    }
+
+    // Function to create the empty state message with Add and Import links
+    function createEmptyMessage() {
+        const messageContainer = document.createElement('p');
+        messageContainer.className = 'pin-msg';
+        
+        const icon = document.createElement('i');
+        icon.className = 'fa-utility fa-semibold fa-face-frown';
+        messageContainer.appendChild(icon);
+        
+        const textNode = document.createTextNode(' No Pinned Bus Stop. ');
+        messageContainer.appendChild(textNode);
+        
+        const linksWrapper = document.createElement('span');
+        linksWrapper.className = 'action-links-wrapper';
+        
+        const addLink = document.createElement('a');
+        addLink.href = '#';
+        addLink.className = 'action-link add-link';
+        addLink.textContent = 'Add';
+        addLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToAllTab();
+        });
+        
+        const separator = document.createTextNode(' or ');
+        
+        const importLink = document.createElement('a');
+        importLink.href = '#';
+        importLink.className = 'action-link import-link';
+        importLink.textContent = 'Import';
+        importLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToSettings();
+        });
+        
+        linksWrapper.appendChild(addLink);
+        linksWrapper.appendChild(separator);
+        linksWrapper.appendChild(importLink);
+        
+        messageContainer.appendChild(linksWrapper);
+        
+        return messageContainer;
+    }
+
     // Function to load bookmarks from localStorage
     async function loadBookmarks() {
         const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
@@ -11,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Check if there are no bookmarks
         if (bookmarks.length === 0) {
-            bookmarksContainer.innerHTML = '<p class="pin-msg">Add a Bus Stop.</p>';
+            bookmarksContainer.appendChild(createEmptyMessage());
             return;
         }
 
@@ -94,7 +151,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             } else {
                 // If no bookmarks exist after re-fetching, show the message
-                bookmarksContainer.innerHTML = '<p class="pin-msg">Add a Bus Stop.</p>';
+                bookmarksContainer.appendChild(createEmptyMessage());
             }
             applyPinnedSearchFilter();
         } catch (error) {
