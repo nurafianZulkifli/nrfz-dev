@@ -227,7 +227,7 @@ body.dark-mode li.breadcrumb-item a {
         margin: 20px 45px;
         padding: 0 4px;
         width: 100%;
-        max-width: 300px;
+        max-width: 270px;
         justify-content: space-between;
         pointer-events: auto;
     }
