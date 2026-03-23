@@ -236,6 +236,26 @@
         border-radius: 10px;
         width: 100%;
         cursor: default;
+        transition: border-color 0.3s ease;
+    }
+
+    .ib-time.arrived {
+        animation: pulse-indicator 2s infinite;
+        border-color: #7db603;
+    }
+
+    @keyframes pulse-indicator {
+
+        0%,
+        100% {
+            border-color: #94d40b;
+            box-shadow: 0 0 3px rgba(148, 212, 11, 0.2);
+        }
+
+        50% {
+            border-color: rgb(104, 151, 2);
+            box-shadow: 0 0 8px rgba(104, 151, 2, 0.4);
+        }
     }
 
     .ib-svc {
@@ -256,6 +276,25 @@
 
     body.dark-mode .ib-time {
         color: #fff;
+    }
+
+    body.dark-mode .ib-time.arrived {
+        animation: pulse-indicator-dark 2s infinite;
+        border-color: #7db603;
+    }
+
+    @keyframes pulse-indicator-dark {
+
+        0%,
+        100% {
+            border-color: #7db603;
+            box-shadow: 0 0 3px rgba(125, 182, 3, 0.3);
+        }
+
+        50% {
+            border-color: #6ea100;
+            box-shadow: 0 0 8px rgba(110, 161, 0, 0.5);
+        }
     }
 
     body.dark-mode .ib-svc {
