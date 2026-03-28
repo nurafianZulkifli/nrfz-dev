@@ -49,6 +49,22 @@
     "pb": ["302"]
   },
     {
+    "n": "455",
+    "t": "Limited Stop",
+    "op": "SMRT",
+    "ts": "Bt Panjang Int",
+    "lp": "Choa Chu Kang Crescent",
+    "te": "Bt Panjang Int",
+    "h": "06:30 – 10:00 & 16:15 – 19:45",
+    "freq_detail": {
+      "Morning Peak": "10-12",
+      "Evening Peak": "10-12"
+    },
+    "c": "Distance Fares capped at 3.2km",
+    "r": "SMRT Bus Service 455 is a limited-stop bus service introduced under the Land Transport Authority’s Bus Connectivity Enhancement Programme (BCEP). This service provides a direct connection to MRT Stations for estates farther away from transport nodes. Service 455 is renumbered from Service 979X.",
+    "st": ["45009","45291","45321","45389","45401","45411","45421","45439","45399","45329","45299", "44031", "45009"]
+  },
+    {
     "n": "871",
     "t": "Trunk",
     "op": "Tower Transit",
