@@ -88,7 +88,7 @@ async function populateServiceData(serviceNumber, service) {
 
     // Service header
     document.getElementById('service-number').textContent = service.n;
-    document.getElementById('service-title').textContent = `Service ${service.n}`;
+    document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.n}` : `Service ${service.n}`;
     document.getElementById('service-type').textContent = service.t;
 
     // Quick info cards
@@ -104,13 +104,12 @@ async function populateServiceData(serviceNumber, service) {
     if (service.lp) {
         document.getElementById('terminal-loop').textContent = service.lp;
     } else {
-        // If no looping point, hide the loop section and arrows
+        // If no looping point, hide the loop section and the first arrow before it
         const loopElement = document.querySelector('.loop');
         const arrows = document.querySelectorAll('.route-arrow');
         if (loopElement) loopElement.style.display = 'none';
-        if (arrows.length >= 2) {
-            arrows[0].style.display = 'none'; // Arrow before loop
-            arrows[1].style.display = 'none'; // Arrow after loop
+        if (arrows.length > 0) {
+            arrows[0].style.display = 'none'; // Hide first arrow (before loop)
         }
     }
 
@@ -127,10 +126,16 @@ async function populateServiceData(serviceNumber, service) {
         document.getElementById('remarks-content').innerHTML = `<p>${service.r}</p>`;
     }
 
-    // Short Bus Service section
+    // Short Bus Service section (if applicable)
     if (service.sb && service.sb.length > 0) {
         document.getElementById('short-bus-section').style.display = 'block';
         populateShortBusService(service.sb);
+    }
+
+    // Parent Bus Service section (if applicable)
+    if (service.pb && service.pb.length > 0) {
+        document.getElementById('parent-bus-section').style.display = 'block';
+        populateParentBusService(service.pb);
     }
 }
 
@@ -186,7 +191,27 @@ function populateShortBusService(shortBusServices) {
         const link = document.createElement('a');
         link.href = `?service=${service}`;
         link.className = 'short-bus-button';
-        link.innerHTML = `<i class="fa-solid fa-arrow-right"></i> Service ${service}`;
+        link.innerHTML = `${service}`;
+        link.style.animationDelay = `${index * 0.05}s`;
+        linkContainer.appendChild(link);
+    });
+
+    container.appendChild(linkContainer);
+}
+
+// Populate parent bus service links
+function populateParentBusService(parentBusServices) {
+    const container = document.getElementById('parent-bus-content');
+    container.innerHTML = '';
+
+    const linkContainer = document.createElement('div');
+    linkContainer.className = 'parent-bus-links';
+
+    parentBusServices.forEach((service, index) => {
+        const link = document.createElement('a');
+        link.href = `?service=${service}`;
+        link.className = 'parent-bus-button';
+        link.innerHTML = `${service}`;
         link.style.animationDelay = `${index * 0.05}s`;
         linkContainer.appendChild(link);
     });

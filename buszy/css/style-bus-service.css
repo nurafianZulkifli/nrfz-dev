@@ -19,9 +19,10 @@
     gap: 2rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #97D700;
+    background: linear-gradient(153deg, rgba(151, 215, 0, 1) 0%, rgba(115, 163, 0, 1) 100%);
     border-radius: 16px;
-    color: white;
+    color: #000;
 }
 
 .service-number-badge {
@@ -39,7 +40,7 @@
     margin: 0;
     font-size: 1.8rem;
     font-weight: 700;
-    color: white;
+    color: #000 !important;
 }
 
 .service-type {
@@ -48,10 +49,7 @@
     opacity: 0.95;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-body.dark-mode .service-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #000 !important;
 }
 
 /* Quick Info Cards - Using port-summary style */
@@ -157,7 +155,8 @@ body.dark-mode .port-summary h4 {
     border-radius: 12px;
 }
 
-.terminal {
+.terminal,
+.loop {
     text-align: center;
     width: 100%;
 }
@@ -306,7 +305,8 @@ body.dark-mode .terminal-name {
     flex-wrap: wrap;
 }
 
-.bus-stop-code-text, body.dark-mode .bus-stop-code-text {
+.bus-stop-code-text,
+body.dark-mode .bus-stop-code-text {
     font-size: 15px;
     font-weight: bold;
     color: #000;
@@ -365,12 +365,14 @@ body.dark-mode .bus-stop-description {
 
 /* Remarks & Short Bus Service */
 .remarks-section,
-.short-bus-service {
+.short-bus-service,
+.parent-bus-service {
     margin: 2rem 0;
 }
 
 .remarks-section h2,
-.short-bus-service h2 {
+.short-bus-service h2,
+.parent-bus-service h2 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
     display: flex;
@@ -379,17 +381,33 @@ body.dark-mode .bus-stop-description {
 }
 
 .remarks-section i,
-.short-bus-service i {
+.short-bus-service i,
+.parent-bus-service i {
     color: #667eea;
 }
 
-.short-bus-links {
+.short-bus-links,
+.parent-bus-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
 }
 
-.short-bus-button {
+/* Make links smaller if there are less than 4 items */
+.short-bus-links:has(> :nth-last-child(-n+3)),
+.parent-bus-links:has(> :nth-last-child(-n+3)) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+/* If only 1 button, don't take full width */
+.short-bus-links:has(> :nth-child(1):nth-last-child(1)),
+.parent-bus-links:has(> :nth-child(1):nth-last-child(1)) {
+    grid-template-columns: auto;
+    justify-content: flex-start;
+}
+
+.short-bus-button,
+.parent-bus-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -404,14 +422,16 @@ body.dark-mode .bus-stop-description {
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
-.short-bus-button:hover {
+.short-bus-button:hover,
+.parent-bus-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
     color: white;
     text-decoration: none;
 }
 
-.short-bus-button i {
+.short-bus-button i,
+.parent-bus-button i {
     font-size: 1rem;
 }
 

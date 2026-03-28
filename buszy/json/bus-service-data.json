@@ -26,6 +26,7 @@
   {
     "n": "302",
     "t": "Feeder",
+    "op": "SMRT",
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Choa Chu Kang Int",
@@ -35,5 +36,17 @@
     "r": "SMRT Feeder Service 302 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Crescent, serving Choa Chu Kang Way, Choa Chu Kang Street 52 and Yew Tee MRT.",
     "st": ["44009","45231","45241","45251","45311","45261","45271","45321","45389","45401","45411","45421","45439","45399","45329","45279","45269","45319","45259","45249","45239","44009"],
     "sb": ["302A"]
+  },
+    {
+    "n": "302A",
+    "t": "Feeder",
+    "ts": "Yew Tee Stn",
+    "te": "Opp Yew Tee Stn",
+    "h": "22:30-05:59",
+    "f": "20-30",
+    "c": "$2.10-$2.80",
+    "r": "SMRT Bus Service 302A is a Short-Trip Service variant of Feeder Bus Service 302.",
+    "st": ["45321","45389","45401","45411","45421","45439","45399","45329"],
+    "pb": ["302"]
   }
 ]
