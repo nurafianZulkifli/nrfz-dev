@@ -12,9 +12,7 @@ function getServiceNumberFromURL() {
 // Load bus service data from JSON
 async function loadBusServiceData() {
     try {
-        const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
-        const jsonPath = basePath + 'buszy/json/bus-service-data.json';
-        const response = await fetch(jsonPath);
+        const response = await fetch('./json/bus-service-data.json');
         if (!response.ok) {
             throw new Error(`Failed to load data: ${response.statusText}`);
         }
