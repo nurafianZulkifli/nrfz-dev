@@ -573,7 +573,7 @@ body.dark-mode .service-desc {
 .frequency-details {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0rem;
     margin-top: 0.75rem;
     max-height: 200px;
     overflow-y: auto;
