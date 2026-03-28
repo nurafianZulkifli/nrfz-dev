@@ -4,13 +4,42 @@
 // *****************************
 let allServices = [];
 
+// Get base path for the application
+function getBasePath() {
+    // If PWAConfig is available, use it
+    if (window.PWAConfig && window.PWAConfig.basePath) {
+        return window.PWAConfig.basePath;
+    }
+    
+    // Otherwise, derive from the current pathname
+    // For GitHub Pages: /nrfz-dev/buszy/... -> /nrfz-dev/
+    // For local: /buszy/... -> /
+    const pathname = window.location.pathname;
+    const parts = pathname.split('/').filter(p => p); // Remove empty strings
+    
+    // parts[0] should be the first directory level
+    // If parts[0] is 'buszy', we're at the root level (localhost)
+    // If parts[0] is something else and parts[1] is 'buszy', we're in a subdirectory (GitHub Pages)
+    
+    if (parts.length >= 2 && parts[1] === 'buszy') {
+        // Format: /something/buszy/... -> /something/
+        return '/' + parts[0] + '/';
+    }
+    
+    // For local or simple paths
+    return '/';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     loadBusServices();
     setupSearchFilter();
 });
 
 function loadBusServices() {
-    fetch('json/bus-service-data.json')
+    const basePath = getBasePath();
+    const jsonPath = basePath + 'buszy/json/bus-service-data.json';
+    
+    fetch(jsonPath)
         .then(response => response.json())
         .then(data => {
             allServices = data;
