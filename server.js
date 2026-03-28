@@ -176,6 +176,23 @@ app.get('/train-service-alerts', async (req, res) => {
   }
 });
 
+// Define the /bus-routes route with skip support
+app.get('/bus-routes', async (req, res) => {
+  try {
+    const skip = parseInt(req.query.$skip) || 0;
+    const limit = parseInt(req.query.$limit) || 500;
+
+    const response = await ltaApi.get(`/BusRoutes?$skip=${skip}`);
+
+    // Bus routes are quasi-static — cache for 24 hours client-side
+    res.set('Cache-Control', 'public, max-age=86400');
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching bus routes from LTA:', error.message);
+    res.status(500).send('Error connecting to LTA DataMall');
+  }
+});
+
 // Serve static files (after all API routes to prevent conflicts)
 app.use(express.static(path.join(__dirname))); // Serve all static files from root
 
