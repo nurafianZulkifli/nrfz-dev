@@ -269,7 +269,7 @@ async function fetchBusArrivals() {
                 return `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <div class="ib-time ${arrivedClass}">${bus.TimeStr}</div>
-                    <a href="/buszy/bus-service.html?service=${bus.ServiceNo}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 4px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
+                    <a href="buszy/bus-service.html?service=${bus.ServiceNo}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 4px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
                 </div>
             `;
             }).join('');
