@@ -72,7 +72,7 @@ async function fetchEnrichedStopsFromAPI(serviceNumber, stopCodes) {
                         stopData.Description || stopCode,
                         stopData.RoadName || ''
                     ]);
-                    console.log(`Fetched ${stopCode}: ${stopData.RoadName} | ${stopData.Description}`);
+                    // console.log(`Fetched ${stopCode}: ${stopData.RoadName} | ${stopData.Description}`);
                 } else {
                     console.warn(`Stop ${stopCode} not found in API`);
                     enrichedStops.push([stopCode, stopCode, '']);
