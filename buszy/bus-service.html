@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Bus service details and route information">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bus Service | Buszy</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
+
+    <link rel="icon" href="../buszy/assets/icon-512.png">
+
+    <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style-buszy.css">
+    <link rel="stylesheet" href="css/style-bus-service.css">
+    <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WN76281P3Q');
+    </script>
+
+</head>
+
+<body>
+    <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
+    <div class="breadcrumb-fixed-placeholder">
+        <nav aria-label="breadcrumb" style="margin-bottom:0;">
+            <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="./">
+                        <i class="fa-regular fa-house"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#"><i class="fa-regular fa-bus"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" id="breadcrumb-service">Service</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="./"><img src="./assets/logo.png" alt="logo" class="logo" /></a>
+
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-sharp fa-regular fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./first-last.html" class="nav-link">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Timings</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./ann.html" class="nav-link">
+                        <i class="fa-regular fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./menu.html" class="nav-link">
+                        <i class="fa-regular fa-bars"></i>
+                        <span>Menu</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li>
+                <a href="index.html">
+                    <span class="icon">
+                        <i class="fa-sharp fa-regular fa-house"></i></span>
+                    <span class="label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="./first-last.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-clock"></i></span>
+                    <span class="label">Timings</span>
+                </a>
+            </li>
+            <li>
+                <a href="./ann.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-bullhorn"></i></span>
+                    <span class="label">Alerts</span>
+                </a>
+            </li>
+            <li>
+                <a href="./menu.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-bars"></i></span>
+                    <span class="label">Menu</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-md main-content">
+        <!-- Service Header Section -->
+        <div class="service-header" id="service-header">
+            <div class="service-number-badge" id="service-number">---</div>
+            <div class="service-info">
+                <h1 id="service-title">Loading...</h1>
+                <p class="service-type" id="service-type">---</p>
+            </div>
+        </div>
+
+        <!-- Quick Info Cards -->
+        <div class="row">
+            <div class="col-md-6 col-lg-4 box-indiv">
+                <div class="port-summary port-cat text-center mb-80">
+                    <div class="summ-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Operating Hours</h3>
+                    <h4 style="font-size: 13px;" id="operating-hours">---</h4>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 box-indiv">
+                <div class="port-summary port-year text-center mb-80">
+                    <div class="summ-icon">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Frequency</h3>
+                    <h4 style="font-size: 13px;" id="frequency">---</h4>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 box-indiv">
+                <div class="port-summary port-year text-center mb-80">
+                    <div class="summ-icon">
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+                    <h3 style="font-size: 18px; font-weight: bolder;">Fare</h3>
+                    <h4 style="font-size: 13px;" id="fare">---</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remarks Section -->
+        <section class="remarks-section" id="remarks-section" style="display: none;">
+            <div class="alert alert-info" id="remarks-content">
+                ---
+            </div>
+        </section>
+
+        <!-- Route Section -->
+        <section class="route-section">
+            <h2><i class="fa-solid fa-route"></i> Route</h2>
+            <div class="route-terminals">
+                <div class="terminal">
+                    <div class="terminal-label">Start</div>
+                    <div class="terminal-name" id="terminal-start">---</div>
+                </div>
+                <div class="route-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="terminal">
+                    <div class="terminal-label">End</div>
+                    <div class="terminal-name" id="terminal-end">---</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stops Section -->
+        <section class="stops-section">
+            <h2><i class="fa-solid fa-map-pin"></i> Bus Stops (<span id="stops-count">0</span>)</h2>
+            <div class="stops-container" id="stops-container">
+                <div class="loading-placeholder">Loading stops...</div>
+            </div>
+        </section>
+
+        <!-- Short Bus Service -->
+        <section class="short-bus-service" id="short-bus-section" style="display: none;">
+            <h2><i class="fa-solid fa-arrows-split-up-and-left"></i> Short Bus Service</h2>
+            <div class="service-links" id="short-bus-content">
+                ---
+            </div>
+        </section>
+    </div>
+
+
+    <script src="buszy-subp.js"></script>
+
+    <script src="js/bus-service.js"></script>
+</body>
+
+</html>
