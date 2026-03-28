@@ -81,19 +81,28 @@ async function populateServiceData(serviceNumber, service) {
     }
 
     // Update breadcrumb
-    document.getElementById('breadcrumb-service').textContent = `Service ${service.n}`;
+    const breadcrumbElement = document.querySelector('#breadcrumb-service h2');
+    if (breadcrumbElement) {
+        breadcrumbElement.textContent = `${service.n}`;
+    }
 
     // Update page title
     document.title = `Service ${service.n} | Buszy`;
 
     // Service header
     document.getElementById('service-number').textContent = service.n;
-    document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} ${service.n}` : `Service ${service.n}`;
-    document.getElementById('service-type').textContent = '';
+    document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} Bus Service ${service.n}` : `Service ${service.n}`;
 
     // Quick info cards
     document.getElementById('operating-hours').textContent = service.h;
-    document.getElementById('frequency').textContent = service.f + ' mins';
+    
+    // Display frequency with time-based details if available
+    if (service.freq_detail) {
+        displayFrequencyDetails(service.freq_detail);
+    } else {
+        document.getElementById('frequency').textContent = service.f + ' mins';
+    }
+    
     document.getElementById('fare').textContent = service.c;
 
     // Route terminals
@@ -136,6 +145,53 @@ async function populateServiceData(serviceNumber, service) {
     if (service.pb && service.pb.length > 0) {
         document.getElementById('parent-bus-section').style.display = 'block';
         populateParentBusService(service.pb);
+    }
+}
+
+// Display frequency details by time period (collapsible)
+function displayFrequencyDetails(freqDetail) {
+    const frequencyElement = document.getElementById('frequency');
+    const entries = Object.entries(freqDetail);
+    
+    let html = `
+        <div class="frequency-collapsible">
+            <div class="frequency-header" onclick="toggleFrequencyDetails(event)">
+                <span class="frequency-summary">
+                    <i class="fa-regular fa-circle-info" style="margin-right: 0.5rem;"></i>
+                    Different frequencies by time
+                </span>
+                <i class="fa-regular fa-chevron-down"></i>
+            </div>
+            <div class="frequency-details" style="display: none;">
+    `;
+    
+    for (const [timeRange, frequency] of entries) {
+        html += `
+            <div class="frequency-item">
+                <span class="time-range">${timeRange}</span>
+                <span class="freq-value">${frequency} mins</span>
+            </div>
+        `;
+    }
+    
+    html += '</div></div>';
+    frequencyElement.innerHTML = html;
+}
+
+// Toggle frequency details visibility
+function toggleFrequencyDetails(event) {
+    const header = event.currentTarget;
+    const details = header.nextElementSibling;
+    const icon = header.querySelector('i');
+    
+    if (details.style.display === 'none') {
+        details.style.display = 'flex';
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+    } else {
+        details.style.display = 'none';
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
     }
 }
 

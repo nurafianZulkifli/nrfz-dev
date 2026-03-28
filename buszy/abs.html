@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Search Bus Stop | Buszy</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <title>Bus Services | Buszy</title>
+    <meta content="View all bus services available on Buszy" name="description">
+    <meta content="bus services, routes, schedules" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
 
     <link rel="icon" href="../buszy/assets/icon-512.png">
@@ -143,6 +143,145 @@
     .nav-disabled button:hover {
         opacity: 0.5;
     }
+
+    .bus-service-card {
+        background: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+    }
+
+    .bus-service-card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+    }
+
+    body.dark-mode .bus-service-card {
+        background: #2a2a2a;
+        border-color: #404040;
+    }
+
+    .service-number {
+        display: inline-block;
+        background-color: #94d40b;
+        color: #000;
+        font-weight: bold;
+        font-size: 24px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        margin-right: 15px;
+        min-width: 60px;
+        text-align: center;
+    }
+
+    body.dark-mode .service-number {
+        background-color: #7db603;
+    }
+
+    .service-type {
+        display: inline-block;
+        background-color: #e0e0e0;
+        color: #333;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    body.dark-mode .service-type {
+        background-color: #404040;
+        color: #e0e0e0;
+    }
+
+    .service-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .service-routes {
+        margin-top: 12px;
+        font-size: 14px;
+    }
+
+    .service-routes strong {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .service-info-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+        font-size: 14px;
+    }
+
+    .service-info-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-info-label {
+        font-weight: 600;
+        color: #666;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+
+    body.dark-mode .service-info-label {
+        color: #aaa;
+    }
+
+    .service-info-value {
+        color: #333;
+        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    body.dark-mode .service-info-value {
+        color: #e0e0e0;
+    }
+
+    .service-info-value i {
+        color: #1e90ff;
+        font-size: 0.9rem;
+    }
+
+    .remarks {
+        background-color: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 10px;
+        margin-top: 12px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+
+    body.dark-mode .remarks {
+        background-color: #663c00;
+        border-left-color: #ffc107;
+        color: #ffe0b2;
+    }
+
+    .no-services {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+    }
+
+    body.dark-mode .no-services {
+        color: #aaa;
+    }
 </style>
 
 <body>
@@ -266,13 +405,13 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
-                                    <h1 class="page-title" id="filter-title">Search Bus Stop</h1>
+                                    <h1 class="page-title" id="filter-title">Bus Services</h1>
                                 </div>
                                 <div style="position: relative; max-width: 400px; margin-top: 5px;">
                                     <i class="fa-regular fa-search"
                                         style="position: absolute; left: 12px; top: 54%; transform: translateY(-54%); color: #cccccc; z-index: 1;"></i>
-                                    <input type="text" id="bus-stop-search" class="form-control"
-                                        placeholder="Bus Stop Name, Codes" style="padding-left: 35px;">
+                                    <input type="text" id="service-search" class="form-control"
+                                        placeholder="Service Number, Route, Type" style="padding-left: 35px;">
                                 </div>
                             </div>
                         </div>
@@ -287,16 +426,12 @@
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
 
         <div class="container">
-            <h2 class="text-center" style="padding-top: 1em;">Bus Stops</h2>
-            <div class="list-group">
+            <h2 class="text-center" style="padding-top: 1em;">All Bus Services</h2>
+            <div class="list-group" id="services-container">
                 <p class="pin-msg" id="loading-message"
                     style="display: flex; align-items: center; justify-content: center;">
-                    <span class="spinner" role="status" style="margin-right: 1em;"></span>Loading Data...
+                    <span class="spinner" role="status" style="margin-right: 1em;"></span>Loading Services...
                 </p>
-            </div>
-            <div class="pagination-buttons">
-                <button id="prev-button" class="btn pw-btn-prev btn-2 mt-15" style="display: none;">Previous</button>
-                <button id="next-button" class="btn pw-btn-next btn-2 mt-15" style="display: none;">Next</button>
             </div>
         </div>
     </section>
