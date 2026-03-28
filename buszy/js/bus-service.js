@@ -88,8 +88,8 @@ async function populateServiceData(serviceNumber, service) {
 
     // Service header
     document.getElementById('service-number').textContent = service.n;
-    document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.n}` : `Service ${service.n}`;
-    document.getElementById('service-type').textContent = service.t;
+    document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} ${service.n}` : `Service ${service.n}`;
+    document.getElementById('service-type').textContent = '';
 
     // Quick info cards
     document.getElementById('operating-hours').textContent = service.h;
