@@ -352,12 +352,8 @@ body.dark-mode .bus-stop-name {
     color: #fff;
 }
 
-body.dark-mode .bus-stop-name::after {
-    color: #555;
-}
-
 body.dark-mode .bus-stop-description {
-    color: #aaa;
+    color: #ccc;
 }
 
 .loading-placeholder {

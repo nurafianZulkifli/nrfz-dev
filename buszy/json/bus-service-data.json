@@ -1,5 +1,5 @@
-{
-  "3": {
+[
+  {
     "n": "3",
     "t": "Regular",
     "ts": "Bukit Merah Interchange",
@@ -8,19 +8,10 @@
     "f": "8-12",
     "c": "$1.45-$2.10",
     "r": "Service operates daily with reduced frequency on Sundays and public holidays.",
-    "st": [
-      ["15009", "Bukit Merah Interchange", "Starting point"],
-      ["15219", "Blk 155 Bukit Merah", "Residential area"],
-      ["15169", "Bukit Merah Central", "Shopping mall"],
-      ["15249", "Henderson Rd", "Commercial"],
-      ["15189", "Zion Rd", "Residential"],
-      ["15319", "AYE Exit 15", "Expressway"],
-      ["15349", "Tiong Bahru Road", "Commercial"],
-      ["15379", "Neil Road", "Residential"]
-    ],
+    "st": ["15009", "15219", "15169", "15249", "15189", "15319", "15349", "15379"],
     "sb": ["3E"]
   },
-  "12": {
+  {
     "n": "12",
     "t": "Express",
     "ts": "Bedok Bus Interchange",
@@ -29,33 +20,20 @@
     "f": "10-15",
     "c": "$1.80-$2.30",
     "r": "Express service with fewer stops. Direct to CBD.",
-    "st": [
-      ["18009", "Bedok Bus Interchange", "Terminal"],
-      ["18089", "Bedok MRT Station", "Transport hub"],
-      ["18159", "East Coast Road", "Coastal"],
-      ["18229", "Katong Shopping Centre", "Retail"],
-      ["18299", "Marina Coastal Expwy", "Expressway"],
-      ["18369", "Marina Bay Sands", "Terminal"]
-    ],
+    "st": ["18009", "18089", "18159", "18229", "18299", "18369"],
     "sb": ["12M"]
   },
-  "302": {
+  {
     "n": "302",
     "t": "Feeder",
     "ts": "Choa Chu Kang Int",
-    "te": "Choa Chu Kang Crescent (Loop)",
+    "lp": "Choa Chu Kang Crescent",
+    "te": "Choa Chu Kang Int",
     "h": "22:30-05:59",
     "f": "20-30",
     "c": "$2.10-$2.80",
     "r": "SMRT Feeder Service 302 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Crescent, serving Choa Chu Kang Way, Choa Chu Kang Street 52 and Yew Tee MRT.",
-    "st": [
-      ["72009", "Choa Chu Kang Int B3", "Choa Chu Kang Loop"],
-      ["72089", "Blk 432", "Residential"],
-      ["72159", "Causeway Link", "Border link"],
-      ["72229", "Queenstown Road", "Expressway"],
-      ["72299", "Changi Airport T1", "Airport"],
-      ["72369", "Changi Airport T3", "Terminal"]
-    ],
+    "st": ["44009","45231","45241","45251","45311","45261","45271","45321","45389","45401","45411","45421","45439","45399","45329","45279","45269","45319","45259","45249","45239","44009"],
     "sb": ["302A"]
   }
-}
+]

@@ -1,7 +1,6 @@
 /**
  * Bus Service Page
- * Loads and displays individual bus service information from JSON
- * Compact format: n=number, t=type, ts=terminal start, te=terminal end, h=hours, f=frequency, c=cost, r=remarks, st=stops, a=additional
+ * Loads service info from JSON and bus stops from API endpoints
  */
 
 // Get service number from URL parameters or use default
@@ -25,6 +24,45 @@ async function loadBusServiceData() {
     }
 }
 
+// Fetch enriched stop details from API for given stop codes
+async function fetchEnrichedStopsFromAPI(serviceNumber, stopCodes) {
+    try {
+        const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
+        
+        console.log(`Fetching details for ${stopCodes.length} stops for service ${serviceNumber}`);
+        
+        // Fetch details for each stop code from /bus-stop-det
+        const enrichedStops = [];
+        for (const stopCode of stopCodes) {
+            try {
+                const stopResponse = await fetch(`${API_BASE}/bus-stop-det?BusStopCode=${stopCode}`);
+                if (stopResponse.ok) {
+                    const stopData = await stopResponse.json();
+                    // Format: [code, RoadName, Description]
+                    enrichedStops.push([
+                        stopCode,
+                        stopData.Description || stopCode,
+                        stopData.RoadName || ''
+                    ]);
+                    console.log(`Fetched ${stopCode}: ${stopData.RoadName} | ${stopData.Description}`);
+                } else {
+                    console.warn(`Stop ${stopCode} not found in API`);
+                    enrichedStops.push([stopCode, stopCode, '']);
+                }
+            } catch (error) {
+                console.warn(`Failed to fetch stop ${stopCode}:`, error);
+                enrichedStops.push([stopCode, stopCode, '']);
+            }
+        }
+        
+        return enrichedStops;
+    } catch (error) {
+        console.error('Error fetching enriched stops from API:', error);
+        // Fallback: return stop codes only
+        return stopCodes.map(code => [code, code, '']);
+    }
+}
+
 // Display error message
 function showErrorMessage(message) {
     const mainContent = document.querySelector('.main-content');
@@ -36,7 +74,7 @@ function showErrorMessage(message) {
 }
 
 // Populate page with service data (compact format)
-function populateServiceData(serviceNumber, service) {
+async function populateServiceData(serviceNumber, service) {
     if (!service) {
         showErrorMessage('Service information not found. Please check the service number.');
         return;
@@ -62,8 +100,26 @@ function populateServiceData(serviceNumber, service) {
     document.getElementById('terminal-start').textContent = service.ts;
     document.getElementById('terminal-end').textContent = service.te;
 
-    // Bus stops
-    populateBusStops(service.st);
+    // Set looping point if available
+    if (service.lp) {
+        document.getElementById('terminal-loop').textContent = service.lp;
+    } else {
+        // If no looping point, hide the loop section and arrows
+        const loopElement = document.querySelector('.loop');
+        const arrows = document.querySelectorAll('.route-arrow');
+        if (loopElement) loopElement.style.display = 'none';
+        if (arrows.length >= 2) {
+            arrows[0].style.display = 'none'; // Arrow before loop
+            arrows[1].style.display = 'none'; // Arrow after loop
+        }
+    }
+
+    // Fetch and enrich bus stops from API, use JSON as source of truth
+    let stopsToDisplay = service.st || [];
+    if (stopsToDisplay.length > 0) {
+        const enrichedStops = await fetchEnrichedStopsFromAPI(service.n, stopsToDisplay);
+        populateBusStops(enrichedStops);
+    }
 
     // Remarks section
     if (service.r) {
@@ -108,6 +164,12 @@ function populateBusStops(stops) {
             </div>
         `;
 
+        // Make stop clickable to navigate to art.html
+        stopElement.style.cursor = 'pointer';
+        stopElement.addEventListener('click', () => {
+            window.location.href = `/buszy/art.html?BusStopCode=${stop[0]}`;
+        });
+
         container.appendChild(stopElement);
     });
 }
@@ -138,11 +200,12 @@ async function initializePage() {
     const data = await loadBusServiceData();
 
     if (data) {
-        const service = data[serviceNumber];
+        const service = data.find(s => s.n === serviceNumber);
         if (service) {
-            populateServiceData(serviceNumber, service);
+            await populateServiceData(serviceNumber, service);
         } else {
-            showErrorMessage(`Service ${serviceNumber} not found. Available services: ${Object.keys(data).join(', ')}`);
+            const availableServices = data.map(s => s.n).join(', ');
+            showErrorMessage(`Service ${serviceNumber} not found. Available services: ${availableServices}`);
         }
     }
 }
