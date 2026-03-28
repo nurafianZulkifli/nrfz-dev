@@ -193,6 +193,31 @@ app.get('/bus-routes', async (req, res) => {
   }
 });
 
+// Define the /bus-stop-det route (get specific bus stop details)
+app.get('/bus-stop-det', async (req, res) => {
+  try {
+    const busStopCode = req.query.BusStopCode;
+
+    if (!busStopCode) {
+      return res.status(400).send('BusStopCode is required');
+    }
+
+    const busStops = await getAllBusStops();
+    const busStop = busStops.find(stop => stop.BusStopCode === busStopCode);
+
+    if (!busStop) {
+      return res.status(404).send('Bus stop not found');
+    }
+
+    // Bus stop details are quasi-static — cache for 1 hour client-side
+    res.set('Cache-Control', 'public, max-age=3600');
+    res.json(busStop);
+  } catch (error) {
+    console.error('Error fetching bus stop details:', error.message);
+    res.status(500).send('Error fetching bus stop details');
+  }
+});
+
 // Serve static files (after all API routes to prevent conflicts)
 app.use(express.static(path.join(__dirname))); // Serve all static files from root
 
