@@ -63,7 +63,7 @@ function createServiceCard(service) {
                 <div class="service-header">
                     <div class="service-number">${service.n}</div>
                     <div class="service-type">${type}</div>
-                    ${operator !== 'Transit' ? `<div class="service-type" style="background-color: #b3e5fc; color: #01579b;">${operator}</div>` : ''}
+                    ${operator !== 'Transit' ? `<div class="service-type" style="background-color: #e0e0e0; color: #333;">${operator}</div>` : ''}
                 </div>
                 
                 <div class="service-routes">

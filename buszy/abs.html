@@ -161,8 +161,9 @@
     }
 
     body.dark-mode .bus-service-card {
-        background: #2a2a2a;
-        border-color: #404040;
+        background: #1c1f2b;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .service-number {
@@ -194,8 +195,8 @@
     }
 
     body.dark-mode .service-type {
-        background-color: #404040;
-        color: #e0e0e0;
+        background-color: #393e53 !important;
+        color: #fff !important;
     }
 
     .service-header {
@@ -209,6 +210,10 @@
     .service-routes {
         margin-top: 12px;
         font-size: 14px;
+    }
+
+    body.dark-mode .service-routes {
+        color: #e0e0e0;
     }
 
     .service-routes strong {
@@ -347,7 +352,6 @@
                     <span class="icon">
                         <i class="fa-sharp fa-regular fa-thumbtack-angle"></i>
                     </span>
-                    <span class="label">Pinned</span>
                 </a>
             </li>
             <li>
@@ -355,7 +359,6 @@
                     <span class="icon">
                         <i class="fa-regular fa-location-dot"></i>
                     </span>
-                    <span class="label">Nearby</span>
                 </a>
             </li>
             <li class="active">
@@ -426,7 +429,7 @@
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
 
         <div class="container">
-            <h2 class="text-center" style="padding-top: 1em;">All Bus Services</h2>
+            <h2 class="text-center" style="padding-top: 1em; padding-bottom: 0.5em;">All Bus Services</h2>
             <div class="list-group" id="services-container">
                 <p class="pin-msg" id="loading-message"
                     style="display: flex; align-items: center; justify-content: center;">

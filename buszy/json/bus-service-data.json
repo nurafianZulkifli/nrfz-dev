@@ -6,14 +6,28 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Choa Chu Kang Int",
-    "h": "22:30-05:59",
+    "h": "22:30 - 05:59",
     "freq_detail": {
-      "6:30-8:30": "3-5",
-      "8:31-16:59": "4-6",
-      "17:00-19:00": "4-6",
-      "19:01-23:59": "6-10"
+      "weekdays": {
+        "6:30-8:30": "10-14",
+        "8:31-16:59": "10-14",
+        "17:00-19:00": "12",
+        "19:01-23:59": "12-14"
+      },
+      "saturdays": {
+        "6:30-8:30": "15",
+        "8:31-16:59": "11-15",
+        "17:00-19:00": "12-13",
+        "19:01-23:59": "11-14"
+      },
+      "sundays_holidays": {
+        "6:30-8:30": "13-15",
+        "8:31-16:59": "11-15",
+        "17:00-19:00": "12-13",
+        "19:01-23:59": "13-14"
+      }
     },
-    "c": "Capped at 3.2km",
+    "c": "Distance Fares capped at 3.2km",
     "r": "SMRT Feeder Service 302 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Crescent, serving Choa Chu Kang Way, Choa Chu Kang Street 52 and Yew Tee MRT.",
     "st": ["44009","45231","45241","45251","45311","45261","45271","45321","45389","45401","45411","45421","45439","45399","45329","45279","45269","45319","45259","45249","45239","44009"],
     "sb": ["302A"]
@@ -24,13 +38,66 @@
     "op": "SMRT",
     "ts": "Yew Tee Stn",
     "te": "Opp Yew Tee Stn",
-    "h": "22:30-05:59",
+    "h": "22:30 - 05:59",
     "freq_detail": {
-      "06:07 – 07:25 & 17:17 – 19:48": "20-30"
+      "06:07 – 07:25": "20-30",
+      "17:17 – 19:48": "20-30"
     },
-    "c": "$2.10-$2.80",
+    "c": "Distance Fares capped at 3.2km",
     "r": "SMRT Bus Service 302A is a Short-Trip Service variant of Feeder Bus Service 302.",
     "st": ["45321","45389","45401","45411","45421","45439","45399","45329"],
     "pb": ["302"]
+  },
+    {
+    "n": "871",
+    "t": "Trunk",
+    "op": "Tower Transit",
+    "ts": "Tengah Int",
+    "lp": "Upp Bukit Timah Rd",
+    "te": "Tengah Int",
+    "h": "05:15 – 00:00",
+    "freq_detail": {
+      "weekdays": {
+        "6:30-8:30": "10-14",
+        "8:31-16:59": "10-14",
+        "17:00-19:00": "12",
+        "19:01-23:59": "12-14"
+      },
+      "saturdays": {
+        "6:30-8:30": "15",
+        "8:31-16:59": "11-15",
+        "17:00-19:00": "12-13",
+        "19:01-23:59": "11-14"
+      },
+      "sundays_holidays": {
+        "6:30-8:30": "13-15",
+        "8:31-16:59": "11-15",
+        "17:00-19:00": "12-13",
+        "19:01-23:59": "13-14"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "TTS Feeder Service 871 is a Feeder service operating from Tengah and looping at Beauty World MRT Station, serving the new housing estates in Tengah and providing connectivity to Bukit Batok West and Bukit Gombak.",
+    "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429","43179","43189","43199","43209","42199","42189","42179","42169","42159","42079","42151","42161","42171","42181","42191","43201","43191","43181","43171","43421","43541","43801","43561","43609","40289","40351","40381","40409","40419","40429","40439","40449","40459","41009"],
+    "sb": ["871A"]
+  },
+    {
+    "n": "871A",
+    "t": "Trunk",
+    "op": "Tower Transit",
+    "ts": "Tengah Int",
+    "te": "Blk 240",
+    "h": "06:03 – 06:59",
+    "freq_detail": {
+      "06:03": "From Tengah Int",
+      "06:18": "From Tengah Int",
+      "06:33": "From Tengah Int",
+      "06:46": "From Tengah Int",
+      "06:59": "From Tengah Int"
+    },
+    "c": "Regular Distance Fares",
+    "r": "TTS Feeder Service 871A is a Short-Trip Service variant of Feeder Bus Service 871.",
+    "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429"],
+    "pb": ["871"]
   }
 ]

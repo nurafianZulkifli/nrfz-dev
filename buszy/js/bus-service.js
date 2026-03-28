@@ -91,7 +91,7 @@ async function populateServiceData(serviceNumber, service) {
 
     // Service header
     document.getElementById('service-number').textContent = service.n;
-    document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} Bus Service ${service.n}` : `Service ${service.n}`;
+    document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} Service ${service.n}` : `Service ${service.n}`;
 
     // Quick info cards
     document.getElementById('operating-hours').textContent = service.h;
@@ -151,31 +151,85 @@ async function populateServiceData(serviceNumber, service) {
 // Display frequency details by time period (collapsible)
 function displayFrequencyDetails(freqDetail) {
     const frequencyElement = document.getElementById('frequency');
-    const entries = Object.entries(freqDetail);
+    
+    // Check if structure is nested (with day types) or flat (legacy)
+    const isNested = freqDetail.weekdays || freqDetail.saturdays || freqDetail.sundays_holidays;
+    
+    // Detect if this is a departure times format (flat structure with non-frequency values)
+    let isDepartureTimes = false;
+    if (!isNested) {
+        const values = Object.values(freqDetail);
+        isDepartureTimes = values.some(val => {
+            const isFrequency = /\d+$/.test(val) || val.includes('mins') || /\d+-\d+/.test(val);
+            return !isFrequency;
+        });
+    }
+    
+    const summaryText = isDepartureTimes ? 'Departure Times' : 'Different frequencies by time';
     
     let html = `
         <div class="frequency-collapsible">
             <div class="frequency-header" onclick="toggleFrequencyDetails(event)">
                 <span class="frequency-summary">
                     <i class="fa-regular fa-circle-info" style="margin-right: 0.5rem;"></i>
-                    Different frequencies by time
+                    ${summaryText}
                 </span>
                 <i class="fa-regular fa-chevron-down"></i>
             </div>
             <div class="frequency-details" style="display: none;">
     `;
     
-    for (const [timeRange, frequency] of entries) {
-        html += `
-            <div class="frequency-item">
-                <span class="time-range">${timeRange}</span>
-                <span class="freq-value">${frequency} mins</span>
-            </div>
-        `;
+    if (isNested) {
+        // Handle nested structure with day types
+        const dayLabels = {
+            'weekdays': 'Weekdays',
+            'saturdays': 'Saturdays',
+            'sundays_holidays': 'Sundays & Public Holidays'
+        };
+        
+        for (const [dayType, times] of Object.entries(freqDetail)) {
+            if (['weekdays', 'saturdays', 'sundays_holidays'].includes(dayType)) {
+                html += `<div class="frequency-day-group">
+                    <div class="day-label">${dayLabels[dayType]}</div>`;
+                
+                for (const [timeRange, frequency] of Object.entries(times)) {
+                    html += `
+                        <div class="frequency-item">
+                            <span class="time-range">${timeRange}</span>
+                            <span class="freq-value">${frequency} mins</span>
+                        </div>
+                    `;
+                }
+                html += '</div>';
+            }
+        }
+    } else {
+        // Handle flat structure (legacy or special cases like departure times)
+        for (const [timeRange, value] of Object.entries(freqDetail)) {
+            // Check if value is a frequency (ends with a number or contains "mins") or a note
+            const isFrequency = /\d+$/.test(value) || value.includes('mins') || /\d+-\d+/.test(value);
+            const displayValue = isFrequency ? `${value} mins` : value;
+            
+            html += `
+                <div class="frequency-item">
+                    <span class="time-range">${timeRange}</span>
+                    <span class="freq-value">${displayValue}</span>
+                </div>
+            `;
+        }
     }
     
     html += '</div></div>';
     frequencyElement.innerHTML = html;
+    
+    // Update the h3 header in the port-summary card
+    const portSummaryCard = frequencyElement.closest('.port-summary');
+    if (portSummaryCard) {
+        const h3 = portSummaryCard.querySelector('h3');
+        if (h3) {
+            h3.textContent = isDepartureTimes ? 'Departure Times' : 'Frequency';
+        }
+    }
 }
 
 // Toggle frequency details visibility
@@ -292,4 +346,20 @@ async function initializePage() {
 }
 
 // Run on page load
-document.addEventListener('DOMContentLoaded', initializePage);
+document.addEventListener('DOMContentLoaded', () => {
+    initializePage();
+    
+    // Add scroll detection for frequency details scrollbar
+    const frequencyDetails = document.querySelector('.frequency-details');
+    if (frequencyDetails) {
+        let scrollTimeout;
+        
+        frequencyDetails.addEventListener('scroll', () => {
+            frequencyDetails.classList.add('scrolling');
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                frequencyDetails.classList.remove('scrolling');
+            }, 1500);
+        }, { passive: true });
+    }
+});
