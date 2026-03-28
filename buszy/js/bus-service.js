@@ -291,7 +291,7 @@ function populateBusStops(stops) {
         stopElement.style.animationDelay = `${index * 0.05}s`;
         
         // Get base path for bus icon
-        const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
+        const basePath = getBasePath();
         const busIconPath = basePath + 'buszy/assets/bus-icon.png';
         
         stopElement.innerHTML = `
@@ -310,7 +310,9 @@ function populateBusStops(stops) {
         // Make stop clickable to navigate to art.html
         stopElement.style.cursor = 'pointer';
         stopElement.addEventListener('click', () => {
-            window.location.href = `/buszy/art.html?BusStopCode=${stop[0]}`;
+            const basePath = getBasePath();
+            const artPath = basePath + 'buszy/art.html?BusStopCode=' + stop[0];
+            window.location.href = artPath;
         });
 
         container.appendChild(stopElement);
