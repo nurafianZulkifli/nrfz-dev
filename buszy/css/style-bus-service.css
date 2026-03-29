@@ -796,7 +796,7 @@ body.dark-mode .info-item {
 
     .main-content {
         padding-bottom: 8em;
-        padding: 4em;
+        padding: 2em;
     }
 
     .bus-stop-inline {
@@ -835,6 +835,10 @@ body.dark-mode .info-item {
     }
 
     .bus-stop-name {
+        margin-left: 0px;
+    }
+
+    .bus-stop-inline {
         margin-left: 0px;
     }
 
