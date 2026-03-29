@@ -338,8 +338,7 @@ async function fetchBusArrivals() {
                             <div class="busNo-card d-flex justify-content-between">
                                 <span class="bus-time">${service.NextBus?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '--'}</span>
                                 <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
-                                    ${service.NextBus?.Type ? `<img src="assets/${service.NextBus.Type.toLowerCase()}.png" alt="${service.NextBus.Type}" class="img-fluid" style="width: 50px;">` : ''}
-                                    ${service.NextBus?.Load ? `<span class="load-indicator ${service.NextBus.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus.Load)}</span>` : ''}
+                                    ${getLoadIcon(service.NextBus?.Load, service.NextBus?.Type)}
                                     <button class="btn btn-busloc btn-sm view-location-btn"
                                         data-lat="${service.NextBus?.Latitude || '0.0'}"
                                         data-lng="${service.NextBus?.Longitude || '0.0'}"
@@ -356,8 +355,7 @@ async function fetchBusArrivals() {
                             <div class="busNo-card d-flex justify-content-between">
                                 <span class="bus-time">${service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : '--'}</span>
                                 <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
-                                    ${service.NextBus2?.Type ? `<img src="assets/${service.NextBus2.Type.toLowerCase()}.png" alt="${service.NextBus2.Type}" class="img-fluid" style="width: 50px;">` : ''}
-                                    ${service.NextBus2?.Load ? `<span class="load-indicator ${service.NextBus2.Load.toLowerCase()}"> ${getLoadIcon(service.NextBus2.Load)}</span>` : ''}
+                                    ${getLoadIcon(service.NextBus2?.Load, service.NextBus2?.Type)}
                                     <button class="btn btn-busloc btn-sm view-location-btn"
                                         data-lat="${service.NextBus2?.Latitude || '0.0'}"
                                         data-lng="${service.NextBus2?.Longitude || '0.0'}"
@@ -477,18 +475,38 @@ async function fetchBusArrivals() {
     }
 }
 
-// Function to get load icon HTML based on load status
-function getLoadIcon(load) {
-    switch (load) {
-        case 'SEA':
-            return '<i class="fa-regular fa-user" title="Seats Available"></i>'; // Icon for SEA
-        case 'SDA':
-            return '<i class="fa-regular fa-user-group" title="Standing Available"></i>'; // Icon for SDA
-        case 'LSD':
-            return '<i class="fa-regular fa-people-group" title="Limited Standing"></i>'; // Icon for LSD
-        default:
-            return ''; // No icon for unknown load values
+// Function to get load and fleet icons as FontAwesome HTML
+function getLoadIcon(load, type) {
+    // Get fleet type icon
+    let fleetIcon = '';
+    if (type) {
+        switch (type.toUpperCase()) {
+            case 'SD':
+            case 'SINGLE DECK':
+                fleetIcon = '<i class="fa-kit fa-lta-bus" title="Single Deck"></i>';
+                break;
+            case 'DD':
+            case 'DOUBLE DECK':
+                fleetIcon = '<i class="fa-kit fa-lta-dd" title="Double Deck"></i>';
+                break;
+            case 'BD':
+            case 'BENDY':
+            case 'BENDY BUS':
+                fleetIcon = '<i class="fa-kit fa-lta-bb" title="Bendy Bus"></i>';
+                break;
+            default:
+                fleetIcon = '';
+        }
     }
+
+    // Determine load class for coloring
+    let loadClass = '';
+    if (load) {
+        loadClass = load.toLowerCase();
+    }
+
+    // Return only the fleet icon with load class
+    return fleetIcon ? `<span class="load-indicator ${loadClass}">${fleetIcon}</span>` : '';
 }
 
 // Function to format ISO string to hh:mm or show "Arrive" or greyed-out time

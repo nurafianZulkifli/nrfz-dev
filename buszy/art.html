@@ -87,13 +87,13 @@
     .card .card-content-art {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
     }
 
     .card .card-content-art span {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1rem !important;
     }
 
     .card .operator-logo {
@@ -119,6 +119,12 @@
         white-space: nowrap;
         font-size: 20px;
         width: fit-content;
+    }
+
+    body.dark-mode a.service-no:hover {
+        transform: translateY(-3px);
+        color: #fff !important;
+        background-color: #52718d;
     }
 
     .bus-time {
@@ -686,13 +692,13 @@
             <!-- Fleet Legend -->
             <div class="fleet-legend">
                 <span>
-                    <img alt="BD Icon" class="fleet-icon" src="assets/dd.png" /> Double
+                    <i class="fa-kit fa-lta-bus"></i> Single
                 </span>
                 <span style="gap: 2px;">
-                    <img alt="SMRT Icon" class="fleet-icon" src="assets/bd.png" /> Bendy
+                    <i class="fa-kit fa-lta-bb"></i>&nbsp; Bendy
                 </span>
                 <span>
-                    <img alt="Other Icon" class="fleet-icon" src="assets/sd.png" /> Single
+                    <i class="fa-kit fa-lta-dd"></i> Double
                 </span>
             </div>
 
