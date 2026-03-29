@@ -1,38 +1,31 @@
-0.0	 28009	 • Jurong East Int
- 	 	Jurong East Ctrl
-0.7	 28441	 • Seventh-Day Advent Ch
- 	 	Boon Lay Way
-1.0	 28071	 • Blk 105
-1.3	 28081	 • Blk 112
- 	 	Jurong Town Hall Rd
-1.7	 28281	 • Opp Blk 227
- 	 	Jurong East Ave 1
-2.0	 28451	 • Parc Oasis
-2.4	 28461	 • Blk 347
-2.9	 28491	 • Opp Jurong Polyclinic
- 	 	Jurong West Ave 1
-3.3	 28501	 • Blk 490
-3.7	 28511	 • Blk 463
-4.0	 28521	 • Blk 457
-4.3	 28401	 • Blk 502
- 	 	Jurong West St 42
-4.7	 28541	 • Blk 551
-5.1	 28551	 • Blk 560A
-5.3	 28561	 • Blk 402
-5.6	 28571	 • Blk 416
- 	 	Jurong West Ave 1
-6.0	 28509	 • Blk 422
- 	 	Jurong East Ave 1
-6.5	 28499	 • Jurong Polyclinic
-6.9	 28469	 • Blk 316
-7.3	 28459	 • Opp Parc Oasis
- 	 	Jurong Town Hall Rd
-7.7	 28289	 • Blk 228
- 	 	Boon Lay Way
-8.0	 28089	 • Bef Yuhua CC
-8.3	 28079	 • Blk 210
- 	 	Jurong East Ctrl
-8.7	 28449	 • Bef Seventh-Day Advent Ch
- 	 	Jurong Gateway Rd
-9.1	 28211	 • Bef Jurong East Stn
-9.3	 28009	 • Jurong East Int
+Simei Stn EW3
+Simei St 3
+96269
+Blk 146
+Simei St 3
+96199
+Opp Blk 224
+Simei Rd
+96209
+Opp Simei Green Condo
+Simei Rd
+96041
+Upp Changi Stn/Opp SUTD DT34
+Upp Changi Rd East
+96051
+Opp Changi Ct
+Upp Changi Rd East
+96061
+Opp Mera Terr P/G
+Upp Changi Rd East
+97011
+The Japanese Sch
+Upp Changi Rd Nth
+98299
+Parc Olympia
+Flora Dr
+98281
+Estella Gdns
+Flora Rd
+98311
+Bef Mariam Wk

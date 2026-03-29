@@ -461,10 +461,10 @@ body.dark-mode .bus-stop-description {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
-/* If only 1 button, don't take full width */
-.short-bus-links:has(> :nth-child(1):nth-last-child(1)),
-.parent-bus-links:has(> :nth-child(1):nth-last-child(1)) {
-    grid-template-columns: auto;
+/* If only 1 or 2 buttons, display side by side */
+.short-bus-links:has(> :nth-last-child(-n+2)),
+.parent-bus-links:has(> :nth-last-child(-n+2)) {
+    grid-template-columns: repeat(2, auto);
     justify-content: flex-start;
 }
 

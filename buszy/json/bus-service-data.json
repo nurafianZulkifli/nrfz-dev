@@ -95,7 +95,7 @@
       }
     },
     "c": "Regular Distance Fares",
-    "r": "Service 2B is a Short-Trip Service variant of Trunk Bus Service 2.",
+    "r": "Short Trip Service 2B operates during the weekday afternoons & weekends. It mainly supplements the high demand for Bus Service 2 at Loyang Ave and Upper Changi Road North to Upper Changi, Tanah Merah and Bedok MRT Stations.",
     "st":["99009","99131","99049","99039","99029","99019","98079","98069","97099","97089","97079","97069","97209","97059","97049","97039","97019","96069","96059","96049","95909","96099","96089","96079","85079","85089","85069","85059","85099","84069","84059","84049","84039"],
     "pb": ["2"]
   },
@@ -212,7 +212,7 @@
       }
     },
     "c": "Regular Distance Fares",
-    "r": "Service 3A is a Short-Trip Service variant of Trunk Bus Service 3.",
+    "r": "Short Trip Service 3A is a trunk service operating from Tampines Bus Interchange and ends at Pasir Ris Drive 12 (Blk 747A). The route operates daily after the last Service 3 to Punggol has departed Tampines Interchange.",
     "st":["75009","76059","76131","76141","76151","76161","76171","76091","76101","76031","76231","76241","98011","98091","78211","78201","78229","78111","78101","77321","77021","77011","77069","77301","77311","77161","77281","77331"],
     "pb": ["3"]
   },
@@ -257,8 +257,119 @@
     "c": "Regular Distance Fares",
     "r": "Service 4 is a trunk loop service between Tampines Bus Interchange and Changi North Way, passing through Flora Road and Changi North Industrial Estate. The route commenced operations on 17 March 2013 as the 7th bus service under the Bus Service Enhancement Programme (BSEP)."
   },
+  {
+    "n": "5",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Pasir Ris Int",
+    "te": " Bt Merah Int",
+    "h": "05:30 – 23:30",
+    "direction_routes": {
+      "1": {
+        "ts": "Pasir Ris Int",
+        "te": "Bt Merah Int",
+        "st":["77009","78109","78119","78129","78139","78149","98109","97121","97111","97059","98319","98289","98291","97019","96069","96059","96049","96201","96191","96261","96161","96251","96281","75059","75069","74949","75349","84609","84639","84619","84629","84479","84469","84481","84701","72031","72041","72051","71091","72019","52079","50059","50049","50037","50069","40129","40189","40179","09219","13199","13159","13119","06129","06069","06051","10141","10151","10161","10379","10081","10009"]
+      },
+      "2": {
+        "ts": "Bt Merah Int",
+        "te": "Pasir Ris Int",
+        "st":["10009","10089","10371","10169","10149","06071","06081","06131","13121","13141","13191","09212","40171","40181","40121","50061","50031","50041","50051","51011","52071","72011","71099","72059","72049","72039","84709","84489","84461","84471","84621","84611","84631","84601","75341","74941","75061","75051","96289","96259","96169","96269","96199","96209","96041","96051","96061","97011","98299","98281","98311","97051","97119","97129","98101","78141","78131","78121","78111","78101","77009"]
 
-
+      }
+    },
+    "direction_freqs": {
+      "1": {
+        "weekdays": {
+          "06:30-08:30": "7-13",
+          "08:31-16:59": "10-17",
+          "17:00-19:00": "12-15",
+          "19:01-23:59": "15-18"
+        },
+        "saturdays": {
+          "06:30-08:30": "11-14",
+          "08:31-16:59": "14-16",
+          "17:00-19:00": "16-17",
+          "19:01-23:59": "13-16"
+        },
+        "sundays_holidays": {
+          "06:30-08:30": "10-13",
+          "08:31-16:59": "12-16",
+          "17:00-19:00": "14-16",
+          "19:01-23:59": "14-17"
+        }
+      },
+      "2": {
+        "weekdays": {
+          "06:30-08:30": "10-12",
+          "08:31-16:59": "9-17",
+          "17:00-19:00": "9-17",
+          "19:01-23:59": "14-17"
+        },
+        "saturdays": {
+          "06:30-08:30": "12-14",
+          "08:31-16:59": "13-16",
+          "17:00-19:00": "17-18",
+          "19:01-23:59": "13-17"
+        },
+        "sundays_holidays": {
+          "06:30-08:30": "14-15",
+          "08:31-16:59": "12-17",
+          "17:00-19:00": "12-15",
+          "19:01-23:59": "14-15"
+        }
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 5 is a trunk service plying between Pasir Ris and Bukit Merah, passing through Upper Changi, Simei, Bedok Reservoir, PIE, Paterson Road and Tiong Bahru.",
+    "sb": ["5A", "5B"]
+  },
+    {
+    "n": "5A",
+    "t": "Trunk",
+    "op": "GAS",
+    "directions": [1],
+    "ts": "Aft Ballota Pk",
+    "te": "Upp Changi Stn/SUTD",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+        "07:31": "From Aft Ballota Pk",
+        "07:41": "From Aft Ballota Pk",
+        "07:56": "From Aft Ballota Pk",
+        "08:12": "From Aft Ballota Pk",
+        "08:24": "From Aft Ballota Pk",
+        "08:49": "From Aft Ballota Pk",
+        "09:19": "From Aft Ballota Pk",
+        "17:35": "From Aft Ballota Pk",
+        "17:49": "From Aft Ballota Pk"
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 5A was launched on 14 August 2023 to supplement weekday peak hour demand for Service 5 from housing estates at Mariam Way & Flora Drive to Upper Changi MRT Station.",
+    "st":["98319","98289","98291","97019","96069","96059","96049"],
+    "pb": ["5"]
+  },
+      {
+    "n": "5B",
+    "t": "Trunk",
+    "op": "GAS",
+    "directions": [1],
+    "ts": "Simei Stn",
+    "te": "Bef Mariam Wk",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+        "07:31": "From Simei Stn",
+        "17:57": "From Simei Stn",
+        "18:16": "From Simei Stn",
+        "18:40": "From Simei Stn",
+        "19:06": "From Simei Stn",
+        "19:25": "From Simei Stn",
+        "19:52": "From Simei Stn"
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 5B was launched on 14 August 2023 to supplement weekday evening peak hour demand for Service 5 from Simei & Upper Changi MRT Stations to housing estates at Flora Drive & Mariam Way.",
+    "st":["96269","96199","96209","96041","96051","96061","97011","98299","98281","98311"],
+    "pb": ["5"]
+  },
 
 
 
@@ -339,7 +450,7 @@
       "19:48": "From Yew Tee MRT"
     },
     "c": "Distance Fares capped at 3.2km",
-    "r": "Service 302A is a Short-Trip Service variant of Feeder Bus Service 302.",
+    "r": "Short Trip Service 302A is a feeder bus service operating from Choa Chu Kang Drive (Yew Tee Stn) and ends at Choa Chu Kang Drive (Opp Yew Tee Stn).",
     "st": ["45321","45389","45401","45411","45421","45439","45399","45329"],
     "pb": ["302"]
   },
@@ -452,7 +563,7 @@
       "06:59": "From Tengah Int"
     },
     "c": "Regular Distance Fares",
-    "r": "Service 871A is a Short-Trip Service variant of Feeder Bus Service 871.",
+    "r": "Short Trip Service 871A supplements weekday morning peak hour demand for Service 871 from the Tengah housing estates to schools such as Lianhua Primary School and Hillgrove Secondary School, as well as to the vicinity of Bukit Gombak MRT Station along Bukit Batok East Avenue 5.",
     "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429"],
     "pb": ["871"]
   },
