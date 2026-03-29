@@ -65,7 +65,6 @@
     "r": "Service 2 is a trunk service plying between Changi Village and Kampong Bahru, passing through Loyang Avenue, Upper Changi Road North, Simpang Bedok, Bedok, Eunos, Geylang, Kallang, Bugis, Clarke Quay and Chinatown. Much of the route duplicates the East West Line between Bugis and Tanah Merah, via Sims Avenue / Geylang Road.",
     "sb": ["2B"]
   },
-
     {
     "n": "2B",
     "t": "Trunk",
@@ -163,11 +162,101 @@
       }
     },
     "c": "Regular Distance Fares",
-    "r": "Go-Ahead Bus Service 3 is a trunk service connecting the residential estates of Tampines, Pasir Ris and Punggol. It is also one of the few non-loop routes in Singapore to use a bus interchange as an intermediate stop along its route (Pasir Ris Int).",
+    "r": "Service 3 is a trunk service connecting the residential estates of Tampines, Pasir Ris and Punggol. It is also one of the few non-loop routes in Singapore to use a bus interchange as an intermediate stop along its route (Pasir Ris Int).",
     "sb": ["3A"]
   },
-
-
+    {
+    "n": "3A",
+    "t": "Trunk",
+    "op": "GAS",
+    "directions": [1],
+    "ts": "Changi Village Ter",
+    "te": "Blk 747A",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+      "weekdays": {
+        "15:31": "From Tampines Int",
+        "16:27": "From Tampines Int",
+        "23:47": "From Tampines Int",
+        "23:59": "From Tampines Int",
+        "00:11": "From Tampines Int",
+        "00:23": "From Tampines Int",
+        "00:35": "From Tampines Int",
+        "17:29": "From Pasir Ris Int/Mall",
+        "18:08": "From Pasir Ris Int/Mall",
+        "18:35": "From Pasir Ris Int/Mall",
+        "18:44": "From Pasir Ris Int/Mall",
+        "18:53": "From Pasir Ris Int/Mall",
+        "19:02": "From Pasir Ris Int/Mall",
+        "19:27": "From Pasir Ris Int/Mall",
+        "19:35": "From Pasir Ris Int/Mall",
+        "19:54": "From Pasir Ris Int/Mall",
+        "20:06": "From Pasir Ris Int/Mall",
+        "20:45": "From Pasir Ris Int/Mall",
+        "21:12": "From Pasir Ris Int/Mall",
+        "21:49": "From Pasir Ris Int/Mall",
+        "22:15": "From Pasir Ris Int/Mall"
+      },
+      "saturdays": {
+        "23:47": "From Tampines Int",
+        "23:59": "From Tampines Int",
+        "00:11": "From Tampines Int",
+        "00:23": "From Tampines Int",
+        "00:35": "From Tampines Int"
+      },
+      "sundays_holidays": {
+        "23:53": "From Tampines Int",
+        "00:07": "From Tampines Int",
+        "00:21": "From Tampines Int",
+        "00:35": "From Tampines Int"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 3A is a Short-Trip Service variant of Trunk Bus Service 3.",
+    "st":["75009","76059","76131","76141","76151","76161","76171","76091","76101","76031","76231","76241","98011","98091","78211","78201","78229","78111","78101","77321","77021","77011","77069","77301","77311","77161","77281","77331"],
+    "pb": ["3"]
+  },
+    {
+    "n": "4",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Tampines Int",
+    "lp": "Changi North Way",
+    "te": "Tampines Int",
+    "h": "05:40 – 00:36 (Mon-Fri)<br>05:50 – 00:36 (Sat & Sun/PH)",
+    "direction_routes": {
+      "1": {
+        "ts": "Tampines Int",
+        "te": "Tampines Int",
+        "st":["75009","76191","76201","76211","76221","76231","76241","98301","98281","98311","97049","97039","97141","97301","97311","97331","97321","97059","98319","98289","98309","76249","76239","76229","76219","76209","76199","75009"]
+      }
+    },
+    "direction_freqs": {
+      "1": {
+        "weekdays": {
+          "06:30-08:30": "10-12",
+          "08:31-16:59": "10-13",
+          "17:00-19:00": "12-13",
+          "19:01-23:59": "11-12"
+        },
+        "saturdays": {
+          "06:30-08:30": "12-13",
+          "08:31-16:59": "11-13",
+          "17:00-19:00": "11-12",
+          "19:01-23:59": "13-15"
+        },
+        "sundays_holidays": {
+          "06:30-08:30": "13-14",
+          "08:31-16:59": "11-13",
+          "17:00-19:00": "13",
+          "19:01-23:59": "12-13"
+        }
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 4 is a trunk loop service between Tampines Bus Interchange and Changi North Way, passing through Flora Road and Changi North Industrial Estate. The route commenced operations on 17 March 2013 as the 7th bus service under the Bus Service Enhancement Programme (BSEP)."
+  },
 
 
 

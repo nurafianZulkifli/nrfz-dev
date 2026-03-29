@@ -3,7 +3,7 @@ const filePath = 'd:\\GitHub\\nrfz-dev\\buszy\\json\\StopCode.txt';
 const jsonPath = 'd:\\GitHub\\nrfz-dev\\buszy\\json\\stop-codes.json';
 
 const content = fs.readFileSync(filePath, 'utf8');
-const codes = [...new Set(content.match(/\b\d{5}\b/g))];
+const codes = content.match(/\b\d{5}\b/g);
 
 // Save as JSON
 const jsonData = { st: codes };
