@@ -28,7 +28,7 @@
       }
     },
     "c": "Distance Fares capped at 3.2km",
-    "r": "SMRT Feeder Service 302 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Crescent, serving Choa Chu Kang Way, Choa Chu Kang Street 52 and Yew Tee MRT.",
+    "r": "Service 302 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Crescent, serving Choa Chu Kang Way, Choa Chu Kang Street 52 and Yew Tee MRT.",
     "st": ["44009","45231","45241","45251","45311","45261","45271","45321","45389","45401","45411","45421","45439","45399","45329","45279","45269","45319","45259","45249","45239","44009"],
     "sb": ["302A"]
   },
@@ -44,7 +44,7 @@
       "17:17 – 19:48": "20-30"
     },
     "c": "Distance Fares capped at 3.2km",
-    "r": "SMRT Bus Service 302A is a Short-Trip Service variant of Feeder Bus Service 302.",
+    "r": "Service 302A is a Short-Trip Service variant of Feeder Bus Service 302.",
     "st": ["45321","45389","45401","45411","45421","45439","45399","45329"],
     "pb": ["302"]
   },
@@ -61,7 +61,7 @@
       "Evening Peak": "10-12"
     },
     "c": "Distance Fares capped at 3.2km",
-    "r": "SMRT Bus Service 455 is a limited-stop bus service introduced under the Land Transport Authority’s Bus Connectivity Enhancement Programme (BCEP). This service provides a direct connection to MRT Stations for estates farther away from transport nodes. Service 455 is renumbered from Service 979X.",
+    "r": "Service 455 is a limited-stop bus service introduced under the Land Transport Authority’s Bus Connectivity Enhancement Programme (BCEP). This service provides a direct connection to MRT Stations for estates farther away from transport nodes. Service 455 is renumbered from Service 979X.",
     "st": ["45009","45291","45321","45389","45401","45411","45421","45439","45399","45329","45299", "44031", "45009"]
   },
     {
@@ -93,7 +93,7 @@
       }
     },
     "c": "Regular Distance Fares",
-    "r": "TTS Feeder Service 871 is a Feeder service operating from Tengah and looping at Beauty World MRT Station, serving the new housing estates in Tengah and providing connectivity to Bukit Batok West and Bukit Gombak.",
+    "r": "Service 871 is a Feeder service operating from Tengah and looping at Beauty World MRT Station, serving the new housing estates in Tengah and providing connectivity to Bukit Batok West and Bukit Gombak.",
     "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429","43179","43189","43199","43209","42199","42189","42179","42169","42159","42079","42151","42161","42171","42181","42191","43201","43191","43181","43171","43421","43541","43801","43561","43609","40289","40351","40381","40409","40419","40429","40439","40449","40459","41009"],
     "sb": ["871A"]
   },
@@ -112,7 +112,7 @@
       "06:59": "From Tengah Int"
     },
     "c": "Regular Distance Fares",
-    "r": "TTS Feeder Service 871A is a Short-Trip Service variant of Feeder Bus Service 871.",
+    "r": "Service 871A is a Short-Trip Service variant of Feeder Bus Service 871.",
     "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429"],
     "pb": ["871"]
   }

@@ -35,19 +35,71 @@ function getBasePath() {
     return '/';
 }
 
-// Load bus service data from JSON
+// Load bus service data from API with local JSON fallback
 async function loadBusServiceData() {
+    const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
+    
+    try {
+        // First, load local JSON
+        const localData = await loadLocalBusServiceData();
+        if (!localData) return null;
+        
+        // Try to fetch operator data from API
+        try {
+            // console.log('Fetching operator data from API:', `${API_BASE}/bus-services`);
+            const apiResponse = await fetch(`${API_BASE}/bus-services`);
+            if (apiResponse.ok) {
+                const apiData = await apiResponse.json();
+                console.log('API response received:', apiData);
+                
+                // API response is expected to be an array
+                const apiArray = Array.isArray(apiData) ? apiData : (apiData.bus_services || apiData.services || apiData.data || []);
+                
+                if (Array.isArray(apiArray) && apiArray.length > 0) {
+                    // Merge API operator data with local data
+                    const operatorMap = {};
+                    apiArray.forEach(service => {
+                        const serviceNo = service.ServiceNo || service.n;
+                        operatorMap[serviceNo] = service.Operator || service.op;
+                    });
+                    
+                    // Update local data with API operators
+                    localData.forEach(service => {
+                        if (operatorMap[service.n]) {
+                            service.op = operatorMap[service.n];
+                        }
+                    });
+                    
+                    console.log('Updated operators from API:', operatorMap);
+                }
+            }
+        } catch (apiError) {
+            console.warn('API fetch failed - using local data only:', apiError);
+        }
+        
+        return localData;
+    } catch (error) {
+        console.error('Error loading bus service data:', error);
+        showErrorMessage('Failed to load bus service data. Please refresh the page.');
+        return null;
+    }
+}
+
+// Load bus service data from local JSON
+async function loadLocalBusServiceData() {
     try {
         const basePath = getBasePath();
         const jsonPath = basePath + 'buszy/json/bus-service-data.json';
+        // console.log('Loading bus services from local JSON:', jsonPath);
         const response = await fetch(jsonPath);
         if (!response.ok) {
             throw new Error(`Failed to load data: ${response.statusText}`);
         }
-        return await response.json();
+        const jsonData = await response.json();
+        console.log('Successfully loaded', jsonData.length, 'services from local JSON');
+        return jsonData;
     } catch (error) {
-        console.error('Error loading bus service data:', error);
-        showErrorMessage('Failed to load bus service data. Please refresh the page.');
+        console.error('Error loading local bus service data:', error);
         return null;
     }
 }
@@ -362,16 +414,27 @@ function populateParentBusService(parentBusServices) {
 // Initialize page
 async function initializePage() {
     const serviceNumber = getServiceNumberFromURL();
+    console.log('Initializing page for service:', serviceNumber);
+    
     const data = await loadBusServiceData();
+    // console.log('Data received in initializePage:', data);
 
-    if (data) {
-        const service = data.find(s => s.n === serviceNumber);
-        if (service) {
-            await populateServiceData(serviceNumber, service);
-        } else {
-            const availableServices = data.map(s => s.n).join(', ');
-            showErrorMessage(`Service ${serviceNumber} not found. Available services: ${availableServices}`);
-        }
+    if (!data || !Array.isArray(data)) {
+        console.error('No valid data received');
+        return;
+    }
+    
+    // console.log('Data is array with', data.length, 'services');
+    // console.log('Looking for service with n === ', serviceNumber);
+    
+    const service = data.find(s => s.n === serviceNumber);
+    if (service) {
+        console.log('Found service:', service);
+        await populateServiceData(serviceNumber, service);
+    } else {
+        const availableServices = data.map(s => s.n).join(', ');
+        console.error('Service not found. Available:', availableServices);
+        showErrorMessage(`Service ${serviceNumber} not found. Available services: ${availableServices}`);
     }
 }
 

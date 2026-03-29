@@ -36,13 +36,65 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadBusServices() {
+    const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
     const basePath = getBasePath();
     const jsonPath = basePath + 'buszy/json/bus-service-data.json';
     
+    console.log('Loading services from local JSON:', jsonPath);
+    
+    // First load local JSON
     fetch(jsonPath)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load JSON: ' + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
             allServices = data;
+            console.log('Loaded', allServices.length, 'services from local JSON');
+            
+            // Now try to fetch operator data from API
+            console.log('Attempting to fetch operator data from API:', `${API_BASE}/bus-services`);
+            return fetch(`${API_BASE}/bus-services`)
+                .then(apiResponse => {
+                    if (!apiResponse.ok) {
+                        console.warn('API response not OK:', apiResponse.status);
+                        return null;
+                    }
+                    return apiResponse.json();
+                })
+                .then(apiData => {
+                    if (apiData) {
+                        console.log('API data received:', apiData);
+                        
+                        // API response is expected to be an array
+                        const apiArray = Array.isArray(apiData) ? apiData : (apiData.bus_services || apiData.services || apiData.data || []);
+                        
+                        if (Array.isArray(apiArray) && apiArray.length > 0) {
+                            // Build operator map from API
+                            const operatorMap = {};
+                            apiArray.forEach(service => {
+                                const serviceNo = service.ServiceNo || service.n;
+                                operatorMap[serviceNo] = service.Operator || service.op;
+                            });
+                            
+                            // Update local data with API operators
+                            allServices.forEach(service => {
+                                if (operatorMap[service.n]) {
+                                    service.op = operatorMap[service.n];
+                                }
+                            });
+                            
+                            console.log('Updated operators from API:', operatorMap);
+                        }
+                    }
+                })
+                .catch(apiError => {
+                    console.warn('API fetch failed - using local data only:', apiError);
+                });
+        })
+        .then(() => {
             displayServices(allServices);
             const loadingMessage = document.getElementById('loading-message');
             if (loadingMessage) {
