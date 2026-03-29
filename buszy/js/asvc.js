@@ -70,23 +70,37 @@ function loadBusServices() {
                         
                         // API response is expected to be an array
                         const apiArray = Array.isArray(apiData) ? apiData : (apiData.bus_services || apiData.services || apiData.data || []);
+                        console.log('API array extracted:', apiArray);
+                        console.log('API array length:', apiArray.length);
                         
                         if (Array.isArray(apiArray) && apiArray.length > 0) {
                             // Build operator map from API
                             const operatorMap = {};
                             apiArray.forEach(service => {
                                 const serviceNo = service.ServiceNo || service.n;
-                                operatorMap[serviceNo] = service.Operator || service.op;
+                                const operator = service.Operator || service.op;
+                                console.log('API Service:', serviceNo, '-> Operator:', operator);
+                                operatorMap[serviceNo] = operator;
                             });
                             
+                            console.log('Built operator map:', operatorMap);
+                            
                             // Update local data with API operators
+                            let updateCount = 0;
                             allServices.forEach(service => {
+                                const oldOp = service.op;
                                 if (operatorMap[service.n]) {
                                     service.op = operatorMap[service.n];
+                                    updateCount++;
+                                    console.log('Updated service', service.n, ': "' + oldOp + '" -> "' + service.op + '"');
+                                } else {
+                                    console.log('No operator found for service', service.n);
                                 }
                             });
                             
-                            console.log('Updated operators from API:', operatorMap);
+                            console.log('Updated', updateCount, 'services with API operators');
+                        } else {
+                            console.warn('API array is empty or not an array');
                         }
                     }
                 })

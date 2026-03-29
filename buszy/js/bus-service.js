@@ -15,22 +15,22 @@ function getBasePath() {
     if (window.PWAConfig && window.PWAConfig.basePath) {
         return window.PWAConfig.basePath;
     }
-    
+
     // Otherwise, derive from the current pathname
     // For GitHub Pages: /nrfz-dev/buszy/... -> /nrfz-dev/
     // For local: /buszy/... -> /
     const pathname = window.location.pathname;
     const parts = pathname.split('/').filter(p => p); // Remove empty strings
-    
+
     // parts[0] should be the first directory level
     // If parts[0] is 'buszy', we're at the root level (localhost)
     // If parts[0] is something else and parts[1] is 'buszy', we're in a subdirectory (GitHub Pages)
-    
+
     if (parts.length >= 2 && parts[1] === 'buszy') {
         // Format: /something/buszy/... -> /something/
         return '/' + parts[0] + '/';
     }
-    
+
     // For local or simple paths
     return '/';
 }
@@ -38,45 +38,66 @@ function getBasePath() {
 // Load bus service data from API with local JSON fallback
 async function loadBusServiceData() {
     const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
-    
+
     try {
         // First, load local JSON
         const localData = await loadLocalBusServiceData();
         if (!localData) return null;
-        
+
+        console.log('Local data loaded with', localData.length, 'services');
+
         // Try to fetch operator data from API
         try {
-            // console.log('Fetching operator data from API:', `${API_BASE}/bus-services`);
+            console.log('Fetching operator data from API:', `${API_BASE}/bus-services`);
             const apiResponse = await fetch(`${API_BASE}/bus-services`);
+            console.log('API response status:', apiResponse.status, apiResponse.ok);
+
             if (apiResponse.ok) {
                 const apiData = await apiResponse.json();
                 console.log('API response received:', apiData);
-                
-                // API response is expected to be an array
-                const apiArray = Array.isArray(apiData) ? apiData : (apiData.bus_services || apiData.services || apiData.data || []);
-                
+
+                // API response has data in the 'value' property
+                const apiArray = apiData.value || (Array.isArray(apiData) ? apiData : (apiData.bus_services || apiData.services || apiData.data || []));
+                console.log('API array extracted:', apiArray);
+                console.log('API array length:', apiArray.length);
+
                 if (Array.isArray(apiArray) && apiArray.length > 0) {
                     // Merge API operator data with local data
                     const operatorMap = {};
                     apiArray.forEach(service => {
                         const serviceNo = service.ServiceNo || service.n;
-                        operatorMap[serviceNo] = service.Operator || service.op;
+                        const operator = service.Operator || service.op;
+                        console.log('API Service:', serviceNo, '-> Operator:', operator);
+                        operatorMap[serviceNo] = operator;
                     });
-                    
+
+                    console.log('Built operator map:', operatorMap);
+
                     // Update local data with API operators
+                    let updateCount = 0;
                     localData.forEach(service => {
+                        const oldOp = service.op;
                         if (operatorMap[service.n]) {
                             service.op = operatorMap[service.n];
+                            updateCount++;
+                            console.log('Updated service', service.n, ': "' + oldOp + '" -> "' + service.op + '"');
+                        } else {
+                            console.log('No operator found for service', service.n);
                         }
                     });
-                    
-                    console.log('Updated operators from API:', operatorMap);
+
+                    console.log('Updated', updateCount, 'services with API operators');
+                } else {
+                    console.warn('API array is empty or not an array');
                 }
+            } else {
+                console.warn('API response not OK:', apiResponse.status, apiResponse.statusText);
             }
         } catch (apiError) {
             console.warn('API fetch failed - using local data only:', apiError);
         }
-        
+
+        console.log('Final data being returned:', localData);
         return localData;
     } catch (error) {
         console.error('Error loading bus service data:', error);
@@ -90,13 +111,14 @@ async function loadLocalBusServiceData() {
     try {
         const basePath = getBasePath();
         const jsonPath = basePath + 'buszy/json/bus-service-data.json';
-        // console.log('Loading bus services from local JSON:', jsonPath);
+        console.log('Loading bus services from local JSON:', jsonPath);
         const response = await fetch(jsonPath);
         if (!response.ok) {
             throw new Error(`Failed to load data: ${response.statusText}`);
         }
         const jsonData = await response.json();
         console.log('Successfully loaded', jsonData.length, 'services from local JSON');
+        console.log('Local JSON data:', jsonData);
         return jsonData;
     } catch (error) {
         console.error('Error loading local bus service data:', error);
@@ -108,9 +130,9 @@ async function loadLocalBusServiceData() {
 async function fetchEnrichedStopsFromAPI(serviceNumber, stopCodes) {
     try {
         const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
-        
+
         console.log(`Fetching details for ${stopCodes.length} stops for service ${serviceNumber}`);
-        
+
         // Fetch details for each stop code from /bus-stop-det
         const enrichedStops = [];
         for (const stopCode of stopCodes) {
@@ -134,7 +156,7 @@ async function fetchEnrichedStopsFromAPI(serviceNumber, stopCodes) {
                 enrichedStops.push([stopCode, stopCode, '']);
             }
         }
-        
+
         return enrichedStops;
     } catch (error) {
         console.error('Error fetching enriched stops from API:', error);
@@ -153,17 +175,211 @@ function showErrorMessage(message) {
     `;
 }
 
+// Get available directions for a service from API or local JSON
+async function getServiceDirections(serviceNumber, localService) {
+    const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
+
+    try {
+        console.log(`Fetching directions for service ${serviceNumber}`);
+        const response = await fetch(`${API_BASE}/bus-services?ServiceNo=${serviceNumber}`);
+
+        if (response.ok) {
+            const data = await response.json();
+            const apiArray = data.value || (Array.isArray(data) ? data : []);
+
+            if (Array.isArray(apiArray) && apiArray.length > 0) {
+                // Extract unique directions and their associated info
+                const directionsMap = {};
+                const directionsOrder = [];
+
+                apiArray.forEach(service => {
+                    if (service.ServiceNo === serviceNumber) {
+                        const direction = service.Direction || '1';
+                        if (!directionsMap[direction]) {
+                            directionsMap[direction] = {
+                                direction: direction,
+                                originCode: service.OriginCode || '',
+                                destinationCode: service.DestinationCode || '',
+                                originDescription: service.OriginDescription || '',
+                                destinationDescription: service.DestinationDescription || ''
+                            };
+                            directionsOrder.push(direction);
+                        }
+                    }
+                });
+
+                console.log(`Found ${directionsOrder.length} directions for service ${serviceNumber}:`, directionsOrder);
+                return {
+                    directions: directionsOrder,
+                    directionDetails: directionsMap
+                };
+            }
+        }
+    } catch (error) {
+        console.warn('Failed to fetch directions from API:', error);
+    }
+
+    // Fallback: use local JSON directions field
+    if (localService && localService.directions) {
+        console.log(`Using local directions for service ${serviceNumber}:`, localService.directions);
+        const directionsMap = {};
+        localService.directions.forEach(dir => {
+            directionsMap[dir] = {
+                direction: dir
+            };
+        });
+        return {
+            directions: localService.directions,
+            directionDetails: directionsMap
+        };
+    }
+
+    return {
+        directions: ['1'],
+        directionDetails: {
+            '1': {}
+        }
+    };
+}
+
+// Get stops for a specific service direction from API
+async function getStopsForDirection(serviceNumber, direction) {
+    const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
+
+    try {
+        console.log(`Fetching stops for service ${serviceNumber}, direction ${direction}`);
+        const response = await fetch(`${API_BASE}/bus-services?ServiceNo=${serviceNumber}`);
+
+        if (response.ok) {
+            const data = await response.json();
+            const apiArray = data.value || (Array.isArray(data) ? data : []);
+
+            // Find the service with matching direction
+            const serviceData = apiArray.find(s =>
+                s.ServiceNo === serviceNumber && (s.Direction || '1') === direction
+            );
+
+            if (serviceData && serviceData.Stops) {
+                // Parse stops if it's a JSON string, otherwise use as-is
+                let stops = serviceData.Stops;
+                if (typeof stops === 'string') {
+                    stops = JSON.parse(stops);
+                }
+
+                // Convert API stop format to array of stop codes
+                const stopCodes = Array.isArray(stops) ?
+                    stops.map(s => typeof s === 'string' ? s : s.BusStopCode) :
+                    [];
+
+                console.log(`Found ${stopCodes.length} stops for direction ${direction}:`, stopCodes);
+                return stopCodes;
+            }
+        }
+
+        return [];
+    } catch (error) {
+        console.warn(`Failed to fetch stops for direction ${direction}:`, error);
+        return [];
+    }
+}
+
+// Create and display direction selector
+function createDirectionSelector(directions, onDirectionChange) {
+    const stopsSection = document.querySelector('.stops-section');
+    if (!stopsSection) return;
+
+    // Remove existing direction selector if any
+    const existingSelector = document.querySelector('.direction-selector-container');
+    if (existingSelector) {
+        existingSelector.remove();
+    }
+
+    if (directions.length <= 1) {
+        console.log('Only one direction or no direction info, skipping selector');
+        return;
+    }
+
+    const selectorContainer = document.createElement('div');
+    selectorContainer.className = 'direction-selector-container';
+    selectorContainer.style.cssText = `
+        display: flex;
+        gap: 10px;
+        margin-bottom: 0.5rem;
+        align-items: center;
+        flex-wrap: wrap;
+    `;
+
+    const buttonGroup = document.createElement('div');
+    buttonGroup.style.cssText = `
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+    `;
+
+    directions.forEach((direction, index) => {
+        const button = document.createElement('button');
+        button.className = 'direction-button';
+        button.textContent = `Direction ${direction}`;
+        button.setAttribute('data-direction', direction);
+        button.style.cssText = `
+            padding: 8px 12px;
+            border: 2px solid #7bad02;
+            background-color: ${index === 0 ? '#7bad02' : 'transparent'};
+            color: ${index === 0 ? '#000' : '#fff'};
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        `;
+
+        button.addEventListener('mouseover', function () {
+            if (!this.classList.contains('active')) {
+                this.style.backgroundColor = 'rgba(123, 173, 2, 0.1)';
+            }
+        });
+
+        button.addEventListener('mouseout', function () {
+            if (!this.classList.contains('active')) {
+                this.style.backgroundColor = 'transparent';
+            }
+        });
+
+        if (index === 0) {
+            button.classList.add('active');
+        }
+
+        button.addEventListener('click', async () => {
+            // Update button states
+            document.querySelectorAll('.direction-button').forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.backgroundColor = 'transparent';
+                btn.style.color = '#7bad02';
+            });
+
+            button.classList.add('active');
+            button.style.backgroundColor = '#7bad02';
+            button.style.color = '#000';
+
+            // Trigger direction change
+            onDirectionChange(direction);
+        });
+
+        buttonGroup.appendChild(button);
+    });
+
+    selectorContainer.appendChild(buttonGroup);
+
+    // Insert before the stops-container
+    const stopsContainer = document.getElementById('stops-container');
+    stopsContainer.parentNode.insertBefore(selectorContainer, stopsContainer);
+}
+
 // Populate page with service data (compact format)
 async function populateServiceData(serviceNumber, service) {
     if (!service) {
         showErrorMessage('Service information not found. Please check the service number.');
         return;
-    }
-
-    // Update breadcrumb
-    const breadcrumbElement = document.querySelector('#breadcrumb-service h2');
-    if (breadcrumbElement) {
-        breadcrumbElement.textContent = `${service.n}`;
     }
 
     // Update page title
@@ -175,14 +391,7 @@ async function populateServiceData(serviceNumber, service) {
 
     // Quick info cards
     document.getElementById('operating-hours').textContent = service.h;
-    
-    // Display frequency with time-based details if available
-    if (service.freq_detail) {
-        displayFrequencyDetails(service.freq_detail);
-    } else {
-        document.getElementById('frequency').textContent = service.f + ' mins';
-    }
-    
+
     document.getElementById('fare').textContent = service.c;
 
     // Route terminals
@@ -202,12 +411,102 @@ async function populateServiceData(serviceNumber, service) {
         }
     }
 
-    // Fetch and enrich bus stops from API, use JSON as source of truth
-    let stopsToDisplay = service.st || [];
-    if (stopsToDisplay.length > 0) {
-        const enrichedStops = await fetchEnrichedStopsFromAPI(service.n, stopsToDisplay);
-        populateBusStops(enrichedStops);
+    // Fetch directions from API
+    const {
+        directions,
+        directionDetails
+    } = await getServiceDirections(serviceNumber, service);
+    let currentDirection = directions[0];
+    
+    // Display frequency with direction info for the current direction
+    if (service.freq_detail) {
+        displayFrequencyDetails(service.freq_detail, service, currentDirection);
+    } else {
+        document.getElementById('frequency').textContent = service.f + ' mins';
     }
+
+    // Function to update stops and terminals for selected direction
+    const updateStopsForDirection = async (direction) => {
+        currentDirection = direction;
+
+        // Show loading indicator
+        const stopsContainer = document.getElementById('stops-container');
+        stopsContainer.innerHTML = `
+            <div class="loading-stops">
+                <div class="loading-spinner"></div>
+                <p>Loading bus stops...</p>
+            </div>
+        `;
+
+        // Update terminals if direction_routes exist
+        if (service.direction_routes && service.direction_routes[direction]) {
+            const dirRoute = service.direction_routes[direction];
+            document.getElementById('terminal-start').textContent = dirRoute.ts;
+            document.getElementById('terminal-end').textContent = dirRoute.te;
+            console.log(`Direction ${direction}: ${dirRoute.ts} → ${dirRoute.te}`);
+        }
+        
+        // Update frequency display with direction info
+        if (service.freq_detail) {
+            displayFrequencyDetails(service.freq_detail, service, direction);
+        }
+
+        // Try to fetch stops from API first
+        let stopCodes = await getStopsForDirection(serviceNumber, direction);
+
+        // If no stops from API, fall back to local JSON direction_routes or default
+        if (stopCodes.length === 0) {
+            if (service.direction_routes && service.direction_routes[direction]) {
+                stopCodes = service.direction_routes[direction].st || [];
+                console.log('Using stops from direction_routes for direction:', direction);
+            } else {
+                console.log('No stops found from API, using local JSON');
+                stopCodes = service.st || [];
+            }
+        }
+
+        // Fetch and enrich bus stops from API
+        if (stopCodes.length > 0) {
+            const enrichedStops = await fetchEnrichedStopsFromAPI(serviceNumber, stopCodes);
+            populateBusStops(enrichedStops);
+        }
+    };
+
+    // Create direction selector if multiple directions exist
+    if (directions.length > 1) {
+        createDirectionSelector(directions, updateStopsForDirection);
+
+        // Add arrow click handler to reverse/cycle direction
+        const routeArrows = document.querySelectorAll('.route-arrow');
+        routeArrows.forEach(arrow => {
+            arrow.style.cursor = 'pointer';
+            arrow.addEventListener('click', async () => {
+                // Find current direction index
+                const currentIndex = directions.indexOf(currentDirection);
+                // Move to next direction, or back to first if at end
+                const nextIndex = (currentIndex + 1) % directions.length;
+                const nextDirection = directions[nextIndex];
+
+                console.log(`Arrow clicked: switching from direction ${currentDirection} to ${nextDirection}`);
+
+                // Update direction buttons if they exist
+                const directionButtons = document.querySelectorAll('.direction-button');
+                directionButtons.forEach(btn => {
+                    if (btn.getAttribute('data-direction') === nextDirection) {
+                        btn.click();
+                    }
+                });
+
+                // If no buttons exist, update direction directly
+                if (directionButtons.length === 0) {
+                    await updateStopsForDirection(nextDirection);
+                }
+            });
+        });
+    }
+
+    // Load stops for the first direction
+    await updateStopsForDirection(currentDirection);
 
     // Remarks section
     if (service.r) {
@@ -229,12 +528,12 @@ async function populateServiceData(serviceNumber, service) {
 }
 
 // Display frequency details by time period (collapsible)
-function displayFrequencyDetails(freqDetail) {
+function displayFrequencyDetails(freqDetail, service, currentDirection) {
     const frequencyElement = document.getElementById('frequency');
-    
+
     // Check if structure is nested (with day types) or flat (legacy)
     const isNested = freqDetail.weekdays || freqDetail.saturdays || freqDetail.sundays_holidays;
-    
+
     // Detect if this is a departure times format (flat structure with non-frequency values)
     let isDepartureTimes = false;
     if (!isNested) {
@@ -244,9 +543,16 @@ function displayFrequencyDetails(freqDetail) {
             return !isFrequency;
         });
     }
-    
-    const summaryText = isDepartureTimes ? 'Departure Times' : 'Different frequencies by time';
-    
+
+    // Get direction-specific from/to information
+    let directionInfo = '';
+    if (service && service.direction_routes && service.direction_routes[currentDirection]) {
+        const route = service.direction_routes[currentDirection];
+        directionInfo = ` (From ${route.ts} to ${route.te})`;
+    }
+
+    const summaryText = isDepartureTimes ? ('Departure Times' + directionInfo) : ('Different frequencies by time' + directionInfo);
+
     let html = `
         <div class="frequency-collapsible">
             <div class="frequency-header" onclick="toggleFrequencyDetails(event)">
@@ -258,7 +564,7 @@ function displayFrequencyDetails(freqDetail) {
             </div>
             <div class="frequency-details" style="display: none;">
     `;
-    
+
     if (isNested) {
         // Handle nested structure with day types
         const dayLabels = {
@@ -266,12 +572,14 @@ function displayFrequencyDetails(freqDetail) {
             'saturdays': 'Saturdays',
             'sundays_holidays': 'Sundays & Public Holidays'
         };
-        
+
         for (const [dayType, times] of Object.entries(freqDetail)) {
             if (['weekdays', 'saturdays', 'sundays_holidays'].includes(dayType)) {
+                // Add direction info to day label
+                const dayLabelWithDir = `${dayLabels[dayType]}${directionInfo}`;
                 html += `<div class="frequency-day-group">
-                    <div class="day-label">${dayLabels[dayType]}</div>`;
-                
+                    <div class="day-label">${dayLabelWithDir}</div>`;
+
                 for (const [timeRange, frequency] of Object.entries(times)) {
                     html += `
                         <div class="frequency-item">
@@ -289,19 +597,19 @@ function displayFrequencyDetails(freqDetail) {
             // Check if value is a frequency (ends with a number or contains "mins") or a note
             const isFrequency = /\d+$/.test(value) || value.includes('mins') || /\d+-\d+/.test(value);
             const displayValue = isFrequency ? `${value} mins` : value;
-            
+
             html += `
                 <div class="frequency-item">
-                    <span class="time-range">${timeRange}</span>
+                    <span class="time-range">${timeRange}${directionInfo}</span>
                     <span class="freq-value">${displayValue}</span>
                 </div>
             `;
         }
     }
-    
+
     html += '</div></div>';
     frequencyElement.innerHTML = html;
-    
+
     // Update the h3 header in the port-summary card
     const portSummaryCard = frequencyElement.closest('.port-summary');
     if (portSummaryCard) {
@@ -317,7 +625,7 @@ function toggleFrequencyDetails(event) {
     const header = event.currentTarget;
     const details = header.nextElementSibling;
     const icon = header.querySelector('i');
-    
+
     if (details.style.display === 'none') {
         details.style.display = 'flex';
         icon.classList.remove('fa-chevron-down');
@@ -341,11 +649,11 @@ function populateBusStops(stops) {
         const stopElement = document.createElement('div');
         stopElement.className = 'stop-item';
         stopElement.style.animationDelay = `${index * 0.05}s`;
-        
+
         // Get base path for bus icon
         const basePath = getBasePath();
         const busIconPath = basePath + 'buszy/assets/bus-icon.png';
-        
+
         stopElement.innerHTML = `
             <div class="bus-stop-info">
                 <span class="bus-stop-code">
@@ -415,7 +723,7 @@ function populateParentBusService(parentBusServices) {
 async function initializePage() {
     const serviceNumber = getServiceNumberFromURL();
     console.log('Initializing page for service:', serviceNumber);
-    
+
     const data = await loadBusServiceData();
     // console.log('Data received in initializePage:', data);
 
@@ -423,10 +731,10 @@ async function initializePage() {
         console.error('No valid data received');
         return;
     }
-    
+
     // console.log('Data is array with', data.length, 'services');
     // console.log('Looking for service with n === ', serviceNumber);
-    
+
     const service = data.find(s => s.n === serviceNumber);
     if (service) {
         console.log('Found service:', service);
@@ -441,18 +749,20 @@ async function initializePage() {
 // Run on page load
 document.addEventListener('DOMContentLoaded', () => {
     initializePage();
-    
+
     // Add scroll detection for frequency details scrollbar
     const frequencyDetails = document.querySelector('.frequency-details');
     if (frequencyDetails) {
         let scrollTimeout;
-        
+
         frequencyDetails.addEventListener('scroll', () => {
             frequencyDetails.classList.add('scrolling');
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
                 frequencyDetails.classList.remove('scrolling');
             }, 1500);
-        }, { passive: true });
+        }, {
+            passive: true
+        });
     }
 });
