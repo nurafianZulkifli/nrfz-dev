@@ -337,11 +337,11 @@ body.dark-mode .terminal-name {
 .bus-stop-code-text {
     display: inline;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .bus-stop-name {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #333;
     margin: 0;
@@ -783,6 +783,7 @@ body.dark-mode .info-item {
 
     .bus-stop-name {
         font-size: 0.9rem;
+        margin-left: 0px;
     }
 
     .bus-stop-description {
@@ -790,12 +791,16 @@ body.dark-mode .info-item {
     }
 
     #operating-hours {
-        font-size: 0.75rem;
+        font-size: 15px !important;
     }
 
     .main-content {
         padding-bottom: 8em;
         padding: 4em;
+    }
+
+    .bus-stop-inline {
+        margin-left: 10px;
     }
 }
 
@@ -827,6 +832,10 @@ body.dark-mode .info-item {
     .main-content {
         padding-bottom: 8em;
         padding: 2em;
+    }
+
+    .bus-stop-name {
+        margin-left: 0px;
     }
 
     /* Animation for loading */
@@ -872,6 +881,7 @@ body.dark-mode .info-item {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }

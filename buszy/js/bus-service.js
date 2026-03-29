@@ -574,7 +574,7 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
         directionInfo = ` (From ${route.ts} to ${route.te})`;
     }
 
-    const summaryText = isDepartureTimes ? 'Departure Times' : 'Different frequencies by time';
+    const summaryText = isDepartureTimes ? 'Departure Times' : 'Vary by time';
 
     let html = `
         <div class="frequency-collapsible">
