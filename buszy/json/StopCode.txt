@@ -1,36 +1,105 @@
-0.0	 77009	 • Pasir Ris Int
-0.8	 78109	 • Downtown East
-1.3	 78119	 • Opp Blk 479
-1.8	 78129	 • Opp Blk 233
-2.2	 78139	 • Opp Pasir Ris Pr Sch
-2.6	 78149	 • NTUC Health Pasir Ris
-3.0	 98109	 • Opp Loyang Pt
- 	 	Loyang Ave
-3.4	 98041	 • Opp Loyang Valley
- 	 	Loyang Way
-3.9	 98121	 • Krislite Bldg
-4.2	 98131	 • Bef Loyang Way 1
-4.5	 98141	 • GE Aircraft Engines
-4.7	 98151	 • Opp Loyang Way 4
-5.0	 98161	 • Composite Tech
-5.2	 98171	 • Opp SIA Supplies Ctr
-5.5	 98181	 • Opp Loyang Way 6
- 	 	Loyang Cres
-5.8	 98199	 • Aft Loyang Way
-6.1	 98209	 • Encompass Digital Media
-6.3	 98219	 • Pratt & Whitney Canada
-6.6	 98229	 • Honey Well
- 	 	Loyang Way
-6.9	 98149	 • Wacker Chemicals
-7.2	 98139	 • Aft Loyang Way 1
-7.5	 98129	 • Opp Krislite Bldg
- 	 	Loyang Ave
-8.0	 98049	 • Loyang Valley
- 	 	Pasir Ris Dr 3
-8.7	 98101	 • Loyang Pt
-9.1	 78141	 • Blk 249
-9.5	 78131	 • Pasir Ris Pr Sch
-9.9	 78121	 • Bet Blks 232/233
-10.4	 78111	 • Blk 479
-10.8	 78101	 • Opp Downtown East
-11.4	 77009	 • Pasir Ris Int
+0.0	22609	 • Soon Lee Bus Pk
+0.1	 22191	 • Soon Lee Depot
+ 	 	Pioneer Rd Nth
+0.4	 22181	 • S'pore Post
+0.7	 22461	 • Opp Blk 653B
+1.1	 22451	 • Opp Blk 643
+1.4	 27301	 • Blk 978
+ 	 	Jurong West Ave 5
+1.8	 27369	 • Blk 834
+2.1	 27359	 • Blk 817
+2.7	 27439	 • Blk 861
+ 	 	Jurong West St 75
+3.0	 27379	 • Blk 755
+ 	 	Jurong West St 64
+3.5	 22599	 •  Blk 678D
+3.7	 22449	 • Blk 685B
+ 	 	Jurong West Ctrl 1
+4.1	 22489	 • Blk 683A
+ 	 	Boon Lay Ave
+4.5	 21399	 • Opp River Valley High Sch
+4.9	 21421	 • Blk 176
+5.3	 21241	 • Blk 216 CP
+ 	 	Jurong West Ave 1
+5.7	 28539	 • Blk 538
+6.0	 28409	 • Blk 454
+6.3	 28529	 • Blk 441
+6.8	 28519	 • Blk 425
+7.0	 28509	 • Blk 422
+ 	 	Jurong East Ave 1
+7.5	 28499	 • Jurong Polyclinic
+7.9	 28469	 • Blk 316
+8.3	 28459	 • Opp Parc Oasis
+8.7	 28339	 • Blk 252
+9.1	 28329	 • Blk 246
+ 	 	Toh Guan Rd
+9.5	 28631	 • Opp Blk 288D
+9.8	 28641	 • Blk 284
+10.4	 28651	 • Opp IMM Bldg
+ 	 	Boon Lay Way
+11.0	 28049	 • Opp The Synergy
+ 	 	Orchard Rd
+22.1	 09169	 • Delfi Orchard
+22.4	 09179	 • Royal Thai Embassy
+22.9	 09048	 • Orchard Stn/Lucky Plaza
+23.5	 09038	 • Opp Somerset Stn
+23.9	 08138	 • Concorde Hotel S'pore
+24.3	 08057	 • Dhoby Ghaut Stn
+ 	 	Bras Basah Rd
+24.8	 08069	 • Bencoolen Stn Exit B
+25.1	 04179	 • Aft Bras Basah Stn Exit A
+25.5	 02049	 • Raffles Hotel
+ 	 	Temasek Blvd
+26.1	 02151	 • Suntec Convention Ctr
+ 	 	Temasek Ave
+26.8	 02161	 • Aft Promenade Stn Exit C
+27.1	 02171	 • Opp The Ritz-Carlton
+ 	 	Bayfront Ave
+28.0	 03509	 • Bayfront Stn Exit B/MBS
+28.3	 03519	 • Bayfront Stn Exit A
+ 	 	Ctrl Blvd
+28.9	 03539	 • Marina Bay Stn
+29.3	 03529	 • Downtown Stn Exit E
+ 	 	Shenton Way
+29.9	 03129	 • UIC Bldg
+30.2	 03217	 • Aft Straits Blvd
+ 	 	Boon Lay Way
+44.4	 28041	 • The Synergy
+ 	 	Toh Guan Rd
+45.0	 28659	 • IMM Bldg
+45.7	 28649	 • Blk 286A
+46.0	 28639	 • Blk 288E
+ 	 	Jurong East Ave 1
+46.4	 28321	 • Blk 239
+46.8	 28331	 • Blk 229
+47.3	 28451	 • Parc Oasis
+47.7	 28461	 • Blk 347
+48.2	 28491	 • Opp Jurong Polyclinic
+ 	 	Jurong West Ave 1
+48.6	 28501	 • Blk 490
+49.0	 28511	 • Blk 463
+49.3	 28521	 • Blk 457
+49.6	 28401	 • Blk 502
+49.9	 28531	 • Blk 536
+ 	 	Boon Lay Ave
+50.5	 21249	 • Blk 213
+50.9	 21429	 • Blk 185
+51.3	 21391	 • River Valley High Sch
+ 	 	Jurong West Ctrl 1
+51.7	 22481	 • Blk 691A CP
+ 	 	Jurong West St 64
+52.2	 22441	 • Blk 669 CP
+52.5	 22591	 •  Blk 670A
+ 	 	Jurong West St 75
+52.9	 27371	 • Opp Blk 755
+ 	 	Jurong West Ave 5
+53.3	 27431	 • Blk 762
+54.0	 27351	 • Blk 715
+54.3	 27361	 • Blk 710
+ 	 	Pioneer Rd Nth
+54.7	 27309	 • Blk 705
+55.0	 22459	 • Blk 643
+55.2	 22469	 • Blk 653B
+55.5	 22189	 • Pioneer Junction
+ 	 	Soon Lee Rd
+55.9	 22199	 • Opp Soon Lee Depot

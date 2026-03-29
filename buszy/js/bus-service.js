@@ -548,6 +548,8 @@ async function populateServiceData(serviceNumber, service) {
     // Short Bus Service section (if applicable)
     if (service.sb && service.sb.length > 0) {
         document.getElementById('short-bus-section').style.display = 'block';
+        const heading = service.phv ? 'Peak Hour Variant' : 'Short Bus Service';
+        document.querySelector('.short-bus-service h2').innerHTML = `<i class="fa-kit fa-lta-bus"></i> ${heading}`;
         populateShortBusService(service.sb);
     }
 
