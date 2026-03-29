@@ -390,7 +390,7 @@ async function populateServiceData(serviceNumber, service) {
     document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} Service ${service.n}` : `Service ${service.n}`;
 
     // Quick info cards
-    document.getElementById('operating-hours').textContent = service.h;
+    document.getElementById('operating-hours').innerHTML = service.h;
 
     document.getElementById('fare').textContent = service.c;
 
@@ -421,6 +421,8 @@ async function populateServiceData(serviceNumber, service) {
     // Display frequency with direction info for the current direction
     if (service.freq_detail) {
         displayFrequencyDetails(service.freq_detail, service, currentDirection);
+    } else if (service.direction_freqs && service.direction_freqs[currentDirection]) {
+        displayFrequencyDetails(service.direction_freqs[currentDirection], service, currentDirection);
     } else {
         document.getElementById('frequency').textContent = service.f + ' mins';
     }
@@ -449,6 +451,8 @@ async function populateServiceData(serviceNumber, service) {
         // Update frequency display with direction info
         if (service.freq_detail) {
             displayFrequencyDetails(service.freq_detail, service, direction);
+        } else if (service.direction_freqs && service.direction_freqs[direction]) {
+            displayFrequencyDetails(service.direction_freqs[direction], service, direction);
         }
 
         // Try to fetch stops from API first
@@ -531,12 +535,31 @@ async function populateServiceData(serviceNumber, service) {
 function displayFrequencyDetails(freqDetail, service, currentDirection) {
     const frequencyElement = document.getElementById('frequency');
 
+    // Use direction-specific frequencies if available, otherwise use general freq_detail
+    if (service && service.direction_freqs && service.direction_freqs[currentDirection]) {
+        freqDetail = service.direction_freqs[currentDirection];
+        console.log(`Using direction-specific frequencies for direction ${currentDirection}`);
+    }
+
     // Check if structure is nested (with day types) or flat (legacy)
     const isNested = freqDetail.weekdays || freqDetail.saturdays || freqDetail.sundays_holidays;
 
-    // Detect if this is a departure times format (flat structure with non-frequency values)
+    // Detect if this is a departure times format (contains non-frequency values like location names)
     let isDepartureTimes = false;
-    if (!isNested) {
+    if (isNested) {
+        // Check nested structure for location names
+        for (const dayType in freqDetail) {
+            if (['weekdays', 'saturdays', 'sundays_holidays'].includes(dayType)) {
+                const dayValues = Object.values(freqDetail[dayType]);
+                isDepartureTimes = dayValues.some(val => {
+                    const isFrequency = /\d+$/.test(val) || /\d+-\d+/.test(val);
+                    return !isFrequency;
+                });
+                if (isDepartureTimes) break;
+            }
+        }
+    } else {
+        // Check flat structure for location names
         const values = Object.values(freqDetail);
         isDepartureTimes = values.some(val => {
             const isFrequency = /\d+$/.test(val) || val.includes('mins') || /\d+-\d+/.test(val);
@@ -551,7 +574,7 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
         directionInfo = ` (From ${route.ts} to ${route.te})`;
     }
 
-    const summaryText = isDepartureTimes ? ('Departure Times' + directionInfo) : ('Different frequencies by time' + directionInfo);
+    const summaryText = isDepartureTimes ? 'Departure Times' : 'Different frequencies by time';
 
     let html = `
         <div class="frequency-collapsible">
@@ -569,22 +592,24 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
         // Handle nested structure with day types
         const dayLabels = {
             'weekdays': 'Weekdays',
-            'saturdays': 'Saturdays',
-            'sundays_holidays': 'Sundays & Public Holidays'
+            'saturdays': 'Sat',
+            'sundays_holidays': 'Sun/PH'
         };
 
         for (const [dayType, times] of Object.entries(freqDetail)) {
             if (['weekdays', 'saturdays', 'sundays_holidays'].includes(dayType)) {
-                // Add direction info to day label
-                const dayLabelWithDir = `${dayLabels[dayType]}${directionInfo}`;
+                const dayLabel = dayLabels[dayType];
                 html += `<div class="frequency-day-group">
-                    <div class="day-label">${dayLabelWithDir}</div>`;
+                    <div class="day-label">${dayLabel}</div>`;
 
                 for (const [timeRange, frequency] of Object.entries(times)) {
+                    // Check if frequency is a number (actual frequency) or a location name
+                    const isFrequency = /\d+$/.test(frequency) || /\d+-\d+/.test(frequency);
+                    const displayValue = isFrequency ? `${frequency} mins` : frequency;
                     html += `
                         <div class="frequency-item">
                             <span class="time-range">${timeRange}</span>
-                            <span class="freq-value">${frequency} mins</span>
+                            <span class="freq-value">${displayValue}</span>
                         </div>
                     `;
                 }
@@ -594,13 +619,13 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
     } else {
         // Handle flat structure (legacy or special cases like departure times)
         for (const [timeRange, value] of Object.entries(freqDetail)) {
-            // Check if value is a frequency (ends with a number or contains "mins") or a note
-            const isFrequency = /\d+$/.test(value) || value.includes('mins') || /\d+-\d+/.test(value);
+            // Check if value is a frequency (ends with or contains only digits/ranges) or a location name
+            const isFrequency = /\d+$/.test(value) || /\d+-\d+/.test(value);
             const displayValue = isFrequency ? `${value} mins` : value;
 
             html += `
                 <div class="frequency-item">
-                    <span class="time-range">${timeRange}${directionInfo}</span>
+                    <span class="time-range">${timeRange}</span>
                     <span class="freq-value">${displayValue}</span>
                 </div>
             `;
@@ -609,6 +634,12 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
 
     html += '</div></div>';
     frequencyElement.innerHTML = html;
+
+    // Update the main card title based on whether this is departure times
+    const frequencyCardTitle = document.getElementById('frequency-title');
+    if (frequencyCardTitle) {
+        frequencyCardTitle.textContent = isDepartureTimes ? 'Departure Times' : 'Frequency';
+    }
 
     // Update the h3 header in the port-summary card
     const portSummaryCard = frequencyElement.closest('.port-summary');

@@ -1,0 +1,65 @@
+0.0	 65009	 • Punggol Int
+ 	 	Punggol Ctrl
+0.6	 65221	 • Blk 303D
+0.9	 65281	 • Punggol Sec/Blk 601B
+1.4	 65271	 • Opp Blk 188
+2.0	 65261	 • Blk 649
+ 	 	Punggol East
+2.5	 65239	 • Riviera Stn Exit A
+ 	 	Punggol Field
+3.1	 65179	 • Coral Edge Stn Exit A
+3.5	 65169	 • Meridian Stn Exit A
+4.0	 65159	 • Cove Stn Exit A
+ 	 	Punggol Rd
+4.3	 65079	 • Blk 102C
+ 	 	TPE
+4.7	 65199	 • Aft Punggol Rd
+ 	 	Pasir Ris Dr 12
+8.7	 77339	 • Opp Blk 756
+ 	 	Pasir Ris Dr 1
+9.2	 77289	 • Blk 738
+ 	 	Pasir Ris Dr 10
+9.5	 77169	 • Opp Blk 742
+ 	 	Pasir Ris St 71
+9.7	 77319	 • Opp Blks 771/772
+10.0	 77309	 • Opp Blk 778
+ 	 	Elias Rd
+10.2	 77061	 • Ris Grandeur
+ 	 	Pasir Ris Dr 1
+10.4	 78049	 • Blk 612
+10.6	 77019	 • Blk 515
+11.0	 77029	 • Blk 571
+ 	 	Pasir Ris Dr 8
+11.2	 77329	 • Opp Pasir Ris Mall
+11.4	 77379	 • Blk 586
+ 	 	Pasir Ris Dr 3
+11.7	 77009	 • Pasir Ris Int
+12.5	 78109	 • Downtown East
+13.0	 78119	 • Opp Blk 479
+ 	 	Pasir Ris Dr 4
+13.5	 78221	 • Blk 231A CP
+ 	 	Pasir Ris St 21
+13.9	 78209	 • Blk 242
+14.5	 78219	 • Opp Blk 204
+ 	 	Pasir Ris Dr 1
+14.9	 98099	 • Blk 269A
+ 	 	Loyang Ave
+15.3	 98019	 • Opp Blk 149A
+ 	 	Tampines Ave 7
+15.9	 76249	 • Blk 370
+16.2	 76239	 • Blk 390
+ 	 	Tampines Ave 2
+16.5	 76039	 • Tampines East Stn Exit C
+ 	 	Tampines St 23
+16.9	 76189	 • Opp Blk 216
+ 	 	Tampines St 21
+17.3	 76179	 • Opp Blk 266
+17.7	 76169	 • Blk 248
+18.0	 76159	 • Opp Blk 237
+ 	 	Tampines Ave 4
+18.3	 76149	 • Opp Tampines Stn/Int
+18.7	 76139	 • Opp Century Sq
+ 	 	Tampines Ave 5
+19.1	 76051	 • Our Tampines Hub
+ 	 	Tampines Ctrl 1
+19.7	 75009	 • Tampines Int

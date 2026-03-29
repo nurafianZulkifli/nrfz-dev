@@ -239,6 +239,7 @@ body.dark-mode .port-summary h4 {
     color: #7cb000;
     font-size: 1.5rem;
     padding: 0.5rem 0;
+    cursor: default !important;
 }
 
 body.dark-mode .route-terminals {
@@ -506,6 +507,7 @@ body.dark-mode .port-summary {
 
 body.dark-mode .short-bus-button {
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    background-color: #7cb101;
 }
 
 .service-desc {
@@ -549,11 +551,13 @@ body.dark-mode .service-desc {
 .frequency-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
     padding: 0;
     user-select: none;
     transition: all 0.3s ease;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .frequency-header:hover {
@@ -575,6 +579,7 @@ body.dark-mode .service-desc {
     align-items: center;
     gap: 0.5rem;
     flex-grow: 1;
+    flex-wrap: wrap;
 }
 
 .frequency-summary i {
