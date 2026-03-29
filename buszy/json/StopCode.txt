@@ -1,31 +1,36 @@
-Simei Stn EW3
-Simei St 3
-96269
-Blk 146
-Simei St 3
-96199
-Opp Blk 224
-Simei Rd
-96209
-Opp Simei Green Condo
-Simei Rd
-96041
-Upp Changi Stn/Opp SUTD DT34
-Upp Changi Rd East
-96051
-Opp Changi Ct
-Upp Changi Rd East
-96061
-Opp Mera Terr P/G
-Upp Changi Rd East
-97011
-The Japanese Sch
-Upp Changi Rd Nth
-98299
-Parc Olympia
-Flora Dr
-98281
-Estella Gdns
-Flora Rd
-98311
-Bef Mariam Wk
+0.0	 77009	 • Pasir Ris Int
+0.8	 78109	 • Downtown East
+1.3	 78119	 • Opp Blk 479
+1.8	 78129	 • Opp Blk 233
+2.2	 78139	 • Opp Pasir Ris Pr Sch
+2.6	 78149	 • NTUC Health Pasir Ris
+3.0	 98109	 • Opp Loyang Pt
+ 	 	Loyang Ave
+3.4	 98041	 • Opp Loyang Valley
+ 	 	Loyang Way
+3.9	 98121	 • Krislite Bldg
+4.2	 98131	 • Bef Loyang Way 1
+4.5	 98141	 • GE Aircraft Engines
+4.7	 98151	 • Opp Loyang Way 4
+5.0	 98161	 • Composite Tech
+5.2	 98171	 • Opp SIA Supplies Ctr
+5.5	 98181	 • Opp Loyang Way 6
+ 	 	Loyang Cres
+5.8	 98199	 • Aft Loyang Way
+6.1	 98209	 • Encompass Digital Media
+6.3	 98219	 • Pratt & Whitney Canada
+6.6	 98229	 • Honey Well
+ 	 	Loyang Way
+6.9	 98149	 • Wacker Chemicals
+7.2	 98139	 • Aft Loyang Way 1
+7.5	 98129	 • Opp Krislite Bldg
+ 	 	Loyang Ave
+8.0	 98049	 • Loyang Valley
+ 	 	Pasir Ris Dr 3
+8.7	 98101	 • Loyang Pt
+9.1	 78141	 • Blk 249
+9.5	 78131	 • Pasir Ris Pr Sch
+9.9	 78121	 • Bet Blks 232/233
+10.4	 78111	 • Blk 479
+10.8	 78101	 • Opp Downtown East
+11.4	 77009	 • Pasir Ris Int

@@ -370,7 +370,40 @@
     "st":["96269","96199","96209","96041","96051","96061","97011","98299","98281","98311"],
     "pb": ["5"]
   },
+   {
+    "n": "6",
+    "t": "Trunk",
+    "op": "GAS",
+    "directions": [1],
+    "ts": "Pasir Ris Int",
+    "lp": "Loyang Crescent",
+    "te": "Pasir Ris Int",
+    "h": "06:20 – 19:30 (Mon-Fri)<br>06:20 – 15:00 (Sat)",
+    "direction_routes": {
+      "1": {
+        "ts": "Pasir Ris Int",
+        "te": "Pasir Ris Int",
+        "st":["78109","78119","78129","78139","78149","98109","98041","98121","98131","98141","98151","98161","98171","98181","98199","98209","98219","98229","98149","98139","98129","98049","98101","78141","78131","78121","78111","78101","77009"]
 
+      }
+    },
+    "direction_freqs": {
+      "1": {
+        "weekdays": {
+          "06:30-08:30": "7-8",
+          "08:31-16:59": "7-17",
+          "17:00-19:00": "7-8",
+          "19:01-23:59": "8"
+        },
+        "saturdays": {
+          "06:30-08:30": "11-12",
+          "08:31-16:59": "11-16"
+        }
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 4 is a trunk loop service between Tampines Bus Interchange and Changi North Way, passing through Flora Road and Changi North Industrial Estate. The route commenced operations on 17 March 2013 as the 7th bus service under the Bus Service Enhancement Programme (BSEP)."
+  },
 
 
 
