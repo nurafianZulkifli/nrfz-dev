@@ -413,6 +413,16 @@
         }
     }
 
+    @media (min-width: 1025px) and (max-width: 1199px) {
+        .col-xl-3 {
+            flex: 0 0 auto;
+            width: 50%;
+        }
+        #incoming-buses-grid {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+        }
+    }
+
     @media (min-width: 1200px) {
         .col-xl-3 {
             flex: 0 0 auto;
@@ -443,11 +453,19 @@
         .card .card-content-art span {
             font-size: 20px;
         }
+
+        .load-indicator i {
+            font-size: 30px;
+        }
     }
 
     @media (max-width: 485px) {
         .card .card-content-art span {
             font-size: 17px;
+        }
+
+        .load-indicator i {
+            font-size: 25px;
         }
 
         .bus-stop-info {
