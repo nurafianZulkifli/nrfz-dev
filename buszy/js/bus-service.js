@@ -127,34 +127,61 @@ async function loadLocalBusServiceData() {
 }
 
 // Fetch enriched stop details from API for given stop codes
+// Cache for bus stop details to avoid repeated API calls
+const stopCache = new Map();
+
 async function fetchEnrichedStopsFromAPI(serviceNumber, stopCodes) {
     try {
         const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
 
         console.log(`Fetching details for ${stopCodes.length} stops for service ${serviceNumber}`);
 
-        // Fetch details for each stop code from /bus-stop-det
         const enrichedStops = [];
-        for (const stopCode of stopCodes) {
-            try {
-                const stopResponse = await fetch(`${API_BASE}/bus-stop-det?BusStopCode=${stopCode}`);
-                if (stopResponse.ok) {
-                    const stopData = await stopResponse.json();
-                    // Format: [code, RoadName, Description]
-                    enrichedStops.push([
+        const uncachedStops = [];
+        const uncachedIndices = [];
+
+        // First, get cached stops
+        for (let i = 0; i < stopCodes.length; i++) {
+            const stopCode = stopCodes[i];
+            if (stopCache.has(stopCode)) {
+                enrichedStops[i] = stopCache.get(stopCode);
+            } else {
+                uncachedStops.push(stopCode);
+                uncachedIndices.push(i);
+            }
+        }
+
+        // Fetch uncached stops in parallel batches (5 at a time) to avoid overwhelming the API
+        const batchSize = 5;
+        for (let i = 0; i < uncachedStops.length; i += batchSize) {
+            const batch = uncachedStops.slice(i, i + batchSize);
+            const batchIndices = uncachedIndices.slice(i, i + batchSize);
+
+            const batchPromises = batch.map(stopCode =>
+                fetch(`${API_BASE}/bus-stop-det?BusStopCode=${stopCode}`)
+                    .then(response => {
+                        if (response.ok) return response.json();
+                        throw new Error(`HTTP ${response.status}`);
+                    })
+                    .then(stopData => [
                         stopCode,
                         stopData.Description || stopCode,
                         stopData.RoadName || ''
-                    ]);
-                    // console.log(`Fetched ${stopCode}: ${stopData.RoadName} | ${stopData.Description}`);
-                } else {
-                    console.warn(`Stop ${stopCode} not found in API`);
-                    enrichedStops.push([stopCode, stopCode, '']);
-                }
-            } catch (error) {
-                console.warn(`Failed to fetch stop ${stopCode}:`, error);
-                enrichedStops.push([stopCode, stopCode, '']);
-            }
+                    ])
+                    .catch(error => {
+                        console.warn(`Failed to fetch stop ${stopCode}:`, error);
+                        return [stopCode, stopCode, ''];
+                    })
+            );
+
+            const results = await Promise.all(batchPromises);
+            
+            // Store results in the correct positions and cache
+            results.forEach((result, idx) => {
+                const originalIndex = batchIndices[idx];
+                enrichedStops[originalIndex] = result;
+                stopCache.set(result[0], result);
+            });
         }
 
         return enrichedStops;
