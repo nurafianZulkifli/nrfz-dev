@@ -57,7 +57,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Fetch the bus stop name from the /bus-stops endpoint
         try {
-            let busStops = JSON.parse(localStorage.getItem('allBusStops')) || [];
+            let busStops = [];
+            try {
+                const cached = localStorage.getItem('allBusStops');
+                busStops = cached ? JSON.parse(cached) : [];
+                if (!Array.isArray(busStops)) {
+                    busStops = [];
+                }
+            } catch (parseError) {
+                console.warn('Failed to parse cached bus stops:', parseError);
+                busStops = [];
+            }
 
             // If bus stops are not cached, fetch them from the server
             if (busStops.length === 0) {
@@ -81,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // Find the bus stop by BusStopCode
-            const busStop = busStops.find(stop => stop.BusStopCode === busStopCode);
+            const busStop = Array.isArray(busStops) ? busStops.find(stop => stop.BusStopCode === busStopCode) : null;
 
             if (busStop) {
                 // Update title with styled bus stop code and name
@@ -297,7 +307,7 @@ async function fetchBusArrivals() {
                 return `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <div class="ib-time ${arrivedClass}">${bus.TimeStr}</div>
-                    <a href="${getBasePath() + 'buszy/bus-service.html?service=' + bus.ServiceNo}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 4px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
+                    <div class="ib-svc" style="background-color: ${bgColor}; border-radius: 4px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</div>
                 </div>
             `;
             }).join('');
@@ -325,7 +335,7 @@ async function fetchBusArrivals() {
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
                         <div style="min-width: 0;">
-                            <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="service-no" style="cursor: pointer; text-decoration: none; color: inherit;">${service.ServiceNo}</a>
+                            <div class="service-no">${service.ServiceNo}</div>
                             ${hasNextBus && service.NextBus.DestinationCode ? `<div class="destination-code">To ${getDestinationName(service.NextBus.DestinationCode)}</div>` : ''}
                         </div>
                         <div style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center; flex-shrink: 0;">
