@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 2000);
+    setInterval(fetchBusArrivals, 2000000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -307,7 +307,7 @@ async function fetchBusArrivals() {
                 return `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <div class="ib-time ${arrivedClass}">${bus.TimeStr}</div>
-                    <div class="ib-svc" style="background-color: ${bgColor}; border-radius: 4px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</div>
+                    <a href="${getBasePath() + 'buszy/bus-service.html?service=' + bus.ServiceNo}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 4px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
                 </div>
             `;
             }).join('');
@@ -335,7 +335,7 @@ async function fetchBusArrivals() {
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
                         <div style="min-width: 0;">
-                            <div class="service-no">${service.ServiceNo}</div>
+                            <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="service-no" style="cursor: pointer; text-decoration: none; color: inherit;">${service.ServiceNo}</a>
                             ${hasNextBus && service.NextBus.DestinationCode ? `<div class="destination-code">To ${getDestinationName(service.NextBus.DestinationCode)}</div>` : ''}
                         </div>
                         <div style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center; flex-shrink: 0;">
