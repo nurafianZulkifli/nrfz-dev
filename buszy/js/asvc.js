@@ -3,6 +3,11 @@
 // :: Bus Services Listing
 // *****************************
 let allServices = [];
+let currentPage = 1;
+let totalPages = 1;
+const limit = 10;
+let filteredServices = [];
+let isSearchActive = false;
 
 // Get base path for the application
 function getBasePath() {
@@ -129,10 +134,21 @@ function displayServices(services) {
     
     if (services.length === 0) {
         container.innerHTML = '<div class="no-services"><p><i class="fa-regular fa-circle-info"></i> No bus services found.</p></div>';
+        document.getElementById('prev-button').style.display = 'none';
+        document.getElementById('next-button').style.display = 'none';
         return;
     }
     
-    container.innerHTML = services.map(service => createServiceCard(service)).join('');
+    // Store filtered services
+    filteredServices = services;
+    totalPages = Math.ceil(services.length / limit);
+    currentPage = 1;
+    
+    // Display current page
+    displayPage(currentPage);
+    
+    // Setup pagination buttons
+    setupPaginationButtons();
 }
 
 function createServiceCard(service) {
@@ -169,6 +185,54 @@ function createServiceCard(service) {
     `;
 }
 
+function displayPage(page) {
+    const container = document.getElementById('services-container');
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedServices = filteredServices.slice(startIndex, endIndex);
+    
+    container.innerHTML = paginatedServices.map(service => createServiceCard(service)).join('');
+}
+
+function setupPaginationButtons() {
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    
+    if (!prevButton || !nextButton) return;
+    
+    // Remove previous event listeners by cloning
+    const newPrevButton = prevButton.cloneNode(true);
+    const newNextButton = nextButton.cloneNode(true);
+    prevButton.parentNode.replaceChild(newPrevButton, prevButton);
+    nextButton.parentNode.replaceChild(newNextButton, nextButton);
+    
+    const updatedPrevButton = document.getElementById('prev-button');
+    const updatedNextButton = document.getElementById('next-button');
+    
+    // Update buttons visibility based on current page
+    updatedPrevButton.style.display = currentPage > 1 ? 'inline-block' : 'none';
+    updatedNextButton.style.display = currentPage < totalPages ? 'inline-block' : 'none';
+    
+    // Add event listeners
+    updatedPrevButton.addEventListener('click', function() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPage(currentPage);
+            setupPaginationButtons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+    
+    updatedNextButton.addEventListener('click', function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayPage(currentPage);
+            setupPaginationButtons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+}
+
 function setupSearchFilter() {
     const searchInput = document.getElementById('service-search');
     
@@ -190,6 +254,11 @@ function setupSearchFilter() {
                        remarks.includes(searchTerm);
             });
             
+            // Reset to page 1 when searching
+            currentPage = 1;
+            isSearchActive = searchTerm.length > 0;
+            
+            // Display filtered results with pagination
             displayServices(filtered);
         });
     }
