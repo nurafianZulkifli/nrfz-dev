@@ -570,7 +570,7 @@ table th {
 .pw-btn-next {
     position: relative;
     z-index: 1;
-    min-width: 160px;
+    min-width: 100px;
     height: 46px;
     line-height: 46px;
     font-size: 14px;
@@ -592,7 +592,7 @@ table th {
 .pw-btn-prev {
     position: relative;
     z-index: 1;
-    min-width: 160px;
+    min-width: 100px;
     height: 46px;
     line-height: 46px;
     font-size: 14px;
