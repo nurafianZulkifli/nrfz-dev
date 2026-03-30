@@ -163,17 +163,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayBusStops(allBusStops, currentPage);
 
     // Pagination
-    prevButton.addEventListener('click', () => {
+    prevButton.addEventListener('click', (e) => {
+        e.preventDefault();
         if (currentPage > 1) {
+            const scrollPos = window.scrollY || document.documentElement.scrollTop;
             currentPage--;
             displayBusStops(allBusStops, currentPage);
+            requestAnimationFrame(() => {
+                window.scrollTo(0, scrollPos);
+            });
         }
     });
 
-    nextButton.addEventListener('click', () => {
+    nextButton.addEventListener('click', (e) => {
+        e.preventDefault();
         if (currentPage < totalPages) {
+            const scrollPos = window.scrollY || document.documentElement.scrollTop;
             currentPage++;
             displayBusStops(allBusStops, currentPage);
+            requestAnimationFrame(() => {
+                window.scrollTo(0, scrollPos);
+            });
         }
     });
 

@@ -121,6 +121,12 @@
         width: fit-content;
     }
 
+    body.dark-mode a.ib-svc:hover {
+        transform: translateY(-3px) !important;
+        color: #fff !important;
+        background-color: #52718d !important;
+    }
+
     body.dark-mode a.service-no:hover {
         transform: translateY(-3px);
         color: #fff !important;
@@ -280,6 +286,20 @@
         cursor: default;
     }
 
+    a.ib-svc:hover {
+        transform: translateY(-3px) !important;
+        color: #000 !important;
+        background-color: #c7e3fb !important;
+        font-weight: bold;
+    }
+
+    a.service-no:hover {
+        transform: translateY(-3px);
+        color: #fff !important;
+        background-color: #c7e3fb;
+    }
+
+
     body.dark-mode .ib-time {
         color: #fff;
     }
@@ -418,6 +438,7 @@
             flex: 0 0 auto;
             width: 50%;
         }
+
         #incoming-buses-grid {
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
         }

@@ -404,8 +404,73 @@
     "c": "Regular Distance Fares",
     "r": "Service 4 is a trunk loop service between Tampines Bus Interchange and Changi North Way, passing through Flora Road and Changi North Industrial Estate. The route commenced operations on 17 March 2013 as the 7th bus service under the Bus Service Enhancement Programme (BSEP)."
   },
+  {
+    "n": "114",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Buangkok Int",
+    "te": " Yio Chu Kang Int",
+    "h": "05:30 – 23:30",
+    "direction_routes": {
+      "1": {
+        "ts": "Buangkok Int",
+        "te": "Yio Chu Kang Int",
+        "st":["63009","67601","67629","66601","66571","66581","66551","66561","67771","67791","67489","67631","67579","67999","67099","67089","67039","67029","67019","55109","55089","55079","55059","55049","55039","55179","55189","55509"]
+      },
+      "2": {
+        "ts": "Yio Chu Kang Int",
+        "te": "Buangkok Int",
+        "st":["55509","55171","55031","55041","55051","55071","55081","55101","67011","67021","67081","67091","67991","67571","67639","67481","67799","67779","66569","66559","66589","66579","66609","67621","67609","63009"]
 
-
+      }
+    },
+    "direction_freqs": {
+      "1": {
+        "weekdays": {
+          "06:30-08:30": "14-15",
+          "08:31-16:59": "14",
+          "17:00-19:00": "14-15",
+          "19:01-23:59": "13-15"
+        },
+        "saturdays": {
+          "06:30-08:30": "13-14",
+          "08:31-16:59": "13-15",
+          "17:00-19:00": "13-14",
+          "19:01-23:59": "13-15"
+        },
+        "sundays_holidays": {
+          "06:30-08:30": "13-14",
+          "08:31-16:59": "13-15",
+          "17:00-19:00": "13-14",
+          "19:01-23:59": "13-15"
+        }
+      },
+      "2": {
+        "weekdays": {
+          "06:30-08:30": "14",
+          "08:31-16:59": "14",
+          "17:00-19:00": "14",
+          "19:01-23:59": "14-16"
+        },
+        "saturdays": {
+          "06:30-08:30": "13-15",
+          "08:31-16:59": "13-15",
+          "17:00-19:00": "14",
+          "19:01-23:59": "14-15"
+        },
+        "sundays_holidays": {
+          "06:30-08:30": "13-15",
+          "08:31-16:59": "13-15",
+          "17:00-19:00": "14",
+          "19:01-23:59": "14-15"
+        }
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 114 is a trunk route between Buangkok and Yio Chu Kang, passing through Buangkok Drive, Buangkok Link, Fernvale, Sengkang West and Yio Chu Kang Road.",
+    "sb": ["114A"]
+  },
 
 
 
@@ -414,6 +479,25 @@
 
 
   {
+    "n": "300",
+    "t": "Feeder",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Choa Chu Kang Int",
+    "lp": "Choa Chu Kang Ave 3",
+    "te": "Choa Chu Kang Int",
+    "h": "05:30 – 01:05 (Mon-Fri)<br>05:45 – 01:05 (Sat & Sun/PH)",
+    "freq_detail": {
+        "06:30-08:30": "5",
+        "08:31-16:59": "4-6",
+        "17:00-19:00": "3-5",
+        "19:01-23:59": "5-10"
+    },
+    "c": "Distance Fares capped at 3.2km",
+    "r": "Service 300 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Avenue 3, passing through Choa Chu Kang Avenue 2 and 4.",
+    "st":["44009","44491","44501","44621","45451","44569","44579","44459","44521","44511","44689","44629","44509","44499","44009"]
+  },
+  {
     "n": "302",
     "t": "Feeder",
     "op": "SMRT",
@@ -421,7 +505,7 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Choa Chu Kang Int",
-    "h": "22:30 - 05:59",
+    "h": "05:30 – 01:05",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "10-14",
@@ -487,6 +571,160 @@
     "st": ["45321","45389","45401","45411","45421","45439","45399","45329"],
     "pb": ["302"]
   },
+  {
+    "n": "307",
+    "t": "Feeder",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Choa Chu Kang Int",
+    "lp": "Choa Chu Kang St 62 / Teck Whye Lane",
+    "te": "Choa Chu Kang Int",
+    "h": "05:30 – 01:05",
+    "freq_detail": {
+        "06:30-08:30": "5-7",
+        "08:31-16:59": "4-9",
+        "17:00-19:00": "6-7",
+        "19:01-23:59": "7-12"
+    },
+    "c": "Distance Fares capped at 3.2km",
+    "r": "Service 307 is a Feeder service operating from Choa Chu Kang Interchange and looping at both Choa Chu Kang Street 62 and Teck Whye Lane, passing through Choa Chu Kang Avenue 5, Yew Tee MRT, Choa Chu Kang Central and Teck Whye Avenue.<br><br>Service 307T buses on the South Loop will terminate at Choa Chu Kang Interchange and will not continue its journey on the North Loop.",
+    "st":["44009","44539","44541","45291","45309","45369","45379","45359","45321","45339","45349","45351","45371","45361","45301","45299","44549","44531","44461","44489","44479","44119","44299","44439","44421","44411","44291","44111","44471","44481","44469","44009"],
+    "sb": ["307A"]
+  },
+    {
+    "n": "307A",
+    "t": "Feeder",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Choa Chu Kang Int",
+    "lp": "Choa Chu Kang St 62",
+    "te": "Opp Choa Chu Kang Stn",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+      "weekdays": {
+        "06:16": "From CCK Int",
+        "06:26": "From CCK Int",
+        "06:36": "From CCK Int",
+        "06:47": "From CCK Int",
+        "07:02": "From CCK Int",
+        "07:13": "From CCK Int",
+        "07:25": "From CCK Int",
+        "07:36": "From CCK Int",
+        "07:47": "From CCK Int",
+        "07:59": "From CCK Int",
+        "08:11": "From CCK Int",
+        "08:24": "From CCK Int",
+        "08:34": "From CCK Int",
+        "08:44": "From CCK Int",
+        "08:54": "From CCK Int",
+        "09:05": "From CCK Int",
+        "09:16": "From CCK Int",
+        "09:27": "From CCK Int",
+        "09:37": "From CCK Int",
+        "09:48": "From CCK Int",
+        "09:58": "From CCK Int",
+        "10:08": "From CCK Int",
+        "10:19": "From CCK Int",
+        "10:30": "From CCK Int",
+        "11:02": "From CCK Int",
+        "11:24": "From CCK Int",
+        "11:46": "From CCK Int",
+        "12:06": "From CCK Int",
+        "12:28": "From CCK Int",
+        "12:50": "From CCK Int",
+        "13:10": "From CCK Int",
+        "13:32": "From CCK Int",
+        "13:54": "From CCK Int",
+        "14:14": "From CCK Int",
+        "14:36": "From CCK Int",
+        "14:58": "From CCK Int",
+        "15:18": "From CCK Int",
+        "15:39": "From CCK Int",
+        "15:50": "From CCK Int",
+        "16:01": "From CCK Int",
+        "16:12": "From CCK Int",
+        "16:23": "From CCK Int",
+        "16:33": "From CCK Int",
+        "16:43": "From CCK Int",
+        "16:54": "From CCK Int",
+        "17:05": "From CCK Int",
+        "17:16": "From CCK Int",
+        "17:26": "From CCK Int",
+        "17:37": "From CCK Int",
+        "17:47": "From CCK Int",
+        "17:58": "From CCK Int",
+        "18:10": "From CCK Int",
+        "18:21": "From CCK Int",
+        "18:32": "From CCK Int",
+        "18:43": "From CCK Int",
+        "18:55": "From CCK Int",
+        "19:06": "From CCK Int",
+        "19:16": "From CCK Int",
+        "19:27": "From CCK Int",
+        "19:38": "From CCK Int",
+        "19:49": "From CCK Int",
+        "20:23": "From CCK Int",
+        "20:45": "From CCK Int",
+        "21:07": "From CCK Int",
+        "21:26": "From CCK Int",
+        "21:46": "From CCK Int",
+        "22:26": "From CCK Int",
+        "22:44": "From CCK Int",
+        "00:52": "From CCK Int",
+        "01:05": "From CCK Int"
+      },
+      "saturdays": {
+        "07:08": "From CCK Int",
+        "07:29": "From CCK Int",
+        "07:50": "From CCK Int",
+        "08:10": "From CCK Int",
+        "08:31": "From CCK Int",
+        "08:52": "From CCK Int",
+        "09:14": "From CCK Int",
+        "09:36": "From CCK Int",
+        "17:27": "From CCK Int",
+        "17:49": "From CCK Int",
+        "18:10": "From CCK Int",
+        "18:31": "From CCK Int",
+        "18:54": "From CCK Int",
+        "19:15": "From CCK Int"
+      },
+      "sundays_holidays": {
+        "07:12": "From CCK Int",
+        "07:23": "From CCK Int",
+        "07:34": "From CCK Int",
+        "08:00": "From CCK Int",
+        "08:13": "From CCK Int",
+        "08:25": "From CCK Int",
+        "08:51": "From CCK Int",
+        "09:04": "From CCK Int",
+        "09:17": "From CCK Int",
+        "09:44": "From CCK Int",
+        "09:57": "From CCK Int",
+        "16:38": "From CCK Int",
+        "16:51": "From CCK Int",
+        "17:04": "From CCK Int",
+        "17:29": "From CCK Int",
+        "17:42": "From CCK Int",
+        "17:55": "From CCK Int",
+        "18:21": "From CCK Int",
+        "18:33": "From CCK Int",
+        "18:46": "From CCK Int",
+        "19:12": "From CCK Int",
+        "19:25": "From CCK Int",
+        "19:37": "From CCK Int"
+      }
+    },
+    "c": "Distance Fares capped at 3.2km",
+    "r": "Short Trip Service 307A is a feeder bus service operating from Choa Chu Kang Bus Interchange and ends at Choa Chu Kang Ave 4 (Opp Choa Chu Kang Stn) via Choa Chu Kang St 62, operating daily.",
+    "st":["44009","44539","44541","45291","45309","45369","45379","45359","45321","45339","45349","45351","45371","45361","45301","45299","44549","44531"],
+    "pb": ["307"]
+  },
+
+
+
+
+
   {
     "n": "334",
     "t": "Feeder",

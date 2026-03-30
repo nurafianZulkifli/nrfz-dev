@@ -219,7 +219,6 @@ function setupPaginationButtons() {
             currentPage--;
             displayPage(currentPage);
             setupPaginationButtons();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
     
@@ -228,7 +227,6 @@ function setupPaginationButtons() {
             currentPage++;
             displayPage(currentPage);
             setupPaginationButtons();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
 }
