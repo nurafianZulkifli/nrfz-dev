@@ -475,6 +475,11 @@ async function populateServiceData(serviceNumber, service) {
             console.log(`Direction ${direction}: ${dirRoute.ts} → ${dirRoute.te}`);
         }
         
+        // Update operating hours if direction_hours exist
+        if (service.direction_hours && service.direction_hours[direction]) {
+            document.getElementById('operating-hours').innerHTML = service.direction_hours[direction];
+        }
+        
         // Update frequency display with direction info
         if (service.freq_detail) {
             displayFrequencyDetails(service.freq_detail, service, direction);

@@ -1,38 +1,70 @@
-0.0	 55509	 • Yio Chu Kang Int
- 	 	Ang Mo Kio Ave 6
-0.5	 55171	 • Castle Green
- 	 	Yio Chu Kang Rd
-1.0	 55031	 • Opp NCS Hub
-1.3	 55041	 • Aft AMK St 64/Apple SG
-1.7	 55051	 • Opp ST Electronics
-2.1	 55071	 • Bef ECON Medicare Ctr
-2.5	 55081	 • Opp Sunrise Gdns
-2.9	 55101	 • Opp Serenity Pk
-3.2	 67011	 • Bef Begonia Rd
-3.5	 67021	 • Opp Dedap Rd
- 	 	Sengkang West Rd
-4.0	 67081	 • Aft Yio Chu Kang Rd
-4.3	 67091	 • Opp Blk 459B
- 	 	Sengkang West Way
-4.9	 67991	 • Opp Blk 461B
-5.2	 67571	 • Aft Lor Tanggam
- 	 	Fernvale Rd
-5.6	 67639	 • Blk 436A
- 	 	Sengkang West Ave
-6.1	 67481	 • Fernvale Stn/Blk 439A
- 	 	Buangkok Dr
-6.7	 67799	 • Blk 415A
-7.2	 67779	 • Opp Blk 995C
- 	 	Buangkok Lk
-7.7	 66569	 • Opp Blk 991B
-7.9	 66559	 • Opp Blk 984A
- 	 	Buangkok Cres
-8.4	 66589	 • Buangkok Sports Pk
-8.7	 66579	 • Blk 998B
-8.9	 66609	 • Opp Blk 991A
- 	 	Buangkok Dr
-10.1	 67621	 • Blk 278 CP
- 	 	Sengkang Ctrl
-10.8	 67609	 • Buangkok Stn Exit A
- 	 	Sengkang Ctrl
-11.0	 63009	 • Buangkok Int
+ 	 	Clementi Ave 3
+0.0	 17009	 • Clementi Int
+ 	 	Clementi Ave 5
+0.8	 17221	 • Blk 377
+ 	 	Ulu Pandan Rd
+1.6	 12119	 • Police KINS Trg Camp
+1.8	 12059	 • Opp Pine Gr Condo
+2.1	 12049	 • Opp Pandan Valley
+2.5	 12039	 • Opp Pandan Valley Condo
+ 	 	Holland Rd
+2.8	 12029	 • Opp Moonbeam Wk
+3.2	 11299	 • Opp Cold Storage Jelita
+3.6	 11289	 • Opp Tan Boon Chong Ave
+3.9	 11279	 • Aft Coronation Rd West
+4.4	 11269	 • Opp Holland Village
+5.3	 11239	 • Fairlodge
+5.7	 11229	 • Sommerville Pk
+5.9	 11219	 • Great Eastern Mansions
+6.3	 11209	 • Opp Peirce Rd
+6.7	 13029	 • Bef Tyersall Ave
+ 	 	Napier Rd
+7.3	 13019	 • Napier Stn Exit 1
+7.5	 09149	 • Opp British Council
+ 	 	Tanglin Rd
+8.1	 09159	 • Aft Tomlinson Rd
+ 	 	Orchard Rd
+8.4	 09169	 • Delfi Orchard
+8.7	 09179	 • Royal Thai Embassy
+9.2	 09048	 • Orchard Stn/Lucky Plaza
+9.8	 09038	 • Opp Somerset Stn
+10.2	 08138	 • Concorde Hotel S'pore
+10.6	 08057	 • Dhoby Ghaut Stn
+ 	 	Bras Basah Rd
+11.1	 08069	 • Bencoolen Stn Exit B
+11.4	 04179	 • Aft Bras Basah Stn Exit A
+ 	 	Victoria St
+11.6	 01012	 • Hotel Grand Pacific
+12.1	 01112	 • Opp Bugis Stn Exit C
+12.7	 01121	 • Aft Victoria Ln
+13.0	 01211	 • Opp Blk 461
+ 	 	Kallang Rd
+13.3	 01311	 • Lavender Stn Exit B
+13.9	 80011	 • Aft Padang Jeringau
+ 	 	Sims Ave
+14.4	 80031	 • Kallang Stn
+14.7	 80051	 • Aft Lor 1 Geylang
+ 	 	Sims Way
+15.3	 80119	 • Aft Geylang Rd
+ 	 	Guillemard Rd
+15.9	 80251	 • Aft Lor 14 Geylang
+16.4	 81169	 • Opp Blk 56
+16.9	 81159	 • Opp Kong Hwa Sch
+17.2	 81149	 • The Sunny Spring Condo
+17.6	 81139	 • Grandlink Sq
+ 	 	Paya Lebar Rd
+ • Express
+ 	 	Sims Ave
+18.2	 82011	 • Aft Paya Lebar Quarter
+18.5	 82033	 • Blk 414
+19.0	 82061	 • Eunos Stn/Int
+ 	 	Sims Ave East
+19.6	 83011	 • Casa Sarina
+19.9	 83031	 • Opp Hong San Si Tp
+20.3	 83062	 • Kembangan Stn
+20.8	 83081	 • Opp Perpetual Succour Ch
+ 	 	New Upp Changi Rd
+21.4	 84011	 • Chai Chee Ind Pk
+21.7	 84021	 • Blk 32
+ 	 	Bedok Nth Dr
+22.5	 84009	 • Bedok Int
