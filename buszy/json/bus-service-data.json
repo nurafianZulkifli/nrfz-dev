@@ -360,7 +360,7 @@
     "st":["98319","98289","98291","97019","96069","96059","96049"],
     "pb": ["5"]
   },
-      {
+    {
     "n": "5B",
     "t": "Trunk",
     "op": "GAS",
@@ -423,7 +423,6 @@
     "directions": [1,2],
     "ts": "Bedok Int",
     "te": "Clementi Int",
-    "h": "05:30 – 23:30 (Mon-Sat)<br>05:40 – 23:30 (Sun/PH)",
     "direction_hours": {
       "1": "05:30 – 23:30 (Daily)",
       "2": "05:30 – 23:30 (Mon-Sat)<br>05:40 – 23:30 (Sun/PH)"
@@ -487,6 +486,210 @@
     "r": "Service 7 is a trunk route connecting Bedok and Clementi through Guillemard, Bugis, Orchard and Holland Road.",
     "sb": ["7A", "7B"]
   },
+    {
+    "n": "7A",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Bedok Int",
+    "te": "Orchard Stn Exit 13",
+    "h": "<i>Refer to Departure Times</i>",
+      "freq_detail": {
+      "weekdays": {
+        "05:50": "From Bedok Int",
+        "09:55": "From Bedok Int",
+        "15:55": "From Bedok Int",
+        "20:00": "From Bedok Int"
+      },
+      "saturdays": {
+        "06:00": "From Bedok Int",
+        "13:35": "From Bedok Int",
+        "21:00": "From Bedok Int"
+      },
+      "sundays_holidays": {
+        "06:00": "From Bedok Int",
+        "14:35": "From Bedok Int",
+        "21:00": "From Bedok Int"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 7A is a Short-Trip Service variant of Bus Service 7, operating from Bedok Bus Interchange to Orchard MRT Station, passing through Eunos, Geylang Serai, Guillemard, Bugis and Dhoby Ghaut. Bus Service 7A began operations on 25 February 2018.",
+    "st":["84009","84029","84019","83099","83079","83059","83049","83029","82069","82049","82029","82109","81131","81141","81151","81161","80259","80111","80049","80039","80029","01339","01329","01229","01139","01039","01029","04111","04121","08041","08031","08111","08121","09059","09022"],
+    "pb": ["7"]
+  },
+    {
+    "n": "7B",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Clementi Int",
+    "te": " Dhoby Ghaut Stn",
+    "h": "<i>Refer to Departure Times</i>",
+      "freq_detail": {
+      "weekdays": {
+        "06:00": "From Clementi Int",
+        "10:00": "From Clementi Int",
+        "15:55": "From Clementi Int",
+        "20:00": "From Clementi Int"
+      },
+      "saturdays": {
+        "06:00": "From Clementi Int",
+        "14:00": "From Clementi Int",
+        "21:00": "From Clementi Int"
+      },
+      "sundays_holidays": {
+        "06:00": "From Clementi Int",
+        "14:00": "From Clementi Int",
+        "21:00": "From Clementi Int"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 7B is a Short-Trip Service variant of Bus Service 7, operating from Clementi Bus Interchange to Dhoby Ghaut MRT Station, passing through Holland and Orchard. Bus Service 7B began operations on 25 February 2018.",
+    "st":["17009","17221","12119","12059","12049","12039","12029","11299","11289","11279","11269","11239","11229","11219","11209","13029","13019","09149","09159","09169","09179","09048","09038","08138","08057"],
+    "pb": ["7"]
+  },
+    {
+    "n": "8",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Tampines Int",
+    "te": "Toa Payoh Int",
+    "direction_hours": {
+      "1": "05:30 – 23:00 (Weekdays)<br>05:45 – 23:00 (Sat)<br>06:00-23:00 (Sun/PH)",
+      "2": "06:00 – 23:30"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Tampines Int",
+        "te": "Toa Payoh Int",
+        "st":["75009","76191","76201","76211","76221","76039","76109","76099","76089","76079","75059","75229","75239","75249","75259","72179","84481","84491","72079","72069","72029","71099","71139","71129","71149","71159","71169","70261","70271","70149","70139","70129","70119","70109","60219","60089","52089","52321","52501","52009"]
+      },
+      "2": {
+        "ts": "Toa Payoh Int",
+        "te": "Tampines Int",
+        "st":["52009","52509","52329","52081","60081","60211","70101","70111","70121","70131","70279","70269","71161","71151","71141","71121","71131","71091","72021","72061","72071","84499","84489","72171","75251","75241","75231","75221","75051","76071","76081","76091","76101","76031","76229","76219","76209","76199","75009"]
+      }
+    },
+    "direction_freqs": {
+      "1": {
+        "weekdays": {
+          "06:30-08:30": "6-8",
+          "08:31-16:59": "5-15",
+          "17:00-19:00": "7-13",
+          "19:01-23:59": "13-17"
+        },
+        "saturdays": {
+          "06:30-08:30": "8-12",
+          "08:31-16:59": "9-13",
+          "17:00-19:00": "13-15",
+          "19:01-23:59": "13-14"
+        },
+        "sundays_holidays": {
+          "06:30-08:30": "11-14",
+          "08:31-16:59": "10-14",
+          "17:00-19:00": "12-13",
+          "19:01-23:59": "11-14"
+        }
+      },
+      "2": {
+        "weekdays": {
+          "06:30-08:30": "5-7",
+          "08:31-16:59": "6-15",
+          "17:00-19:00": "5-9",
+          "19:01-23:59": "10-18"
+        },
+        "saturdays": {
+          "06:30-08:30": "8-12",
+          "08:31-16:59": "8-13",
+          "17:00-19:00": "12-13",
+          "19:01-23:59": "13-15"
+        },
+        "sundays_holidays": {
+          "06:30-08:30": "13-14",
+          "08:31-16:59": "11-14",
+          "17:00-19:00": "11-15",
+          "19:01-23:59": "11-15"
+        }
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 8 is a trunk route connecting Tampines and Toa Payoh through Kaki Bukit and MacPherson. Along with Service 28 and 31, it is one of three services plying between Tampines and Toa Payoh."
+  },
+  {
+    "n": "9",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Bedok Int",
+    "lp": "Airport Cargo Rd",
+    "te": "Bedok Int",
+    "h": "05:30 – 00:00",
+    "freq_detail": {
+      "weekdays": {
+        "06:30-08:30": "5-9",
+        "08:31-16:59": "15-11",
+        "17:00-19:00": "7-16",
+        "19:01-23:59": "15-17"
+      },
+      "saturdays": {
+        "06:30-08:30": "10",
+        "08:31-16:59": "7-13",
+        "17:00-19:00": "7-13",
+        "19:01-23:59": "13-15"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "14",
+        "08:31-16:59": "12-15",
+        "17:00-19:00": "14",
+        "19:01-23:59": "12-14"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 9 is a circular trunk route connecting Bedok and Changi Airfreight Centre through Simpang Bedok, Simei, Tampines and Loyang Avenue. It is one of three daily trunk services to Changi Airfreight Centre (formerly known as Changi Airport Cargo Complex).",
+    "st":["84009","84031","84041","84051","84061","85091","85051","85061","85081","85071","96101","96259","96169","96269","96181","96121","76101","76031","76231","76241","98011","98021","98041","98121","98131","98061","98071","99011","99021","99031","99041","99181","99171","99161","95071","95081","95091","95131","95141","95061","95051","95041","95039","95049","95069","95149","95139","95099","95089","95079","99189","99049","99039","99029","99019","98079","98069","98139","98129","98049","98029","98019","76249","76239","76039","76109","96129","96189","96261","96161","96251","96109","85079","85089","85069","85059","85099","84069","84059","84049","84039","84009"],
+    "sb": ["9A", "9B"]
+  },
+    {
+    "n": "9A",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Bedok Int",
+    "te": " Blk 149A",
+    "h": "<i>Refer to Departure Times</i>",
+      "freq_detail": {
+      "weekdays": {
+        "18:07": "From Bedok Int",
+        "18:59": "From Bedok Int",
+        "15:55": "From Bedok Int",
+        "19:36": "From Bedok Int"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 9A is a Short-Trip Service variant of Bus Service 9, operating from Bedok Bus Interchange and ending at Loyang Avenue (Blk 149A), operating only during the weekday evening peak hours.",
+    "st":["84009","84031","84041","84051","84061","85091","85051","85061","85081","85071","96101","96259","96169","96269","96181","96121","76101","76031","76231","76241","98011"],
+    "pb": ["9"]
+  },
+    {
+    "n": "9B",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Simei Stn",
+    "te": " 3rd Cargo Agents",
+    "h": "<i>Refer to Departure Times</i>",
+      "freq_detail": {
+      "weekdays": {
+        "06:57": "From Simei Stn",
+        "07:33": "From Simei Stn"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 9B is a Short-Trip Service variant of Bus Service 9, operating from Simei Station and ends at Airline Road within Changi Airfreight Centre, operating only during the weekday morning peak hours, except Public Holidays.",
+    "st":["96169","96269","96181","96121","76101","76031","76231","76241","98011","98021","98041","98121","98131","98061","98071","99011","99021","99031","99041","99181","99171","99161","95071","95081","95091","95131","95141","95061","95051"],
+    "pb": ["9"]
+  },
 
 
 
@@ -501,7 +704,6 @@
     "directions": [1,2],
     "ts": "Buangkok Int",
     "te": " Yio Chu Kang Int",
-    "h": "05:30 – 23:30",
     "direction_hours": {
       "1": "05:30 – 23:30",
       "2": "05:30 – 23:30"
@@ -852,6 +1054,54 @@
     "r": "Service 334 is a Feeder service operating between Jurong East Interchange and Jurong West Street 42, passing through Boon Lay Way and Jurong East Avenue 1.",
     "st": ["28009","28441","28071","28081","28281","28451","28461","28491","28501","28511","28521","28401","28541","28551","28561","28571","28509","28499","28469","28459","28289","28089","28079","28449","28211","28009"]
   },
+
+      {
+    "n": "405",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Boon Lay Int",
+    "lp": "Old Choa Chu Kang Rd",
+    "te": "Boon Lay Int",
+    "h": "<i>Refer to <a class=\"hyperlink\" href=\"https://www.smrt.com.sg/getmedia/065c6bc5-df3f-48ab-8fa7-8f5681c9b754/SMRT-Service-Announcement-Operating-Dates-of-Bus-Service-405-in-2026_Poster.pdf\">Poster </a></i>",
+    "freq_detail": {
+      "weekdays": {
+        "06:30-08:30": "22-25",
+        "08:31-16:59": "25-26"
+      },
+      "saturdays": {
+        "06:30-08:30": "22-23",
+        "08:31-16:59": "24-28"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "30",
+        "08:31-16:59": "30"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 405 is a trunk route serving Choa Chu Kang Cemetery, running from Boon Lay interchange and looping at Old Choa Chu Kang Road. It only operates on specific days of the year.",
+    "st": ["22009","22489","21371","27091","27101","27121","31011","31031","31041","31051","31149","31139","31129","31009","31121","31131","31141","31059","31049","31039","31019","27129","27109","27099","21379","22481","22009"]
+  },
+
+
+    {
+    "n": "455",
+    "t": "Limited Stop",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Bt Panjang Int",
+    "lp": "Choa Chu Kang Crescent",
+    "te": "Bt Panjang Int",
+    "h": "06:30 – 10:00 & 16:15 – 19:45",
+    "freq_detail": {
+      "Morning Peak": "10-12",
+      "Evening Peak": "10-12"
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 455 is a limited-stop bus service introduced under the Land Transport Authority’s Bus Connectivity Enhancement Programme (BCEP). This service provides a direct connection to MRT Stations for estates farther away from transport nodes. Service 455 is renumbered from Service 979X.",
+    "st": ["45009","45291","45321","45389","45401","45411","45421","45439","45399","45329","45299", "44031", "45009"]
+  },
+
   {
     "n": "502",
     "t": "Express",
@@ -911,25 +1161,6 @@
 
 
 
-
-
-    {
-    "n": "455",
-    "t": "Limited Stop",
-    "op": "SMRT",
-    "directions": [1],
-    "ts": "Bt Panjang Int",
-    "lp": "Choa Chu Kang Crescent",
-    "te": "Bt Panjang Int",
-    "h": "06:30 – 10:00 & 16:15 – 19:45",
-    "freq_detail": {
-      "Morning Peak": "10-12",
-      "Evening Peak": "10-12"
-    },
-    "c": "Regular Distance Fares",
-    "r": "Service 455 is a limited-stop bus service introduced under the Land Transport Authority’s Bus Connectivity Enhancement Programme (BCEP). This service provides a direct connection to MRT Stations for estates farther away from transport nodes. Service 455 is renumbered from Service 979X.",
-    "st": ["45009","45291","45321","45389","45401","45411","45421","45439","45399","45329","45299", "44031", "45009"]
-  },
 
 
 
@@ -994,6 +1225,27 @@
     "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429"],
     "pb": ["871"]
   },
+
+    {
+    "n": "903",
+    "t": "Feeder",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Woodlands Int",
+    "lp": "Woodlands Ctr Rd",
+    "te": "Woodlands Int",
+    "h": "05:20 – 01:00 (Mon-Sat)<br>05:30 – 01:00 (Sun/PH)",
+    "freq_detail": {
+        "06:30-08:30": "2-6",
+        "08:31-16:59": "6-7",
+        "17:00-19:00": "2-7",
+        "19:01-23:59": "3-10"
+    },
+    "c": "Distance Fares capped at 3.2km",
+    "r": "Service 903 is a Feeder service operating from Woodlands Bus Interchange and looping at Woodlands Train Checkpoint along Woodlands Centre Road, passing through Riverside Road and Marsiling Lane.",
+  "st":["46009","46271","46301","46311","46249","46179","46169","46159","46149","46119","46069","46088","46111","46141","46151","46161","46171","46241","46319","46309","46279","46009"]
+  },
+
     {
     "n": "979",
     "t": "Trunk",

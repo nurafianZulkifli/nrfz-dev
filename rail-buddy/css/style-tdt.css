@@ -27,10 +27,6 @@ body.dark-mode .mobile-bottom-nav {
     color: #8f2d22 !important;
 }
 
-#scrollUp {
-    display: none !important;
-}
-
 .page-title-wrapper>div>div:first-child {
     margin-bottom: 0px;
 }
@@ -125,6 +121,28 @@ body.dark-mode .list-group-item:hover {
     background-color: #334250;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+#scrollUp {
+    position: fixed;
+    right: 40px;
+    font-size: 20px;
+    line-height: 47px;
+    width: 46px;
+    height: 46px;
+    bottom: 60px;
+    background-color: #d17321;
+    color: #fff;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0 2px 40px 0px rgba(15, 15, 15, 0.15);
+    z-index: 12345111212;
+    display: block !important;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.3s cubic-bezier(.4, 0, .2, 1), transform 0.3s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 995px) {

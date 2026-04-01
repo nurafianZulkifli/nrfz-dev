@@ -40,10 +40,6 @@ body.dark-mode .mobile-bottom-nav {
     color: #000;
 }
 
-#scrollUp {
-    display: none !important;
-}
-
 .page-title-wrapper>div>div:first-child {
     margin-bottom: 0px;
 }
@@ -1161,6 +1157,27 @@ body.dark-mode .about-me-summ {
 
 body.dark-mode .list-group-item {
     background-color: #1c1f2b;
+}
+
+#scrollUp {
+    position: fixed;
+    right: 40px;
+    font-size: 20px;
+    line-height: 47px;
+    width: 46px;
+    height: 46px;
+    bottom: 60px;
+    background-color: #ec451b;
+    color: #fff;
+    text-align: center;
+    border-radius: 25px;
+    z-index: 12345111212;
+    display: block !important;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.3s cubic-bezier(.4, 0, .2, 1), transform 0.3s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

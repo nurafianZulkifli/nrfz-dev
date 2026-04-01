@@ -1,70 +1,37 @@
- 	 	Clementi Ave 3
-0.0	 17009	 • Clementi Int
- 	 	Clementi Ave 5
-0.8	 17221	 • Blk 377
- 	 	Ulu Pandan Rd
-1.6	 12119	 • Police KINS Trg Camp
-1.8	 12059	 • Opp Pine Gr Condo
-2.1	 12049	 • Opp Pandan Valley
-2.5	 12039	 • Opp Pandan Valley Condo
- 	 	Holland Rd
-2.8	 12029	 • Opp Moonbeam Wk
-3.2	 11299	 • Opp Cold Storage Jelita
-3.6	 11289	 • Opp Tan Boon Chong Ave
-3.9	 11279	 • Aft Coronation Rd West
-4.4	 11269	 • Opp Holland Village
-5.3	 11239	 • Fairlodge
-5.7	 11229	 • Sommerville Pk
-5.9	 11219	 • Great Eastern Mansions
-6.3	 11209	 • Opp Peirce Rd
-6.7	 13029	 • Bef Tyersall Ave
- 	 	Napier Rd
-7.3	 13019	 • Napier Stn Exit 1
-7.5	 09149	 • Opp British Council
- 	 	Tanglin Rd
-8.1	 09159	 • Aft Tomlinson Rd
- 	 	Orchard Rd
-8.4	 09169	 • Delfi Orchard
-8.7	 09179	 • Royal Thai Embassy
-9.2	 09048	 • Orchard Stn/Lucky Plaza
-9.8	 09038	 • Opp Somerset Stn
-10.2	 08138	 • Concorde Hotel S'pore
-10.6	 08057	 • Dhoby Ghaut Stn
- 	 	Bras Basah Rd
-11.1	 08069	 • Bencoolen Stn Exit B
-11.4	 04179	 • Aft Bras Basah Stn Exit A
- 	 	Victoria St
-11.6	 01012	 • Hotel Grand Pacific
-12.1	 01112	 • Opp Bugis Stn Exit C
-12.7	 01121	 • Aft Victoria Ln
-13.0	 01211	 • Opp Blk 461
- 	 	Kallang Rd
-13.3	 01311	 • Lavender Stn Exit B
-13.9	 80011	 • Aft Padang Jeringau
- 	 	Sims Ave
-14.4	 80031	 • Kallang Stn
-14.7	 80051	 • Aft Lor 1 Geylang
- 	 	Sims Way
-15.3	 80119	 • Aft Geylang Rd
- 	 	Guillemard Rd
-15.9	 80251	 • Aft Lor 14 Geylang
-16.4	 81169	 • Opp Blk 56
-16.9	 81159	 • Opp Kong Hwa Sch
-17.2	 81149	 • The Sunny Spring Condo
-17.6	 81139	 • Grandlink Sq
- 	 	Paya Lebar Rd
- • Express
- 	 	Sims Ave
-18.2	 82011	 • Aft Paya Lebar Quarter
-18.5	 82033	 • Blk 414
-19.0	 82061	 • Eunos Stn/Int
- 	 	Sims Ave East
-19.6	 83011	 • Casa Sarina
-19.9	 83031	 • Opp Hong San Si Tp
-20.3	 83062	 • Kembangan Stn
-20.8	 83081	 • Opp Perpetual Succour Ch
- 	 	New Upp Changi Rd
-21.4	 84011	 • Chai Chee Ind Pk
-21.7	 84021	 • Blk 32
- 	 	Bedok Nth Dr
-22.5	 84009	 • Bedok Int
+ 	 	W'lands Sq
+0.0	 46009	 • Woodlands Int
+ 	 	W'lands Ave 2
+0.7	 46271	 • Opp Blk 802
+ 	 	Riverside Rd
+1.1	 46301	 • Progen Bldg
+ 	 	Marsiling Rd
+1.5	 46311	 • Blk 18
+ 	 	Marsiling Lane
+1.8	 46249	 • Blk 15
+2.0	 46179	 • Blk 18
+2.3	 46169	 • Opp GES
+2.5	 46159	 • Blk 206
+ 	 	Marsiling Dr
+2.9	 46149	 • Blk 203
+ 	 	Admiralty Rd
+3.5	 46119	 • Marsiling CC
+ 	 	W'lands Ctr Rd
+4.4	 46069	 • W'lands Train Checkpt
+4.7	 46088	 • Blk 25
+ 	 	Admiralty Rd
+5.1	 46111	 • Blk 23
+ 	 	Marsiling Dr
+5.6	 46141	 • Blk 32
+ 	 	Marsiling Lane
+5.9	 46151	 • Blk 212
+6.1	 46161	 • GES S'pore
+6.4	 46171	 • Opp Blk 19
+6.7	 46241	 • Opp Blk 15
+ 	 	Marsiling Rd
+6.9	 46319	 • Opp Blk 18
+ 	 	Riverside Rd
+7.3	 46309	 • Opp Progen Bldg
+ 	 	W'lands Ave 2
+7.8	 46279	 • Blk 803
+ 	 	W'lands Sq
+8.4	 46009	 • Woodlands Int
