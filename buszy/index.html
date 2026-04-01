@@ -438,6 +438,14 @@
         display: block;
     }
 
+ .list-group-item:first-child,
+ .list-group-item:last-child {
+        transition-duration: 800ms;
+        border-radius: 20px;
+        margin-top: 2em;
+        font-size: 20px;
+    }
+
     @media (max-width: 768px) {
         #cv-bat {
             height: 50vh;
@@ -715,11 +723,12 @@
                             <span class="spinner" role="status" style="margin-right: 1em;"></span>Loading Data...
                         </p>
                     </div>
-                    <div class="pagination-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 2em; flex-wrap: nowrap;">
-                        <button id="prev-button" class="btn pw-btn-prev btn-2 mt-15"
-                            style="display: none;"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button id="next-button" class="btn pw-btn-next btn-2 mt-15"
-                            style="display: none;"><i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="pagination-buttons"
+                        style="display: flex; gap: 10px; justify-content: center; margin-top: 2em; flex-wrap: nowrap;">
+                        <button id="prev-button" class="btn pw-btn-prev btn-2 mt-15" style="display: none;"><i
+                                class="fa-solid fa-arrow-left"></i></button>
+                        <button id="next-button" class="btn pw-btn-next btn-2 mt-15" style="display: none;"><i
+                                class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </section>
             </div>
