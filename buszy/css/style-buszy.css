@@ -1008,7 +1008,7 @@ body.dark-mode .list-group-item:first-child,
 .body.dark-mode .list-group-item:last-child {
     transition-duration: 800ms;
     border-radius: 20px;
-    margin-top: 2em;
+    margin-top: 1em;
     font-size: 20px;
 }
 
