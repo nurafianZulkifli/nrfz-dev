@@ -1279,6 +1279,40 @@
     "r": "Service 979 is a trunk service plying from Bukit Panjang and looping at Choa Chu Kang Crescent within the Yew Tee estate. It passes through Woodlands Road, Stagmont Ring, Choa Chu Kang Street 52 and Yew Tee MRT.",
     "st": ["45009","44259","44041","44051","43991","44061","45011","45021","45491","45361","45301","45469","45261","45271","45321","45389","45401","45411","45421","45439","45399","45329","45279","45269","45461","45309","45369","45489","45029","44999","45019","44069","44059","44049","44031","45009"]
 
+  },
+
+    {
+    "n": "993",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Jurong East Int",
+    "lp": "Bt Batok West Ave 8",
+    "te": "Jurong East Int",
+    "h": "05:45 – 00:00",
+    "freq_detail": {
+      "weekdays": {
+        "06:30-08:30": "12",
+        "08:31-16:59": "15-18",
+        "17:00-19:00": "13-17",
+        "19:01-23:59": "13-20"
+      },
+      "saturdays": {
+        "06:30-08:30": "20",
+        "08:31-16:59": "20",
+        "17:00-19:00": "20",
+        "19:01-23:59": "20"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "20",
+        "08:31-16:59": "20",
+        "17:00-19:00": "20",
+        "19:01-23:59": "20"
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 993 is a trunk service operating from Jurong East Bus Interchange and loops at Bukit Batok West Avenue 8, serving residential estates in Bukit Batok West..",
+  "st":["28009","28441","28071","28081","28281","28291","43459","40321","40331","40351","40361","43799","43779","43789","40311","40359","40339","40329","43453","28299","28289","28089","28079","28449","28009"]
   }
 
 

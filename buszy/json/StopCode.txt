@@ -1,37 +1,43 @@
- 	 	W'lands Sq
-0.0	 46009	 • Woodlands Int
- 	 	W'lands Ave 2
-0.7	 46271	 • Opp Blk 802
- 	 	Riverside Rd
-1.1	 46301	 • Progen Bldg
- 	 	Marsiling Rd
-1.5	 46311	 • Blk 18
- 	 	Marsiling Lane
-1.8	 46249	 • Blk 15
-2.0	 46179	 • Blk 18
-2.3	 46169	 • Opp GES
-2.5	 46159	 • Blk 206
- 	 	Marsiling Dr
-2.9	 46149	 • Blk 203
- 	 	Admiralty Rd
-3.5	 46119	 • Marsiling CC
- 	 	W'lands Ctr Rd
-4.4	 46069	 • W'lands Train Checkpt
-4.7	 46088	 • Blk 25
- 	 	Admiralty Rd
-5.1	 46111	 • Blk 23
- 	 	Marsiling Dr
-5.6	 46141	 • Blk 32
- 	 	Marsiling Lane
-5.9	 46151	 • Blk 212
-6.1	 46161	 • GES S'pore
-6.4	 46171	 • Opp Blk 19
-6.7	 46241	 • Opp Blk 15
- 	 	Marsiling Rd
-6.9	 46319	 • Opp Blk 18
- 	 	Riverside Rd
-7.3	 46309	 • Opp Progen Bldg
- 	 	W'lands Ave 2
-7.8	 46279	 • Blk 803
- 	 	W'lands Sq
-8.4	 46009	 • Woodlands Int
+ 	 	Jurong Gateway Rd
+0.0	 28009	 • Jurong East Int
+ 	 	Jurong East Ctrl
+0.7	 28441	 • Seventh-Day Advent Ch
+ 	 	Boon Lay Way
+1.0	 28071	 • Blk 105
+1.3	 28081	 • Blk 112
+ 	 	Jurong Town Hall Rd
+1.7	 28281	 • Opp Blk 227
+2.0	 28291	 • Blk 303
+ 	 	Bt Batok Rd
+2.5	 43459	 • Aft PIE
+ 	 	Bt Batok West Ave 8
+3.1	 40321	 • Dulwich College
+ 	 	Bt Batok West Ave 9
+3.3	 40331	 • Blk 460D
+ 	 	Bt Batok West Ave 6
+3.6	 40351	 • Blk 461C
+ 	 	Bt Batok West Ave 8
+3.9	 40361	 • Blk 438A
+4.3	 43799	 • Blk 432A
+ 	 	Bt Batok Rd
+4.8	 43779	 • Blk 433C
+5.1	 43789	 • Blk 436A
+ 	 	Bt Batok West Ave 6
+5.4	 40311	 • Blk 439C
+5.7	 40359	 • Opp Blk 461C
+ 	 	Bt Batok West Ave 9
+6.0	 40339	 • Blk 448B
+ 	 	Bt Batok West Ave 8
+6.4	 40329	 • Millennia Institute
+ 	 	Bt Batok Rd
+6.9	 43453	 • Bef PIE
+ 	 	Jurong Town Hall Rd
+7.3	 28299	 • Blk 253
+7.6	 28289	 • Blk 228
+ 	 	Boon Lay Way
+7.9	 28089	 • Bef Yuhua CC
+8.2	 28079	 • Blk 210
+ 	 	Jurong East Ctrl
+8.6	 28449	 • Bef Seventh-Day Advent Ch
+ 	 	Jurong Gateway Rd
+9.2	 28009	 • Jurong East Int
