@@ -282,23 +282,39 @@
         color: #000;
     }
 
-    .other-apps-card i {
+    .other-apps-chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 2px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .other-apps-chevron i {
         font-size: 1.1rem;
         color: rgba(0, 0, 0, 0.6);
         flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .other-apps-card:hover i {
+    .other-apps-chevron:hover i {
         color: rgba(0, 0, 0, 0.9);
     }
 
-    body.dark-mode .other-apps-card i {
+    body.dark-mode .other-apps-chevron i {
         font-size: 1.1rem;
         color: rgba(232, 232, 232, 0.6);
         flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    body.dark-mode .other-apps-card:hover i {
+    body.dark-mode .other-apps-chevron:hover i {
         color: rgba(232, 232, 232, 0.9);
     }
 
@@ -487,7 +503,7 @@
                                 <img src="assets/icon-512.png" alt="Buszy" class="app-branding-icon">
                             </div>
                             <h1 class="app-branding-title">Buszy</h1>
-                            <p class="app-branding-version">Version 4.1.x (1515)</p>
+                            <p class="app-branding-version">Version 4.1.x (2305)</p>
                         </div>
                     </div>
                 </div>
@@ -504,13 +520,17 @@
             <div style="margin-bottom: 3em; margin-top: 0;">
                 <h3 class="other-apps-heading">Other Apps</h3>
                 <div class="other-apps-grid">
-                    <a href="../rail-buddy/index.html" class="other-apps-card">
-                        <div class="other-apps-icon">
-                            <img src="../rail-buddy/assets/icon-512.png" alt="RailBuddy" width="48" height="48">
-                        </div>
-                        <h5 class="other-apps-name">RailBuddy</h5>
-                        <i class="fa-regular fa-chevron-right" style="margin-left: auto;"></i>
-                    </a>
+                    <div class="other-apps-card">
+                        <a href="../rail-buddy/index.html" style="display: flex; align-items: center; gap: 16px; flex: 1; text-decoration: none; color: inherit;">
+                            <div class="other-apps-icon">
+                                <img src="../rail-buddy/assets/icon-512.png" alt="RailBuddy" width="48" height="48">
+                            </div>
+                            <h5 class="other-apps-name">RailBuddy</h5>
+                        </a>
+                        <a href="../index.html" class="other-apps-chevron">
+                            <i class="fa-regular fa-chevron-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -561,7 +581,7 @@
 
     <script src="js/mob-navtabs-tooltip.js"></script>
 
-    <script src="tdt-subp.js"></script>
+    <script src="buszy-subp.js"></script>
 
     <script src="../js/jquery.min.js"></script>
 
