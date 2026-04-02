@@ -236,10 +236,16 @@ async function getServiceDirections(serviceNumber, localService) {
                 });
 
                 console.log(`Found ${directionsOrder.length} directions for service ${serviceNumber}:`, directionsOrder);
-                return {
-                    directions: directionsOrder,
-                    directionDetails: directionsMap
-                };
+                
+                // Only return if we actually found directions for this service
+                if (directionsOrder.length > 0) {
+                    return {
+                        directions: directionsOrder,
+                        directionDetails: directionsMap
+                    };
+                } else {
+                    console.log(`Service ${serviceNumber} not found in API response, falling back to local data`);
+                }
             }
         }
     } catch (error) {
@@ -250,13 +256,15 @@ async function getServiceDirections(serviceNumber, localService) {
     if (localService && localService.directions) {
         console.log(`Using local directions for service ${serviceNumber}:`, localService.directions);
         const directionsMap = {};
-        localService.directions.forEach(dir => {
+        // Convert directions to strings to match JSON keys
+        const directionsArray = localService.directions.map(d => String(d));
+        directionsArray.forEach(dir => {
             directionsMap[dir] = {
                 direction: dir
             };
         });
         return {
-            directions: localService.directions,
+            directions: directionsArray,
             directionDetails: directionsMap
         };
     }
@@ -403,6 +411,7 @@ function createDirectionSelector(directions, onDirectionChange) {
 }
 
 // Populate page with service data (compact format)
+// Version: Service 67 debug fix v3
 async function populateServiceData(serviceNumber, service) {
     if (!service) {
         showErrorMessage('Service information not found. Please check the service number.');
@@ -443,19 +452,33 @@ async function populateServiceData(serviceNumber, service) {
         directions,
         directionDetails
     } = await getServiceDirections(serviceNumber, service);
-    let currentDirection = directions[0];
+    let currentDirection = String(directions[0]);  // Ensure direction is a string
+    
+    console.log('Service object:', service);
+    console.log('Has freq_detail?', !!service.freq_detail);
+    console.log('Has direction_freqs?', !!service.direction_freqs);
+    console.log('currentDirection:', currentDirection, 'type:', typeof currentDirection);
+    if (service.direction_freqs) {
+        console.log('direction_freqs[currentDirection]:', service.direction_freqs[currentDirection]);
+        console.log('All direction_freqs keys:', Object.keys(service.direction_freqs));
+    }
     
     // Display frequency with direction info for the current direction
     if (service.freq_detail) {
+        console.log('Using freq_detail');
         displayFrequencyDetails(service.freq_detail, service, currentDirection);
     } else if (service.direction_freqs && service.direction_freqs[currentDirection]) {
+        console.log('Using direction_freqs[' + currentDirection + ']');
         displayFrequencyDetails(service.direction_freqs[currentDirection], service, currentDirection);
     } else {
-        document.getElementById('frequency').textContent = service.f + ' mins';
+        console.log('No frequency data found. Fallback to service.f:', service.f);
+        document.getElementById('frequency').textContent = (service.f || 'undefined') + ' mins';
     }
 
     // Function to update stops and terminals for selected direction
     const updateStopsForDirection = async (direction) => {
+        // Ensure direction is a string to match JSON keys
+        direction = String(direction);
         currentDirection = direction;
 
         // Show loading indicator
@@ -567,6 +590,8 @@ async function populateServiceData(serviceNumber, service) {
 
 // Display frequency details by time period (collapsible)
 function displayFrequencyDetails(freqDetail, service, currentDirection) {
+    // Ensure direction is a string to match JSON keys
+    currentDirection = String(currentDirection);
     const frequencyElement = document.getElementById('frequency');
 
     // Use direction-specific frequencies if available, otherwise use general freq_detail
@@ -803,6 +828,12 @@ async function initializePage() {
     const service = data.find(s => s.n === serviceNumber);
     if (service) {
         console.log('Found service:', service);
+        console.log('Service keys:', Object.keys(service));
+        console.log('Has direction_freqs?', 'direction_freqs' in service);
+        if (service.direction_freqs) {
+            console.log('direction_freqs value:', service.direction_freqs);
+            console.log('direction_freqs keys:', Object.keys(service.direction_freqs));
+        }
         await populateServiceData(serviceNumber, service);
     } else {
         const availableServices = data.map(s => s.n).join(', ');
