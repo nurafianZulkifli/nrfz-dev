@@ -124,9 +124,46 @@ function loadBusServices() {
             console.error('Error loading bus services:', error);
             const loadingMessage = document.getElementById('loading-message');
             if (loadingMessage) {
-                loadingMessage.innerHTML = '<p style="color: red;"><i class="fa-regular fa-circle-exclamation"></i> Error loading bus services. Please try again later.</p>';
+                loadingMessage.innerHTML = '<p style="color: red; margin-bottom: 0rem;"><i class="fa-regular fa-circle-exclamation"></i> Error loading bus services. Please try again later.</p>';
             }
         });
+}
+
+function naturalSort(a, b) {
+    // Extract service numbers
+    const aNum = (a.n || '').toString();
+    const bNum = (b.n || '').toString();
+    
+    // Split into numeric and alphabetic parts
+    const aParts = aNum.match(/(\d+|\D+)/g) || [];
+    const bParts = bNum.match(/(\d+|\D+)/g) || [];
+    
+    // Compare each part
+    for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+        const aPart = aParts[i] || '';
+        const bPart = bParts[i] || '';
+        
+        // Check if both parts are numeric
+        const aIsNum = /^\d+$/.test(aPart);
+        const bIsNum = /^\d+$/.test(bPart);
+        
+        if (aIsNum && bIsNum) {
+            // Compare numerically
+            const aVal = parseInt(aPart, 10);
+            const bVal = parseInt(bPart, 10);
+            if (aVal !== bVal) {
+                return aVal - bVal;
+            }
+        } else {
+            // Compare alphabetically
+            const comparison = aPart.localeCompare(bPart);
+            if (comparison !== 0) {
+                return comparison;
+            }
+        }
+    }
+    
+    return 0;
 }
 
 function displayServices(services) {
@@ -139,9 +176,12 @@ function displayServices(services) {
         return;
     }
     
+    // Sort services by service number using natural sort
+    const sortedServices = services.sort(naturalSort);
+    
     // Store filtered services
-    filteredServices = services;
-    totalPages = Math.ceil(services.length / limit);
+    filteredServices = sortedServices;
+    totalPages = Math.ceil(sortedServices.length / limit);
     currentPage = 1;
     
     // Display current page

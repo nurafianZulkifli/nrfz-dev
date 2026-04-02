@@ -1,43 +1,94 @@
- 	 	Jurong Gateway Rd
-0.0	 28009	 • Jurong East Int
- 	 	Jurong East Ctrl
-0.7	 28441	 • Seventh-Day Advent Ch
- 	 	Boon Lay Way
-1.0	 28071	 • Blk 105
-1.3	 28081	 • Blk 112
- 	 	Jurong Town Hall Rd
-1.7	 28281	 • Opp Blk 227
-2.0	 28291	 • Blk 303
- 	 	Bt Batok Rd
-2.5	 43459	 • Aft PIE
- 	 	Bt Batok West Ave 8
-3.1	 40321	 • Dulwich College
- 	 	Bt Batok West Ave 9
-3.3	 40331	 • Blk 460D
- 	 	Bt Batok West Ave 6
-3.6	 40351	 • Blk 461C
- 	 	Bt Batok West Ave 8
-3.9	 40361	 • Blk 438A
-4.3	 43799	 • Blk 432A
- 	 	Bt Batok Rd
-4.8	 43779	 • Blk 433C
-5.1	 43789	 • Blk 436A
- 	 	Bt Batok West Ave 6
-5.4	 40311	 • Blk 439C
-5.7	 40359	 • Opp Blk 461C
- 	 	Bt Batok West Ave 9
-6.0	 40339	 • Blk 448B
- 	 	Bt Batok West Ave 8
-6.4	 40329	 • Millennia Institute
- 	 	Bt Batok Rd
-6.9	 43453	 • Bef PIE
- 	 	Jurong Town Hall Rd
-7.3	 28299	 • Blk 253
-7.6	 28289	 • Blk 228
- 	 	Boon Lay Way
-7.9	 28089	 • Bef Yuhua CC
-8.2	 28079	 • Blk 210
- 	 	Jurong East Ctrl
-8.6	 28449	 • Bef Seventh-Day Advent Ch
- 	 	Jurong Gateway Rd
-9.2	 28009	 • Jurong East Int
+0.0	 16009	 • Kent Ridge Ter
+ 	 	Pasir Panjang Rd
+0.4	 16089	 • Aft Clementi Rd
+0.7	 16079	 • Bef Pasir Panjang PO
+1.0	 16069	 • Heng Mui Keng Terr
+1.3	 16059	 • Jamiyah Halfway Hse
+1.5	 16049	 • Whitehaven
+1.7	 16039	 • S'pore Science Pk II
+2.0	 16029	 • Gloria Mansion
+2.5	 16019	 • Haw Par Villa Stn
+2.7	 16209	 • Horizon Residences
+3.0	 15229	 • Bef Sth Buona Vista Rd
+3.2	 15219	 • Pasir View Pk
+3.6	 15209	 • Bef Pasir Panjang Stn
+3.9	 15199	 • Opp Currency Hse
+4.4	 15169	 • HarbourSide Bldg 2
+4.6	 15159	 • Mapletree Business City
+4.9	 15149	 • Opp Labrador Pk Stn
+ 	 	Telok Blangah Rd
+5.3	 14189	 • Aft Alexandra Rd
+5.6	 14179	 • Yeo's Bldg
+6.0	 14169	 • Opp Telok Blangah Stn
+6.5	 14159	 • Hotel Faber Pk
+6.9	 14139	 • Bef Seah Im Rd
+7.4	 14129	 • HarbourFront Stn Exit A
+7.7	 14119	 • Opp VivoCity
+ 	 	Keppel Rd
+8.4	 14109	 • Keppel DP Blk 517
+8.8	 14089	 • Opp Tg Pagar DP Blk F5
+9.6	 14069	 • Former Railway Stn
+10.2	 05641	 • Bef Cantonment Rd
+ 	 	Anson Rd
+10.6	 03222	 • Hub Synergy Pt
+ 	 	Robinson Rd
+11.3	 03111	 • Aft Capital Twr
+11.6	 03071	 • 80 Robinson Rd
+11.9	 03031	 • Raffles Pl Stn Exit F
+ 	 	Fullerton Rd
+12.5	 03011	 • Fullerton Sq
+ 	 	Esplanade Dr
+13.1	 02111	 • Esplanade Bridge
+ 	 	Nicoll Highway
+13.8	 80151	 • Opp Suntec City
+14.5	 80161	 • Opp Nicoll Highway Stn
+16.1	 80211	 • Opp Natl Stadium
+ 	 	Mountbatten Rd
+16.7	 80149	 • S.A. Deaf
+ 	 	Old Airport Rd
+17.3	 81171	 • Blk 39
+17.8	 81181	 • Dakota Stn Exit A/Blk 99
+ 	 	Dunman Rd
+18.2	 81191	 • Aft Old Airport Rd
+ 	 	Tg Katong Rd
+18.7	 82079	 • Tg Katong Girls' Sch
+19.2	 92169	 • Bef Katong PO
+ 	 	Mountbatten Rd
+19.7	 92091	 • Opp One Amber
+20.0	 92101	 • Katong Shop Ctr
+ 	 	East Coast Rd
+20.2	 92111	 • Opp Roxy Sq
+20.7	 92121	 • Opp The Holy Family Ch
+21.2	 92131	 • Caltex Stn
+21.6	 92141	 • KiddiWinkie S/H @ East Coast
+21.8	 92151	 • Christ Meth Ch
+22.1	 93051	 • Aft Dunbar Wk
+22.5	 93061	 • Bef Siglap Rd
+ 	 	Upp East Coast Rd
+22.9	 93071	 • Crescendo Bldg
+23.3	 93081	 • Opp Chiang Ct
+23.6	 93091	 • Opp Siglap Sth CC
+24.0	 94011	 • Evergreen Gdn
+24.4	 94021	 • Bef Sennett Rd
+24.7	 94031	 • Opp Bayshore Stn Exit 3
+25.1	 94041	 • Aft Parbury Ave
+25.5	 94051	 • Opp Temasek Sec Sch
+26.0	 94061	 • Kew Green Condo
+26.5	 94071	 • Opp Bedok Camp 2
+ 	 	Bedok Rd
+26.9	 85021	 • Country Pk
+27.3	 85031	 • Excelsior Gdns
+27.5	 85041	 • Man Fatt Lam Tp
+27.9	 85051	 • Aft Jln Chempaka Kuning
+28.2	 85061	 • Opp Bedok Mkt Pl
+ 	 	Upp Changi Rd
+28.4	 85081	 • Bef Jln Pari Burong
+28.7	 85071	 • Bef Changi Fire Stn
+ 	 	Simei Ave
+29.1	 96101	 • Blk 3012
+29.5	 96281	 • Opp Changi General Hosp
+ 	 	Tampines Ave 5
+30.8	 76061	 • Blk 938
+31.3	 76051	 • Our Tampines Hub
+ 	 	Tampines Ctrl 1
+31.9	 75009	 • Tampines Int
