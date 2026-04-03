@@ -1,104 +1,100 @@
- 	 	Tampines Ctrl 1
-0.0	 75009	 • Tampines Int
- 	 	Tampines Ave 5
-0.6	 76059	 • Opp Our Tampines Hub
-1.1	 76069	 • Blk 147
- 	 	Tampines Ave 1
-1.8	 75059	 • Bef Tampines West Stn
- 	 	Bedok Resvr Rd
-2.5	 75069	 • Blk 970A
-2.7	 74949	 • Blk 961A
-3.1	 75349	 • The Clearwater Condo
- 	 	Bedok Nth Ave 3
-3.3	 84209	 • Bedok Resvr Stn Exit B
-3.8	 84529	 • Blk 109
-4.1	 84219	 • Blk 139
-4.5	 84199	 • Opp Blk 220 CP
+ 	 	Jurong West Ctrl 3
+0.0	 22009	 • Boon Lay Int
+ 	 	Boon Lay Way
+0.9	 21699	 • Summerdale
+1.1	 21689	 • Blk 200
+ 	 	Corporation Rd
+1.4	 21229	 • Opp S'pore A'space Mfg
+1.6	 21219	 • Lakepoint Condo
+ 	 	Corporation Dr
+2.0	 21619	 • Aft Corp Rd
+2.4	 21609	 • Opp Blk 364
+2.8	 21599	 • Blk 117
+3.1	 21589	 • Opp Blk 65
+3.4	 21579	 • Jurong Sec Sch
+3.6	 21569	 • Opp Blk 158
+ 	 	Yung Ho Rd
+4.1	 21559	 • CISCO Recall
+ 	 	Corporation Rd
+4.3	 21179	 • Corp Pl
+ 	 	Jln Ahmad Ibrahim
+4.8	 21029	 • Aft Corp Pl
+5.4	 21019	 • Aft Yuan Ching Rd
+6.8	 20089	 • Opp Carrier S'pore
+ 	 	Jurong Town Hall Rd
+7.8	 20269	 • Bef Pandan Gdns
+8.0	 20259	 • C'wealth Sec Sch
+ 	 	West Coast Rd
+8.3	 20159	 • Blk 411
+8.6	 20149	 • Blk 408
+9.0	 20139	 • Opp Angliss Bldg
+ 	 	West Coast Highway
+9.5	 20289	 • The Japanese Sec Sch
+ 	 	West Coast Rd
+10.0	 20299	 • Blk 501
+10.2	 17079	 • Blk 512
+10.5	 17069	 • Opp Blk 701
+11.0	 17049	 • Blk 601
+11.4	 17039	 • Opp Kent Ridge Sec Sch
+11.7	 17389	 • Opp West Bay Resort Condo
+12.0	 17029	 • Opp Waseda S Snr High Sch
+12.4	 17019	 • Varsity Pk
+ 	 	Pasir Panjang Rd
+12.7	 16089	 • Aft Clementi Rd
+13.0	 16079	 • Bef Pasir Panjang PO
+13.3	 16069	 • Heng Mui Keng Terr
+13.6	 16059	 • Jamiyah Halfway Hse
+13.8	 16049	 • Whitehaven
+14.0	 16039	 • S'pore Science Pk II
+14.3	 16029	 • Gloria Mansion
+14.8	 16019	 • Haw Par Villa Stn
+15.0	 16209	 • Horizon Residences
+15.3	 15229	 • Bef Sth Buona Vista Rd
+15.5	 15219	 • Pasir View Pk
+15.9	 15209	 • Bef Pasir Panjang Stn
+16.2	 15199	 • Opp Currency Hse
+16.7	 15169	 • HarbourSide Bldg 2
+16.9	 15159	 • Mapletree Business City
+17.2	 15149	 • Opp Labrador Pk Stn
+ 	 	Telok Blangah Rd
+17.6	 14189	 • Aft Alexandra Rd
+17.9	 14179	 • Yeo's Bldg
+18.3	 14169	 • Opp Telok Blangah Stn
+18.8	 14159	 • Hotel Faber Pk
+19.2	 14139	 • Bef Seah Im Rd
+19.7	 14129	 • HarbourFront Stn Exit A
+20.0	 14119	 • Opp VivoCity
+ 	 	Keppel Rd
+20.7	 14109	 • Keppel DP Blk 517
+21.1	 14089	 • Opp Tg Pagar DP Blk F5
+21.9	 14069	 • Former Railway Stn
+22.5	 05641	 • Bef Cantonment Rd
+ 	 	MCE
+ • Express
+ 	 	Fort Rd
+30.1	 91081	 • Aft Katong Pk Stn Exit 2
+ 	 	Mountbatten Rd
+30.6	 91091	 • Bef Kg Kayu Rd
+ 	 	Old Airport Rd
+31.4	 81171	 • Blk 39
+31.9	 81181	 • Dakota Stn Exit A/Blk 99
+ 	 	Dunman Rd
+32.3	 81191	 • Aft Old Airport Rd
+ 	 	Tg Katong Rd
+32.7	 82081	 • Aft Dunman Rd
+32.9	 82091	 • Aft Queen of Peace Ch
+33.3	 82111	 • Opp Tg Katong Cplx
+ 	 	Sims Ave
+33.6	 82011	 • Aft Paya Lebar Quarter
+33.9	 82033	 • Blk 414
+34.4	 82061	 • Eunos Stn/Int
+ 	 	Sims Ave East
+35.0	 83011	 • Casa Sarina
+35.3	 83031	 • Opp Hong San Si Tp
+35.7	 83062	 • Kembangan Stn
+36.2	 83081	 • Opp Perpetual Succour Ch
  	 	New Upp Changi Rd
-4.7	 84049	 • Blk 27
-5.4	 84039	 • Bedok Stn Exit A
-5.8	 84029	 • Opp Blk 32
-6.1	 84019	 • Opp Chai Chee Ind Pk
- 	 	Changi Rd
-6.6	 83099	 • Aft Perpetual Succour Ch
-7.0	 83079	 • Bef Siglap Plain
-7.4	 83059	 • Mjd Kassim
-7.6	 83049	 • Bef Lor 110 Changi
-8.0	 83029	 • Aft Kg Eunos
-8.4	 82069	 • Aft Lor 106 Changi
-8.9	 82049	 • Joo Chiat Cplx
- 	 	Geylang Rd
-9.3	 82029	 • Blk 14 Mkt/FC
-9.6	 82109	 • City Plaza
-9.9	 81069	 • Opp Lor 39 Geylang
-10.3	 81049	 • Aft Lor 34 Geylang
-10.6	 81029	 • Aft Lor 28 Geylang
-11.1	 80089	 • Bef Lor 18 Geylang
-11.5	 80069	 • Opp Mohd Salleh Mque
-12.0	 80049	 • Aft Sims Way
-12.2	 80039	 • Opp Lor 1 Geylang Ter
- 	 	Kallang Rd
-12.7	 80029	 • Bef Kg Bugis
- 	 	Lavender St
-13.2	 07371	 • Aft Kallang Rd
-13.5	 07361	 • Bef Kallang Bahru
-13.8	 07351	 • Arc 380
- 	 	Jln Besar
-14.0	 07329	 • Hoa Nam Bldg
-14.3	 07319	 • Aft Allenby Rd
-14.8	 07419	 • Opp Veerasamy Rd
-15.1	 07529	 • Jln Besar Stn Exit A
- 	 	Rochor Canal Rd
-15.5	 07531	 • Rochor Stn
- 	 	Bt Timah Rd
-15.9	 40011	 • Little India Stn Exit A
-16.4	 40271	 • Opp KK Women & Child Hosp
-16.9	 40021	 • Bef Winstedt Rd
-17.2	 40031	 • Newton FC
-17.6	 40041	 • Newton Stn Exit C
-18.0	 40051	 • Balmoral Plaza
-18.4	 40111	 • Ferrell Residences
-18.8	 40071	 • Leng Kwang Baptist Ch
-19.2	 40081	 • Stevens Stn Exit 1
-19.5	 40091	 • Bef Lewis Rd
-20.0	 41011	 • NUS Bt Timah Campus
-20.4	 41021	 • Botanic Gdns Stn
-20.8	 41031	 • Bef Crown Ctr
-21.0	 41041	 • Coronation Plaza
-21.4	 41051	 • Tan Kah Kee Stn
-21.6	 41061	 • Chinese High Sch
-22.0	 41071	 • Opp Natl JC
-22.6	 41081	 • Sixth Ave Stn
-22.9	 42011	 • Sixth Ave Ctr
-23.2	 42021	 • Aft Maple Ave
-23.5	 42031	 • The Tessarina
-23.9	 42041	 • The Nexus
-24.4	 42051	 • King Albert Pk Stn
-24.7	 42061	 • King Albert Pk
- 	 	Upp Bt Timah Rd
-25.1	 42071	 • Pei Hwa Presby Pr Sch
-25.6	 42091	 • Beauty World Stn Exit B
-26.1	 42111	 • Woh Hup Bldg
-26.3	 43011	 • Bt Regency
-26.8	 43021	 • Aft Old Jurong Rd
-27.3	 43041	 • Hume Stn Exit 1
-27.9	 43051	 • Opp The Rail Mall
-28.2	 43061	 • Hillview Stn Exit B
-28.4	 43071	 • Opp Dairy Farm Rd
-28.6	 43081	 • Opp St. Joseph's Ch (Bt Timah)
-28.9	 43091	 • Opp Cashew Stn
-29.4	 43111	 • Min of Defence
-29.6	 44011	 • Opp The Linear
-30.0	 44021	 • Bt Panjang Stn Exit B
- 	 	Choa Chu Kang Rd
-30.5	 44149	 • Opp Phoenix Stn
-30.8	 44139	 • Opp Blk 26
- 	 	Choa Chu Kang Way
-31.4	 44129	 • Sol Acres Condo
-31.8	 44449	 • Palm Gdns
-32.2	 44459	 • Opp South View Stn
-32.5	 44469	 • Blk 414
- 	 	Choa Chu Kang Ave 4
- • Non Stop
- 	 	Choa Chu Kang Loop
-33.3	 44009	 • Choa Chu Kang Int
+36.8	 84011	 • Chai Chee Ind Pk
+37.1	 84021	 • Blk 32
+ 	 	Bedok Nth Dr
+37.9	 84009	 • Bedok Int

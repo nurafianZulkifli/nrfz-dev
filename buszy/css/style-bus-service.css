@@ -428,13 +428,15 @@ body.dark-mode .bus-stop-description {
 /* Remarks & Short Bus Service */
 .remarks-section,
 .short-bus-service,
-.parent-bus-service {
+.parent-bus-service,
+.express-variant {
     margin: 2rem 0;
 }
 
 .remarks-section h2,
 .short-bus-service h2,
-.parent-bus-service h2 {
+.parent-bus-service h2,
+.express-variant h2 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
     display: flex;
@@ -444,12 +446,14 @@ body.dark-mode .bus-stop-description {
 
 .remarks-section i,
 .short-bus-service i,
-.parent-bus-service i {
+.parent-bus-service i,
+.express-variant i {
     color: #7cb000;
 }
 
 .short-bus-links,
-.parent-bus-links {
+.parent-bus-links,
+.express-variant-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
@@ -457,19 +461,22 @@ body.dark-mode .bus-stop-description {
 
 /* Make links smaller if there are less than 4 items */
 .short-bus-links:has(> :nth-last-child(-n+3)),
-.parent-bus-links:has(> :nth-last-child(-n+3)) {
+.parent-bus-links:has(> :nth-last-child(-n+3)),
+.express-variant-links:has(> :nth-last-child(-n+3)) {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 /* If only 1 or 2 buttons, display side by side */
 .short-bus-links:has(> :nth-last-child(-n+2)),
-.parent-bus-links:has(> :nth-last-child(-n+2)) {
+.parent-bus-links:has(> :nth-last-child(-n+2)),
+.express-variant-links:has(> :nth-last-child(-n+2)) {
     grid-template-columns: repeat(2, auto);
     justify-content: flex-start;
 }
 
 .short-bus-button,
-.parent-bus-button {
+.parent-bus-button,
+.express-variant-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -485,7 +492,8 @@ body.dark-mode .bus-stop-description {
 }
 
 .short-bus-button:hover,
-.parent-bus-button:hover {
+.parent-bus-button:hover,
+.express-variant-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
     color: #fff;
@@ -493,7 +501,8 @@ body.dark-mode .bus-stop-description {
 }
 
 .short-bus-button i,
-.parent-bus-button i {
+.parent-bus-button i,
+.express-variant-button i {
     font-size: 1rem;
 }
 

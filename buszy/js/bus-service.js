@@ -586,6 +586,12 @@ async function populateServiceData(serviceNumber, service) {
         document.getElementById('parent-bus-section').style.display = 'block';
         populateParentBusService(service.pb);
     }
+
+    // Express Variant section (if applicable)
+    if (service.ev && service.ev.length > 0) {
+        document.getElementById('express-variant-section').style.display = 'block';
+        populateExpressVariant(service.ev);
+    }
 }
 
 // Display frequency details by time period (collapsible)
@@ -801,6 +807,26 @@ function populateParentBusService(parentBusServices) {
         const link = document.createElement('a');
         link.href = `?service=${service}`;
         link.className = 'parent-bus-button';
+        link.innerHTML = `${service}`;
+        link.style.animationDelay = `${index * 0.05}s`;
+        linkContainer.appendChild(link);
+    });
+
+    container.appendChild(linkContainer);
+}
+
+// Populate express variant links
+function populateExpressVariant(expressVariants) {
+    const container = document.getElementById('express-variant-content');
+    container.innerHTML = '';
+
+    const linkContainer = document.createElement('div');
+    linkContainer.className = 'express-variant-links';
+
+    expressVariants.forEach((service, index) => {
+        const link = document.createElement('a');
+        link.href = `?service=${service}`;
+        link.className = 'express-variant-button';
         link.innerHTML = `${service}`;
         link.style.animationDelay = `${index * 0.05}s`;
         linkContainer.appendChild(link);
