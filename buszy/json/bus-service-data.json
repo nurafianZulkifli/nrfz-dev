@@ -1489,6 +1489,42 @@
     "c": "Regular Distance Fares",
     "r": "Service 30 is a trunk service plying between Bedok and Boon Lay, passing through Geylang Serai, Mountbatten, HarbourFront, Pasir Panjang, Teban Gardens and Corporation Drive, running from East to West of Singapore. ",
     "ev": ["30e"]
+  },
+    {
+    "n": "30e",
+    "t": "Trunk",
+    "op": "GAS",
+    "directions": [1],
+    "ts": "Bedok Int",
+    "te": "Pasir Panjang Rd",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+        "07:06": "From Bedok Int",
+        "07:18": "From Bedok Int",
+        "07:30": "From Bedok Int",
+        "07:42": "From Bedok Int",
+        "07:54": "From Bedok Int",
+        "17:36": "From Pasir Panjang Rd",
+        "17:48": "From Pasir Panjang Rd",
+        "18:00": "From Pasir Panjang Rd",
+        "18:12": "From Pasir Panjang Rd",
+        "18:24": "From Pasir Panjang Rd"
+    },
+      "direction_routes": {
+      "1": {
+        "ts": "Bedok Int",
+        "te": "Boon Lay Int",
+        "st":["84009","84029","84019","82069","81199","81189","81179","91099","91089","14141","14121","15141","15151","15161","15201","16011","16031","16061"]
+      },
+      "2": {
+        "ts": "Boon Lay Int",
+        "te": "Bedok Int",
+        "st":["16069","16039","16019","15209","15169","15159","15149","14129","14119","91081","91091","81171","81181","81191","82061","84011","84021","84009"]
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 30e is an express variant of Service 30, plying between Bedok and Pasir Panjang. It passes through Pasir Panjang, HarbourFront, MCE, Old Airport and Bedok.",
+    "pb": ["30"]
   }
 
 

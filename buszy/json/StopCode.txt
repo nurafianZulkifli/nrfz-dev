@@ -1,100 +1,57 @@
- 	 	Jurong West Ctrl 3
-0.0	 22009	 • Boon Lay Int
- 	 	Boon Lay Way
-0.9	 21699	 • Summerdale
-1.1	 21689	 • Blk 200
- 	 	Corporation Rd
-1.4	 21229	 • Opp S'pore A'space Mfg
-1.6	 21219	 • Lakepoint Condo
- 	 	Corporation Dr
-2.0	 21619	 • Aft Corp Rd
-2.4	 21609	 • Opp Blk 364
-2.8	 21599	 • Blk 117
-3.1	 21589	 • Opp Blk 65
-3.4	 21579	 • Jurong Sec Sch
-3.6	 21569	 • Opp Blk 158
- 	 	Yung Ho Rd
-4.1	 21559	 • CISCO Recall
- 	 	Corporation Rd
-4.3	 21179	 • Corp Pl
- 	 	Jln Ahmad Ibrahim
-4.8	 21029	 • Aft Corp Pl
-5.4	 21019	 • Aft Yuan Ching Rd
-6.8	 20089	 • Opp Carrier S'pore
- 	 	Jurong Town Hall Rd
-7.8	 20269	 • Bef Pandan Gdns
-8.0	 20259	 • C'wealth Sec Sch
- 	 	West Coast Rd
-8.3	 20159	 • Blk 411
-8.6	 20149	 • Blk 408
-9.0	 20139	 • Opp Angliss Bldg
- 	 	West Coast Highway
-9.5	 20289	 • The Japanese Sec Sch
- 	 	West Coast Rd
-10.0	 20299	 • Blk 501
-10.2	 17079	 • Blk 512
-10.5	 17069	 • Opp Blk 701
-11.0	 17049	 • Blk 601
-11.4	 17039	 • Opp Kent Ridge Sec Sch
-11.7	 17389	 • Opp West Bay Resort Condo
-12.0	 17029	 • Opp Waseda S Snr High Sch
-12.4	 17019	 • Varsity Pk
  	 	Pasir Panjang Rd
-12.7	 16089	 • Aft Clementi Rd
-13.0	 16079	 • Bef Pasir Panjang PO
-13.3	 16069	 • Heng Mui Keng Terr
-13.6	 16059	 • Jamiyah Halfway Hse
-13.8	 16049	 • Whitehaven
-14.0	 16039	 • S'pore Science Pk II
-14.3	 16029	 • Gloria Mansion
-14.8	 16019	 • Haw Par Villa Stn
-15.0	 16209	 • Horizon Residences
-15.3	 15229	 • Bef Sth Buona Vista Rd
-15.5	 15219	 • Pasir View Pk
-15.9	 15209	 • Bef Pasir Panjang Stn
-16.2	 15199	 • Opp Currency Hse
-16.7	 15169	 • HarbourSide Bldg 2
-16.9	 15159	 • Mapletree Business City
-17.2	 15149	 • Opp Labrador Pk Stn
+0.0	 16069	 • Heng Mui Keng Terr
+ • Express
+ • Express
+0.7	 16039	 • S'pore Science Pk II
+ • Express
+1.5	 16019	 • Haw Par Villa Stn
+ • Express
+ • Express
+ • Express
+2.6	 15209	 • Bef Pasir Panjang Stn
+ • Express
+3.4	 15169	 • HarbourSide Bldg 2
+3.6	 15159	 • Mapletree Business City
+3.9	 15149	 • Opp Labrador Pk Stn
  	 	Telok Blangah Rd
-17.6	 14189	 • Aft Alexandra Rd
-17.9	 14179	 • Yeo's Bldg
-18.3	 14169	 • Opp Telok Blangah Stn
-18.8	 14159	 • Hotel Faber Pk
-19.2	 14139	 • Bef Seah Im Rd
-19.7	 14129	 • HarbourFront Stn Exit A
-20.0	 14119	 • Opp VivoCity
+ • Express
+ • Express
+ • Express
+ • Express
+ • Express
+6.4	 14129	 • HarbourFront Stn Exit A
+6.7	 14119	 • Opp VivoCity
  	 	Keppel Rd
-20.7	 14109	 • Keppel DP Blk 517
-21.1	 14089	 • Opp Tg Pagar DP Blk F5
-21.9	 14069	 • Former Railway Stn
-22.5	 05641	 • Bef Cantonment Rd
+ • Express
+ • Express
+ • Express
+ • Express
  	 	MCE
  • Express
  	 	Fort Rd
-30.1	 91081	 • Aft Katong Pk Stn Exit 2
+16.8	 91081	 • Aft Katong Pk Stn Exit 2
  	 	Mountbatten Rd
-30.6	 91091	 • Bef Kg Kayu Rd
+17.3	 91091	 • Bef Kg Kayu Rd
  	 	Old Airport Rd
-31.4	 81171	 • Blk 39
-31.9	 81181	 • Dakota Stn Exit A/Blk 99
+18.1	 81171	 • Blk 39
+18.6	 81181	 • Dakota Stn Exit A/Blk 99
  	 	Dunman Rd
-32.3	 81191	 • Aft Old Airport Rd
+19.0	 81191	 • Aft Old Airport Rd
  	 	Tg Katong Rd
-32.7	 82081	 • Aft Dunman Rd
-32.9	 82091	 • Aft Queen of Peace Ch
-33.3	 82111	 • Opp Tg Katong Cplx
+ • Express
+ • Express
+ • Express
  	 	Sims Ave
-33.6	 82011	 • Aft Paya Lebar Quarter
-33.9	 82033	 • Blk 414
-34.4	 82061	 • Eunos Stn/Int
+ • Express
+ • Express
+21.1	 82061	 • Eunos Stn/Int
  	 	Sims Ave East
-35.0	 83011	 • Casa Sarina
-35.3	 83031	 • Opp Hong San Si Tp
-35.7	 83062	 • Kembangan Stn
-36.2	 83081	 • Opp Perpetual Succour Ch
+ • Express
+ • Express
+ • Express
+ • Express
  	 	New Upp Changi Rd
-36.8	 84011	 • Chai Chee Ind Pk
-37.1	 84021	 • Blk 32
+23.5	 84011	 • Chai Chee Ind Pk
+23.8	 84021	 • Blk 32
  	 	Bedok Nth Dr
-37.9	 84009	 • Bedok Int
+24.6	 84009	 • Bedok Int
