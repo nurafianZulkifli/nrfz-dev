@@ -157,11 +157,13 @@ if (document.readyState === 'loading') {
 async function fetchNearbyBusStops(latitude, longitude, onError) {
     const busStopsContainer = document.getElementById('bus-stops');
     try {
+        console.log('Fetching nearby bus stops for:', latitude, longitude);
         const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=2`);
         if (!response.ok) {
-            throw new Error('Failed to fetch nearby bus stops');
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
         const busStops = await response.json();
+        console.log('Received bus stops:', busStops);
         if (busStops && busStops.length > 0) {
             // Cache the bus stops in sessionStorage
             sessionStorage.setItem('nearbyBusStops', JSON.stringify(busStops));
@@ -170,11 +172,11 @@ async function fetchNearbyBusStops(latitude, longitude, onError) {
             busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-circle-info"></i>No Bus Stops found nearby.</p>';
         }
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error fetching nearby bus stops:', error);
         if (typeof onError === 'function') {
             onError();
         } else {
-            busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Failed to fetch nearby bus stops. Please try again later.</p>';
+            busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Failed to fetch nearby bus stops. Please try again later.<br><small style="font-size: 12px; opacity: 0.7;">Error: ' + error.message + '</small></p>';
         }
     }
 }
@@ -317,14 +319,19 @@ function displayBusStops(busStops, isCached = true) {
 
 // Handle refresh button click using event delegation
 function handleRefreshClick() {
+    console.log('Refresh button clicked');
     const refreshBtn = document.getElementById('refresh-nearby-btn');
-    if (!refreshBtn) return;
+    if (!refreshBtn) {
+        console.log('Refresh button not found');
+        return;
+    }
     
     const busStopsContainer = document.getElementById('bus-stops');
     const navbarContainer = document.querySelector('.navbar-container');
     const mobileBottomNav = document.querySelector('.mobile-bottom-nav');
     
     // Clear all cached data to force refresh
+    console.log('Clearing cached data');
     sessionStorage.removeItem('nearbyBusStops');
     sessionStorage.removeItem('userLocation');
     
@@ -335,15 +342,18 @@ function handleRefreshClick() {
     
     // Force a new location request (don't use cached location)
     if (!navigator.geolocation) {
+        console.error('Geolocation not supported');
         busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-circle-info"></i>Geolocation is not supported by your browser.</p>';
         if (navbarContainer) navbarContainer.classList.remove('nav-disabled');
         if (mobileBottomNav) mobileBottomNav.classList.remove('nav-disabled');
         return;
     }
 
+    console.log('Requesting current position');
     navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
+        console.log('Got position:', latitude, longitude);
         sessionStorage.setItem('userLocation', JSON.stringify({ latitude, longitude }));
         fetchNearbyBusStops(latitude, longitude, () => {
             busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Unable to refresh. Please try again.</p>';
@@ -352,7 +362,7 @@ function handleRefreshClick() {
         });
     }, (error) => {
         console.error('Geolocation error:', error);
-        busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Unable to retrieve location. Please try again.</p>';
+        busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Unable to retrieve location. Please try again.<br><small style="font-size: 12px; opacity: 0.7;">Error: ' + error.message + '</small></p>';
         if (navbarContainer) navbarContainer.classList.remove('nav-disabled');
         if (mobileBottomNav) mobileBottomNav.classList.remove('nav-disabled');
     }, {
@@ -388,14 +398,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Use event delegation for refresh button to avoid duplicate listeners
-    const busStopsContainer = document.getElementById('bus-stops');
-    if (busStopsContainer) {
-        busStopsContainer.addEventListener('click', (event) => {
+    // Use event delegation for refresh button - listen on nearby-content parent
+    const nearbyContent = document.getElementById('nearby-content');
+    if (nearbyContent) {
+        console.log('Setting up refresh button event listener on nearby-content');
+        nearbyContent.addEventListener('click', (event) => {
             if (event.target.closest('#refresh-nearby-btn')) {
+                console.log('Refresh button click detected');
                 handleRefreshClick();
             }
         });
+    } else {
+        console.warn('nearby-content container not found');
     }
 });
 
