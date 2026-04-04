@@ -184,6 +184,12 @@ function displayServices(services) {
     totalPages = Math.ceil(sortedServices.length / limit);
     currentPage = 1;
     
+    // Update service count display
+    const countElement = document.getElementById('service-count');
+    if (countElement) {
+        countElement.textContent = `(${sortedServices.length})`;
+    }
+    
     // Display current page
     displayPage(currentPage);
     
