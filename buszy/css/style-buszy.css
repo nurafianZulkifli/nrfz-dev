@@ -517,11 +517,17 @@ table th {
     text-align: left !important;
 }
 
-.list-group-item:first-child,
-.list-group-item:last-child {
+.list-group-item:first-child {
     transition-duration: 800ms;
     border-radius: 20px;
     margin-top: 1em;
+    font-size: 20px;
+}
+
+.list-group-item:last-child {
+    transition-duration: 800ms;
+    border-radius: 20px;
+    margin-bottom: 1em;
     font-size: 20px;
 }
 
@@ -1004,10 +1010,17 @@ body.dark-mode .bus-stop-code:hover {
     color: #a4c5e2 !important;
 }
 
-body.dark-mode .list-group-item:first-child,
+body.dark-mode .list-group-item:first-child {
+    transition-duration: 800ms;
+    border-radius: 20px;
+    margin-top: 1em;
+    font-size: 20px;
+}
+
 body.dark-mode .list-group-item:last-child {
     transition-duration: 800ms;
     border-radius: 20px;
+    margin-bottom: 1em;
     font-size: 20px;
 }
 
