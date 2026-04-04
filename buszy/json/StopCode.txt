@@ -1,41 +1,58 @@
-0.0	 80009	 • Lor 1 Geylang Ter
- 	 	Sims Ave
-0.3	 80051	 • Aft Lor 1 Geylang
- 	 	Sims Way
-0.9	 80119	 • Aft Geylang Rd
- 	 	Mountbatten Rd
-1.5	 80149	 • S.A. Deaf
- 	 	Stadium Blvd
-2.1	 80189	 • Opp Kallang Squash Ctr
- 	 	Stadium Cres
-2.9	 80179	 • Opp CP F
-3.2	 80199	 • Stadium Stn
- 	 	Stadium Wk
-3.3	 80191	 • Opp S'pore Indoor Stadium
- 	 	Tg Rhu Rd
-4.2	 90039	 • Opp Camelot By-The-Water
-4.6	 90049	 • Tanjong Rhu Stn Exit 1
-4.9	 90029	 • Opp Pebble Bay
-5.1	 90019	 • Pk Shore Condo
- 	 	Rhu Cross
-5.6	 90079	 • Opp Costa Rhu Condo
- 	 	Tg Rhu Rd
-5.9	 90011	 • Bef Tg Rhu View
-6.2	 90021	 • Pebble Bay
-6.5	 90041	 • Tanjong Rhu Stn Exit 2
-6.8	 90031	 • Camelot By-The-Water
- 	 	Stadium Cres
-7.8	 80199	 • Stadium Stn
- 	 	Stadium Wk
-7.9	 80191	 • Opp S'pore Indoor Stadium
-8.2	 80171	 • CP F
- 	 	Stadium Blvd
-8.9	 80181	 • Kallang Squash Ctr
- 	 	Mountbatten Rd
-9.3	 80141	 • Opp S.A. Deaf
- 	 	Sims Way
-9.9	 80111	 • Bef Geylang Rd
- 	 	Geylang Rd
-10.3	 80049	 • Aft Sims Way
- 	 	Lor 1 Geylang
-10.7	 80009	 • Lor 1 Geylang Ter
+0.0	 10499	 • Kampong Bahru Ter
+ 	 	Eu Tong Sen St
+1.2	 10017	 • Aft Hosp Dr
+2.2	 05013	 • Chinatown Stn Exit C
+2.6	 05023	 • Opp Hong Lim Pk
+2.9	 04222	 • Clarke Quay Stn Exit E
+ 	 	Hill St
+3.4	 04142	 • Armenian Ch
+ 	 	Victoria St
+3.9	 01012	 • Hotel Grand Pacific
+4.4	 01112	 • Opp Bugis Stn Exit C
+ 	 	Ophir Rd
+4.8	 01559	 • Village Hotel Bugis
+5.0	 01549	 •  Opp Duo Residences
+ 	 	ECP
+ • Express
+ 	 	Bedok Sth Ave 1
+14.5	 93139	 • Eastern Lagoon II
+14.9	 84159	 • Opp Casafina/Temasek JC
+ 	 	Bedok Sth Rd
+15.4	 84119	 • Blk 18
+15.8	 84149	 • Lion Hme For Elders
+16.0	 84089	 • Blk 40
+16.3	 84079	 • Opp Blk 71
+ 	 	Bedok Sth Ave 3
+16.7	 84109	 • Bef Bedok View Sec Sch
+ 	 	New Upp Changi Rd
+17.3	 85091	 • Tanah Merah Stn Exit B
+ 	 	Upp Changi Rd East
+ • Express
+ 	 	Simei Rd
+19.7	 96201	 • Simei Green Condo
+20.0	 96191	 • Blk 224
+20.3	 96181	 • Blk 151
+20.5	 96121	 • Metta Welfare Assn
+ 	 	Tampines Ave 2
+21.3	 76101	 • Tampines East CC
+21.5	 76031	 • Tampines East Stn Exit B
+ 	 	Tampines Ave 7
+21.9	 76231	 • Opp Blk 390
+22.2	 76241	 • Blk 497D
+ 	 	Loyang Ave
+22.8	 98011	 • Blk 149A
+ 	 	Pasir Ris Dr 1
+23.1	 98091	 • Blk 156
+ 	 	Pasir Ris St 11
+23.4	 78199	 • Opp White Sands Pr Sch
+23.7	 78189	 • Opp Blk 187
+ 	 	Pasir Ris St 12
+23.8	 78039	 • Blk 104
+ 	 	Pasir Ris Dr 1
+23.9	 78061	 • Blk 104
+ 	 	Pasir Ris Dr 6
+24.2	 78079	 • Blk 429
+24.6	 78089	 • Blk 405
+ 	 	Pasir Ris Dr 3
+25.0	 78101	 • Opp Downtown East
+25.6	 77009	 • Pasir Ris Int

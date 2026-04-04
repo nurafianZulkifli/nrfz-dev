@@ -607,14 +607,14 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
     }
 
     // Check if structure is nested (with day types) or flat (legacy)
-    const isNested = freqDetail.weekdays || freqDetail.saturdays || freqDetail.sundays_holidays;
+    const isNested = freqDetail.weekdays || freqDetail.saturdays || freqDetail.sundays_holidays || freqDetail['weekends/PH'];
 
     // Detect if this is a departure times format (contains non-frequency values like location names)
     let isDepartureTimes = false;
     if (isNested) {
         // Check nested structure for location names
         for (const dayType in freqDetail) {
-            if (['weekdays', 'saturdays', 'sundays_holidays'].includes(dayType)) {
+            if (['weekdays', 'saturdays', 'sundays_holidays', 'weekends/PH'].includes(dayType)) {
                 const dayValues = Object.values(freqDetail[dayType]);
                 isDepartureTimes = dayValues.some(val => {
                     const isFrequency = /\d+$/.test(val) || /\d+-\d+/.test(val);
@@ -658,11 +658,12 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
         const dayLabels = {
             'weekdays': 'Weekdays',
             'saturdays': 'Sat',
-            'sundays_holidays': 'Sun/PH'
+            'sundays_holidays': 'Sun/PH',
+            'weekends/PH': 'Weekends/PH'
         };
 
         for (const [dayType, times] of Object.entries(freqDetail)) {
-            if (['weekdays', 'saturdays', 'sundays_holidays'].includes(dayType)) {
+            if (['weekdays', 'saturdays', 'sundays_holidays', 'weekends/PH'].includes(dayType)) {
                 const dayLabel = dayLabels[dayType];
                 html += `<div class="frequency-day-group">
                     <div class="day-label">${dayLabel}</div>`;
