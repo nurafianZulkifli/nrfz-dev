@@ -1,57 +1,41 @@
- 	 	Pasir Panjang Rd
-0.0	 16069	 • Heng Mui Keng Terr
- • Express
- • Express
-0.7	 16039	 • S'pore Science Pk II
- • Express
-1.5	 16019	 • Haw Par Villa Stn
- • Express
- • Express
- • Express
-2.6	 15209	 • Bef Pasir Panjang Stn
- • Express
-3.4	 15169	 • HarbourSide Bldg 2
-3.6	 15159	 • Mapletree Business City
-3.9	 15149	 • Opp Labrador Pk Stn
- 	 	Telok Blangah Rd
- • Express
- • Express
- • Express
- • Express
- • Express
-6.4	 14129	 • HarbourFront Stn Exit A
-6.7	 14119	 • Opp VivoCity
- 	 	Keppel Rd
- • Express
- • Express
- • Express
- • Express
- 	 	MCE
- • Express
- 	 	Fort Rd
-16.8	 91081	 • Aft Katong Pk Stn Exit 2
- 	 	Mountbatten Rd
-17.3	 91091	 • Bef Kg Kayu Rd
- 	 	Old Airport Rd
-18.1	 81171	 • Blk 39
-18.6	 81181	 • Dakota Stn Exit A/Blk 99
- 	 	Dunman Rd
-19.0	 81191	 • Aft Old Airport Rd
- 	 	Tg Katong Rd
- • Express
- • Express
- • Express
+0.0	 80009	 • Lor 1 Geylang Ter
  	 	Sims Ave
- • Express
- • Express
-21.1	 82061	 • Eunos Stn/Int
- 	 	Sims Ave East
- • Express
- • Express
- • Express
- • Express
- 	 	New Upp Changi Rd
-23.5	 84011	 • Chai Chee Ind Pk
-23.8	 84021	 • Blk 32
- 	 	Bedok Nth Dr
-24.6	 84009	 • Bedok Int
+0.3	 80051	 • Aft Lor 1 Geylang
+ 	 	Sims Way
+0.9	 80119	 • Aft Geylang Rd
+ 	 	Mountbatten Rd
+1.5	 80149	 • S.A. Deaf
+ 	 	Stadium Blvd
+2.1	 80189	 • Opp Kallang Squash Ctr
+ 	 	Stadium Cres
+2.9	 80179	 • Opp CP F
+3.2	 80199	 • Stadium Stn
+ 	 	Stadium Wk
+3.3	 80191	 • Opp S'pore Indoor Stadium
+ 	 	Tg Rhu Rd
+4.2	 90039	 • Opp Camelot By-The-Water
+4.6	 90049	 • Tanjong Rhu Stn Exit 1
+4.9	 90029	 • Opp Pebble Bay
+5.1	 90019	 • Pk Shore Condo
+ 	 	Rhu Cross
+5.6	 90079	 • Opp Costa Rhu Condo
+ 	 	Tg Rhu Rd
+5.9	 90011	 • Bef Tg Rhu View
+6.2	 90021	 • Pebble Bay
+6.5	 90041	 • Tanjong Rhu Stn Exit 2
+6.8	 90031	 • Camelot By-The-Water
+ 	 	Stadium Cres
+7.8	 80199	 • Stadium Stn
+ 	 	Stadium Wk
+7.9	 80191	 • Opp S'pore Indoor Stadium
+8.2	 80171	 • CP F
+ 	 	Stadium Blvd
+8.9	 80181	 • Kallang Squash Ctr
+ 	 	Mountbatten Rd
+9.3	 80141	 • Opp S.A. Deaf
+ 	 	Sims Way
+9.9	 80111	 • Bef Geylang Rd
+ 	 	Geylang Rd
+10.3	 80049	 • Aft Sims Way
+ 	 	Lor 1 Geylang
+10.7	 80009	 • Lor 1 Geylang Ter
