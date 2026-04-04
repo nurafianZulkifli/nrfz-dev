@@ -6,10 +6,10 @@
     "directions": [1,2],
     "ts": "Changi Village Ter",
     "te": "Kampong Bahru Ter",
-    "h": "05:20 – 23:45 (Mon-Sat)<br>05:40 – 23:30 (Sun/PH)",
+    "h": "05:20 - 23:45 (Mon-Sat)<br>05:40 - 23:30 (Sun/PH)",
     "direction_hours": {
-      "1": "05:20 – 23:45 (Mon-Sat)<br>05:40 – 23:30 (Sun/PH)",
-      "2": "05:20 – 23:45 (Mon-Sat)<br>05:40 – 23:30 (Sun/PH)"
+      "1": "05:20 - 23:45 (Mon-Sat)<br>05:40 - 23:30 (Sun/PH)",
+      "2": "05:20 - 23:45 (Mon-Sat)<br>05:40 - 23:30 (Sun/PH)"
     },
     "direction_routes": {
       "1": {
@@ -110,10 +110,10 @@
     "directions": [1,2],
     "ts": "Tampines Int",
     "te": "Punggol Int",
-    "h": "05:40 – 00:36 (Mon-Fri)<br>05:50 – 00:36 (Sat & Sun/PH)",
+    "h": "05:40 - 00:36 (Mon-Fri)<br>05:50 - 00:36 (Sat & Sun/PH)",
     "direction_hours": {
-      "1": "05:40 – 00:36 (Mon-Fri)<br>05:50 – 00:36 (Sat & Sun/PH)",
-      "2": "05:40 – 00:36 (Mon-Fri)<br>05:50 – 00:36 (Sat & Sun/PH)"
+      "1": "05:40 - 00:36 (Mon-Fri)<br>05:50 - 00:36 (Sat & Sun/PH)",
+      "2": "05:40 - 00:36 (Mon-Fri)<br>05:50 - 00:36 (Sat & Sun/PH)"
     },
     "direction_routes": {
       "1": {
@@ -232,7 +232,7 @@
     "ts": "Tampines Int",
     "lp": "Changi North Way",
     "te": "Tampines Int",
-    "h": "05:40 – 00:36 (Mon-Fri)<br>05:50 – 00:36 (Sat & Sun/PH)",
+    "h": "05:40 - 00:36 (Mon-Fri)<br>05:50 - 00:36 (Sat & Sun/PH)",
     "direction_routes": {
       "1": {
         "ts": "Tampines Int",
@@ -272,10 +272,10 @@
     "directions": [1,2],
     "ts": "Pasir Ris Int",
     "te": " Bt Merah Int",
-    "h": "05:30 – 23:30",
+    "h": "05:30 - 23:30",
     "direction_hours": {
-      "1": "05:30 – 23:30",
-      "2": "05:30 – 23:30"
+      "1": "05:30 - 23:30",
+      "2": "05:30 - 23:30"
     },
     "direction_routes": {
       "1": {
@@ -390,7 +390,7 @@
     "ts": "Pasir Ris Int",
     "lp": "Loyang Crescent",
     "te": "Pasir Ris Int",
-    "h": "06:20 – 19:30 (Mon-Fri)<br>06:20 – 15:00 (Sat)",
+    "h": "06:20 - 19:30 (Mon-Fri)<br>06:20 - 15:00 (Sat)",
     "direction_routes": {
       "1": {
         "ts": "Pasir Ris Int",
@@ -424,8 +424,8 @@
     "ts": "Bedok Int",
     "te": "Clementi Int",
     "direction_hours": {
-      "1": "05:30 – 23:30 (Daily)",
-      "2": "05:30 – 23:30 (Mon-Sat)<br>05:40 – 23:30 (Sun/PH)"
+      "1": "05:30 - 23:30 (Daily)",
+      "2": "05:30 - 23:30 (Mon-Sat)<br>05:40 - 23:30 (Sun/PH)"
     },
     "direction_routes": {
       "1": {
@@ -556,8 +556,8 @@
     "ts": "Tampines Int",
     "te": "Toa Payoh Int",
     "direction_hours": {
-      "1": "05:30 – 23:00 (Weekdays)<br>05:45 – 23:00 (Sat)<br>06:00-23:00 (Sun/PH)",
-      "2": "06:00 – 23:30"
+      "1": "05:30 - 23:00 (Weekdays)<br>05:45 - 23:00 (Sat)<br>06:00-23:00 (Sun/PH)",
+      "2": "06:00 - 23:30"
     },
     "direction_routes": {
       "1": {
@@ -624,7 +624,7 @@
     "ts": "Bedok Int",
     "lp": "Airport Cargo Rd",
     "te": "Bedok Int",
-    "h": "05:30 – 00:00",
+    "h": "05:30 - 00:00",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "5-9",
@@ -698,8 +698,8 @@
     "ts": "Tampines Int",
     "te": "Kent Ridge Ter",
     "direction_hours": {
-      "1": "06:00 – 00:00",
-      "2": "06:15 – 00:00 (Weekdays & Sat)<br>06:15-00:00 (Sun/PH)"
+      "1": "06:00 - 00:00",
+      "2": "06:15 - 00:00 (Weekdays & Sat)<br>06:15-00:00 (Sun/PH)"
     },
     "direction_routes": {
       "1": {
@@ -766,8 +766,8 @@
     "ts": "Buangkok Int",
     "te": " Yio Chu Kang Int",
     "direction_hours": {
-      "1": "05:30 – 23:30",
-      "2": "05:30 – 23:30"
+      "1": "05:30 - 23:30",
+      "2": "05:30 - 23:30"
     },
     "direction_routes": {
       "1": {
@@ -836,7 +836,7 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang Ave 3",
     "te": "Choa Chu Kang Int",
-    "h": "05:30 – 01:05 (Mon-Fri)<br>05:45 – 01:05 (Sat & Sun/PH)",
+    "h": "05:30 - 01:05 (Mon-Fri)<br>05:45 - 01:05 (Sat & Sun/PH)",
     "freq_detail": {
         "06:30-08:30": "5",
         "08:31-16:59": "4-6",
@@ -855,7 +855,7 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Choa Chu Kang Int",
-    "h": "05:30 – 01:05",
+    "h": "05:30 - 01:05",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "10-14",
@@ -929,7 +929,7 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang St 62 / Teck Whye Lane",
     "te": "Choa Chu Kang Int",
-    "h": "05:30 – 01:05",
+    "h": "05:30 - 01:05",
     "freq_detail": {
         "06:30-08:30": "5-7",
         "08:31-16:59": "4-9",
@@ -1078,7 +1078,7 @@
     "ts": "Jurong East Int",
     "lp": "Jurong West Street 42",
     "te": "Jurong East Int",
-    "h": "05:30 – 01:15",
+    "h": "05:30 - 01:15",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "6-9",
@@ -1141,7 +1141,7 @@
     "ts": "Bt Panjang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Bt Panjang Int",
-    "h": "06:30 – 10:00 & 16:15 – 19:45",
+    "h": "06:30 - 10:00 & 16:15 - 19:45",
     "freq_detail": {
       "Morning Peak": "10-12",
       "Evening Peak": "10-12"
@@ -1159,7 +1159,7 @@
     "ts": "Soon Lee Bus Pk",
     "lp": "Central Blvd",
     "te": "Soon Lee Bus Pk",
-    "h": "05:55 – 22:00 (Mon-Fri), 21:57 (Sat)<br>06:55 – 21:57 (Sun/PH)",
+    "h": "05:55 - 22:00 (Mon-Fri), 21:57 (Sat)<br>06:55 - 21:57 (Sun/PH)",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "6-9",
@@ -1213,7 +1213,7 @@
     "ts": "Tengah Int",
     "lp": "Upp Bukit Timah Rd",
     "te": "Tengah Int",
-    "h": "05:15 – 00:00",
+    "h": "05:15 - 00:00",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "10-14",
@@ -1246,7 +1246,7 @@
     "directions": [1],
     "ts": "Tengah Int",
     "te": "Blk 240",
-    "h": "06:03 – 06:59",
+    "h": "06:03 - 06:59",
     "freq_detail": {
       "06:03": "From Tengah Int",
       "06:18": "From Tengah Int",
@@ -1268,7 +1268,7 @@
     "ts": "Woodlands Int",
     "lp": "Woodlands Ctr Rd",
     "te": "Woodlands Int",
-    "h": "05:20 – 01:00 (Mon-Sat)<br>05:30 – 01:00 (Sun/PH)",
+    "h": "05:20 - 01:00 (Mon-Sat)<br>05:30 - 01:00 (Sun/PH)",
     "freq_detail": {
         "06:30-08:30": "2-6",
         "08:31-16:59": "6-7",
@@ -1288,7 +1288,7 @@
     "ts": "Bt Panjang Int",
     "lp": " Choa Chu Kang Crescent",
     "te": "Bt Panjang Int",
-    "h": "05:45 – 00:00",
+    "h": "05:45 - 00:00",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "4-6",
@@ -1322,7 +1322,7 @@
     "ts": "Jurong East Int",
     "lp": "Bt Batok West Ave 8",
     "te": "Jurong East Int",
-    "h": "05:45 – 00:00",
+    "h": "05:45 - 00:00",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "12",
@@ -1354,10 +1354,10 @@
     "directions": [1,2],
     "ts": "Tampines Int",
     "te": "Choa Chu Kang Int",
-    "h": "05:30 – 23:30",
+    "h": "05:30 - 23:30",
     "direction_hours": {
-      "1": "05:30 – 23:00",
-      "2": "05:30 – 23:30"
+      "1": "05:30 - 23:00",
+      "2": "05:30 - 23:30"
     },
     "direction_routes": {
       "1": {
@@ -1396,7 +1396,7 @@
     "ts": "Jurong East Int",
     "lp": " Upp Bt Timah Rd",
     "te": "Jurong East Int",
-    "h": "05:30 – 23:00 (Mon-Sat)<br>06:00 – 23:00 (Sun/PH)",
+    "h": "05:30 - 23:00 (Mon-Sat)<br>06:00 - 23:00 (Sun/PH)",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "9-10",
@@ -1429,8 +1429,8 @@
     "ts": "Bedok Int",
     "te": "Boon Lay Int",
     "direction_hours": {
-      "1": "05:15 – 23:35 (Weekdays & Sat)<br>05:30-23:35 (Sun/PH)",
-      "2": "05:30 – 00:20 (Weekdays & Sat)<br>05:45-00:20 (Sun/PH)"
+      "1": "05:15 - 23:35 (Weekdays & Sat)<br>05:30-23:35 (Sun/PH)",
+      "2": "05:30 - 00:20 (Weekdays & Sat)<br>05:45-00:20 (Sun/PH)"
     },
     "direction_routes": {
       "1": {
@@ -1493,10 +1493,10 @@
     {
     "n": "30e",
     "t": "Trunk",
-    "op": "GAS",
+    "op": "SBST",
     "directions": [1],
     "ts": "Bedok Int",
-    "te": "Pasir Panjang Rd",
+    "te": "Opp Heng Mui Keng Terr",
     "h": "<i>Refer to Departure Times</i>",
     "freq_detail": {
         "07:06": "From Bedok Int",
@@ -1504,11 +1504,11 @@
         "07:30": "From Bedok Int",
         "07:42": "From Bedok Int",
         "07:54": "From Bedok Int",
-        "17:36": "From Pasir Panjang Rd",
-        "17:48": "From Pasir Panjang Rd",
-        "18:00": "From Pasir Panjang Rd",
-        "18:12": "From Pasir Panjang Rd",
-        "18:24": "From Pasir Panjang Rd"
+        "17:36": "From Opp Heng Mui Keng Terr",
+        "17:48": "From Opp Heng Mui Keng Terr",
+        "18:00": "From Opp Heng Mui Keng Terr",
+        "18:12": "From Opp Heng Mui Keng Terr",
+        "18:24": "From Opp Heng Mui Keng Terr"
     },
       "direction_routes": {
       "1": {
@@ -1534,7 +1534,7 @@
     "ts": "Jurong East Int",
     "lp": "Jln Anak Bt",
     "te": "Jurong East Int",
-    "h": "05:45 – 23:45",
+    "h": "05:45 - 23:45",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "12-16",
@@ -1564,8 +1564,8 @@
     "t": "Trunk",
     "op": "SBST",
     "directions": [1],
-    "ts": "Bedok Rd",
-    "te": "Shenton Way / Anson Rd",
+    "ts": "Opp Man Fatt Lam Tp",
+    "te": "Hub Synergy Pt",
     "h": "<i>Refer to Departure Times</i>",
     "freq_detail": {
         "07:30": "From Opp Man Fatt Lam Tp",
@@ -1580,13 +1580,13 @@
     },
       "direction_routes": {
       "1": {
-        "ts": "Bedok Rd",
-        "te": "Shenton Way / Anson Rd",
+        "ts": "Opp Man Fatt Lam Tp",
+        "te": "Aft Straits Blvd",
         "st":["85049","85039","85029","85019","94079","94069","94059","94049","94089","94039","94029","94019","93099","93089","93079","93069","93059","92159","92149","92139","92129","92119","92109","92099","80159","02119","03019","03059","03129","03217"]
       },
       "2": {
-        "ts": "Shenton Way / Anson Rd",
-        "te": "Bedok Rd",
+        "ts": "Hub Synergy Pt",
+        "te": "Man Fatt Lam Tp",
         "st":["03222","03111","03071","03031","03011","80151","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","94011","94021","94031","94041","94051","94061","94071","85021","85031","85041"]
       }
     },
@@ -1602,10 +1602,10 @@
     "ts": "Lor 1 Geylang Ter",
     "lp": "Rhu Cross",
     "te": "Lor 1 Geylang Ter",
-    "h": "06:00 – 23:30",
+    "h": "06:00 - 23:30",
     "freq_detail": {
       "weekdays": {
-        "06:30-08:30": "15–17",
+        "06:30-08:30": "15-17",
         "08:31-16:59": "15-19",
         "17:00-19:00": "15-19",
         "19:01-23:59": "15-25"
@@ -1627,7 +1627,7 @@
     "r": "Service 11 is a trunk service from Lorong 1 Geylang and looping at Rhu Cross, via Stadium Cres / Drive.",
     "st":["80009","80051","80119","80149","80189","80179","80199","80191","90039","90049","90029","90019","90079","90011","90021","90041","90031","80199","80191","80171","80181","80141","80111","80049","80009"]
   },
-      {
+    {
     "n": "12",
     "t": "Trunk",
     "op": "GAS",
@@ -1635,8 +1635,8 @@
     "ts": "Pasir Ris Int",
     "te": "Kampong Bahru Ter",
     "direction_hours": {
-      "1": "05:30 – 23:30",
-      "2": "05:55 – 00:00 (Weekdays & Sat)<br>06:25 – 00:00 (Sun/PH)"
+      "1": "05:30 - 23:30",
+      "2": "05:55 - 00:00 (Weekdays & Sat)<br>06:25 - 00:00 (Sun/PH)"
     },
     "direction_routes": {
       "1": {
@@ -1788,7 +1788,459 @@
     "c": "Regular Distance Fares",
     "r": "Service 12e is a Limited Stop route variant of Service 12, plying between Pasir Ris and Kampong Bahru at selected hours daily.",
     "pb": ["12"]
+  },
+    {
+    "n": "13",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Yio Chu Kang Int",
+    "te": "Upp East Coast Ter",
+    "direction_hours": {
+      "1": "05:35-23:30 (Weekdays)<br>05:45-23:30 (Sat,Sun/PH)",
+      "2": "05:30-23:15"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Yio Chu Kang Int",
+        "te": "Upp East Coast Ter",
+        "st":["55509","55209","54059","54049","54039","54019","53169","53379","53389","53399","53231","53211","52021","52031","52051","52061","66061","66071","61049","61039","61029","61019","60269","60209","60179","60159","60139","60119","60099","07359","07369","07379","80011","80031","80051","80071","80091","81011","81031","81051","82011","82032","82061","83299","83319","83309","92279","92061","92239","92071","92081","93011","93021","93121","93071","93081","93091","94011","94021","94031","94041","94051","94009"]
+      },
+      "2": {
+        "ts": "Upp East Coast Ter",
+        "te": "Yio Chu Kang Int",
+        "st":["94009","94069","94059","94049","94089","94039","94029","94019","93099","93089","93079","93129","93029","93019","92089","92211","92221","92231","92271","83301","83311","83291","82069","82049","82029","82109","81069","81049","81029","80089","80069","80049","80039","80029","07371","07361","07351","60101","60121","60141","60161","60201","60261","61011","61021","61031","61041","66089","66079","66069","52069","52059","52039","53219","53239","53391","53381","53371","53161","54011","54031","54041","54051","55201","55509"]
+      }
+    },
+  "direction_freqs": {
+    "1": {
+      "weekdays": {
+        "06:30-08:30": "9-10",
+        "08:31-16:59": "8-13",
+        "17:00-19:00": "9-13",
+        "19:01-23:59": "13-18"
+      },
+      "saturdays": {
+        "06:30-08:30": "9-12",
+        "08:31-16:59": "10-15",
+        "17:00-19:00": "14-16",
+        "19:01-23:59": "12-15"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "11-13",
+        "08:31-16:59": "11-14",
+        "17:00-19:00": "13-14",
+        "19:01-23:59": "13-15"
+      }
+    },
+    "2": {
+      "weekdays": {
+        "06:30-08:30": "9-13",
+        "08:31-16:59": "8-13",
+        "17:00-19:00": "8-11",
+        "19:01-23:59": "14-17"
+      },
+      "saturdays": {
+        "06:30-08:30": "11-12",
+        "08:31-16:59": "10-15",
+        "17:00-19:00": "11-15",
+        "19:01-23:59": "13-15"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "11-12",
+        "08:31-16:59": "11-13",
+        "17:00-19:00": "12-14",
+        "19:01-23:59": "13-14"
+      }
+    }
+  },
+    "c": "Regular Distance Fares",
+    "r": "Service 13 is a trunk service plying between Yio Chu Kang and Upper East Coast, passing through Ang Mo Kio, Bishan, Boon Keng, Geylang and Marine Parade.",
+    "sb": ["13A"]
+  },
+    {
+    "n": "13A",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Blk 307A",
+    "te": "Bishan Stn",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+      "weekdays": {
+        "06:00": "From Blk 307A",
+        "06:27": "From Blk 307A",
+        "06:47": "From Blk 307A",
+        "06:57": "From Blk 307A",
+        "07:08": "From Blk 307A",
+        "07:19": "From Blk 307A",
+        "07:39": "From Blk 307A",
+        "07:50": "From Blk 307A",
+        "08:17": "From Blk 307A",
+        "08:28": "From Blk 307A",
+        "08:47": "From Blk 307A",
+        "09:00": "From Blk 307A",
+        "09:26": "From Blk 307A",
+        "09:39": "From Blk 307A"
+      }
+    },
+      "direction_routes": {
+      "1": {
+        "ts": "Blk 307A",
+        "te": "Bishan Stn",
+        "st":["54019","53169","53379","53389","53399","53231"]
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 13A is a Short-Trip Service variant of Bus Service 13, plying between Pasir Ris and Kampong Bahru at selected hours daily.",
+    "pb": ["13"]
+  },
+    {
+    "n": "14",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Bedok Int",
+    "te": "Clementi Int",
+    "direction_hours": {
+      "1": "05:35-23:45 (Weekdays & Sat)<br>05:45-23:45 (Sun/PH)",
+      "2": "05:40-23:30"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Bedok Int",
+        "te": "Clementi Int",
+        "st":["84009","84659","84359","84211","84221","84231","84241","84281","84061","85091","85049","85039","85029","85019","94079","94069","94059","94049","94089","94039","94029","94019","93099","93089","93079","93069","93059","92159","92149","92139","92129","92119","92109","92099","91079","91069","91059","91049","91091","80271","80141","80219","80169","80159","04111","04121","08041","08031","08111","08121","09059","09022","13199","13159","13069","13059","10519","10389","10379","10081","10091","10101","10111","10131","11519","18041","18131","18101","18121","18141","11361","11191","19011","19021","19031","19041","17151","17161","17171","17009"]
+      },
+      "2": {
+        "ts": "Clementi Int",
+        "te": "Bedok Int",
+        "st":["17009","17239","17159","19049","19039","19029","19019","11199","11369","18149","18129","18109","18049","11511","11019","10139","10119","10109","10099","10089","10371","10381","13051","13063","13141","13191","09048","09038","08138","08057","08069","04179","02049","80151","80161","80211","80149","80279","91099","91041","91051","91061","91071","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","94011","94021","94031","94041","94051","94061","94071","85021","85031","85041","85099","84069","84289","84249","84239","84229","84219","84351","84651","84009"]
+      }
+    },
+  "direction_freqs": {
+    "1": {
+      "weekdays": {
+        "06:30-08:30": "10-13",
+        "08:31-16:59": "11-19",
+        "17:00-19:00": "15-16",
+        "19:01-23:59": "18-23"
+      },
+      "fridays": {
+        "06:30-08:30": "10-12",
+        "08:31-16:59": "13-15",
+        "17:00-19:00": "15-19",
+        "19:01-23:59": "18-19"
+      },
+      "saturdays": {
+        "06:30-08:30": "8-10",
+        "08:31-16:59": "9-14",
+        "17:00-19:00": "12-16",
+        "19:01-23:59": "16-20"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "12-15",
+        "08:31-16:59": "13-17",
+        "17:00-19:00": "14-18",
+        "19:01-23:59": "17-25"
+      }
+    },
+    "2": {
+      "weekdays": {
+        "06:30-08:30": "13-14",
+        "08:31-16:59": "12-17",
+        "17:00-19:00": "12-18",
+        "19:01-23:59": "18-19"
+      },
+      "fridays": {
+        "06:30-08:30": "14",
+        "08:31-16:59": "12-16",
+        "17:00-19:00": "13-18",
+        "19:01-23:59": "18-19"
+      },
+      "saturdays": {
+        "06:30-08:30": "11-13",
+        "08:31-16:59": "9-14",
+        "17:00-19:00": "11-15",
+        "19:01-23:59": "17-22"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "10-14",
+        "08:31-16:59": "12-17",
+        "17:00-19:00": "17-18",
+        "19:01-23:59": "16-24"
+      }
+    }
+  },
+    "c": "Regular Distance Fares",
+    "r": "Service 14 is a trunk service plying between Bedok and Clementi, passing through Bedok North, East Coast, Mountbatten, Orchard, Jalan Bukit Merah and Dover.",
+    "sb": ["14A"],
+    "ev": ["14e"]
+  },
+    {
+    "n": "14A",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Bedok Int",
+    "te": "Somerset Youth Pk",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+      "weekdays": {
+        "08:04": "From Bedok Int",
+        "08:18": "From Bedok Int",
+        "08:33": "From Bedok Int",
+        "08:48": "From Bedok Int",
+        "11:11": "From Bedok Int",
+        "11:26": "From Bedok Int",
+        "11:40": "From Bedok Int",
+        "11:55": "From Bedok Int",
+        "13:57": "From Bedok Int",
+        "14:12": "From Bedok Int",
+        "14:27": "From Bedok Int",
+        "14:42": "From Bedok Int",
+        "16:35": "From Bedok Int"
+      }
+    },
+      "direction_routes": {
+      "1": {
+        "ts": "Bedok Int",
+        "te": "Somerset Youth Pk",
+        "st":["84009","84659","84359","84211","84221","84231","84241","84281","84061","85091","85049","85039","85029","85019","94079","94069","94059","94049","94089","94039","94029","94019","93099","93089","93079","93069","93059","92159","92149","92139","92129","92119","92109","92099","91079","91069","91059","91049","91091","80271","80141","80219","80169","80159","04111","04121","08041","08031","08111","08121","09059"]
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 14A is a Short-Trip Service variant of Bus Service 14, plying from Bedok Bus Interchange and ends at Grange Road (Somerset Youth Pk), operating only on Sundays and Public Holidays.",
+    "pb": ["14"]
+  },
+   {
+    "n": "14e",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1],
+    "ts": "Blk 403",
+    "te": "Orchard Stn/Lucky Plaza",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+        "07:25": "From Blk 403",
+        "07:38": "From Blk 403",
+        "07:50": "From Blk 403",
+        "08:02": "From Blk 403",
+        "18:18": "From Orchard Stn/Lucky Plaza",
+        "18:30": "From Orchard Stn/Lucky Plaza",
+        "18:42": "From Orchard Stn/Lucky Plaza"
+
+    },
+      "direction_routes": {
+      "1": {
+        "ts": "Blk 403",
+        "te": "Orchard Stn/Lucky Plaza",
+        "st":["84211","84221","84231","84241","94049","94089","94039","94029","94019","93099","93089","93079","93069","93059","92159","92149","92139","92129","92119","92109","92099","80159","04111","04121","08041","08031","08111","08121","09011","09023","09048"]
+      },
+      "2": {
+        "ts": "Orchard Stn/Lucky Plaza",
+        "te": "Blk 139",
+        "st":["09048","09038","08138","08057","08069","04179","02049","80151","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","94011","94021","94031","94041","84249","84239","84229","84219"]
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 14e is an express variant of Service 14, plying between Bedok North Avenue 3 and Orchard Road, passing through East Coast Road while skipping Bedok Road and Mountbatten.",
+    "pb": ["14"]
+  },
+      {
+    "n": "15",
+    "t": "Trunk",
+    "op": "GAS",
+    "directions": [1],
+    "ts": "Pasir Ris Int",
+    "lp": "Marine Parade Rd",
+    "te": "Pasir Ris Int",
+    "direction_hours": {
+      "1": "05:45-23:00 (Weekdays & Sat)<br>06:00-23:00 (Sun/PH)",
+      "2": "05:40-23:30"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Pasir Ris Int",
+        "te": "Pasir Ris Int",
+        "st":["77009","77139","77029","77381","75589","75599","76191","76149","76139","76069","75059","75229","75239","75249","75259","72179","84481","84701","72031","72041","72051","71091","72019","83119","83109","83299","83151","83139","83129","92209","92309","92069","92059","92049","92041","92051","92061","92301","92201","83121","83159","83169","83291","83101","83111","72011","71099","72059","72049","72039","84709","84489","72171","75251","75241","75231","75221","75051","76061","76131","76141","76199","75591","75581","77389","77021","77141","77131","77009"]
+      }
+    },
+  "freq_detail": {
+    "weekdays": {
+      "06:30-08:30": "4-9",
+      "08:31-16:59": "4-13",
+      "17:00-19:00": "7-15",
+      "19:01-23:59": "13-16"
+    },
+    "saturdays": {
+      "06:30-08:30": "14-18",
+      "08:31-16:59": "10-15",
+      "17:00-19:00": "15-17",
+      "19:01-23:59": "14-16"
+    },
+    "sundays_holidays": {
+      "06:30-08:30": "14-16",
+      "08:31-16:59": "12-15",
+      "17:00-19:00": "13-16",
+      "19:01-23:59": "13-15"
+    }
+  },
+    "c": "Regular Distance Fares",
+    "r": "Service 15 is a trunk route from Pasir Ris and looping at Marine Parade, serving Tampines Central & West, Kaki Bukit, Jalan Eunos, and Telok Kurau.",
+    "sb": ["15A"]
+  },
+    {
+    "n": "15A",
+    "t": "Trunk",
+    "op": "GAS",
+    "directions": [1],
+    "ts": "Pasir Ris Int",
+    "te": "Opp Eunos Stn",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+      "weekdays (TP School Term)": {
+        "07:35": "From Pasir Ris Int",
+        "07:52": "From Pasir Ris Int",
+        "08:01": "From Pasir Ris Int",
+        "08:11": "From Pasir Ris Int"
+      },
+      "weekdays (TP School Hol)": {
+        "07:33": "From Pasir Ris Int",
+        "07:42": "From Pasir Ris Int",
+        "07:50": "From Pasir Ris Int",
+        "08:09": "From Pasir Ris Int",
+        "10:05": "From Pasir Ris Int"
+      }
+    },
+      "direction_routes": {
+      "1": {
+        "ts": "Pasir Ris Int",
+        "te": "Opp Eunos Stn",
+        "st":["77009","77139","77029","77381","75589","75599","76191","76149","76139","76069","75059","75229","75239","75249","75259","72179","84481","84701","72031","72041","72051","71091","72019","83119","83109"]
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 15A is a Short-Trip Service variant of Bus Service 15, plying from Pasir Ris Bus Interchange and ends at Jalan Eunos (Opp Eunos Stn), operating only during weekday morning peak hours.",
+    "pb": ["15"]
+  },
+    {
+    "n": "16",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Bedok Int",
+    "te": "Bt Merah Int",
+    "direction_hours": {
+      "1": "05:30-23:45",
+      "2": "05:45-23:45"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Bedok Int",
+        "te": "Bt Merah Int",
+        "st":["84009","84139","84129","84151","93099","93089","93079","93129","93029","93019","92089","92211","92221","92231","92069","92059","92181","92171","82139","82129","81199","81189","81179","80141","80219","80169","80159","04111","04121","08041","08031","08111","08121","09059","09022","13199","13159","13119","06129","06069","06051","10141","10151","10161","10171","10359","10349","10009"]
+      },
+      "2": {
+        "ts": "Bt Merah Int",
+        "te": "Bedok Int",
+        "st":["10009","10341","10351","10179","10169","10149","06071","06081","06131","13121","13141","13191","09048","09038","08138","08057","08069","04179","02049","80151","80161","80211","80149","81171","81181","81191","82121","82131","92179","92189","92051","92061","92239","92071","92081","93011","93021","93121","93071","93081","93091","84159","84121","84131","84009"]
+      }
+    },
+   "direction_freqs": {
+    "1": {
+      "weekdays": {
+        "06:30-08:30": "18",
+        "08:31-16:59": "10-25",
+        "17:00-19:00": "10-15",
+        "19:01-23:59": "15"
+      },
+      "saturdays": {
+        "06:30-08:30": "24",
+        "08:31-16:59": "9-30",
+        "17:00-19:00": "10-14",
+        "19:01-23:59": "10-12"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "10-11",
+        "08:31-16:59": "10-12",
+        "17:00-19:00": "11-12",
+        "19:01-23:59": "10-14"
+      }
+    },
+    "2": {
+      "weekdays": {
+        "06:30-08:30": "9-10",
+        "08:31-16:59": "19-26",
+        "17:00-19:00": "7-13",
+        "19:01-23:59": "12-13"
+      },
+      "saturdays": {
+        "06:30-08:30": "10-15",
+        "08:31-16:59": "9-30",
+        "17:00-19:00": "10-12",
+        "19:01-23:59": "10-16"
+      },
+      "sundays_holidays": {
+        "06:30-08:30": "10-13",
+        "08:31-16:59": "10-12",
+        "17:00-19:00": "10",
+        "19:01-23:59": "10-15"
+      }
+    }
+  },
+    "c": "Regular Distance Fares",
+    "r": " Service 16 is a trunk service plying between Bedok and Bukit Merah, passing through Marine Parade, Joo Chiat, Old Airport, Orchard Road and Tiong Bahru.",
+    "rv": ["16M"]
+  },
+    {
+    "n": "16M",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Bedok Int",
+    "te": "Bt Merah Int",
+    "direction_hours": {
+      "1": "06:00 – 14:40 (Weekdays)<br>06:00 – 10:30 (Sat)",
+      "2": "08:30 – 17:00 (Weekdays)<br>08:30 – 13:15 (Sat)"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Bedok Int",
+        "te": "Bt Merah Int",
+        "st":["84009","84139","84129","84151","93099","93089","93079","93129","93029","93019","92089","92211","92221","92231","92069","92059","92181","92171","82139","82129","81199","81189","81179","80141","80219","80169","80159","04111","04121","08041","08031","08111","08121","09059","09022","13199","13159","13119","06129","06069","06051","10141","10151","10161","10171","10359","10349","10091","10651","10009"]
+      },
+      "2": {
+        "ts": "Bt Merah Int",
+        "te": "Bedok Int",
+        "st":["10009","10659","10099","10341","10351","10179","10169","10149","06071","06081","06131","13121","13141","13191","09048","09038","08138","08057","08069","04179","02049","80151","80161","80211","80149","81171","81181","81191","82121","82131","92179","92189","92051","92061","92239","92071","92081","93011","93021","93121","93071","93081","93091","84159","84121","84131","84009"]
+      }
+    },
+    "direction_freqs": {
+    "1": {
+      "weekdays": {
+        "06:30-08:30": "17-19",
+        "08:31-16:59": "20-26"
+      },
+      "saturdays": {
+        "06:30-08:30": "24",
+        "08:31-16:59": "22-30"
+      }
+    },
+    "2": {
+      "weekdays": {
+        "08:31-16:59": "19-26"
+      },
+      "saturdays": {
+        "08:31-16:59": "22-30"
+      }
+    }
+  },
+    "c": "Regular Distance Fares",
+    "r": "Service 16M is a supplementary bus service operating between Bedok Interchange and Bukit Merah Interchange, passing through Marine Parade, Joo Chiat, Old Airport, Orchard Road, Tiong Bahru and Jalan Bukit Merah, Operating as alternate trips of Service 16 during stipulated hours on Weekdays & Saturdays (except Public Holidays).",
+    "pb": ["16"]
   }
+
 
 
 

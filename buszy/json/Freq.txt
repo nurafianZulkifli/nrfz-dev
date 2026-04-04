@@ -1,0 +1,6 @@
+From Bedok	6:30am–8.30am	8.31am–4.59pm	5.00pm–7.00pm	After 7.00pm
+Weekdays	17 – 19 mins	20 – 26 mins	–	–
+Saturdays	24 mins	22 – 30 mins	–	–
+From Bukit Merah	6:30am–8.30am	8.31am–4.59pm	5.00pm–7.00pm	After 7.00pm
+Weekdays	–	19 – 26 mins	–	–
+Saturdays	–	22 – 30 mins	–	–

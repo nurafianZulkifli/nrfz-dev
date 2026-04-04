@@ -159,23 +159,23 @@ async function fetchEnrichedStopsFromAPI(serviceNumber, stopCodes) {
 
             const batchPromises = batch.map(stopCode =>
                 fetch(`${API_BASE}/bus-stop-det?BusStopCode=${stopCode}`)
-                    .then(response => {
-                        if (response.ok) return response.json();
-                        throw new Error(`HTTP ${response.status}`);
-                    })
-                    .then(stopData => [
-                        stopCode,
-                        stopData.Description || stopCode,
-                        stopData.RoadName || ''
-                    ])
-                    .catch(error => {
-                        console.warn(`Failed to fetch stop ${stopCode}:`, error);
-                        return [stopCode, stopCode, ''];
-                    })
+                .then(response => {
+                    if (response.ok) return response.json();
+                    throw new Error(`HTTP ${response.status}`);
+                })
+                .then(stopData => [
+                    stopCode,
+                    stopData.Description || stopCode,
+                    stopData.RoadName || ''
+                ])
+                .catch(error => {
+                    console.warn(`Failed to fetch stop ${stopCode}:`, error);
+                    return [stopCode, stopCode, ''];
+                })
             );
 
             const results = await Promise.all(batchPromises);
-            
+
             // Store results in the correct positions and cache
             results.forEach((result, idx) => {
                 const originalIndex = batchIndices[idx];
@@ -236,7 +236,7 @@ async function getServiceDirections(serviceNumber, localService) {
                 });
 
                 console.log(`Found ${directionsOrder.length} directions for service ${serviceNumber}:`, directionsOrder);
-                
+
                 // Only return if we actually found directions for this service
                 if (directionsOrder.length > 0) {
                     return {
@@ -303,8 +303,7 @@ async function getStopsForDirection(serviceNumber, direction) {
 
                 // Convert API stop format to array of stop codes
                 const stopCodes = Array.isArray(stops) ?
-                    stops.map(s => typeof s === 'string' ? s : s.BusStopCode) :
-                    [];
+                    stops.map(s => typeof s === 'string' ? s : s.BusStopCode) : [];
 
                 console.log(`Found ${stopCodes.length} stops for direction ${direction}:`, stopCodes);
                 return stopCodes;
@@ -452,8 +451,8 @@ async function populateServiceData(serviceNumber, service) {
         directions,
         directionDetails
     } = await getServiceDirections(serviceNumber, service);
-    let currentDirection = String(directions[0]);  // Ensure direction is a string
-    
+    let currentDirection = String(directions[0]); // Ensure direction is a string
+
     console.log('Service object:', service);
     console.log('Has freq_detail?', !!service.freq_detail);
     console.log('Has direction_freqs?', !!service.direction_freqs);
@@ -462,7 +461,7 @@ async function populateServiceData(serviceNumber, service) {
         console.log('direction_freqs[currentDirection]:', service.direction_freqs[currentDirection]);
         console.log('All direction_freqs keys:', Object.keys(service.direction_freqs));
     }
-    
+
     // Display frequency with direction info for the current direction
     if (service.freq_detail) {
         console.log('Using freq_detail');
@@ -497,12 +496,12 @@ async function populateServiceData(serviceNumber, service) {
             document.getElementById('terminal-end').textContent = dirRoute.te;
             console.log(`Direction ${direction}: ${dirRoute.ts} → ${dirRoute.te}`);
         }
-        
+
         // Update operating hours if direction_hours exist
         if (service.direction_hours && service.direction_hours[direction]) {
             document.getElementById('operating-hours').innerHTML = service.direction_hours[direction];
         }
-        
+
         // Update frequency display with direction info
         if (service.freq_detail) {
             displayFrequencyDetails(service.freq_detail, service, direction);
@@ -592,6 +591,12 @@ async function populateServiceData(serviceNumber, service) {
         document.getElementById('express-variant-section').style.display = 'block';
         populateExpressVariant(service.ev);
     }
+
+    // Route Variant section (if applicable)
+    if (service.rv && service.rv.length > 0) {
+        document.getElementById('route-variant-section').style.display = 'block';
+        populateRouteVariant(service.rv);
+    }
 }
 
 // Display frequency details by time period (collapsible)
@@ -607,26 +612,27 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
     }
 
     // Check if structure is nested (with day types) or flat (legacy)
-    const isNested = freqDetail.weekdays || freqDetail.saturdays || freqDetail.sundays_holidays || freqDetail['weekends/PH'];
+    // A structure is nested if any value is an object (not a string/number)
+    const isNested = Object.values(freqDetail).some(val => typeof val === 'object' && val !== null);
 
     // Detect if this is a departure times format (contains non-frequency values like location names)
     let isDepartureTimes = false;
     if (isNested) {
         // Check nested structure for location names
         for (const dayType in freqDetail) {
-            if (['weekdays', 'saturdays', 'sundays_holidays', 'weekends/PH'].includes(dayType)) {
-                const dayValues = Object.values(freqDetail[dayType]);
-                isDepartureTimes = dayValues.some(val => {
-                    const isFrequency = /\d+$/.test(val) || /\d+-\d+/.test(val);
-                    return !isFrequency;
-                });
-                if (isDepartureTimes) break;
-            }
+            const dayValues = Object.values(freqDetail[dayType]);
+            isDepartureTimes = dayValues.some(val => {
+                val = String(val);
+                const isFrequency = /\d+$/.test(val) || /\d+-\d+/.test(val);
+                return !isFrequency;
+            });
+            if (isDepartureTimes) break;
         }
     } else {
         // Check flat structure for location names
         const values = Object.values(freqDetail);
         isDepartureTimes = values.some(val => {
+            val = String(val);
             const isFrequency = /\d+$/.test(val) || val.includes('mins') || /\d+-\d+/.test(val);
             return !isFrequency;
         });
@@ -663,24 +669,27 @@ function displayFrequencyDetails(freqDetail, service, currentDirection) {
         };
 
         for (const [dayType, times] of Object.entries(freqDetail)) {
-            if (['weekdays', 'saturdays', 'sundays_holidays', 'weekends/PH'].includes(dayType)) {
-                const dayLabel = dayLabels[dayType];
-                html += `<div class="frequency-day-group">
+            // Check if this is a standard day type or a custom one (e.g., "weekdays (TP School Term)")
+            const isStandardDayType = ['weekdays', 'saturdays', 'sundays_holidays', 'weekends/PH'].includes(dayType);
+            const dayLabel = dayLabels[dayType] || dayType; // Use custom label if not standard
+
+            html += `<div class="frequency-day-group">
                     <div class="day-label">${dayLabel}</div>`;
 
-                for (const [timeRange, frequency] of Object.entries(times)) {
-                    // Check if frequency is a number (actual frequency) or a location name
-                    const isFrequency = /\d+$/.test(frequency) || /\d+-\d+/.test(frequency);
-                    const displayValue = isFrequency ? `${frequency} mins` : frequency;
-                    html += `
+            for (const [timeRange, frequency] of Object.entries(times)) {
+                // Ensure frequency is a string for regex testing
+                let freqStr = String(frequency);
+                // Check if frequency is a number (actual frequency) or a location name
+                const isFrequency = /\d+$/.test(freqStr) || /\d+-\d+/.test(freqStr);
+                const displayValue = isFrequency ? `${freqStr} mins` : freqStr;
+                html += `
                         <div class="frequency-item">
                             <span class="time-range">${timeRange}</span>
                             <span class="freq-value">${displayValue}</span>
                         </div>
                     `;
-                }
-                html += '</div>';
             }
+            html += '</div>';
         }
     } else {
         // Handle flat structure (legacy or special cases like departure times)
@@ -836,6 +845,23 @@ function populateExpressVariant(expressVariants) {
     container.appendChild(linkContainer);
 }
 
+// Populate route variant links
+function populateRouteVariant(routeVariants) {
+    const container = document.getElementById('route-variant-content');
+    container.innerHTML = '';
+    const linkContainer = document.createElement('div');
+    linkContainer.className = 'route-variant-links';
+    routeVariants.forEach((service, index) => {
+        const link = document.createElement('a');
+        link.href = `?service=${service}`;
+        link.className = 'route-variant-button';
+        link.innerHTML = `${service}`;
+        link.style.animationDelay = `${index * 0.05}s`;
+        linkContainer.appendChild(link);
+    });
+    container.appendChild(linkContainer);
+}
+
 // Initialize page
 async function initializePage() {
     const serviceNumber = getServiceNumberFromURL();
@@ -865,7 +891,7 @@ async function initializePage() {
     } else {
         const availableServices = data.map(s => s.n).join(', ');
         console.error('Service not found. Available:', availableServices);
-        showErrorMessage(`Service ${serviceNumber} not found. Available services: ${availableServices}`);
+        showErrorMessage(`Service ${serviceNumber} not added yet. <br> Services added so far: ${availableServices}`);
     }
 }
 
