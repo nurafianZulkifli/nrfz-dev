@@ -340,7 +340,12 @@ async function fetchBusArrivals() {
                         </div>
                         <div style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center; flex-shrink: 0;">
                             ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="img-fluid" style="width: 50px; margin-left: auto;">` : ''}
-                            </div>
+                            <button class="btn btn-busloc btn-sm view-location-btn-consolidated"
+                                data-service="${service.ServiceNo}"
+                                ${!((service.NextBus?.Latitude !== "0.0" && service.NextBus?.Longitude !== "0.0") || (hasNextBus2 && service.NextBus2?.Latitude !== "0.0" && service.NextBus2?.Longitude !== "0.0")) ? 'disabled' : ''}>
+                                <i class="fa-regular fa-location-dot"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="card-content-art">
@@ -360,14 +365,6 @@ async function fetchBusArrivals() {
                                 </span>
                             </div>
                             ` : ''}
-                        </div>
-                        <div style="margin-top: 1.5rem; display: flex; justify-content: center; min-height: 1.5rem;">
-                            <button class="btn btn-busloc btn-sm view-location-btn-consolidated"
-                                data-service="${service.ServiceNo}"
-                                style="width: 100%;"
-                                ${!((service.NextBus?.Latitude !== "0.0" && service.NextBus?.Longitude !== "0.0") || (hasNextBus2 && service.NextBus2?.Latitude !== "0.0" && service.NextBus2?.Longitude !== "0.0")) ? 'disabled' : ''}>
-                                <i class="fa-regular fa-location-dot"></i>&nbsp;&nbsp;View Location
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -468,6 +465,14 @@ async function fetchBusArrivals() {
 
                             if (!isNaN(latitude) && !isNaN(longitude)) {
                                 const marker = L.marker([latitude, longitude]).addTo(map);
+                                
+                                // Add pulse effect to next bus marker (first marker)
+                                if (index === 0) {
+                                    const markerElement = marker.getElement();
+                                    if (markerElement) {
+                                        markerElement.classList.add('marker-pulse');
+                                    }
+                                }
                                 
                                 // Determine bus label
                                 const busLabel = index === 0 ? 'Next Bus' : 'Subsequent Bus';
