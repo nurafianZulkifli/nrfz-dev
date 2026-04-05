@@ -457,14 +457,25 @@ async function fetchBusArrivals() {
         console.error('Error fetching bus arrivals:', error);
         const container = document.getElementById('bus-arrivals-container');
 
+        // If it's a connection error, show refreshing message with spinner
+        if (error instanceof TypeError && error.message.includes('fetch')) {
+            container.innerHTML = `
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body" style="text-align: center; padding: 2rem;">
+                            <span class="spinner" role="status" style="margin-right: 1em;"></span>
+                            <p class="card-text">Refreshing Bus Services...</p>
+                        </div>
+                    </div>
+                </div>`;
+            return;
+        }
+
         // Determine error message based on error type
         let errorMessage = 'Error loading data. Try Refreshing.';
         let errorDetails = '';
 
-        if (error instanceof TypeError && error.message.includes('fetch')) {
-            errorMessage = 'Network error. Check your connection.';
-            errorDetails = 'Unable to connect to the server. Please check your internet connection.';
-        } else if (error.message === 'Failed to fetch bus arrivals') {
+        if (error.message === 'Failed to fetch bus arrivals') {
             errorMessage = 'Server error. Try again later.';
             errorDetails = 'The server is temporarily unavailable. Please try again in a moment.';
         } else if (error.message.includes('JSON')) {
