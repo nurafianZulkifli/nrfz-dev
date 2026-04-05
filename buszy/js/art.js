@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 2000000);
+    setInterval(fetchBusArrivals, 20000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -462,9 +462,9 @@ async function fetchBusArrivals() {
             container.innerHTML = `
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body" style="text-align: center; padding: 2rem;">
-                            <span class="spinner" role="status" style="margin-right: 1em;"></span>
-                            <p class="card-text">Refreshing Bus Services...</p>
+                        <div class="card-body" style="text-align: center; padding-top: 0rem; padding-bottom: 0rem; display: flex; align-items: center; justify-content: center; gap: 1em;">
+                            <span class="spinner" role="status"></span>
+                            <p class="card-text" style="margin: 0;">Network Lost. Retrying...</p>
                         </div>
                     </div>
                 </div>`;
