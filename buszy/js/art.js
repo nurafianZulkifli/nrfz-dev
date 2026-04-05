@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 2000);
+    setInterval(fetchBusArrivals, 200000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -361,7 +361,7 @@ async function fetchBusArrivals() {
                             </div>
                             ` : ''}
                         </div>
-                        <div style="margin-top: 1rem; display: flex; justify-content: center; min-height: 2.5rem;">
+                        <div style="margin-top: 1rem; display: flex; justify-content: center; min-height: 1.5rem;">
                             <button class="btn btn-busloc btn-sm view-location-btn-consolidated"
                                 data-service="${service.ServiceNo}"
                                 style="width: 100%;"
@@ -681,11 +681,18 @@ function formatArrivalTimeOrArr(isoString, now, isIncomingBus = false) {
 
     const timeString = arrivalTime.toLocaleTimeString('en-US', options);
 
-    // For 12-hour format with incoming buses, make AM/PM smaller
-    if (isIncomingBus && savedFormat === '12-hour') {
+    // For 12-hour format, make AM/PM smaller
+    if (savedFormat === '12-hour') {
         const parts = timeString.split(' ');
         if (parts.length === 2) {
-            return `${parts[0]}<span style="font-size: 0.7em;">${parts[1]}</span>`;
+            // For incoming buses, use original style (0.5em, no position adjustment)
+            if (isIncomingBus) {
+                return `${parts[0]}<span style="font-size: 0.5em;">${parts[1]}</span>`;
+            } else {
+                // For bus-time spans, use enhanced style with bottom alignment
+                const smallerAMPM = `<span style="font-size: 0.7em; margin-left: 2px; position: relative; top: 2px; display: inline-block;">${parts[1]}</span>`;
+                return `${parts[0]}${smallerAMPM}`;
+            }
         }
     }
 
