@@ -361,7 +361,7 @@ async function fetchBusArrivals() {
                             </div>
                             ` : ''}
                         </div>
-                        <div style="margin-top: 1rem; display: flex; justify-content: center; min-height: 1.5rem;">
+                        <div style="margin-top: 1.5rem; display: flex; justify-content: center; min-height: 1.5rem;">
                             <button class="btn btn-busloc btn-sm view-location-btn-consolidated"
                                 data-service="${service.ServiceNo}"
                                 style="width: 100%;"
