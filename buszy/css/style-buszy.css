@@ -1216,7 +1216,7 @@ body.dark-mode .list-group-item {
 /* Pulse animation for map markers */
 @keyframes pulse-marker {
     0% {
-        box-shadow: 0 0 0 0 rgba(222, 101, 46, 0.7);
+        box-shadow: 0 0 0 0 rgba(241, 57, 11, 0.7);
         border-radius: 25px;
     }
     50% {
