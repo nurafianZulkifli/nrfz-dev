@@ -187,7 +187,7 @@ body.dark-mode li.breadcrumb-item a {
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 1000;
+        z-index: 1020;
         background: transparent;
         display: flex !important;
         justify-content: center;
