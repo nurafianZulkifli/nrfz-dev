@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                     <div class="bus-stop-actions" style="margin-top: 15px;">
                         <a href="first-last.html?BusStopCode=${busStop.BusStopCode}" class="btn btn-flt btn-sm">
-                            <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;View First/Last Bus Timings
+                            <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;First/Last Bus Timings
                         </a>
                     </div>
                 `;
