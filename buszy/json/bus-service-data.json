@@ -2280,32 +2280,40 @@
     "te": "Blk 183",
     "h": "<i>Refer to Departure Times</i>",
     "freq_detail": {
-      "weekdays (TP School Term)": {
-        "07:35": "From Boon Lay Int",
-        "07:52": "From Boon Lay Int",
-        "08:01": "From Boon Lay Int",
-        "08:11": "From Boon Lay Int"
-      },
-      "weekdays (TP School Hol)": {
-        "07:33": "From Boon Lay Int",
-        "07:42": "From Boon Lay Int",
-        "07:50": "From Boon Lay Int",
-        "08:09": "From Boon Lay Int",
-        "10:05": "From Boon Lay Int"
-      }
+        "weekdays": {
+          "18:23": "From Boon Lay Int",
+          "18:40": "From Boon Lay Int",
+          "19:05": "From Boon Lay Int",
+          "23:05": "From Boon Lay Int",
+          "23:15": "From Boon Lay Int",
+          "23:25": "From Boon Lay Int",
+          "23:35": "From Boon Lay Int",
+          "23:45": "From Boon Lay Int"
+        },
+        "saturdays": {
+          "23:13": "From Boon Lay Int",
+          "23:29": "From Boon Lay Int",
+          "23:45": "From Boon Lay Int"
+        },
+        "sundays_holidays": {
+          "23:13": "From Boon Lay Int",
+          "23:11": "From Boon Lay Int",
+          "23:28": "From Boon Lay Int",
+          "23:45": "From Boon Lay Int"
+        }
     },
       "direction_routes": {
       "1": {
-        "ts": "Pasir Ris Int",
-        "te": "Opp Eunos Stn",
-        "st":["77009","77139","77029","77381","75589","75599","76191","76149","76139","76069","75059","75229","75239","75249","75259","72179","84481","84701","72031","72041","72051","71091","72019","83119","83109"]
+        "ts": "Boon Lay Int",
+        "te": "Blk 183",
+        "st":["22009","22499","21699","21689","28099","28379","28369","28359","28349","28281","28291","43459","43761","43751","43781","43771","43671","44171","44161","44151","44131","44141","44029","45009","44259"]
       }
     },
     "c": "Regular Distance Fares",
-    "r": "Service 180A is a Short-Trip Service variant of Bus Service 180, plyingThe route operates from Boon Lay Bus Interchange and ends at Bukit Panjang Road (Blk 183) via Bukit Panjang Bus Interchange. It operates daily, after the last bus of Service 180 has departed. In addition, it also operates during weekday evening peak hours",
+    "r": "Service 180A is a Short-Trip Service variant of Bus Service 180, plying from Boon Lay Bus Interchange and ends at Bukit Panjang Road (Blk 183) via Bukit Panjang Bus Interchange. It operates daily, after the last bus of Service 180 has departed. In addition, it also operates during weekday evening peak hours",
     "pb": ["180"]
   },
-     {
+    {
     "n": "301",
     "t": "Feeder",
     "op": "SMRT",
@@ -2424,6 +2432,67 @@
     "r": "Service 14 is a trunk service plying between Bedok and Clementi, passing through Bedok North, East Coast, Mountbatten, Orchard, Jalan Bukit Merah and Dover.",
     "sb": ["925A"],
     "rv": ["925M"]
+  },
+      {
+    "n": "925A",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Woodlands Temp Int",
+    "te": "Kranji Resvr Pk B",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+        "weekdays": {
+          "07:00": "From Woodlands Temp Int",
+          "07:19": "From Woodlands Temp Int",
+          "07:33": "From Woodlands Temp Int"
+        },
+        "saturdays": {
+          "07:01": "From Woodlands Temp Int",
+          "07:18": "From Woodlands Temp Int",
+          "07:38": "From Woodlands Temp Int"
+        }
+    },
+      "direction_routes": {
+      "1": {
+        "ts": "Woodlands Temp Int",
+        "te": "Kranji Resvr Pk B",
+        "st":["47009","46549","46539","46529","46491","46381","45139","45129","45141","49091","49101","49111","49259","49189","49179","49159","49149","49199"]
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 925A is a Short-Trip Service variant of Bus Service 925, plying from Woodlands Temp Int ends at Kranji Way (Kranji Resvr Pk B), operating only during the morning peak hours on Weekdays & Saturdays.",
+    "pb": ["925"]
+  },
+    {
+    "n": "925M",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Woodlands Temp Int",
+    "lp": "Neo Tiew Crescent",
+    "te": "Woodlands Temp Int",
+    "direction_hours": {
+      "1": "06:30 – 19:20 (Sun/PH)"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Woodlands Temp Int",
+        "te": "Woodlands Temp Int",
+        "st":["47009","46549","46539","46529","46491","46381","45139","45129","45141","49091","49101","49111","49121","49189","49179","49159","49149","49219","49249","49239","49209","49229","49211","49141","49151","49171","49181","49129","49119","49109","49099","45149","45121","45131","46389","46499","46521","46531","46541","47009"]
+      }
+    },
+  "freq_detail": {
+    "weekdays": {
+      "06:30-08:30": "11",
+      "08:31-16:59": "11",
+      "17:00-19:00": "11",
+      "19:01-23:59": "11"
+    }
+  },
+    "c": "Distance Fares capped at 3.2km",
+    "r": "Service 925M is a Feeder service operating from Woodlands Temporary Bus Interchange and looping at Neo Tiew Crescent, passing through Marsiling, Kranji Road, Kranji Reservoir Park and Neo Tiew Road. It operates on Sundays and Public Holidays only.",
+    "pb": ["925"]
   }
 
 

@@ -1,53 +1,53 @@
- 	 	Choa Chu Kang Loop
-0.0	 44009	 • Choa Chu Kang Int
- 	 	Choa Chu Kang Dr
-0.3	 44541	 • Northvale Condo
- 	 	KJE
- • Express
- 	 	W'lands Rd
-2.4	 44061	 • Bef Yew Tee Flyover
-2.6	 45011	 • Aft Yew Tee Flyover
-3.0	 45021	 • Heavy Veh Pk
-3.4	 45031	 • Yew Tee Ind Est
- 	 	Sg Kadut Ave
-3.9	 45159	 • Multistates Trading
-4.2	 45169	 • Opp Eurokars Ctr
-4.5	 45179	 • Sri Arasakesari Sivan Tp
-4.8	 49139	 • Bef Sg Kadut Way
- 	 	Sg Kadut St 1
-5.2	 49011	 • Opp Kim Hock Corp Pte Ltd
-5.5	 49021	 • Whye Wah Devt & Constrn
-5.9	 49031	 • Opp Crown Alliance Industries
-6.3	 49041	 • DHdeco Pte Ltd
-6.7	 49051	 • Aft Sg Kadut Eating Hse
-7.1	 49061	 • Poh Cheong Concrete Products
- 	 	Sg Kadut Dr
-7.5	 49071	 • Opp Wason Wood Ind
-7.8	 45441	 • Opp Eng Hua Furniture Mfg Pte Ltd
-8.0	 49081	 • Aft Kranji Cres
- 	 	Kranji Way
-8.3	 49159	 • Aft Sg Kadut Dr
-8.7	 49149	 • Aft Kranji Lk
-9.9	 49199	 • Kranji Resvr Pk B
-10.9	 49141	 • Ctrl Granite Ind
-11.3	 49151	 • Daiya Engrg
-11.6	 49171	 • Opp Shingda Constrn
- 	 	Kranji Loop
-12.2	 49181	 • Dapolite Ind
-12.4	 49251	 • TimMac @ Kranji
- 	 	Kranji Rd
-13.4	 49119	 • Blk 2
-13.7	 49109	 • Kranji Wtr Reclam Plt
-13.9	 49099	 • Aft Kranji Wtr Reclam Plt
-14.2	 45149	 • Bef W'lands Rd
- 	 	W'lands Rd
-14.5	 45121	 • Opp KF1 Karting Circuit
-14.8	 45131	 • Opp Kranji Stn
- 	 	W'lands Ave 3
-15.6	 46389	 • Aft W'lands Ind Pk D St 1
-16.3	 46499	 • Opp Blk 402
-16.5	 46521	 • Marsiling Stn
-16.9	 46531	 • Blk 173
-17.3	 46541	 • Marsiling Mall
  	 	W'lands Sq
-18.0	 47009	 • Woodlands Temp Int
+0.0	 47009	 • Woodlands Temp Int
+ 	 	W'lands Ave 3
+0.9	 46549	 • Blk 347
+1.3	 46539	 • Blk 320
+1.7	 46529	 • Opp Marsiling Stn
+2.0	 46491	 • Blk 402
+2.7	 46381	 • Opp W'lands Ind Pk D St 1
+ 	 	W'lands Rd
+3.4	 45139	 • Kranji Stn
+3.8	 45129	 • KF1 Karting Circuit
+ 	 	Kranji Rd
+4.2	 45141	 • Aft W'lands Rd
+4.5	 49091	 • Opp Kranji Wtr Reclam Plt
+4.7	 49101	 • Aft Kranji Cl
+5.0	 49111	 • Aft Jln Lam Huat
+5.3	 49121	 • Aft SMRT Buses Kranji Depot
+ 	 	Kranji Loop
+5.6	 49189	 • Aft Kranji Rd
+ 	 	Kranji Way
+6.1	 49179	 • Aft Kranji Cres
+6.4	 49159	 • Aft Sg Kadut Dr
+6.8	 49149	 • Aft Kranji Lk
+7.9	 49219	 • Opp PUB Quarter
+ 	 	Neo Tiew Cres
+9.5	 49249	 • Aft Neo Tiew Rd
+10.0	 49239	 • Opp Nyee Phoe Group
+10.6	 49209	 • Sg Buloh Wetland Reserve
+11.3	 49229	 • Long Kuan Hung Crocodile Farm
+ 	 	Kranji Way
+11.8	 49211	 • PUB Quarter
+12.9	 49141	 • Ctrl Granite Ind
+13.3	 49151	 • Daiya Engrg
+13.6	 49171	 • Opp Shingda Constrn
+ 	 	Kranji Loop
+14.2	 49181	 • Dapolite Ind
+ 	 	Kranji Rd
+14.5	 49129	 • Lip Guan Ind
+14.8	 49119	 • Blk 2
+15.1	 49109	 • Kranji Wtr Reclam Plt
+15.3	 49099	 • Aft Kranji Wtr Reclam Plt
+15.6	 45149	 • Bef W'lands Rd
+ 	 	W'lands Rd
+15.9	 45121	 • Opp KF1 Karting Circuit
+16.2	 45131	 • Opp Kranji Stn
+ 	 	W'lands Ave 3
+17.0	 46389	 • Aft W'lands Ind Pk D St 1
+17.7	 46499	 • Opp Blk 402
+17.9	 46521	 • Marsiling Stn
+18.3	 46531	 • Blk 173
+18.7	 46541	 • Marsiling Mall
+ 	 	W'lands Sq
+19.4	 47009	 • Woodlands Temp Int
