@@ -271,7 +271,7 @@
     "op": "SBST",
     "directions": [1,2],
     "ts": "Pasir Ris Int",
-    "te": " Bt Merah Int",
+    "te": "Bt Merah Int",
     "h": "05:30 - 23:30",
     "direction_hours": {
       "1": "05:30 - 23:30",
@@ -523,7 +523,7 @@
     "op": "SBST",
     "directions": [1],
     "ts": "Clementi Int",
-    "te": " Dhoby Ghaut Stn",
+    "te": "Dhoby Ghaut Stn",
     "h": "<i>Refer to Departure Times</i>",
       "freq_detail": {
       "weekdays": {
@@ -656,7 +656,7 @@
     "op": "SBST",
     "directions": [1],
     "ts": "Bedok Int",
-    "te": " Blk 149A",
+    "te": "Blk 149A",
     "h": "<i>Refer to Departure Times</i>",
       "freq_detail": {
       "weekdays": {
@@ -677,7 +677,7 @@
     "op": "SBST",
     "directions": [1],
     "ts": "Simei Stn",
-    "te": " 3rd Cargo Agents",
+    "te": "3rd Cargo Agents",
     "h": "<i>Refer to Departure Times</i>",
       "freq_detail": {
       "weekdays": {
@@ -764,7 +764,7 @@
     "op": "SBST",
     "directions": [1,2],
     "ts": "Buangkok Int",
-    "te": " Yio Chu Kang Int",
+    "te": "Yio Chu Kang Int",
     "direction_hours": {
       "1": "05:30 - 23:30",
       "2": "05:30 - 23:30"
@@ -1112,7 +1112,7 @@
     "ts": "Boon Lay Int",
     "lp": "Old Choa Chu Kang Rd",
     "te": "Boon Lay Int",
-    "h": "<i>Refer to <a class=\"hyperlink\" href=\"https://www.smrt.com.sg/getmedia/065c6bc5-df3f-48ab-8fa7-8f5681c9b754/SMRT-Service-Announcement-Operating-Dates-of-Bus-Service-405-in-2026_Poster.pdf\">Poster </a></i>",
+    "h": "<i>Refer to <a class=\"hyperlink\"href=\"https://www.smrt.com.sg/getmedia/065c6bc5-df3f-48ab-8fa7-8f5681c9b754/SMRT-Service-Announcement-Operating-Dates-of-Bus-Service-405-in-2026_Poster.pdf\">Poster </a></i>",
     "freq_detail": {
       "weekdays": {
         "06:30-08:30": "22-25",
@@ -1286,7 +1286,7 @@
     "op": "SMRT",
     "directions": [1],
     "ts": "Bt Panjang Int",
-    "lp": " Choa Chu Kang Crescent",
+    "lp": "Choa Chu Kang Crescent",
     "te": "Bt Panjang Int",
     "h": "05:45 - 00:00",
     "freq_detail": {
@@ -1394,7 +1394,7 @@
     "op": "TTS",
     "directions": [1],
     "ts": "Jurong East Int",
-    "lp": " Upp Bt Timah Rd",
+    "lp": "Upp Bt Timah Rd",
     "te": "Jurong East Int",
     "h": "05:30 - 23:00 (Mon-Sat)<br>06:00 - 23:00 (Sun/PH)",
     "freq_detail": {
@@ -2190,7 +2190,7 @@
     }
   },
     "c": "Regular Distance Fares",
-    "r": " Service 16 is a trunk service plying between Bedok and Bukit Merah, passing through Marine Parade, Joo Chiat, Old Airport, Orchard Road and Tiong Bahru.",
+    "r": "Service 16 is a trunk service plying between Bedok and Bukit Merah, passing through Marine Parade, Joo Chiat, Old Airport, Orchard Road and Tiong Bahru.",
     "rv": ["16M"]
   },
     {
@@ -2201,8 +2201,8 @@
     "ts": "Bedok Int",
     "te": "Bt Merah Int",
     "direction_hours": {
-      "1": "06:00 – 14:40 (Weekdays)<br>06:00 – 10:30 (Sat)",
-      "2": "08:30 – 17:00 (Weekdays)<br>08:30 – 13:15 (Sat)"
+      "1": "06:00-14:40 (Weekdays)<br>06:00-10:30 (Sat)",
+      "2": "08:30-17:00 (Weekdays)<br>08:30-13:15 (Sat)"
     },
     "direction_routes": {
       "1": {
@@ -2240,7 +2240,7 @@
     "r": "Service 16M is a supplementary bus service operating between Bedok Interchange and Bukit Merah Interchange, passing through Marine Parade, Joo Chiat, Old Airport, Orchard Road, Tiong Bahru and Jalan Bukit Merah, Operating as alternate trips of Service 16 during stipulated hours on Weekdays & Saturdays (except Public Holidays).",
     "pb": ["16"]
   },
-      {
+    {
     "n": "180",
     "t": "Trunk",
     "op": "SMRT",
@@ -2249,39 +2249,181 @@
     "lp": "Bt Panjang Int",
     "te": "Boon Lay Int",
     "direction_hours": {
-      "1": "05:45-23:00 (Weekdays & Sat)<br>06:00-23:00 (Sun/PH)",
+      "1": "05:50-22:55 (Weekdays)<br>05:50-22:57 (Sat)<br>06:00-22:55 (Sun/PH)",
       "2": "05:40-23:30"
     },
     "direction_routes": {
       "1": {
-        "ts": "Pasir Ris Int",
-        "te": "Pasir Ris Int",
-        "st":["77009","77139","77029","77381","75589","75599","76191","76149","76139","76069","75059","75229","75239","75249","75259","72179","84481","84701","72031","72041","72051","71091","72019","83119","83109","83299","83151","83139","83129","92209","92309","92069","92059","92049","92041","92051","92061","92301","92201","83121","83159","83169","83291","83101","83111","72011","71099","72059","72049","72039","84709","84489","72171","75251","75241","75231","75221","75051","76061","76131","76141","76199","75591","75581","77389","77021","77141","77131","77009"]
+        "ts": "Boon Lay Int",
+        "te": "Boon Lay Int",
+        "st":["22009","22499","21699","21689","28099","28379","28369","28359","28349","28281","28291","43459","43761","43751","43781","43771","43671","44171","44161","44151","44131","44141","44029","45009","44259","44149","44139","44159","44169","44179","43679","43779","43789","43759","43769","43453","28299","28289","28341","28351","28361","28371","28091","21681","21691","22491","22009"]
       }
     },
   "freq_detail": {
-    "weekdays": {
+    "Daily": {
       "06:30-08:30": "4-9",
-      "08:31-16:59": "4-13",
-      "17:00-19:00": "7-15",
-      "19:01-23:59": "13-16"
-    },
-    "saturdays": {
-      "06:30-08:30": "14-18",
-      "08:31-16:59": "10-15",
-      "17:00-19:00": "15-17",
-      "19:01-23:59": "14-16"
-    },
-    "sundays_holidays": {
-      "06:30-08:30": "14-16",
-      "08:31-16:59": "12-15",
-      "17:00-19:00": "13-16",
-      "19:01-23:59": "13-15"
+      "08:31-16:59": "8-13",
+      "17:00-19:00": "5-11",
+      "19:01-23:59": "10-12"
     }
   },
     "c": "Regular Distance Fares",
-    "r": "Service 180 is a trunk route from Boon Lay Int and looping at Bt Panjang Int, serving various locations along the route.",
+    "r": "Service 180 is a trunk route running from Boon Lay Interchange and loops at Bukit Panjang. It travels through Jurong West Street 64, Boon Lay Way, Bukit Batok Road and Jelebu Road.",
     "sb": ["180A"]
+  },
+    {
+    "n": "180A",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Boon Lay Int",
+    "te": "Blk 183",
+    "h": "<i>Refer to Departure Times</i>",
+    "freq_detail": {
+      "weekdays (TP School Term)": {
+        "07:35": "From Boon Lay Int",
+        "07:52": "From Boon Lay Int",
+        "08:01": "From Boon Lay Int",
+        "08:11": "From Boon Lay Int"
+      },
+      "weekdays (TP School Hol)": {
+        "07:33": "From Boon Lay Int",
+        "07:42": "From Boon Lay Int",
+        "07:50": "From Boon Lay Int",
+        "08:09": "From Boon Lay Int",
+        "10:05": "From Boon Lay Int"
+      }
+    },
+      "direction_routes": {
+      "1": {
+        "ts": "Pasir Ris Int",
+        "te": "Opp Eunos Stn",
+        "st":["77009","77139","77029","77381","75589","75599","76191","76149","76139","76069","75059","75229","75239","75249","75259","72179","84481","84701","72031","72041","72051","71091","72019","83119","83109"]
+      }
+    },
+    "c": "Regular Distance Fares",
+    "r": "Service 180A is a Short-Trip Service variant of Bus Service 180, plyingThe route operates from Boon Lay Bus Interchange and ends at Bukit Panjang Road (Blk 183) via Bukit Panjang Bus Interchange. It operates daily, after the last bus of Service 180 has departed. In addition, it also operates during weekday evening peak hours",
+    "pb": ["180"]
+  },
+     {
+    "n": "301",
+    "t": "Feeder",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Choa Chu Kang Int",
+    "lp": "Keat Hong Close",
+    "te": "Choa Chu Kang Int",
+    "direction_hours": {
+      "1": "05:30-01:05 (Weekdays)<br>05:45-01:05 (Sat,Sun/PH)",
+      "2": "05:40-23:30"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Choa Chu Kang Int",
+        "te": "Choa Chu Kang Int",
+        "st":["44009","44461","44451","44571","44561","44689","44551","44581","44181","44189","44591","44089","44569","44579","44459","44469","44009"]
+      }
+    },
+  "freq_detail": {
+    "Daily": {
+      "06:30-08:30": "6-8",
+      "08:31-16:59": "6-9",
+      "17:00-19:00": "6-8",
+      "19:01-23:59": "7-10"
+    }
+  },
+    "c": "Distance Fares capped at 3.2km",
+    "r": "Service 301 is a Feeder service operating from Choa Chu Kang Bus Interchange and looping at Keat Hong Close, passing through Choa Chu Kang Avenue 3 and 5."
+  },
+      {
+    "n": "172",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1,2],
+    "ts": "Choa Chu Kang Int",
+    "te": "Boon Lay Int",
+    "direction_hours": {
+      "1": "05:30-23:30 (Weekdays & Sat)<br>06:00-23:30 (Sun/PH)",
+      "2": "05:30-23:30 (Weekdays & Sat)<br>06:00-23:30 (Sun/PH)"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Choa Chu Kang Int",
+        "te": "Boon Lay Int",
+        "st":["44009","44539","44399","44111","44109","44099","44089","44689","44079","30089","30099","30059","30049","30039","30029","30019","31199","31179","31169","31159","31059","31049","31039","31019","27129","27109","27099","21379","21369","22491","22009"]
+      },
+      "2": {
+        "ts": "Boon Lay Int",
+        "te": "Choa Chu Kang Int",
+        "st":["22009","22499","21361","21371","27091","27101","27121","31011","31031","31041","31051","31151","31161","31171","31191","30011","30021","30031","30041","30051","30091","30081","44071","45451","44081","44091","44101","44119","44391","44009"]
+      }
+    },
+  "direction_freqs": {
+    "1": {
+      "Daily": {
+        "06:30-08:30": "5-9",
+        "08:31-16:59": "7-13",
+        "17:00-19:00": "6-9",
+        "19:01-23:59": "8-14"
+      }
+    },
+    "2": {
+      "Daily": {
+        "06:30-08:30": "5-9",
+        "08:31-16:59": "5-13",
+        "17:00-19:00": "7-10",
+        "19:01-23:59": "10-13"
+      }
+    }
+  },
+    "c": "Regular Distance Fares",
+    "r": "Service 172 is a trunk route linking Choa Chu Kang Interchange and Boon Lay Interchange, passing through Choa Chu Kang Ave 1, Brickland Road, Old Choa Chu Kang Road, Jalan Bahar and Jalan Boon Lay."
+  },
+      {
+    "n": "925",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1,2],
+    "ts": "Woodlands Temp Int",
+    "te": "Choa Chu Kang Int",
+    "direction_hours": {
+      "1": "06:00 – 20:00 (Weekdays & Sat)<br>No Operation (Sun/PH)",
+      "2": "06:00 – 20:00 (Weekdays & Sat)<br>No Operation (Sun/PH)"
+    },
+    "direction_routes": {
+      "1": {
+        "ts": "Woodlands Temp Int",
+        "te": "Choa Chu Kang Int",
+        "st":["47009","46549","46539","46529","46491","46381","45139","45129","45141","49091","49101","49111","49259","49189","49179","49159","49149","49199","49141","49151","49089","45449","49079","49069","49059","49049","49039","49029","49019","49131","45171","45161","45151","45049","45039","45029","44999","45019","44009"]
+      },
+      "2": {
+        "ts": "Choa Chu Kang Int",
+        "te": "Woodlands Temp Int",
+        "st":["44009","44541","44061","45011","45021","45031","45159","45169","45179","49139","49011","49021","49031","49041","49051","49061","49071","45441","49081","49159","49149","49199","49141","49151","49171","49181","49251","49119","49109","49099","45149","45121","45131","46389","46499","46521","46531","46541","47009"]
+      }
+    },
+  "direction_freqs": {
+    "1": {
+      "weekdays": {
+        "06:30-08:30": "5-10",
+        "08:31-16:59": "9-15",
+        "17:00-19:00": "11-14",
+        "19:01-23:59": "12-13"
+      }
+    },
+    "2": {
+      "weekdays": {
+        "06:30-08:30": "9-12",
+        "08:31-16:59": "8-15",
+        "17:00-19:00": "8-12",
+        "19:01-23:59": "12"
+      }
+    }
+  },
+    "c": "Regular Distance Fares",
+    "r": "Service 14 is a trunk service plying between Bedok and Clementi, passing through Bedok North, East Coast, Mountbatten, Orchard, Jalan Bukit Merah and Dover.",
+    "sb": ["925A"],
+    "rv": ["925M"]
   }
 
 

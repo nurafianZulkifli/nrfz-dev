@@ -1,69 +1,53 @@
- 	 	Bt Merah Ctrl
-0.0	 10009	 • Bt Merah Int
-0.4	 10659	 • Blk 1003
- 	 	Jln Bt Merah
-0.9	 10099	 • Opp Bt Merah Town Ctr
- 	 	Henderson Rd
-1.4	 10341	 • Opp Blk 116
-1.7	 10351	 • Blk 95B
- 	 	Tiong Bahru Rd
-2.0	 10179	 • Tiong Bahru Pk
-2.5	 10169	 • Tiong Bahru Stn/Plaza
-3.1	 10149	 • Blk 1
- 	 	Zion Rd
-3.2	 06071	 • Havelock Stn Exit 2
-3.4	 06081	 • Havelock Stn Exit 3
-3.8	 06131	 • Aft Blk 87
-4.1	 13121	 • Opp Great World City
- 	 	Hoot Kiam Rd
-4.5	 13141	 • Aft Zion Full Gospel Ch
- 	 	Paterson Rd
-5.1	 13191	 • Opp Orchard Stn Exit 12
- 	 	Orchard Rd
-5.8	 09048	 • Orchard Stn/Lucky Plaza
-6.4	 09038	 • Opp Somerset Stn
-6.8	 08138	 • Concorde Hotel S'pore
-7.2	 08057	 • Dhoby Ghaut Stn
- 	 	Bras Basah Rd
-7.7	 08069	 • Bencoolen Stn Exit B
-8.0	 04179	 • Aft Bras Basah Stn Exit A
-8.4	 02049	 • Raffles Hotel
- 	 	Nicoll Highway
-9.0	 80151	 • Opp Suntec City
-9.7	 80161	 • Opp Nicoll Highway Stn
-11.3	 80211	 • Opp Natl Stadium
- 	 	Mountbatten Rd
-11.9	 80149	 • S.A. Deaf
- 	 	Old Airport Rd
-12.5	 81171	 • Blk 39
-13.0	 81181	 • Dakota Stn Exit A/Blk 99
- 	 	Dunman Rd
-13.4	 81191	 • Aft Old Airport Rd
-14.0	 82121	 • Questa @ Dunman
-14.4	 82131	 • Opp Maranatha Hall
- 	 	Joo Chiat Rd
-14.9	 92179	 • Aft Duku Rd
-15.4	 92189	 • Opp i12 Katong
- 	 	Marine Parade Rd
-15.7	 92051	 • Marine Pde Stn Exit 4
-16.1	 92061	 • CHIJ Katong Convent (Pr)
- 	 	Marine Cres
-16.5	 92239	 • Blk 45
- 	 	Marine Parade Rd
-17.0	 92071	 • Marine Terr Stn Exit 4
-17.3	 92081	 • St. Patrick's Sch
-17.7	 93011	 • Opp Neptune Ct
-18.1	 93021	 • Opp Mandarin Gdns
- 	 	Siglap Rd
-18.5	 93121	 • Opp Sekolah Indonesia
- 	 	Upp East Coast Rd
-19.0	 93071	 • Crescendo Bldg
-19.4	 93081	 • Opp Chiang Ct
-19.7	 93091	 • Opp Siglap Sth CC
- 	 	Bedok Sth Ave 1
-20.1	 84159	 • Opp Casafina/Temasek JC
- 	 	Bedok Sth Rd
-20.5	 84121	 • Aft Bedok Sth Ave 1
-21.1	 84131	 • Opp Panasonic
- 	 	Bedok Nth Dr
-21.9	 84009	 • Bedok Int
+ 	 	Choa Chu Kang Loop
+0.0	 44009	 • Choa Chu Kang Int
+ 	 	Choa Chu Kang Dr
+0.3	 44541	 • Northvale Condo
+ 	 	KJE
+ • Express
+ 	 	W'lands Rd
+2.4	 44061	 • Bef Yew Tee Flyover
+2.6	 45011	 • Aft Yew Tee Flyover
+3.0	 45021	 • Heavy Veh Pk
+3.4	 45031	 • Yew Tee Ind Est
+ 	 	Sg Kadut Ave
+3.9	 45159	 • Multistates Trading
+4.2	 45169	 • Opp Eurokars Ctr
+4.5	 45179	 • Sri Arasakesari Sivan Tp
+4.8	 49139	 • Bef Sg Kadut Way
+ 	 	Sg Kadut St 1
+5.2	 49011	 • Opp Kim Hock Corp Pte Ltd
+5.5	 49021	 • Whye Wah Devt & Constrn
+5.9	 49031	 • Opp Crown Alliance Industries
+6.3	 49041	 • DHdeco Pte Ltd
+6.7	 49051	 • Aft Sg Kadut Eating Hse
+7.1	 49061	 • Poh Cheong Concrete Products
+ 	 	Sg Kadut Dr
+7.5	 49071	 • Opp Wason Wood Ind
+7.8	 45441	 • Opp Eng Hua Furniture Mfg Pte Ltd
+8.0	 49081	 • Aft Kranji Cres
+ 	 	Kranji Way
+8.3	 49159	 • Aft Sg Kadut Dr
+8.7	 49149	 • Aft Kranji Lk
+9.9	 49199	 • Kranji Resvr Pk B
+10.9	 49141	 • Ctrl Granite Ind
+11.3	 49151	 • Daiya Engrg
+11.6	 49171	 • Opp Shingda Constrn
+ 	 	Kranji Loop
+12.2	 49181	 • Dapolite Ind
+12.4	 49251	 • TimMac @ Kranji
+ 	 	Kranji Rd
+13.4	 49119	 • Blk 2
+13.7	 49109	 • Kranji Wtr Reclam Plt
+13.9	 49099	 • Aft Kranji Wtr Reclam Plt
+14.2	 45149	 • Bef W'lands Rd
+ 	 	W'lands Rd
+14.5	 45121	 • Opp KF1 Karting Circuit
+14.8	 45131	 • Opp Kranji Stn
+ 	 	W'lands Ave 3
+15.6	 46389	 • Aft W'lands Ind Pk D St 1
+16.3	 46499	 • Opp Blk 402
+16.5	 46521	 • Marsiling Stn
+16.9	 46531	 • Blk 173
+17.3	 46541	 • Marsiling Mall
+ 	 	W'lands Sq
+18.0	 47009	 • Woodlands Temp Int

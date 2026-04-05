@@ -471,7 +471,7 @@ async function populateServiceData(serviceNumber, service) {
         displayFrequencyDetails(service.direction_freqs[currentDirection], service, currentDirection);
     } else {
         console.log('No frequency data found. Fallback to service.f:', service.f);
-        document.getElementById('frequency').textContent = (service.f || 'undefined') + ' mins';
+        document.getElementById('frequency').textContent = (service.f || '---') + ' mins';
     }
 
     // Function to update stops and terminals for selected direction

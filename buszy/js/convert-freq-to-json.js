@@ -30,6 +30,7 @@ let directionFreqs = {};
 let freq_detail = {};
 let currentDirection = null;
 let headerLine = null;
+let currentDayType = 'weekdays'; // Track current day type across all formats
 let hasDirections = false;
 
 // First pass: check if file has "From" headers (multi-direction format)
@@ -38,31 +39,58 @@ hasDirections = lines.some(line => line.startsWith('From'));
 for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     
+    // Check if this line is a standalone day type label
+    if (dayTypeMap[line] && line.split('\t').length === 1) {
+        currentDayType = dayTypeMap[line];
+        continue;
+    }
+    
     if (hasDirections) {
         // Multi-direction format
+        
+        // Check for direction line
         if (line.startsWith('From')) {
             currentDirection = line.split('\t')[0].replace('From ', '').trim();
             directionFreqs[currentDirection] = {};
-            // Get header from the same line
-            const parts = line.split('\t');
-            headerLine = parts.slice(1).map(h => h.trim());
+            headerLine = null; // Reset header for this direction
             continue;
         }
         
-        // Parse data lines for multi-direction format
-        if (headerLine && line && currentDirection) {
+        // Check for time period header line (contains time periods like 6:30am, 8.31am, etc.)
+        if (!headerLine && (line.includes('6:30am') || line.includes('8.31am') || line.includes('5.00pm') || line.includes('After'))) {
+            const parts = line.split('\t').map(h => h.trim());
+            // Check if first part is a day type
+            if (dayTypeMap[parts[0]]) {
+                currentDayType = dayTypeMap[parts[0]];
+                headerLine = parts.slice(1); // Time periods
+            } else {
+                // First part is already a time period
+                headerLine = parts;
+            }
+            continue;
+        }
+        
+        // Parse frequency data for current direction
+        if (currentDirection && headerLine && line) {
             const parts = line.split('\t').map(p => p.trim());
-            const dayTypeKey = parts[0];
-            const dayType = dayTypeMap[dayTypeKey];
             
-            if (dayType) {
+            // Check if this line is just a day type label
+            if (parts.length === 1 && dayTypeMap[parts[0]]) {
+                currentDayType = dayTypeMap[parts[0]];
+                continue;
+            }
+            
+            // Check if this line contains frequencies
+            if (parts.length >= headerLine.length || parts[0].includes('–') || parts[0].includes('-')) {
+                const dayType = currentDayType;
+                
                 if (!directionFreqs[currentDirection][dayType]) {
                     directionFreqs[currentDirection][dayType] = {};
                 }
                 
-                // Map frequencies to time periods
-                for (let j = 1; j < parts.length; j++) {
-                    const timePeriod = timePeriodMap[headerLine[j - 1]];
+                // Map frequencies to time periods (all parts are frequencies)
+                for (let j = 0; j < parts.length && j < headerLine.length; j++) {
+                    const timePeriod = timePeriodMap[headerLine[j]];
                     if (timePeriod && parts[j]) {
                         const frequency = parts[j]
                             .replace(' mins', '')
@@ -79,7 +107,14 @@ for (let i = 0; i < lines.length; i++) {
     } else {
         // Simple single-table format (backward compatible)
         if (line.includes('Loop Service') || line.includes('From Yio') || line.includes('From Upper') || line.includes('6:30am')) {
-            headerLine = line.split('\t').map(h => h.trim()).slice(1); // Skip first column
+            const parts = line.split('\t').map(h => h.trim());
+            // Check if first part is a day type
+            if (dayTypeMap[parts[0]]) {
+                currentDayType = dayTypeMap[parts[0]];
+                headerLine = parts.slice(1); // Skip first column with day type
+            } else {
+                headerLine = parts; // All parts are time periods
+            }
             continue;
         }
         
@@ -89,9 +124,15 @@ for (let i = 0; i < lines.length; i++) {
             const dayTypeKey = parts[0];
             const dayType = dayTypeMap[dayTypeKey];
             
+            // Check if this is a day label or just raw frequency data (daily)
+            const isFrequencyData = !dayType && parts[0] && (parts[0].includes('–') || parts[0].includes('-')) || /\d/.test(parts[0]);
+            
             if (dayType) {
-                if (!freq_detail[dayType]) {
-                    freq_detail[dayType] = {};
+                // Has day label in this line
+                currentDayType = dayType;
+                
+                if (!freq_detail[currentDayType]) {
+                    freq_detail[currentDayType] = {};
                 }
                 
                 // Map frequencies to time periods
@@ -105,13 +146,51 @@ for (let i = 0; i < lines.length; i++) {
                             .replace(/ - /g, '-')
                             .trim();
                         
-                        freq_detail[dayType][timePeriod] = frequency;
+                        freq_detail[currentDayType][timePeriod] = frequency;
+                    }
+                }
+            } else if (isFrequencyData) {
+                // Use current day type tracking
+                if (!freq_detail[currentDayType]) {
+                    freq_detail[currentDayType] = {};
+                }
+                
+                // Map frequencies to time periods
+                for (let j = 0; j < parts.length; j++) {
+                    const timePeriod = timePeriodMap[headerLine[j]];
+                    if (timePeriod && parts[j]) {
+                        const frequency = parts[j]
+                            .replace(' mins', '')
+                            .replace('–', '-')
+                            .replace(' – ', '-')
+                            .replace(/ - /g, '-')
+                            .trim();
+                        
+                        freq_detail[currentDayType][timePeriod] = frequency;
                     }
                 }
             }
         }
     }
 }
+
+// Check if all day types have identical frequencies (daily pattern)
+// Helper function to check if a frequency object is daily (all day types identical)
+const checkIfDaily = (freqObj) => {
+    const dayTypes = ['weekdays', 'saturdays', 'sundays_holidays'];
+    if (!dayTypes.every(dt => freqObj[dt])) return false;
+    
+    const firstDayFreqs = JSON.stringify(freqObj['weekdays']);
+    return dayTypes.every(dt => JSON.stringify(freqObj[dt]) === firstDayFreqs);
+};
+
+// Helper function to simplify frequency to Daily if applicable
+const simplifyToDaily = (freqObj) => {
+    if (checkIfDaily(freqObj)) {
+        return { "Daily": freqObj['weekdays'] };
+    }
+    return freqObj;
+};
 
 // Convert to numbered directions (1, 2, etc.) if using direction format
 let output = {};
@@ -121,12 +200,12 @@ if (hasDirections) {
     const directions = Object.keys(directionFreqs);
     
     directions.forEach((direction, index) => {
-        result[String(index + 1)] = directionFreqs[direction];
+        result[String(index + 1)] = simplifyToDaily(directionFreqs[direction]);
     });
     
     output = { "direction_freqs": result };
 } else {
-    output = { "freq_detail": freq_detail };
+    output = { "freq_detail": simplifyToDaily(freq_detail) };
 }
 
 console.log(JSON.stringify(output, null, 2));
