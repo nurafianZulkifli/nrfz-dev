@@ -349,15 +349,6 @@ async function fetchBusArrivals() {
                                 <span class="bus-time">${service.NextBus?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '--'}</span>
                                 <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
                                     ${getLoadIcon(service.NextBus?.Load, service.NextBus?.Type)}
-                                    <button class="btn btn-busloc btn-sm view-location-btn"
-                                        data-lat="${service.NextBus?.Latitude || '0.0'}"
-                                        data-lng="${service.NextBus?.Longitude || '0.0'}"
-                                        data-bus="${service.ServiceNo}"
-                                        data-type="${service.NextBus?.Type || ''}"
-                                        data-load="${service.NextBus?.Load || ''}"
-                                        ${!service.NextBus || service.NextBus.Latitude === "0.0" && service.NextBus.Longitude === "0.0" || !service.NextBus.EstimatedArrival ? 'disabled' : ''}>
-                                        <i class="fa-regular fa-location-dot"></i>
-                                    </button>
                                 </span>
                             </div>
                             ` : `<div style="padding: 0.5rem; color: #999; font-size: 0.9rem;">No arrival data</div>`}
@@ -366,18 +357,17 @@ async function fetchBusArrivals() {
                                 <span class="bus-time">${service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : '--'}</span>
                                 <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
                                     ${getLoadIcon(service.NextBus2?.Load, service.NextBus2?.Type)}
-                                    <button class="btn btn-busloc btn-sm view-location-btn"
-                                        data-lat="${service.NextBus2?.Latitude || '0.0'}"
-                                        data-lng="${service.NextBus2?.Longitude || '0.0'}"
-                                        data-bus="${service.ServiceNo}"
-                                        data-type="${service.NextBus2?.Type || ''}"
-                                        data-load="${service.NextBus2?.Load || ''}"
-                                        ${!service.NextBus2 || service.NextBus2.Latitude === "0.0" && service.NextBus2.Longitude === "0.0" || !service.NextBus2.EstimatedArrival ? 'disabled' : ''}>
-                                        <i class="fa-regular fa-location-dot"></i>
-                                    </button>
                                 </span>
                             </div>
                             ` : ''}
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; justify-content: center; min-height: 2.5rem;">
+                            <button class="btn btn-busloc btn-sm view-location-btn-consolidated"
+                                data-service="${service.ServiceNo}"
+                                style="width: 100%;"
+                                ${!((service.NextBus?.Latitude !== "0.0" && service.NextBus?.Longitude !== "0.0") || (hasNextBus2 && service.NextBus2?.Latitude !== "0.0" && service.NextBus2?.Longitude !== "0.0")) ? 'disabled' : ''}>
+                                <i class="fa-regular fa-location-dot"></i>&nbsp;&nbsp;View Location
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -395,8 +385,38 @@ async function fetchBusArrivals() {
 
         // Only add event listeners if the DOM was updated
         if (didUpdate) {
-            // Add event listeners to "View Bus Location" buttons
-            const viewLocationButtons = document.querySelectorAll('.view-location-btn');
+            // Store location data for each service to enable cycling
+            const serviceLocations = {};
+            data.Services.forEach((service) => {
+                const locations = [];
+                if (service.NextBus && service.NextBus.Latitude !== "0.0" && service.NextBus.Longitude !== "0.0") {
+                    locations.push({
+                        lat: parseFloat(service.NextBus.Latitude),
+                        lng: parseFloat(service.NextBus.Longitude),
+                        type: service.NextBus.Type || 'N/A',
+                        load: service.NextBus.Load || 'N/A',
+                        estimatedArrival: service.NextBus.EstimatedArrival || null
+                    });
+                }
+                if (service.NextBus2 && service.NextBus2.Latitude !== "0.0" && service.NextBus2.Longitude !== "0.0") {
+                    locations.push({
+                        lat: parseFloat(service.NextBus2.Latitude),
+                        lng: parseFloat(service.NextBus2.Longitude),
+                        type: service.NextBus2.Type || 'N/A',
+                        load: service.NextBus2.Load || 'N/A',
+                        estimatedArrival: service.NextBus2.EstimatedArrival || null
+                    });
+                }
+                if (locations.length > 0) {
+                    serviceLocations[service.ServiceNo] = {
+                        locations: locations,
+                        currentIndex: 0
+                    };
+                }
+            });
+
+            // Add event listeners to consolidated "View Bus Location" buttons
+            const viewLocationButtons = document.querySelectorAll('.view-location-btn-consolidated');
             viewLocationButtons.forEach((button) => {
                 button.addEventListener('click', (event) => {
                     if (!map) {
@@ -404,48 +424,142 @@ async function fetchBusArrivals() {
                         return;
                     }
 
-                    const latitude = parseFloat(button.getAttribute('data-lat'));
-                    const longitude = parseFloat(button.getAttribute('data-lng'));
-                    const busNumber = button.getAttribute('data-bus');
-                    const eta = button.parentElement.parentElement.querySelector('.bus-time').textContent;
+                    const serviceNo = button.getAttribute('data-service');
+                    const serviceData = serviceLocations[serviceNo];
 
-                    if (!isNaN(latitude) && !isNaN(longitude)) {
-                        // Show the map section
-                        const mapSection = document.querySelector('.bus-location-section');
-                        if (mapSection) {
-                            mapSection.style.display = 'block';
-
-                            // Scroll to top of page
-                            window.scrollTo({
-                                top: 0,
-                                behavior: 'smooth'
-                            });
-
-                            // Invalidate the map size to fix grey areas
-                            setTimeout(() => {
-                                if (map && map.invalidateSize) {
-                                    map.invalidateSize();
-                                }
-                            }, 100); // Small delay to ensure the map container is fully visible
-
-                            // Clear all existing markers
-                            map.eachLayer((layer) => {
-                                if (layer instanceof L.Marker) {
-                                    map.removeLayer(layer);
-                                }
-                            });
-
-                            // Center the map on the selected bus location and add a marker
-                            map.setView([latitude, longitude], 15);
-                            const marker = L.marker([latitude, longitude]).addTo(map);
-
-                            marker.bindPopup(`
-                                        <b>Bus ${busNumber}</b><br>
-                                        ${eta || '--'}
-                                    `).openPopup();
-                        }
-                    } else {
+                    if (!serviceData || serviceData.locations.length === 0) {
                         alert('Bus location not available.');
+                        return;
+                    }
+
+                    // Get current time for timing calculations
+                    const now = new Date();
+
+                    // Show the map section
+                    const mapSection = document.querySelector('.bus-location-section');
+                    if (mapSection) {
+                        mapSection.style.display = 'block';
+
+                        // Scroll to top of page
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+
+                        // Invalidate the map size to fix grey areas
+                        setTimeout(() => {
+                            if (map && map.invalidateSize) {
+                                map.invalidateSize();
+                            }
+                        }, 100);
+
+                        // Clear all existing markers
+                        map.eachLayer((layer) => {
+                            if (layer instanceof L.Marker) {
+                                map.removeLayer(layer);
+                            }
+                        });
+
+                        // Add markers for all locations
+                        let bounds = [];
+                        serviceData.locations.forEach((location, index) => {
+                            const latitude = location.lat;
+                            const longitude = location.lng;
+
+                            if (!isNaN(latitude) && !isNaN(longitude)) {
+                                const marker = L.marker([latitude, longitude]).addTo(map);
+                                
+                                // Determine bus label
+                                const busLabel = index === 0 ? 'Next Bus' : 'Subsequent Bus';
+                                
+                                // Format timing information based on user's preference
+                                let timingHTML = '';
+                                if (location.estimatedArrival) {
+                                    const arrivalTime = new Date(location.estimatedArrival);
+                                    const timeDifference = arrivalTime - now;
+                                    
+                                    // Get user's time format preference
+                                    const savedFormat = localStorage.getItem('timeFormat') || '12-hour';
+                                    
+                                    // Minutes format
+                                    const minutes = Math.max(0, Math.floor(timeDifference / (1000 * 60)));
+                                    const minText = minutes === 1 ? 'min' : 'mins';
+                                    
+                                    if (savedFormat === 'mins') {
+                                        timingHTML = `
+                                            <small style="color: #666;">Arriving in:</small><br>
+                                            ${minutes <= 0 ? '<b style="color: #7db603;">Arriving Now</b>' : `<b>${minutes} ${minText}</b>`}
+                                        `;
+                                    } else if (savedFormat === '24-hour') {
+                                        const timeStr = arrivalTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+                                        timingHTML = `
+                                            <small style="color: #666;">Arrives at:</small><br>
+                                            <b>${timeStr}</b>
+                                        `;
+                                    } else { // 12-hour format
+                                        const timeStr = arrivalTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+                                        timingHTML = `
+                                            <small style="color: #666;">Arrives at:</small><br>
+                                            <b>${timeStr}</b>
+                                        `;
+                                    }
+                                }
+                                
+                                marker.bindPopup(`
+                                    <b>Bus ${serviceNo}</b><br>
+                                    <small style="color: #888;">${busLabel}</small><br>
+                                    ${timingHTML || '<small style="color: #999;">Timing unavailable</small>'}
+                                `);
+                                
+                                bounds.push([latitude, longitude]);
+                            }
+                        });
+
+                        // Add current location marker in red
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition((position) => {
+                                const lat = position.coords.latitude;
+                                const lng = position.coords.longitude;
+                                
+                                // Create red marker for current location
+                                const redIcon = L.icon({
+                                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                                    iconSize: [25, 41],
+                                    iconAnchor: [12, 41],
+                                    popupAnchor: [1, -34],
+                                    shadowSize: [41, 41]
+                                });
+                                
+                                const currentMarker = L.marker([lat, lng], { icon: redIcon }).addTo(map);
+                                currentMarker.bindPopup(`
+                                    <b>Your Location</b><br>
+                                    <small style="color: #888;">Current Position</small>
+                                `);
+                                
+                                // Add current location to bounds
+                                bounds.push([lat, lng]);
+                                
+                                // Recalculate bounds to include current location
+                                if (bounds.length > 0) {
+                                    const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
+                                    map.fitBounds(L.latLngBounds(latLngs), { padding: [50, 50], maxZoom: 14 });
+                                }
+                            }, (error) => {
+                                console.warn('Could not get current location:', error);
+                                // Still fit bounds for bus locations if geolocation fails
+                                if (bounds.length > 0) {
+                                    const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
+                                    map.fitBounds(L.latLngBounds(latLngs), { padding: [50, 50], maxZoom: 14 });
+                                }
+                            });
+                        } else {
+                            // Geolocation not available, just fit bus locations
+                            if (bounds.length > 0) {
+                                const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
+                                map.fitBounds(L.latLngBounds(latLngs), { padding: [50, 50], maxZoom: 14 });
+                            }
+                        }
                     }
                 });
             });
