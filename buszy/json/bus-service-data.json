@@ -1159,6 +1159,40 @@
       }
     },
     "r": "Service 168 is a trunk service plying between Bedok Interchange and Woodlands Interchange, passing through Bedok Reservoir, Tampines estate, Jalan Kayu and Woodlands Avenue 2."
+  },
+    {
+    "n": "983A",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Choa Chu Kang Int",
+    "te": "Blk 26",
+      "direction_routes": {
+      "1": {
+        "ts": "Choa Chu Kang Int",
+        "te": "Blk 26",
+        "st":["44009","44491","44501","44621","44551","44581","44181","44189","44591","44091","44879","44899","44131"]
+      }
+    },
+    "r": "Service 983A is a Short-Trip Service variant of Bus Service 983, operating from Choa Chu Kang Bus Interchange and ends at Choa Chu Kang Road (Blk 26), operating daily, after the last bus of Service 983 has departed.",
+    "pb": ["983"]
+  },
+    {
+    "n": "983M",
+    "t": "Trunk",
+    "op": "SMRT",
+    "directions": [1],
+    "ts": "Choa Chu Kang Int",
+    "te": "Aft Teck Whye Walk",
+      "direction_routes": {
+      "1": {
+        "ts": "Choa Chu Kang Int",
+        "te": "Aft Teck Whye Walk",
+        "st":["44551","44581","44181","44189","44591","44091","44879","44899","44129","44119","44969"]
+      }
+    },
+    "r": "Service 983M is an unidirectional morning peak supplementary bus service, operating during School Term Weekdays. It mainly caters to the students and staff of educational institutions along Teck Whye Crescent.",
+    "pb": ["983"]
   }
 
 

@@ -1,43 +1,20 @@
- 	 	W'lands Sq
-0.0	 46009	 • Woodlands Int
- 	 	W'lands Ave 2
-0.6	 46631	 • W'lands Stn Exit 5
-1.0	 46331	 • Blk 511
-1.3	 46221	 • Opp Casablanca
- 	 	SLE
- • Express
- 	 	Jln Kayu
-13.3	 68111	 • Bef Piccadilly Circus/TPE
- 	 	TPE
-17.3	 65199	 • Aft Punggol Rd
- 	 	Tampines Ave 10
-21.3	 75359	 • IKEA Tampines/Aft TPE
-21.8	 75369	 • Bef Tampines Lk
-22.1	 75319	 • Aft Tampines Lk
-22.5	 75299	 • Bef Tampines Ave 9
- 	 	Tampines Ave 9
-22.9	 75289	 • Opp Blks 741/742
-23.2	 75279	 • Opp Blk 721
-23.7	 76549	 • Opp Citylife @ Tampines
- 	 	Tampines Ave 7
-24.5	 76191	 • Blk 401
- 	 	Tampines Ave 4
-25.0	 76149	 • Opp Tampines Stn/Int
-25.4	 76139	 • Opp Century Sq
- 	 	Tampines Ave 5
-26.0	 76069	 • Blk 147
- 	 	Tampines Ave 1
-26.7	 75059	 • Bef Tampines West Stn
- 	 	Bedok Resvr Rd
-27.4	 75069	 • Blk 970A
-27.6	 74949	 • Blk 961A
-28.0	 75349	 • The Clearwater Condo
- 	 	Bedok Nth Ave 3
-28.2	 84209	 • Bedok Resvr Stn Exit B
-28.7	 84529	 • Blk 109
-29.0	 84219	 • Blk 139
- 	 	Bedok Nth St 1
-29.2	 84351	 • Bedok Ctrl PO
-29.6	 84651	 • Aft Heartbeat @ Bedok
- 	 	Bedok Nth Dr
-29.9	 84009	 • Bedok Int
+ 	 	Choa Chu Kang Ave 5
+0.0	 44551	 • Opp Blk 486
+0.2	 44581	 • Blk 489A
+ 	 	Keat Hong Cl
+0.5	 44181	 • Blk 802B
+0.6	 44189	 • Blk 803
+ 	 	Choa Chu Kang Ave 6
+0.8	 44591	 • Blk 490B
+ 	 	Choa Chu Kang Ave 1
+1.1	 44091	 • Choa Chu Kang Mkt
+ 	 	Choa Chu Kang Ave 7
+1.6	 44879	 • Opp Blk 810 CP
+ 	 	Choa Chu Kang Gr
+2.0	 44899	 • Opp APSN
+ 	 	Choa Chu Kang Way
+2.5	 44129	 • Sol Acres Condo
+ 	 	Choa Chu Kang Ave 1
+3.0	 44119	 • Blk 204
+ 	 	Teck Whye Cres
+3.7	 44969	 • Aft Teck Whye Walk
