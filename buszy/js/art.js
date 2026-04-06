@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 2000);
+    setInterval(fetchBusArrivals, 200000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -333,8 +333,8 @@ async function fetchBusArrivals() {
 
             card.innerHTML = `
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
-                        <div style="min-width: 0;">
+                    <div class="card-header d-flex justify-content-between align-items-center" style="flex-wrap: nowrap;">
+                        <div style="min-width: 0; padding-right: 15px;">
                             <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="service-no" style="cursor: pointer; text-decoration: none; color: inherit;">${service.ServiceNo}</a>
                             ${hasNextBus && service.NextBus.DestinationCode ? `<div class="destination-code">To ${getDestinationName(service.NextBus.DestinationCode)}</div>` : ''}
                         </div>
