@@ -424,11 +424,6 @@ async function populateServiceData(serviceNumber, service) {
     document.getElementById('service-number').textContent = service.n;
     document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} Service ${service.n}` : `Service ${service.n}`;
 
-    // Quick info cards
-    document.getElementById('operating-hours').innerHTML = service.h;
-
-    document.getElementById('fare').textContent = service.c;
-
     // Route terminals
     document.getElementById('terminal-start').textContent = service.ts;
     document.getElementById('terminal-end').textContent = service.te;
@@ -463,16 +458,7 @@ async function populateServiceData(serviceNumber, service) {
     }
 
     // Display frequency with direction info for the current direction
-    if (service.freq_detail) {
-        console.log('Using freq_detail');
-        displayFrequencyDetails(service.freq_detail, service, currentDirection);
-    } else if (service.direction_freqs && service.direction_freqs[currentDirection]) {
-        console.log('Using direction_freqs[' + currentDirection + ']');
-        displayFrequencyDetails(service.direction_freqs[currentDirection], service, currentDirection);
-    } else {
-        console.log('No frequency data found. Fallback to service.f:', service.f);
-        document.getElementById('frequency').textContent = (service.f || '---') + ' mins';
-    }
+    // (Frequency cards have been removed from the page)
 
     // Function to update stops and terminals for selected direction
     const updateStopsForDirection = async (direction) => {
@@ -497,17 +483,8 @@ async function populateServiceData(serviceNumber, service) {
             console.log(`Direction ${direction}: ${dirRoute.ts} → ${dirRoute.te}`);
         }
 
-        // Update operating hours if direction_hours exist
-        if (service.direction_hours && service.direction_hours[direction]) {
-            document.getElementById('operating-hours').innerHTML = service.direction_hours[direction];
-        }
-
         // Update frequency display with direction info
-        if (service.freq_detail) {
-            displayFrequencyDetails(service.freq_detail, service, direction);
-        } else if (service.direction_freqs && service.direction_freqs[direction]) {
-            displayFrequencyDetails(service.direction_freqs[direction], service, direction);
-        }
+        // (Frequency cards have been removed from the page)
 
         // Try to fetch stops from API first
         let stopCodes = await getStopsForDirection(serviceNumber, direction);

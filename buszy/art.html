@@ -136,7 +136,7 @@
 
     .bus-time {
         display: inline-flex;
-        width: 65px;
+        width: 75px;
         text-align: center;
         margin-right: 0em;
         font-size: 20px;
@@ -429,6 +429,11 @@
     }
 
     @media (min-width: 769px) and (max-width: 1024px) {
+        .col-xl-3 {
+            flex: 0 0 auto;
+            width: 50%;
+        }
+
         #incoming-buses-grid {
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
         }
@@ -639,7 +644,19 @@
         }
 
         .load-indicator i {
-            font-size: 18px;
+            font-size: 25px;
+        }
+
+        .bus-time {
+            display: inline-flex;
+            width: 63px;
+            text-align: center;
+            margin-right: 0em;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            cursor: default;
         }
     }
 
