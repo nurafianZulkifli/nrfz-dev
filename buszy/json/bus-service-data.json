@@ -1097,7 +1097,7 @@
     },
     "r": "Service 991 is a trunk route operating from Bukit Batok Bus Interchange and Choa Chu Kang Bus Interchange, serving numerous housing estates via Bukit Batok, Bukit Gombak, Choa Chu Kang and Keat Hong."
   },
-      {
+    {
     "n": "187",
     "t": "Trunk",
     "op": "SMRT",
@@ -1117,6 +1117,48 @@
       }
     },
     "r": "Service 187 is a trunk route linking Woodlands Interchange and Boon Lay Interchange, passing through Lakeside, Jurong West/East Avenue 1, Bukit Batok, Bukit Gombak, Bukit Panjang, Marsiling and Woodlands."
+  },
+    {
+    "n": "161",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Hougang Ctrl Int",
+    "te": "Woodlands Int",
+    "direction_routes": {
+      "1": {
+        "ts": "Hougang Ctrl Int",
+        "te": "Woodlands Int",
+        "st":["64009","64397","64389","64379","64369","64359","64349","64411","64601","64611","64469","64629","67459","67469","67279","67449","67401","67101","65061","46229","46339","46639","46009"]
+      },
+      "2": {
+        "ts": "Woodlands Int",
+        "te": "Hougang Ctrl Int",
+        "st":["46009","46631","46331","46221","65069","65059","67109","67409","67441","67271","67461","67451","64621","64461","64619","64609","64419","64341","64351","64361","64371","64381","64391","64009"]
+      }
+    },
+    "r": "Service 161 is a trunk service plying between Hougang Central Interchange and Woodlands Interchange, passing through Hougang Avenue 10/6/8/4, Buangkok, Sengkang, Punggol Road, TPE, SLE and Woodlands Avenue 2."
+  },
+          {
+    "n": "168",
+    "t": "Trunk",
+    "op": "SBST",
+    "directions": [1,2],
+    "ts": "Bedok Int",
+    "te": "Woodlands Int",
+    "direction_routes": {
+      "1": {
+        "ts": "Bedok Int",
+        "te": "Woodlands Int",
+        "st":["84009","84659","84359","84211","84521","84201","75341","74941","75061","75051","76061","76131","76141","76199","76541","75271","75281","75291","75311","75361","75351","65191","68119","46229","46339","46639","46009"]
+      },
+      "2": {
+        "ts": "Woodlands Int",
+        "te": "Bedok Int",
+        "st":["46009","46631","46331","46221","68111","65199","75359","75369","75319","75299","75289","75279","76549","76191","76149","76139","76069","75059","75069","74949","75349","84209","84529","84219","84351","84651","84009"]
+      }
+    },
+    "r": "Service 168 is a trunk service plying between Bedok Interchange and Woodlands Interchange, passing through Bedok Reservoir, Tampines estate, Jalan Kayu and Woodlands Avenue 2."
   }
 
 
