@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 2000);
+    setInterval(fetchBusArrivals, 200000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -689,10 +689,10 @@ function formatArrivalTimeOrArr(isoString, now, isIncomingBus = false) {
         if (parts.length === 2) {
             // For incoming buses, use original style (0.5em, no position adjustment)
             if (isIncomingBus) {
-                return `${parts[0]}<span style="font-size: 0.5em;">${parts[1]}</span>`;
+                return `${parts[0]}<span style="font-size: 0.5em; margin-left: 2px;">${parts[1]}</span>`;
             } else {
                 // For bus-time spans, use enhanced style with bottom alignment
-                const smallerAMPM = `<span style="font-size: 0.7em; margin-left: 1.5px; position: relative; top: 2px; display: inline-block;">${parts[1]}</span>`;
+                const smallerAMPM = `<span style="font-size: 0.5em; margin-left: 1.5px; position: relative; display: inline-block;">${parts[1]}</span>`;
                 return `${parts[0]}${smallerAMPM}`;
             }
         }
