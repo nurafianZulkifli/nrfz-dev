@@ -18,7 +18,6 @@
         "st":["10499","10049","10017","05013","05023","04222","04142","01012","01113","01121","01211","01311","80011","80031","80051","80071","80091","81011","81031","81051","82011","82032","82061","83011","83031","83062","83081","84011","84021","84031","84041","84051","84061","85091","85051","85061","85081","85071","96071","96081","96091","95901","96041","96051","96061","97011","97031","97041","97051","97201","97061","97071","97081","97091","98061","98071","99011","99021","99031","99041","99139","99009"]
       }
     },
-    "r": "Service 2 is a trunk service plying between Changi Village and Kampong Bahru, passing through Loyang Avenue, Upper Changi Road North, Simpang Bedok, Bedok, Eunos, Geylang, Kallang, Bugis, Clarke Quay and Chinatown. Much of the route duplicates the East West Line between Bugis and Tanah Merah, via Sims Avenue / Geylang Road.",
     "sb": ["2B"]
   },
     {
@@ -28,7 +27,6 @@
     "directions": [1],
     "ts": "Changi Village Ter",
     "te": "Bedok Stn Exit A",
-    "r": "Short Trip Service 2B operates during the weekday afternoons & weekends. It mainly supplements the high demand for Bus Service 2 at Loyang Ave and Upper Changi Road North to Upper Changi, Tanah Merah and Bedok MRT Stations.",
     "st":["99009","99131","99049","99039","99029","99019","98079","98069","97099","97089","97079","97069","97209","97059","97049","97039","97019","96069","96059","96049","95909","96099","96089","96079","85079","85089","85069","85059","85099","84069","84059","84049","84039"],
     "pb": ["2"]
   },
@@ -51,7 +49,6 @@
         "st":["65009","65221","65281","65271","65261","65239","65179","65169","65159","65079","65199","77339","77289","77169","77319","77309","77061","78049","77019","77029","77329","77379","77009","78109","78119","78221","78209","78219","98099","98019","76249","76239","76039","76189","76179","76169","76159","76149","76139","76051","75009"]
       }
     },
-    "r": "Service 3 is a trunk service connecting the residential estates of Tampines, Pasir Ris and Punggol. It is also one of the few non-loop routes in Singapore to use a bus interchange as an intermediate stop along its route (Pasir Ris Int).",
     "sb": ["3A"]
   },
     {
@@ -61,7 +58,6 @@
     "directions": [1],
     "ts": "Changi Village Ter",
     "te": "Blk 747A",
-    "r": "Short Trip Service 3A is a trunk service operating from Tampines Bus Interchange and ends at Pasir Ris Drive 12 (Blk 747A). The route operates daily after the last Service 3 to Punggol has departed Tampines Interchange.",
     "st":["75009","76059","76131","76141","76151","76161","76171","76091","76101","76031","76231","76241","98011","98091","78211","78201","78229","78111","78101","77321","77021","77011","77069","77301","77311","77161","77281","77331"],
     "pb": ["3"]
   },
@@ -79,8 +75,7 @@
         "te": "Tampines Int",
         "st":["75009","76191","76201","76211","76221","76231","76241","98301","98281","98311","97049","97039","97141","97301","97311","97331","97321","97059","98319","98289","98309","76249","76239","76229","76219","76209","76199","75009"]
       }
-    },
-    "r": "Service 4 is a trunk loop service between Tampines Bus Interchange and Changi North Way, passing through Flora Road and Changi North Industrial Estate."
+    }
   },
   {
     "n": "5",
@@ -102,7 +97,6 @@
 
       }
     },
-    "r": "Service 5 is a trunk service plying between Pasir Ris and Bukit Merah, passing through Upper Changi, Simei, Bedok Reservoir, PIE, Paterson Road and Tiong Bahru.",
     "sb": ["5A", "5B"]
   },
     {
@@ -112,7 +106,6 @@
     "directions": [1],
     "ts": "Aft Ballota Pk",
     "te": "Upp Changi Stn/SUTD",
-    "r": "Service 5A was launched on 14 August 2023 to supplement weekday peak hour demand for Service 5 from housing estates at Mariam Way & Flora Drive to Upper Changi MRT Station.",
     "st":["98319","98289","98291","97019","96069","96059","96049"],
     "pb": ["5"]
   },
@@ -123,7 +116,6 @@
     "directions": [1],
     "ts": "Simei Stn",
     "te": "Bef Mariam Wk",
-    "r": "Service 5B was launched on 14 August 2023 to supplement weekday evening peak hour demand for Service 5 from Simei & Upper Changi MRT Stations to housing estates at Flora Drive & Mariam Way.",
     "st":["96269","96199","96209","96041","96051","96061","97011","98299","98281","98311"],
     "pb": ["5"]
   },
@@ -142,9 +134,7 @@
         "st":["78109","78119","78129","78139","78149","98109","98041","98121","98131","98141","98151","98161","98171","98181","98199","98209","98219","98229","98149","98139","98129","98049","98101","78141","78131","78121","78111","78101","77009"]
 
       }
-    },
-    "r": "Service 4 is a trunk loop service between Tampines Bus Interchange and Changi North Way, passing through Flora Road and Changi North Industrial Estate."
-  },
+    }},
     {
     "n": "7",
     "t": "Trunk",
@@ -165,7 +155,6 @@
 
       }
     },
-    "r": "Service 7 is a trunk route connecting Bedok and Clementi through Guillemard, Bugis, Orchard and Holland Road.",
     "sb": ["7A", "7B"]
   },
     {
@@ -175,7 +164,6 @@
     "directions": [1],
     "ts": "Bedok Int",
     "te": "Orchard Stn Exit 13",
-    "r": "Service 7A is a Short-Trip Service variant of Bus Service 7, operating from Bedok Bus Interchange to Orchard MRT Station, passing through Eunos, Geylang Serai, Guillemard, Bugis and Dhoby Ghaut. Bus Service 7A began operations on 25 February 2018.",
     "st":["84009","84029","84019","83099","83079","83059","83049","83029","82069","82049","82029","82109","81131","81141","81151","81161","80259","80111","80049","80039","80029","01339","01329","01229","01139","01039","01029","04111","04121","08041","08031","08111","08121","09059","09022"],
     "pb": ["7"]
   },
@@ -186,7 +174,6 @@
     "directions": [1],
     "ts": "Clementi Int",
     "te": "Dhoby Ghaut Stn",
-    "r": "Service 7B is a Short-Trip Service variant of Bus Service 7, operating from Clementi Bus Interchange to Dhoby Ghaut MRT Station, passing through Holland and Orchard. Bus Service 7B began operations on 25 February 2018.",
     "st":["17009","17221","12119","12059","12049","12039","12029","11299","11289","11279","11269","11239","11229","11219","11209","13029","13019","09149","09159","09169","09179","09048","09038","08138","08057"],
     "pb": ["7"]
   },
@@ -208,8 +195,7 @@
         "te": "Tampines Int",
         "st":["52009","52509","52329","52081","60081","60211","70101","70111","70121","70131","70279","70269","71161","71151","71141","71121","71131","71091","72021","72061","72071","84499","84489","72171","75251","75241","75231","75221","75051","76071","76081","76091","76101","76031","76229","76219","76209","76199","75009"]
       }
-    },
-    "r": "Service 8 is a trunk route connecting Tampines and Toa Payoh through Kaki Bukit and MacPherson. Along with Service 28 and 31, it is one of three services plying between Tampines and Toa Payoh."
+    }
   },
   {
     "n": "9",
@@ -219,7 +205,6 @@
     "ts": "Bedok Int",
     "lp": "Airport Cargo Rd",
     "te": "Bedok Int",
-    "r": "Service 9 is a circular trunk route connecting Bedok and Changi Airfreight Centre through Simpang Bedok, Simei, Tampines and Loyang Avenue. It is one of three daily trunk services to Changi Airfreight Centre (formerly known as Changi Airport Cargo Complex).",
     "st":["84009","84031","84041","84051","84061","85091","85051","85061","85081","85071","96101","96259","96169","96269","96181","96121","76101","76031","76231","76241","98011","98021","98041","98121","98131","98061","98071","99011","99021","99031","99041","99181","99171","99161","95071","95081","95091","95131","95141","95061","95051","95041","95039","95049","95069","95149","95139","95099","95089","95079","99189","99049","99039","99029","99019","98079","98069","98139","98129","98049","98029","98019","76249","76239","76039","76109","96129","96189","96261","96161","96251","96109","85079","85089","85069","85059","85099","84069","84059","84049","84039","84009"],
     "sb": ["9A", "9B"]
   },
@@ -230,7 +215,6 @@
     "directions": [1],
     "ts": "Bedok Int",
     "te": "Blk 149A",
-    "r": "Service 9A is a Short-Trip Service variant of Bus Service 9, operating from Bedok Bus Interchange and ending at Loyang Avenue (Blk 149A), operating only during the weekday evening peak hours.",
     "st":["84009","84031","84041","84051","84061","85091","85051","85061","85081","85071","96101","96259","96169","96269","96181","96121","76101","76031","76231","76241","98011"],
     "pb": ["9"]
   },
@@ -241,7 +225,6 @@
     "directions": [1],
     "ts": "Simei Stn",
     "te": "3rd Cargo Agents",
-    "r": "Service 9B is a Short-Trip Service variant of Bus Service 9, operating from Simei Station and ends at Airline Road within Changi Airfreight Centre, operating only during the weekday morning peak hours, except Public Holidays.",
     "st":["96169","96269","96181","96121","76101","76031","76231","76241","98011","98021","98041","98121","98131","98061","98071","99011","99021","99031","99041","99181","99171","99161","95071","95081","95091","95131","95141","95061","95051"],
     "pb": ["9"]
   },
@@ -263,9 +246,7 @@
         "te": "Tampines Int",
         "st":["16009","16089","16079","16069","16059","16049","16039","16029","16019","16209","15229","15219","15209","15199","15169","15159","15149","14189","14179","14169","14159","14139","14129","14119","14109","14089","14069","05641","03222","03111","03071","03031","03011","02111","80151","80161","80211","80149","81171","81181","81191","82079","92169","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","94011","94021","94031","94041","94051","94061","94071","85021","85031","85041","85051","85061","85081","85071","96101","96281","76061","76051","75009"]
       }
-    },
-    "r": "Service 10 is a trunk route connecting Tampines and Toa Payoh through Kaki Bukit and MacPherson. Along with Service 28 and 31, it is one of three services plying between Tampines and Toa Payoh."
-  },
+    }},
   {
     "n": "114",
     "t": "Trunk",
@@ -286,7 +267,6 @@
 
       }
     },
-    "r": "Service 114 is a trunk route between Buangkok and Yio Chu Kang, passing through Buangkok Drive, Buangkok Link, Fernvale, Sengkang West and Yio Chu Kang Road.",
     "sb": ["114A"]
   },
   {
@@ -297,7 +277,6 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang Ave 3",
     "te": "Choa Chu Kang Int",
-    "r": "Service 300 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Avenue 3, passing through Choa Chu Kang Avenue 2 and 4.",
     "st":["44009","44491","44501","44621","45451","44569","44579","44459","44521","44511","44689","44629","44509","44499","44009"]
   },
   {
@@ -308,7 +287,6 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Choa Chu Kang Int",
-    "r": "Service 302 is a Feeder service operating from Choa Chu Kang Interchange and looping at Choa Chu Kang Crescent, serving Choa Chu Kang Way, Choa Chu Kang Street 52 and Yew Tee MRT.",
     "st": ["44009","45231","45241","45251","45311","45261","45271","45321","45389","45401","45411","45421","45439","45399","45329","45279","45269","45319","45259","45249","45239","44009"],
     "sb": ["302A"]
   },
@@ -319,7 +297,6 @@
     "directions": [1],
     "ts": "Yew Tee Stn",
     "te": "Opp Yew Tee Stn",
-    "r": "Short Trip Service 302A is a feeder bus service operating from Choa Chu Kang Drive (Yew Tee Stn) and ends at Choa Chu Kang Drive (Opp Yew Tee Stn).",
     "st": ["45321","45389","45401","45411","45421","45439","45399","45329"],
     "pb": ["302"]
   },
@@ -331,7 +308,6 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang St 62 / Teck Whye Lane",
     "te": "Choa Chu Kang Int",
-    "r": "Service 307 is a Feeder service operating from Choa Chu Kang Interchange and looping at both Choa Chu Kang Street 62 and Teck Whye Lane, passing through Choa Chu Kang Avenue 5, Yew Tee MRT, Choa Chu Kang Central and Teck Whye Avenue.<br><br>Service 307T buses on the South Loop will terminate at Choa Chu Kang Interchange and will not continue its journey on the North Loop.",
     "st":["44009","44539","44541","45291","45309","45369","45379","45359","45321","45339","45349","45351","45371","45361","45301","45299","44549","44531","44461","44489","44479","44119","44299","44439","44421","44411","44291","44111","44471","44481","44469","44009"],
     "sb": ["307A"]
   },
@@ -343,7 +319,6 @@
     "ts": "Choa Chu Kang Int",
     "lp": "Choa Chu Kang St 62",
     "te": "Opp Choa Chu Kang Stn",
-    "r": "Short Trip Service 307A is a feeder bus service operating from Choa Chu Kang Bus Interchange and ends at Choa Chu Kang Ave 4 (Opp Choa Chu Kang Stn) via Choa Chu Kang St 62, operating daily.",
     "st":["44009","44539","44541","45291","45309","45369","45379","45359","45321","45339","45349","45351","45371","45361","45301","45299","44549","44531"],
     "pb": ["307"]
   },
@@ -355,7 +330,6 @@
     "ts": "Jurong East Int",
     "lp": "Jurong West Street 42",
     "te": "Jurong East Int",
-    "r": "Service 334 is a Feeder service operating between Jurong East Interchange and Jurong West Street 42, passing through Boon Lay Way and Jurong East Avenue 1.",
     "st": ["28009","28441","28071","28081","28281","28451","28461","28491","28501","28511","28521","28401","28541","28551","28561","28571","28509","28499","28469","28459","28289","28089","28079","28449","28211","28009"]
   },
     {
@@ -366,7 +340,6 @@
     "ts": "Boon Lay Int",
     "lp": "Old Choa Chu Kang Rd",
     "te": "Boon Lay Int",
-    "r": "Service 405 is a trunk route serving Choa Chu Kang Cemetery, running from Boon Lay interchange and looping at Old Choa Chu Kang Road. It only operates on specific days of the year.",
     "st": ["22009","22489","21371","27091","27101","27121","31011","31031","31041","31051","31149","31139","31129","31009","31121","31131","31141","31059","31049","31039","31019","27129","27109","27099","21379","22481","22009"]
   },
     {
@@ -377,7 +350,7 @@
     "ts": "Bt Panjang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Bt Panjang Int",
-    "r": "Service 455 is a limited-stop bus service introduced under the Land Transport Authority’s Bus Connectivity Enhancement Programme (BCEP). This service provides a direct connection to MRT Stations for estates farther away from transport nodes. Service 455 is renumbered from Service 979X.",
+    
     "st": ["45009","45291","45321","45389","45401","45411","45421","45439","45399","45329","45299", "44031", "45009"]
   },
 
@@ -389,7 +362,6 @@
     "ts": "Soon Lee Bus Pk",
     "lp": "Central Blvd",
     "te": "Soon Lee Bus Pk",
-    "r": "Express 502 is an express service running from Soon Lee Bus Depot and looping at Central Boulevard, passing through Jurong East, Orchard, and Marina Bay.",
     "st":["22609","22191","22181","22461","22451","27301","27369","27359","27439","27379","22599","22449","22489","21399","21421","21241","28539","28409","28529","28519","28509","28499","28469","28459","28339","28329","28631","28641","28651","28049","09169","09179","09048","09038","08138","08057","08069","04179","02049","02151","02161","02171","03509","03519","03539","03529","03129","03217","28041","28659","28649","28639","28321","28331","28451","28461","28491","28501","28511","28521","28401","28531","21249","21429","21391","22481","22441","22591","27371","27431","27351","27361","27309","22459","22469","22189","22199"],
     "sb": ["502A"],
     "phv": true
@@ -402,7 +374,6 @@
     "ts": "Soon Lee Bus Pk",
     "lp": "Downtown Stn Exit E",
     "te": "Soon Lee Bus Pk",
-    "r": "Service 502A is an express service running from Soon Lee Bus Depot to Central Boulevard, passing through Jurong West, PIE and Orchard. It is a morning peak hour route variant of Express 502.",
     "st":["22609","22191","22181","22461","22451","27301","27369","27359","27439","27379","22599","22449","22489","21399","21421","21241","28539","28409","28529","28519","28509","28499","28469","28459","28339","28329","28631","28641","28651","28049","09169","09179","09048","09038","08138","08057","08069","04179","02049","02151","02161","02171","03509","03519","03539","03529","03129","03217","28041","28659","28649","28639","28321","28331","28451","28461","28491","28501","28511","28521","28401","28531","21249","21429","21391","22481","22441","22591","27371","27431","27351","27361","27309","22459","22469","22189","22199"],
     "pb": ["502"]
   },
@@ -414,7 +385,7 @@
     "ts": "Tengah Int",
     "lp": "Upp Bukit Timah Rd",
     "te": "Tengah Int",
-    "r": "Service 871 is a Feeder service operating from Tengah and looping at Beauty World MRT Station, serving the new housing estates in Tengah and providing connectivity to Bukit Batok West and Bukit Gombak.",
+    
     "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429","43179","43189","43199","43209","42199","42189","42179","42169","42159","42079","42151","42161","42171","42181","42191","43201","43191","43181","43171","43421","43541","43801","43561","43609","40289","40351","40381","40409","40419","40429","40439","40449","40459","41009"],
     "sb": ["871A"]
   },
@@ -425,7 +396,7 @@
     "directions": [1],
     "ts": "Tengah Int",
     "te": "Blk 240",
-    "r": "Short Trip Service 871A supplements weekday morning peak hour demand for Service 871 from the Tengah housing estates to schools such as Lianhua Primary School and Hillgrove Secondary School, as well as to the vicinity of Bukit Gombak MRT Station along Bukit Batok East Avenue 5.",
+    
     "st": ["41009","40451","40441","40431","40421","40411","40401","40389","40311","40359","40281","43601","43569","43809","43549","43429"],
     "pb": ["871"]
   },
@@ -438,7 +409,7 @@
     "ts": "Woodlands Int",
     "lp": "Woodlands Ctr Rd",
     "te": "Woodlands Int",
-    "r": "Service 903 is a Feeder service operating from Woodlands Bus Interchange and looping at Woodlands Train Checkpoint along Woodlands Centre Road, passing through Riverside Road and Marsiling Lane.",
+    
   "st":["46009","46271","46301","46311","46249","46179","46169","46159","46149","46119","46069","46088","46111","46141","46151","46161","46171","46241","46319","46309","46279","46009"]
   },
 
@@ -450,7 +421,7 @@
     "ts": "Bt Panjang Int",
     "lp": "Choa Chu Kang Crescent",
     "te": "Bt Panjang Int",
-    "r": "Service 979 is a trunk service plying from Bukit Panjang and looping at Choa Chu Kang Crescent within the Yew Tee estate. It passes through Woodlands Road, Stagmont Ring, Choa Chu Kang Street 52 and Yew Tee MRT.",
+    
     "st": ["45009","44259","44041","44051","43991","44061","45011","45021","45491","45361","45301","45469","45261","45271","45321","45389","45401","45411","45421","45439","45399","45329","45279","45269","45461","45309","45369","45489","45029","44999","45019","44069","44059","44049","44031","45009"]
 
   },
@@ -462,7 +433,7 @@
     "ts": "Jurong East Int",
     "lp": "Bt Batok West Ave 8",
     "te": "Jurong East Int",
-    "r": "Service 993 is a trunk service operating from Jurong East Bus Interchange and loops at Bukit Batok West Avenue 8, serving residential estates in Bukit Batok West.",
+    
     "st":["28009","28441","28071","28081","28281","28291","43459","40321","40331","40351","40361","43799","43779","43789","40311","40359","40339","40329","43453","28299","28289","28089","28079","28449","28009"]
   },
     {
@@ -483,9 +454,7 @@
         "te": "Choa Chu Kang Int",
         "st":["75009","76059","76069","75059","75069","74949","75349","84209","84529","84219","84199","84049","84039","84029","84019","83099","83079","83059","83049","83029","82069","82049","82029","82109","81069","81049","81029","80089","80069","80049","80039","80029","07371","07361","07351","07329","07319","07419","07529","07531","40011","40271","40021","40031","40041","40051","40111","40071","40081","40091","41011","41021","41031","41041","41051","41061","41071","41081","42011","42021","42031","42041","42051","42061","42071","42091","42111","43011","43021","43041","43051","43061","43071","43081","43091","43111","44011","44021","44149","44139","44129","44449","44459","44469","44009"]
       }
-    },
-    "r": "Service 67 is a trunk route linking Choa Chu Kang and Tampines via Bukit Panjang, Upper Bukit Timah, Bukit Timah, Little India, Kallang, Sims Avenue and Bedok North. Much of the route duplicates the East-West Line and Downtown Line."
-  },
+    }},
     {
     "n": "66",
     "t": "Trunk",
@@ -494,7 +463,7 @@
     "ts": "Jurong East Int",
     "lp": "Upp Bt Timah Rd",
     "te": "Jurong East Int",
-    "r": "Service 66 is a trunk service plying from Jurong East and looping at Beauty World, passing through Bukit Batok.",
+    
     "st":["28009","28301","28431","28251","28261","28271","28281","28291","43459","43351","43361","43371","43519","43599","43141","43199","43209","42199","42189","42179","42169","42159","42079","42151","42161","42171","42181","42191","43201","43191","43149","43591","43511","43379","43369","43359","43453","28299","28289","28279","28269","28259","28439","28009"]
   },
     {
@@ -516,7 +485,7 @@
         "st":["22009","21699","21689","21229","21219","21619","21609","21599","21589","21579","21569","21559","21179","21029","21019","20089","20269","20259","20159","20149","20139","20289","20299","17079","17069","17049","17039","17389","17029","17019","16089","16079","16069","16059","16049","16039","16029","16019","16209","15229","15219","15209","15199","15169","15159","15149","14189","14179","14169","14159","14139","14129","14119","14109","14089","14069","05641","91081","91091","81171","81181","81191","82081","82091","82111","82011","82033","82061","83011","83031","83062","83081","84011","84021","84009"]
       }
     },
-    "r": "Service 30 is a trunk service plying between Bedok and Boon Lay, passing through Geylang Serai, Mountbatten, HarbourFront, Pasir Panjang, Teban Gardens and Corporation Drive, running from East to West of Singapore. ",
+    
     "ev": ["30e"]
   },
     {
@@ -538,7 +507,7 @@
         "st":["16069","16039","16019","15209","15169","15159","15149","14129","14119","91081","91091","81171","81181","81191","82061","84011","84021","84009"]
       }
     },
-    "r": "Service 30e is an express variant of Service 30, plying between Bedok and Pasir Panjang. It passes through Pasir Panjang, HarbourFront, MCE, Old Airport and Bedok.",
+    
     "pb": ["30"]
   },
     {
@@ -549,7 +518,7 @@
     "ts": "Jurong East Int",
     "lp": "Jln Anak Bt",
     "te": "Jurong East Int",
-    "r": "Service 41 is a residential and industrial trunk route from Jurong East Interchange and looping at Jalan Anak Bukit / Beauty World MRT Station, passing through Toh Guan Road, Toh Guan Industrial Estate, Toh Tuck Road, Jalan Jurong Kechil and Upper Bukit Timah Road.",
+    
     "st":["28009","28301","28431","28251","28261","28271","28281","28291","43459","43351","43361","43371","43519","43599","43141","43199","43209","42199","42189","42179","42169","42159","42079","42151","42161","42171","42181","42191","43201","43191","43149","43591","43511","43379","43369","43359","43453","28299","28289","28279","28269","28259","28439","28009"]
   },
   {
@@ -571,7 +540,7 @@
         "st":["03222","03111","03071","03031","03011","80151","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","94011","94021","94031","94041","94051","94061","94071","85021","85031","85041"]
       }
     },
-    "r": "Service 10e is an express variant of Bus Service 10, plying between Bedok Road and Shenton Way. It connects East Coast to the CBD while skipping Tanjong Katong and Old Airport.",
+    
     "pb": ["10"]
   },
     {
@@ -582,7 +551,7 @@
     "ts": "Lor 1 Geylang Ter",
     "lp": "Rhu Cross",
     "te": "Lor 1 Geylang Ter",
-    "r": "Service 11 is a trunk service from Lorong 1 Geylang and looping at Rhu Cross, via Stadium Cres / Drive.",
+    
     "st":["80009","80051","80119","80149","80189","80179","80199","80191","90039","90049","90029","90019","90079","90011","90021","90041","90031","80199","80191","80171","80181","80141","80111","80049","80009"]
   },
     {
@@ -604,7 +573,7 @@
         "st":["10499","10049","10017","05013","05023","04222","04142","01012","01112","01121","01211","01311","80011","80031","80051","80119","80149","80279","91099","91041","91051","91061","91071","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","84159","84119","84149","84089","84079","84109","85091","85101","96011","96021","96031","95901","96201","96191","96181","96121","76101","76031","76231","76241","98011","98091","78199","78189","78039","78061","78079","78089","78101","77009"]
       }
     },
-    "r": "Service 12 is a trunk route connecting Pasir Ris and Kampong Bahru through Bugis, East Coast, Bedok South, Simei and Tampines.",
+    
     "ev": ["12e"]
   },
     {
@@ -626,7 +595,7 @@
         "st":["10499","10017","05013","05023","04222","04142","01012","01112","01559","01549","93139","84159","84119","84149","84089","84079","84109","85091","96201","96191","96181","96121","76101","76031","76231","76241","98011","98091","78199","78189","78039","78061","78079","78089","78101","77009"]
       }
     },
-    "r": "Service 12e is a Limited Stop route variant of Service 12, plying between Pasir Ris and Kampong Bahru at selected hours daily.",
+    
     "pb": ["12"]
   },
     {
@@ -648,7 +617,7 @@
         "st":["94009","94069","94059","94049","94089","94039","94029","94019","93099","93089","93079","93129","93029","93019","92089","92211","92221","92231","92271","83301","83311","83291","82069","82049","82029","82109","81069","81049","81029","80089","80069","80049","80039","80029","07371","07361","07351","60101","60121","60141","60161","60201","60261","61011","61021","61031","61041","66089","66079","66069","52069","52059","52039","53219","53239","53391","53381","53371","53161","54011","54031","54041","54051","55201","55509"]
       }
     },
-    "r": "Service 13 is a trunk service plying between Yio Chu Kang and Upper East Coast, passing through Ang Mo Kio, Bishan, Boon Keng, Geylang and Marine Parade.",
+    
     "sb": ["13A"]
   },
     {
@@ -665,7 +634,7 @@
         "st":["54019","53169","53379","53389","53399","53231"]
       }
     },
-    "r": "Service 13A is a Short-Trip Service variant of Bus Service 13, plying between Pasir Ris and Kampong Bahru at selected hours daily.",
+    
     "pb": ["13"]
   },
     {
@@ -687,7 +656,7 @@
         "st":["17009","17239","17159","19049","19039","19029","19019","11199","11369","18149","18129","18109","18049","11511","11019","10139","10119","10109","10099","10089","10371","10381","13051","13063","13141","13191","09048","09038","08138","08057","08069","04179","02049","80151","80161","80211","80149","80279","91099","91041","91051","91061","91071","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","94011","94021","94031","94041","94051","94061","94071","85021","85031","85041","85099","84069","84289","84249","84239","84229","84219","84351","84651","84009"]
       }
     },
-    "r": "Service 14 is a trunk service plying between Bedok and Clementi, passing through Bedok North, East Coast, Mountbatten, Orchard, Jalan Bukit Merah and Dover.",
+    
     "sb": ["14A"],
     "ev": ["14e"]
   },
@@ -705,7 +674,7 @@
         "st":["84009","84659","84359","84211","84221","84231","84241","84281","84061","85091","85049","85039","85029","85019","94079","94069","94059","94049","94089","94039","94029","94019","93099","93089","93079","93069","93059","92159","92149","92139","92129","92119","92109","92099","91079","91069","91059","91049","91091","80271","80141","80219","80169","80159","04111","04121","08041","08031","08111","08121","09059"]
       }
     },
-    "r": "Service 14A is a Short-Trip Service variant of Bus Service 14, plying from Bedok Bus Interchange and ends at Grange Road (Somerset Youth Pk), operating only on Sundays and Public Holidays.",
+    
     "pb": ["14"]
   },
    {
@@ -727,7 +696,7 @@
         "st":["09048","09038","08138","08057","08069","04179","02049","80151","92091","92101","92111","92121","92131","92141","92151","93051","93061","93071","93081","93091","94011","94021","94031","94041","84249","84239","84229","84219"]
       }
     },
-    "r": "Service 14e is an express variant of Service 14, plying between Bedok North Avenue 3 and Orchard Road, passing through East Coast Road while skipping Bedok Road and Mountbatten.",
+    
     "pb": ["14"]
   },
     {
@@ -745,7 +714,7 @@
         "st":["77009","77139","77029","77381","75589","75599","76191","76149","76139","76069","75059","75229","75239","75249","75259","72179","84481","84701","72031","72041","72051","71091","72019","83119","83109","83299","83151","83139","83129","92209","92309","92069","92059","92049","92041","92051","92061","92301","92201","83121","83159","83169","83291","83101","83111","72011","71099","72059","72049","72039","84709","84489","72171","75251","75241","75231","75221","75051","76061","76131","76141","76199","75591","75581","77389","77021","77141","77131","77009"]
       }
     },
-    "r": "Service 15 is a trunk route from Pasir Ris and looping at Marine Parade, serving Tampines Central & West, Kaki Bukit, Jalan Eunos, and Telok Kurau.",
+    
     "sb": ["15A"]
   },
     {
@@ -762,7 +731,7 @@
         "st":["77009","77139","77029","77381","75589","75599","76191","76149","76139","76069","75059","75229","75239","75249","75259","72179","84481","84701","72031","72041","72051","71091","72019","83119","83109"]
       }
     },
-    "r": "Service 15A is a Short-Trip Service variant of Bus Service 15, plying from Pasir Ris Bus Interchange and ends at Jalan Eunos (Opp Eunos Stn), operating only during weekday morning peak hours.",
+    
     "pb": ["15"]
   },
     {
@@ -784,7 +753,7 @@
         "st":["10009","10341","10351","10179","10169","10149","06071","06081","06131","13121","13141","13191","09048","09038","08138","08057","08069","04179","02049","80151","80161","80211","80149","81171","81181","81191","82121","82131","92179","92189","92051","92061","92239","92071","92081","93011","93021","93121","93071","93081","93091","84159","84121","84131","84009"]
       }
     },
-    "r": "Service 16 is a trunk service plying between Bedok and Bukit Merah, passing through Marine Parade, Joo Chiat, Old Airport, Orchard Road and Tiong Bahru.",
+    
     "rv": ["16M"]
   },
     {
@@ -806,7 +775,7 @@
         "st":["10009","10659","10099","10341","10351","10179","10169","10149","06071","06081","06131","13121","13141","13191","09048","09038","08138","08057","08069","04179","02049","80151","80161","80211","80149","81171","81181","81191","82121","82131","92179","92189","92051","92061","92239","92071","92081","93011","93021","93121","93071","93081","93091","84159","84121","84131","84009"]
       }
     },
-    "r": "Service 16M is a supplementary bus service operating between Bedok Interchange and Bukit Merah Interchange, passing through Marine Parade, Joo Chiat, Old Airport, Orchard Road, Tiong Bahru and Jalan Bukit Merah, Operating as alternate trips of Service 16 during stipulated hours on Weekdays & Saturdays (except Public Holidays).",
+    
     "pb": ["16"]
   },
     {
@@ -824,7 +793,7 @@
         "st":["22009","22499","21699","21689","28099","28379","28369","28359","28349","28281","28291","43459","43761","43751","43781","43771","43671","44171","44161","44151","44131","44141","44029","45009","44259","44149","44139","44159","44169","44179","43679","43779","43789","43759","43769","43453","28299","28289","28341","28351","28361","28371","28091","21681","21691","22491","22009"]
       }
     },
-    "r": "Service 180 is a trunk route running from Boon Lay Interchange and loops at Bukit Panjang. It travels through Jurong West Street 64, Boon Lay Way, Bukit Batok Road and Jelebu Road.",
+    
     "sb": ["180A"]
   },
     {
@@ -841,7 +810,7 @@
         "st":["22009","22499","21699","21689","28099","28379","28369","28359","28349","28281","28291","43459","43761","43751","43781","43771","43671","44171","44161","44151","44131","44141","44029","45009","44259"]
       }
     },
-    "r": "Service 180A is a Short-Trip Service variant of Bus Service 180, plying from Boon Lay Bus Interchange and ends at Bukit Panjang Road (Blk 183) via Bukit Panjang Bus Interchange. It operates daily, after the last bus of Service 180 has departed. In addition, it also operates during weekday evening peak hours",
+    
     "pb": ["180"]
   },
     {
@@ -859,9 +828,7 @@
         "st":["44009","44461","44451","44571","44561","44689","44551","44581","44181","44189","44591","44089","44569","44579","44459","44469","44009"]
       }
     },
-    "c": "Distance Fares capped at 3.2km",
-    "r": "Service 301 is a Feeder service operating from Choa Chu Kang Bus Interchange and looping at Keat Hong Close, passing through Choa Chu Kang Avenue 3 and 5."
-  },
+    "c": "Distance Fares capped at 3.2km"},
     {
     "n": "172",
     "t": "Trunk",
@@ -880,9 +847,7 @@
         "te": "Choa Chu Kang Int",
         "st":["22009","22499","21361","21371","27091","27101","27121","31011","31031","31041","31051","31151","31161","31171","31191","30011","30021","30031","30041","30051","30091","30081","44071","45451","44081","44091","44101","44119","44391","44009"]
       }
-    },
-    "r": "Service 172 is a trunk route linking Choa Chu Kang Interchange and Boon Lay Interchange, passing through Choa Chu Kang Ave 1, Brickland Road, Old Choa Chu Kang Road, Jalan Bahar and Jalan Boon Lay."
-  },
+    }},
     {
     "n": "925",
     "t": "Trunk",
@@ -902,7 +867,7 @@
         "st":["44009","44541","44061","45011","45021","45031","45159","45169","45179","49139","49011","49021","49031","49041","49051","49061","49071","45441","49081","49159","49149","49199","49141","49151","49171","49181","49251","49119","49109","49099","45149","45121","45131","46389","46499","46521","46531","46541","47009"]
       }
     },
-    "r": "Service 14 is a trunk service plying between Bedok and Clementi, passing through Bedok North, East Coast, Mountbatten, Orchard, Jalan Bukit Merah and Dover.",
+    
     "sb": ["925A"],
     "rv": ["925M"]
   },
@@ -920,7 +885,7 @@
         "st":["47009","46549","46539","46529","46491","46381","45139","45129","45141","49091","49101","49111","49259","49189","49179","49159","49149","49199"]
       }
     },
-    "r": "Service 925A is a Short-Trip Service variant of Bus Service 925, plying from Woodlands Temp Int ends at Kranji Way (Kranji Resvr Pk B), operating only during the morning peak hours on Weekdays & Saturdays.",
+    
     "pb": ["925"]
   },
     {
@@ -938,7 +903,7 @@
         "st":["47009","46549","46539","46529","46491","46381","45139","45129","45141","49091","49101","49111","49121","49189","49179","49159","49149","49219","49249","49239","49209","49229","49211","49141","49151","49171","49181","49129","49119","49109","49099","45149","45121","45131","46389","46499","46521","46531","46541","47009"]
       }
     },
-    "r": "Service 925M is a Feeder service operating from Woodlands Temporary Bus Interchange and looping at Neo Tiew Crescent, passing through Marsiling, Kranji Road, Kranji Reservoir Park and Neo Tiew Road. It operates on Sundays and Public Holidays only.",
+    
     "pb": ["925"]
   },
     {
@@ -960,7 +925,7 @@
         "st":["14009","14131","14151","14161","14171","15141","15151","15161","15191","15201","15221","16201","16011","16021","16031","16041","16051","16061","16071","16081","16131","16141","16151","17121","17131","17141","17059","20101","28011","28021","28031","28041","28659","28649","28639","28621","43691","43379","43329","43409","43469","43479","43489","43499","43839","43649","43521","44161","44151","44129","44449","44459","44469","44009"]
       }
     },
-    "r": "Service 188 is a trunk route linking Choa Chu Kang Interchange and HarbourFront Interchange, passing through Choa Chu Kang Way, Bukit Gombak, Bukit Batok, Toh Guan, Clementi Avenue 6, AYE, Clementi Road, Pasir Panjang and Telok Blangah.",
+    
     "rv": ["188e"]
   },
     {
@@ -977,7 +942,7 @@
         "st":["44009","44461","44451","44441","44121","43641","43831","43491","43481","43471","43461","43401","43321","43371","43699","28629","28631","28641","28651","20019","16159","16149","16139","15199","15169","15159","15149","14009"]
       }
     },
-    "r": "Service 188e is a Morning Peak uni-directional limited-stop express route of Service 188, operating from Choa Chu Kang Interchange to HarbourFront Interchange, passing through Choa Chu Kang Way, Bukit Batok, Toh Guan, AYE, Clementi Road and Pasir Panjang.",
+    
     "pb": ["188"]
   },
     {
@@ -999,7 +964,7 @@
         "st":["10499","10049","10017","05012","05022","04222","04223","04143","04121","08041","08031","08111","08121","09011","09023","09213","40191","40201","40211","40221","40231","44269","44239","44249","44259","44149","44271","44281","44291","44391","44009"]
       }
     },
-    "r": "Service 190 operates between Choa Chu Kang and Kampong Bahru, passing through Teck Whye, Bukit Panjang, Stevens, Orchard Road, Clarke Quay and Chinatown.",
+    
     "rv": ["190A"]
   },
     {
@@ -1016,7 +981,7 @@
         "st":["44009","44539","44399","44299","44289","44279","44141","44251","44241","44231","44261","40239","40229","40219","40209","40199","09219","09047","09037","08138","08057"]
       }
     },
-    "r": "Service 190A is a Morning Peak uni-directional limited-stop express route of Service 190, operating from Choa Chu Kang Bus Interchange and ends at Orchard Road (Dhoby Ghaut Stn), operating only during weekday morning peak hours.",
+    
     "pb": ["190"]
   },
     {
@@ -1033,9 +998,7 @@
         "te": "Choa Chu Kang Int",
         "st":["44009","44541","44061","45011","45021","45031","45041","45051","45061","45071","45221","45181","45191","45201","45211","48011","48111","48131","48119","48019","45209","45199","45189","45229","45079","45069","45059","45049","45039","45029","44999","45019","44009"]
       }
-    },
-    "r": "Service 927 is a trunk route from Choa Chu Kang Interchange and looping at Mandai Lake Road, going via KJE, Woodlands Road and Mandai Road."
-  },
+    }},
     {
     "n": "976",
     "t": "Trunk",
@@ -1054,9 +1017,7 @@
         "te": "Choa Chu Kang Int",
         "st":["45009","44201","44211","44221","44321","44921","44911","44699","44709","44831","44721","44829","44819","44869","44809","44799","44649","44259","44149","44139","44129","44449","44459","44469","44009"]
       }
-    },
-    "r": "Service 976 is a trunk service operating between Choa Chu Kang and Bukit Panjang Interchange, supplementing the Bukit Panjang LRT."
-  },
+    }},
     {
     "n": "983",
     "t": "Trunk",
@@ -1072,7 +1033,7 @@
         "st":["44009","44491","44501","44621","44551","44581","44181","44189","44591","44091","44879","44899","44131","44141","44031","44259","44149","44139","44891","44871","44099","44599","44181","44189","44589","44559","44629","44509","44499","44009"]
       }
     },
-    "r": "Service 983 is a trunk service operating from Choa Chu Kang Bus Interchange and looping at Jelebu Rd, passing through Choa Chu Kang Avenues 4, 5, 6, 1 & 7.",
+    
     "sb": ["983A"],
     "rv": ["983M"]
   },
@@ -1094,9 +1055,7 @@
         "te": "Choa Chu Kang Int",
         "st":["44009","44539","44399","44111","44889","44099","44089","44689","44079","30101","30111","30121","43529","43589","43579","43609","40379","40369","40349","40329","43349","43339","43329","43409","43411","43009"]
       }
-    },
-    "r": "Service 991 is a trunk route operating from Bukit Batok Bus Interchange and Choa Chu Kang Bus Interchange, serving numerous housing estates via Bukit Batok, Bukit Gombak, Choa Chu Kang and Keat Hong."
-  },
+    }},
     {
     "n": "187",
     "t": "Trunk",
@@ -1115,9 +1074,7 @@
         "te": "Woodlands Int",
         "st":["22009","22499","21699","21689","28099","28381","28391","28529","28519","28509","28499","28469","28459","28339","28329","28621","43691","43381","43709","43419","43469","43479","43489","43499","43839","43649","43521","44161","44151","44131","44141","44251","44241","44231","44261","46499","46521","46531","46541","46009"]
       }
-    },
-    "r": "Service 187 is a trunk route linking Woodlands Interchange and Boon Lay Interchange, passing through Lakeside, Jurong West/East Avenue 1, Bukit Batok, Bukit Gombak, Bukit Panjang, Marsiling and Woodlands."
-  },
+    }},
     {
     "n": "161",
     "t": "Trunk",
@@ -1136,9 +1093,7 @@
         "te": "Hougang Ctrl Int",
         "st":["46009","46631","46331","46221","65069","65059","67109","67409","67441","67271","67461","67451","64621","64461","64619","64609","64419","64341","64351","64361","64371","64381","64391","64009"]
       }
-    },
-    "r": "Service 161 is a trunk service plying between Hougang Central Interchange and Woodlands Interchange, passing through Hougang Avenue 10/6/8/4, Buangkok, Sengkang, Punggol Road, TPE, SLE and Woodlands Avenue 2."
-  },
+    }},
           {
     "n": "168",
     "t": "Trunk",
@@ -1157,9 +1112,7 @@
         "te": "Bedok Int",
         "st":["46009","46631","46331","46221","68111","65199","75359","75369","75319","75299","75289","75279","76549","76191","76149","76139","76069","75059","75069","74949","75349","84209","84529","84219","84351","84651","84009"]
       }
-    },
-    "r": "Service 168 is a trunk service plying between Bedok Interchange and Woodlands Interchange, passing through Bedok Reservoir, Tampines estate, Jalan Kayu and Woodlands Avenue 2."
-  },
+    }},
     {
     "n": "983A",
     "t": "Trunk",
@@ -1174,7 +1127,7 @@
         "st":["44009","44491","44501","44621","44551","44581","44181","44189","44591","44091","44879","44899","44131"]
       }
     },
-    "r": "Service 983A is a Short-Trip Service variant of Bus Service 983, operating from Choa Chu Kang Bus Interchange and ends at Choa Chu Kang Road (Blk 26), operating daily, after the last bus of Service 983 has departed.",
+    
     "pb": ["983"]
   },
     {
@@ -1191,7 +1144,7 @@
         "st":["44551","44581","44181","44189","44591","44091","44879","44899","44129","44119","44969"]
       }
     },
-    "r": "Service 983M is an unidirectional morning peak supplementary bus service, operating during School Term Weekdays. It mainly caters to the students and staff of educational institutions along Teck Whye Crescent.",
+    
     "pb": ["983"]
   }
 
@@ -1200,3 +1153,6 @@
 
 
 ]
+
+
+

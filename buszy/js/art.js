@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 2000);
+    setInterval(fetchBusArrivals, 200000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -343,7 +343,7 @@ async function fetchBusArrivals() {
                             <button class="btn btn-busloc btn-sm view-location-btn-consolidated"
                                 data-service="${service.ServiceNo}"
                                 ${!((service.NextBus?.Latitude !== "0.0" && service.NextBus?.Longitude !== "0.0") || (hasNextBus2 && service.NextBus2?.Latitude !== "0.0" && service.NextBus2?.Longitude !== "0.0")) ? 'disabled' : ''}>
-                                <i class="fa-regular fa-location-dot"></i>
+                                <i class="fa-kit fa-lta-location"></i>
                             </button>
                         </div>
                     </div>
@@ -673,10 +673,7 @@ function formatArrivalTimeOrArr(isoString, now, isIncomingBus = false) {
             return `<span class="arrival-now">Arr</span>`;
         }
         const minText = minutes === 1 ? 'min' : 'mins';
-        if (isIncomingBus) {
-            return `${minutes}<span style="font-size: 0.7em;"> ${minText}</span>`;
-        }
-        return `${minutes} ${minText}`; // Singular/plural handling
+        return `${minutes}<span class="mins"> ${minText}</span>`;
     }
 
     // Format the time based on the saved format
@@ -695,7 +692,7 @@ function formatArrivalTimeOrArr(isoString, now, isIncomingBus = false) {
                 return `${parts[0]}<span style="font-size: 0.5em;">${parts[1]}</span>`;
             } else {
                 // For bus-time spans, use enhanced style with bottom alignment
-                const smallerAMPM = `<span style="font-size: 0.7em; margin-left: 2px; position: relative; top: 2px; display: inline-block;">${parts[1]}</span>`;
+                const smallerAMPM = `<span style="font-size: 0.7em; margin-left: 1.5px; position: relative; top: 2px; display: inline-block;">${parts[1]}</span>`;
                 return `${parts[0]}${smallerAMPM}`;
             }
         }

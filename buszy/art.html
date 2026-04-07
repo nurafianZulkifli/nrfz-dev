@@ -93,7 +93,7 @@
 
     .card .card-content-art span {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         gap: 0.5px;
     }
 
@@ -108,6 +108,7 @@
 
     .card-bt {
         margin-top: 2em;
+        padding: 1em;
     }
 
     .service-no {
@@ -138,8 +139,8 @@
         display: inline-flex;
         width: 75px;
         text-align: center;
-        margin-right: 0em;
-        font-size: 20px;
+        margin-right: 2px;
+        font-size: 24px;
         font-weight: bold;
         margin-top: 2px;
         margin-bottom: 2px;
@@ -409,6 +410,12 @@
         .ib-svc {
             clip-path: polygon(22% 0%, 100% 0%, 100% 100%, 22% 100%, 0% 50%);
         }
+
+        .card-bt {
+            margin-top: 2em;
+            padding: 0em;
+        }
+
     }
 
     @media (min-width: 440px) and (max-width: 768px) {
@@ -561,6 +568,16 @@
         font-size: 1.2em;
     }
 
+    .ib-time span.mins {
+        font-size: 0.7em;
+        margin-left: 3px;
+    }
+
+    .card .card-content-art span.mins {
+        font-size: 0.6em;
+        margin-left: 3px;
+    }
+
     @media (min-width: 1200px) {
         .col-xl-3 {
             flex: 0 0 auto;
@@ -576,6 +593,10 @@
             padding: 0.8rem;
             margin-top: 1em;
             margin-bottom: 1.5em;
+        }
+
+        .bus-time {
+            font-size: 25px;
         }
     }
 
@@ -650,11 +671,16 @@
             width: 63px;
             text-align: center;
             margin-right: 0em;
-            font-size: 20px;
+            font-size: 25px;
             font-weight: bold;
             margin-top: 2px;
             margin-bottom: 2px;
             cursor: default;
+        }
+
+        .card .card-content-art span.mins {
+            font-size: 0.6em;
+            margin-left: 2px;
         }
     }
 
