@@ -218,6 +218,28 @@
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
 
+    .service-card.highlighted {
+        background-color: #e8f5e9;
+        border: 2px solid #4caf50;
+        box-shadow: 0 0 15px rgba(76, 175, 80, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+        animation: highlight-pulse 1.5s ease-in-out;
+    }
+
+    @keyframes highlight-pulse {
+        0% {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.6), 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        100% {
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    body.dark-mode .service-card.highlighted {
+        background-color: #1b5e20;
+        border: 2px solid #66bb6a;
+        box-shadow: 0 0 15px rgba(102, 187, 106, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
     .time-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;

@@ -217,6 +217,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 servicesContainer.appendChild(card);
             });
 
+            // Check if there's a service parameter in the URL and highlight it
+            const serviceParam = new URLSearchParams(window.location.search).get('service');
+            if (serviceParam) {
+                setTimeout(() => {
+                    const targetCard = document.querySelector(`.service-card[data-service="${serviceParam}"]`);
+                    if (targetCard) {
+                        targetCard.classList.add('highlighted');
+                        // Scroll to the card
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+            }
+
         } catch (error) {
             console.error('Error fetching bus timings:', error, error.stack);
             const errorMsg = error.message || 'Unknown error';
@@ -252,6 +265,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function createServiceCard(service, destinationMap, customDestinationMap) {
         const card = document.createElement('div');
         card.className = 'service-card';
+        card.setAttribute('data-service', service.service);
 
         // Service number header
         const header = document.createElement('div');

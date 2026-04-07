@@ -334,17 +334,29 @@ async function fetchBusArrivals() {
             card.innerHTML = `
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center" style="flex-wrap: nowrap;">
-                        <div style="min-width: 0; padding-right: 15px;">
-                            <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="service-no" style="cursor: pointer; text-decoration: none; color: inherit;">${service.ServiceNo}</a>
+                        <div style="min-width: 0; padding-right: 15px; flex: 1;">
+                            <button class="service-no-collapsible-btn" data-service="${service.ServiceNo}" title="Click to view options">
+                                <span class="service-no">${service.ServiceNo}</span>
+                                <i class="fa-regular fa-chevron-down" style="transition: transform 0.3s ease; margin-left: 0.5rem;"></i>
+                            </button>
                             ${hasNextBus && service.NextBus.DestinationCode ? `<div class="destination-code">To ${getDestinationName(service.NextBus.DestinationCode)}</div>` : ''}
                         </div>
                         <div style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center; flex-shrink: 0;">
                             ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="img-fluid" style="width: 50px; margin-left: auto;">` : ''}
-                            <button class="btn btn-busloc btn-sm view-location-btn-consolidated"
-                                data-service="${service.ServiceNo}"
+                        </div>
+                    </div>
+                    <div class="service-options-collapse" data-service="${service.ServiceNo}" style="display: none; max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="display: flex; gap: 0.5rem; padding: 0.5rem 0; border-top: 1px solid #ddd; margin-top: 0.5rem; padding-top: 0.5rem; flex-wrap: wrap;">
+                            <button class="btn btn-busloc btn-sm view-location-btn-consolidated" data-service="${service.ServiceNo}" title="View bus location on map"
                                 ${!((service.NextBus?.Latitude !== "0.0" && service.NextBus?.Longitude !== "0.0") || (hasNextBus2 && service.NextBus2?.Latitude !== "0.0" && service.NextBus2?.Longitude !== "0.0")) ? 'disabled' : ''}>
-                                <i class="fa-kit fa-lta-location"></i>
+                                <i class="fa-kit fa-lta-location"></i>&nbsp;Location
                             </button>
+                            <a href="${getBasePath() + 'buszy/first-last.html?BusStopCode=' + busStopCode + '&service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View first and last bus timings">
+                                <i class="fa-regular fa-clock"></i>&nbsp;First/Last Bus
+                            </a>
+                            <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View bus route">
+                                <i class="fa-regular fa-route"></i>&nbsp;Route
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -382,6 +394,34 @@ async function fetchBusArrivals() {
 
         // Only add event listeners if the DOM was updated
         if (didUpdate) {
+            // Add toggle functionality to service number collapsible buttons
+            const collapsibleButtons = document.querySelectorAll('.service-no-collapsible-btn');
+            collapsibleButtons.forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const serviceNo = button.getAttribute('data-service');
+                    const collapseSection = document.querySelector(`.service-options-collapse[data-service="${serviceNo}"]`);
+                    
+                    if (collapseSection) {
+                        const isVisible = collapseSection.style.display !== 'none';
+                        
+                        if (isVisible) {
+                            // Hide the section
+                            collapseSection.style.display = 'none';
+                            collapseSection.style.maxHeight = '0';
+                            collapseSection.classList.remove('show');
+                            button.classList.remove('active');
+                        } else {
+                            // Show the section
+                            collapseSection.style.display = 'block';
+                            collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
+                            collapseSection.classList.add('show');
+                            button.classList.add('active');
+                        }
+                    }
+                });
+            });
+
             // Store location data for each service to enable cycling
             const serviceLocations = {};
             data.Services.forEach((service) => {
