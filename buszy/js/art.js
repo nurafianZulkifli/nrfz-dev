@@ -341,7 +341,7 @@ async function fetchBusArrivals() {
                         </div>
                     </div>
                     <div class="service-options-collapse" data-service="${service.ServiceNo}" style="display: none; max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-                        <div style="display: flex; gap: 0.5rem; padding: 0.5rem 0; border-top: 1px solid #ddd; margin-top: 0.5rem; padding-top: 0.5rem; flex-wrap: wrap; justify-content: center;">
+                        <div style="display: flex; gap: 0.5rem; padding: 0.5rem 0; margin-top: 0.5rem; padding-top: 0.5rem; flex-wrap: wrap; justify-content: center;">
                             <button class="btn btn-busloc btn-sm view-location-btn-consolidated" data-service="${service.ServiceNo}" title="View bus location on map"
                                 ${!((service.NextBus?.Latitude !== "0.0" && service.NextBus?.Longitude !== "0.0") || (hasNextBus2 && service.NextBus2?.Latitude !== "0.0" && service.NextBus2?.Longitude !== "0.0")) ? 'disabled' : ''}>
                                 <i class="fa-kit fa-lta-location"></i>&nbsp;Location
@@ -401,15 +401,26 @@ async function fetchBusArrivals() {
                         const isVisible = collapseSection.style.display !== 'none';
                         
                         if (isVisible) {
-                            // Hide the section
-                            collapseSection.style.display = 'none';
+                            // Animate height to 0, then hide
+                            collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
+                            // Force reflow so transition fires
+                            collapseSection.getBoundingClientRect();
                             collapseSection.style.maxHeight = '0';
+                            collapseSection.style.opacity = '0';
                             collapseSection.classList.remove('show');
                             button.classList.remove('active');
+                            collapseSection.addEventListener('transitionend', () => {
+                                collapseSection.style.display = 'none';
+                            }, { once: true });
                         } else {
-                            // Show the section
+                            // Show then animate height in
                             collapseSection.style.display = 'block';
+                            collapseSection.style.maxHeight = '0';
+                            collapseSection.style.opacity = '0';
+                            // Force reflow so transition fires
+                            collapseSection.getBoundingClientRect();
                             collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
+                            collapseSection.style.opacity = '1';
                             collapseSection.classList.add('show');
                             button.classList.add('active');
                         }

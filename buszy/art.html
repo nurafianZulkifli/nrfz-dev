@@ -72,6 +72,8 @@
         background-color: #fff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: all 0.3s;
+        scroll-margin-top: 140px;
+        scroll-margin-bottom: 140px;
     }
 
     .card .card-header {
@@ -136,7 +138,9 @@
     }
 
     .service-no-collapsible-btn:hover .service-no {
-        transform: translateY(-3px);
+        transform: translateY(-2px);
+        transition-duration: 500ms;
+        background-color: #c7e3fb;
     }
 
     .service-no-collapsible-btn i {
@@ -149,7 +153,8 @@
     }
 
     .service-options-collapse {
-        transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+        transition: max-height 0.35s ease, opacity 0.35s ease;
+        overflow: hidden;
         opacity: 0;
     }
 
@@ -412,10 +417,6 @@
         background-color: #52718d;
     }
 
-    body.dark-mode .service-options-collapse {
-        border-top-color: #444;
-    }
-
     body.dark-mode .leaflet-touch .leaflet-bar a {
         width: 30px;
         height: 30px;
@@ -461,6 +462,11 @@
         .card-bt {
             margin-top: 2em;
             padding: 0em;
+        }
+
+        .card {
+            scroll-margin-top: 200px;
+            scroll-margin-bottom: 200px;
         }
 
     }
@@ -528,29 +534,30 @@
 
     .bus-load-legend .fleet-legend {
         display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
         justify-content: left;
         background-color: transparent;
         border: none;
         padding: 0;
         margin: 0;
         flex: 1;
-        min-width: 250px;
+        min-width: 0;
     }
 
     .bus-load-legend .fleet-legend span {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
+        padding: 0.5em;
+        border-radius: 15px;
         font-weight: 600;
         font-size: 14px;
         background-color: #f8f8f8;
         box-shadow: none;
         border: 1px solid #ddd;
         transition: transform 0.3s ease;
+        white-space: nowrap;
     }
 
     body.dark-mode .bus-load-legend .fleet-legend span {
@@ -659,7 +666,7 @@
 
         .fleet-legend {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 0.4rem;
             justify-content: center;
             margin-top: 0;
@@ -669,17 +676,17 @@
 
         .fleet-legend span {
             font-size: 12px;
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 0.6rem;
         }
 
         .bus-load-legend .fleet-legend {
             width: 100%;
-            gap: 1rem;
+            gap: 0.4rem;
             margin-bottom: 0;
             padding-bottom: 0;
             border-bottom: none;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
             min-width: unset;
         }
@@ -769,7 +776,7 @@
             padding-bottom: 0;
             border-bottom: none;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
             min-width: unset;
         }

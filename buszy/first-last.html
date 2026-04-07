@@ -211,6 +211,8 @@
         transition: all 0.3s;
         margin-bottom: 1em;
         margin-top: 1em;
+        scroll-margin-top: 140px;
+        scroll-margin-bottom: 140px;
     }
 
     .service-card:hover {
@@ -219,7 +221,7 @@
     }
 
     .service-card.highlighted {
-        background-color: #e8f5e9;
+        background-color: #dcf3dd;
         border: 2px solid #4caf50;
         box-shadow: 0 0 15px rgba(76, 175, 80, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
         animation: highlight-pulse 1.5s ease-in-out;
@@ -235,7 +237,7 @@
     }
 
     body.dark-mode .service-card.highlighted {
-        background-color: #1b5e20;
+        background-color: #1b5e1e;
         border: 2px solid #66bb6a;
         box-shadow: 0 0 15px rgba(102, 187, 106, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
     }
@@ -514,6 +516,11 @@
 
         .services-grid {
             grid-template-columns: 1fr;
+        }
+
+        .service-card {
+            scroll-margin-top: 200px;
+            scroll-margin-bottom: 200px;
         }
 
         .time-row {
