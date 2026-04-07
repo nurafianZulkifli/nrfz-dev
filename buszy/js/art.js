@@ -107,11 +107,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </span>
                         <span class="bus-stop-description">${busStop.Description}</span>
                     </div>
-                    <div class="bus-stop-actions" style="margin-top: 15px;">
-                        <a href="first-last.html?BusStopCode=${busStop.BusStopCode}" class="btn btn-flt btn-sm">
-                            <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;First/Last Bus Timings
-                        </a>
-                    </div>
                 `;
             } else {
                 filterTitle.textContent = `Bus Stop Not Found (${busStopCode})`;
@@ -346,16 +341,16 @@ async function fetchBusArrivals() {
                         </div>
                     </div>
                     <div class="service-options-collapse" data-service="${service.ServiceNo}" style="display: none; max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-                        <div style="display: flex; gap: 0.5rem; padding: 0.5rem 0; border-top: 1px solid #ddd; margin-top: 0.5rem; padding-top: 0.5rem; flex-wrap: wrap;">
+                        <div style="display: flex; gap: 0.5rem; padding: 0.5rem 0; border-top: 1px solid #ddd; margin-top: 0.5rem; padding-top: 0.5rem; flex-wrap: wrap; justify-content: center;">
                             <button class="btn btn-busloc btn-sm view-location-btn-consolidated" data-service="${service.ServiceNo}" title="View bus location on map"
                                 ${!((service.NextBus?.Latitude !== "0.0" && service.NextBus?.Longitude !== "0.0") || (hasNextBus2 && service.NextBus2?.Latitude !== "0.0" && service.NextBus2?.Longitude !== "0.0")) ? 'disabled' : ''}>
                                 <i class="fa-kit fa-lta-location"></i>&nbsp;Location
                             </button>
                             <a href="${getBasePath() + 'buszy/first-last.html?BusStopCode=' + busStopCode + '&service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View first and last bus timings">
-                                <i class="fa-regular fa-clock"></i>&nbsp;First/Last Bus
+                                <i class="fa-regular fa-clock"></i>&nbsp;Timings
                             </a>
-                            <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View bus route">
-                                <i class="fa-regular fa-route"></i>&nbsp;Route
+                            <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View bus route details">
+                                <i class="fa-regular fa-map"></i>&nbsp;Route
                             </a>
                         </div>
                     </div>
