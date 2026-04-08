@@ -1,20 +1,73 @@
- 	 	Choa Chu Kang Ave 5
-0.0	 44551	 • Opp Blk 486
-0.2	 44581	 • Blk 489A
- 	 	Keat Hong Cl
-0.5	 44181	 • Blk 802B
-0.6	 44189	 • Blk 803
- 	 	Choa Chu Kang Ave 6
-0.8	 44591	 • Blk 490B
- 	 	Choa Chu Kang Ave 1
-1.1	 44091	 • Choa Chu Kang Mkt
- 	 	Choa Chu Kang Ave 7
-1.6	 44879	 • Opp Blk 810 CP
- 	 	Choa Chu Kang Gr
-2.0	 44899	 • Opp APSN
- 	 	Choa Chu Kang Way
-2.5	 44129	 • Sol Acres Condo
- 	 	Choa Chu Kang Ave 1
-3.0	 44119	 • Blk 204
- 	 	Teck Whye Cres
-3.7	 44969	 • Aft Teck Whye Walk
+ 	 	Tampines Ctrl 1
+0.0	 75009	 • Tampines Int
+ 	 	Tampines Ave 7
+0.5	 76191	 • Blk 401
+0.9	 76201	 • Blk 423
+1.2	 76211	 • Blk 449
+1.5	 76221	 • Tampines East Stn Exit A
+1.9	 76231	 • Opp Blk 390
+2.2	 76241	 • Blk 497D
+ 	 	Loyang Ave
+2.8	 98011	 • Blk 149A
+3.2	 98021	 • Blk 275
+3.7	 98041	 • Opp Loyang Valley
+ 	 	Loyang Way
+4.2	 98121	 • Krislite Bldg
+4.5	 98131	 • Bef Loyang Way 1
+ 	 	Loyang Ave
+5.1	 98061	 • Opp Engine Test Facility
+5.5	 98071	 • Loyang Way 4/Soxal
+5.9	 99011	 • Bef Hendon Camp
+6.3	 99021	 • Bef Cranwell Rd
+6.6	 99031	 • Opp Maranatha B-P Ch
+7.0	 99041	 • Aft Changi Golf Course
+ 	 	Telok Paku Rd
+7.3	 99181	 • Bef S'pore Aviation Ac
+ 	 	Nicoll Dr
+7.9	 99171	 • Changi Beach CP 2
+8.1	 99161	 • Aft Changi Beach CP 3
+8.4	 95071	 • Changi Beach CP 4
+8.7	 95081	 • Changi Beach CP 5
+9.1	 95091	 • SAF Ferry Ter
+ 	 	Airline Rd
+9.3	 95131	 • Police Pass Off
+9.8	 95141	 • Aft Cargo Bldg D
+10.2	 95061	 • Airline Hse
+ 	 	Airport Cargo Rd
+10.6	 95051	 • 3rd Cargo Agents
+11.0	 95041	 • CIAS Cargo Ters
+11.2	 95039	 • AirFreight Ter Bldg
+11.4	 95049	 • SATS Cargo Ter
+ 	 	Airline Rd
+12.0	 95069	 • Opp Airline Hse
+12.3	 95149	 • Bef Cargo Bldg D
+12.8	 95139	 • Police Pass Off
+ 	 	Nicoll Dr
+13.2	 95099	 • Opp SAF Ferry Ter
+13.6	 95089	 • Opp Changi Beach CP 5
+14.0	 95079	 • Opp Changi Beach CP 3
+ 	 	Telok Paku Rd
+14.5	 99189	 • S'pore Aviation Ac
+ 	 	Loyang Ave
+14.9	 99049	 • Changi Golf Course
+15.3	 99039	 • St. George Chapel
+15.6	 99029	 • Aft Cranwell Rd
+16.0	 99019	 • Aft Hendon Camp
+16.6	 98079	 • Opp Loyang Way 4/Soxal
+17.0	 98069	 • Aft Engine Test Facility
+ 	 	Loyang Way
+17.4	 98139	 • Aft Loyang Way 1
+17.7	 98129	 • Opp Krislite Bldg
+ 	 	Loyang Ave
+18.2	 98049	 • Loyang Valley
+18.9	 98029	 • Opp Blk 275
+19.3	 98019	 • Opp Blk 149A
+ 	 	Tampines Ave 7
+19.9	 76249	 • Blk 370
+20.2	 76239	 • Blk 390
+20.6	 76229	 • Opp Tampines East Stn
+20.9	 76219	 • Blk 230E
+21.3	 76209	 • Blk 233
+21.6	 76199	 • Blk 503
+ 	 	Tampines Ctrl 1
+21.9	 75009	 • Tampines Int

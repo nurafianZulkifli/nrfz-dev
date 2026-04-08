@@ -38,6 +38,15 @@ function getBasePath() {
 document.addEventListener('DOMContentLoaded', function() {
     loadBusServices();
     setupSearchFilter();
+
+    // Restore search input value from sessionStorage (state saved before navigating away)
+    const savedSearch = sessionStorage.getItem('absvcSearch');
+    if (savedSearch) {
+        const searchInput = document.getElementById('service-search');
+        if (searchInput) {
+            searchInput.value = savedSearch;
+        }
+    }
 });
 
 function loadBusServices() {
@@ -114,7 +123,28 @@ function loadBusServices() {
                 });
         })
         .then(() => {
-            displayServices(allServices);
+            // Apply saved search filter if one exists, otherwise show full list
+            const savedSearch = sessionStorage.getItem('absvcSearch');
+            if (savedSearch) {
+                const searchTerm = savedSearch.toLowerCase();
+                const filtered = allServices.filter(service => {
+                    const serviceNum = (service.n || '').toLowerCase();
+                    const type = (service.t || '').toLowerCase();
+                    const start = (service.ts || '').toLowerCase();
+                    const end = (service.te || '').toLowerCase();
+                    const remarks = (service.r || '').toLowerCase();
+                    return serviceNum.includes(searchTerm) ||
+                           type.includes(searchTerm) ||
+                           start.includes(searchTerm) ||
+                           end.includes(searchTerm) ||
+                           remarks.includes(searchTerm);
+                });
+                isSearchActive = true;
+                // Restore saved page within the filtered results
+                displayServices(filtered, false);
+            } else {
+                displayServices(allServices);
+            }
             const loadingMessage = document.getElementById('loading-message');
             if (loadingMessage) {
                 loadingMessage.style.display = 'none';
@@ -166,7 +196,7 @@ function naturalSort(a, b) {
     return 0;
 }
 
-function displayServices(services) {
+function displayServices(services, isFiltered = false) {
     const container = document.getElementById('services-container');
     
     if (services.length === 0) {
@@ -182,7 +212,16 @@ function displayServices(services) {
     // Store filtered services
     filteredServices = sortedServices;
     totalPages = Math.ceil(sortedServices.length / limit);
-    currentPage = 1;
+
+    if (isFiltered) {
+        // Search changed — always start at page 1 and clear saved page
+        currentPage = 1;
+        sessionStorage.removeItem('absvcPage');
+    } else {
+        // Full list load — restore saved page if available
+        const savedPage = parseInt(sessionStorage.getItem('absvcPage')) || 1;
+        currentPage = Math.min(savedPage, totalPages);
+    }
     
     // Update service count display
     const countElement = document.getElementById('service-count');
@@ -238,6 +277,7 @@ function displayPage(page) {
     const paginatedServices = filteredServices.slice(startIndex, endIndex);
     
     container.innerHTML = paginatedServices.map(service => createServiceCard(service)).join('');
+    sessionStorage.setItem('absvcPage', page);
 }
 
 function setupPaginationButtons() {
@@ -283,6 +323,7 @@ function setupSearchFilter() {
     if (searchInput) {
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
+            sessionStorage.setItem('absvcSearch', e.target.value);
             
             const filtered = allServices.filter(service => {
                 const serviceNum = (service.n || '').toLowerCase();
@@ -303,7 +344,7 @@ function setupSearchFilter() {
             isSearchActive = searchTerm.length > 0;
             
             // Display filtered results with pagination
-            displayServices(filtered);
+            displayServices(filtered, true);
         });
     }
 }

@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300));
 
     // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 200000);
+    setInterval(fetchBusArrivals, 2000);
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
@@ -161,6 +161,9 @@ function debounce(func, delay) {
 
 // Store previous content for comparison
 let previousContainerHTML = '';
+
+// Track which bus stop is currently rendered to avoid full re-renders on interval
+let renderedBusStopCode = null;
 
 // Abort controller for in-flight requests (prevents stale responses)
 let currentFetchController = null;
@@ -302,7 +305,7 @@ async function fetchBusArrivals() {
                 return `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <div class="ib-time ${arrivedClass}">${bus.TimeStr}</div>
-                    <a href="${getBasePath() + 'buszy/bus-service.html?service=' + bus.ServiceNo}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 4px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
+                    <a href="${getBasePath() + 'buszy/bus-service.html?service=' + bus.ServiceNo}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 8px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
                 </div>
             `;
             }).join('');
@@ -314,6 +317,47 @@ async function fetchBusArrivals() {
             incomingSection.style.display = 'none';
         }
 
+        // If the same bus stop and same set of services are already rendered,
+        // only update arrival times and load icons in-place — no DOM rebuild.
+        const existingCards = container.querySelectorAll('.card-bt[data-service]');
+        const existingServiceSet = new Set([...existingCards].map(el => el.dataset.service));
+        const newServiceSet = new Set(data.Services.map(s => s.ServiceNo));
+        const canRefreshInPlace = renderedBusStopCode === searchInput &&
+            existingServiceSet.size === newServiceSet.size &&
+            [...newServiceSet].every(s => existingServiceSet.has(s));
+
+        if (canRefreshInPlace) {
+            data.Services.forEach((service) => {
+                const hasNextBus = service.NextBus && typeof service.NextBus === 'object' && Object.keys(service.NextBus).length > 0;
+                const hasNextBus2 = service.NextBus2 && typeof service.NextBus2 === 'object' && Object.keys(service.NextBus2).length > 0;
+                const cardContentArt = container.querySelector(`.card-bt[data-service="${service.ServiceNo}"] .card-content-art`);
+                if (cardContentArt) {
+                    const newContentHTML = `
+                            ${hasNextBus ? `
+                            <div class="busNo-card d-flex justify-content-between">
+                                <span class="bus-time">${service.NextBus?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '--'}</span>
+                                <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
+                                    ${getLoadIcon(service.NextBus?.Load, service.NextBus?.Type)}
+                                </span>
+                            </div>
+                            ` : `<div style="padding: 0.5rem; color: #999; font-size: 0.9rem;">No arrival data</div>`}
+                            ${hasNextBus2 ? `
+                            <div class="busNo-card d-flex justify-content-between">
+                                <span class="bus-time">${service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : '--'}</span>
+                                <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
+                                    ${getLoadIcon(service.NextBus2?.Load, service.NextBus2?.Type)}
+                                </span>
+                            </div>
+                            ` : ''}
+                        `;
+                    if (cardContentArt.innerHTML !== newContentHTML) {
+                        cardContentArt.innerHTML = newContentHTML;
+                    }
+                }
+            });
+            return;
+        }
+
         // Build new content
         const tempContainer = document.createElement('div');
         const busStopCode = document.getElementById('bus-stop-search').value.trim();
@@ -321,6 +365,7 @@ async function fetchBusArrivals() {
         data.Services.forEach((service) => {
             const card = document.createElement('div');
             card.classList.add('col-12', 'col-md-4', 'col-xl-3', 'card-bt'); // Add col-sm-6 for 2 cards per row on small screens
+            card.dataset.service = service.ServiceNo;
 
             // Safely check if NextBus exists and has required properties
             const hasNextBus = service.NextBus && typeof service.NextBus === 'object' && Object.keys(service.NextBus).length > 0;
@@ -350,7 +395,7 @@ async function fetchBusArrivals() {
                                 <i class="fa-regular fa-clock"></i>&nbsp;Timings
                             </a>
                             <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View bus route details">
-                                <i class="fa-regular fa-map"></i>&nbsp;Route
+                                <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;Route
                             </a>
                         </div>
                     </div>
@@ -383,8 +428,30 @@ async function fetchBusArrivals() {
         const newHTML = tempContainer.innerHTML;
         let didUpdate = false;
         if (container.innerHTML !== newHTML) {
+            // Save expanded service options before DOM update
+            const expandedServices = new Set();
+            document.querySelectorAll('.service-options-collapse.show').forEach(el => {
+                expandedServices.add(el.getAttribute('data-service'));
+            });
+
             container.innerHTML = newHTML;
             didUpdate = true;
+            renderedBusStopCode = searchInput;
+
+            // Restore expanded state without animation
+            expandedServices.forEach(serviceNo => {
+                const collapseSection = document.querySelector(`.service-options-collapse[data-service="${serviceNo}"]`);
+                const button = document.querySelector(`.service-no-collapsible-btn[data-service="${serviceNo}"]`);
+                if (collapseSection) {
+                    collapseSection.style.display = 'block';
+                    collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
+                    collapseSection.style.opacity = '1';
+                    collapseSection.classList.add('show');
+                }
+                if (button) {
+                    button.classList.add('active');
+                }
+            });
         }
 
         // Only add event listeners if the DOM was updated
