@@ -36,6 +36,13 @@ function getBasePath() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Clear saved state on fresh load or refresh; only restore on back/forward navigation
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType !== 'back_forward') {
+        sessionStorage.removeItem('absvcPage');
+        sessionStorage.removeItem('absvcSearch');
+    }
+
     loadBusServices();
     setupSearchFilter();
 

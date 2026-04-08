@@ -256,7 +256,7 @@ function displayBusStops(busStops, isCached = true) {
                 </div>
                 <div class="bus-stop-details">
                 <span class="bus-stop-description">${busStop.Description}</span>&nbsp;&nbsp;|&nbsp;
-                <span class="road-name">${busStop.RoadName}</span>&nbsp;|&nbsp;
+                <span class="road-name">${busStop.RoadName}</span>&nbsp;&nbsp;|&nbsp;
                 <span class="distance${idx === 0 ? ' distance-nearest' : ''}">${distance}</span>
                 </div>
             </div>
