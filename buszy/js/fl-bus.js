@@ -1,5 +1,39 @@
 // Bus First & Last Timings Page
+
+// Get base path for the application
+function getBasePath() {
+    // If PWAConfig is available, use it
+    if (window.PWAConfig && window.PWAConfig.basePath) {
+        return window.PWAConfig.basePath;
+    }
+
+    // Otherwise, derive from the current pathname
+    // For GitHub Pages: /nrfz-dev/buszy/... -> /nrfz-dev/
+    // For local: /buszy/... -> /
+    const pathname = window.location.pathname;
+    const parts = pathname.split('/').filter(p => p); // Remove empty strings
+
+    // parts[0] should be the first directory level
+    // If parts[0] is 'buszy', we're at the root level (localhost)
+    // If parts[0] is something else and parts[1] is 'buszy', we're in a subdirectory (GitHub Pages)
+
+    if (parts.length >= 2 && parts[1] === 'buszy') {
+        // Format: /something/buszy/... -> /something/
+        return '/' + parts[0] + '/';
+    }
+
+    // For local or simple paths
+    return '/';
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+    // Clear saved state on fresh load or refresh; only restore on back/forward navigation
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType !== 'back_forward') {
+        sessionStorage.removeItem('flBusScrollPos');
+        sessionStorage.removeItem('flBusBusStop');
+    }
+
     let allBusStops = [];
     let filteredStops = [];
 
@@ -141,6 +175,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (!stopData) {
                 servicesContainer.innerHTML = `<div class="no-data" style="grid-column: 1/-1;">No data found for this bus stop. Data may need to be refreshed.</div>`;
+                // Restore scroll position after rendering
+                restoreScrollPosition();
                 return;
             }
 
@@ -148,6 +184,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (busServices.length === 0) {
                 servicesContainer.innerHTML = '<div class="no-data" style="grid-column: 1/-1;">No bus services found for this stop.</div>';
+                // Restore scroll position after rendering
+                restoreScrollPosition();
                 return;
             }
 
@@ -230,10 +268,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }, 100);
             }
 
+            // Restore scroll position after all content is rendered
+            restoreScrollPosition();
+
         } catch (error) {
             console.error('Error fetching bus timings:', error, error.stack);
             const errorMsg = error.message || 'Unknown error';
             servicesContainer.innerHTML = `<div class="no-data" style="grid-column: 1/-1;">Error loading bus timings: ${errorMsg}<br><small style="opacity: 0.7;">Check console for details.</small></div>`;
+            // Restore scroll position after error
+            restoreScrollPosition();
+        }
+    }
+
+    // Helper function to restore scroll position
+    function restoreScrollPosition() {
+        const savedScrollPos = sessionStorage.getItem('flBusScrollPos');
+        if (savedScrollPos) {
+            setTimeout(() => {
+                window.scrollTo(0, parseInt(savedScrollPos));
+                sessionStorage.removeItem('flBusScrollPos');
+            }, 50);
         }
     }
 
@@ -267,10 +321,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         card.className = 'service-card';
         card.setAttribute('data-service', service.service);
 
-        // Service number header
-        const header = document.createElement('div');
+        // Service number header - now a link to bus-service.html
+        const header = document.createElement('a');
         header.className = 'service-header';
+        header.href = getBasePath() + 'buszy/bus-service.html?service=' + encodeURIComponent(service.service);
+        header.style.textDecoration = 'none';
+        header.style.color = 'inherit';
+        header.style.display = 'block';
+        header.style.cursor = 'pointer';
+        header.title = 'View service details';
         header.textContent = service.service || 'Unknown Service';
+        // Save scroll position and bus stop when clicking to navigate away
+        header.addEventListener('click', () => {
+            sessionStorage.setItem('flBusScrollPos', window.scrollY || document.documentElement.scrollTop);
+            sessionStorage.setItem('flBusBusStop', busStopDropdown.value);
+        });
         card.appendChild(header);
 
         // Route name with "To" prefix - using destination code mapping from art.js
@@ -347,5 +412,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         busStopSearch.value = busStopCodeParam;
         clearSearch.classList.add('visible');
         displayBusStop(busStopCodeParam);
+    } else if (navType === 'back_forward') {
+        // Restore bus stop and selection if returning via back button
+        const savedBusStop = sessionStorage.getItem('flBusBusStop');
+        if (savedBusStop) {
+            busStopDropdown.value = savedBusStop;
+            busStopSearch.value = savedBusStop;
+            clearSearch.classList.add('visible');
+            displayBusStop(savedBusStop);
+        }
     }
 });
