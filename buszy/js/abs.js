@@ -3,6 +3,13 @@
 // :: Bus Stop Search and Pagination
 // *********************************
 document.addEventListener('DOMContentLoaded', async () => {
+    // Clear saved state on fresh load or refresh; only restore on back/forward navigation
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (navType !== 'back_forward') {
+        sessionStorage.removeItem('absBusSearch');
+        sessionStorage.removeItem('absBusPage');
+    }
+
     const searchInput = document.getElementById('bus-stop-search');
     const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops';
     const listGroup = document.querySelector('.list-group');
@@ -217,7 +224,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     totalPages = Math.ceil(allBusStops.length / limit);
     currentDisplayList = allBusStops; // Initialize display list to all stops
-    displayBusStops(allBusStops, currentPage);
+    
+    // Restore search input value and apply filter if it exists
+    const savedSearch = sessionStorage.getItem('absBusSearch');
+    if (savedSearch) {
+        searchInput.value = savedSearch;
+        const query = savedSearch.toLowerCase();
+        const filteredBusStops = allBusStops.filter((busStop) =>
+            busStop.BusStopCode.toLowerCase().includes(query) ||
+            busStop.Description.toLowerCase().includes(query)
+        );
+        currentDisplayList = filteredBusStops;
+        totalPages = Math.ceil(filteredBusStops.length / limit);
+        currentPage = parseInt(sessionStorage.getItem('absBusPage')) || 1;
+        currentPage = Math.min(currentPage, totalPages);
+    }
+    
+    displayBusStops(currentDisplayList, currentPage);
 
     // Pagination
     prevButton.addEventListener('click', (e) => {
@@ -225,6 +248,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (currentPage > 1) {
             const scrollPos = window.scrollY || document.documentElement.scrollTop;
             currentPage--;
+            sessionStorage.setItem('absBusPage', currentPage);
             displayBusStops(currentDisplayList, currentPage);
             requestAnimationFrame(() => {
                 window.scrollTo(0, scrollPos);
@@ -237,6 +261,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (currentPage < totalPages) {
             const scrollPos = window.scrollY || document.documentElement.scrollTop;
             currentPage++;
+            sessionStorage.setItem('absBusPage', currentPage);
             displayBusStops(currentDisplayList, currentPage);
             requestAnimationFrame(() => {
                 window.scrollTo(0, scrollPos);
@@ -248,6 +273,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     searchInput.addEventListener('input', (event) => {
         const query = event.target.value.toLowerCase();
         let filteredBusStops;
+        
+        // Save search to sessionStorage
+        sessionStorage.setItem('absBusSearch', event.target.value);
         
         if (query.trim() === '') {
             // If search is empty, show all bus stops
