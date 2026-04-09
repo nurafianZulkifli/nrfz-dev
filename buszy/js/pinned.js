@@ -4,6 +4,65 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const bookmarksContainer = document.getElementById('bookmarks-container');
 
+    // ── Drag state ───────────────────────────────────────────────
+    let dragSrc     = null;
+    let dragStartX  = 0, dragStartY = 0;
+    let longPressTimer = null;
+    let dragging    = false;
+    let dropTarget  = null;
+
+    function clearDropHighlight() {
+        if (dropTarget) {
+            dropTarget.style.outline = '';
+            dropTarget = null;
+        }
+    }
+
+    function endDrag(doSwap) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
+        document.removeEventListener('pointermove', onPointerMove);
+        document.removeEventListener('pointerup', onPointerUp);
+        if (dragSrc) {
+            dragSrc.style.opacity = '';
+            dragSrc.style.transform = '';
+        }
+        if (doSwap && dragging && dropTarget && dropTarget !== dragSrc) {
+            swapBookmarks(dragSrc, dropTarget);
+        }
+        clearDropHighlight();
+        dragging = false;
+        dragSrc  = null;
+    }
+
+    function onPointerMove(e) {
+        if (!dragging) return;
+        e.preventDefault();
+        const el = document.elementFromPoint(e.clientX, e.clientY);
+        const target = el && el.closest('[data-bm-index]');
+        if (target && target !== dragSrc) {
+            if (target !== dropTarget) {
+                clearDropHighlight();
+                dropTarget = target;
+                target.style.outline = '2px solid #007bff';
+            }
+        } else {
+            clearDropHighlight();
+        }
+    }
+
+    function onPointerUp() { endDrag(true); }
+
+    function swapBookmarks(srcEl, tgtEl) {
+        const srcIdx = parseInt(srcEl.dataset.bmIndex);
+        const tgtIdx = parseInt(tgtEl.dataset.bmIndex);
+        if (isNaN(srcIdx) || isNaN(tgtIdx) || srcIdx === tgtIdx) return;
+        const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
+        [bookmarks[srcIdx], bookmarks[tgtIdx]] = [bookmarks[tgtIdx], bookmarks[srcIdx]];
+        localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
+        loadBookmarks();
+    }
+
     // Function to switch to the "All" tab
     function switchToAllTab() {
         const allTabButton = document.querySelector('.category-tab[data-category="all"]');
@@ -109,13 +168,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 localStorage.setItem('allBusStops', JSON.stringify(busStops));
             }
 
-            console.log('Fetched or Cached Bus Stops:', busStops); // Debugging: Log all fetched or cached bus stops
-
             // Clear the "Re-fetching" message and display bookmarks
             bookmarksContainer.innerHTML = '';
 
             if (bookmarks.length > 0) {
-                bookmarks.forEach((bookmark) => {
+                bookmarks.forEach((bookmark, index) => {
                     const busStop = Array.isArray(busStops) ? busStops.find(stop => stop.BusStopCode === bookmark.BusStopCode) : null;
                     
                     // Skip if bus stop not found
@@ -126,9 +183,56 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     const listItem = document.createElement('div');
                     listItem.className = 'list-group-item';
+                    listItem.dataset.bmIndex = String(index);
                     listItem.style.display = 'flex';
                     listItem.style.justifyContent = 'space-between';
                     listItem.style.alignItems = 'center';
+
+                    // Grip handle — inline SVG, hardcoded fill so always visible
+                    const grip = document.createElement('span');
+                    grip.title = 'Hold to reorder';
+                    grip.style.cssText = 'flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; min-height:44px; cursor:grab; margin-right:6px; touch-action:none; user-select:none;';
+                    grip.innerHTML =
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18">' +
+                        '<circle cx="3" cy="3"  r="2" fill="#888"/>' +
+                        '<circle cx="9" cy="3"  r="2" fill="#888"/>' +
+                        '<circle cx="3" cy="9"  r="2" fill="#888"/>' +
+                        '<circle cx="9" cy="9"  r="2" fill="#888"/>' +
+                        '<circle cx="3" cy="15" r="2" fill="#888"/>' +
+                        '<circle cx="9" cy="15" r="2" fill="#888"/>' +
+                        '</svg>';
+
+                    grip.addEventListener('pointerdown', (e) => {
+                        e.stopPropagation();
+                        dragSrc    = listItem;
+                        dragStartX = e.clientX;
+                        dragStartY = e.clientY;
+                        dragging   = false;
+                        dropTarget = null;
+                        longPressTimer = setTimeout(() => {
+                            dragging = true;
+                            listItem.style.opacity   = '0.5';
+                            listItem.style.transform = 'scale(0.97)';
+                            document.addEventListener('pointermove', onPointerMove, { passive: false });
+                            document.addEventListener('pointerup', onPointerUp);
+                        }, 400);
+                    });
+
+                    grip.addEventListener('pointermove', (e) => {
+                        if (!dragging && longPressTimer) {
+                            if (Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY) > 8) {
+                                clearTimeout(longPressTimer);
+                                longPressTimer = null;
+                            }
+                        }
+                    });
+
+                    grip.addEventListener('pointerup', () => {
+                        if (!dragging) {
+                            clearTimeout(longPressTimer);
+                            longPressTimer = null;
+                        }
+                    });
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
@@ -151,16 +255,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.style.textDecoration = 'none';
                     link.style.color = 'inherit';
 
+                    link.addEventListener('click', (e) => { if (dragging) e.preventDefault(); });
+
                     // Remove Bookmark button
                     const removeButton = document.createElement('button');
                     removeButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
                     removeButton.className = 'btn btn-unpin btn-2';
+                    removeButton.style.flexShrink = '0';
                     removeButton.addEventListener('click', (event) => {
                         event.stopPropagation(); // Prevent the click from triggering the link
                         event.preventDefault(); // Prevent default link behavior
                         confirmAndRemoveBookmark(bookmark.BusStopCode);
                     });
 
+                    listItem.appendChild(grip);
                     listItem.appendChild(link);
                     listItem.appendChild(removeButton);
                     bookmarksContainer.appendChild(listItem);
