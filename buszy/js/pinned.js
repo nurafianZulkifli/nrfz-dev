@@ -225,38 +225,39 @@ document.addEventListener('DOMContentLoaded', async () => {
                         document.addEventListener('pointerup', onPointerUp);
                     });
 
-                    // List item swipe-left to reveal grip
+                    // List item swipe-right to reveal grip (mouse & touch)
                     listItem.addEventListener('pointerdown', (e) => {
+                        // Don't start swipe if clicking on button
+                        if (e.target.closest('button')) return;
                         swipeStart = { x: e.clientX, y: e.clientY };
                         swipeItem = listItem;
-                    });
+                        document.addEventListener('pointermove', handleSwipeMove, { passive: false, capture: true });
+                        document.addEventListener('pointerup', handleSwipeEnd, { capture: true });
+                    }, { capture: true });
 
-                    listItem.addEventListener('pointermove', (e) => {
-                        if (!swipeStart || dragging) return;
-                        const dx = swipeStart.x - e.clientX;
-                        const dy = Math.abs(swipeStart.y - e.clientY);
-                        // Swipe left (dx > 0) and mostly horizontal (dy small)
-                        if (dx > 30 && dy < 20) {
+                    function handleSwipeMove(e) {
+                        if (!swipeStart || dragging || swipeItem !== listItem) return;
+                        const dx = e.clientX - swipeStart.x;
+                        const dy = Math.abs(e.clientY - swipeStart.y);
+                        // Swipe right (dx > 0) and mostly horizontal (dy small)
+                        if (dx > 20 && dy < 30) {
                             grip.style.display = 'inline-flex';
-                            listItem.style.transform = `translateX(${Math.min(dx, 80)}px)`;
                         }
-                    });
+                    }
 
-                    listItem.addEventListener('pointerup', (e) => {
-                        if (!swipeStart) return;
-                        const dx = swipeStart.x - e.clientX;
-                        // If swiped > 60px left, keep grip visible; otherwise reset
-                        if (dx < 60) {
-                            hideGrip(listItem);
+                    function handleSwipeEnd(e) {
+                        if (!swipeStart || swipeItem !== listItem) {
+                            swipeStart = null;
+                            swipeItem = null;
+                            document.removeEventListener('pointermove', handleSwipeMove, { capture: true });
+                            document.removeEventListener('pointerup', handleSwipeEnd, { capture: true });
+                            return;
                         }
                         swipeStart = null;
                         swipeItem = null;
-                    });
-
-                    listItem.addEventListener('pointercancel', () => {
-                        swipeStart = null;
-                        swipeItem = null;
-                    });
+                        document.removeEventListener('pointermove', handleSwipeMove, { capture: true });
+                        document.removeEventListener('pointerup', handleSwipeEnd, { capture: true });
+                    }
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
