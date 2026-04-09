@@ -4,6 +4,8 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const bookmarksContainer = document.getElementById('bookmarks-container');
     let draggedElement = null; // Track the currently dragged element
+    let touchStartElement = null; // Track touch start element
+    let currentHighlightedElement = null; // Track highlighted element during touch drag
 
     // Function to load bookmarks from localStorage
     async function loadBookmarks() {
@@ -70,7 +72,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     const listItem = document.createElement('div');
                     listItem.className = 'list-group-item';
-                    listItem.draggable = true;
                     listItem.dataset.busStopCode = bookmark.BusStopCode;
                     listItem.dataset.index = index;
                     listItem.style.display = 'flex';
@@ -78,12 +79,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                     listItem.style.alignItems = 'center';
                     listItem.style.cursor = 'grab';
                     listItem.style.userSelect = 'none';
-                    listItem.style.transition = 'opacity 0.2s, background-color 0.2s';
+                    listItem.style.transition = 'opacity 0.2s, background-color 0.2s, scale 0.1s';
+                    listItem.style.touchAction = 'none'; // Prevent default touch behavior
 
                     // Add drag handle indicator
                     const dragHandle = document.createElement('div');
-                    dragHandle.style.cssText = 'display: flex; align-items: center; cursor: grab; pointer-events: none; margin-right: 8px; opacity: 0.5;';
-                    dragHandle.innerHTML = '<i class="fa-regular fa-grip-vertical" style="font-size: 18px;"></i>';
+                    dragHandle.className = 'drag-handle';
+                    dragHandle.setAttribute('data-grip-handle', 'true');
+                    // Use ::before pseudo-element in CSS for the visual indicator
+                    dragHandle.style.cssText = `
+                        display: inline-flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        width: 32px !important;
+                        height: 100% !important;
+                        cursor: grab !important;
+                        pointer-events: auto !important;
+                        margin-right: 12px !important;
+                        flex-shrink: 0 !important;
+                        position: relative !important;
+                    `;
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
@@ -107,6 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.style.color = 'inherit';
                     link.style.display = 'flex';
                     link.style.alignItems = 'center';
+                    link.style.pointerEvents = 'auto'; // Keep link clickable
 
                     // Remove Bookmark button
                     const removeButton = document.createElement('button');
@@ -119,47 +135,134 @@ document.addEventListener('DOMContentLoaded', async () => {
                         confirmAndRemoveBookmark(bookmark.BusStopCode);
                     });
 
-                    // Add drag event listeners
-                    listItem.addEventListener('dragstart', (e) => {
-                        draggedElement = listItem;
-                        listItem.style.opacity = '0.6';
-                        e.dataTransfer.effectAllowed = 'move';
-                        e.dataTransfer.setData('text/html', listItem.innerHTML);
-                    });
+                    // ========== LONG-PRESS DRAG & DROP (Desktop + Mobile) ==========
+                    let longPressTimeout = null;
+                    let longPressStarted = false;
+                    let dragStartY = 0;
+                    let hasMovedSignificantly = false;
 
-                    listItem.addEventListener('dragover', (e) => {
-                        e.preventDefault();
-                        e.dataTransfer.dropEffect = 'move';
-                        if (listItem !== draggedElement) {
-                            listItem.style.backgroundColor = 'rgba(0, 123, 255, 0.1)';
-                            listItem.style.borderTop = '3px solid #007bff';
+                    // Helper to cancel long-press
+                    function cancelLongPress() {
+                        if (longPressTimeout) {
+                            clearTimeout(longPressTimeout);
+                            longPressTimeout = null;
                         }
-                    });
+                        longPressStarted = false;
+                        hasMovedSignificantly = false;
+                        listItem.style.scale = '1';
+                    }
 
-                    listItem.addEventListener('dragleave', (e) => {
-                        listItem.style.backgroundColor = '';
-                        listItem.style.borderTop = '';
-                    });
+                    // Start long-press (mouse or touch)
+                    function startLongPress(clientY) {
+                        dragStartY = clientY;
+                        hasMovedSignificantly = false;
 
-                    listItem.addEventListener('drop', (e) => {
-                        e.preventDefault();
-                        if (listItem !== draggedElement) {
-                            swapBookmarks(draggedElement, listItem);
+                        longPressTimeout = setTimeout(() => {
+                            longPressStarted = true;
+                            draggedElement = listItem;
+                            listItem.style.opacity = '0.6';
+                            listItem.style.scale = '0.98';
+                            console.log('Long press activated on item', index);
+                        }, 400); // 400ms long-press
+                    }
+
+                    // Shared move handler
+                    function handleMove(clientY) {
+                        if (!longPressStarted && !longPressTimeout) return;
+
+                        // Cancel if moved too much before long-press
+                        if (!longPressStarted && longPressTimeout) {
+                            const yDiff = Math.abs(clientY - dragStartY);
+                            if (yDiff > 10) {
+                                console.log('Cancelled - moved before long-press');
+                                cancelLongPress();
+                            }
+                            return;
                         }
-                    });
 
-                    listItem.addEventListener('dragend', (e) => {
-                        listItem.style.opacity = '1';
-                        listItem.style.backgroundColor = '';
-                        listItem.style.borderTop = '';
-                        draggedElement = null;
-                    });
-
-                    listItem.addEventListener('dragenter', (e) => {
-                        if (listItem !== draggedElement) {
-                            listItem.style.cursor = 'grab';
+                        // During drag: track vertical movement
+                        const yDiff = Math.abs(clientY - dragStartY);
+                        if (yDiff > 5) {
+                            hasMovedSignificantly = true;
                         }
-                    });
+
+                        if (!hasMovedSignificantly) return;
+
+                        // Find element below
+                        const elementBelow = document.elementFromPoint(window.event?.clientX || dragStartY, clientY);
+                        const targetItem = elementBelow?.closest('.list-group-item');
+
+                        // Highlight the target item
+                        if (targetItem && targetItem !== draggedElement) {
+                            if (currentHighlightedElement !== targetItem) {
+                                if (currentHighlightedElement) {
+                                    currentHighlightedElement.style.backgroundColor = '';
+                                    currentHighlightedElement.style.borderTop = '';
+                                }
+                                targetItem.style.backgroundColor = 'rgba(0, 123, 255, 0.1)';
+                                targetItem.style.borderTop = '3px solid #007bff';
+                                currentHighlightedElement = targetItem;
+                            }
+                        } else if (currentHighlightedElement) {
+                            currentHighlightedElement.style.backgroundColor = '';
+                            currentHighlightedElement.style.borderTop = '';
+                            currentHighlightedElement = null;
+                        }
+                    }
+
+                    // Shared release handler
+                    function handleRelease() {
+                        if (longPressStarted && currentHighlightedElement && currentHighlightedElement !== draggedElement && hasMovedSignificantly) {
+                            console.log('Performing swap - dragged:', index, 'target:', currentHighlightedElement.dataset.index);
+                            swapBookmarks(draggedElement, currentHighlightedElement);
+                        } else {
+                            // Clean up if no valid swap
+                            listItem.style.opacity = '1';
+                            listItem.style.scale = '1';
+                            draggedElement = null;
+                        }
+
+                        // Clean up highlight
+                        if (currentHighlightedElement) {
+                            currentHighlightedElement.style.backgroundColor = '';
+                            currentHighlightedElement.style.borderTop = '';
+                            currentHighlightedElement = null;
+                        }
+
+                        cancelLongPress();
+                    }
+
+                    // Mouse/Pointer Events
+                    listItem.addEventListener('pointerdown', (e) => {
+                        // Accept grip handle for mouse, anywhere for touch
+                        if (e.pointerType === 'mouse') {
+                            const isGripHandle = e.target.closest('.drag-handle') || e.target.closest('i.fa-grip-vertical');
+                            if (!isGripHandle) return;
+                        }
+                        startLongPress(e.clientY);
+                    }, { passive: true });
+
+                    listItem.addEventListener('pointermove', (e) => {
+                        handleMove(e.clientY);
+                    }, { passive: false });
+
+                    listItem.addEventListener('pointerup', handleRelease, { passive: true });
+                    listItem.addEventListener('pointerleave', cancelLongPress, { passive: true });
+
+                    // Touch Events
+                    listItem.addEventListener('touchstart', (e) => {
+                        startLongPress(e.touches[0].clientY);
+                    }, { passive: true });
+
+                    listItem.addEventListener('touchmove', (e) => {
+                        handleMove(e.touches[0].clientY);
+                    }, { passive: false });
+
+                    listItem.addEventListener('touchend', handleRelease, { passive: true });
+                    listItem.addEventListener('touchcancel', cancelLongPress, { passive: true });
+
+                    // Mark the drag handle for easier identification
+                    dragHandle.setAttribute('data-grip-handle', 'true');
 
                     listItem.appendChild(dragHandle);
                     listItem.appendChild(link);
@@ -178,20 +281,35 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Function to swap bookmarks in the array and update localStorage
     function swapBookmarks(draggedItem, targetItem) {
-        const draggedIndex = parseInt(draggedItem.dataset.index);
-        const targetIndex = parseInt(targetItem.dataset.index);
+        try {
+            const draggedIndex = parseInt(draggedItem.dataset.index);
+            const targetIndex = parseInt(targetItem.dataset.index);
 
-        // Get bookmarks from localStorage
-        const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
+            console.log('Attempting swap: draggedIndex=', draggedIndex, 'targetIndex=', targetIndex);
 
-        // Swap the bookmarks
-        [bookmarks[draggedIndex], bookmarks[targetIndex]] = [bookmarks[targetIndex], bookmarks[draggedIndex]];
+            if (isNaN(draggedIndex) || isNaN(targetIndex) || draggedIndex === targetIndex) {
+                console.warn('Invalid indices for swap');
+                return;
+            }
 
-        // Save updated bookmarks
-        localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
+            // Get bookmarks from localStorage
+            const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
 
-        // Reload the bookmarks to reflect the new order
-        loadBookmarks();
+            console.log('Bookmarks before swap:', bookmarks);
+
+            // Swap the bookmarks
+            [bookmarks[draggedIndex], bookmarks[targetIndex]] = [bookmarks[targetIndex], bookmarks[draggedIndex]];
+
+            console.log('Bookmarks after swap:', bookmarks);
+
+            // Save updated bookmarks
+            localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
+
+            // Reload the bookmarks to reflect the new order
+            loadBookmarks();
+        } catch (error) {
+            console.error('Error during swap:', error);
+        }
     }
 
     // Function to confirm and remove a bookmark
