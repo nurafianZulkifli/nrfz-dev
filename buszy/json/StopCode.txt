@@ -1,132 +1,90 @@
- 	 	Ang Mo Kio Ave 8
-0.0	 54009	 • Ang Mo Kio Int
-0.5	 54339	 • Blk 422
-0.9	 54329	 • Blk 420
-1.2	 54319	 • Opp Christ The King Ch
- 	 	Ang Mo Kio Ave 1
-1.8	 54101	 • Aft Ang Mo Kio Ave 10
-2.7	 66091	 • Golden Hill Est
- 	 	Lor Chuan
-3.2	 66031	 • Cardiff Residence
- 	 	Boundary Rd
-3.7	 66041	 • Blk 230
-4.0	 66051	 • Opp Blk 257
-4.3	 63149	 • S'goon Stadium
- 	 	Upp Paya Lebar Rd
-4.9	 62059	 • Blk 161
-5.3	 62049	 • Aft Paya Lebar Cres
-5.5	 62039	 • Raya Gdn
-5.9	 62029	 • Paya Lebar Gdns
-6.1	 62019	 • Aft Rochdale Rd
-6.4	 70309	 • Opp Paya Lebar St
-6.6	 70299	 • Opp Asiawide Ind Bldg
-6.9	 70289	 • Aft Tai Seng Stn Exit C
- 	 	Paya Lebar Rd
-7.4	 70279	 • Opp Trinity Paya Lebar
-7.7	 70269	 • Citipoint Ind Cplx
-8.2	 70259	 • MacPherson Stn Exit B
-8.6	 81101	 • Paya Lebar Green
-8.9	 81111	 • Paya Lebar Stn Exit B
- 	 	Sims Ave
-9.4	 82011	 • Aft Paya Lebar Quarter
-9.6	 82032	 • Blk 416
-10.2	 82061	 • Eunos Stn/Int
- 	 	Sims Ave East
-10.8	 83011	 • Casa Sarina
-11.1	 83031	 • Opp Hong San Si Tp
-11.5	 83062	 • Kembangan Stn
-12.0	 83081	 • Opp Perpetual Succour Ch
- 	 	New Upp Changi Rd
-12.6	 84011	 • Chai Chee Ind Pk
-12.9	 84021	 • Blk 32
-13.5	 84031	 • Bedok Stn Exit B
-14.0	 84041	 • Blk 221A
-14.6	 84051	 • Bedok Sports Cplx
-14.9	 84061	 • The Tanamera Condo
-15.4	 85091	 • Tanah Merah Stn Exit B
- 	 	Upp Changi Rd East
-16.0	 85101	 • Aft Bedok Rd
-16.4	 96011	 • Bef Simei Ave
-16.9	 96021	 • Opp Expo Halls 1/2/3
-17.1	 96031	 • Opp Expo Halls 4/5/6
-17.5	 95901	 • Bef Simei Rd
-17.9	 96041	 • Upp Changi Stn/Opp SUTD
-18.2	 96051	 • Opp Changi Ct
-18.6	 96061	 • Opp Mera Terr P/G
- 	 	PIE
- • Express
+ 	 	Hougang Ctrl
+0.0	 64009	 • Hougang Ctrl Int
+ 	 	Hougang Ave 10
+0.4	 64397	 • Blk 513
+0.7	 64389	 • Blk 522
+ 	 	Hougang Ave 6
+1.0	 64379	 • Punggol CC
+1.4	 64579	 • Bet Blks 544/546
+ 	 	Sengkang Ctrl
+2.0	 67609	 • Buangkok Stn Exit A
+ 	 	Sengkang East Ave
+2.4	 67261	 • Blk 203B
+ 	 	Compassvale Rd
+2.7	 67209	 • Blk 203
+2.9	 67199	 • Opp Blk 223D
+3.1	 67189	 • Opp Blk 241
+3.5	 67249	 • Blk 259C
+ 	 	Compassvale St
+3.8	 67259	 • Compassvale Stn Exit B
+ 	 	Punggol Rd
+4.0	 65061	 • Blk 298A
+ 	 	TPE
+4.6	 65199	 • Aft Punggol Rd
+ 	 	Tampines Ave 10
+8.6	 75359	 • IKEA Tampines/Aft TPE
+9.1	 75369	 • Bef Tampines Lk
+9.4	 75319	 • Aft Tampines Lk
+9.8	 75299	 • Bef Tampines Ave 9
+ 	 	Tampines Ave 9
+10.2	 75289	 • Opp Blks 741/742
+10.5	 75279	 • Opp Blk 721
+11.0	 76549	 • Opp Citylife @ Tampines
+ 	 	Tampines Ave 7
+11.8	 76191	 • Blk 401
+ 	 	Tampines Ave 4
+12.3	 76149	 • Opp Tampines Stn/Int
+12.7	 76139	 • Opp Century Sq
+ 	 	Tampines Ave 5
+13.3	 76069	 • Blk 147
  	 	Airport Blvd
-22.2	 95151	 • Airport Police Stn
-22.7	 95011	 • Aft Aircraft Flyover
+19.1	 95151	 • Airport Police Stn
+19.6	 95011	 • Aft Aircraft Flyover
  	 	PTB3 Basement
-24.1	 95109	 • Changi Airport Ter 3
+21.0	 95109	 • Changi Airport Ter 3
  	 	PTB1 Basement
-24.9	 95029	 • Changi Airport Ter 1
+21.8	 95029	 • Changi Airport Ter 1
  	 	PTB2 Basement
-25.7	 95129	 • Changi Airport Ter 2
+22.6	 95129	 • Changi Airport Ter 2
  	 	Airport Blvd
-26.7	 95019	 • Aft Changi Airport Ter 2
- 	 	T4 Cres
-28.3	 95209	 • Changi Airport Ter 4
- 	 	Airport Blvd
-29.7	 95159	 • Near SATS Flight Kitchen
- 	 	PIE
- • Express
- 	 	Upp Changi Rd East
-32.9	 96069	 • Mera Terr P/G
-33.3	 96059	 • Changi Ct
-33.6	 96049	 • Upp Changi Stn/SUTD
-33.9	 95909	 • Aft Somapah Rd
-34.3	 96039	 • Expo Halls 4/5/6
-34.6	 96029	 • Expo Halls 1/2/3
-35.0	 96019	 • Aft Simei Ave
-35.3	 85109	 • Bef Bedok Rd
- 	 	New Upp Changi Rd
-36.0	 85099	 • Tanah Merah Stn Exit A
-36.5	 84069	 • Blk 55
-36.8	 84059	 • Blk 65
-37.3	 84049	 • Blk 27
-38.0	 84039	 • Bedok Stn Exit A
-38.4	 84029	 • Opp Blk 32
-38.7	 84019	 • Opp Chai Chee Ind Pk
- 	 	Changi Rd
-39.2	 83099	 • Aft Perpetual Succour Ch
-39.6	 83079	 • Bef Siglap Plain
-40.0	 83059	 • Mjd Kassim
-40.2	 83049	 • Bef Lor 110 Changi
-40.6	 83029	 • Aft Kg Eunos
-41.0	 82069	 • Aft Lor 106 Changi
-41.5	 82049	 • Joo Chiat Cplx
- 	 	Geylang Rd
-41.9	 82029	 • Blk 14 Mkt/FC
- • Express
- 	 	Paya Lebar Rd
-42.4	 81129	 • Paya Lebar Stn Exit D
-42.7	 81119	 • Paya Lebar Stn Exit C
-43.0	 81109	 • Opp Paya Lebar Green
-43.5	 70251	 • MacPherson Stn Exit C
-43.9	 70261	 • Opp Orion @ Paya Lebar
-44.1	 70271	 • Le Crescendo
- 	 	Upp Paya Lebar Rd
-44.7	 70281	 • Aft Tai Seng Stn
-45.0	 70291	 • Asiawide Ind Bldg
-45.3	 70301	 • Aft Paya Lebar St
-45.6	 62011	 • Aft Bartley Rd
-45.8	 62021	 • Wisma AUPE
-46.0	 62031	 • Bef How Sun Rd
-46.4	 62041	 • Opp Bethany Presby Ch
-46.9	 62051	 • Aft Jln Chermat
- 	 	Boundary Rd
-47.3	 63141	 • Blk 209
-47.7	 66059	 • Blk 257A
-48.1	 66049	 • Blk 233
- 	 	Lor Chuan
-48.4	 66039	 • Blk 307
- 	 	Ang Mo Kio Ave 1
-49.1	 66099	 • Opp Golden Hill Est
-50.0	 54109	 • Bef Ang Mo Kio Ave 10
- 	 	Ang Mo Kio Ave 8
-50.6	 54311	 • Blk 332
-50.9	 54321	 • Blk 354
-51.3	 54331	 • Blk 346
-51.7	 54009	 • Ang Mo Kio Int
+23.6	 95019	 • Aft Changi Airport Ter 2
+24.4	 95159	 • Near SATS Flight Kitchen
+ 	 	Tampines Ave 5
+31.2	 76061	 • Blk 938
+ 	 	Tampines Ave 4
+31.7	 76131	 • UOB Tampines Ctr
+32.2	 76141	 • Tampines Stn/Int
+ 	 	Tampines Ave 7
+32.6	 76199	 • Blk 503
+ 	 	Tampines Ave 9
+33.5	 76541	 • Citylife @ Tampines
+34.0	 75271	 • Blk 721
+34.3	 75281	 • Blk 742A
+ 	 	Tampines Ave 10
+35.0	 75291	 • Aft Tampines Ave 9
+35.4	 75311	 • Bef Tampines Lk
+35.7	 75361	 • Bef Tampines Ind Ave 5
+36.0	 75351	 • Tampines Wafer Fab Pk
+ 	 	TPE
+40.0	 65191	 • Bef Punggol Rd
+ 	 	Punggol Rd
+40.4	 65069	 • Blk 190C
+ 	 	Compassvale St
+40.7	 67251	 • Compassvale Stn Exit A
+ 	 	Compassvale Rd
+41.0	 67241	 • Blk 248A
+41.2	 67181	 • Blk 240
+41.4	 67191	 • Blk 223D
+41.7	 67201	 • Blk 206A
+ 	 	Sengkang East Ave
+41.9	 67269	 • Opp Blk 203A
+ 	 	Sengkang Ctrl
+42.4	 67601	 • Buangkok Stn Exit B
+ 	 	Hougang Ave 6
+43.0	 64571	 • Blk 438
+43.4	 64371	 • Opp Punggol CC
+ 	 	Hougang Ave 10
+43.7	 64381	 • Hougang Stn Exit C
+44.0	 64391	 • Blk 831
+ 	 	Hougang Ctrl
+44.3	 64009	 • Hougang Ctrl Int

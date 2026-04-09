@@ -222,9 +222,44 @@ let renderedBusStopCode = null;
 // Abort controller for in-flight requests (prevents stale responses)
 let currentFetchController = null;
 
+// Cache for bus service data to check if service exists
+let busServiceDataCache = null;
+
+// Load bus service data to check which services are available
+async function loadBusServiceDataForDisplay() {
+    if (busServiceDataCache !== null) {
+        return busServiceDataCache;
+    }
+
+    try {
+        const basePath = getBasePath();
+        const jsonPath = basePath + 'buszy/json/bus-service-data.json';
+        const response = await fetch(jsonPath);
+        if (response.ok) {
+            busServiceDataCache = await response.json();
+            return busServiceDataCache;
+        }
+    } catch (error) {
+        console.warn('Could not load bus service data:', error);
+        busServiceDataCache = [];
+    }
+    return busServiceDataCache;
+}
+
+// Check if a service exists in the bus service data
+function serviceExists(serviceNo) {
+    if (!busServiceDataCache || busServiceDataCache.length === 0) {
+        return true; // If no data loaded, assume service exists
+    }
+    return busServiceDataCache.some(service => service.n === serviceNo);
+}
+
 // Updated fetchBusArrivals function
 async function fetchBusArrivals() {
     try {
+        // Load bus service data for checking service availability
+        await loadBusServiceDataForDisplay();
+
         // Save current scroll position at the very start
         const scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
@@ -449,9 +484,10 @@ async function fetchBusArrivals() {
                             <a href="${getBasePath() + 'buszy/first-last.html?BusStopCode=' + busStopCode + '&service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View first and last bus timings">
                                 <i class="fa-regular fa-clock"></i>&nbsp;Timings
                             </a>
-                            <a href="${getBasePath() + 'buszy/bus-service.html?service=' + service.ServiceNo}" class="btn btn-busloc btn-sm" title="View bus route details">
+                            <button class="btn btn-busloc btn-sm view-route-btn" data-service="${service.ServiceNo}" title="View bus route details"
+                                ${!serviceExists(service.ServiceNo) ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
                                 <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;Route
-                            </a>
+                            </button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -734,6 +770,20 @@ async function fetchBusArrivals() {
                             }
                         }
                     }
+                });
+            });
+
+            // Add event listeners to "View Route" buttons
+            const viewRouteButtons = document.querySelectorAll('.view-route-btn');
+            viewRouteButtons.forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    if (button.disabled) {
+                        event.preventDefault();
+                        alert('Route information is not available for this service.');
+                        return;
+                    }
+                    const serviceNo = button.getAttribute('data-service');
+                    window.location.href = getBasePath() + 'buszy/bus-service.html?service=' + serviceNo;
                 });
             });
         }
