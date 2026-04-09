@@ -1,77 +1,79 @@
- 	 	Tampines Ctrl 1
-0.0	 75009	 • Tampines Int
- 	 	Tampines Ave 7
-0.5	 76191	 • Blk 401
- 	 	Tampines St 41
-0.9	 76399	 • Blk 417
- 	 	Tampines Ave 9
-1.4	 76369	 • Blk 496F
-1.7	 76359	 • Blk 493B
-2.1	 76349	 • Dunman Sec Sch
-2.4	 76319	 • Tampines East Stn Exit D
- 	 	Tampines Ave 7
-2.7	 76231	 • Opp Blk 390
-3.0	 76241	 • Blk 497D
- 	 	Old Tampines Rd
-3.7	 98081	 • Aft Jln Batalong
-4.1	 97101	 • Bef Jln Mariam
-4.4	 97111	 • Bef Toh Cl
- 	 	Upp Changi Rd Nth
-4.8	 97201	 • Opp Changi Chapel Museum
-5.2	 97061	 • Changi Baptist Ch
-5.7	 97071	 • Aft St. John's Cres
- 	 	Loyang Way
-6.1	 97081	 • Selarang Pk Drug Reh.
-6.6	 97091	 • Bef Selarang Way
- 	 	Loyang Ave
-7.1	 98061	 • Opp Engine Test Facility
-7.5	 98071	 • Loyang Way 4/Soxal
-7.9	 99011	 • Bef Hendon Camp
-8.3	 99021	 • Bef Cranwell Rd
- 	 	Cranwell Rd
-8.6	 99071	 • Aft Old Pier Rd
- 	 	Netheravon Rd
-8.9	 99081	 • Aft Cranwell Rd
-9.1	 99091	 • Bef Turnhouse Rd
-9.3	 99101	 • Govt Chalets
-9.6	 99111	 • Changi Golf Club
- 	 	Changi Village Rd
-10.1	 99009	 • Changi Village Ter
-10.3	 99129	 • Village Hotel Changi
- 	 	Netheravon Rd
-10.6	 99119	 • Opp Changi Golf Club
-10.9	 99109	 • Opp Govt Chalets
-11.1	 99099	 • Aft Turnhouse Rd
-11.3	 99089	 • Bef Cranwell Rd
- 	 	Cranwell Rd
-11.6	 99079	 • Opp Old Pier Rd
- 	 	Loyang Ave
-11.8	 99029	 • Aft Cranwell Rd
-12.2	 99019	 • Aft Hendon Camp
-12.8	 98079	 • Opp Loyang Way 4/Soxal
-13.2	 98069	 • Aft Engine Test Facility
- 	 	Loyang Way
-13.6	 97099	 • Aft Loyang Ave
-14.1	 97089	 • Opp Selarang Pk Drug Reh.
- 	 	Upp Changi Rd Nth
-14.5	 97079	 • Opp St. John's Cres
-14.9	 97069	 • Lloyd Leas Work Rel Camp
-15.3	 97209	 • Changi Chapel Museum
- 	 	Old Tampines Rd
-15.7	 97119	 • Aft Toh Cl
-16.0	 97109	 • Aft Jln Mariam
-16.4	 98089	 • Bef Jln Batalong
- 	 	Tampines Ave 7
-17.1	 76249	 • Blk 370
-17.4	 76239	 • Blk 390
- 	 	Tampines Ave 9
-17.8	 76311	 • Blk 460
-18.0	 76341	 • Blk 464
-18.4	 76351	 • Blk 484
-18.8	 76361	 • Blk 430
- 	 	Tampines St 41
-19.2	 76391	 • Blk 418
- 	 	Tampines Ave 7
-19.6	 76199	 • Blk 503
- 	 	Tampines Ctrl 1
-19.9	 75009	 • Tampines Int
+ 	 	Clementi Rd
+0.0	 16009	 • Kent Ridge Ter
+0.2	 16131	 • Opp Kent Ridge Ter
+0.5	 16141	 • Tentera Diraja Mque
+0.8	 16151	 • The Japanese Pr Sch
+ 	 	Dover Rd
+2.1	 19051	 • New Town Sec Sch
+2.6	 19061	 • Ayer Rajah Telecoms
+3.1	 19071	 • Opp ACS Independent
+3.4	 19081	 • Opp ACS Boarding Sch
+3.7	 18111	 • Fairfield Meth Pr Sch
+ 	 	Buona Vista Flyover
+4.1	 18129	 • Ayer Rajah Ind Est
+4.5	 18109	 • Blk 55/Opp 5 Sci Pk Dr
+ 	 	AYE
+5.2	 18049	 • Opp Science Pk
+ 	 	Alexandra Rd
+6.7	 11511	 • Alexandra Hosp
+7.1	 11521	 • Anchorpoint
+7.5	 11531	 • Opp Lea Hin Hardware Fty
+8.0	 10299	 • Aft Dawson Pl
+8.2	 10287	 • Opp Cycle & Carriage
+ 	 	Tiong Bahru Rd
+8.7	 10209	 • Redhill Stn
+9.0	 10199	 • Delta Swim Cplx
+9.3	 10189	 • Blk 104A CP
+9.6	 10179	 • Tiong Bahru Pk
+10.1	 10169	 • Tiong Bahru Stn/Plaza
+10.7	 10149	 • Blk 1
+ 	 	Outram Rd
+11.1	 06049	 • Bef Outram Flyover
+11.6	 06029	 • Outram Pk Stn Exit 1
+ 	 	Eu Tong Sen St
+12.4	 05013	 • Chinatown Stn Exit C
+12.8	 05023	 • Opp Hong Lim Pk
+13.1	 04222	 • Clarke Quay Stn Exit E
+ 	 	Hill St
+13.6	 04142	 • Armenian Ch
+ 	 	Victoria St
+14.1	 01012	 • Hotel Grand Pacific
+14.7	 01113	 • Bugis Stn Exit A
+15.1	 01121	 • Aft Victoria Ln
+15.4	 01211	 • Opp Blk 461
+ 	 	Kallang Rd
+15.7	 01311	 • Lavender Stn Exit B
+16.3	 80011	 • Aft Padang Jeringau
+ 	 	Sims Ave
+16.8	 80031	 • Kallang Stn
+17.1	 80051	 • Aft Lor 1 Geylang
+ 	 	Sims Way
+17.7	 80119	 • Aft Geylang Rd
+ 	 	Mountbatten Rd
+18.3	 80149	 • S.A. Deaf
+ 	 	Old Airport Rd
+18.9	 81171	 • Blk 39
+19.4	 81181	 • Dakota Stn Exit A/Blk 99
+ 	 	Dunman Rd
+19.8	 81191	 • Aft Old Airport Rd
+20.4	 82121	 • Questa @ Dunman
+20.8	 82131	 • Opp Maranatha Hall
+ 	 	Tembeling Rd
+21.1	 82141	 • Aft Koon Seng Rd
+21.4	 82151	 • Bef Joo Chiat Pl
+ 	 	Joo Chiat Pl
+21.7	 82171	 • Bef Mangis Rd
+22.0	 82181	 • Flora East
+22.3	 83151	 • Parkway East Hosp
+ 	 	Telok Kurau Rd
+22.5	 83131	 • Aft Lor H Telok Kurau
+22.7	 83141	 • Aft Lor G Telok Kurau
+ 	 	Sims Ave East
+23.2	 83031	 • Opp Hong San Si Tp
+23.6	 83062	 • Kembangan Stn
+24.1	 83081	 • Opp Perpetual Succour Ch
+ 	 	New Upp Changi Rd
+24.7	 84011	 • Chai Chee Ind Pk
+25.0	 84021	 • Blk 32
+ 	 	Bedok Nth Dr
+25.8	 84009	 • Bedok Int
