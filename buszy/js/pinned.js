@@ -7,9 +7,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ── Drag state ───────────────────────────────────────────────
     let dragSrc     = null;
     let dragStartX  = 0, dragStartY = 0;
+    let dragStartXForReorder = 0, dragStartYForReorder = 0;
     let longPressTimer = null;
     let dragging    = false;
     let dropTarget  = null;
+    let swipeStart  = null;
+    let swipeItem   = null;
 
     function clearDropHighlight() {
         if (dropTarget) {
@@ -18,14 +21,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function hideGrip(item) {
+        const gripEl = item.querySelector('span[title="Hold to reorder"]');
+        if (gripEl) gripEl.style.display = 'none';
+        item.style.transform = '';
+    }
+
     function endDrag(doSwap) {
         clearTimeout(longPressTimer);
         longPressTimer = null;
         document.removeEventListener('pointermove', onPointerMove);
         document.removeEventListener('pointerup', onPointerUp);
         if (dragSrc) {
+            hideGrip(dragSrc);
             dragSrc.style.opacity = '';
-            dragSrc.style.transform = '';
         }
         if (doSwap && dragging && dropTarget && dropTarget !== dragSrc) {
             swapBookmarks(dragSrc, dropTarget);
@@ -187,11 +196,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     listItem.style.display = 'flex';
                     listItem.style.justifyContent = 'space-between';
                     listItem.style.alignItems = 'center';
+                    listItem.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
 
-                    // Grip handle — inline SVG, hardcoded fill so always visible
+                    // Grip handle — inline SVG, hidden by default
                     const grip = document.createElement('span');
                     grip.title = 'Hold to reorder';
-                    grip.style.cssText = 'flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; min-height:44px; cursor:grab; margin-right:6px; touch-action:none; user-select:none;';
+                    grip.style.cssText = 'flex-shrink:0; display:none; align-items:center; justify-content:center; width:32px; min-height:44px; cursor:grab; margin-right:6px; touch-action:none; user-select:none;';
                     grip.innerHTML =
                         '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18">' +
                         '<circle cx="3" cy="3"  r="2" fill="#888"/>' +
@@ -202,36 +212,50 @@ document.addEventListener('DOMContentLoaded', async () => {
                         '<circle cx="9" cy="15" r="2" fill="#888"/>' +
                         '</svg>';
 
+                    // Grip pointerdown: start reordering drag
                     grip.addEventListener('pointerdown', (e) => {
                         e.stopPropagation();
                         dragSrc    = listItem;
-                        dragStartX = e.clientX;
-                        dragStartY = e.clientY;
-                        dragging   = false;
-                        dropTarget = null;
-                        longPressTimer = setTimeout(() => {
-                            dragging = true;
-                            listItem.style.opacity   = '0.5';
-                            listItem.style.transform = 'scale(0.97)';
-                            document.addEventListener('pointermove', onPointerMove, { passive: false });
-                            document.addEventListener('pointerup', onPointerUp);
-                        }, 400);
+                        dragStartXForReorder = e.clientX;
+                        dragStartYForReorder = e.clientY;
+                        dragging = true;
+                        listItem.style.opacity = '0.5';
+                        listItem.style.transform = 'scale(0.97)';
+                        document.addEventListener('pointermove', onPointerMove, { passive: false });
+                        document.addEventListener('pointerup', onPointerUp);
                     });
 
-                    grip.addEventListener('pointermove', (e) => {
-                        if (!dragging && longPressTimer) {
-                            if (Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY) > 8) {
-                                clearTimeout(longPressTimer);
-                                longPressTimer = null;
-                            }
+                    // List item swipe-left to reveal grip
+                    listItem.addEventListener('pointerdown', (e) => {
+                        swipeStart = { x: e.clientX, y: e.clientY };
+                        swipeItem = listItem;
+                    });
+
+                    listItem.addEventListener('pointermove', (e) => {
+                        if (!swipeStart || dragging) return;
+                        const dx = swipeStart.x - e.clientX;
+                        const dy = Math.abs(swipeStart.y - e.clientY);
+                        // Swipe left (dx > 0) and mostly horizontal (dy small)
+                        if (dx > 30 && dy < 20) {
+                            grip.style.display = 'inline-flex';
+                            listItem.style.transform = `translateX(${Math.min(dx, 80)}px)`;
                         }
                     });
 
-                    grip.addEventListener('pointerup', () => {
-                        if (!dragging) {
-                            clearTimeout(longPressTimer);
-                            longPressTimer = null;
+                    listItem.addEventListener('pointerup', (e) => {
+                        if (!swipeStart) return;
+                        const dx = swipeStart.x - e.clientX;
+                        // If swiped > 60px left, keep grip visible; otherwise reset
+                        if (dx < 60) {
+                            hideGrip(listItem);
                         }
+                        swipeStart = null;
+                        swipeItem = null;
+                    });
+
+                    listItem.addEventListener('pointercancel', () => {
+                        swipeStart = null;
+                        swipeItem = null;
                     });
 
                     // Make the bus stop details clickable
@@ -255,7 +279,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.style.textDecoration = 'none';
                     link.style.color = 'inherit';
 
-                    link.addEventListener('click', (e) => { if (dragging) e.preventDefault(); });
+                    link.addEventListener('click', (e) => { 
+                        if (dragging || grip.style.display === 'inline-flex') e.preventDefault(); 
+                    });
 
                     // Remove Bookmark button
                     const removeButton = document.createElement('button');
