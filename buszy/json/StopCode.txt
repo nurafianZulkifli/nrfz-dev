@@ -1,79 +1,102 @@
- 	 	Clementi Rd
-0.0	 16009	 • Kent Ridge Ter
-0.2	 16131	 • Opp Kent Ridge Ter
-0.5	 16141	 • Tentera Diraja Mque
-0.8	 16151	 • The Japanese Pr Sch
- 	 	Dover Rd
-2.1	 19051	 • New Town Sec Sch
-2.6	 19061	 • Ayer Rajah Telecoms
-3.1	 19071	 • Opp ACS Independent
-3.4	 19081	 • Opp ACS Boarding Sch
-3.7	 18111	 • Fairfield Meth Pr Sch
- 	 	Buona Vista Flyover
-4.1	 18129	 • Ayer Rajah Ind Est
-4.5	 18109	 • Blk 55/Opp 5 Sci Pk Dr
- 	 	AYE
-5.2	 18049	 • Opp Science Pk
- 	 	Alexandra Rd
-6.7	 11511	 • Alexandra Hosp
-7.1	 11521	 • Anchorpoint
-7.5	 11531	 • Opp Lea Hin Hardware Fty
-8.0	 10299	 • Aft Dawson Pl
-8.2	 10287	 • Opp Cycle & Carriage
- 	 	Tiong Bahru Rd
-8.7	 10209	 • Redhill Stn
-9.0	 10199	 • Delta Swim Cplx
-9.3	 10189	 • Blk 104A CP
-9.6	 10179	 • Tiong Bahru Pk
-10.1	 10169	 • Tiong Bahru Stn/Plaza
-10.7	 10149	 • Blk 1
- 	 	Outram Rd
-11.1	 06049	 • Bef Outram Flyover
-11.6	 06029	 • Outram Pk Stn Exit 1
- 	 	Eu Tong Sen St
-12.4	 05013	 • Chinatown Stn Exit C
-12.8	 05023	 • Opp Hong Lim Pk
-13.1	 04222	 • Clarke Quay Stn Exit E
- 	 	Hill St
-13.6	 04142	 • Armenian Ch
- 	 	Victoria St
-14.1	 01012	 • Hotel Grand Pacific
-14.7	 01113	 • Bugis Stn Exit A
-15.1	 01121	 • Aft Victoria Ln
-15.4	 01211	 • Opp Blk 461
- 	 	Kallang Rd
-15.7	 01311	 • Lavender Stn Exit B
-16.3	 80011	 • Aft Padang Jeringau
- 	 	Sims Ave
-16.8	 80031	 • Kallang Stn
-17.1	 80051	 • Aft Lor 1 Geylang
- 	 	Sims Way
-17.7	 80119	 • Aft Geylang Rd
- 	 	Mountbatten Rd
-18.3	 80149	 • S.A. Deaf
- 	 	Old Airport Rd
-18.9	 81171	 • Blk 39
-19.4	 81181	 • Dakota Stn Exit A/Blk 99
- 	 	Dunman Rd
-19.8	 81191	 • Aft Old Airport Rd
-20.4	 82121	 • Questa @ Dunman
-20.8	 82131	 • Opp Maranatha Hall
- 	 	Tembeling Rd
-21.1	 82141	 • Aft Koon Seng Rd
-21.4	 82151	 • Bef Joo Chiat Pl
- 	 	Joo Chiat Pl
-21.7	 82171	 • Bef Mangis Rd
-22.0	 82181	 • Flora East
-22.3	 83151	 • Parkway East Hosp
- 	 	Telok Kurau Rd
-22.5	 83131	 • Aft Lor H Telok Kurau
-22.7	 83141	 • Aft Lor G Telok Kurau
- 	 	Sims Ave East
-23.2	 83031	 • Opp Hong San Si Tp
-23.6	 83062	 • Kembangan Stn
-24.1	 83081	 • Opp Perpetual Succour Ch
- 	 	New Upp Changi Rd
-24.7	 84011	 • Chai Chee Ind Pk
-25.0	 84021	 • Blk 32
- 	 	Bedok Nth Dr
-25.8	 84009	 • Bedok Int
+ 	 	Sentul Wk
+0.0	 69009	 • Punggol Coast Int
+ 	 	Punggol Way
+0.5	 65631	 • Aft Punggol Pt Stn
+0.9	 65621	 • Samudera Stn Exit B
+ 	 	Sumang Lk
+1.7	 65679	 • Opp Punggol Cove Pr Sch
+ 	 	Sumang Wk
+1.9	 65459	 • Opp Blk 322 CP
+2.3	 65449	 • Blk 315B
+ 	 	Punggol Ctrl
+2.8	 65401	 • Opp Blk 264A
+3.3	 65251	 • Punggol Stn/Waterway Pt
+3.5	 65221	 • Blk 303D
+ 	 	Punggol Rd
+3.9	 65089	 • Opp Blk 296
+4.2	 65079	 • Blk 102C
+ 	 	TPE
+4.6	 65199	 • Aft Punggol Rd
+ 	 	Tampines Ave 10
+8.6	 75359	 • IKEA Tampines/Aft TPE
+9.1	 75369	 • Bef Tampines Lk
+9.4	 75319	 • Aft Tampines Lk
+9.8	 75299	 • Bef Tampines Ave 9
+10.1	 75379	 • Bef Tampines Ave 5
+ 	 	Tampines Ave 5
+10.4	 75171	 • UWCSEA
+10.7	 75141	 • Blk 730
+11.1	 75131	 • Bet Blks 701/702
+11.4	 75121	 • Opp Darul Ghufran Mque
+11.9	 76059	 • Opp Our Tampines Hub
+12.4	 76069	 • Blk 147
+ 	 	Tampines Ave 2
+12.9	 76071	 • Blk 141
+13.4	 76081	 • Opp The Holy Trinity Ch
+13.8	 76091	 • Blk 206
+14.2	 76101	 • Tampines East CC
+14.4	 76031	 • Tampines East Stn Exit B
+ 	 	Tampines Ave 7
+14.8	 76231	 • Opp Blk 390
+15.1	 76241	 • Blk 497D
+ 	 	PIE
+ • Express
+ 	 	Airport Blvd
+19.4	 95151	 • Airport Police Stn
+19.9	 95011	 • Aft Aircraft Flyover
+ 	 	PTB3 Basement
+21.3	 95109	 • Changi Airport Ter 3
+ 	 	PTB1 Basement
+22.1	 95029	 • Changi Airport Ter 1
+ 	 	PTB2 Basement
+22.9	 95129	 • Changi Airport Ter 2
+ 	 	Airport Blvd
+23.9	 95019	 • Aft Changi Airport Ter 2
+ 	 	T4 Cres
+25.5	 95209	 • Changi Airport Ter 4
+ 	 	Airport Blvd
+26.9	 95159	 • Near SATS Flight Kitchen
+ 	 	PIE
+ • Express
+ 	 	Tampines Ave 7
+31.3	 76249	 • Blk 370
+31.6	 76239	 • Blk 390
+ 	 	Tampines Ave 2
+31.9	 76039	 • Tampines East Stn Exit C
+32.2	 76109	 • Blk 302
+32.6	 76099	 • Blk 285
+33.0	 76089	 • The Holy Trinity Ch
+33.4	 76079	 • Blk 101
+ 	 	Tampines Ave 5
+34.0	 76061	 • Blk 938
+34.5	 76051	 • Our Tampines Hub
+35.0	 75129	 • Darul Ghufran Mque
+35.4	 75139	 • Blk 863
+35.7	 75149	 • Blk 867A
+36.0	 75179	 • Blk 871C
+ 	 	Tampines Ave 10
+36.3	 75371	 • Aft Tampines Ave 5
+36.9	 75291	 • Aft Tampines Ave 9
+37.3	 75311	 • Bef Tampines Lk
+37.6	 75361	 • Bef Tampines Ind Ave 5
+37.9	 75351	 • Tampines Wafer Fab Pk
+ 	 	TPE
+41.9	 65191	 • Bef Punggol Rd
+ 	 	Punggol Rd
+42.4	 65071	 • Blk 203A
+42.7	 65081	 • Opp Blk 199C
+ 	 	Punggol Ctrl
+43.0	 65229	 • Blk 298
+43.5	 65259	 • Punggol Stn/Int
+43.8	 65409	 • Bef Blk 264
+ 	 	Sumang Wk
+44.4	 65441	 • Opp Blk 315B
+44.8	 65451	 • Blk 322 CP
+ 	 	Sumang Lk
+45.0	 65671	 • Punggol Cove Pr Sch
+ 	 	Punggol Way
+45.2	 65619	 • Nibong Stn Exit A
+45.8	 65629	 • Samudera Stn Exit A
+46.1	 65639	 • Bef Punggol Pt Stn
+ 	 	Sentul Wk
+46.7	 69009	 • Punggol Coast Int
