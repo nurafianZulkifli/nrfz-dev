@@ -9,6 +9,16 @@ function initializeDefaultPreferences() {
     if (!localStorage.getItem('dark-mode')) {
         localStorage.setItem('dark-mode', 'disabled');
     }
+
+    // Set default show fleet legend preference if not already set
+    if (!localStorage.getItem('showFleetLegend')) {
+        localStorage.setItem('showFleetLegend', 'enabled');
+    }
+
+    // Set default show incoming buses preference if not already set
+    if (!localStorage.getItem('showIncomingBuses')) {
+        localStorage.setItem('showIncomingBuses', 'enabled');
+    }
 }
 
 // Initialize defaults immediately
@@ -44,6 +54,50 @@ function getBasePath() {
 // :: Bus Arrivals Fetching and Display
 // ****************************
 document.addEventListener('DOMContentLoaded', async () => {
+    // Apply fleet legend visibility setting
+    function applyFleetLegendVisibility() {
+        const showFleetLegend = localStorage.getItem('showFleetLegend') !== 'disabled';
+        const legendElement = document.querySelector('.bus-load-legend');
+        if (legendElement) {
+            legendElement.style.display = showFleetLegend ? 'flex' : 'none';
+        }
+    }
+
+    // Apply incoming buses visibility setting
+    function applyIncomingBusesVisibility() {
+        const showIncomingBuses = localStorage.getItem('showIncomingBuses') !== 'disabled';
+        const incomingBusesElement = document.getElementById('incoming-buses-section');
+        if (incomingBusesElement && incomingBusesElement.style.display !== 'none') {
+            // Only hide if it's currently set to display, check the preference
+            if (!showIncomingBuses) {
+                incomingBusesElement.style.display = 'none';
+            }
+        }
+    }
+
+    // Apply both visibility settings on page load
+    applyFleetLegendVisibility();
+    applyIncomingBusesVisibility();
+
+    // Listen for changes in localStorage from settings page
+    window.addEventListener('showFleetLegendChanged', (event) => {
+        applyFleetLegendVisibility();
+    });
+
+    window.addEventListener('showIncomingBusesChanged', (event) => {
+        applyIncomingBusesVisibility();
+    });
+
+    // Also listen for storage changes (when settings are changed in another tab/window)
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'showFleetLegend') {
+            applyFleetLegendVisibility();
+        }
+        if (event.key === 'showIncomingBuses') {
+            applyIncomingBusesVisibility();
+        }
+    });
+
     const searchInput = document.getElementById('bus-stop-search'); // Search input field
     const filterTitle = document.getElementById('filter-title'); // Title element
 
@@ -295,7 +349,8 @@ async function fetchBusArrivals() {
         // Display incoming buses - only update if content has changed
         const incomingSection = document.getElementById('incoming-buses-section');
         const incomingGrid = document.getElementById('incoming-buses-grid');
-        if (topFourBuses.length > 0) {
+        const showIncomingBuses = localStorage.getItem('showIncomingBuses') !== 'disabled';
+        if (topFourBuses.length > 0 && showIncomingBuses) {
             incomingSection.style.display = 'block';
             const isDarkMode = document.body.classList.contains('dark-mode');
             const bgColor = isDarkMode ? '#7db603' : '#94d40b';

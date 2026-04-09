@@ -12,6 +12,16 @@ function initializeDefaultPreferences() {
     if (!localStorage.getItem('dark-mode')) {
         localStorage.setItem('dark-mode', 'disabled');
     }
+
+    // Set default show fleet legend preference if not already set
+    if (!localStorage.getItem('showFleetLegend')) {
+        localStorage.setItem('showFleetLegend', 'enabled');
+    }
+
+    // Set default show incoming buses preference if not already set
+    if (!localStorage.getItem('showIncomingBuses')) {
+        localStorage.setItem('showIncomingBuses', 'enabled');
+    }
 }
 
 // Initialize defaults on page load
@@ -38,6 +48,38 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Time format updated to ${selectedFormat}.`);
         });
     });
+
+    // Handle fleet legend checkbox
+    const showFleetLegendCheckbox = document.getElementById('show-fleet-legend');
+    if (showFleetLegendCheckbox) {
+        // Load the saved preference
+        const showFleetLegend = localStorage.getItem('showFleetLegend') === 'enabled';
+        showFleetLegendCheckbox.checked = showFleetLegend;
+
+        // Add event listener to update the preference
+        showFleetLegendCheckbox.addEventListener('change', (event) => {
+            const isChecked = event.target.checked;
+            localStorage.setItem('showFleetLegend', isChecked ? 'enabled' : 'disabled');
+            // Dispatch custom event to notify other pages
+            window.dispatchEvent(new CustomEvent('showFleetLegendChanged', { detail: { showFleetLegend: isChecked } }));
+        });
+    }
+
+    // Handle incoming buses checkbox
+    const showIncomingBusesCheckbox = document.getElementById('show-incoming-buses');
+    if (showIncomingBusesCheckbox) {
+        // Load the saved preference
+        const showIncomingBuses = localStorage.getItem('showIncomingBuses') === 'enabled';
+        showIncomingBusesCheckbox.checked = showIncomingBuses;
+
+        // Add event listener to update the preference
+        showIncomingBusesCheckbox.addEventListener('change', (event) => {
+            const isChecked = event.target.checked;
+            localStorage.setItem('showIncomingBuses', isChecked ? 'enabled' : 'disabled');
+            // Dispatch custom event to notify other pages
+            window.dispatchEvent(new CustomEvent('showIncomingBusesChanged', { detail: { showIncomingBuses: isChecked } }));
+        });
+    }
 });
 
 
@@ -79,6 +121,8 @@ clearCacheBtn.addEventListener('click', async () => {
 const EXPORT_KEYS = [
     'dark-mode',           // Theme preference
     'timeFormat',          // Time display format
+    'showFleetLegend',     // Fleet legend visibility
+    'showIncomingBuses',   // Incoming buses visibility
     'bookmarkedBusStops',  // Saved bus stops
     'allBusStops',         // Bus stop data cache
     'notif_monitoredServices',  // Monitored bus services (NotificationManager)
