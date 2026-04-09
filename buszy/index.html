@@ -452,6 +452,24 @@
         font-size: 20px;
     }
 
+    /* Drag and Drop Styles */
+    .list-group-item[draggable="true"] {
+        cursor: grab;
+    }
+
+    .list-group-item[draggable="true"]:active {
+        cursor: grabbing;
+    }
+
+    .list-group-item[draggable="true"]:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    body.dark-mode .list-group-item[draggable="true"]:hover {
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    }
+
     @media (max-width: 768px) {
         #cv-bat {
             height: 50vh;

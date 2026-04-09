@@ -3,6 +3,7 @@
 // ****************************
 document.addEventListener('DOMContentLoaded', async () => {
     const bookmarksContainer = document.getElementById('bookmarks-container');
+    let draggedElement = null; // Track the currently dragged element
 
     // Function to load bookmarks from localStorage
     async function loadBookmarks() {
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             bookmarksContainer.innerHTML = '';
 
             if (bookmarks.length > 0) {
-                bookmarks.forEach((bookmark) => {
+                bookmarks.forEach((bookmark, index) => {
                     const busStop = Array.isArray(busStops) ? busStops.find(stop => stop.BusStopCode === bookmark.BusStopCode) : null;
                     
                     // Skip if bus stop not found
@@ -69,9 +70,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     const listItem = document.createElement('div');
                     listItem.className = 'list-group-item';
+                    listItem.draggable = true;
+                    listItem.dataset.busStopCode = bookmark.BusStopCode;
+                    listItem.dataset.index = index;
                     listItem.style.display = 'flex';
                     listItem.style.justifyContent = 'space-between';
                     listItem.style.alignItems = 'center';
+                    listItem.style.cursor = 'grab';
+                    listItem.style.userSelect = 'none';
+                    listItem.style.transition = 'opacity 0.2s, background-color 0.2s';
+
+                    // Add drag handle indicator
+                    const dragHandle = document.createElement('div');
+                    dragHandle.style.cssText = 'display: flex; align-items: center; cursor: grab; pointer-events: none; margin-right: 8px; opacity: 0.5;';
+                    dragHandle.innerHTML = '<i class="fa-regular fa-grip-vertical" style="font-size: 18px;"></i>';
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
@@ -93,17 +105,63 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.style.flexGrow = '1';
                     link.style.textDecoration = 'none';
                     link.style.color = 'inherit';
+                    link.style.display = 'flex';
+                    link.style.alignItems = 'center';
 
                     // Remove Bookmark button
                     const removeButton = document.createElement('button');
                     removeButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
                     removeButton.className = 'btn btn-unpin btn-2';
+                    removeButton.style.flexShrink = '0';
                     removeButton.addEventListener('click', (event) => {
                         event.stopPropagation(); // Prevent the click from triggering the link
                         event.preventDefault(); // Prevent default link behavior
                         confirmAndRemoveBookmark(bookmark.BusStopCode);
                     });
 
+                    // Add drag event listeners
+                    listItem.addEventListener('dragstart', (e) => {
+                        draggedElement = listItem;
+                        listItem.style.opacity = '0.6';
+                        e.dataTransfer.effectAllowed = 'move';
+                        e.dataTransfer.setData('text/html', listItem.innerHTML);
+                    });
+
+                    listItem.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                        if (listItem !== draggedElement) {
+                            listItem.style.backgroundColor = 'rgba(0, 123, 255, 0.1)';
+                            listItem.style.borderTop = '3px solid #007bff';
+                        }
+                    });
+
+                    listItem.addEventListener('dragleave', (e) => {
+                        listItem.style.backgroundColor = '';
+                        listItem.style.borderTop = '';
+                    });
+
+                    listItem.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        if (listItem !== draggedElement) {
+                            swapBookmarks(draggedElement, listItem);
+                        }
+                    });
+
+                    listItem.addEventListener('dragend', (e) => {
+                        listItem.style.opacity = '1';
+                        listItem.style.backgroundColor = '';
+                        listItem.style.borderTop = '';
+                        draggedElement = null;
+                    });
+
+                    listItem.addEventListener('dragenter', (e) => {
+                        if (listItem !== draggedElement) {
+                            listItem.style.cursor = 'grab';
+                        }
+                    });
+
+                    listItem.appendChild(dragHandle);
                     listItem.appendChild(link);
                     listItem.appendChild(removeButton);
                     bookmarksContainer.appendChild(listItem);
@@ -116,6 +174,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error fetching bus stops:', error);
             bookmarksContainer.innerHTML = '<p class="error-msg">Error loading bus stop data.</p>';
         }
+    }
+
+    // Function to swap bookmarks in the array and update localStorage
+    function swapBookmarks(draggedItem, targetItem) {
+        const draggedIndex = parseInt(draggedItem.dataset.index);
+        const targetIndex = parseInt(targetItem.dataset.index);
+
+        // Get bookmarks from localStorage
+        const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
+
+        // Swap the bookmarks
+        [bookmarks[draggedIndex], bookmarks[targetIndex]] = [bookmarks[targetIndex], bookmarks[draggedIndex]];
+
+        // Save updated bookmarks
+        localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
+
+        // Reload the bookmarks to reflect the new order
+        loadBookmarks();
     }
 
     // Function to confirm and remove a bookmark
