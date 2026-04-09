@@ -21,11 +21,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function hideAllGrips() {
+        document.querySelectorAll('span[title="Hold to reorder"]').forEach(grip => {
+            grip.style.display = 'none';
+        });
+    }
+
     function hideGrip(item) {
         const gripEl = item.querySelector('span[title="Hold to reorder"]');
         if (gripEl) gripEl.style.display = 'none';
         item.style.transform = '';
     }
+
+    // Hide grips when clicking away
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('[data-bm-index]')) {
+            hideAllGrips();
+            document.querySelectorAll('.bus-stop-info').forEach(link => {
+                link.closest('a').style.pointerEvents = '';
+            });
+        }
+    }, { capture: true });
 
     function endDrag(doSwap) {
         clearTimeout(longPressTimer);
@@ -33,8 +49,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.removeEventListener('pointermove', onPointerMove);
         document.removeEventListener('pointerup', onPointerUp);
         if (dragSrc) {
-            hideGrip(dragSrc);
             dragSrc.style.opacity = '';
+            const gripEl = dragSrc.querySelector('span[title="Hold to reorder"]');
+            if (gripEl) gripEl.style.display = 'inline-flex';
+            const linkEl = dragSrc.querySelector('a');
+            if (linkEl) linkEl.style.pointerEvents = 'none';
         }
         if (doSwap && dragging && dropTarget && dropTarget !== dragSrc) {
             swapBookmarks(dragSrc, dropTarget);
@@ -212,52 +231,61 @@ document.addEventListener('DOMContentLoaded', async () => {
                         '<circle cx="9" cy="15" r="2" fill="#888"/>' +
                         '</svg>';
 
-                    // Grip pointerdown: start reordering drag
-                    grip.addEventListener('pointerdown', (e) => {
-                        e.stopPropagation();
-                        dragSrc    = listItem;
-                        dragStartXForReorder = e.clientX;
-                        dragStartYForReorder = e.clientY;
-                        dragging = true;
-                        listItem.style.opacity = '0.5';
-                        listItem.style.transform = 'scale(0.97)';
-                        document.addEventListener('pointermove', onPointerMove, { passive: false });
-                        document.addEventListener('pointerup', onPointerUp);
-                    });
-
-                    // List item swipe-right to reveal grip (mouse & touch)
+                    // Long press card to start reordering (grip must be visible)
+                    // Also swipe-right to reveal grip
                     listItem.addEventListener('pointerdown', (e) => {
-                        // Don't start swipe if clicking on button
+                        // Don't start if clicking on button
                         if (e.target.closest('button')) return;
+                        
+                        dragSrc    = listItem;
+                        dragStartX = e.clientX;
+                        dragStartY = e.clientY;
+                        dragging   = false;
+                        dropTarget = null;
                         swipeStart = { x: e.clientX, y: e.clientY };
                         swipeItem = listItem;
-                        document.addEventListener('pointermove', handleSwipeMove, { passive: false, capture: true });
-                        document.addEventListener('pointerup', handleSwipeEnd, { capture: true });
-                    }, { capture: true });
 
-                    function handleSwipeMove(e) {
-                        if (!swipeStart || dragging || swipeItem !== listItem) return;
+                        // Long press timer (only if grip is visible)
+                        if (grip.style.display === 'inline-flex') {
+                            longPressTimer = setTimeout(() => {
+                                dragging = true;
+                                grip.style.display = 'none';
+                                link.style.pointerEvents = '';
+                                listItem.style.opacity   = '0.5';
+                                listItem.style.transform = 'scale(0.97)';
+                                document.addEventListener('pointermove', onPointerMove, { passive: false });
+                                document.addEventListener('pointerup', onPointerUp);
+                            }, 400);
+                        }
+                    });
+
+                    listItem.addEventListener('pointermove', (e) => {
                         const dx = e.clientX - swipeStart.x;
                         const dy = Math.abs(e.clientY - swipeStart.y);
-                        // Swipe right (dx > 0) and mostly horizontal (dy small)
-                        if (dx > 20 && dy < 30) {
-                            grip.style.display = 'inline-flex';
+                        
+                        // Handle long press cancellation on movement
+                        if (!dragging && longPressTimer) {
+                            if (Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY) > 8) {
+                                clearTimeout(longPressTimer);
+                                longPressTimer = null;
+                            }
                         }
-                    }
+                        
+                        // Handle swipe-right to show grip
+                        if (!dragging && grip.style.display === 'none' && dx > 20 && dy < 30) {
+                            grip.style.display = 'inline-flex';
+                            link.style.pointerEvents = 'none';
+                        }
+                    });
 
-                    function handleSwipeEnd(e) {
-                        if (!swipeStart || swipeItem !== listItem) {
-                            swipeStart = null;
-                            swipeItem = null;
-                            document.removeEventListener('pointermove', handleSwipeMove, { capture: true });
-                            document.removeEventListener('pointerup', handleSwipeEnd, { capture: true });
-                            return;
+                    listItem.addEventListener('pointerup', () => {
+                        if (!dragging) {
+                            clearTimeout(longPressTimer);
+                            longPressTimer = null;
                         }
                         swipeStart = null;
                         swipeItem = null;
-                        document.removeEventListener('pointermove', handleSwipeMove, { capture: true });
-                        document.removeEventListener('pointerup', handleSwipeEnd, { capture: true });
-                    }
+                    });
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
