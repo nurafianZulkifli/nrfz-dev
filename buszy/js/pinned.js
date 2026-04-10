@@ -59,6 +59,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         longPressTimer = null;
         document.removeEventListener('pointermove', onPointerMove);
         document.removeEventListener('pointerup', onPointerUp);
+        
+        // Re-enable scroll-to-refresh on mobile
+        document.body.style.overscrollBehavior = '';
+        
         if (dragSrc) {
             dragSrc.style.opacity = '';
             dragSrc.style.transform = '';
@@ -322,6 +326,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 dragging = true;
                                 listItem.style.opacity   = '0.5';
                                 listItem.style.transform = 'scale(0.97)';
+                                
+                                // Disable scroll-to-refresh on mobile
+                                document.body.style.overscrollBehavior = 'none';
+                                
                                 document.addEventListener('pointermove', onPointerMove, { passive: false });
                                 document.addEventListener('pointerup', onPointerUp);
                             }
