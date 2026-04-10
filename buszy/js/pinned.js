@@ -63,6 +63,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Re-enable scroll-to-refresh on mobile
         document.body.style.overscrollBehavior = '';
         
+        // Show navbar again
+        const navbar = document.querySelector('.navbar-container');
+        if (navbar) {
+            navbar.style.display = '';
+        }
+        
         if (dragSrc) {
             dragSrc.style.opacity = '';
             dragSrc.style.transform = '';
@@ -316,7 +322,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             longPressTimer = null;
                         }
 
-                        // If grips are visible and user is moving, start drag
+                        // If grips are visible and user is moving, start drag from anywhere on the item
                         if (grip.style.display === 'inline-flex' && !dragging) {
                             const dx = Math.abs(e.clientX - dragStartXForReorder);
                             const dy = Math.abs(e.clientY - dragStartYForReorder);
@@ -329,6 +335,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 
                                 // Disable scroll-to-refresh on mobile
                                 document.body.style.overscrollBehavior = 'none';
+                                
+                                // Hide navbar during dragging
+                                const navbar = document.querySelector('.navbar-container');
+                                if (navbar) {
+                                    navbar.style.display = 'none';
+                                }
                                 
                                 document.addEventListener('pointermove', onPointerMove, { passive: false });
                                 document.addEventListener('pointerup', onPointerUp);
