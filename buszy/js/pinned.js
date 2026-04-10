@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     let longPressTimer = null;
     let dragging    = false;
     let dropTarget  = null;
+    let autoScrollLoop = null;
+    let scrollVelocity = 0;
 
     function clearDropHighlight() {
         if (dropTarget) {
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, { capture: true });
 
     function endDrag(doSwap) {
+        stopAutoScroll();
         clearTimeout(longPressTimer);
         longPressTimer = null;
         document.removeEventListener('pointermove', onPointerMove);
@@ -72,6 +75,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         dragSrc  = null;
     }
 
+    function startAutoScroll(direction) {
+        if (autoScrollLoop) cancelAnimationFrame(autoScrollLoop);
+        
+        const isMobile = window.innerWidth < 768;
+        const scrollStep = isMobile ? 15 : 12;
+        
+        function scroll() {
+            window.scrollBy(0, direction * scrollStep);
+            autoScrollLoop = requestAnimationFrame(scroll);
+        }
+        
+        autoScrollLoop = requestAnimationFrame(scroll);
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollLoop) {
+            cancelAnimationFrame(autoScrollLoop);
+            autoScrollLoop = null;
+        }
+    }
+
     function onPointerMove(e) {
         if (!dragging) return;
         
@@ -87,15 +111,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             clearDropHighlight();
         }
         
-        // Auto-scroll while dragging if near edges (scroll window on desktop)
-        const scrollThreshold = 100;
-        const scrollSpeed = 10;
+        // Auto-scroll while dragging - works on both mobile and desktop
+        const isMobile = window.innerWidth < 768;
+        const scrollThreshold = isMobile ? 60 : 100;
         const viewportHeight = window.innerHeight;
         
         if (e.clientY < scrollThreshold) {
-            window.scrollBy(0, -scrollSpeed);
+            startAutoScroll(-1);
         } else if (e.clientY > viewportHeight - scrollThreshold) {
-            window.scrollBy(0, scrollSpeed);
+            startAutoScroll(1);
+        } else {
+            stopAutoScroll();
         }
     }
 
