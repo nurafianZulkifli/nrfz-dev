@@ -23,10 +23,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelectorAll('span[title="Hold to reorder"]').forEach(grip => {
             grip.style.display = 'none';
         });
-        document.querySelectorAll('.bus-stop-info').forEach(info => {
-            const link = info.closest('a');
-            if (link) link.style.pointerEvents = '';
-        });
     }
 
     function hideGrip(item) {
@@ -35,25 +31,50 @@ document.addEventListener('DOMContentLoaded', async () => {
         item.style.transform = '';
     }
 
-    // Hide grips when tapping anywhere
+    // Hide grips when clicking/tapping anywhere
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('[data-bm-index]') || e.target.closest('button')) {
+        const listItem = e.target.closest('[data-bm-index]');
+        
+        // If clicking outside list items or on buttons, hide all grips
+        if (!listItem || e.target.closest('button')) {
             hideAllGrips();
+            document.querySelectorAll('a.bus-stop-info, .bus-stop-info a').forEach(link => {
+                link.style.pointerEvents = '';
+            });
+        }
+        // Also hide grips if clicking on the bus stop info link
+        else if (e.target.closest('a')) {
+            hideAllGrips();
+            document.querySelectorAll('a.bus-stop-info, .bus-stop-info a').forEach(link => {
+                link.style.pointerEvents = '';
+            });
         }
     }, { capture: true });
 
-    function onPointerMoveReorder(e) {
-        if (!dragging) {
-            // Check if moved beyond threshold to start drag
-            if (Math.hypot(e.clientX - dragStartXForReorder, e.clientY - dragStartYForReorder) > 8) {
-                dragging = true;
-                dragSrc.style.opacity = '0.5';
-                dragSrc.style.transform = 'scale(0.97)';
-            }
-            return;
+    function endDrag(doSwap) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
+        document.removeEventListener('pointermove', onPointerMove);
+        document.removeEventListener('pointerup', onPointerUp);
+        if (dragSrc) {
+            dragSrc.style.opacity = '';
+            dragSrc.style.transform = '';
+            const gripEl = dragSrc.querySelector('span[title="Hold to reorder"]');
+            if (gripEl) gripEl.style.display = 'none';
+            const linkEl = dragSrc.querySelector('a');
+            if (linkEl) linkEl.style.pointerEvents = '';
         }
+        if (doSwap && dragging && dropTarget && dropTarget !== dragSrc) {
+            swapBookmarks(dragSrc, dropTarget);
+        }
+        clearDropHighlight();
+        dragging = false;
+        dragSrc  = null;
+    }
 
-        e.preventDefault();
+    function onPointerMove(e) {
+        if (!dragging) return;
+        
         const el = document.elementFromPoint(e.clientX, e.clientY);
         const target = el && el.closest('[data-bm-index]');
         if (target && target !== dragSrc) {
@@ -65,25 +86,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             clearDropHighlight();
         }
+        
+        // Auto-scroll while dragging if near edges (scroll window on desktop)
+        const scrollThreshold = 100;
+        const scrollSpeed = 10;
+        const viewportHeight = window.innerHeight;
+        
+        if (e.clientY < scrollThreshold) {
+            window.scrollBy(0, -scrollSpeed);
+        } else if (e.clientY > viewportHeight - scrollThreshold) {
+            window.scrollBy(0, scrollSpeed);
+        }
     }
 
-    function onPointerUpReorder() {
-        document.removeEventListener('pointermove', onPointerMoveReorder);
-        document.removeEventListener('pointerup', onPointerUpReorder);
-        
-        if (dragSrc) {
-            dragSrc.style.opacity = '';
-            dragSrc.style.transform = '';
-        }
-        
-        if (dragging && dropTarget && dropTarget !== dragSrc) {
-            swapBookmarks(dragSrc, dropTarget);
-        }
-        
-        clearDropHighlight();
-        dragging = false;
-        dragSrc = null;
-    }
+    function onPointerUp() { endDrag(true); }
 
     function swapBookmarks(srcEl, tgtEl) {
         const srcIdx = parseInt(srcEl.dataset.bmIndex);
@@ -220,6 +236,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     listItem.style.justifyContent = 'space-between';
                     listItem.style.alignItems = 'center';
                     listItem.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+                    listItem.style.userSelect = 'none';
+                    listItem.style.touchAction = 'pan-y';
 
                     // Grip handle — inline SVG, hidden by default
                     const grip = document.createElement('span');
@@ -235,47 +253,57 @@ document.addEventListener('DOMContentLoaded', async () => {
                         '<circle cx="9" cy="15" r="2" fill="#888"/>' +
                         '</svg>';
 
-                    // Long press card to show grip handles, then drag to reorder
+                    // Disable right-click context menu
                     listItem.addEventListener('contextmenu', (e) => {
                         e.preventDefault();
                     });
 
+                    // Long press to activate grips and enable dragging
                     listItem.addEventListener('pointerdown', (e) => {
                         // Don't start if clicking on button
                         if (e.target.closest('button')) return;
-
-                        dragSrc = listItem;
+                        
+                        dragSrc    = listItem;
                         dragStartX = e.clientX;
                         dragStartY = e.clientY;
                         dragStartXForReorder = e.clientX;
                         dragStartYForReorder = e.clientY;
-                        dragging = false;
+                        dragging   = false;
                         dropTarget = null;
 
-                        // Long press timer to show grip handles
+                        // Long press timer to show grip and prepare for drag
                         longPressTimer = setTimeout(() => {
+                            // Show grip handles
                             grip.style.display = 'inline-flex';
                             link.style.pointerEvents = 'none';
-                            longPressTimer = null;  // Clear timer so pointermove doesn't cancel
-                            document.addEventListener('pointermove', onPointerMoveReorder, { passive: false });
-                            document.addEventListener('pointerup', onPointerUpReorder);
                         }, 400);
                     });
 
                     listItem.addEventListener('pointermove', (e) => {
-                        // Cancel long press if moved more than threshold
-                        if (longPressTimer && !dragging) {
-                            if (Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY) > 8) {
-                                clearTimeout(longPressTimer);
-                                longPressTimer = null;
-                                document.removeEventListener('pointermove', onPointerMoveReorder);
-                                document.removeEventListener('pointerup', onPointerUpReorder);
+                        // Cancel long press if user moves beyond threshold
+                        if (longPressTimer && Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY) > 8) {
+                            clearTimeout(longPressTimer);
+                            longPressTimer = null;
+                        }
+
+                        // If grips are visible and user is moving, start drag
+                        if (grip.style.display === 'inline-flex' && !dragging) {
+                            const dx = Math.abs(e.clientX - dragStartXForReorder);
+                            const dy = Math.abs(e.clientY - dragStartYForReorder);
+                            
+                            if (Math.hypot(dx, dy) > 8) {
+                                // Start dragging
+                                dragging = true;
+                                listItem.style.opacity   = '0.5';
+                                listItem.style.transform = 'scale(0.97)';
+                                document.addEventListener('pointermove', onPointerMove, { passive: false });
+                                document.addEventListener('pointerup', onPointerUp);
                             }
                         }
                     });
 
                     listItem.addEventListener('pointerup', () => {
-                        if (longPressTimer) {
+                        if (!dragging) {
                             clearTimeout(longPressTimer);
                             longPressTimer = null;
                         }
