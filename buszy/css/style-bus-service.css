@@ -301,6 +301,17 @@ body.dark-mode .terminal-name {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Highlight the original bus stop when navigating from art.html */
+.stop-item.highlight-stop {
+    background-color: #d9ddf1;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+}
+
+.stop-item.highlight-stop:hover {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
 .bus-stop-info {
     display: flex;
     flex-direction: row;
@@ -390,6 +401,18 @@ body.dark-mode .stop-item:hover {
     background-color: #334250;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode styling for highlighted stop */
+body.dark-mode .stop-item.highlight-stop {
+    background-color: #393e53;
+    border: 2px solid #91a5be;
+    box-shadow: 0 0 15px #8190a1, 0 2px 4px #0000004d;
+}
+
+body.dark-mode .stop-item.highlight-stop:hover {
+    background-color: #4a5568;
+    box-shadow: 0 0 25px rgba(129, 144, 161, 0.5), 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 body.dark-mode .bus-stop-code {
@@ -572,7 +595,7 @@ body.dark-mode .route-variant-button:hover {
 
 .direction-button,
 .direction-button.active,
-body.dark-mode .direction-button.active  {
+body.dark-mode .direction-button.active {
     color: #000 !important;
 }
 

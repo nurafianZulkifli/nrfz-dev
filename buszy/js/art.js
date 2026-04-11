@@ -783,7 +783,12 @@ async function fetchBusArrivals() {
                         return;
                     }
                     const serviceNo = button.getAttribute('data-service');
-                    window.location.href = getBasePath() + 'buszy/bus-service.html?service=' + serviceNo;
+                    let url = getBasePath() + 'buszy/bus-service.html?service=' + serviceNo;
+                    // Pass the current bus stop code if available
+                    if (busStopCode && busStopCode.trim() !== '') {
+                        url += '&highlightStop=' + encodeURIComponent(busStopCode);
+                    }
+                    window.location.href = url;
                 });
             });
         }

@@ -9,6 +9,15 @@ function getServiceNumberFromURL() {
     return params.get('service') || '3'; // Default to service 3 if not specified
 }
 
+// Get highlight stop code from URL parameters if available
+function getHighlightStopFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('highlightStop') || null;
+}
+
+// Store highlight stop code for use in bus stops display
+const highlightStop = getHighlightStopFromURL();
+
 // Get base path for the application
 function getBasePath() {
     // If PWAConfig is available, use it
@@ -503,7 +512,7 @@ async function populateServiceData(serviceNumber, service) {
         // Fetch and enrich bus stops from API
         if (stopCodes.length > 0) {
             const enrichedStops = await fetchEnrichedStopsFromAPI(serviceNumber, stopCodes);
-            populateBusStops(enrichedStops);
+            populateBusStops(enrichedStops, highlightStop);
         }
     };
 
@@ -721,17 +730,25 @@ function toggleFrequencyDetails(event) {
 }
 
 // Populate bus stops list (compact format: array of [code, name, description])
-function populateBusStops(stops) {
+function populateBusStops(stops, highlightStop = null) {
     const container = document.getElementById('stops-container');
     const countElement = document.getElementById('stops-count');
 
     container.innerHTML = ''; // Clear existing content
     countElement.textContent = stops.length;
 
+    let highlightedElement = null;
+
     stops.forEach((stop, index) => {
         const stopElement = document.createElement('div');
         stopElement.className = 'stop-item';
         stopElement.style.animationDelay = `${index * 0.05}s`;
+
+        // Highlight the stop if it matches the highlightStop parameter
+        if (highlightStop && stop[0] === highlightStop) {
+            stopElement.classList.add('highlight-stop');
+            highlightedElement = stopElement;
+        }
 
         // Get base path for bus icon
         const basePath = getBasePath();
@@ -760,6 +777,17 @@ function populateBusStops(stops) {
 
         container.appendChild(stopElement);
     });
+
+    // Scroll to highlighted stop if it exists
+    if (highlightedElement) {
+        // Use a small delay to ensure the page is fully rendered
+        setTimeout(() => {
+            highlightedElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }, 100);
+    }
 }
 
 // Populate short bus service links

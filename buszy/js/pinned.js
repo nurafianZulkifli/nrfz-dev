@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let autoScrollLoop = null;
     let longPressTimer = null;
     let longPressItem = null;
+    let justFinishedDragging = false;
 
     // ── Helper Functions ─────────────────────────────────────────
     function getAllItems() {
@@ -204,6 +205,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         applyNewItemsOrder(e);
         cleanup();
+        justFinishedDragging = true;
     }
 
     function applyNewItemsOrder(e) {
@@ -543,6 +545,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.addEventListener('touchend', (e) => {
             handleTouchEnd(e);
             dragEnd(e);
+        });
+
+        // Dismiss grip handle on tap after dragging
+        document.addEventListener('click', (e) => {
+            if (justFinishedDragging) {
+                justFinishedDragging = false;
+                getAllItems().forEach((item) => {
+                    item.classList.remove('handle-visible');
+                });
+            }
+        });
+
+        document.addEventListener('touchstart', (e) => {
+            if (justFinishedDragging) {
+                justFinishedDragging = false;
+                getAllItems().forEach((item) => {
+                    item.classList.remove('handle-visible');
+                });
+            }
         });
     }
 
