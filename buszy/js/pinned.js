@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     let items = [];
     let prevRect = {};
     let autoScrollLoop = null;
+    let longPressTimer = null;
+    let longPressItem = null;
 
     // ── Helper Functions ─────────────────────────────────────────
     function getAllItems() {
@@ -148,6 +150,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Use closest to find drag handle, works even if SVG is clicked
         const dragHandle = e.target.closest('.js-drag-handle');
         if (!dragHandle) return;
+
+        // Only allow dragging if the handle is visible
+        const handleVisibility = window.getComputedStyle(dragHandle).visibility;
+        if (handleVisibility === 'hidden') return;
 
         draggableItem = dragHandle.closest('.list-group-item');
         if (!draggableItem) return;
@@ -494,13 +500,50 @@ document.addEventListener('DOMContentLoaded', async () => {
         searchInput.addEventListener('input', applyPinnedSearchFilter);
     }
 
+    // Long-press handler for mobile to show/hide drag handle
+    function handleTouchStart(e) {
+        const item = e.target.closest('.list-group-item');
+        if (!item) return;
+
+        longPressItem = item;
+        longPressTimer = setTimeout(() => {
+            if (longPressItem) {
+                longPressItem.classList.toggle('handle-visible');
+                longPressItem = null;
+            }
+        }, 500);
+    }
+
+    function handleTouchEnd(e) {
+        if (longPressTimer) {
+            clearTimeout(longPressTimer);
+            longPressTimer = null;
+        }
+        longPressItem = null;
+    }
+
+    function handleTouchMove(e) {
+        // Cancel long-press if user moves
+        if (longPressTimer) {
+            clearTimeout(longPressTimer);
+            longPressTimer = null;
+        }
+    }
+
     // Setup drag to reorder listeners
     function setupDragListeners() {
         if (!bookmarksContainer) return;
         bookmarksContainer.addEventListener('mousedown', dragStart);
-        bookmarksContainer.addEventListener('touchstart', dragStart);
+        bookmarksContainer.addEventListener('touchstart', (e) => {
+            handleTouchStart(e);
+            dragStart(e);
+        });
+        bookmarksContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
         document.addEventListener('mouseup', dragEnd);
-        document.addEventListener('touchend', dragEnd);
+        document.addEventListener('touchend', (e) => {
+            handleTouchEnd(e);
+            dragEnd(e);
+        });
     }
 
     // Load bookmarks and setup listeners

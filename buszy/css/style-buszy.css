@@ -593,6 +593,14 @@ table th {
     z-index: 10;
 }
 
+.list-group-item.handle-visible .js-drag-handle {
+    /* Show handle on long-press (mobile) */
+    max-width: 32px;
+    margin-right: 6px;
+    opacity: 1;
+    visibility: visible;
+}
+
 .spinner {
     display: inline-block;
     width: 15px;
@@ -1111,6 +1119,14 @@ body.dark-mode .list-group-item.is-draggable .js-drag-handle {
 body.dark-mode .list-group-item.is-draggable {
     transition: none !important;
     z-index: 10;
+}
+
+body.dark-mode .list-group-item.handle-visible .js-drag-handle {
+    /* Show handle on long-press (mobile) */
+    max-width: 32px;
+    margin-right: 6px;
+    opacity: 1;
+    visibility: visible;
 }
 
 body.dark-mode .list-group-item:hover {
