@@ -60,6 +60,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.style.userSelect = '';
     }
 
+    function startAutoScroll(direction) {
+        if (autoScrollLoop) cancelAnimationFrame(autoScrollLoop);
+        
+        const scrollStep = 10;
+        
+        function scroll() {
+            window.scrollBy(0, direction * scrollStep);
+            autoScrollLoop = requestAnimationFrame(scroll);
+        }
+        
+        autoScrollLoop = requestAnimationFrame(scroll);
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollLoop) {
+            cancelAnimationFrame(autoScrollLoop);
+            autoScrollLoop = null;
+        }
+    }
+
     function initItemsState() {
         getIdleItems().forEach((item, i) => {
             if (getAllItems().indexOf(draggableItem) > i) {
@@ -159,6 +179,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         draggableItem.style.transform = `translate(${pointerOffsetX}px, ${pointerOffsetY}px)`;
 
         updateIdleItemsStateAndPosition();
+
+        // Auto-scroll at viewport edges
+        const scrollThreshold = 100;
+        const viewportHeight = window.innerHeight;
+
+        if (clientY < scrollThreshold) {
+            startAutoScroll(-1);
+        } else if (clientY > viewportHeight - scrollThreshold) {
+            startAutoScroll(1);
+        } else {
+            stopAutoScroll();
+        }
     }
 
     function dragEnd(e) {
