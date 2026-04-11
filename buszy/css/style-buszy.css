@@ -542,6 +542,13 @@ table th {
     padding-bottom: 0.7em;
 }
 
+.list-group-item:hover {
+    background-color: #d8e6f3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 /* Drag to reorder states */
 .js-drag-handle {
     display: flex;
@@ -1133,6 +1140,7 @@ body.dark-mode .list-group-item:hover {
     background-color: #334250;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /*  */
