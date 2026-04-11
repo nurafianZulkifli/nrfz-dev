@@ -4,147 +4,222 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const bookmarksContainer = document.getElementById('bookmarks-container');
 
-    // ── Drag state ───────────────────────────────────────────────
-    let dragSrc     = null;
-    let dragStartX  = 0, dragStartY = 0;
-    let dragStartXForReorder = 0, dragStartYForReorder = 0;
-    let longPressTimer = null;
-    let dragging    = false;
-    let dropTarget  = null;
+    // ── Drag to Reorder Variables ────────────────────────────────
+    let draggableItem = null;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let itemsGap = 0;
+    let items = [];
+    let prevRect = {};
     let autoScrollLoop = null;
-    let scrollVelocity = 0;
 
-    function clearDropHighlight() {
-        if (dropTarget) {
-            dropTarget.style.outline = '';
-            dropTarget = null;
+    // ── Helper Functions ─────────────────────────────────────────
+    function getAllItems() {
+        if (!items?.length) {
+            items = Array.from(bookmarksContainer.querySelectorAll('.list-group-item'));
         }
+        return items;
     }
 
-    function hideAllGrips() {
-        document.querySelectorAll('span[title="Hold to reorder"]').forEach(grip => {
-            grip.style.display = 'none';
+    function getIdleItems() {
+        return getAllItems().filter((item) => item.classList.contains('is-idle'));
+    }
+
+    function isItemAbove(item) {
+        return item.hasAttribute('data-is-above');
+    }
+
+    function isItemToggled(item) {
+        return item.hasAttribute('data-is-toggled');
+    }
+
+    function setItemsGap() {
+        if (getIdleItems().length <= 1) {
+            itemsGap = 0;
+            return;
+        }
+
+        const item1 = getIdleItems()[0];
+        const item2 = getIdleItems()[1];
+
+        const item1Rect = item1.getBoundingClientRect();
+        const item2Rect = item2.getBoundingClientRect();
+
+        itemsGap = Math.abs(item1Rect.bottom - item2Rect.top);
+    }
+
+    function disablePageScroll() {
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+        document.body.style.userSelect = 'none';
+    }
+
+    function enablePageScroll() {
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+        document.body.style.userSelect = '';
+    }
+
+    function initItemsState() {
+        getIdleItems().forEach((item, i) => {
+            if (getAllItems().indexOf(draggableItem) > i) {
+                item.dataset.isAbove = '';
+            }
         });
     }
 
-    function hideGrip(item) {
-        const gripEl = item.querySelector('span[title="Hold to reorder"]');
-        if (gripEl) gripEl.style.display = 'none';
-        item.style.transform = '';
+    function initDraggableItem() {
+        draggableItem.classList.remove('is-idle');
+        draggableItem.classList.add('is-draggable');
     }
 
-    // Hide grips when clicking/tapping anywhere
-    document.addEventListener('click', (e) => {
-        const listItem = e.target.closest('[data-bm-index]');
-        
-        // If clicking outside list items or on buttons, hide all grips
-        if (!listItem || e.target.closest('button')) {
-            hideAllGrips();
-            document.querySelectorAll('a.bus-stop-info, .bus-stop-info a').forEach(link => {
-                link.style.pointerEvents = '';
-            });
-        }
-        // Also hide grips if clicking on the bus stop info link
-        else if (e.target.closest('a')) {
-            hideAllGrips();
-            document.querySelectorAll('a.bus-stop-info, .bus-stop-info a').forEach(link => {
-                link.style.pointerEvents = '';
-            });
-        }
-    }, { capture: true });
-
-    function endDrag(doSwap) {
-        stopAutoScroll();
-        clearTimeout(longPressTimer);
-        longPressTimer = null;
-        document.removeEventListener('pointermove', onPointerMove);
-        document.removeEventListener('pointerup', onPointerUp);
-        
-        // Re-enable scroll-to-refresh on mobile
-        document.body.style.overscrollBehavior = '';
-        
-        // Show navbar again
-        const navbar = document.querySelector('.navbar-container');
-        if (navbar) {
-            navbar.style.display = '';
-        }
-        
-        if (dragSrc) {
-            dragSrc.style.opacity = '';
-            dragSrc.style.transform = '';
-            const gripEl = dragSrc.querySelector('span[title="Hold to reorder"]');
-            if (gripEl) gripEl.style.display = 'none';
-            const linkEl = dragSrc.querySelector('a');
-            if (linkEl) linkEl.style.pointerEvents = '';
-        }
-        if (doSwap && dragging && dropTarget && dropTarget !== dragSrc) {
-            swapBookmarks(dragSrc, dropTarget);
-        }
-        clearDropHighlight();
-        dragging = false;
-        dragSrc  = null;
+    function unsetDraggableItem() {
+        draggableItem.style.transform = '';
+        draggableItem.classList.remove('is-draggable');
+        draggableItem.classList.add('is-idle');
+        draggableItem = null;
     }
 
-    function startAutoScroll(direction) {
-        if (autoScrollLoop) cancelAnimationFrame(autoScrollLoop);
-        
-        const isMobile = window.innerWidth < 768;
-        const scrollStep = isMobile ? 15 : 12;
-        
-        function scroll() {
-            window.scrollBy(0, direction * scrollStep);
-            autoScrollLoop = requestAnimationFrame(scroll);
-        }
-        
-        autoScrollLoop = requestAnimationFrame(scroll);
+    function unsetItemState() {
+        getAllItems().forEach((item) => {
+            delete item.dataset.isAbove;
+            delete item.dataset.isToggled;
+            item.style.transform = '';
+        });
     }
 
-    function stopAutoScroll() {
-        if (autoScrollLoop) {
-            cancelAnimationFrame(autoScrollLoop);
-            autoScrollLoop = null;
-        }
-    }
+    function updateIdleItemsStateAndPosition() {
+        const draggableItemRect = draggableItem.getBoundingClientRect();
+        const draggableItemY = draggableItemRect.top + draggableItemRect.height / 2;
 
-    function onPointerMove(e) {
-        if (!dragging) return;
-        
-        const el = document.elementFromPoint(e.clientX, e.clientY);
-        const target = el && el.closest('[data-bm-index]');
-        if (target && target !== dragSrc) {
-            if (target !== dropTarget) {
-                clearDropHighlight();
-                dropTarget = target;
-                target.style.outline = '2px solid #007bff';
+        // Update state
+        getIdleItems().forEach((item) => {
+            const itemRect = item.getBoundingClientRect();
+            const itemY = itemRect.top + itemRect.height / 2;
+            if (isItemAbove(item)) {
+                if (draggableItemY <= itemY) {
+                    item.dataset.isToggled = '';
+                } else {
+                    delete item.dataset.isToggled;
+                }
+            } else {
+                if (draggableItemY >= itemY) {
+                    item.dataset.isToggled = '';
+                } else {
+                    delete item.dataset.isToggled;
+                }
             }
-        } else {
-            clearDropHighlight();
-        }
-        
-        // Auto-scroll while dragging - works on both mobile and desktop
-        const isMobile = window.innerWidth < 768;
-        const scrollThreshold = isMobile ? 60 : 100;
-        const viewportHeight = window.innerHeight;
-        
-        if (e.clientY < scrollThreshold) {
-            startAutoScroll(-1);
-        } else if (e.clientY > viewportHeight - scrollThreshold) {
-            startAutoScroll(1);
-        } else {
-            stopAutoScroll();
-        }
+        });
+
+        // Update position
+        getIdleItems().forEach((item) => {
+            if (isItemToggled(item)) {
+                const direction = isItemAbove(item) ? 1 : -1;
+                item.style.transform = `translateY(${
+                    direction * (draggableItemRect.height + itemsGap)
+                }px)`;
+            } else {
+                item.style.transform = '';
+            }
+        });
     }
 
-    function onPointerUp() { endDrag(true); }
+    function dragStart(e) {
+        // Use closest to find drag handle, works even if SVG is clicked
+        const dragHandle = e.target.closest('.js-drag-handle');
+        if (!dragHandle) return;
 
-    function swapBookmarks(srcEl, tgtEl) {
-        const srcIdx = parseInt(srcEl.dataset.bmIndex);
-        const tgtIdx = parseInt(tgtEl.dataset.bmIndex);
-        if (isNaN(srcIdx) || isNaN(tgtIdx) || srcIdx === tgtIdx) return;
-        const bookmarks = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
-        [bookmarks[srcIdx], bookmarks[tgtIdx]] = [bookmarks[tgtIdx], bookmarks[srcIdx]];
-        localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
-        loadBookmarks();
+        draggableItem = dragHandle.closest('.list-group-item');
+        if (!draggableItem) return;
+
+        pointerStartX = e.clientX || e.touches?.[0]?.clientX;
+        pointerStartY = e.clientY || e.touches?.[0]?.clientY;
+
+        setItemsGap();
+        disablePageScroll();
+        initDraggableItem();
+        initItemsState();
+        prevRect = draggableItem.getBoundingClientRect();
+
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag, { passive: false });
+    }
+
+    function drag(e) {
+        if (!draggableItem) return;
+
+        e.preventDefault();
+
+        const clientX = e.clientX || e.touches[0].clientX;
+        const clientY = e.clientY || e.touches[0].clientY;
+
+        const pointerOffsetX = clientX - pointerStartX;
+        const pointerOffsetY = clientY - pointerStartY;
+
+        draggableItem.style.transform = `translate(${pointerOffsetX}px, ${pointerOffsetY}px)`;
+
+        updateIdleItemsStateAndPosition();
+    }
+
+    function dragEnd(e) {
+        if (!draggableItem) return;
+
+        applyNewItemsOrder(e);
+        cleanup();
+    }
+
+    function applyNewItemsOrder(e) {
+        const reorderedItems = [];
+
+        getAllItems().forEach((item, index) => {
+            if (item === draggableItem) {
+                return;
+            }
+            if (!isItemToggled(item)) {
+                reorderedItems[index] = item;
+                return;
+            }
+            const newIndex = isItemAbove(item) ? index + 1 : index - 1;
+            reorderedItems[newIndex] = item;
+        });
+
+        for (let index = 0; index < getAllItems().length; index++) {
+            const item = reorderedItems[index];
+            if (typeof item === 'undefined') {
+                reorderedItems[index] = draggableItem;
+            }
+        }
+
+        reorderedItems.forEach((item) => {
+            bookmarksContainer.appendChild(item);
+        });
+
+        draggableItem.style.transform = '';
+
+        requestAnimationFrame(() => {
+            const rect = draggableItem.getBoundingClientRect();
+            const yDiff = prevRect.y - rect.y;
+            const currentPositionX = e.clientX || e.changedTouches?.[0]?.clientX;
+            const currentPositionY = e.clientY || e.changedTouches?.[0]?.clientY;
+
+            const pointerOffsetX = currentPositionX - pointerStartX;
+            const pointerOffsetY = currentPositionY - pointerStartY;
+
+            draggableItem.style.transform = `translate(${pointerOffsetX}px, ${pointerOffsetY + yDiff}px)`;
+            requestAnimationFrame(() => {
+                unsetDraggableItem();
+            });
+        });
+    }
+
+    function cleanup() {
+        itemsGap = 0;
+        items = [];
+        unsetItemState();
+        enablePageScroll();
+
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('touchmove', drag);
     }
 
     // Function to switch to the "All" tab
@@ -266,20 +341,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
 
                     const listItem = document.createElement('div');
-                    listItem.className = 'list-group-item';
+                    listItem.className = 'list-group-item is-idle';
                     listItem.dataset.bmIndex = String(index);
                     listItem.style.display = 'flex';
                     listItem.style.justifyContent = 'space-between';
                     listItem.style.alignItems = 'center';
-                    listItem.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
                     listItem.style.userSelect = 'none';
                     listItem.style.touchAction = 'pan-y';
 
-                    // Grip handle — inline SVG, hidden by default
-                    const grip = document.createElement('span');
-                    grip.title = 'Hold to reorder';
-                    grip.style.cssText = 'flex-shrink:0; display:none; align-items:center; justify-content:center; width:32px; min-height:44px; cursor:grab; margin-right:6px; touch-action:none; user-select:none;';
-                    grip.innerHTML =
+                    // Drag handle
+                    const dragHandle = document.createElement('span');
+                    dragHandle.className = 'js-drag-handle';
+                    dragHandle.innerHTML =
                         '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18">' +
                         '<circle cx="3" cy="3"  r="2" fill="#888"/>' +
                         '<circle cx="9" cy="3"  r="2" fill="#888"/>' +
@@ -288,72 +361,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         '<circle cx="3" cy="15" r="2" fill="#888"/>' +
                         '<circle cx="9" cy="15" r="2" fill="#888"/>' +
                         '</svg>';
-
-                    // Disable right-click context menu
-                    listItem.addEventListener('contextmenu', (e) => {
-                        e.preventDefault();
-                    });
-
-                    // Long press to activate grips and enable dragging
-                    listItem.addEventListener('pointerdown', (e) => {
-                        // Don't start if clicking on button
-                        if (e.target.closest('button')) return;
-                        
-                        dragSrc    = listItem;
-                        dragStartX = e.clientX;
-                        dragStartY = e.clientY;
-                        dragStartXForReorder = e.clientX;
-                        dragStartYForReorder = e.clientY;
-                        dragging   = false;
-                        dropTarget = null;
-
-                        // Long press timer to show grip and prepare for drag
-                        longPressTimer = setTimeout(() => {
-                            // Show grip handles
-                            grip.style.display = 'inline-flex';
-                            link.style.pointerEvents = 'none';
-                        }, 400);
-                    });
-
-                    listItem.addEventListener('pointermove', (e) => {
-                        // Cancel long press if user moves beyond threshold
-                        if (longPressTimer && Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY) > 8) {
-                            clearTimeout(longPressTimer);
-                            longPressTimer = null;
-                        }
-
-                        // If grips are visible and user is moving, start drag from anywhere on the item
-                        if (grip.style.display === 'inline-flex' && !dragging) {
-                            const dx = Math.abs(e.clientX - dragStartXForReorder);
-                            const dy = Math.abs(e.clientY - dragStartYForReorder);
-                            
-                            if (Math.hypot(dx, dy) > 8) {
-                                // Start dragging
-                                dragging = true;
-                                listItem.style.opacity   = '0.5';
-                                listItem.style.transform = 'scale(0.97)';
-                                
-                                // Disable scroll-to-refresh on mobile
-                                document.body.style.overscrollBehavior = 'none';
-                                
-                                // Hide navbar during dragging
-                                const navbar = document.querySelector('.navbar-container');
-                                if (navbar) {
-                                    navbar.style.display = 'none';
-                                }
-                                
-                                document.addEventListener('pointermove', onPointerMove, { passive: false });
-                                document.addEventListener('pointerup', onPointerUp);
-                            }
-                        }
-                    });
-
-                    listItem.addEventListener('pointerup', () => {
-                        if (!dragging) {
-                            clearTimeout(longPressTimer);
-                            longPressTimer = null;
-                        }
-                    });
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
@@ -377,7 +384,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.style.color = 'inherit';
 
                     link.addEventListener('click', (e) => { 
-                        if (dragging || grip.style.display === 'inline-flex') e.preventDefault(); 
+                        if (draggableItem === listItem) e.preventDefault(); 
                     });
 
                     // Remove Bookmark button
@@ -386,12 +393,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     removeButton.className = 'btn btn-unpin btn-2';
                     removeButton.style.flexShrink = '0';
                     removeButton.addEventListener('click', (event) => {
-                        event.stopPropagation(); // Prevent the click from triggering the link
-                        event.preventDefault(); // Prevent default link behavior
+                        event.stopPropagation();
+                        event.preventDefault();
                         confirmAndRemoveBookmark(bookmark.BusStopCode);
                     });
 
-                    listItem.appendChild(grip);
+                    listItem.appendChild(dragHandle);
                     listItem.appendChild(link);
                     listItem.appendChild(removeButton);
                     bookmarksContainer.appendChild(listItem);
@@ -437,10 +444,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    // Persist bookmark order to localStorage
+    function persistBookmarkOrder() {
+        const bookmarks = [];
+        getAllItems().forEach(item => {
+            const code = item.querySelector('.bus-stop-code-text')?.textContent;
+            if (code) {
+                bookmarks.push({ BusStopCode: code });
+            }
+        });
+        localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
+    }
+
     if (searchInput) {
         searchInput.addEventListener('input', applyPinnedSearchFilter);
     }
 
-    // Load bookmarks on page load
-    loadBookmarks();
+    // Setup drag to reorder listeners
+    function setupDragListeners() {
+        if (!bookmarksContainer) return;
+        bookmarksContainer.addEventListener('mousedown', dragStart);
+        bookmarksContainer.addEventListener('touchstart', dragStart);
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('touchend', dragEnd);
+    }
+
+    // Load bookmarks and setup listeners
+    loadBookmarks().then(() => {
+        items = [];
+        setupDragListeners();
+    });
 });
