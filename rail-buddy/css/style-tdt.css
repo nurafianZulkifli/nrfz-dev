@@ -101,12 +101,13 @@ body.dark-mode li.breadcrumb-item a {
 
 /* Install Banner Styles */
 .pwa-install-banner {
-    background: linear-gradient(58deg, rgb(172, 55, 42) 0%, rgb(163, 110, 17) 100%);
+    background: linear-gradient(58deg, rgba(172, 55, 42, 0.60) 0%, rgba(163, 110, 17, 0.60) 100%);
+    backdrop-filter: blur(25px);
 }
 
 .pwa-install-btn {
-  background: white;
-  color: #8f2d22;
+    background: white;
+    color: #8f2d22;
 }
 
 body.dark-mode .about-me-summ {
