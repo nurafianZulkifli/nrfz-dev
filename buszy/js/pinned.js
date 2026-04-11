@@ -250,6 +250,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         unsetItemState();
         enablePageScroll();
         stopAutoScroll();
+        persistBookmarkOrder();
 
         document.removeEventListener('mousemove', drag);
         document.removeEventListener('touchmove', drag);
