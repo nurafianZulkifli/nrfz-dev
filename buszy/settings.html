@@ -108,10 +108,20 @@
         font-size: 16px !important;
     }
 
-    .form-check-input:checked {
+    .form-check-input:checked,
+    body.dark-mode .form-check-input:checked {
     background-color: #1f84a2;
     border-color: #1f84a2;
-}
+    }
+
+    .form-switch .form-check-input {
+        background-color: #ffffff3b;
+    }
+
+    body.dark-mode .form-check-input {
+        background-color: #313544;
+        border-color: #ffffff3b;
+    }
 </style>
 
 <body>
