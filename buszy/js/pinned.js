@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         items = [];
         unsetItemState();
         enablePageScroll();
+        stopAutoScroll();
 
         document.removeEventListener('mousemove', drag);
         document.removeEventListener('touchmove', drag);
