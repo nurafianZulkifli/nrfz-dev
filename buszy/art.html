@@ -398,6 +398,29 @@
         gap: 0.5rem;
     }
 
+    .spinner,
+    .spinner-border {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        color: #1f84a2;
+        box-sizing: border-box;
+        padding: 3px;
+        overflow: visible;
+    }
+
+    .spinner circle,
+    .spinner-border circle {
+        fill: none;
+        stroke: currentColor;
+        cx: 50%;
+        cy: 50%;
+        r: 50%;
+        stroke-width: 11;
+        stroke-linecap: round;
+        transform-origin: center;
+    }
+
     body.dark-mode .card .card-header .destination-code {
         color: #aaa;
     }

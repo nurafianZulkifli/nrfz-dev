@@ -30,22 +30,22 @@ function getBasePath() {
     if (window.PWAConfig && window.PWAConfig.basePath) {
         return window.PWAConfig.basePath;
     }
-    
+
     // Otherwise, derive from the current pathname
     // For GitHub Pages: /nrfz-dev/buszy/... -> /nrfz-dev/
     // For local: /buszy/... -> /
     const pathname = window.location.pathname;
     const parts = pathname.split('/').filter(p => p); // Remove empty strings
-    
+
     // parts[0] should be the first directory level
     // If parts[0] is 'buszy', we're at the root level (localhost)
     // If parts[0] is something else and parts[1] is 'buszy', we're in a subdirectory (GitHub Pages)
-    
+
     if (parts.length >= 2 && parts[1] === 'buszy') {
         // Format: /something/buszy/... -> /something/
         return '/' + parts[0] + '/';
     }
-    
+
     // For local or simple paths
     return '/';
 }
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Build correct image path for GitHub Pages and Heroku
                 const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
                 const busIconPath = basePath + 'buszy/assets/bus-icon.png';
-                
+
                 filterTitle.innerHTML = `
                     <div class="bus-stop-info">
                         <span class="bus-stop-code">
@@ -292,7 +292,9 @@ async function fetchBusArrivals() {
         }
         currentFetchController = new AbortController();
 
-        const response = await fetch(url, { signal: currentFetchController.signal });
+        const response = await fetch(url, {
+            signal: currentFetchController.signal
+        });
 
         if (!response.ok) {
             throw new Error('Failed to fetch bus arrivals');
@@ -413,8 +415,7 @@ async function fetchBusArrivals() {
         const existingServiceSet = new Set([...existingCards].map(el => el.dataset.service));
         const newServiceSet = new Set(data.Services.map(s => s.ServiceNo));
         const canRefreshInPlace = renderedBusStopCode === searchInput &&
-            existingServiceSet.size === newServiceSet.size &&
-            [...newServiceSet].every(s => existingServiceSet.has(s));
+            existingServiceSet.size === newServiceSet.size && [...newServiceSet].every(s => existingServiceSet.has(s));
 
         if (canRefreshInPlace) {
             data.Services.forEach((service) => {
@@ -554,10 +555,10 @@ async function fetchBusArrivals() {
                     event.preventDefault();
                     const serviceNo = button.getAttribute('data-service');
                     const collapseSection = document.querySelector(`.service-options-collapse[data-service="${serviceNo}"]`);
-                    
+
                     if (collapseSection) {
                         const isVisible = collapseSection.style.display !== 'none';
-                        
+
                         if (isVisible) {
                             // Animate height to 0, then hide
                             collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
@@ -569,7 +570,9 @@ async function fetchBusArrivals() {
                             button.classList.remove('active');
                             collapseSection.addEventListener('transitionend', () => {
                                 collapseSection.style.display = 'none';
-                            }, { once: true });
+                            }, {
+                                once: true
+                            });
                         } else {
                             // Show then animate height in
                             collapseSection.style.display = 'block';
@@ -669,7 +672,7 @@ async function fetchBusArrivals() {
 
                             if (!isNaN(latitude) && !isNaN(longitude)) {
                                 const marker = L.marker([latitude, longitude]).addTo(map);
-                                
+
                                 // Add pulse effect to next bus marker (first marker)
                                 if (index === 0) {
                                     const markerElement = marker.getElement();
@@ -677,49 +680,57 @@ async function fetchBusArrivals() {
                                         markerElement.classList.add('marker-pulse');
                                     }
                                 }
-                                
+
                                 // Determine bus label
                                 const busLabel = index === 0 ? 'Next Bus' : 'Subsequent Bus';
-                                
+
                                 // Format timing information based on user's preference
                                 let timingHTML = '';
                                 if (location.estimatedArrival) {
                                     const arrivalTime = new Date(location.estimatedArrival);
                                     const timeDifference = arrivalTime - now;
-                                    
+
                                     // Get user's time format preference
                                     const savedFormat = localStorage.getItem('timeFormat') || '12-hour';
-                                    
+
                                     // Minutes format
                                     const minutes = Math.max(0, Math.floor(timeDifference / (1000 * 60)));
                                     const minText = minutes === 1 ? 'min' : 'mins';
-                                    
+
                                     if (savedFormat === 'mins') {
                                         timingHTML = `
                                             <small style="color: #666;">Arriving in:</small><br>
                                             ${minutes <= 0 ? '<b style="color: #7db603;">Arriving Now</b>' : `<b>${minutes} ${minText}</b>`}
                                         `;
                                     } else if (savedFormat === '24-hour') {
-                                        const timeStr = arrivalTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+                                        const timeStr = arrivalTime.toLocaleTimeString('en-US', {
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            hour12: false
+                                        });
                                         timingHTML = `
                                             <small style="color: #666;">Arrives at:</small><br>
                                             <b>${timeStr}</b>
                                         `;
                                     } else { // 12-hour format
-                                        const timeStr = arrivalTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+                                        const timeStr = arrivalTime.toLocaleTimeString('en-US', {
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            hour12: true
+                                        });
                                         timingHTML = `
                                             <small style="color: #666;">Arrives at:</small><br>
                                             <b>${timeStr}</b>
                                         `;
                                     }
                                 }
-                                
+
                                 marker.bindPopup(`
                                     <b>Bus ${serviceNo}</b><br>
                                     <small style="color: #888;">${busLabel}</small><br>
                                     ${timingHTML || '<small style="color: #999;">Timing unavailable</small>'}
                                 `);
-                                
+
                                 bounds.push([latitude, longitude]);
                             }
                         });
@@ -729,7 +740,7 @@ async function fetchBusArrivals() {
                             navigator.geolocation.getCurrentPosition((position) => {
                                 const lat = position.coords.latitude;
                                 const lng = position.coords.longitude;
-                                
+
                                 // Create red marker for current location
                                 const redIcon = L.icon({
                                     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
@@ -739,34 +750,45 @@ async function fetchBusArrivals() {
                                     popupAnchor: [1, -34],
                                     shadowSize: [41, 41]
                                 });
-                                
-                                const currentMarker = L.marker([lat, lng], { icon: redIcon }).addTo(map);
+
+                                const currentMarker = L.marker([lat, lng], {
+                                    icon: redIcon
+                                }).addTo(map);
                                 currentMarker.bindPopup(`
                                     <b>Your Location</b><br>
                                     <small style="color: #888;">Current Position</small>
                                 `);
-                                
+
                                 // Add current location to bounds
                                 bounds.push([lat, lng]);
-                                
+
                                 // Recalculate bounds to include current location
                                 if (bounds.length > 0) {
                                     const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
-                                    map.fitBounds(L.latLngBounds(latLngs), { padding: [50, 50], maxZoom: 14 });
+                                    map.fitBounds(L.latLngBounds(latLngs), {
+                                        padding: [50, 50],
+                                        maxZoom: 14
+                                    });
                                 }
                             }, (error) => {
                                 console.warn('Could not get current location:', error);
                                 // Still fit bounds for bus locations if geolocation fails
                                 if (bounds.length > 0) {
                                     const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
-                                    map.fitBounds(L.latLngBounds(latLngs), { padding: [50, 50], maxZoom: 14 });
+                                    map.fitBounds(L.latLngBounds(latLngs), {
+                                        padding: [50, 50],
+                                        maxZoom: 14
+                                    });
                                 }
                             });
                         } else {
                             // Geolocation not available, just fit bus locations
                             if (bounds.length > 0) {
                                 const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
-                                map.fitBounds(L.latLngBounds(latLngs), { padding: [50, 50], maxZoom: 14 });
+                                map.fitBounds(L.latLngBounds(latLngs), {
+                                    padding: [50, 50],
+                                    maxZoom: 14
+                                });
                             }
                         }
                     }
@@ -806,7 +828,11 @@ async function fetchBusArrivals() {
                     <div class="card">
                         <div class="card-body" style="text-align: center; padding-top: 0rem; padding-bottom: 0rem; display: flex; align-items: center; justify-content: center; gap: 1em;">
                             <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status">
-                                <circle cx="50" cy="50" r="45" />
+                                                    <circle cx="50" cy="50" r="45">
+                        <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                    </circle>
                             </svg>
                             <p class="card-text" style="margin: 0;">Network Lost. Retrying...</p>
                         </div>
@@ -902,9 +928,17 @@ function formatArrivalTimeOrArr(isoString, now, isIncomingBus = false) {
     }
 
     // Format the time based on the saved format
-    const options = savedFormat === '24-hour'
-        ? { hour: '2-digit', minute: '2-digit', hour12: false }
-        : { hour: '2-digit', minute: '2-digit', hour12: true };
+    const options = savedFormat === '24-hour' ?
+        {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        } :
+        {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        };
 
     const timeString = arrivalTime.toLocaleTimeString('en-US', options);
 
@@ -977,7 +1011,10 @@ function addBusMarker(lat, lng, serviceNo, type, load) {
 const currentLocationBtn = document.getElementById('current-location-btn');
 if (currentLocationBtn) {
     currentLocationBtn.addEventListener('click', () => {
-        map.locate({ setView: true, maxZoom: 15 });
+        map.locate({
+            setView: true,
+            maxZoom: 15
+        });
 
         map.on('locationfound', (e) => {
             const radius = e.accuracy;
@@ -1038,7 +1075,11 @@ async function fetchBusLocations() {
 
         // Plot each bus location from NextBus and NextBus2
         data.Services.forEach((service) => {
-            const { ServiceNo, NextBus, NextBus2 } = service;
+            const {
+                ServiceNo,
+                NextBus,
+                NextBus2
+            } = service;
 
             // Check NextBus location
             if (NextBus && NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
@@ -1078,7 +1119,10 @@ async function fetchBusLocations() {
             // Adjust map bounds to fit all markers
             const bounds = [];
             data.Services.forEach((service) => {
-                const { NextBus, NextBus2 } = service;
+                const {
+                    NextBus,
+                    NextBus2
+                } = service;
                 if (NextBus && NextBus.Latitude !== "0.0" && NextBus.Longitude !== "0.0") {
                     bounds.push([parseFloat(NextBus.Latitude), parseFloat(NextBus.Longitude)]);
                 }
