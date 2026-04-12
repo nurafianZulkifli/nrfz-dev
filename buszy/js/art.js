@@ -51,6 +51,59 @@ function getBasePath() {
 }
 
 // ****************************
+// :: Bus Stop Cache (shared promise across all callers)
+// ****************************
+
+let busStopsPromise = null;
+
+async function loadAllBusStops() {
+    try {
+        const cached = localStorage.getItem('allBusStops');
+        if (cached) {
+            const parsed = JSON.parse(cached);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                return parsed;
+            }
+        }
+    } catch (e) {
+        console.warn('Failed to read cached bus stops:', e);
+    }
+
+    let busStops = [];
+    let skip = 0;
+    let hasMoreData = true;
+
+    while (hasMoreData) {
+        const response = await fetch(`https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops?$skip=${skip}`);
+        if (!response.ok) throw new Error(`Failed to fetch bus stops: ${response.status}`);
+        const data = await response.json();
+
+        if (!data.value || data.value.length === 0) {
+            hasMoreData = false;
+        } else {
+            busStops = busStops.concat(data.value);
+            skip += 500;
+        }
+    }
+
+    if (busStops.length > 0) {
+        localStorage.setItem('allBusStops', JSON.stringify(busStops));
+    }
+    return busStops;
+}
+
+function getBusStops() {
+    if (!busStopsPromise) {
+        busStopsPromise = loadAllBusStops().catch(err => {
+            console.error('Error loading bus stops:', err);
+            busStopsPromise = null; // Allow retry on next call
+            return [];
+        });
+    }
+    return busStopsPromise;
+}
+
+// ****************************
 // :: Bus Arrivals Fetching and Display
 // ****************************
 document.addEventListener('DOMContentLoaded', async () => {
@@ -111,38 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Fetch the bus stop name from the /bus-stops endpoint
         try {
-            let busStops = [];
-            try {
-                const cached = localStorage.getItem('allBusStops');
-                busStops = cached ? JSON.parse(cached) : [];
-                if (!Array.isArray(busStops)) {
-                    busStops = [];
-                }
-            } catch (parseError) {
-                console.warn('Failed to parse cached bus stops:', parseError);
-                busStops = [];
-            }
-
-            // If bus stops are not cached, fetch them from the server
-            if (busStops.length === 0) {
-                let skip = 0;
-                let hasMoreData = true;
-
-                while (hasMoreData) {
-                    const response = await fetch(`https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops?$skip=${skip}`);
-                    const data = await response.json();
-
-                    if (data.value.length === 0) {
-                        hasMoreData = false;
-                    } else {
-                        busStops = busStops.concat(data.value);
-                        skip += 500; // Move to the next page
-                    }
-                }
-
-                // Save the fetched bus stops to localStorage
-                localStorage.setItem('allBusStops', JSON.stringify(busStops));
-            }
+            const busStops = await getBusStops();
 
             // Find the bus stop by BusStopCode
             const busStop = Array.isArray(busStops) ? busStops.find(stop => stop.BusStopCode === busStopCode) : null;
@@ -338,7 +360,7 @@ async function fetchBusArrivals() {
         }
 
         try {
-            const allBusStops = JSON.parse(localStorage.getItem('allBusStops')) || [];
+            const allBusStops = await getBusStops();
             allBusStops.forEach((stop) => {
                 destinationMap[stop.BusStopCode] = stop.Description;
             });
