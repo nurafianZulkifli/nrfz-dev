@@ -19,6 +19,11 @@ function initializeDefaultPreferences() {
     if (!localStorage.getItem('showIncomingBuses')) {
         localStorage.setItem('showIncomingBuses', 'enabled');
     }
+
+    // Set default refresh interval if not already set (in seconds)
+    if (!localStorage.getItem('refreshInterval')) {
+        localStorage.setItem('refreshInterval', '2');
+    }
 }
 
 // Initialize defaults immediately
@@ -215,13 +220,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         fetchBusArrivals();
     }, 300));
 
-    // Refresh data every 2 seconds
-    setInterval(fetchBusArrivals, 2000);
+    // Setup dynamic refresh interval
+    let refreshIntervalId = null;
+
+    function startRefreshInterval() {
+        // Clear existing interval if any
+        if (refreshIntervalId !== null) {
+            clearInterval(refreshIntervalId);
+        }
+
+        // Get refresh interval from localStorage (in seconds), default to 2 seconds
+        const refreshSeconds = parseFloat(localStorage.getItem('refreshInterval') || '2');
+        const refreshMs = refreshSeconds * 1000;
+
+        // Start new interval
+        refreshIntervalId = setInterval(fetchBusArrivals, refreshMs);
+    }
+
+    // Start the refresh interval on page load
+    startRefreshInterval();
+
+    // Listen for refresh interval changes from settings
+    window.addEventListener('refreshIntervalChanged', (event) => {
+        startRefreshInterval();
+    });
 
     // Listen for changes in localStorage to update time format dynamically
     window.addEventListener('storage', (event) => {
         if (event.key === 'timeFormat') {
             fetchBusArrivals(); // Re-fetch and update the table with the new format
+        }
+        if (event.key === 'refreshInterval') {
+            startRefreshInterval(); // Restart interval with new value
         }
     });
 });

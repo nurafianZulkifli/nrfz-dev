@@ -22,6 +22,11 @@ function initializeDefaultPreferences() {
     if (!localStorage.getItem('showIncomingBuses')) {
         localStorage.setItem('showIncomingBuses', 'enabled');
     }
+
+    // Set default refresh interval if not already set (in seconds)
+    if (!localStorage.getItem('refreshInterval')) {
+        localStorage.setItem('refreshInterval', '2');
+    }
 }
 
 // Initialize defaults on page load
@@ -78,6 +83,25 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('showIncomingBuses', isChecked ? 'enabled' : 'disabled');
             // Dispatch custom event to notify other pages
             window.dispatchEvent(new CustomEvent('showIncomingBusesChanged', { detail: { showIncomingBuses: isChecked } }));
+        });
+    }
+
+    // Handle refresh interval slider
+    const refreshIntervalSlider = document.getElementById('refresh-interval');
+    const refreshIntervalValue = document.getElementById('refresh-interval-value');
+    if (refreshIntervalSlider && refreshIntervalValue) {
+        // Load the saved refresh interval
+        const savedInterval = localStorage.getItem('refreshInterval') || '2';
+        refreshIntervalSlider.value = savedInterval;
+        refreshIntervalValue.textContent = `${savedInterval} sec`;
+
+        // Add event listener to update the refresh interval
+        refreshIntervalSlider.addEventListener('input', (event) => {
+            const interval = event.target.value;
+            localStorage.setItem('refreshInterval', interval);
+            refreshIntervalValue.textContent = `${interval} sec`;
+            // Dispatch custom event to notify other pages
+            window.dispatchEvent(new CustomEvent('refreshIntervalChanged', { detail: { refreshInterval: parseFloat(interval) } }));
         });
     }
 });
