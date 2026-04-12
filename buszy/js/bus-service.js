@@ -475,11 +475,16 @@ async function populateServiceData(serviceNumber, service) {
         direction = String(direction);
         currentDirection = direction;
 
-        // Show loading indicator
         const stopsContainer = document.getElementById('stops-container');
         stopsContainer.innerHTML = `
             <div class="loading-stops">
-                <div class="loading-spinner"></div>
+                <svg class="loading-spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45">
+                        <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
                 <p>Loading bus stops...</p>
             </div>
         `;

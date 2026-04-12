@@ -805,7 +805,9 @@ async function fetchBusArrivals() {
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body" style="text-align: center; padding-top: 0rem; padding-bottom: 0rem; display: flex; align-items: center; justify-content: center; gap: 1em;">
-                            <span class="spinner" role="status"></span>
+                            <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status">
+                                <circle cx="50" cy="50" r="45" />
+                            </svg>
                             <p class="card-text" style="margin: 0;">Network Lost. Retrying...</p>
                         </div>
                     </div>
@@ -1131,7 +1133,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update the loading message
     const updateLoadingMessage = () => {
         loadingMessageElement.innerHTML = `
-                <span class="spinner" role="status" style="margin-right: 1em;"></span>${loadingMessages[messageIndex]}
+                <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status" style="margin-right: 1em;">
+                    <circle cx="50" cy="50" r="45">
+                        <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                </svg>${loadingMessages[messageIndex]}
             `;
         messageIndex = (messageIndex + 1) % loadingMessages.length; // Cycle through messages
     };

@@ -50,11 +50,14 @@ function initAnnouncements() {
         // Preserve the lastSeen timestamp from previous mark-as-read action
         const lastSeenTime = storedData?.lastSeen || new Date().toISOString();
         
-        // Store the current state
-        newState[id] = {
-            hash: currentHash,
-            lastSeen: lastSeenTime
-        };
+        // Only store items that were previously marked as read (have storedHash)
+        // Don't auto-store new items unless explicitly marked as read
+        if (storedHash) {
+            newState[id] = {
+                hash: currentHash,
+                lastSeen: lastSeenTime
+            };
+        }
         
         // Render badges
         const badgeContainer = item.querySelector('.ann-badge-container');
@@ -82,6 +85,23 @@ function initAnnouncements() {
     
     // Store whether there are unread items (for indicator dots on other pages)
     localStorage.setItem(HAS_UNREAD_KEY, hasUnreadItems);
+    
+    // Update dots on current page
+    const dots = document.querySelectorAll('.ann-indicator-dot');
+    dots.forEach(dot => {
+        if (hasUnreadItems) {
+            dot.classList.add('show');
+        } else {
+            dot.classList.remove('show');
+        }
+    });
+    
+    // Trigger storage event so other pages get notified immediately
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: HAS_UNREAD_KEY,
+        newValue: hasUnreadItems.toString(),
+        storageArea: localStorage
+    }));
 }
 
 /**
@@ -141,6 +161,12 @@ function markAllAsRead() {
     
     // Set unread flag to false
     localStorage.setItem(HAS_UNREAD_KEY, false);
+    
+    // Update dots on current page
+    const dots = document.querySelectorAll('.ann-indicator-dot');
+    dots.forEach(dot => {
+        dot.classList.remove('show');
+    });
     
     // Trigger storage events to update indicator dots on other pages
     window.dispatchEvent(new StorageEvent('storage', {

@@ -505,18 +505,21 @@ body.dark-mode .ann-badge.modified {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 10px;
-    height: 10px;
+    width: 0;
+    height: 0;
     background-color: #ff6b35;
     border-radius: 50%;
-    margin-left: 6px;
+    margin-left: 0;
     animation: pulse-dot 2s infinite;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, width 0.3s ease, height 0.3s ease, margin-left 0.3s ease;
 }
 
 .ann-indicator-dot.show {
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
     opacity: 1;
     visibility: visible;
 }

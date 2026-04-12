@@ -613,24 +613,27 @@ table th {
     visibility: visible;
 }
 
-.spinner {
+.spinner,
+.spinner-border {
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    border: 3px solid #ccc;
-    border-top: 3px solid #3b3b3b;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+    width: 32px;
+    height: 32px;
+    color: #1f84a2;
+    box-sizing: border-box;
+    padding: 3px;
+    overflow: visible;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+.spinner circle,
+.spinner-border circle {
+    fill: none;
+    stroke: currentColor;
+    cx: 50%;
+    cy: 50%;
+    r: 50%;
+    stroke-width: 11;
+    stroke-linecap: round;
+    transform-origin: center;
 }
 
 .pagination-buttons {
@@ -1393,18 +1396,21 @@ body.dark-mode .ann-badge.modified {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 10px;
-    height: 10px;
+    width: 0;
+    height: 0;
     background-color: #ff6b35;
     border-radius: 50%;
-    margin-left: 6px;
+    margin-left: 0;
     animation: pulse-dot 2s infinite;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, width 0.3s ease, height 0.3s ease, margin-left 0.3s ease;
 }
 
 .ann-indicator-dot.show {
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
     opacity: 1;
     visibility: visible;
 }
