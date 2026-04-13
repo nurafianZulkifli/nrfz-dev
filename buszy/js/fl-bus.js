@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         routeName.className = 'service-route';
         const destination = service.destinationCode || service.routeName;
         const destinationName = getDestinationName(destination, destinationMap, customDestinationMap);
-        routeName.innerHTML = destinationName ? `<i class="fa-kit fa-lta-to"></i>&nbsp;${capitalizeWords(destinationName)}` : '';
+        routeName.innerHTML = destinationName ? `<i class="fa-kit fa-lta-to-right"></i>&nbsp;${capitalizeWords(destinationName)}` : '';
         card.appendChild(routeName);
 
         // Timings

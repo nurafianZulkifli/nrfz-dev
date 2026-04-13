@@ -522,7 +522,7 @@ async function fetchBusArrivals() {
                                 <span class="service-no">${service.ServiceNo}</span>
                                 <i class="fa-regular fa-chevron-down" style="transition: transform 0.3s ease; margin-left: 0.5rem;"></i>
                             </button>
-                            ${hasNextBus && service.NextBus.DestinationCode ? `<div class="destination-code"><i class="fa-kit fa-lta-to"></i>&nbsp;${getDestinationName(service.NextBus.DestinationCode)}</div>` : ''}
+                            ${hasNextBus && service.NextBus.DestinationCode ? `<div class="destination-code"><i class="fa-kit fa-lta-to-right"></i>&nbsp;${getDestinationName(service.NextBus.DestinationCode)}</div>` : ''}
                         </div>
                         <div style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center; flex-shrink: 0;">
                             ${service.Operator ? `<img src="assets/${service.Operator.toLowerCase()}.png" alt="${service.Operator}" class="img-fluid" style="width: 50px; margin-left: auto;">` : ''}
