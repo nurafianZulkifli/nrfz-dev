@@ -206,6 +206,12 @@ function naturalSort(a, b) {
 function displayServices(services, isFiltered = false) {
     const container = document.getElementById('services-container');
     
+    // Update service count display FIRST (before any early returns)
+    const countElement = document.getElementById('service-count');
+    if (countElement) {
+        countElement.textContent = `(${services.length})`;
+    }
+    
     if (services.length === 0) {
         container.innerHTML = '<div class="no-services"><p><i class="fa-regular fa-circle-info"></i> No bus services found.</p></div>';
         document.getElementById('prev-button').style.display = 'none';
@@ -228,12 +234,6 @@ function displayServices(services, isFiltered = false) {
         // Full list load — restore saved page if available
         const savedPage = parseInt(sessionStorage.getItem('absvcPage')) || 1;
         currentPage = Math.min(savedPage, totalPages);
-    }
-    
-    // Update service count display
-    const countElement = document.getElementById('service-count');
-    if (countElement) {
-        countElement.textContent = `(${sortedServices.length})`;
     }
     
     // Display current page
