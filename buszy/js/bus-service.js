@@ -806,13 +806,25 @@ function toggleFrequencyDetails(event) {
     }
 }
 
-// Populate bus stops list (compact format: array of [code, name, description])
-function populateBusStops(stops, highlightStop = null) {
+// Store all stops for search filtering
+let allEnrichedStops = [];
+let currentHighlightStopForSearch = null;
+
+// Render a (possibly filtered) set of stops into the stops container
+function renderFilteredStops(stops) {
     const container = document.getElementById('stops-container');
     const countElement = document.getElementById('stops-count');
 
-    container.innerHTML = ''; // Clear existing content
+    container.innerHTML = '';
     countElement.textContent = stops.length;
+
+    if (stops.length === 0) {
+        container.innerHTML = '<div class="stops-no-results"><i class="fa-regular fa-circle-exclamation"></i> No stops match your search.</div>';
+        return;
+    }
+
+    const basePath = getBasePath();
+    const busIconPath = basePath + 'buszy/assets/bus-icon.png';
 
     let highlightedElement = null;
 
@@ -821,15 +833,10 @@ function populateBusStops(stops, highlightStop = null) {
         stopElement.className = 'stop-item';
         stopElement.style.animationDelay = `${index * 0.05}s`;
 
-        // Highlight the stop if it matches the highlightStop parameter
-        if (highlightStop && stop[0] === highlightStop) {
+        if (currentHighlightStopForSearch && stop[0] === currentHighlightStopForSearch) {
             stopElement.classList.add('highlight-stop');
             highlightedElement = stopElement;
         }
-
-        // Get base path for bus icon
-        const basePath = getBasePath();
-        const busIconPath = basePath + 'buszy/assets/bus-icon.png';
 
         stopElement.innerHTML = `
             <div class="bus-stop-info">
@@ -844,27 +851,65 @@ function populateBusStops(stops, highlightStop = null) {
             </div>
         `;
 
-        // Make stop clickable to navigate to art.html
         stopElement.style.cursor = 'pointer';
         stopElement.addEventListener('click', () => {
-            const basePath = getBasePath();
-            const artPath = basePath + 'buszy/art.html?BusStopCode=' + stop[0];
-            window.location.href = artPath;
+            window.location.href = getBasePath() + 'buszy/art.html?BusStopCode=' + stop[0];
         });
 
         container.appendChild(stopElement);
     });
 
-    // Scroll to highlighted stop if it exists
     if (highlightedElement) {
-        // Use a small delay to ensure the page is fully rendered
         setTimeout(() => {
-            highlightedElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
+            highlightedElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
     }
+}
+
+// Populate bus stops list (compact format: array of [code, name, description])
+function populateBusStops(stops, highlightStop = null) {
+    allEnrichedStops = stops;
+    currentHighlightStopForSearch = highlightStop;
+
+    renderFilteredStops(stops);
+
+    // Show search bar
+    const searchContainer = document.getElementById('stops-search-container');
+    if (!searchContainer) return;
+    searchContainer.style.display = 'block';
+
+    // Reset search state (e.g. when direction changes)
+    const searchInput = document.getElementById('stops-search-input');
+    const clearButton = document.getElementById('stops-search-clear');
+    if (!searchInput || !clearButton) return;
+    searchInput.value = '';
+    clearButton.style.display = 'none';
+
+    // Remove stale event listeners by replacing the nodes
+    const newInput = searchInput.cloneNode(true);
+    searchInput.parentNode.replaceChild(newInput, searchInput);
+    const newClear = clearButton.cloneNode(true);
+    clearButton.parentNode.replaceChild(newClear, clearButton);
+
+    newInput.addEventListener('input', () => {
+        const query = newInput.value.trim().toLowerCase();
+        newClear.style.display = query ? 'flex' : 'none';
+        const filtered = query
+            ? allEnrichedStops.filter(stop =>
+                stop[0].toLowerCase().includes(query) ||
+                stop[1].toLowerCase().includes(query) ||
+                stop[2].toLowerCase().includes(query)
+              )
+            : allEnrichedStops;
+        renderFilteredStops(filtered);
+    });
+
+    newClear.addEventListener('click', () => {
+        newInput.value = '';
+        newClear.style.display = 'none';
+        renderFilteredStops(allEnrichedStops);
+        newInput.focus();
+    });
 }
 
 // Populate short bus service links
