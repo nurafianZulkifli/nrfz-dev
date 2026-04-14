@@ -1,4 +1,33 @@
 
+// *****************************
+// :: Service Parameter Redirect
+// *****************************
+(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service');
+    
+    if (serviceParam) {
+        console.log('Service parameter detected:', serviceParam);
+        
+        // Get base path - with fallback if PWAConfig not yet available
+        let basePath = '/';
+        if (window.PWAConfig && window.PWAConfig.basePath) {
+            basePath = window.PWAConfig.basePath;
+        } else {
+            // Fallback: derive from current pathname
+            const pathname = window.location.pathname;
+            const parts = pathname.split('/').filter(p => p);
+            if (parts.length >= 2 && parts[1] === 'buszy') {
+                basePath = '/' + parts[0] + '/';
+            }
+        }
+        
+        // Redirect directly to bus-service.html using replace to avoid back button issues
+        window.location.replace(`${basePath}buszy/bus-service.html?service=${encodeURIComponent(serviceParam)}`);
+    }
+})();
+
+
 // *********************************
 // :: Bus Stop Search and Pagination
 // *********************************

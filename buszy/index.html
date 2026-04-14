@@ -298,6 +298,29 @@
         color: #fff;
     }
 
+    /* Bus Service Tab Styles */
+    .bus-service-tab {
+        background-color: #94d40b !important;
+        color: #000 !important;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .bus-service-tab:hover {
+        background-color: #c7e3fb !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    body.dark-mode .bus-service-tab {
+        background-color: #7db603 !important;
+        color: #000 !important;
+    }
+
+    body.dark-mode .bus-service-tab:hover {
+        background-color: #94d40b !important;
+    }
+
     .category-tab i {
         font-size: 1rem;
     }
@@ -725,6 +748,10 @@
                                 <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;
                                 All
                             </button>
+                            <button class="category-tab bus-service-tab" id="bus-service-tab" style="display: none; background-color: #94d40b; color: #000;">
+                                <i class="fa-regular fa-bus"></i>&nbsp;
+                                Bus Service
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -849,8 +876,60 @@
     <script src="./js/ann-indicator.js"></script>
 
     <script>
+        // Bus Service Search Detection and Button Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('bus-stop-search');
+            const busServiceTab = document.getElementById('bus-service-tab');
+
+            if (!searchInput || !busServiceTab) return;
+
+            // Restore service number from sessionStorage if it exists (for back navigation)
+            const savedService = sessionStorage.getItem('lastServiceSearch');
+            if (savedService) {
+                searchInput.value = savedService;
+                busServiceTab.style.display = 'inline-flex';
+                // Clear after restoring so it doesn't persist across sessions
+                sessionStorage.removeItem('lastServiceSearch');
+            }
+
+            // Function to detect if input is a service number (digits only or with common formats)
+            function isServiceNumber(text) {
+                const cleaned = text.trim();
+                // Match patterns like: 100, 100A, 100e, etc.
+                return /^\d+[a-zA-Z]?$/.test(cleaned);
+            }
+
+            // Update button visibility on input change
+            searchInput.addEventListener('input', () => {
+                if (isServiceNumber(searchInput.value)) {
+                    busServiceTab.style.display = 'inline-flex';
+                } else {
+                    busServiceTab.style.display = 'none';
+                }
+            });
+
+            // Handle button click
+            busServiceTab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const serviceNumber = searchInput.value.trim();
+                if (isServiceNumber(serviceNumber)) {
+                    // Save service number to sessionStorage for back navigation
+                    sessionStorage.setItem('lastServiceSearch', serviceNumber);
+                    
+                    // Highlight the service number text
+                    searchInput.select();
+                    
+                    // Navigate to bus service page with proper base path
+                    const basePath = (window.PWAConfig && window.PWAConfig.basePath) ? window.PWAConfig.basePath : '/';
+                    setTimeout(() => {
+                        window.location.href = `${basePath}buszy/bus-service.html?service=${encodeURIComponent(serviceNumber)}`;
+                    }, 100);
+                }
+            });
+        });
+
         // Category tab switching functionality
-        const categoryTabs = document.querySelectorAll('.category-tab');
+        const categoryTabs = document.querySelectorAll('.category-tab:not(.bus-service-tab)');
         const tabContents = document.querySelectorAll('.tab-content');
 
         categoryTabs.forEach(tab => {

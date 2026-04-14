@@ -375,8 +375,8 @@ async function fetchBusArrivals() {
                         <div class="card-body">
                             <p class="card-text">No Data Available</p>
                             <div style="margin-top: 1.5rem;">
-                                <a href="${timingsUrl}" class="btn btn-primary" style="display: inline-block; padding: 0.5rem 1.5rem; background-color: #94d40b; color: #000; text-decoration: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
-                                    <i class="fa-regular fa-clock" style="margin-right: 0.5rem;"></i>View Bus Service Timings
+                                <a href="${timingsUrl}" class="btn btn-mar btn-primary" style="display: inline-block; padding: 0.5rem 1.5rem; background-color: #94d40b; color: #000; text-decoration: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; ">
+                                    <i class="fa-regular fa-clock" style="margin-right: 0.5rem;"></i> Timings
                                 </a>
                             </div>
                         </div>
