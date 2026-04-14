@@ -66,14 +66,18 @@ async function loadAllBusStops() {
         const cached = localStorage.getItem('allBusStops');
         if (cached) {
             const parsed = JSON.parse(cached);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-                return parsed;
+            // Handle both array format and API response format { value: [...] }
+            const stops = Array.isArray(parsed) ? parsed : (parsed.value || []);
+            if (Array.isArray(stops) && stops.length > 0) {
+                console.log(`[art.js] Using cached bus stops: ${stops.length} stops`);
+                return stops;
             }
         }
     } catch (e) {
         console.warn('Failed to read cached bus stops:', e);
     }
 
+    console.log('[art.js] Fetching bus stops from API...');
     let busStops = [];
     let skip = 0;
     let hasMoreData = true;
@@ -92,6 +96,7 @@ async function loadAllBusStops() {
     }
 
     if (busStops.length > 0) {
+        console.log(`[art.js] Fetched ${busStops.length} bus stops from API`);
         localStorage.setItem('allBusStops', JSON.stringify(busStops));
     }
     return busStops;

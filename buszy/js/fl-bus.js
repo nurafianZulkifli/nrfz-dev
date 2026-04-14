@@ -51,24 +51,41 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (cached) {
                 try {
                     const parsed = JSON.parse(cached);
-                    allBusStops = Array.isArray(parsed) ? parsed : [];
-                    console.log('Loaded bus stops from cache:', allBusStops.length);
+                    // Handle both array format and API response format { value: [...] }
+                    allBusStops = Array.isArray(parsed) ? parsed : (parsed.value || []);
+                    if (!Array.isArray(allBusStops)) {
+                        allBusStops = [];
+                    }
+                    console.log('[fl-bus.js] Loaded bus stops from cache:', allBusStops.length);
                 } catch (parseError) {
-                    console.warn('Failed to parse cached bus stops:', parseError);
+                    console.warn('[fl-bus.js] Failed to parse cached bus stops:', parseError);
                     allBusStops = [];
                 }
             } else {
-                // Fetch from API if not cached
-                const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops?$skip=0&$top=5000');
-                const data = await response.json();
-                allBusStops = Array.isArray(data.value) ? data.value : [];
-                console.log('Loaded bus stops from API:', allBusStops.length);
+                // Fetch from API if not cached - fetch all using pagination like settings.js does
+                console.log('[fl-bus.js] Fetching bus stops from API...');
+                let skip = 0;
+                let hasMoreData = true;
+
+                while (hasMoreData) {
+                    const response = await fetch(`https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops?$skip=${skip}`);
+                    const data = await response.json();
+                    
+                    if (!data.value || data.value.length === 0) {
+                        hasMoreData = false;
+                    } else {
+                        allBusStops = allBusStops.concat(data.value);
+                        skip += 500;
+                    }
+                }
+
+                console.log('[fl-bus.js] Loaded bus stops from API:', allBusStops.length);
                 localStorage.setItem('allBusStops', JSON.stringify(allBusStops));
             }
 
             populateDropdown(allBusStops);
         } catch (error) {
-            console.error('Error loading bus stops:', error);
+            console.error('[fl-bus.js] Error loading bus stops:', error);
             busStopDropdown.innerHTML = '<option value="">Error loading bus stops</option>';
         }
     }

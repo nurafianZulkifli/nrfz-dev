@@ -340,16 +340,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             let busStops = [];
             try {
                 const cached = localStorage.getItem('allBusStops');
-                busStops = cached ? JSON.parse(cached) : [];
+                if (cached) {
+                    const parsed = JSON.parse(cached);
+                    // Handle both array format and API response format { value: [...] }
+                    busStops = Array.isArray(parsed) ? parsed : (parsed.value || []);
+                }
                 if (!Array.isArray(busStops)) {
                     busStops = [];
                 }
+                if (busStops.length > 0) {
+                    console.log('[pinned.js] Using cached bus stops:', busStops.length);
+                }
             } catch (parseError) {
-                console.warn('Failed to parse cached bus stops:', parseError);
+                console.warn('[pinned.js] Failed to parse cached bus stops:', parseError);
                 busStops = [];
             }
             if (busStops.length === 0) {
                 // Fetch all bus stops from the /bus-stops endpoint if not cached
+                console.log('[pinned.js] Fetching bus stops from API...');
                 let skip = 0;
                 let hasMoreData = true;
 
@@ -366,6 +374,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 // Save the fetched bus stops to localStorage
+                console.log('[pinned.js] Fetched and cached', busStops.length, 'bus stops');
                 localStorage.setItem('allBusStops', JSON.stringify(busStops));
             }
 

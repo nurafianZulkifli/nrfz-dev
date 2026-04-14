@@ -115,24 +115,53 @@ const clearCacheBtn = document.getElementById('clear-cache-btn');
 clearCacheBtn.addEventListener('click', async () => {
     if (confirm('Are you sure you want to re-fetch data? This will delete existing cached data.')) {
         try {
+            // Disable button during fetch
+            clearCacheBtn.disabled = true;
+            clearCacheBtn.textContent = 'Re-fetching...';
+
             // Clear cached data
             localStorage.removeItem('allBusStops');
 
-            // Fetch updated data from the API
-            const response = await fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops');
-            if (!response.ok) {
-                throw new Error('Failed to fetch data from the API.');
+            // Fetch all updated data from the API using pagination
+            let allBusStops = [];
+            let skip = 0;
+            let hasMoreData = true;
+
+            while (hasMoreData) {
+                const response = await fetch(`https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-stops?$skip=${skip}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data from the API: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (!data.value || data.value.length === 0) {
+                    hasMoreData = false;
+                } else {
+                    allBusStops = allBusStops.concat(data.value);
+                    skip += 500;
+                }
             }
 
-            const updatedData = await response.json();
-
             // Save the updated data to localStorage
-            localStorage.setItem('allBusStops', JSON.stringify(updatedData));
+            localStorage.setItem('allBusStops', JSON.stringify(allBusStops));
+            
+            // Mark as preloaded
+            localStorage.setItem('busStopsPreloaded', 'true');
 
-            alert('Data successfully re-fetched and updated.');
+            // Re-enable button
+            clearCacheBtn.disabled = false;
+            clearCacheBtn.textContent = 'Re-fetch data';
+
+            alert(`Data successfully re-fetched and updated.\n(${allBusStops.length} bus stops cached)`);
         } catch (error) {
             console.error('Error re-fetching data:', error);
             alert('An error occurred while re-fetching data. Please try again later.');
+            
+            // Re-enable button
+            clearCacheBtn.disabled = false;
+            clearCacheBtn.textContent = 'Re-fetch data';
         }
     }
 });
