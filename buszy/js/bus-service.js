@@ -326,8 +326,54 @@ async function getStopsForDirection(serviceNumber, direction) {
     }
 }
 
+// Find which direction contains the highlighted stop
+// Returns the direction if found in only one direction, otherwise returns null
+async function findDirectionForHighlightedStop(serviceNumber, directions, highlightStop, service) {
+    if (!highlightStop) {
+        return null;
+    }
+
+    console.log(`Searching for highlighted stop ${highlightStop} across ${directions.length} directions`);
+    
+    const directionsWithStop = [];
+    
+    // Check each direction for the highlighted stop
+    for (const direction of directions) {
+        let stopCodes = await getStopsForDirection(serviceNumber, direction);
+
+        // Fallback to local direction_routes if API returned nothing
+        if (stopCodes.length === 0 && service) {
+            const dirKey = String(direction);
+            if (service.direction_routes && service.direction_routes[dirKey]) {
+                stopCodes = service.direction_routes[dirKey].st || [];
+                console.log(`Using local direction_routes for direction ${direction}, ${stopCodes.length} stops`);
+            } else if (service.st) {
+                stopCodes = service.st;
+            }
+        }
+
+        // Compare as strings to avoid type mismatch
+        if (stopCodes.map(String).includes(String(highlightStop))) {
+            directionsWithStop.push(direction);
+            console.log(`Found highlighted stop ${highlightStop} in direction ${direction}`);
+        }
+    }
+    
+    // If found in only one direction, return that direction
+    if (directionsWithStop.length === 1) {
+        console.log(`Highlighted stop ${highlightStop} is only in direction ${directionsWithStop[0]}, will navigate there`);
+        return directionsWithStop[0];
+    } else if (directionsWithStop.length > 1) {
+        console.log(`Highlighted stop ${highlightStop} found in multiple directions:`, directionsWithStop);
+        return null; // Multiple directions, use default
+    } else {
+        console.log(`Highlighted stop ${highlightStop} not found in any direction`);
+        return null;
+    }
+}
+
 // Create and display direction selector
-function createDirectionSelector(directions, onDirectionChange) {
+function createDirectionSelector(directions, onDirectionChange, currentDirection = null) {
     const stopsSection = document.querySelector('.stops-section');
     if (!stopsSection) return;
 
@@ -365,11 +411,15 @@ function createDirectionSelector(directions, onDirectionChange) {
         button.className = 'direction-button';
         button.textContent = `Direction ${direction}`;
         button.setAttribute('data-direction', direction);
+        
+        // Determine if this button should be active
+        const isActive = currentDirection ? direction === currentDirection : index === 0;
+        
         button.style.cssText = `
             padding: 8px 12px;
             border: 2px solid #7bad02;
-            background-color: ${index === 0 ? '#7bad02' : 'transparent'};
-            color: ${index === 0 ? '#000' : '#fff'};
+            background-color: ${isActive ? '#7bad02' : 'transparent'};
+            color: ${isActive ? '#000' : '#fff'};
             border-radius: 24px;
             cursor: pointer;
             font-weight: 500;
@@ -388,7 +438,7 @@ function createDirectionSelector(directions, onDirectionChange) {
             }
         });
 
-        if (index === 0) {
+        if (isActive) {
             button.classList.add('active');
         }
 
@@ -457,6 +507,15 @@ async function populateServiceData(serviceNumber, service) {
     } = await getServiceDirections(serviceNumber, service);
     let currentDirection = String(directions[0]); // Ensure direction is a string
 
+    // Check if highlighted stop is only in one direction and auto-navigate to it
+    if (highlightStop && directions.length > 1) {
+        const targetDirection = await findDirectionForHighlightedStop(serviceNumber, directions, highlightStop, service);
+        if (targetDirection) {
+            currentDirection = String(targetDirection);
+            console.log(`Auto-navigating to direction ${currentDirection} for highlighted stop ${highlightStop}`);
+        }
+    }
+
     console.log('Service object:', service);
     console.log('Has freq_detail?', !!service.freq_detail);
     console.log('Has direction_freqs?', !!service.direction_freqs);
@@ -523,7 +582,20 @@ async function populateServiceData(serviceNumber, service) {
 
     // Create direction selector if multiple directions exist
     if (directions.length > 1) {
-        createDirectionSelector(directions, updateStopsForDirection);
+        createDirectionSelector(directions, updateStopsForDirection, currentDirection);
+
+        // Use a small timeout to ensure the DOM is ready, then click the target direction button
+        setTimeout(() => {
+            const targetButton = document.querySelector(`[data-direction="${currentDirection}"]`);
+            if (targetButton) {
+                console.log(`Auto-clicking button for direction ${currentDirection}`);
+                targetButton.click();
+            } else {
+                console.warn(`Could not find button for direction ${currentDirection}`);
+                // Fallback: load stops directly if button not found
+                updateStopsForDirection(currentDirection);
+            }
+        }, 0);
 
         // Add arrow click handler to reverse/cycle direction
         const routeArrows = document.querySelectorAll('.route-arrow');
@@ -552,10 +624,10 @@ async function populateServiceData(serviceNumber, service) {
                 }
             });
         });
+    } else {
+        // If only one direction, load stops directly
+        await updateStopsForDirection(currentDirection);
     }
-
-    // Load stops for the first direction
-    await updateStopsForDirection(currentDirection);
 
     // Remarks section
     if (service.r) {

@@ -337,6 +337,12 @@ async function fetchBusArrivals() {
             if (container.innerHTML !== noDataHTML) {
                 container.innerHTML = noDataHTML;
             }
+
+            // Hide incoming buses section when no search input
+            const incomingSection = document.getElementById('incoming-buses-section');
+            if (incomingSection) {
+                incomingSection.style.display = 'none';
+            }
             return;
         }
 
@@ -372,6 +378,18 @@ async function fetchBusArrivals() {
             // Only update if content has changed
             if (container.innerHTML !== noDataHTML) {
                 container.innerHTML = noDataHTML;
+            }
+
+            // Also reflect "No Data Available" for incoming buses section
+            const incomingSection = document.getElementById('incoming-buses-section');
+            const incomingGrid = document.getElementById('incoming-buses-grid');
+            if (incomingSection && incomingGrid) {
+                incomingSection.style.display = 'block';
+                incomingGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 1rem; color: #999;">
+                        No incoming buses available
+                    </div>
+                `;
             }
             return;
         }
@@ -451,10 +469,14 @@ async function fetchBusArrivals() {
             const newIncomingHTML = topFourBuses.map(bus => {
                 const isArrived = bus.TimeStr.includes('Arr');
                 const arrivedClass = isArrived ? 'arrived' : '';
+                let serviceUrl = getBasePath() + 'buszy/bus-service.html?service=' + bus.ServiceNo;
+                if (searchInput && searchInput.trim() !== '') {
+                    serviceUrl += '&highlightStop=' + encodeURIComponent(searchInput);
+                }
                 return `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <div class="ib-time ${arrivedClass}">${bus.TimeStr}</div>
-                    <a href="${getBasePath() + 'buszy/bus-service.html?service=' + bus.ServiceNo}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 8px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
+                    <a href="${serviceUrl}" class="ib-svc" style="background-color: ${bgColor}; cursor: pointer; text-decoration: none; color: inherit; border-radius: 8px; padding: 4px 8px; display: inline-block;">${bus.ServiceNo}</a>
                 </div>
             `;
             }).join('');
