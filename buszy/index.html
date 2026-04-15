@@ -298,10 +298,50 @@
         display: flex;
         gap: 16px;
         margin-bottom: 0;
-        justify-content: center;
-        flex-wrap: wrap;
         padding: 15px 40px 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        flex-shrink: 1;
+        mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .category-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .category-tabs-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .scroll-indicator {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: transparent;
+        color: #007bff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 8px 12px;
+        flex-shrink: 0;
+        transition: color 0.2s;
+    }
+
+    .scroll-indicator:hover {
+        color: #0056b3;
+    }
+
+    .scroll-indicator.visible {
+        display: flex;
     }
 
     .category-tab {
@@ -318,7 +358,7 @@
         display: flex;
         align-items: center;
         border-radius: 24px;
-
+        flex-shrink: 0;
     }
 
     .category-tab:hover {
@@ -370,6 +410,14 @@
 
     body.dark-mode .bus-service-tab:hover {
         background-color: #94d40b !important;
+    }
+
+    body.dark-mode .scroll-indicator {
+        color: #51a7be;
+    }
+
+    body.dark-mode .scroll-indicator:hover {
+        color: #6fb8d4;
     }
 
     .category-tab i {
@@ -559,6 +607,15 @@
             overflow-x: auto;
         }
 
+        .category-tabs-container {
+            padding-right: 12px;
+        }
+
+        .scroll-indicator {
+            padding: 6px 8px;
+            font-size: 1.2rem;
+        }
+
         .category-tab {
             padding: 8px 12px;
             font-size: 0.95rem;
@@ -651,10 +708,24 @@
         }
 
         .category-tabs {
-            padding: 10px 2px 10px;
+            padding: 10px 10px 10px;
             gap: 10px;
             overflow-x: auto;
         }
+
+        .scroll-indicator {
+            padding: 6px 8px;
+            font-size: 1.1rem;
+        }
+
+        #scroll-indicator {
+            height: 100%;
+            width: 0;
+            background: none;
+            color: #fff;
+            transition: width 0.1s ease;
+        }
+
 
         .category-tab {
             padding: 8px 12px;
@@ -799,23 +870,28 @@
                             </div>
                         </div>
 
-                        <div class="category-tabs">
-                            <button class="category-tab active" data-category="pinned">
-                                <i class="fa-sharp fa-regular fa-thumbtack-angle"></i>&nbsp;
-                                Pinned
-                            </button>
-                            <button class="category-tab" data-category="nearby">
-                                <i class="fa-kit fa-lta-location"></i>&nbsp;
-                                Nearby
-                            </button>
-                            <button class="category-tab" data-category="all">
-                                <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;
-                                All
-                            </button>
-                            <button class="category-tab bus-service-tab" id="bus-service-tab"
-                                style="display: none; background-color: #94d40b; color: #000;">
-                                <i class="fa-kit fa-lta-bus"></i>&nbsp;
-                                Bus Service
+                        <div class="category-tabs-container">
+                            <div class="category-tabs" id="category-tabs">
+                                <button class="category-tab active" data-category="pinned">
+                                    <i class="fa-sharp fa-regular fa-thumbtack-angle"></i>&nbsp;
+                                    Pinned
+                                </button>
+                                <button class="category-tab" data-category="nearby">
+                                    <i class="fa-kit fa-lta-location"></i>&nbsp;
+                                    Nearby
+                                </button>
+                                <button class="category-tab" data-category="all">
+                                    <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;
+                                    All
+                                </button>
+                                <button class="category-tab bus-service-tab" id="bus-service-tab"
+                                    style="display: none; background-color: #94d40b; color: #000;">
+                                    <i class="fa-kit fa-lta-bus"></i>&nbsp;
+                                    Bus Service
+                                </button>
+                            </div>
+                            <button class="scroll-indicator" id="scroll-indicator" aria-label="Scroll tabs">
+                                <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>
@@ -999,6 +1075,43 @@
                 }
             });
         });
+
+        // Scroll indicator for category tabs
+        const categoryTabsContainer = document.getElementById('category-tabs');
+        const scrollIndicator = document.getElementById('scroll-indicator');
+
+        function updateScrollIndicator() {
+            if (categoryTabsContainer) {
+                const hasScroll = categoryTabsContainer.scrollWidth > categoryTabsContainer.clientWidth;
+                const isAtEnd = categoryTabsContainer.scrollLeft >=
+                    categoryTabsContainer.scrollWidth - categoryTabsContainer.clientWidth - 10;
+
+                if (hasScroll && !isAtEnd) {
+                    scrollIndicator.classList.add('visible');
+                } else {
+                    scrollIndicator.classList.remove('visible');
+                }
+            }
+        }
+
+        if (scrollIndicator && categoryTabsContainer) {
+            // Check on load
+            setTimeout(updateScrollIndicator, 100);
+
+            // Check on window resize
+            window.addEventListener('resize', updateScrollIndicator);
+
+            // Check on scroll
+            categoryTabsContainer.addEventListener('scroll', updateScrollIndicator);
+
+            // Handle scroll indicator click
+            scrollIndicator.addEventListener('click', () => {
+                categoryTabsContainer.scrollBy({
+                    left: 150,
+                    behavior: 'smooth'
+                });
+            });
+        }
 
         // Category tab switching functionality
         const categoryTabs = document.querySelectorAll('.category-tab:not(.bus-service-tab)');
