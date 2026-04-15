@@ -349,6 +349,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             sessionStorage.removeItem('absBusSearch');
             sessionStorage.removeItem('absBusPage');
 
+            // Reset pinned items visibility (hidden by pinned.js search filter)
+            document.querySelectorAll('#bookmarks-container .list-group-item').forEach(item => {
+                item.style.display = '';
+            });
+
             // Switch to pinned tab without firing click events (avoids side effects)
             document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));

@@ -386,7 +386,7 @@
 
     .pinned .about-me-summ {
         padding-top: 0rem;
-        margin-top: 2em;
+        margin-top: 1em;
     }
 
     .no-results {
@@ -517,7 +517,7 @@
         display: block;
     }
 
- .list-group-item:first-child {
+    .list-group-item:first-child {
         transition-duration: 800ms;
         border-radius: 20px;
         /* margin-top: 2em; */
@@ -812,8 +812,9 @@
                                 <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;
                                 All
                             </button>
-                            <button class="category-tab bus-service-tab" id="bus-service-tab" style="display: none; background-color: #94d40b; color: #000;">
-                                <i class="fa-regular fa-bus"></i>&nbsp;
+                            <button class="category-tab bus-service-tab" id="bus-service-tab"
+                                style="display: none; background-color: #94d40b; color: #000;">
+                                <i class="fa-kit fa-lta-bus"></i>&nbsp;
                                 Bus Service
                             </button>
                         </div>
@@ -831,11 +832,18 @@
                     <div class="list-group">
                         <p class="pin-msg" id="loading-message"
                             style="display: flex; align-items: center; justify-content: center;">
-                            <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status" style="margin-right: 1em;">
+                            <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status"
+                                style="margin-right: 1em;">
                                 <circle cx="50" cy="50" r="45">
-                                    <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
-                                    <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
-                                    <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                                    <animateTransform attributeName="transform" type="rotate" values="-90;810"
+                                        keyTimes="0;1" dur="2s" repeatCount="indefinite" />
+                                    <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%"
+                                        calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0"
+                                        keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                                    <animate attributeName="stroke-dasharray"
+                                        values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline"
+                                        keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s"
+                                        repeatCount="indefinite" />
                                 </circle>
                             </svg>Loading Data...
                         </p>
@@ -975,14 +983,14 @@
             // Handle button click
             busServiceTab.addEventListener('click', (e) => {
                 e.preventDefault();
-                const serviceNumber = searchInput.value.trim();
+                const serviceNumber = searchInput.value.trim().toUpperCase();
                 if (isServiceNumber(serviceNumber)) {
                     // Save service number to sessionStorage for back navigation
                     sessionStorage.setItem('lastServiceSearch', serviceNumber);
-                    
+
                     // Highlight the service number text
                     searchInput.select();
-                    
+
                     // Navigate to bus service page with proper base path
                     const basePath = (window.PWAConfig && window.PWAConfig.basePath) ? window.PWAConfig.basePath : '/';
                     setTimeout(() => {
@@ -1019,25 +1027,25 @@
         document.head.appendChild(style);
     </script>
 
-    
+
     <!-- Import pinned bus stops from URL parameter if present (TEMP) -->
     <script>
         // Check for importPinned parameter and restore data to localStorage
-        (function() {
+        (function () {
             const params = new URLSearchParams(window.location.search);
             const importedPinned = params.get('importPinned');
-            
+
             if (importedPinned) {
                 try {
                     // Decode the base64 data
                     const decodedData = atob(importedPinned);
-                    
+
                     // Restore to localStorage - this will overwrite existing data
                     localStorage.setItem('bookmarkedBusStops', decodedData);
-                    
+
                     // Clean up the URL parameter to avoid re-importing on page refresh
                     window.history.replaceState({}, document.title, window.location.pathname);
-                    
+
                     console.log('Pinned bus stops successfully imported from menu');
                 } catch (error) {
                     console.error('Error importing pinned bus stops:', error);
