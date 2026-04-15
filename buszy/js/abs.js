@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         listGroup.innerHTML = '';
         if (busStops.length === 0) {
-            listGroup.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-circle-info"></i>Loading bus stops... If this persists, please try refreshing the page.</p>';
+            listGroup.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-face-frown"></i> No Bus Stops Found.</p>';
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
             return;
@@ -349,22 +349,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             sessionStorage.removeItem('absBusSearch');
             sessionStorage.removeItem('absBusPage');
 
-            // Reset pinned items visibility (hidden by pinned.js search filter)
-            document.querySelectorAll('#bookmarks-container .list-group-item').forEach(item => {
-                item.style.display = '';
-            });
-
-            // Switch to pinned tab without firing click events (avoids side effects)
-            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            const pinnedTab = document.querySelector('.category-tab[data-category="pinned"]');
-            if (pinnedTab) pinnedTab.classList.add('active');
-            const pinnedContent = document.getElementById('pinned-content');
-            if (pinnedContent) pinnedContent.classList.add('active');
+            // Trigger input event to update all search filters naturally
+            const inputEvent = new Event('input', { bubbles: true });
+            searchInput.dispatchEvent(inputEvent);
 
             // Hide bus service tab if visible
             const busServiceTab = document.getElementById('bus-service-tab');
             if (busServiceTab) busServiceTab.style.display = 'none';
+
+            // Reset scroll indicator after layout settles
+            setTimeout(() => {
+                const scrollIndicator = document.getElementById('scroll-indicator');
+                const categoryTabs = document.getElementById('category-tabs');
+                if (scrollIndicator && categoryTabs) {
+                    categoryTabs.scrollLeft = 0;
+                    if (typeof window.updateScrollIndicator === 'function') {
+                        window.updateScrollIndicator();
+                    }
+                }
+            }, 100);
         });
     }
 });

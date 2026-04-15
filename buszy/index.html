@@ -1040,11 +1040,11 @@
                 sessionStorage.removeItem('lastServiceSearch');
             }
 
-            // Function to detect if input is a service number (digits only or with common formats)
+            // Function to detect if input is a service number (max 4 digits/letters)
             function isServiceNumber(text) {
                 const cleaned = text.trim();
-                // Match patterns like: 100, 100A, 100e, etc.
-                return /^\d+[a-zA-Z]?$/.test(cleaned);
+                // Match patterns like: 307, 100A, 1000, etc. (1-4 digits max, optional single letter)
+                return /^\d{1,4}[a-zA-Z]?$/.test(cleaned);
             }
 
             // Update button visibility on input change
@@ -1093,6 +1093,9 @@
                 }
             }
         }
+
+        // Expose to window for cross-script access
+        window.updateScrollIndicator = updateScrollIndicator;
 
         if (scrollIndicator && categoryTabsContainer) {
             // Check on load
