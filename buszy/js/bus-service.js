@@ -835,7 +835,8 @@ function renderFilteredStops(stops) {
         stopElement.className = 'stop-item';
         stopElement.style.animationDelay = `${index * 0.05}s`;
 
-        if (currentHighlightStopForSearch && stop[0] === currentHighlightStopForSearch) {
+        // Only highlight the first occurrence of the highlighted stop
+        if (currentHighlightStopForSearch && stop[0] === currentHighlightStopForSearch && !highlightedElement) {
             stopElement.classList.add('highlight-stop');
             highlightedElement = stopElement;
         }
