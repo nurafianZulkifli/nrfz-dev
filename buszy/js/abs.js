@@ -258,6 +258,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const savedSearch = sessionStorage.getItem('absBusSearch');
     if (savedSearch) {
         searchInput.value = savedSearch;
+        const clearButton = document.getElementById('search-clear');
+        if (clearButton) {
+            clearButton.style.display = 'flex';
+        }
         const query = savedSearch.toLowerCase();
         const filteredBusStops = allBusStops.filter((busStop) =>
             busStop.BusStopCode.toLowerCase().includes(query) ||
@@ -299,12 +303,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Search functionality
+    const clearButton = document.getElementById('search-clear');
+    
     searchInput.addEventListener('input', (event) => {
         const query = event.target.value.toLowerCase();
         let filteredBusStops;
         
         // Save search to sessionStorage
         sessionStorage.setItem('absBusSearch', event.target.value);
+        
+        // Show/hide clear button
+        if (clearButton) {
+            clearButton.style.display = event.target.value.length > 0 ? 'flex' : 'none';
+        }
+        
+        // Switch to "All" tab when searching
+        const allTab = document.querySelector('.category-tab[data-category="all"]');
+        if (allTab && event.target.value.length > 0) {
+            allTab.click();
+        }
         
         if (query.trim() === '') {
             // If search is empty, show all bus stops
@@ -323,6 +340,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         currentPage = 1;
         displayBusStops(currentDisplayList, currentPage);
     });
+
+    // Clear button functionality
+    if (clearButton) {
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            clearButton.style.display = 'none';
+            sessionStorage.removeItem('absBusSearch');
+            sessionStorage.removeItem('absBusPage');
+
+            // Switch to pinned tab without firing click events (avoids side effects)
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            const pinnedTab = document.querySelector('.category-tab[data-category="pinned"]');
+            if (pinnedTab) pinnedTab.classList.add('active');
+            const pinnedContent = document.getElementById('pinned-content');
+            if (pinnedContent) pinnedContent.classList.add('active');
+
+            // Hide bus service tab if visible
+            const busServiceTab = document.getElementById('bus-service-tab');
+            if (busServiceTab) busServiceTab.style.display = 'none';
+        });
+    }
 });
 
 

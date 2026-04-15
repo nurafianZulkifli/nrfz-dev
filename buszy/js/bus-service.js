@@ -506,6 +506,7 @@ async function populateServiceData(serviceNumber, service) {
         directionDetails
     } = await getServiceDirections(serviceNumber, service);
     let currentDirection = String(directions[0]); // Ensure direction is a string
+    let lastActiveDirection = String(directions[0]); // Track the last active direction for search restore
 
     // Check if highlighted stop is only in one direction and auto-navigate to it
     if (highlightStop && directions.length > 1) {
@@ -533,6 +534,7 @@ async function populateServiceData(serviceNumber, service) {
         // Ensure direction is a string to match JSON keys
         direction = String(direction);
         currentDirection = direction;
+        lastActiveDirection = direction; // Track this as the last active direction for search restore
 
         const stopsContainer = document.getElementById('stops-container');
         stopsContainer.innerHTML = `
@@ -891,9 +893,9 @@ function populateBusStops(stops, highlightStop = null) {
     const newClear = clearButton.cloneNode(true);
     clearButton.parentNode.replaceChild(newClear, clearButton);
 
-    newInput.addEventListener('input', () => {
+    newInput.addEventListener('input', (e) => {
         const query = newInput.value.trim().toLowerCase();
-        newClear.style.display = query ? 'flex' : 'none';
+        newClear.style.display = query.length > 0 ? 'flex' : 'none';
         const filtered = query
             ? allEnrichedStops.filter(stop =>
                 stop[0].toLowerCase().includes(query) ||
@@ -904,11 +906,15 @@ function populateBusStops(stops, highlightStop = null) {
         renderFilteredStops(filtered);
     });
 
-    newClear.addEventListener('click', () => {
+    newClear.addEventListener('click', async () => {
         newInput.value = '';
         newClear.style.display = 'none';
         renderFilteredStops(allEnrichedStops);
         newInput.focus();
+        // Restore to the last active direction if different directions exist
+        if (directions.length > 1) {
+            await updateStopsForDirection(lastActiveDirection);
+        }
     });
 }
 
@@ -1018,7 +1024,7 @@ async function initializePage() {
     } else {
         const availableServices = data.map(s => s.n).join(', ');
         console.error('Service not found. Available:', availableServices);
-        showErrorMessage(`Service ${serviceNumber} not added yet. <br> Services added so far: ${availableServices}`);
+        showErrorMessage(`Service ${serviceNumber} is not available. <br> Please ensure you have entered a valid service number.`);
     }
 }
 

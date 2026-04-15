@@ -203,18 +203,34 @@
         padding: 30px 40px 20px;
         display: flex;
         justify-content: center;
+        position: relative;
+    }
+
+    .search-wrapper {
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 12px;
+        color: #888;
+        font-size: 0.95rem;
+        pointer-events: none;
+        z-index: 1;
     }
 
     .search-box {
         width: 100%;
-        max-width: 500px;
         padding: 12px 20px;
         padding-left: 40px;
         font-size: 1rem;
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 25px;
-        background: rgba(255, 255, 255, 0.85) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>') no-repeat;
-        background-position: 12px center;
+        background: rgba(255, 255, 255, 0.85);
         transition: all 0.3s ease;
         color: #333;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -231,15 +247,50 @@
         background-color: #fff;
     }
 
+    .search-clear {
+        position: absolute;
+        right: 8px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: #e8e8e8;
+        color: #555;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.2s;
+        z-index: 2;
+    }
+
+    .search-clear:hover {
+        background: #d0d0d0;
+    }
+
     body.dark-mode .search-box {
         background-color: #1c1f2b6e;
         border: 2px solid #525872;
         color: #e0e0e0;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23a0a0a0" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>');
     }
 
     body.dark-mode .search-box::placeholder {
         color: #888;
+    }
+
+    body.dark-mode .search-icon {
+        color: #666;
+    }
+
+    body.dark-mode .search-clear {
+        background: #2e3244;
+        color: #aaa;
+    }
+
+    body.dark-mode .search-clear:hover {
+        background: #3a3f58;
     }
 
     /* Category Tabs Styles */
@@ -331,6 +382,11 @@
         margin-bottom: 2em;
         position: relative;
         z-index: 10;
+    }
+
+    .pinned .about-me-summ {
+        padding-top: 0rem;
+        margin-top: 2em;
     }
 
     .no-results {
@@ -464,7 +520,7 @@
  .list-group-item:first-child {
         transition-duration: 800ms;
         border-radius: 20px;
-        margin-top: 2em;
+        /* margin-top: 2em; */
         font-size: 20px;
     }
 
@@ -493,6 +549,7 @@
             max-width: 100%;
             padding: 10px 16px;
             padding-left: 36px;
+            padding-right: 36px;
             font-size: 0.9rem;
         }
 
@@ -581,7 +638,7 @@
         }
 
         .search-container {
-            padding: 15px 15px 12px;
+            padding: 15px 10px 12px;
             max-width: 100%;
         }
 
@@ -589,11 +646,12 @@
             max-width: 100%;
             padding: 9px 14px;
             padding-left: 32px;
+            padding-right: 32px;
             font-size: 0.85rem;
         }
 
         .category-tabs {
-            padding: 10px 12px 10px;
+            padding: 10px 2px 10px;
             gap: 10px;
             overflow-x: auto;
         }
@@ -726,13 +784,19 @@
     <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-bat">
         <div class="container">
             <div class="row h-100 align-items-center justify-content-center">
-                <div class="col-12">
+                <div class="col-12" style="padding-left: 0em; padding-right: 0em;">
                     <div class="cover-search-wrapper">
                         <h2><i class="fa-regular fa-location-pin"></i>&nbsp;Bus Stops</h2>
 
                         <div class="search-container">
-                            <input type="text" class="search-box" id="bus-stop-search"
-                                placeholder="Search bus stops by name or code...">
+                            <div class="search-wrapper">
+                                <i class="fa-regular fa-magnifying-glass search-icon"></i>
+                                <input type="text" class="search-box" id="bus-stop-search"
+                                    placeholder="Search bus stops by name or code...">
+                                <button class="search-clear" id="search-clear" aria-label="Clear search">
+                                    <i class="fa-regular fa-xmark"></i>
+                                </button>
+                            </div>
                         </div>
 
                         <div class="category-tabs">

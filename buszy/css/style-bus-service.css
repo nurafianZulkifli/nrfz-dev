@@ -322,16 +322,16 @@ body.dark-mode .terminal-name {
 }
 
 .stops-search-clear {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     border: none;
     background: #e8e8e8;
     color: #555;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    font-size: 0.8rem;
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
     cursor: pointer;
     flex-shrink: 0;
     padding: 0;
