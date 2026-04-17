@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('service-search');
         if (searchInput) {
             searchInput.value = savedSearch;
+            const clearButton = document.getElementById('search-clear');
+            if (clearButton) clearButton.style.display = 'flex';
         }
     }
 });
@@ -326,11 +328,16 @@ function setupPaginationButtons() {
 
 function setupSearchFilter() {
     const searchInput = document.getElementById('service-search');
+    const clearButton = document.getElementById('search-clear');
     
     if (searchInput) {
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             sessionStorage.setItem('absvcSearch', e.target.value);
+
+            if (clearButton) {
+                clearButton.style.display = e.target.value.length > 0 ? 'flex' : 'none';
+            }
             
             const filtered = allServices.filter(service => {
                 const serviceNum = (service.n || '').toLowerCase();
@@ -352,6 +359,16 @@ function setupSearchFilter() {
             
             // Display filtered results with pagination
             displayServices(filtered, true);
+        });
+    }
+
+    if (clearButton) {
+        clearButton.addEventListener('click', function() {
+            searchInput.value = '';
+            clearButton.style.display = 'none';
+            sessionStorage.removeItem('absvcSearch');
+            const inputEvent = new Event('input', { bubbles: true });
+            searchInput.dispatchEvent(inputEvent);
         });
     }
 }

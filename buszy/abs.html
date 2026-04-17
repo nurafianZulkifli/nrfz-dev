@@ -289,6 +289,34 @@
         color: #aaa;
     }
 
+    /* Alert Styles */
+    .alert {
+        padding: 12px 15px;
+        border-radius: 6px;
+        border: 1px solid transparent;
+    }
+
+    .alert-info {
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+        color: #0c5460;
+    }
+
+    .alert-info i {
+        color: #0c5460;
+        font-size: 1rem;
+    }
+
+    body.dark-mode .alert-info {
+        background-color: #063c47;
+        border-color: #0d4f5e;
+        color: #7dd3e0;
+    }
+
+    body.dark-mode .alert-info i {
+        color: #7dd3e0;
+    }
+
     /* Search Bar Styles */
     .search-container {
         width: 100%;
@@ -300,50 +328,83 @@
         justify-content: center;
     }
 
-    .search-box {
+    .search-wrapper {
+        display: flex;
+        align-items: center;
         width: 100%;
-        max-width: 350px;
-        padding: 12px 20px;
-        padding-left: 40px;
-        font-size: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 25px;
-        background: rgba(255, 255, 255, 0.85) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>') no-repeat;
-        background-position: 12px center;
-        transition: all 0.3s ease;
+        background: #fff;
+        border: 1px solid #1c1f2b33;
+        border-radius: 50px;
+        padding: 0.5rem 1rem;
+        box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.1);
+        gap: 0.6rem;
+    }
+
+    .search-icon {
+        color: #888;
+        font-size: 0.95rem;
+        flex-shrink: 0;
+    }
+
+    .search-box {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 0.95rem;
         color: #333;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        min-width: 0;
     }
 
     .search-box::placeholder {
-        color: #999;
-    }
-
-    .search-box:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
-        background-color: #fff;
-    }
-
-    body.dark-mode .search-box {
-        background-color: #1c1f2b6e;
-        color: #fff;
-        border-color: rgba(255, 255, 255, 0.2);
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>');
-        background-position: 12px center;
-        background-repeat: no-repeat;
-    }
-
-    body.dark-mode .search-box::placeholder {
         color: #aaa;
     }
 
-    body.dark-mode .search-box:focus {
-        outline: none;
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
-        background-color: #1e2230;
+    .search-clear {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: #e8e8e8;
+        color: #555;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+        cursor: pointer;
+        flex-shrink: 0;
+        padding: 0;
+        transition: background 0.2s;
+    }
+
+    .search-clear:hover {
+        background: #d0d0d0;
+    }
+
+    body.dark-mode .search-wrapper {
+        background: #1c1f2b;
+        border-color: #393e53;
+    }
+
+    body.dark-mode .search-box {
+        color: #e0e0e0;
+    }
+
+    body.dark-mode .search-box::placeholder {
+        color: #666;
+    }
+
+    body.dark-mode .search-icon {
+        color: #666;
+    }
+
+    body.dark-mode .search-clear {
+        background: #2e3244;
+        color: #aaa;
+    }
+
+    body.dark-mode .search-clear:hover {
+        background: #3a3f58;
     }
 </style>
 
@@ -362,7 +423,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="abs.html"><i class="fa-kit fa-lta-bus-stop"></i>
+                    <a href="abs.html"><i class="fa-kit fa-lta-bus"></i>
                     </a>
                 </li>
             </ol>
@@ -466,7 +527,7 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="abs.html"><i class="fa-kit fa-lta-bus-stop"></i>
+                                    <a href="abs.html"><i class="fa-kit fa-lta-bus"></i>
                                     </a>
                                 </li>
                             </ol>
@@ -479,8 +540,14 @@
                                 </div>
                                 <div style="max-width: 400px; width: 100%;">
                                     <div class="search-container">
-                                        <input type="text" class="search-box" id="service-search"
-                                            placeholder="Search Bus Service">
+                                        <div class="search-wrapper">
+                                            <i class="fa-regular fa-magnifying-glass search-icon"></i>
+                                            <input type="text" class="search-box" id="service-search"
+                                                placeholder="Search Bus Service">
+                                            <button class="search-clear" id="search-clear" aria-label="Clear search" style="display:none;">
+                                                <i class="fa-regular fa-xmark"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -498,6 +565,12 @@
         <div class="container">
             <h2 class="text-center" style="padding-top: 1em; padding-bottom: 0.5em;">All Bus Services <span
                     id="service-count" style="font-size: 0.8em;"></span></h2>
+
+            <div class="alert alert-info" role="alert" style="margin-bottom: 1.5em; display: flex; align-items: center; gap: 0.5em;">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Bus Service Details are being progressively added.</span>
+            </div>
+
             <div class="list-group" id="services-container">
                 <p class="pin-msg" id="loading-message"
                     style="display: flex; align-items: center; justify-content: center;">
