@@ -60,6 +60,21 @@ function getBasePath() {
 // ****************************
 
 let busStopsPromise = null;
+let currentLocationMarker = null; // Track the current location marker across button clicks
+let currentLocationCircle = null; // Track the current location accuracy circle
+
+// Calculate distance between two coordinates in meters
+function calculateDistance(lat1, lng1, lat2, lng2) {
+    const R = 6371000; // Earth's radius in meters
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = 
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Return distance in meters
+}
 
 async function loadAllBusStops() {
     try {
@@ -749,6 +764,10 @@ async function fetchBusArrivals() {
                                 map.removeLayer(layer);
                             }
                         });
+                        
+                        // Reset current location marker and circle references
+                        currentLocationMarker = null;
+                        currentLocationCircle = null;
 
                         // Add markers for all locations
                         let bounds = [];
@@ -757,7 +776,18 @@ async function fetchBusArrivals() {
                             const longitude = location.lng;
 
                             if (!isNaN(latitude) && !isNaN(longitude)) {
-                                const marker = L.marker([latitude, longitude]).addTo(map);
+                                // Create FontAwesome marker icon for bus
+                                const busIcon = L.divIcon({
+                                    html: `<div style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background-color: #7db603; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.3); cursor: pointer;">
+                                        <i class="fa-kit fa-lta-bus" style="color: #1a1a1a; font-size: 16px;"></i>
+                                    </div>`,
+                                    iconSize: [32, 32],
+                                    className: 'bus-marker'
+                                });
+
+                                const marker = L.marker([latitude, longitude], {
+                                    icon: busIcon
+                                }).addTo(map);
 
                                 // Add pulse effect to next bus marker (first marker)
                                 if (index === 0) {
@@ -785,8 +815,7 @@ async function fetchBusArrivals() {
 
                                     if (savedFormat === 'mins') {
                                         timingHTML = `
-                                            <small style="color: #666;">Arriving in:</small><br>
-                                            ${minutes <= 0 ? '<b style="color: #7db603;">Arriving Now</b>' : `<b>${minutes} ${minText}</b>`}
+                                            ${minutes <= 0 ? '<b style="color: #7db603;">Arr</b>' : `<b>${minutes} ${minText}</b>`}
                                         `;
                                     } else if (savedFormat === '24-hour') {
                                         const timeStr = arrivalTime.toLocaleTimeString('en-US', {
@@ -812,7 +841,7 @@ async function fetchBusArrivals() {
                                 }
 
                                 marker.bindPopup(`
-                                    <b>Bus ${serviceNo}</b><br>
+                                    <b>${serviceNo}</b><br>
                                     <small style="color: #888;">${busLabel}</small><br>
                                     ${timingHTML || '<small style="color: #999;">Timing unavailable</small>'}
                                 `);
@@ -821,26 +850,31 @@ async function fetchBusArrivals() {
                             }
                         });
 
-                        // Add current location marker in red
+                        // Add current location marker with location pin icon
                         if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition((position) => {
                                 const lat = position.coords.latitude;
                                 const lng = position.coords.longitude;
 
-                                // Create red marker for current location
-                                const redIcon = L.icon({
-                                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                                    iconSize: [25, 41],
-                                    iconAnchor: [12, 41],
-                                    popupAnchor: [1, -34],
-                                    shadowSize: [41, 41]
+                                // Remove existing location marker if it exists
+                                if (currentLocationMarker) {
+                                    map.removeLayer(currentLocationMarker);
+                                    currentLocationMarker = null;
+                                }
+
+                                // Create FontAwesome location marker
+                                const locationIcon = L.divIcon({
+                                    html: `<div style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: #ff4444; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.4); cursor: pointer;">
+                                        <i class="fa-kit fa-lta-location" style="color: #fff; font-size: 18px;"></i>
+                                    </div>`,
+                                    iconSize: [40, 40],
+                                    className: 'location-marker'
                                 });
 
-                                const currentMarker = L.marker([lat, lng], {
-                                    icon: redIcon
+                                currentLocationMarker = L.marker([lat, lng], {
+                                    icon: locationIcon
                                 }).addTo(map);
-                                currentMarker.bindPopup(`
+                                currentLocationMarker.bindPopup(`
                                     <b>Your Location</b><br>
                                     <small style="color: #888;">Current Position</small>
                                 `);
@@ -1105,13 +1139,36 @@ if (currentLocationBtn) {
         map.on('locationfound', (e) => {
             const radius = e.accuracy;
 
+            // Remove existing location marker if it exists
+            if (currentLocationMarker) {
+                map.removeLayer(currentLocationMarker);
+                currentLocationMarker = null;
+            }
+
+            // Create FontAwesome location marker with red styling
+            const locationIcon = L.divIcon({
+                html: `<div style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: #ff4444; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.4); cursor: pointer;">
+                    <i class="fa-kit fa-lta-location" style="color: #fff; font-size: 18px;"></i>
+                </div>`,
+                iconSize: [40, 40],
+                className: 'location-marker'
+            });
+
             // Add a marker for the current location
-            L.marker(e.latlng).addTo(map)
+            currentLocationMarker = L.marker(e.latlng, {
+                icon: locationIcon
+            }).addTo(map)
                 .bindPopup(`You are within ${Math.round(radius)} meters from this point.`)
                 .openPopup();
 
+            // Remove existing accuracy circle if it exists
+            if (currentLocationCircle) {
+                map.removeLayer(currentLocationCircle);
+                currentLocationCircle = null;
+            }
+
             // Add a circle to show the accuracy radius
-            L.circle(e.latlng, radius).addTo(map);
+            currentLocationCircle = L.circle(e.latlng, radius).addTo(map);
         });
 
         map.on('locationerror', () => {

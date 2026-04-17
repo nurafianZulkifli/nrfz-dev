@@ -1347,6 +1347,24 @@ body.dark-mode .list-group-item {
     animation: pulse-marker 2s infinite;
 }
 
+.bus-marker,
+.location-marker {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) !important;
+    transition: filter 0.2s ease !important;
+}
+
+.bus-marker:hover,
+.location-marker:hover {
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)) brightness(1.15) !important;
+}
+
+.bus-marker.marker-pulse {
+    animation: pulse-marker 2s infinite !important;
+}
+
 /* Announcement Indicator Badges */
 .ann-badge {
     display: inline-block;
