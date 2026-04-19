@@ -18,6 +18,7 @@
   border-radius: 24px;
   margin: 1em;
   backdrop-filter: blur(25px);
+  transition: bottom 0.3s ease;
 }
 
 .pwa-banner-content {

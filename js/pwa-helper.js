@@ -138,6 +138,9 @@ class PWAHelper {
       
       document.body.appendChild(banner);
       
+      // Check if cookies banner is present and adjust position
+      this.adjustBannerPositionForCookies(banner);
+      
       // Event listeners
       banner.querySelector('.pwa-install-btn').addEventListener('click', () => {
         this.promptInstall();
@@ -149,6 +152,23 @@ class PWAHelper {
       });
     } else {
       banner.style.display = 'block';
+      this.adjustBannerPositionForCookies(banner);
+    }
+  }
+
+  /**
+   * Adjust install banner position if cookies banner is visible
+   */
+  adjustBannerPositionForCookies(banner) {
+    const cookieBanner = document.querySelector('.cookiebanner');
+    
+    if (cookieBanner && cookieBanner.offsetHeight > 0) {
+      // Cookies banner is visible, shift install banner up
+      const cookieBannerHeight = cookieBanner.offsetHeight;
+      banner.style.bottom = `${cookieBannerHeight}px`;
+    } else {
+      // Cookies banner not visible or not present
+      banner.style.bottom = '0';
     }
   }
 
