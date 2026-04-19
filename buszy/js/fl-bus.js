@@ -310,6 +310,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Helper function to capitalize each word
     function capitalizeWords(str) {
+        // Ensure str is a string
+        if (typeof str !== 'string') {
+            return String(str || '');
+        }
         const acronyms = ['MRT', 'TBI', 'LRT'];
         let result = str.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
         acronyms.forEach(acronym => {
