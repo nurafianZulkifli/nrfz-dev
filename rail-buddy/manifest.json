@@ -7,8 +7,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#ebebe8",
+  "theme_color": "#ebebe8",
   "categories": ["transportation", "utilities"],
   "icons": [
     {
