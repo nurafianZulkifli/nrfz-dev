@@ -162,6 +162,32 @@ async function loadLocalBusServiceData() {
     }
 }
 
+// Load destination codes as fallback for missing stops
+let destinationCodesData = null;
+
+async function loadDestinationCodes() {
+    if (destinationCodesData !== null) {
+        return destinationCodesData; // Already loaded
+    }
+    
+    try {
+        const basePath = getBasePath();
+        const jsonPath = basePath + 'buszy/json/destination-codes.json';
+        console.log('Loading destination codes from:', jsonPath);
+        const response = await fetch(jsonPath);
+        if (!response.ok) {
+            throw new Error(`Failed to load data: ${response.statusText}`);
+        }
+        destinationCodesData = await response.json();
+        console.log('Successfully loaded destination codes:', Object.keys(destinationCodesData).length, 'codes');
+        return destinationCodesData;
+    } catch (error) {
+        console.warn('Error loading destination codes:', error);
+        destinationCodesData = {}; // Set to empty object to avoid repeated attempts
+        return destinationCodesData;
+    }
+}
+
 // Fetch enriched stop details from API for given stop codes
 // Cache for bus stop details to avoid repeated API calls
 const stopCache = new Map();
@@ -204,8 +230,17 @@ async function fetchEnrichedStopsFromAPI(serviceNumber, stopCodes) {
                     stopData.Description || stopCode,
                     stopData.RoadName || ''
                 ])
-                .catch(error => {
+                .catch(async (error) => {
                     console.warn(`Failed to fetch stop ${stopCode}:`, error);
+                    // Check if stop exists in destination-codes.json
+                    const destinationCodes = await loadDestinationCodes();
+                    if (destinationCodes[stopCode]) {
+                        const destCode = destinationCodes[stopCode];
+                        const description = typeof destCode === 'string' ? destCode : destCode.description;
+                        const road = typeof destCode === 'string' ? '' : (destCode.road || '');
+                        console.log(`Using destination code for ${stopCode}: ${description}`);
+                        return [stopCode, description, road];
+                    }
                     return [stopCode, stopCode, ''];
                 })
             );

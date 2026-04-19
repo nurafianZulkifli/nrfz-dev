@@ -29,6 +29,32 @@ function initializeDefaultPreferences() {
 // Initialize defaults immediately
 initializeDefaultPreferences();
 
+// Load destination codes as fallback for missing stops
+let destinationCodesData = null;
+
+async function loadDestinationCodes() {
+    if (destinationCodesData !== null) {
+        return destinationCodesData; // Already loaded
+    }
+    
+    try {
+        const basePath = getBasePath();
+        const jsonPath = basePath + 'buszy/json/destination-codes.json';
+        console.log('Loading destination codes from:', jsonPath);
+        const response = await fetch(jsonPath);
+        if (!response.ok) {
+            throw new Error(`Failed to load data: ${response.statusText}`);
+        }
+        destinationCodesData = await response.json();
+        console.log('Successfully loaded destination codes:', Object.keys(destinationCodesData).length, 'codes');
+        return destinationCodesData;
+    } catch (error) {
+        console.warn('Error loading destination codes:', error);
+        destinationCodesData = {}; // Set to empty object to avoid repeated attempts
+        return destinationCodesData;
+    }
+}
+
 // Get base path for the application
 function getBasePath() {
     // If PWAConfig is available, use it
@@ -210,7 +236,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 `;
             } else {
-                filterTitle.textContent = `Bus Stop Not Found (${busStopCode})`;
+                // Check destination-codes.json as fallback
+                const destinationCodes = await loadDestinationCodes();
+                if (destinationCodes[busStopCode]) {
+                    const destCode = destinationCodes[busStopCode];
+                    const description = typeof destCode === 'string' ? destCode : destCode.description;
+                    console.log(`Using destination code for ${busStopCode}: ${description}`);
+                    const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
+                    const busIconPath = basePath + 'buszy/assets/bus-icon.png';
+                    
+                    filterTitle.innerHTML = `
+                        <div class="bus-stop-info">
+                            <span class="bus-stop-code">
+                                <img src="${busIconPath}" alt="Bus Icon">
+                                <span class="bus-stop-code-text">${busStopCode}</span>
+                            </span>
+                            <span class="bus-stop-description">${description}</span>
+                        </div>
+                    `;
+                } else {
+                    filterTitle.textContent = `Bus Stop Not Found (${busStopCode})`;
+                }
             }
         } catch (error) {
             console.error('Error fetching bus stop name:', error);
