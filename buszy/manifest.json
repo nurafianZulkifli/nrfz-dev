@@ -1,6 +1,6 @@
 {
   "id": "buszy",
-  "name": "Buszy - Bus Timings & Alerts",
+  "name": "Buszy",
   "short_name": "Buszy",
   "description": "Real-time bus timings, alerts, and pinned bus stops for Singapore buses",
   "start_url": "./",
@@ -8,7 +8,7 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "theme_color": "#ebebe8",
   "categories": ["transportation", "utilities"],
   "icons": [
     {
