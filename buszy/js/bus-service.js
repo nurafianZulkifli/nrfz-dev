@@ -44,6 +44,33 @@ function getBasePath() {
     return '/';
 }
 
+// Open route information in new tabs (LTG and SimplyGo)
+function openRouteInfo(serviceNumber) {
+    // Format service number to remove leading zeros if needed for LTG URL
+    const serviceNum = String(serviceNumber).replace(/^0+/, '') || serviceNumber;
+    
+    // URLs for LTG and SimplyGo
+    const ltgUrl = `https://landtransportguru.net/bus${serviceNum}/`;
+    const simplyGoUrl = `https://svc.simplygo.com.sg/eservice/eguide/service_route.php?service=${serviceNum}`;
+    
+    // Open both URLs in new windows/tabs
+    const ltgTab = window.open(ltgUrl, '_blank');
+    const simplyGoTab = window.open(simplyGoUrl, '_blank');
+    
+    console.log('LTG URL:', ltgUrl, 'opened:', !!ltgTab);
+    console.log('SimplyGo URL:', simplyGoUrl, 'opened:', !!simplyGoTab);
+}
+
+// Attach button click handler to open route info
+function attachRouteInfoButton(serviceNumber) {
+    const button = document.getElementById('open-route-info-btn');
+    if (button) {
+        button.onclick = function() {
+            openRouteInfo(serviceNumber);
+        };
+    }
+}
+
 // Load bus service data from API with local JSON fallback
 async function loadBusServiceData() {
     const API_BASE = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
@@ -482,6 +509,9 @@ async function populateServiceData(serviceNumber, service) {
     // Service header
     document.getElementById('service-number').textContent = service.n;
     document.getElementById('service-title').textContent = service.op ? `${service.op} ${service.t} Service ${service.n}` : `Service ${service.n}`;
+    
+    // Attach the route info button handler
+    attachRouteInfoButton(service.n);
 
     // Route terminals
     document.getElementById('terminal-start').textContent = service.ts;

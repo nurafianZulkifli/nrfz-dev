@@ -93,6 +93,34 @@ body.dark-mode .service-header {
     align-items: center;
 }
 
+.open-route-info-btn {
+    display: block;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #000;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.open-route-info-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.open-route-info-btn:active {
+    transform: translateY(0);
+}
+
 .service-type {
     margin: 0.5rem 0 0 0;
     font-size: 0.95rem;
