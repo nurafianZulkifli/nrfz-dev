@@ -429,7 +429,7 @@ body.dark-mode .stops-no-results {
     padding: 5px 4px;
     border-radius: 5px;
     gap: 10px;
-    cursor: default;
+    cursor: pointer;
 }
 
 .bus-stop-code:hover {
@@ -486,7 +486,7 @@ body.dark-mode .bus-stop-code-text {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 2px 6px;
-    cursor: default;
+    cursor: pointer;
 }
 
 body.dark-mode .stop-item {
@@ -524,7 +524,7 @@ body.dark-mode .bus-stop-code {
     padding: 5px 4px;
     border-radius: 5px;
     gap: 10px;
-    cursor: default;
+    cursor: pointer;
 }
 
 body.dark-mode .bus-stop-code:hover {
