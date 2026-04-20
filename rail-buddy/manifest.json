@@ -1,6 +1,6 @@
 {
   "id": "railbuddy",
-  "name": "RailBuddy",
+  "name": "RailBuddy - Your MRT & LRT Companion",
   "short_name": "RailBuddy",
   "description": "Real-time train line status, delays, and schedules for Singapore MRT and LRT networks",
   "start_url": "./",

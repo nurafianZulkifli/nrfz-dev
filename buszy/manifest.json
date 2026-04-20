@@ -1,8 +1,8 @@
 {
   "id": "buszy",
-  "name": "Buszy",
+  "name": "Buszy - Your Bus Companion",
   "short_name": "Buszy",
-  "description": "Real-time bus timings, alerts, and pinned bus stops for Singapore buses",
+  "description": "Real-time bus arrival timings, details, and pinned bus stops for Singapore buses",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

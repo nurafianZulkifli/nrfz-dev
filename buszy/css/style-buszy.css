@@ -959,6 +959,7 @@ table th {
     gap: 10px;
     margin-top: 2em;
     padding-left: 1em;
+    cursor: default !important;
 }
 
 .action-link {
