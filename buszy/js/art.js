@@ -1321,6 +1321,27 @@ function addBusMarker(lat, lng, serviceNo, type, load) {
     `);
 }
 
+// Add "Re-center" button functionality
+const recenterMapBtn = document.getElementById('recenter-map-btn');
+if (recenterMapBtn) {
+    recenterMapBtn.addEventListener('click', () => {
+        if (!map) return;
+        const bounds = [];
+        busMarkers.forEach(({ lat, lng }) => bounds.push([lat, lng]));
+        if (currentLocationMarker) {
+            const ll = currentLocationMarker.getLatLng();
+            bounds.push([ll.lat, ll.lng]);
+        }
+        if (bounds.length > 0) {
+            map.fitBounds(L.latLngBounds(bounds.map(b => L.latLng(b[0], b[1]))), {
+                padding: [50, 50],
+                maxZoom: 16,
+                animate: true
+            });
+        }
+    });
+}
+
 // Add "Current Location" button functionality
 const currentLocationBtn = document.getElementById('current-location-btn');
 if (currentLocationBtn) {
