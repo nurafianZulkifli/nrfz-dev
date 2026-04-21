@@ -933,7 +933,8 @@ async function fetchBusArrivals() {
                                     const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
                                     map.fitBounds(L.latLngBounds(latLngs), {
                                         padding: [50, 50],
-                                        maxZoom: 14
+                                        maxZoom: 16,
+                                        animate: false
                                     });
                                 }
                             }, (error) => {
@@ -943,7 +944,8 @@ async function fetchBusArrivals() {
                                     const latLngs = bounds.map(b => L.latLng(b[0], b[1]));
                                     map.fitBounds(L.latLngBounds(latLngs), {
                                         padding: [50, 50],
-                                        maxZoom: 14
+                                        maxZoom: 16,
+                                        animate: false
                                     });
                                 }
                             });
