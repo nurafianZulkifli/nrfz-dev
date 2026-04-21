@@ -262,13 +262,25 @@ function createServiceCard(service) {
         frequencyDisplay = '<i class="fa-regular fa-circle-info" style="margin-right: 0.5rem;"></i>Different frequencies by time';
     }
     
+    // Determine service type class based on operator
+    let typeClass = '';
+    if (operator.toUpperCase() === 'GAS') {
+        typeClass = 'service-type-gas';
+    } else if (operator.toUpperCase() === 'SBST') {
+        typeClass = 'service-type-sbst';
+    } else if (operator.toUpperCase() === 'TTS') {
+        typeClass = 'service-type-tts';
+    } else if (operator.toUpperCase() === 'SMRT') {
+        typeClass = 'service-type-smrt';
+    }
+    
     return `
         <a href="bus-service.html?service=${encodeURIComponent(service.n)}" style="text-decoration: none; color: inherit;">
             <div class="bus-service-card">
                 <div class="service-header">
                     <div class="service-number">${service.n}</div>
                     <div class="service-type">${type}</div>
-                    ${operator !== 'Transit' ? `<div class="service-type" style="background-color: #e0e0e0; color: #333;">${operator}</div>` : ''}
+                    ${operator !== 'Transit' ? `<div class="service-type ${typeClass}">${operator}</div>` : ''}
                 </div>
                 
                 <div class="service-routes">

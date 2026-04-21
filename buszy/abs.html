@@ -156,10 +156,17 @@
     }
 
     .bus-service-card:hover {
+        background-color: #cbe5fb !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+    }
+
+    body.dark-mode .bus-service-card:hover {
         background-color: #334250 !important;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
         transform: translateY(-2px);
     }
+
 
     body.dark-mode .bus-service-card {
         background: #1c1f2b;
@@ -197,6 +204,47 @@
 
     body.dark-mode .service-type {
         background-color: #393e53 !important;
+        color: #fff !important;
+    }
+
+    /* Service operator color coding */
+    .service-type-gas {
+        background-color: #FFB84D !important;
+        color: #000 !important;
+    }
+
+    body.dark-mode .service-type-gas {
+        background-color: #E6A03C !important;
+        color: #000 !important;
+    }
+
+    .service-type-sbst {
+        background-color: #8b168b !important;
+        color: #fff !important;
+    }
+
+    body.dark-mode .service-type-sbst {
+        background-color: #8b168b !important;
+        color: #fff !important;
+    }
+
+    .service-type-tts {
+        background-color: #4CAF50 !important;
+        color: #fff !important;
+    }
+
+    body.dark-mode .service-type-tts {
+        background-color: #45A049 !important;
+        color: #fff !important;
+    }
+
+    .service-type-smrt {
+        background-color: #F44336 !important;
+        color: #fff !important;
+    }
+
+    body.dark-mode .service-type-smrt {
+        background-color: #DA190B !important;
         color: #fff !important;
     }
 
@@ -544,7 +592,8 @@
                                             <i class="fa-regular fa-magnifying-glass search-icon"></i>
                                             <input type="text" class="search-box" id="service-search"
                                                 placeholder="Search Bus Service">
-                                            <button class="search-clear" id="search-clear" aria-label="Clear search" style="display:none;">
+                                            <button class="search-clear" id="search-clear" aria-label="Clear search"
+                                                style="display:none;">
                                                 <i class="fa-regular fa-xmark"></i>
                                             </button>
                                         </div>
@@ -574,11 +623,17 @@
             <div class="list-group" id="services-container">
                 <p class="pin-msg" id="loading-message"
                     style="display: flex; align-items: center; justify-content: center;">
-                    <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status" style="margin-right: 1em;">
+                    <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status"
+                        style="margin-right: 1em;">
                         <circle cx="50" cy="50" r="45">
-                            <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
-                            <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
-                            <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                            <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1"
+                                dur="2s" repeatCount="indefinite" />
+                            <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline"
+                                keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s"
+                                repeatCount="indefinite" />
+                            <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%"
+                                calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1"
+                                dur="2s" repeatCount="indefinite" />
                         </circle>
                     </svg>Loading Services...
                 </p>
