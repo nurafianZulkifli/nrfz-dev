@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update the loading message
     const updateLoadingMessage = () => {
         loadingMessageElement.innerHTML = `
-                <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status" style="margin-right: 0.5em;">
+                <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status" style="margin-right: 1em;">
                     <circle cx="50" cy="50" r="45">
                         <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
                         <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </circle>
                 </svg>${loadingMessages[messageIndex]}
             `;
-        messageIndex = (messageIndex + 1) % loadingMessages.length; // Cycle through messages
+        messageIndex = (messageIndex + 1) % loadingMessages.length;
     };
 
     // Show the first message immediately
