@@ -90,6 +90,69 @@ let currentLocationMarker = null; // Track the current location marker across bu
 let currentLocationCircle = null; // Track the current location accuracy circle
 let activeMapServiceNo = null; // Track which service is currently shown on the map
 let busMarkers = []; // [{marker, lat, lng, estimatedArrival, busLabel}] for live position updates
+let mapRefreshIntervalId = null; // Dedicated fast interval for map position updates
+
+// Fetch only bus locations for the active map service and update markers in-place
+async function refreshActiveMapMarkers() {
+    if (!activeMapServiceNo || !map || busMarkers.length === 0) return;
+    const mapSection = document.querySelector('.bus-location-section');
+    if (!mapSection || mapSection.style.display === 'none') return;
+
+    const searchInput = document.getElementById('bus-stop-search')?.value.trim();
+    if (!searchInput) return;
+
+    try {
+        const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
+        url.searchParams.append('BusStopCode', searchInput);
+        const response = await fetch(url);
+        if (!response.ok) return;
+        const data = await response.json();
+
+        const activeService = data.Services?.find(s => s.ServiceNo === activeMapServiceNo);
+        if (!activeService) return;
+
+        const freshLocations = [];
+        if (activeService.NextBus && activeService.NextBus.Latitude !== '0.0' && activeService.NextBus.Longitude !== '0.0') {
+            freshLocations.push({ lat: parseFloat(activeService.NextBus.Latitude), lng: parseFloat(activeService.NextBus.Longitude), estimatedArrival: activeService.NextBus.EstimatedArrival || null, busLabel: 'Next Bus' });
+        }
+        if (activeService.NextBus2 && activeService.NextBus2.Latitude !== '0.0' && activeService.NextBus2.Longitude !== '0.0') {
+            freshLocations.push({ lat: parseFloat(activeService.NextBus2.Latitude), lng: parseFloat(activeService.NextBus2.Longitude), estimatedArrival: activeService.NextBus2.EstimatedArrival || null, busLabel: 'Subsequent Bus' });
+        }
+
+        const refreshNow = new Date();
+        const savedFormat = localStorage.getItem('timeFormat') || '12-hour';
+
+        freshLocations.forEach((loc, index) => {
+            const entry = busMarkers[index];
+            if (!entry) return;
+            if (entry.lat !== loc.lat || entry.lng !== loc.lng) {
+                entry.marker.setLatLng([loc.lat, loc.lng]);
+                entry.lat = loc.lat;
+                entry.lng = loc.lng;
+            }
+            let timingHTML = '';
+            if (loc.estimatedArrival) {
+                const arrivalTime = new Date(loc.estimatedArrival);
+                const minutes = Math.max(0, Math.floor((arrivalTime - refreshNow) / 60000));
+                if (savedFormat === 'mins') {
+                    timingHTML = minutes <= 0 ? '<b style="color: #7db603;">Arr</b>' : `<b>${minutes} ${minutes === 1 ? 'min' : 'mins'}</b>`;
+                } else {
+                    const timeStr = arrivalTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: savedFormat !== '24-hour' });
+                    timingHTML = `<small style="color: #666;">Arrives at:</small><br><b>${timeStr}</b>`;
+                }
+            }
+            entry.marker.setPopupContent(`<b>${activeMapServiceNo}</b><br><small style="color: #888;">${loc.busLabel}</small><br>${timingHTML || '<small style="color: #999;">Timing unavailable</small>'}`);
+            entry.estimatedArrival = loc.estimatedArrival;
+        });
+    } catch (e) {
+        // silently ignore; main fetch loop handles error display
+    }
+}
+
+function startMapRefreshInterval() {
+    if (mapRefreshIntervalId !== null) clearInterval(mapRefreshIntervalId);
+    mapRefreshIntervalId = setInterval(refreshActiveMapMarkers, 3000);
+}
 
 // Calculate distance between two coordinates in meters
 function calculateDistance(lat1, lng1, lat2, lng2) {
@@ -307,6 +370,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Start the refresh interval on page load
     startRefreshInterval();
+    startMapRefreshInterval();
 
     // Listen for refresh interval changes from settings
     window.addEventListener('refreshIntervalChanged', (event) => {
@@ -808,6 +872,8 @@ async function fetchBusArrivals() {
 
                         // Set active service so subsequent refreshes can update markers in-place
                         activeMapServiceNo = serviceNo;
+                        // Kick off an immediate map position refresh
+                        refreshActiveMapMarkers();
 
                         // Clear all existing bus markers (but keep location marker)
                         busMarkers.forEach(({ marker }) => map.removeLayer(marker));

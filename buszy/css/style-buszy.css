@@ -1357,6 +1357,12 @@ body.dark-mode .list-group-item {
     transition: filter 0.2s ease !important;
 }
 
+/* Smooth marker movement when setLatLng is called */
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
 .bus-marker:hover,
 .location-marker:hover {
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)) brightness(1.15) !important;
