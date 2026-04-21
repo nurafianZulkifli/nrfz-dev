@@ -88,6 +88,8 @@ function getBasePath() {
 let busStopsPromise = null;
 let currentLocationMarker = null; // Track the current location marker across button clicks
 let currentLocationCircle = null; // Track the current location accuracy circle
+let activeMapServiceNo = null; // Track which service is currently shown on the map
+let busMarkers = []; // [{marker, lat, lng, estimatedArrival, busLabel}] for live position updates
 
 // Calculate distance between two coordinates in meters
 function calculateDistance(lat1, lng1, lat2, lng2) {
@@ -804,15 +806,16 @@ async function fetchBusArrivals() {
                             }
                         }, 100);
 
-                        // Clear all existing markers
-                        map.eachLayer((layer) => {
-                            if (layer instanceof L.Marker) {
-                                map.removeLayer(layer);
-                            }
-                        });
-                        
-                        // Reset current location marker and circle references
-                        currentLocationMarker = null;
+                        // Set active service so subsequent refreshes can update markers in-place
+                        activeMapServiceNo = serviceNo;
+
+                        // Clear all existing bus markers (but keep location marker)
+                        busMarkers.forEach(({ marker }) => map.removeLayer(marker));
+                        busMarkers = [];
+                        if (currentLocationMarker) {
+                            map.removeLayer(currentLocationMarker);
+                            currentLocationMarker = null;
+                        }
                         currentLocationCircle = null;
 
                         // Add markers for all locations
@@ -842,6 +845,15 @@ async function fetchBusArrivals() {
                                         markerElement.classList.add('marker-pulse');
                                     }
                                 }
+
+                                // Store marker reference for live updates
+                                busMarkers.push({
+                                    marker,
+                                    lat: latitude,
+                                    lng: longitude,
+                                    estimatedArrival: location.estimatedArrival,
+                                    busLabel: index === 0 ? 'Next Bus' : 'Subsequent Bus'
+                                });
 
                                 // Determine bus label
                                 const busLabel = index === 0 ? 'Next Bus' : 'Subsequent Bus';
@@ -982,6 +994,72 @@ async function fetchBusArrivals() {
                 });
             });
         }
+
+        // Live map update: if the map is visible for an active service, update marker positions in-place
+        if (activeMapServiceNo && map && busMarkers.length > 0) {
+            const mapSection = document.querySelector('.bus-location-section');
+            if (mapSection && mapSection.style.display !== 'none') {
+                const activeService = data.Services.find(s => s.ServiceNo === activeMapServiceNo);
+                if (activeService) {
+                    const freshLocations = [];
+                    if (activeService.NextBus && activeService.NextBus.Latitude !== "0.0" && activeService.NextBus.Longitude !== "0.0") {
+                        freshLocations.push({
+                            lat: parseFloat(activeService.NextBus.Latitude),
+                            lng: parseFloat(activeService.NextBus.Longitude),
+                            estimatedArrival: activeService.NextBus.EstimatedArrival || null,
+                            busLabel: 'Next Bus'
+                        });
+                    }
+                    if (activeService.NextBus2 && activeService.NextBus2.Latitude !== "0.0" && activeService.NextBus2.Longitude !== "0.0") {
+                        freshLocations.push({
+                            lat: parseFloat(activeService.NextBus2.Latitude),
+                            lng: parseFloat(activeService.NextBus2.Longitude),
+                            estimatedArrival: activeService.NextBus2.EstimatedArrival || null,
+                            busLabel: 'Subsequent Bus'
+                        });
+                    }
+
+                    const refreshNow = new Date();
+                    const savedFormat = localStorage.getItem('timeFormat') || '12-hour';
+
+                    freshLocations.forEach((loc, index) => {
+                        const entry = busMarkers[index];
+                        if (!entry) return;
+
+                        // Move marker if coordinates changed
+                        if (entry.lat !== loc.lat || entry.lng !== loc.lng) {
+                            entry.marker.setLatLng([loc.lat, loc.lng]);
+                            entry.lat = loc.lat;
+                            entry.lng = loc.lng;
+                        }
+
+                        // Always refresh popup content with latest timing
+                        let timingHTML = '';
+                        if (loc.estimatedArrival) {
+                            const arrivalTime = new Date(loc.estimatedArrival);
+                            const timeDifference = arrivalTime - refreshNow;
+                            const minutes = Math.max(0, Math.floor(timeDifference / (1000 * 60)));
+                            const minText = minutes === 1 ? 'min' : 'mins';
+                            if (savedFormat === 'mins') {
+                                timingHTML = minutes <= 0 ? '<b style="color: #7db603;">Arr</b>' : `<b>${minutes} ${minText}</b>`;
+                            } else {
+                                const timeStr = arrivalTime.toLocaleTimeString('en-US', {
+                                    hour: '2-digit', minute: '2-digit', hour12: savedFormat !== '24-hour'
+                                });
+                                timingHTML = `<small style="color: #666;">Arrives at:</small><br><b>${timeStr}</b>`;
+                            }
+                        }
+                        entry.marker.setPopupContent(`
+                            <b>${activeMapServiceNo}</b><br>
+                            <small style="color: #888;">${loc.busLabel}</small><br>
+                            ${timingHTML || '<small style="color: #999;">Timing unavailable</small>'}
+                        `);
+                        entry.estimatedArrival = loc.estimatedArrival;
+                    });
+                }
+            }
+        }
+
     } catch (error) {
         // Silently ignore aborted requests (superseded by a newer fetch)
         if (error.name === 'AbortError') return;
