@@ -38,7 +38,6 @@ body.dark-mode #pwa-splash {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40%;
 }
 
 #pwa-splash .splash-icon {
