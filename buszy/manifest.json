@@ -1,6 +1,6 @@
 {
   "id": "buszy",
-  "name": "Buszy - Your Bus Companion",
+  "name": "Buszy",
   "short_name": "Buszy",
   "description": "Real-time bus arrival timings, details, and pinned bus stops for Singapore buses",
   "start_url": "./",
@@ -26,10 +26,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Bus Timings",
-      "short_name": "Timings",
-      "description": "Check bus arrival timings",
-      "url": "./",
+      "name": "Bus Services",
+      "short_name": "Bus Services",
+      "description": "All Bus Services",
+      "url": "./bus-service.html",
       "icons": [
         {
           "src": "./assets/icon-192.png",
