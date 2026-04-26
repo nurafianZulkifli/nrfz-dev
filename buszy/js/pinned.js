@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let longPressTimer = null;
     let longPressItem = null;
     let justFinishedDragging = false;
+    let dragModeActive = false;
 
     // ── Helper Functions ─────────────────────────────────────────
     function getAllItems() {
@@ -511,15 +512,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         searchInput.addEventListener('input', applyPinnedSearchFilter);
     }
 
-    // Long-press handler for mobile to show/hide drag handle
+    // Enter drag-rearrange mode: dims the page, highlights chosen item, shows all handles
+    function enterDragMode(selectedItem) {
+        if (dragModeActive) return;
+        dragModeActive = true;
+        document.body.classList.add('drag-mode');
+        if (selectedItem) {
+            selectedItem.classList.add('drag-selected');
+        }
+    }
+
+    // Exit drag-rearrange mode: restore page, remove highlights
+    function exitDragMode() {
+        if (!dragModeActive) return;
+        dragModeActive = false;
+        document.body.classList.remove('drag-mode');
+        getAllItems().forEach(item => {
+            item.classList.remove('drag-selected', 'handle-visible');
+        });
+    }
+
+    // Long-press handler for mobile to enter drag mode
     function handleTouchStart(e) {
         const item = e.target.closest('.list-group-item');
         if (!item) return;
+        if (dragModeActive) return;
 
         longPressItem = item;
         longPressTimer = setTimeout(() => {
             if (longPressItem) {
-                longPressItem.classList.toggle('handle-visible');
+                enterDragMode(longPressItem);
                 longPressItem = null;
             }
         }, 500);
@@ -556,22 +578,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             dragEnd(e);
         });
 
-        // Dismiss grip handle on tap after dragging
+        // Exit drag mode when tapping outside the bookmarks container
         document.addEventListener('click', (e) => {
             if (justFinishedDragging) {
                 justFinishedDragging = false;
-                getAllItems().forEach((item) => {
-                    item.classList.remove('handle-visible');
-                });
+                return;
+            }
+            if (dragModeActive && !e.target.closest('#bookmarks-container')) {
+                exitDragMode();
             }
         });
 
         document.addEventListener('touchstart', (e) => {
             if (justFinishedDragging) {
                 justFinishedDragging = false;
-                getAllItems().forEach((item) => {
-                    item.classList.remove('handle-visible');
-                });
+                return;
+            }
+            if (dragModeActive && !e.target.closest('#bookmarks-container')) {
+                exitDragMode();
             }
         });
     }

@@ -691,6 +691,37 @@ table th {
     visibility: visible;
 }
 
+/* ── Drag rearrange mode ───────────────────────────────────── */
+body.drag-mode::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* Lift the pinned tab section above the overlay */
+body.drag-mode #pinned-content {
+    position: relative;
+    z-index: 101;
+}
+
+/* Show all drag handles while in drag mode */
+body.drag-mode .list-group-item .js-drag-handle {
+    max-width: 32px;
+    margin-right: 6px;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Highlight the item chosen to be re-arranged */
+.list-group-item.drag-selected {
+    outline: 2px solid #1f84a2;
+    outline-offset: -2px;
+    box-shadow: 0 0 0 4px rgba(31, 132, 162, 0.25), 0 4px 16px rgba(31, 132, 162, 0.2);
+}
+
 .spinner,
 .spinner-border {
     display: inline-block;
@@ -1221,6 +1252,11 @@ body.dark-mode .list-group-item.handle-visible .js-drag-handle {
     margin-right: 6px;
     opacity: 1;
     visibility: visible;
+}
+
+body.dark-mode .list-group-item.drag-selected {
+    outline-color: #4ab8d8;
+    box-shadow: 0 0 0 4px rgba(74, 184, 216, 0.25), 0 4px 16px rgba(74, 184, 216, 0.2);
 }
 
 body.dark-mode .list-group-item:hover {
