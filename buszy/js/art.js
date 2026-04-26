@@ -257,6 +257,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         applyIncomingBusesVisibility();
     });
 
+    window.addEventListener('sortByArrivalChanged', () => {
+        fetchBusArrivals();
+    });
+
     // Also listen for storage changes (when settings are changed in another tab/window)
     window.addEventListener('storage', (event) => {
         if (event.key === 'showFleetLegend') {
@@ -264,6 +268,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         if (event.key === 'showIncomingBuses') {
             applyIncomingBusesVisibility();
+        }
+        if (event.key === 'sortByArrival') {
+            fetchBusArrivals();
         }
     });
 
