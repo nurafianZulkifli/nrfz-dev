@@ -569,6 +569,16 @@ async function fetchBusArrivals() {
             return destinationCode;
         }
 
+        // Sort services by soonest NextBus arrival if setting is enabled
+        const sortByArrival = localStorage.getItem('sortByArrival') !== 'disabled';
+        if (sortByArrival) {
+            data.Services.sort((a, b) => {
+                const aTime = a.NextBus?.EstimatedArrival ? new Date(a.NextBus.EstimatedArrival).getTime() : Infinity;
+                const bTime = b.NextBus?.EstimatedArrival ? new Date(b.NextBus.EstimatedArrival).getTime() : Infinity;
+                return aTime - bTime;
+            });
+        }
+
         // Prepare incoming buses data
         const incomingBuses = [];
         data.Services.forEach((service) => {
@@ -631,6 +641,13 @@ async function fetchBusArrivals() {
             existingServiceSet.size === newServiceSet.size && [...newServiceSet].every(s => existingServiceSet.has(s));
 
         if (canRefreshInPlace) {
+            // Re-order cards in the DOM to match sorted service order
+            if (sortByArrival) {
+                data.Services.forEach(service => {
+                    const card = container.querySelector(`.card-bt[data-service="${service.ServiceNo}"]`);
+                    if (card) container.appendChild(card);
+                });
+            }
             data.Services.forEach((service) => {
                 const hasNextBus = service.NextBus && typeof service.NextBus === 'object' && Object.keys(service.NextBus).length > 0;
                 const hasNextBus2 = service.NextBus2 && typeof service.NextBus2 === 'object' && Object.keys(service.NextBus2).length > 0;
