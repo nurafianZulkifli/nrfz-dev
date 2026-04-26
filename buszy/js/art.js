@@ -258,6 +258,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     window.addEventListener('sortByArrivalChanged', () => {
+        renderedBusStopCode = null;
         fetchBusArrivals();
     });
 
@@ -270,6 +271,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             applyIncomingBusesVisibility();
         }
         if (event.key === 'sortByArrival') {
+            renderedBusStopCode = null;
             fetchBusArrivals();
         }
     });
