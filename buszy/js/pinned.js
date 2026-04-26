@@ -520,6 +520,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (selectedItem) {
             selectedItem.classList.add('drag-selected');
         }
+        // Push a history entry so the back button can dismiss drag mode
+        history.pushState({ dragMode: true }, '');
     }
 
     // Exit drag-rearrange mode: restore page, remove highlights
@@ -531,6 +533,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             item.classList.remove('drag-selected', 'handle-visible');
         });
     }
+
+    // Back button dismisses drag mode instead of navigating away
+    window.addEventListener('popstate', (e) => {
+        if (dragModeActive) {
+            exitDragMode();
+        }
+    });
 
     // Long-press handler for desktop mouse to enter drag mode
     function handleMouseDown(e) {
