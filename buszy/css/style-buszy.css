@@ -693,31 +693,6 @@ body.drag-mode .list-group-item.drag-selected .js-drag-handle {
     margin-right: 6px;
     opacity: 1;
     visibility: visible;
-    position: relative;
-    overflow: visible;
-}
-
-/* Tooltip on the grip handle in drag mode */
-body.drag-mode .list-group-item.drag-selected .js-drag-handle::after {
-    content: 'Grab to re-arrange';
-    position: absolute;
-    left: 50%;
-    top: calc(100% + 8px);
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.82);
-    color: #fff;
-    font-size: 0.72rem;
-    white-space: nowrap;
-    padding: 5px 10px;
-    border-radius: 6px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    z-index: 200;
-}
-
-body.drag-mode .list-group-item.drag-selected .js-drag-handle:hover::after {
-    opacity: 1;
 }
 
 /* Dim and disable all other items in drag mode */
