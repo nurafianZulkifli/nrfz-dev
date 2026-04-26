@@ -653,13 +653,7 @@ table th {
     transition: max-width 0.25s ease, margin-right 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
 }
 
-.list-group-item:hover .js-drag-handle {
-    /* Show and expand on hover */
-    max-width: 32px;
-    margin-right: 6px;
-    opacity: 1;
-    visibility: visible;
-}
+/* Grip handle is hidden outside of re-arrange mode */
 
 .list-group-item.is-idle {
     transition: 0.25s ease transform;
@@ -707,19 +701,31 @@ body.drag-mode #pinned-content {
     z-index: 101;
 }
 
-/* Show all drag handles while in drag mode */
-body.drag-mode .list-group-item .js-drag-handle {
+/* Show drag handle only on the selected item */
+body.drag-mode .list-group-item.drag-selected .js-drag-handle {
     max-width: 32px;
     margin-right: 6px;
     opacity: 1;
     visibility: visible;
 }
 
-/* Highlight the item chosen to be re-arranged */
+/* Dim and disable all other items in drag mode */
+body.drag-mode .list-group-item:not(.drag-selected) {
+    opacity: 0.25;
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+/* Highlight the item chosen to be re-arranged and bring it to the front */
 .list-group-item.drag-selected {
     outline: 2px solid #1f84a2;
     outline-offset: -2px;
-    box-shadow: 0 0 0 4px rgba(31, 132, 162, 0.25), 0 4px 16px rgba(31, 132, 162, 0.2);
+    background-color: rgba(31, 132, 162, 0.15) !important;
+    box-shadow: 0 0 0 4px rgba(31, 132, 162, 0.4), 0 8px 32px rgba(31, 132, 162, 0.35);
+    position: relative;
+    z-index: 2;
+    transform: scale(1.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .spinner,
@@ -1256,7 +1262,8 @@ body.dark-mode .list-group-item.handle-visible .js-drag-handle {
 
 body.dark-mode .list-group-item.drag-selected {
     outline-color: #4ab8d8;
-    box-shadow: 0 0 0 4px rgba(74, 184, 216, 0.25), 0 4px 16px rgba(74, 184, 216, 0.2);
+    background-color: rgba(74, 184, 216, 0.18) !important;
+    box-shadow: 0 0 0 4px rgba(74, 184, 216, 0.45), 0 8px 32px rgba(74, 184, 216, 0.4);
 }
 
 body.dark-mode .list-group-item:hover {

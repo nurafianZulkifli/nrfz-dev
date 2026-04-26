@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.style.color = 'inherit';
 
                     link.addEventListener('click', (e) => { 
-                        if (draggableItem === listItem) e.preventDefault(); 
+                        if (dragModeActive || draggableItem === listItem) e.preventDefault(); 
                     });
 
                     // Remove Bookmark button
@@ -532,6 +532,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    // Long-press handler for desktop mouse to enter drag mode
+    function handleMouseDown(e) {
+        if (dragModeActive) return;
+        const item = e.target.closest('.list-group-item');
+        if (!item) return;
+
+        longPressItem = item;
+        longPressTimer = setTimeout(() => {
+            if (longPressItem) {
+                enterDragMode(longPressItem);
+                longPressItem = null;
+            }
+        }, 500);
+    }
+
+    function handleMouseEnd(e) {
+        if (longPressTimer) {
+            clearTimeout(longPressTimer);
+            longPressTimer = null;
+        }
+        longPressItem = null;
+    }
+
     // Long-press handler for mobile to enter drag mode
     function handleTouchStart(e) {
         const item = e.target.closest('.list-group-item');
@@ -563,10 +586,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // Suppress context menu while in drag-rearrange mode
+    document.addEventListener('contextmenu', (e) => {
+        if (dragModeActive) e.preventDefault();
+    });
+
     // Setup drag to reorder listeners
     function setupDragListeners() {
         if (!bookmarksContainer) return;
         bookmarksContainer.addEventListener('mousedown', dragStart);
+        bookmarksContainer.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('mouseup', handleMouseEnd);
         bookmarksContainer.addEventListener('touchstart', (e) => {
             handleTouchStart(e);
             dragStart(e);
