@@ -187,11 +187,17 @@
         text-decoration: underline;
     }
 
-    body.dark-mode #did-you-mean { color: #aaa; }
-    body.dark-mode #did-you-mean a { color: #a8e63a; }
+    body.dark-mode #did-you-mean {
+        color: #aaa;
+    }
+
+    body.dark-mode #did-you-mean a {
+        color: #a8e63a;
+    }
 
     /* Cover Search Wrapper */
-    .cover-search-wrapper {        background: transparent;
+    .cover-search-wrapper {
+        background: transparent;
         padding: 0;
         padding-top: 40px;
         max-width: 100%;
@@ -602,6 +608,10 @@
         font-size: 20px;
     }
 
+    .logo {
+        border-radius: 50% !important;
+    }
+
     @media (max-width: 768px) {
         #cv-bat {
             height: 50vh;
@@ -748,7 +758,6 @@
             color: #fff;
             transition: width 0.1s ease;
         }
-
 
         .category-tab {
             padding: 8px 12px;
@@ -1091,7 +1100,7 @@
                     // Re-run after data loads in case input was already restored
                     if (searchInput.value) updateDidYouMean(searchInput.value);
                 })
-                .catch(() => {});
+                .catch(() => { });
 
             // Restore service number from sessionStorage if it exists (for back navigation)
             const savedService = sessionStorage.getItem('lastServiceSearch');
