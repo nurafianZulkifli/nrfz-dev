@@ -290,6 +290,13 @@ body.dark-mode li.breadcrumb-item a {
         justify-content: center;
         pointer-events: none;
         padding-bottom: env(safe-area-inset-bottom);
+        will-change: transform;
+        transform: translateZ(0);
+        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .mobile-bottom-nav.nav-hiding {
+        transition: transform 0.22s cubic-bezier(0.4, 0, 1, 1);
     }
 
     .mobile-bottom-nav::before {
