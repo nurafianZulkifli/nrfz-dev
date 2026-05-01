@@ -2716,6 +2716,9 @@ li.breadcrumb-item a:hover {
     max-width: 100%;
     width: 100%;
     padding-left: 35px;
+    color: #acacac;
+    background-color: #ffffff86;
+    border: 2px solid #acacac;
 }
 
 .form-control::placeholder {
