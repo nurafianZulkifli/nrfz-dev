@@ -1,4 +1,16 @@
 /* ===== PWA Splash Screen ===== */
+
+/* ===== Native-feel: prevent text selection on interactive elements ===== */
+button,
+.bus-stop,
+.list-group-item,
+.mobile-bottom-nav li,
+.nav-link,
+.breadcrumb-item a {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 #pwa-splash {
     position: fixed;
     inset: 0;
@@ -277,6 +289,7 @@ body.dark-mode li.breadcrumb-item a {
         display: flex !important;
         justify-content: center;
         pointer-events: none;
+        padding-bottom: env(safe-area-inset-bottom);
     }
 
     .mobile-bottom-nav::before {
@@ -285,7 +298,7 @@ body.dark-mode li.breadcrumb-item a {
         left: 0;
         right: 0;
         bottom: 0;
-        height: 120px;
+        height: calc(120px + env(safe-area-inset-bottom));
         background: linear-gradient(to top, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
