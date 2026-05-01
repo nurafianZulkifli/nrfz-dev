@@ -43,7 +43,10 @@
 <style>
     #cv-bat-subp {
         height: 0vh;
+        position: relative;
     }
+
+
 
     .fl {
         font-size: 15px;
@@ -245,12 +248,17 @@
         font-size: 35px;
         font-weight: bold;
         margin-left: 12px;
+        margin-right: 12px;
         cursor: default;
+        flex: 1;
+        min-width: 0;
     }
 
     .bus-stop-info {
         display: flex;
         align-items: center;
+        gap: 0.5rem;
+        width: 100%;
     }
 
     #collapse-map-btn,
@@ -338,6 +346,20 @@
         transform: translateY(-3px);
         color: #fff !important;
         background-color: #c7e3fb;
+    }
+
+    .btn-busloc2 {
+        background-color: #fff;
+        color: #000;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    body.dark-mode .btn-busloc2 {
+        background-color: #1c1f2b;
+        color: #fff;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
 
@@ -801,8 +823,7 @@
         }
 
         .bus-stop-info {
-            flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .bus-stop-description,
@@ -847,6 +868,7 @@
             margin-bottom: 1em;
             margin-right: 1em
         }
+
         .btn-mar {
             width: auto;
         }
@@ -905,6 +927,9 @@
 </style>
 
 <body>
+    <a href="./alerts.html" class="alerts-btn" aria-label="Bus service alerts" title="Alerts">
+        <i class="fa-regular fa-triangle-exclamation"></i>
+    </a>
     <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
     <div class="breadcrumb-fixed-placeholder">
         <nav aria-label="breadcrumb" style="margin-bottom:0;">
@@ -944,10 +969,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="./ann.html" class="nav-link" id="ann-nav-desktop">
-                        <i class="fa-regular fa-bullhorn"></i>
-                        <span>Announcements</span>
-                        <span class="ann-indicator-dot"></span>
+                    <a href="./alerts.html" class="nav-link" id="ann-nav-desktop">
+                        <i class="fa-regular fa-triangle-exclamation"></i>
+                        <span>Alerts</span>
+                        <span class="alerts-indicator-dot"></span>
                     </a>
                 </li>
                 <li class="nav-item ">
@@ -978,10 +1003,10 @@
                 </a>
             </li>
             <li>
-                <a href="./ann.html" id="ann-nav-mobile">
+                <a href="./alerts.html" id="ann-nav-mobile">
                     <span class="icon">
-                        <i class="fa-regular fa-bullhorn"></i>
-                        <span class="ann-indicator-dot"></span>
+                        <i class="fa-regular fa-triangle-exclamation"></i>
+                        <span class="alerts-indicator-dot"></span>
                     </span>
                 </a>
             </li>
@@ -1111,6 +1136,13 @@
                     </p>
                 </div>
             </div>
+
+            <!-- All Bus Services Timings -->
+            <div id="all-timings-section" style="display: none; margin-top: 2em; text-align: center;">
+                <a id="all-timings-link" href="javascript:void(0)" class="btn btn-busloc btn-busloc2 btn-sm">
+                    <i class="fa-regular fa-clock"></i>&nbsp;First/Last Bus Timings
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1162,6 +1194,7 @@
     </script>
 
     <script src="./js/ann-indicator.js"></script>
+    <script src="./js/alerts-indicator.js"></script>
 
     <script src="../js/back-to-top.js"></script>
 </body>

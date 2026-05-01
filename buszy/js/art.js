@@ -92,6 +92,27 @@ let activeMapServiceNo = null; // Track which service is currently shown on the 
 let busMarkers = []; // [{marker, lat, lng, estimatedArrival, busLabel}] for live position updates
 let mapRefreshIntervalId = null; // Dedicated fast interval for map position updates
 
+// Manage the bottom all-timings button (module-scope so fetchBusArrivals can call them)
+function showBottomTimingsBtn(code) {
+    const section = document.getElementById('all-timings-section');
+    const link = document.getElementById('all-timings-link');
+    if (!section || !link || !code || !code.trim()) return;
+    link.href = getBasePath() + 'buszy/first-last.html?BusStopCode=' + encodeURIComponent(code.trim());
+    section.style.display = '';
+}
+
+function hideBottomTimingsBtn() {
+    const section = document.getElementById('all-timings-section');
+    if (section) section.style.display = 'none';
+}
+
+function updateBottomTimingsBtn(code) {
+    const link = document.getElementById('all-timings-link');
+    if (link && code && code.trim()) {
+        link.href = getBasePath() + 'buszy/first-last.html?BusStopCode=' + encodeURIComponent(code.trim());
+    }
+}
+
 // Fetch only bus locations for the active map service and update markers in-place
 async function refreshActiveMapMarkers() {
     if (!activeMapServiceNo || !map || busMarkers.length === 0) return;
@@ -279,6 +300,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchInput = document.getElementById('bus-stop-search'); // Search input field
     const filterTitle = document.getElementById('filter-title'); // Title element
 
+    // Wire up the chevron toggle for the title collapse panel
+    function wireUpTitleCollapse() {
+        const btn = document.getElementById('title-collapse-btn');
+        const panel = document.getElementById('title-options-collapse');
+        if (!btn || !panel) return;
+        btn.addEventListener('click', () => {
+            const isVisible = panel.style.display !== 'none';
+            if (isVisible) {
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+                panel.getBoundingClientRect();
+                panel.style.maxHeight = '0';
+                panel.style.opacity = '0';
+                panel.classList.remove('show');
+                btn.classList.remove('active');
+                panel.addEventListener('transitionend', () => { panel.style.display = 'none'; }, { once: true });
+            } else {
+                panel.style.display = 'block';
+                panel.style.maxHeight = '0';
+                panel.style.opacity = '0';
+                panel.getBoundingClientRect();
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+                panel.style.opacity = '1';
+                panel.classList.add('show');
+                btn.classList.add('active');
+            }
+        });
+    }
+
     // Get the BusStopCode from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const busStopCode = urlParams.get('BusStopCode');
@@ -353,6 +402,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         window.history.replaceState({}, document.title, url.toString());
+        updateBottomTimingsBtn(currentValue);
     };
 
     searchInput.addEventListener('input', debounce(() => {
@@ -479,6 +529,7 @@ async function fetchBusArrivals() {
             if (incomingSection) {
                 incomingSection.style.display = 'none';
             }
+            hideBottomTimingsBtn();
             return;
         }
 
@@ -534,6 +585,7 @@ async function fetchBusArrivals() {
                     </div>
                 `;
             }
+            hideBottomTimingsBtn();
             return;
         }
 
@@ -633,8 +685,17 @@ async function fetchBusArrivals() {
                 </div>
             `;
             }).join('');
-            // Only update if content has changed
-            if (incomingGrid.innerHTML !== newIncomingHTML) {
+            // Only update ib-time elements in place; fall back to full rebuild if count changed
+            const existingIbTimes = incomingGrid.querySelectorAll('.ib-time');
+            if (existingIbTimes.length === topFourBuses.length) {
+                topFourBuses.forEach((bus, i) => {
+                    const ibTime = existingIbTimes[i];
+                    if (ibTime.innerHTML !== bus.TimeStr) {
+                        ibTime.innerHTML = bus.TimeStr;
+                    }
+                    ibTime.classList.toggle('arrived', bus.TimeStr.includes('Arr'));
+                });
+            } else {
                 incomingGrid.innerHTML = newIncomingHTML;
             }
         } else {
@@ -657,33 +718,21 @@ async function fetchBusArrivals() {
                     if (card) container.appendChild(card);
                 });
             }
+            // Only update span.bus-time elements in place
             data.Services.forEach((service) => {
                 const hasNextBus = service.NextBus && typeof service.NextBus === 'object' && Object.keys(service.NextBus).length > 0;
                 const hasNextBus2 = service.NextBus2 && typeof service.NextBus2 === 'object' && Object.keys(service.NextBus2).length > 0;
-                const cardContentArt = container.querySelector(`.card-bt[data-service="${service.ServiceNo}"] .card-content-art`);
-                if (cardContentArt) {
-                    const newContentHTML = `
-                            ${hasNextBus ? `
-                            <div class="busNo-card d-flex justify-content-between">
-                                <span class="bus-time">${service.NextBus?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '--'}</span>
-                                <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
-                                    ${getLoadIcon(service.NextBus?.Load, service.NextBus?.Type)}
-                                </span>
-                            </div>
-                            ` : `<div style="padding: 0.5rem; color: #999; font-size: 0.9rem;">No arrival data</div>`}
-                            ${hasNextBus2 ? `
-                            <div class="busNo-card d-flex justify-content-between">
-                                <span class="bus-time">${service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : '--'}</span>
-                                <span style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
-                                    ${getLoadIcon(service.NextBus2?.Load, service.NextBus2?.Type)}
-                                </span>
-                            </div>
-                            ` : ''}
-                        `;
-                    if (cardContentArt.innerHTML !== newContentHTML) {
-                        cardContentArt.innerHTML = newContentHTML;
+                const cardBt = container.querySelector(`.card-bt[data-service="${service.ServiceNo}"]`);
+                if (!cardBt) return;
+                const busTimeSpans = cardBt.querySelectorAll('span.bus-time');
+                const times = [];
+                if (hasNextBus) times.push(service.NextBus?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '--');
+                if (hasNextBus2) times.push(service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : '--');
+                busTimeSpans.forEach((span, i) => {
+                    if (times[i] !== undefined && span.innerHTML !== times[i]) {
+                        span.innerHTML = times[i];
                     }
-                }
+                });
             });
             return;
         }
@@ -768,6 +817,7 @@ async function fetchBusArrivals() {
             container.innerHTML = newHTML;
             didUpdate = true;
             renderedBusStopCode = searchInput;
+            showBottomTimingsBtn(searchInput);
 
             // Restore expanded state without animation
             expandedServices.forEach(serviceNo => {
@@ -796,7 +846,7 @@ async function fetchBusArrivals() {
                     const collapseSection = document.querySelector(`.service-options-collapse[data-service="${serviceNo}"]`);
 
                     if (collapseSection) {
-                        const isVisible = collapseSection.style.display !== 'none';
+                        const isVisible = collapseSection.classList.contains('show');
 
                         if (isVisible) {
                             // Animate height to 0, then hide
@@ -807,12 +857,18 @@ async function fetchBusArrivals() {
                             collapseSection.style.opacity = '0';
                             collapseSection.classList.remove('show');
                             button.classList.remove('active');
-                            collapseSection.addEventListener('transitionend', () => {
-                                collapseSection.style.display = 'none';
-                            }, {
-                                once: true
+                            collapseSection._pendingHide = true;
+                            collapseSection.addEventListener('transitionend', function onCollapseEnd(e) {
+                                if (e.propertyName !== 'max-height') return;
+                                collapseSection.removeEventListener('transitionend', onCollapseEnd);
+                                if (collapseSection._pendingHide) {
+                                    collapseSection.style.display = 'none';
+                                    collapseSection._pendingHide = false;
+                                }
                             });
                         } else {
+                            // Cancel any pending hide from an interrupted close animation
+                            collapseSection._pendingHide = false;
                             // Show then animate height in
                             collapseSection.style.display = 'block';
                             collapseSection.style.maxHeight = '0';
