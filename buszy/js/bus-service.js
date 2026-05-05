@@ -879,25 +879,6 @@ function toggleFrequencyDetails(event) {
 let allEnrichedStops = [];
 let currentHighlightStopForSearch = null;
 
-// Build a Map of BusStopCode -> formatted distance string from NBS sessionStorage
-function getNearbyStopMap() {
-    try {
-        const cached = sessionStorage.getItem('nearbyBusStops');
-        if (!cached) return new Map();
-        const stops = JSON.parse(cached);
-        const map = new Map();
-        stops.forEach(s => {
-            const dist = s.distance < 1
-                ? `${(s.distance * 1000).toFixed(0)}m away`
-                : `${s.distance.toFixed(2)}km away`;
-            map.set(String(s.BusStopCode), dist);
-        });
-        return map;
-    } catch (e) {
-        return new Map();
-    }
-}
-
 // Render a (possibly filtered) set of stops into the stops container
 function renderFilteredStops(stops) {
     const container = document.getElementById('stops-container');
@@ -914,10 +895,7 @@ function renderFilteredStops(stops) {
     const basePath = getBasePath();
     const busIconPath = basePath + 'buszy/assets/bus-icon.png';
 
-    const nearbyMap = getNearbyStopMap();
-
     let highlightedElement = null;
-    let firstNearbyElement = null;
 
     stops.forEach((stop, index) => {
         const stopElement = document.createElement('div');
@@ -943,17 +921,6 @@ function renderFilteredStops(stops) {
             </div>
         `;
 
-        // Highlight stops that are in the user's nearby bus stops (NBS sessionStorage)
-        const nearbyDist = nearbyMap.get(stop[0]);
-        if (nearbyDist) {
-            stopElement.classList.add('nearest-stop');
-            if (!firstNearbyElement) firstNearbyElement = stopElement;
-            const badge = document.createElement('div');
-            badge.className = 'nearest-stop-badge';
-            badge.innerHTML = `<i class="fa-solid fa-location-dot"></i> Nearby · ${nearbyDist}`;
-            stopElement.appendChild(badge);
-        }
-
         stopElement.style.cursor = 'pointer';
         stopElement.addEventListener('click', () => {
             window.location.href = getBasePath() + 'buszy/art.html?BusStopCode=' + stop[0];
@@ -965,10 +932,6 @@ function renderFilteredStops(stops) {
     if (highlightedElement) {
         setTimeout(() => {
             highlightedElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
-    } else if (firstNearbyElement) {
-        setTimeout(() => {
-            firstNearbyElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
     }
 }

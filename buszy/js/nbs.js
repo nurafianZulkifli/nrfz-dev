@@ -256,14 +256,16 @@ function displayBusStops(busStops, isCached = true) {
                 </div>
                 <div class="bus-stop-details">
                 <span class="bus-stop-description">${busStop.Description}</span>&nbsp;&nbsp;|&nbsp;
-                <span class="road-name">${busStop.RoadName}</span>&nbsp;&nbsp;|&nbsp;
-                <span class="distance${idx === 0 ? ' distance-nearest' : ''}">${distance}</span>
+                <span class="road-name">${busStop.RoadName}</span>
+                &nbsp;&nbsp;&nbsp;${idx === 0
+                    ? `<span class="nearest-stop-badge"><i class="fa-solid fa-location-dot"></i> Nearest · ${distance}</span>`
+                    : `<span class="distance-badge"><i class="fa-solid fa-location-dot"></i> ${distance}</span>`
+                }
                 </div>
             </div>
             <button class="${isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2'} pin-button">
                 <i class="${isPinned ? 'fa-regular fa-thumbtack-angle-slash' : 'fa-sharp fa-regular fa-thumbtack-angle'}"></i>
             </button>
-            ${idx === 0 ? `<div class="nearest-stop-badge"><i class="fa-solid fa-location-dot"></i> Nearest · ${distance}</div>` : ''}
         `;
 
         // Add click event listener to the entire div

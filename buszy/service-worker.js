@@ -193,7 +193,65 @@ self.addEventListener('message', event => {
       });
       break;
     
+    case 'SHOW_NOTIFICATION': {
+      const payload = event.data.payload || {};
+      const { title, body, tag, url, requireInteraction } = payload;
+      if (title) {
+        self.registration.showNotification(title, {
+          body: body || '',
+          icon: buildPath('buszy/assets/icon-192.png'),
+          badge: buildPath('buszy/assets/icon-192.png'),
+          tag: tag || 'buszy',
+          data: { url: url || self.registration.scope },
+          requireInteraction: requireInteraction || false
+        });
+      }
+      break;
+    }
+    
     default:
       console.log('[Buszy SW] Unknown message type:', event.data.type);
   }
+});
+
+// Push notification handler (for server-sent VAPID push)
+self.addEventListener('push', event => {
+  let data = {};
+  try { data = event.data ? event.data.json() : {}; } catch (e) { /* ignore parse error */ }
+
+  const title = data.title || 'Buszy';
+  const options = {
+    body: data.body || '',
+    icon: buildPath('buszy/assets/icon-192.png'),
+    badge: buildPath('buszy/assets/icon-192.png'),
+    tag: data.tag || 'buszy',
+    data: { url: data.url || self.registration.scope },
+    requireInteraction: data.requireInteraction || false
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+// Notification click handler — focus existing window or open new one
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+
+  const targetUrl = (event.notification.data && event.notification.data.url)
+    ? event.notification.data.url
+    : self.registration.scope;
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
+      // Focus an already-open window at the same URL
+      for (const client of clientList) {
+        if (client.url === targetUrl && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      // Otherwise open a new window
+      if (clients.openWindow) {
+        return clients.openWindow(targetUrl);
+      }
+    })
+  );
 });
