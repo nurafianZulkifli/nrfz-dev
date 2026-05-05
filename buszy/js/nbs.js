@@ -241,7 +241,7 @@ function displayBusStops(busStops, isCached = true) {
         const isPinned = pinnedBusStops.some((stop) => stop.BusStopCode === busStop.BusStopCode);
 
         const busStopElement = document.createElement('div');
-        busStopElement.className = 'bus-stop';
+        busStopElement.className = 'bus-stop' + (idx === 0 ? ' nearest-stop' : '');
         busStopElement.dataset.busStopCode = busStop.BusStopCode;
         
         // Build correct image path for GitHub Pages and Heroku
@@ -263,6 +263,7 @@ function displayBusStops(busStops, isCached = true) {
             <button class="${isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2'} pin-button">
                 <i class="${isPinned ? 'fa-regular fa-thumbtack-angle-slash' : 'fa-sharp fa-regular fa-thumbtack-angle'}"></i>
             </button>
+            ${idx === 0 ? `<div class="nearest-stop-badge"><i class="fa-solid fa-location-dot"></i> Nearest · ${distance}</div>` : ''}
         `;
 
         // Add click event listener to the entire div
@@ -401,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use event delegation for refresh button - listen on nearby-content parent
     const nearbyContent = document.getElementById('nearby-content');
     if (nearbyContent) {
-        console.log('Setting up refresh button event listener on nearby-content');
+        // console.log('Setting up refresh button event listener on nearby-content');
         nearbyContent.addEventListener('click', (event) => {
             if (event.target.closest('#refresh-nearby-btn')) {
                 console.log('Refresh button click detected');

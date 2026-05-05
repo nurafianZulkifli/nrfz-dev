@@ -11,59 +11,6 @@ button,
     -webkit-user-select: none;
 }
 
-/* ===== Pull-to-refresh indicator ===== */
-#ptr-indicator {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(0px) scale(0.6) rotate(0deg);
-    width: 40px;
-    height: 40px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: #1f84a2;
-    opacity: 0;
-    transition: box-shadow 0.2s ease;
-    will-change: transform, opacity;
-    pointer-events: none;
-}
-
-body.dark-mode #ptr-indicator {
-    background: #1c1f2b;
-    color: #7db603;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
-}
-
-#ptr-indicator svg {
-    width: 22px;
-    height: 22px;
-    transition: stroke 0.2s;
-}
-
-#ptr-indicator.ptr-ready {
-    color: #7db603;
-    box-shadow: 0 4px 20px rgba(125, 182, 3, 0.35);
-}
-
-#ptr-indicator.ptr-spinning svg {
-    animation: ptr-spin 0.6s linear infinite;
-}
-
-#ptr-indicator.ptr-hiding {
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    opacity: 0 !important;
-    transform: translateX(-50%) translateY(0px) scale(0.5) rotate(0deg) !important;
-}
-
-@keyframes ptr-spin {
-    to { transform: rotate(360deg); }
-}
-
 /* ===== Native-feel: card & button press states ===== */
 .card:active {
     transform: scale(0.985);
@@ -695,6 +642,33 @@ table th {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* GPS nearest stop highlight on NBS */
+.bus-stop.nearest-stop {
+    background-color: #f0fad6;
+    border: 2px solid #7cb000;
+    box-shadow: 0 0 16px rgba(124, 176, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.bus-stop.nearest-stop:hover {
+    background-color: #e6f5c0;
+    box-shadow: 0 0 24px rgba(124, 176, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nearest-stop-badge {
+    font-size: 0.72rem;
+    color: #4e7a00;
+    font-weight: 600;
+    padding: 2px 8px 2px 6px;
+    border-radius: 12px;
+    background: rgba(124, 176, 0, 0.15);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 0.35rem;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.01em;
+}
+
 .bus-stop-code {
     color: #3294ac !important;
     cursor: pointer;
@@ -862,51 +836,39 @@ body.drag-mode .list-group-item:not(.drag-selected) {
     margin-right: 0em;
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
-.pw-btn-next {
-    position: relative;
-    z-index: 1;
-    min-width: 100px;
-    height: 46px;
-    line-height: 46px;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-block;
-    padding: 0 30px;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: #de652e;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
-    color: #252525;
-    border-radius: 60px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: none;
-    margin-left: 3em;
-    margin-right: 3em;
-}
-
+.pw-btn-next,
 .pw-btn-prev {
     position: relative;
     z-index: 1;
-    min-width: 100px;
-    height: 46px;
-    line-height: 46px;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-block;
-    padding: 0 30px;
-    margin-left: 3em;
-    margin-right: 3em;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: #366ca7;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
-    color: #252525;
-    border-radius: 60px;
+    width: 66px !important;
+    height: 46px !important;
+    min-width: unset;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #de652e;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    border-radius: 50px;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: none;
+    flex-shrink: 0;
+}
+
+.pw-btn-prev:disabled {
+    background-color: #64280c;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.pw-btn-next:disabled {
+    background-color: #64280c;
+    box-shadow: none;
+    cursor: not-allowed;
 }
 
 .pw-btn-next.btn-2,
@@ -914,14 +876,14 @@ body.drag-mode .list-group-item:not(.drag-selected) {
     color: #fff;
 }
 
-.pw-btn-next:focus,
-.pw-btn-next:hover,
-.pw-btn-prev:focus,
-.pw-btn-prev:hover {
-    font-weight: 500;
-    background-color: #6d99c0 !important;
+.pw-btn-next:not(:disabled):focus,
+.pw-btn-next:not(:disabled):hover,
+.pw-btn-prev:not(:disabled):focus,
+.pw-btn-prev:not(:disabled):hover {
+    background-color: #52718d !important;
     color: #fff;
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 /*  */
@@ -1303,6 +1265,22 @@ body.dark-mode .bus-stop:hover {
     background-color: #334250;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .bus-stop.nearest-stop {
+    background-color: #1a2e0a;
+    border: 2px solid #7cb000;
+    box-shadow: 0 0 16px rgba(124, 176, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .bus-stop.nearest-stop:hover {
+    background-color: #203810;
+    box-shadow: 0 0 24px rgba(124, 176, 0, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .nearest-stop-badge {
+    color: #a8d44e;
+    background: rgba(124, 176, 0, 0.18);
 }
 
 body.dark-mode .bus-stop-code {
@@ -1729,38 +1707,18 @@ body.dark-mode .alerts-indicator-dot {
     background-color: #e63946;
 }
 
-/* Mobile bottom nav: border ring on icon instead of dot */
-.mobile-bottom-nav li:has(.alerts-indicator-dot.show) .icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px #e63946;
-    animation: pulse-alerts-border 2s infinite;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Mobile bottom nav: dot badge on icon */
+.mobile-bottom-nav li .icon {
+    position: relative;
 }
 
-/* Desktop navbar: border ring on the alerts nav-link */
-#ann-nav-desktop:has(.alerts-indicator-dot.show) {
-    box-shadow: 0 0 0 2px #e63946;
-    border-radius: 50px;
-    animation: pulse-alerts-border 2s infinite;
-}
-
-@keyframes pulse-alerts-border {
-    0%, 100% { box-shadow: 0 0 0 2px #e63946; }
-    50% { box-shadow: 0 0 0 2.5px rgba(230, 57, 70, 0.35); }
-}
-
-/* Hide the dot everywhere — border ring takes its place */
-.mobile-bottom-nav .alerts-indicator-dot,
-.mobile-bottom-nav .alerts-indicator-dot.show,
-#ann-nav-desktop .alerts-indicator-dot,
-#ann-nav-desktop .alerts-indicator-dot.show {
-    width: 0 !important;
-    height: 0 !important;
-    margin-left: 0 !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
+.mobile-bottom-nav .alerts-indicator-dot.show {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    margin-left: 0;
+    opacity: 1;
+    visibility: visible;
 }

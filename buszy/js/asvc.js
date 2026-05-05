@@ -220,6 +220,8 @@ function displayServices(services, isFiltered = false) {
         container.innerHTML = '<div class="no-services"><p><i class="fa-regular fa-circle-info"></i> No bus services found.</p></div>';
         document.getElementById('prev-button').style.display = 'none';
         document.getElementById('next-button').style.display = 'none';
+        const pi = document.getElementById('page-indicator');
+        if (pi) pi.style.display = 'none';
         return;
     }
     
@@ -319,8 +321,19 @@ function setupPaginationButtons() {
     const updatedNextButton = document.getElementById('next-button');
     
     // Update buttons visibility based on current page
-    updatedPrevButton.style.display = currentPage > 1 ? 'inline-block' : 'none';
-    updatedNextButton.style.display = currentPage < totalPages ? 'inline-block' : 'none';
+    updatedPrevButton.style.display = 'inline-block';
+    updatedPrevButton.disabled = currentPage <= 1;
+    updatedPrevButton.style.cursor = '';
+    updatedNextButton.style.display = 'inline-block';
+    updatedNextButton.disabled = currentPage >= totalPages;
+    updatedNextButton.style.cursor = '';
+
+    // Update page indicator
+    const pageIndicator = document.getElementById('page-indicator');
+    if (pageIndicator) {
+        pageIndicator.textContent = currentPage + ' of ' + totalPages;
+        pageIndicator.style.display = totalPages > 1 ? 'inline' : 'none';
+    }
     
     // Add event listeners
     updatedPrevButton.addEventListener('click', function() {

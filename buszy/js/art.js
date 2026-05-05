@@ -459,6 +459,19 @@ function debounce(func, delay) {
 // Store previous content for comparison
 let previousContainerHTML = '';
 
+// ****************************
+// :: Offline Banner
+// ****************************
+function showOfflineBanner() {
+    const banner = document.getElementById('art-offline-banner');
+    if (banner) banner.style.display = 'flex';
+}
+
+function hideOfflineBanner() {
+    const banner = document.getElementById('art-offline-banner');
+    if (banner) banner.style.display = 'none';
+}
+
 // Track which bus stop is currently rendered to avoid full re-renders on interval
 let renderedBusStopCode = null;
 
@@ -591,6 +604,9 @@ async function fetchBusArrivals() {
 
         const now = new Date();
 
+        // Connection restored — remove offline banner if visible
+        hideOfflineBanner();
+
         // Create a map of destination codes to names from cached bus stops
         let destinationMap = {};
         let customDestinationMap = {};
@@ -624,7 +640,8 @@ async function fetchBusArrivals() {
             }
             // Then try custom destination codes mapping
             if (customDestinationMap[destinationCode]) {
-                return customDestinationMap[destinationCode];
+                const entry = customDestinationMap[destinationCode];
+                return typeof entry === 'string' ? entry : (entry.description || destinationCode);
             }
             // Finally return the code itself if not found
             return destinationCode;
@@ -1215,23 +1232,28 @@ async function fetchBusArrivals() {
         console.error('Error fetching bus arrivals:', error);
         const container = document.getElementById('bus-arrivals-container');
 
-        // If it's a connection error, show refreshing message with spinner
+        // If it's a connection error and we already have cards rendered, keep them visible
+        // and show a non-intrusive offline banner instead
         if (error instanceof TypeError && error.message.includes('fetch')) {
-            container.innerHTML = `
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body" style="text-align: center; padding-top: 0rem; padding-bottom: 0rem; display: flex; align-items: center; justify-content: center; gap: 1em;">
-                            <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status">
-                                                    <circle cx="50" cy="50" r="45">
-                        <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
-                        <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
-                        <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
-                    </circle>
-                            </svg>
-                            <p class="card-text" style="margin: 0;">Network Lost. Retrying...</p>
+            if (renderedBusStopCode !== null) {
+                showOfflineBanner();
+            } else {
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body" style="text-align: center; padding-top: 0rem; padding-bottom: 0rem; display: flex; align-items: center; justify-content: center; gap: 1em;">
+                                <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status">
+                                    <circle cx="50" cy="50" r="45">
+                                        <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" />
+                                        <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                                        <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                                <p class="card-text" style="margin: 0;">Network Lost. Retrying...</p>
+                            </div>
                         </div>
-                    </div>
-                </div>`;
+                    </div>`;
+            }
             return;
         }
 
@@ -1487,7 +1509,7 @@ async function fetchBusLocations() {
         const mapSection = document.querySelector('.bus-location-section'); // Map section container
 
         if (!searchInput) {
-            console.warn('No Bus Stop Code provided.');
+            // console.warn('No Bus Stop Code provided.');
             if (mapSection) {
                 mapSection.style.display = 'none'; // Hide the map if no input is provided
             }
