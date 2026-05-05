@@ -1168,41 +1168,47 @@ async function fetchBusArrivals() {
             // Add event listeners to Notify toggle buttons
             const notifButtons = document.querySelectorAll('.notif-toggle-btn');
             notifButtons.forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    if (!window.BuszyNotifications) {
-                        alert('Notifications are not available in this browser.');
-                        return;
-                    }
-                    const serviceNo = btn.getAttribute('data-service');
-                    const currentStopCode = document.getElementById('bus-stop-search').value.trim();
-                    const monitored = window.BuszyNotifications.getMonitoredServices();
-                    const isMonitored = monitored.some(s => s.stopCode === currentStopCode && s.serviceNo === serviceNo);
+                btn.addEventListener('click', async (event) => {
+                    event.stopPropagation();
+                    try {
+                        if (!window.BuszyNotifications) {
+                            alert('Notifications are not available in this browser.');
+                            return;
+                        }
+                        const serviceNo = btn.getAttribute('data-service');
+                        const currentStopCode = document.getElementById('bus-stop-search').value.trim();
+                        const monitored = window.BuszyNotifications.getMonitoredServices();
+                        const isMonitored = monitored.some(s => s.stopCode === currentStopCode && s.serviceNo === serviceNo);
 
-                    if (isMonitored) {
-                        window.BuszyNotifications.removeMonitoredService(currentStopCode, serviceNo);
-                        updateNotifButtons(currentStopCode);
-                    } else {
-                        const perm = window.BuszyNotifications.getPermissionStatus();
-                        if (perm === 'unsupported') {
-                            alert('Notifications are not supported in this browser.');
-                            return;
+                        if (isMonitored) {
+                            window.BuszyNotifications.removeMonitoredService(currentStopCode, serviceNo);
+                            updateNotifButtons(currentStopCode);
+                        } else {
+                            const perm = window.BuszyNotifications.getPermissionStatus();
+                            if (perm === 'unsupported') {
+                                alert('Notifications are not supported in this browser.');
+                                return;
+                            }
+                            if (perm === 'denied') {
+                                alert('Notifications are blocked. Please enable them in your browser/device settings.');
+                                return;
+                            }
+                            if (perm !== 'granted') {
+                                const result = await window.BuszyNotifications.requestPermission();
+                                if (result !== 'granted') return;
+                            }
+                            const stopDesc = document.querySelector('.bus-stop-description')?.textContent?.trim() || '';
+                            window.BuszyNotifications.addMonitoredService({
+                                stopCode: currentStopCode,
+                                serviceNo,
+                                thresholdMins: 1,
+                                label: stopDesc
+                            });
+                            updateNotifButtons(currentStopCode);
                         }
-                        if (perm === 'denied') {
-                            alert('Notifications are blocked. Please enable them in your browser/device settings.');
-                            return;
-                        }
-                        if (perm !== 'granted') {
-                            const result = await window.BuszyNotifications.requestPermission();
-                            if (result !== 'granted') return;
-                        }
-                        const stopDesc = document.querySelector('.bus-stop-description')?.textContent?.trim() || '';
-                        window.BuszyNotifications.addMonitoredService({
-                            stopCode: currentStopCode,
-                            serviceNo,
-                            thresholdMins: 1,
-                            label: stopDesc
-                        });
-                        updateNotifButtons(currentStopCode);
+                    } catch (err) {
+                        console.error('[Notify] Error in notify button handler:', err);
+                        alert('Could not set up notification: ' + err.message);
                     }
                 });
             });
@@ -1283,7 +1289,15 @@ async function fetchBusArrivals() {
         // If it's a connection error and we already have cards rendered, keep them visible
         // and show a non-intrusive offline banner instead
         // Chrome: 'Failed to fetch', Safari/iOS: 'Load failed', Firefox: 'NetworkError when attempting to fetch resource.'
-        const isNetworkError = error instanceof TypeError;
+        const msg = error.message || '';
+        const isNetworkError = error instanceof TypeError && (
+            !navigator.onLine ||
+            msg.toLowerCase().includes('fetch') ||
+            msg.toLowerCase().includes('load failed') ||
+            msg.toLowerCase().includes('networkerror') ||
+            msg.toLowerCase().includes('network request failed') ||
+            msg.toLowerCase().includes('failed to load')
+        );
         if (isNetworkError) {
             if (renderedBusStopCode !== null) {
                 showOfflineBanner();
