@@ -1282,7 +1282,9 @@ async function fetchBusArrivals() {
 
         // If it's a connection error and we already have cards rendered, keep them visible
         // and show a non-intrusive offline banner instead
-        if (error instanceof TypeError && error.message.includes('fetch')) {
+        // Chrome: 'Failed to fetch', Safari/iOS: 'Load failed', Firefox: 'NetworkError when attempting to fetch resource.'
+        const isNetworkError = error instanceof TypeError;
+        if (isNetworkError) {
             if (renderedBusStopCode !== null) {
                 showOfflineBanner();
             } else {
