@@ -794,9 +794,6 @@ async function fetchBusArrivals() {
                                 ${!serviceExists(service.ServiceNo) ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
                                 <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;Route
                             </button>
-                            <button class="btn btn-busloc btn-sm notif-toggle-btn" data-service="${service.ServiceNo}" title="Get notified when this bus is arriving">
-                                <i class="fa-regular fa-bell"></i>&nbsp;<span class="notif-btn-label">Notify</span>
-                            </button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -1162,56 +1159,6 @@ async function fetchBusArrivals() {
                 });
             });
 
-            // Reflect current notification monitoring state on all Notify buttons
-            updateNotifButtons(searchInput);
-
-            // Add event listeners to Notify toggle buttons
-            const notifButtons = document.querySelectorAll('.notif-toggle-btn');
-            notifButtons.forEach(btn => {
-                btn.addEventListener('click', async (event) => {
-                    event.stopPropagation();
-                    try {
-                        if (!window.BuszyNotifications) {
-                            alert('Notifications are not available in this browser.');
-                            return;
-                        }
-                        const serviceNo = btn.getAttribute('data-service');
-                        const currentStopCode = document.getElementById('bus-stop-search').value.trim();
-                        const monitored = window.BuszyNotifications.getMonitoredServices();
-                        const isMonitored = monitored.some(s => s.stopCode === currentStopCode && s.serviceNo === serviceNo);
-
-                        if (isMonitored) {
-                            window.BuszyNotifications.removeMonitoredService(currentStopCode, serviceNo);
-                            updateNotifButtons(currentStopCode);
-                        } else {
-                            const perm = window.BuszyNotifications.getPermissionStatus();
-                            if (perm === 'unsupported') {
-                                alert('Notifications are not supported in this browser.');
-                                return;
-                            }
-                            if (perm === 'denied') {
-                                alert('Notifications are blocked. Please enable them in your browser/device settings.');
-                                return;
-                            }
-                            if (perm !== 'granted') {
-                                const result = await window.BuszyNotifications.requestPermission();
-                                if (result !== 'granted') return;
-                            }
-                            const stopDesc = document.querySelector('.bus-stop-description')?.textContent?.trim() || '';
-                            window.BuszyNotifications.addMonitoredService({
-                                stopCode: currentStopCode,
-                                serviceNo,
-                                thresholdMins: 1,
-                                label: stopDesc
-                            });
-                            updateNotifButtons(currentStopCode);
-                        }
-                    } catch (err) {
-                        console.error('[Notify] Error in notify button handler:', err);
-                        alert('Could not set up notification: ' + err.message);
-                    }
-                });
-            });
         }
 
         // Live map update: if the map is visible for an active service, update marker positions in-place
@@ -1344,21 +1291,6 @@ async function fetchBusArrivals() {
                 </div>
             </div>`;
     }
-}
-
-// Update Notify button visual state for all currently-rendered service cards
-function updateNotifButtons(stopCode) {
-    if (!stopCode) return;
-    const monitored = window.BuszyNotifications ? window.BuszyNotifications.getMonitoredServices() : [];
-    document.querySelectorAll('.notif-toggle-btn').forEach(btn => {
-        const serviceNo = btn.getAttribute('data-service');
-        const isMonitored = monitored.some(s => s.stopCode === stopCode && s.serviceNo === serviceNo);
-        btn.classList.toggle('notif-active', isMonitored);
-        const icon = btn.querySelector('i');
-        const label = btn.querySelector('.notif-btn-label');
-        if (icon) icon.className = isMonitored ? 'fa-solid fa-bell' : 'fa-regular fa-bell';
-        if (label) label.textContent = isMonitored ? 'Notifying' : 'Notify';
-    });
 }
 
 // Function to get load and fleet icons as FontAwesome HTML
