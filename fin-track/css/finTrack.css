@@ -679,10 +679,22 @@
      color: #dc2626;
  }
 
+ body.dark-mode .type-btn.active-debit {
+     background: rgba(220, 38, 38, 0.2);
+     border-color: #dc2626;
+     color: #ff6b6b;
+ }
+
  .type-btn.active-credit {
      background: #f0fdf4;
      border-color: #16a34a;
      color: #16a34a;
+ }
+
+ body.dark-mode .type-btn.active-credit {
+     background: rgba(22, 163, 74, 0.2);
+     border-color: #16a34a;
+     color: #4ade80;
  }
 
  /* Sheet action buttons */
