@@ -73,19 +73,46 @@
   function renderMonthTabs() {
     const now = new Date();
     const cur = now.getMonth(), curY = now.getFullYear();
-    // show 3 months before and 2 after active
+    const minYear = 2026, minMonth = 0; // Jan 2026
+    // Only show months from Jan 2026 to current month
     const tabs = [];
-    for (let i = -3; i <= 2; i++) {
-      let m = state.activeMonth + i, y = state.activeYear;
-      while (m < 0) { m += 12; y--; }
-      while (m > 11) { m -= 12; y++; }
-      tabs.push({ m, y });
+    for (let y = minYear; y <= curY; y++) {
+      const startM = y === minYear ? minMonth : 0;
+      const endM = y === curY ? cur : 11;
+      for (let m = startM; m <= endM; m++) {
+        tabs.push({ m, y });
+      }
     }
     const container = document.getElementById('monthTabs');
     container.innerHTML = tabs.map(({m, y}) => {
       const active = m === state.activeMonth && y === state.activeYear;
       return `<button class="month-btn${active?' active':''}" onclick="setMonth(${m},${y})">${MONTHS[m]}</button>`;
     }).join('');
+    updateMonthChevrons();
+  }
+
+  function updateMonthChevrons() {
+    const container = document.getElementById('monthTabs');
+    if (!container) return;
+    const wrapper = container.parentElement;
+    if (!wrapper) return;
+    const leftChevron = wrapper.querySelector('.month-tabs-chevron.left');
+    const rightChevron = wrapper.querySelector('.month-tabs-chevron.right');
+    if (!leftChevron || !rightChevron) return;
+    
+    const isAtStart = state.activeMonth === 0 && state.activeYear === 2026;
+    const now = new Date();
+    const isAtEnd = state.activeMonth === now.getMonth() && state.activeYear === now.getFullYear();
+    
+    leftChevron.classList.toggle('disabled', isAtStart);
+    rightChevron.classList.toggle('disabled', isAtEnd);
+  }
+
+  function scrollMonthTabs(direction) {
+    const container = document.getElementById('monthTabs');
+    if (!container) return;
+    const scrollAmount = 150;
+    container.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount;
   }
 
   function renderBalance() {
@@ -373,3 +400,57 @@
     history.replaceState(null, '', window.location.pathname);
     openAddAccount();
   }
+
+  // ── Draggable Month Tabs ──────────────────────────────────────────────────
+  (function initDraggableTabScroll() {
+    const container = document.getElementById('monthTabs');
+    if (!container) return;
+    let isDown = false, startX, scrollLeft, totalDragDistance = 0;
+    const minDragDistance = 5;
+
+    container.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+      totalDragDistance = 0;
+      container.classList.add('dragging');
+    });
+
+    container.addEventListener('mouseleave', () => {
+      isDown = false;
+      container.classList.remove('dragging');
+    });
+
+    container.addEventListener('mouseup', () => {
+      isDown = false;
+      container.classList.remove('dragging');
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 0.5;
+      totalDragDistance += Math.abs(walk);
+      container.scrollLeft = scrollLeft - walk;
+    });
+
+    let touchStartX, touchScrollLeft;
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].pageX - container.offsetLeft;
+      touchScrollLeft = container.scrollLeft;
+      container.classList.add('dragging');
+    });
+
+    container.addEventListener('touchmove', (e) => {
+      if (touchStartX === null) return;
+      const x = e.touches[0].pageX - container.offsetLeft;
+      const walk = (x - touchStartX) * 0.5;
+      container.scrollLeft = touchScrollLeft - walk;
+    });
+
+    container.addEventListener('touchend', () => {
+      touchStartX = null;
+      container.classList.remove('dragging');
+    });
+  })();

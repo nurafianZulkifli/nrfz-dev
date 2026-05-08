@@ -93,7 +93,15 @@
                             <span id="acctSwitcherName">Account</span>
                             <i class="fa-regular fa-chevron-down" style="font-size:0.75em; opacity:0.7;"></i>
                         </button>
-                        <div class="month-tabs-container" id="monthTabs"></div>
+                        <div class="month-tabs-wrapper">
+                            <button class="month-tabs-chevron left" onclick="scrollMonthTabs('left')">
+                                <i class="fa-regular fa-chevron-left"></i>
+                            </button>
+                            <div class="month-tabs-container" id="monthTabs"></div>
+                            <button class="month-tabs-chevron right" onclick="scrollMonthTabs('right')">
+                                <i class="fa-regular fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -503,12 +503,12 @@
             <div style="margin-bottom: 3em; margin-top: 0;">
                 <h3 class="other-apps-heading">Other Apps</h3>
                 <div class="other-apps-grid">
-                    <div class="other-apps-card">
-                        <a href="../buszy/index.html" style="display: flex; align-items: center; gap: 16px; flex: 1; text-decoration: none; color: inherit;">
+                    <div class="other-apps-card" id="randomAppCard">
+                        <a href="" style="display: flex; align-items: center; gap: 16px; flex: 1; text-decoration: none; color: inherit;" id="appLink">
                             <div class="other-apps-icon">
-                                <img src="../buszy/assets/icon-512.png" alt="Buszy" width="48" height="48">
+                                <img id="appIcon" src="" alt="" width="48" height="48">
                             </div>
-                            <h5 class="other-apps-name">Buszy</h5>
+                            <h5 class="other-apps-name" id="appName"></h5>
                         </a>
                         <a href="../index.html" class="other-apps-chevron">
                             <i class="fa-regular fa-chevron-right"></i>
@@ -517,54 +517,10 @@
                 </div>
             </div>
 
-            <hr style="margin-top: 1em; margin-bottom: 1em;">
+            <hr ">
 
             <!-- Main Menu List -->
             <div class="list-group">
-                <a href="statistics.html" class="list-group-item list-group-item-action">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-bar-chart"></i> Statistics</h5>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ann.html" class="list-group-item list-group-item-action" id="ann-nav-link">
-                    <div class="d-flex" style="justify-content: space-between; align-items: center;">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-bullhorn"></i> Announcements</h5>
-                        </div>
-                        <span class="ann-indicator-dot"></span>
-                    </div>
-                </a>
-
-                <a href="our-networks.html" class="list-group-item list-group-item-action">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-kit fa-lta-train"></i> Our Networks</h5>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="system-map.html" class="list-group-item list-group-item-action">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-kit fa-lta-map"></i> System Map</h5>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://www.lta.gov.sg/content/ltagov/en/map/fare-calculator.html"
-                    class="list-group-item list-group-item-action">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-external-link"></i> Fare Calculator</h5>
-                        </div>
-                    </div>
-                </a>
-
-                <hr style="margin-top: 2em; margin-bottom: 1em;">
-
                 <a href="settings.html" class="list-group-item list-group-item-action">
                     <div class="d-flex">
                         <div>
@@ -590,8 +546,8 @@
     <script>
         function displayVersion() {
             const versionEl = document.getElementById('app-version-display');
-            if (versionEl && window.APP_VERSIONS && window.APP_VERSIONS.railbuddy) {
-                versionEl.textContent = `Version ${window.APP_VERSIONS.railbuddy}`;
+            if (versionEl && window.APP_VERSIONS && window.APP_VERSIONS['fin-track']) {
+                versionEl.textContent = `Version ${window.APP_VERSIONS['fin-track']}`;
             }
         }
         
@@ -632,6 +588,37 @@
     <script src="js/menu.js"></script>
 
     <script src="../js/back-to-top.js"></script>
+
+    <script>
+        // Randomize Other Apps section
+        document.addEventListener('DOMContentLoaded', function() {
+            const apps = [
+                {
+                    name: 'Buszy',
+                    href: '../buszy/index.html',
+                    icon: '../buszy/assets/icon-512.png'
+                },
+                {
+                    name: 'Rail Buddy',
+                    href: '../rail-buddy/index.html',
+                    icon: '../rail-buddy/assets/icon-512.png'
+                }
+            ];
+            
+            const randomApp = apps[Math.floor(Math.random() * apps.length)];
+            
+            const appLink = document.getElementById('appLink');
+            const appIcon = document.getElementById('appIcon');
+            const appName = document.getElementById('appName');
+            
+            if (appLink && appIcon && appName) {
+                appLink.href = randomApp.href;
+                appIcon.src = randomApp.icon;
+                appIcon.alt = randomApp.name;
+                appName.textContent = randomApp.name;
+            }
+        });
+    </script>
 
 </body>
 
