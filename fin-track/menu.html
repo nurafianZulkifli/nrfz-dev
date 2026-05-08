@@ -17,7 +17,7 @@
     <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/style-tdt.css">
+    <link rel="stylesheet" href="css/finTrack.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
 
@@ -404,30 +404,23 @@
         </nav>
     </div>
 
-    <!-- Navigation Bar -->
+   <!-- Desktop Navbar -->
     <nav class="navbar-container">
         <div class="navbar">
-            <!-- Logo -->
-            <a href="index.html"><img src="assets/logo.png" alt="logo" class="logo" /></a>
-
-            <!-- Navigation Links -->
+            <a href="../index.html">
+                <img src="../img/core-img/logo.png" alt="logo" class="logo" onerror="this.style.display='none'">
+            </a>
             <ul class="navbar-nav" id="navbarNav">
                 <li class="nav-item">
                     <a href="index.html" class="nav-link">
-                        <i class="fa-sharp fa-regular fa-home"></i>
-                        <span>Home</span>
+                        <i class="fa-regular fa-chart-line"></i>
+                        <span>Overview</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="history.html" class="nav-link">
-                        <i class="fa-regular fa-clock-rotate-left"></i>
-                        <span>History</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="first-last.html" class="nav-link">
-                        <i class="fa-regular fa-clock"></i>
-                        <span>Timings</span>
+                    <a href="index.html#addAccount" class="nav-link">
+                        <i class="fa-regular fa-plus"></i>
+                        <span>Add</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -438,41 +431,26 @@
                 </li>
             </ul>
         </div>
-
     </nav>
 
-    <!-- Mobile Bottom Navigation Bar -->
+    <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
         <ul>
             <li>
                 <a href="index.html">
-                    <span class="icon">
-                        <i class="fa-sharp fa-regular fa-home"></i>
-                    </span>
-                    <span class="label">Home</span>
+                    <span class="icon"><i class="fa-regular fa-chart-line"></i></span>
+                    <span class="label">Overview</span>
                 </a>
             </li>
             <li>
-                <a href="history.html">
-                    <span class="icon">
-                        <i class="fa-regular fa-clock-rotate-left"></i>
-                    </span>
-                    <span class="label">History</span>
-                </a>
-            </li>
-            <li>
-                <a href="first-last.html">
-                    <span class="icon">
-                        <i class="fa-regular fa-clock"></i>
-                    </span>
-                    <span class="label">Timings</span>
+                <a href="index.html#addAccount">
+                    <span class="icon"><i class="fa-regular fa-plus"></i></span>
+                    <span class="label">Add</span>
                 </a>
             </li>
             <li class="active">
                 <a href="menu.html">
-                    <span class="icon">
-                        <i class="fa-regular fa-bars"></i>
-                    </span>
+                    <span class="icon"><i class="fa-regular fa-bars"></i></span>
                     <span class="label">Menu</span>
                 </a>
             </li>
@@ -505,9 +483,9 @@
                         </nav>
                         <div class="app-branding-section">
                             <div class="app-branding-logo">
-                                <img src="assets/icon-512.png" alt="RailBuddy" class="app-branding-icon">
+                                <img src="assets/icon-512.png" alt="FinTrack" class="app-branding-icon">
                             </div>
-                            <h1 class="app-branding-title">RailBuddy</h1>
+                            <h1 class="app-branding-title">FinTrack</h1>
                             <p class="app-branding-version" id="app-version-display"></p>
                         </div>
                     </div>
@@ -627,12 +605,13 @@
         setTimeout(displayVersion, 500);
     </script>
 
-    <script src="js/mob-navtabs.js"></script>
+    <script src="../js/mob-navtabs.js"></script>
 
-    <script src="js/mob-navtabs-tooltip.js"></script>
-    <script src="js/haptic.js"></script>
+    <script src="../js/mob-navtabs-tooltip.js"></script>
 
-    <script src="tdt-subp.js"></script>
+    <script src="js/finTrack.js"></script>
+
+    <script src="js/ft-subp.js"></script>
 
     <script src="../js/jquery.min.js"></script>
 
@@ -651,8 +630,6 @@
     <script src="../js/utils.js"></script>
 
     <script src="js/menu.js"></script>
-
-    <script src="./js/ann-indicator.js"></script>
 
     <script src="../js/back-to-top.js"></script>
 
