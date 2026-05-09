@@ -50,10 +50,14 @@
     });
   }
 
-  // Balance is always cumulative across ALL months — month tabs only filter the list view
+  // Balance counts transactions from cycleStartDate onwards (or all if no reset done)
   function calcBalance() {
     const acct = activeAccount();
-    const totalSpent = acct.transactions.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
+    const since = acct.cycleStartDate || null;
+    const txns = since ? acct.transactions.filter(t => t.date >= since) : acct.transactions;
+    const totalDebits = txns.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
+    const totalCredits = txns.filter(t => t.type === 'credit').reduce((s,t) => s + t.amount, 0);
+    const totalSpent = Math.max(0, totalDebits - totalCredits);
     return { totalSpent, remaining: acct.allocated - totalSpent };
   }
 
@@ -84,36 +88,40 @@
       }
     }
     const container = document.getElementById('monthTabs');
-    container.innerHTML = tabs.map(({m, y}) => {
+    container.innerHTML = tabs.reverse().map(({m, y}) => {
       const active = m === state.activeMonth && y === state.activeYear;
       return `<button class="month-btn${active?' active':''}" onclick="setMonth(${m},${y})">${MONTHS[m]}</button>`;
     }).join('');
-    updateMonthChevrons();
+    // Scroll active tab into view
+    const activeBtn = container.querySelector('.month-btn.active');
+    if (activeBtn) setTimeout(() => activeBtn.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }), 50);
+    if (window._updateMonthScrollIndicator) setTimeout(window._updateMonthScrollIndicator, 200);
+    // Update chevrons after layout settles
+    setTimeout(updateMonthChevrons, 300);
   }
 
   function updateMonthChevrons() {
     const container = document.getElementById('monthTabs');
-    if (!container) return;
-    const wrapper = container.parentElement;
-    if (!wrapper) return;
-    const leftChevron = wrapper.querySelector('.month-tabs-chevron.left');
-    const rightChevron = wrapper.querySelector('.month-tabs-chevron.right');
-    if (!leftChevron || !rightChevron) return;
+    const indicator = document.getElementById('monthScrollIndicator');
+    if (!container || !indicator) return;
     
-    const isAtStart = state.activeMonth === 0 && state.activeYear === 2026;
-    const now = new Date();
-    const isAtEnd = state.activeMonth === now.getMonth() && state.activeYear === now.getFullYear();
+    const hasScroll = container.scrollWidth > container.clientWidth;
+    const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 10;
     
-    leftChevron.classList.toggle('disabled', isAtStart);
-    rightChevron.classList.toggle('disabled', isAtEnd);
+    if (hasScroll) {
+      container.classList.add('has-scroll');
+    } else {
+      container.classList.remove('has-scroll');
+    }
+    
+    if (hasScroll && !isAtEnd) {
+      indicator.classList.add('visible');
+    } else {
+      indicator.classList.remove('visible');
+    }
   }
 
-  function scrollMonthTabs(direction) {
-    const container = document.getElementById('monthTabs');
-    if (!container) return;
-    const scrollAmount = 150;
-    container.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount;
-  }
+  function navigateMonth() {}
 
   function renderBalance() {
     const { totalSpent, remaining } = calcBalance();
@@ -350,8 +358,12 @@
   function renderAccountList() {
     const list = document.getElementById('acctList');
     list.innerHTML = state.accounts.map(a => {
-      const spent = a.transactions.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
-      const rem = a.allocated - spent;
+      const since = a.cycleStartDate || null;
+      const txns = since ? a.transactions.filter(t => t.date >= since) : a.transactions;
+      const totalDebits = txns.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
+      const totalCredits = txns.filter(t => t.type === 'credit').reduce((s,t) => s + t.amount, 0);
+      const totalSpent = Math.max(0, totalDebits - totalCredits);
+      const rem = a.allocated - totalSpent;
       const active = a.id === state.activeAccountId;
       return `
         <div class="acct-item${active ? ' active' : ''}" onclick="switchAccount('${a.id}')">
@@ -374,6 +386,15 @@
     save();
     closeOverlay('acctSwitcherOverlay');
     renderAll();
+  }
+
+  function resetMonth() {
+    const acct = activeAccount();
+    if (!confirm('Reset balance for "' + acct.name + '"? Transactions are kept but the balance will restart from today with SGD ' + acct.allocated.toFixed(2) + ' allocated.')) return;
+    acct.cycleStartDate = new Date().toISOString().slice(0, 10);
+    save();
+    renderAll();
+    showToast('Balance reset! History preserved.');
   }
 
   function deleteAccount(id) {
@@ -401,56 +422,72 @@
     openAddAccount();
   }
 
-  // ── Draggable Month Tabs ──────────────────────────────────────────────────
+  // ── Month Tabs Scroll Indicator ─────────────────────────────────────────
+  (function initScrollIndicator() {
+    const container = document.getElementById('monthTabs');
+    const indicator = document.getElementById('monthScrollIndicator');
+    if (!container || !indicator) return;
+
+    function updateScrollIndicator() {
+      const hasScroll = container.scrollWidth > container.clientWidth;
+      const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 10;
+      if (hasScroll && !isAtEnd) {
+        indicator.classList.add('visible');
+      } else {
+        indicator.classList.remove('visible');
+      }
+    }
+
+    setTimeout(updateScrollIndicator, 150);
+    window.addEventListener('resize', updateScrollIndicator);
+    container.addEventListener('scroll', updateScrollIndicator);
+    indicator.addEventListener('click', () => {
+      container.scrollBy({ left: 150, behavior: 'smooth' });
+    });
+
+    window._updateMonthScrollIndicator = updateScrollIndicator;
+  })();
+
+  // ── Draggable Month Tabs (matches dstabs.js pattern) ─────────────────────
   (function initDraggableTabScroll() {
     const container = document.getElementById('monthTabs');
     if (!container) return;
-    let isDown = false, startX, scrollLeft, totalDragDistance = 0;
-    const minDragDistance = 5;
+    let isDown = false, startX, scrollLeft, lastTouchX = 0;
 
     container.addEventListener('mousedown', (e) => {
       isDown = true;
+      container.classList.add('dragging');
       startX = e.pageX - container.offsetLeft;
       scrollLeft = container.scrollLeft;
-      totalDragDistance = 0;
-      container.classList.add('dragging');
     });
-
-    container.addEventListener('mouseleave', () => {
-      isDown = false;
-      container.classList.remove('dragging');
-    });
-
-    container.addEventListener('mouseup', () => {
-      isDown = false;
-      container.classList.remove('dragging');
-    });
-
+    container.addEventListener('mouseleave', () => { isDown = false; container.classList.remove('dragging'); });
+    container.addEventListener('mouseup', () => { isDown = false; container.classList.remove('dragging'); });
     container.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 0.5;
-      totalDragDistance += Math.abs(walk);
+      const walk = (x - startX) * 2;
       container.scrollLeft = scrollLeft - walk;
     });
 
-    let touchStartX, touchScrollLeft;
     container.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].pageX - container.offsetLeft;
-      touchScrollLeft = container.scrollLeft;
+      isDown = true;
       container.classList.add('dragging');
-    });
-
+      startX = e.touches[0].pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+      lastTouchX = e.touches[0].pageX;
+    }, { passive: false });
+    container.addEventListener('touchend', () => { isDown = false; container.classList.remove('dragging'); }, { passive: false });
     container.addEventListener('touchmove', (e) => {
-      if (touchStartX === null) return;
-      const x = e.touches[0].pageX - container.offsetLeft;
-      const walk = (x - touchStartX) * 0.5;
-      container.scrollLeft = touchScrollLeft - walk;
-    });
-
-    container.addEventListener('touchend', () => {
-      touchStartX = null;
-      container.classList.remove('dragging');
-    });
+      if (!isDown) return;
+      const touchX = e.touches[0].pageX - container.offsetLeft;
+      const walk = (touchX - startX) * 2;
+      container.scrollLeft = scrollLeft - walk;
+      if (Math.abs(e.touches[0].pageX - lastTouchX) > 5) e.preventDefault();
+      lastTouchX = e.touches[0].pageX;
+    }, { passive: false });
+    
+    container.addEventListener('scroll', updateMonthChevrons);
+    window.addEventListener('resize', updateMonthChevrons);
+    updateMonthChevrons();
   })();

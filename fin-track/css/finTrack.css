@@ -64,6 +64,27 @@
      .ft-cover-wrapper {
          padding: 12px 16px;
      }
+
+    .breadcrumb.breadcrumb-fixed {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        transform: none;
+        width: auto;
+        max-width: 90vw;
+        z-index: 2000;
+        background: rgba(253, 253, 253, 0.635);
+        backdrop-filter: blur(25px);
+        margin: 0;
+        border-radius: 50px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 1.5px 8px rgba(0, 0, 0, 0.08);
+        padding: 0.75em 0em;
+        display: flex;
+        align-items: center;
+        opacity: 0.97;
+        transition: background 0.2s, box-shadow 0.2s, top 0.2s;
+    }
+     
  }
 
  .ft-cover-wrapper h2 {
@@ -75,21 +96,47 @@
  }
 
  /* Month tabs – reusing Buszy category-tab pattern */
+ /* Month tabs — Buszy category-tab style */
+ .month-tabs-wrapper {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 8px;
+     width: 100%;
+     padding: 0 16px;
+     position: relative;
+     overflow: visible;
+     height: 60px;
+     box-sizing: border-box;
+ }
+
  .month-tabs-container {
      display: flex;
-     gap: 8px;
+     gap: 16px;
+     margin-bottom: 0;
+     padding: 0;
      overflow-x: auto;
      overflow-y: hidden;
+     scroll-behavior: smooth;
+     flex: 0 1 auto;
+     max-width: calc(100% - 16px);
      scrollbar-width: none;
-     padding: 4px 8px 8px;
-     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-     mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+     -ms-overflow-style: none;
      cursor: grab;
      user-select: none;
      -webkit-user-select: none;
-     scroll-behavior: smooth;
-     flex: 1;
-     min-width: 0;
+ }
+
+ .month-tabs-container.has-scroll {
+     mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);
+     -webkit-mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);
+ }
+
+ @media (max-width: 768px) {
+     .month-tabs-container {
+         flex: 0 1 auto;
+         max-width: calc(100% - 16px);
+     }
  }
 
  .month-tabs-container.dragging {
@@ -101,107 +148,127 @@
      display: none;
  }
 
- /* Month tabs chevron buttons */
- .month-tabs-wrapper {
-     position: relative;
-     display: flex;
+ .month-scroll-indicator {
+     display: none;
      align-items: center;
      justify-content: center;
-     gap: 8px;
- }
-
- .month-tabs-chevron {
-     width: 32px;
-     height: 32px;
-     background: rgba(255, 255, 255, 0.15);
-     border: 1.5px solid rgba(255, 255, 255, 0.25);
-     border-radius: 8px;
+     border: none;
+     background: transparent;
      color: #fff;
+     font-size: 1.1rem;
      cursor: pointer;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     font-size: 0.9rem;
-     transition: all 0.2s;
-     backdrop-filter: blur(8px);
-     user-select: none;
-     -webkit-user-select: none;
+     padding: 8px 12px;
      flex-shrink: 0;
+     transition: color 0.2s;
  }
 
- .month-tabs-chevron:hover {
-     background: rgba(255, 255, 255, 0.25);
-     border-color: rgba(255, 255, 255, 0.4);
+ .month-scroll-indicator:hover {
+     color: #107d9c;
  }
 
- .month-tabs-chevron:active {
-     transform: scale(0.95);
+ .month-scroll-indicator.visible {
+     display: flex;
  }
 
- .month-tabs-chevron.disabled {
-     opacity: 0.4;
-     cursor: not-allowed;
+ body.dark-mode .month-scroll-indicator {
+     color: #fff;
  }
 
- .month-tabs-chevron.disabled:hover {
-     background: rgba(255, 255, 255, 0.15);
-     border-color: rgba(255, 255, 255, 0.25);
- }
-
- body.dark-mode .month-tabs-chevron {
-     background: rgba(255, 255, 255, 0.1);
-     border-color: rgba(255, 255, 255, 0.2);
- }
-
- body.dark-mode .month-tabs-chevron:hover {
-     background: rgba(255, 255, 255, 0.15);
-     border-color: rgba(255, 255, 255, 0.35);
+ body.dark-mode .month-scroll-indicator:hover {
+     color: #6fb8d4;
  }
 
  .month-btn {
-     flex-shrink: 0;
-     padding: 8px 18px;
-     border-radius: 24px;
+     padding: 12px 20px;
      border: none;
-     background: rgba(255, 255, 255, 0.18);
-     color: #fff;
-     font-size: 0.82rem;
-     font-weight: 600;
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+     background: #fff;
      cursor: pointer;
-     transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-     backdrop-filter: blur(8px);
-     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.12);
+     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+     font-size: 0.95rem;
+     font-weight: 500;
+     color: #000;
      white-space: nowrap;
+     display: flex;
+     align-items: center;
+     border-radius: 24px;
+     flex-shrink: 0;
      user-select: none;
      -webkit-user-select: none;
  }
 
  .month-btn:hover {
-     background: rgba(255, 255, 255, 0.28);
+     color: #000;
      transform: translateY(-2px);
+     background-color: #c7e3fb;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
  }
 
  .month-btn.active {
-     background: #fff;
-     color: #107d9c;
-     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+     background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%) !important;
+     color: #fff;
  }
 
  body.dark-mode .month-btn {
-     background: rgba(255, 255, 255, 0.1);
+     background-color: #393e53;
+     color: #ffffff;
+ }
+
+ body.dark-mode .month-btn:hover {
+     color: #fff;
+     transform: translateY(-2px);
+     background-color: #52718d;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
  }
 
  body.dark-mode .month-btn.active {
-     background: #fff;
-     color: #107d9c;
+     color: #fff;
  }
 
  /* Main content card section (overlaps cover like Buszy .pinned) */
  .ft-main {
      margin-top: 4rem;
-     margin-bottom: 2em;
      position: relative;
      z-index: 10;
+ }
+
+ /* Top-right add button */
+ .ft-add-btn-top-right {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     padding: 12px 22px;
+     border: none;
+     background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%);
+     color: #fff;
+     border-radius: 24px;
+     font-size: 0.92rem;
+     font-weight: 600;
+     cursor: pointer;
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.15);
+     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+     user-select: none;
+     -webkit-user-select: none;
+     white-space: nowrap;
+ }
+
+ .ft-add-btn-top-right:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+ }
+
+ .ft-add-btn-top-right:active {
+     transform: scale(0.95);
+     opacity: 0.85;
+ }
+
+ @media (max-width: 768px) {
+     .ft-add-btn-top-right {
+         position: static;
+         align-self: flex-end;
+         margin-bottom: 12px;
+         margin-top: 0;
+     }
  }
 
  /* Balance card */
@@ -211,7 +278,7 @@
      padding: 20px 22px 18px;
      border: 1px solid #2b2b2b33;
      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
-     margin-bottom: 18px;
+     margin-bottom: 50px;
      transition: transform 0.3s ease;
  }
 
@@ -303,6 +370,35 @@
      font-size: 0.75rem;
      color: #6b7280;
      font-weight: 500;
+ }
+
+ .reset-month-btn {
+     background: none;
+     border: 1px solid #6b7280;
+     color: #6b7280;
+     border-radius: 8px;
+     padding: 6px 14px;
+     font-size: 0.78rem;
+     cursor: pointer;
+     display: inline-flex;
+     align-items: center;
+     gap: 6px;
+     transition: border-color 0.2s, color 0.2s;
+ }
+
+ .reset-month-btn:hover {
+     border-color: #ef4444;
+     color: #ef4444;
+ }
+
+ body.dark-mode .reset-month-btn {
+     border-color: #4b5563;
+     color: #9ca3af;
+ }
+
+ body.dark-mode .reset-month-btn:hover {
+     border-color: #ef4444;
+     color: #ef4444;
  }
 
  body.dark-mode .progress-legend {
@@ -984,6 +1080,27 @@
      transition: background 0.2s, transform 0.15s;
  }
 
+ /* 
+        display: block;
+    width: 100%;
+    padding: 0.775rem 2.5rem 0.775rem 1.75rem;
+    margin-top: 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    appearance: none;
+    background-color: #ffffff;
+    background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23607d96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E);
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.2rem;
+    background-clip: padding-box;
+    border-radius: 25px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1); */
+
  .acct-switcher-btn:hover {
      background: rgba(255, 255, 255, 0.28);
  }
@@ -1178,6 +1295,7 @@
      position: fixed;
      top: 20px;
      left: 20px;
+     transform: none;
      width: auto;
      max-width: 90vw;
      z-index: 2000;
@@ -1190,12 +1308,30 @@
      display: flex;
      align-items: center;
      opacity: 0.97;
+     transition: background 0.2s, box-shadow 0.2s, top 0.2s;
  }
 
  body.dark-mode .breadcrumb.breadcrumb-fixed {
      background: #1f243bc9;
      backdrop-filter: blur(25px);
      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+     transition: background 0.2s, box-shadow 0.2s, top 0.2s;
+ }
+
+ .breadcrumb.breadcrumb-fixed.at-top {
+     top: 0;
+     background: none;
+     box-shadow: none;
+     padding-top: 1.5em;
+     padding-left: 0em;
+ }
+
+ body.dark-mode .breadcrumb.breadcrumb-fixed.at-top {
+     top: 0;
+     background: none;
+     box-shadow: none;
+     padding-top: 1.5em;
+     padding-left: 0em;
  }
 
  @media (min-width: 995px) {
@@ -1458,3 +1594,40 @@
      opacity: 1;
      transform: translateX(-50%) translateY(0);
  }
+
+ body.dark-mode .list-group-item {
+     background-color: #1c1f2b;
+     color: #fff !important;
+     border: 1px solid #2b2b2b33;
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+     padding-top: 0.7em;
+     padding-bottom: 0.7em;
+     border-radius: 20px;
+ }
+
+ .list-group-item {
+    transition-duration: 800ms;
+    border-radius: 20px;
+    margin-top: 1em;
+    font-size: 20px;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.list-group-item:last-child {
+    transition-duration: 800ms;
+    border-radius: 20px;
+    margin-bottom: 1em;
+    font-size: 20px;
+}
+
+.lg-menu {
+    font-size: 18px;
+    margin-bottom: 0px;
+    font-weight: bolder;
+}

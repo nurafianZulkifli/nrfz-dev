@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="openAddAccount(); return false;">
+                    <a href="#" class="nav-link" onclick="openAdd(); return false;">
                         <i class="fa-regular fa-plus"></i>
                         <span>Add</span>
                     </a>
@@ -69,7 +69,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" onclick="openAddAccount(); return false;">
+                <a href="#" onclick="openAdd(); return false;">
                     <span class="icon"><i class="fa-regular fa-plus"></i></span>
                     <span class="label">Add</span>
                 </a>
@@ -87,23 +87,20 @@
     <section class="breadcrumb-area-eicw-cover bg-img" id="cv-ft">
         <div class="container">
             <div class="row h-100 align-items-center justify-content-center">
-                <div class="col-12">
+
                     <div class="ft-cover-wrapper">
                         <button class="acct-switcher-btn" id="acctSwitcherBtn" onclick="openAccountSwitcher()">
                             <span id="acctSwitcherName">Account</span>
                             <i class="fa-regular fa-chevron-down" style="font-size:0.75em; opacity:0.7;"></i>
                         </button>
                         <div class="month-tabs-wrapper">
-                            <button class="month-tabs-chevron left" onclick="scrollMonthTabs('left')">
-                                <i class="fa-regular fa-chevron-left"></i>
-                            </button>
                             <div class="month-tabs-container" id="monthTabs"></div>
-                            <button class="month-tabs-chevron right" onclick="scrollMonthTabs('right')">
-                                <i class="fa-regular fa-chevron-right"></i>
+                            <button class="month-scroll-indicator" id="monthScrollIndicator" aria-label="Scroll tabs" onclick="document.getElementById('monthTabs').scrollBy({left: 150, behavior: 'smooth'})">
+                                <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -112,8 +109,9 @@
     <section class="ft-main" id="ft-main">
         <div class="container">
 
-            <!-- Balance Card -->
-            <div class="balance-card">
+            <!-- Balance Card Header with Add Button -->
+            <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+                <div class="balance-card">
                 <div class="balance-row">
                     <div class="balance-item">
                         <span class="balance-label">Allocated</span>
@@ -135,14 +133,11 @@
                     <span id="progressPct">0% used</span>
                     <span id="progressLeft">SGD 0.00 left</span>
                 </div>
-            </div>
-
-            <!-- Add transaction button -->
-            <div style="margin-bottom: 20px;">
-                <button class="ft-add-btn" onclick="openAdd()">
-                    <i class="fa-regular fa-plus"></i>
-                    Add Transaction
-                </button>
+                <div style="margin-top:14px; text-align:right;">
+                    <button class="reset-month-btn" onclick="resetMonth()">
+                        <i class="fa-regular fa-rotate-right"></i> New Month Reset
+                    </button>
+                </div>
             </div>
 
             <!-- Transactions list -->
@@ -162,10 +157,10 @@
             <div class="sheet-title" id="sheetTitle">Add Transaction</div>
             <div class="type-toggle">
                 <button class="type-btn active-debit" id="typeDebit" onclick="setType('debit')">
-                    <i class="fa-regular fa-arrow-down"></i> Money In
+                    <i class="fa-regular fa-arrow-down"></i> Spending
                 </button>
                 <button class="type-btn" id="typeCredit" onclick="setType('credit')">
-                    <i class="fa-regular fa-arrow-up"></i> Money Out
+                    <i class="fa-regular fa-arrow-up"></i> Income
                 </button>
             </div>
             <div class="form-group">
