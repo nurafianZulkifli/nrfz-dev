@@ -1067,42 +1067,23 @@
      display: inline-flex;
      align-items: center;
      gap: 6px;
-     background: rgba(255, 255, 255, 0.18);
-     border: 1.5px solid rgba(255, 255, 255, 0.35);
-     color: #fff;
+     background: rgba(255, 255, 255, 0.747);
+     border: 1px solid #2b2b2b33;
+     color: #111111;
      border-radius: 99px;
      padding: 6px 16px;
-     font-size: 0.83rem;
+     font-size: 1rem;
      font-weight: 600;
      cursor: pointer;
      margin-bottom: 10px;
      backdrop-filter: blur(8px);
      transition: background 0.2s, transform 0.15s;
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1); 
  }
-
- /* 
-        display: block;
-    width: 100%;
-    padding: 0.775rem 2.5rem 0.775rem 1.75rem;
-    margin-top: 5px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #000;
-    appearance: none;
-    background-color: #ffffff;
-    background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23607d96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E);
-    background-position: right 0.75rem center;
-    background-repeat: no-repeat;
-    background-size: 1.2rem;
-    background-clip: padding-box;
-    border-radius: 25px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    border: 1px solid #2b2b2b33;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1); */
+    
 
  .acct-switcher-btn:hover {
-     background: rgba(255, 255, 255, 0.28);
+     background: #c7e3fb;
  }
 
  .acct-switcher-btn:active {
@@ -1227,7 +1208,7 @@
  }
 
  .page-title {
-     font-size: 2rem;
+     font-size: 2.2rem;
      font-weight: 700;
      color: #111827;
      margin: 0 0 4px 0;
@@ -1246,96 +1227,24 @@
      border-color: rgba(255, 255, 255, 0.08);
  }
 
- /* Breadcrumb – matches Buszy exactly */
- li.breadcrumb-item a,
- body.dark-mode li.breadcrumb-item a {
-     padding: 10px;
-     border-radius: 52px;
-     margin-right: 0.3em;
-     margin-left: 0.3em;
-     color: #374151;
-     text-decoration: none;
-     display: inline-flex;
-     align-items: center;
- }
-
- body.dark-mode li.breadcrumb-item a {
-     color: rgba(255, 255, 255, 0.75);
- }
-
+ /* Breadcrumb – copied from Buszy */
  li.breadcrumb-item a:hover,
  body.dark-mode li.breadcrumb-item a:hover {
      padding: 10px;
      border-radius: 52px;
      margin-right: 0.3em;
      margin-left: 0.3em;
-     background: rgba(0, 0, 0, 0.06);
  }
 
- body.dark-mode li.breadcrumb-item a:hover {
-     background: rgba(255, 255, 255, 0.08);
- }
-
- .breadcrumb-item+.breadcrumb-item::before {
-     content: '›';
-     color: #9ca3af;
-     padding-right: 0;
- }
-
- body.dark-mode .breadcrumb-item+.breadcrumb-item::before {
-     color: rgba(255, 255, 255, 0.35);
- }
-
- /* Fixed floating breadcrumb on mobile/tablet */
- .breadcrumb-fixed-placeholder {
-     padding-top: 4em;
- }
-
- .breadcrumb.breadcrumb-fixed {
-     position: fixed;
-     top: 20px;
-     left: 20px;
-     transform: none;
-     width: auto;
-     max-width: 90vw;
-     z-index: 2000;
-     background: rgba(253, 253, 253, 0.635);
-     backdrop-filter: blur(25px);
-     margin: 0;
-     border-radius: 50px;
-     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 1.5px 8px rgba(0, 0, 0, 0.08);
-     padding: 0.75em 0;
-     display: flex;
-     align-items: center;
-     opacity: 0.97;
-     transition: background 0.2s, box-shadow 0.2s, top 0.2s;
- }
-
- body.dark-mode .breadcrumb.breadcrumb-fixed {
-     background: #1f243bc9;
-     backdrop-filter: blur(25px);
-     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
-     transition: background 0.2s, box-shadow 0.2s, top 0.2s;
- }
-
- .breadcrumb.breadcrumb-fixed.at-top {
-     top: 0;
-     background: none;
-     box-shadow: none;
-     padding-top: 1.5em;
-     padding-left: 0em;
- }
-
- body.dark-mode .breadcrumb.breadcrumb-fixed.at-top {
-     top: 0;
-     background: none;
-     box-shadow: none;
-     padding-top: 1.5em;
-     padding-left: 0em;
+ li.breadcrumb-item a,
+ body.dark-mode li.breadcrumb-item a {
+     padding: 10px;
+     border-radius: 52px;
+     margin-right: 0.3em;
+     margin-left: 0.3em;
  }
 
  @media (min-width: 995px) {
-
      .breadcrumb-fixed-placeholder,
      .breadcrumb.breadcrumb-fixed {
          display: none !important;
@@ -1356,7 +1265,68 @@
      }
 
      .page-header-section {
-         padding-top: 0;
+         padding-top: 0em;
+     }
+
+     /* Floating breadcrumb only on mobile/tablet */
+     .breadcrumb-fixed-placeholder {
+         padding-top: 4em;
+     }
+
+     .breadcrumb.breadcrumb-fixed {
+         position: fixed;
+         top: 20px;
+         left: 20px;
+         transform: none;
+         width: auto;
+         max-width: 90vw;
+         z-index: 2000;
+         background: rgba(253, 253, 253, 0.635);
+         backdrop-filter: blur(25px);
+         margin: 0;
+         border-radius: 50px;
+         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 1.5px 8px rgba(0, 0, 0, 0.08);
+         padding: 0.75em 0em;
+         display: flex;
+         align-items: center;
+         opacity: 0.97;
+         transition: background 0.2s, box-shadow 0.2s, top 0.2s;
+     }
+
+     body.dark-mode .breadcrumb.breadcrumb-fixed {
+         background: #1f243bc9;
+         backdrop-filter: blur(25px);
+         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+         position: fixed;
+         top: 20px;
+         left: 20px;
+         transform: none;
+         width: auto;
+         max-width: 90vw;
+         z-index: 2000;
+         margin: 0;
+         border-radius: 50px;
+         padding: 0.75em 0em;
+         display: flex;
+         align-items: center;
+         opacity: 0.97;
+         transition: background 0.2s, box-shadow 0.2s, top 0.2s;
+     }
+
+     .breadcrumb.breadcrumb-fixed.at-top {
+         top: 0;
+         background: none;
+         box-shadow: none;
+         padding-top: 1.5em;
+         padding-left: 0em;
+     }
+
+     body.dark-mode .breadcrumb.breadcrumb-fixed.at-top {
+         top: 0;
+         background: none;
+         box-shadow: none;
+         padding-top: 1.5em;
+         padding-left: 0em;
      }
  }
 
