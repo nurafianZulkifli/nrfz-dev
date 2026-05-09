@@ -362,7 +362,7 @@
       const txns = a.transactions;
       const totalDebits = txns.filter(t => t.type !== 'credit').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
       const totalCredits = txns.filter(t => t.type === 'credit' && t.cat !== 'Transfer').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
-      const totalSpent = Math.max(0, totalDebits - totalCredits);
+      const totalSpent = Math.max(0, totalDebits - totalCredits - (a.resetOffset || 0));
       const rem = a.allocated - totalSpent;
       const active = a.id === state.activeAccountId;
       return `
