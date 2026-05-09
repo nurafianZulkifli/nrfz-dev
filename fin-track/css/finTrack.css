@@ -1,5 +1,5 @@
  #cv-ft {
-     background: linear-gradient(135deg, #107d9c 0%, #354075 100%);
+     background-color: #107d9c;
      background-size: cover;
      background-position: center;
      height: 46vh;
@@ -21,11 +21,11 @@
      margin-left: calc(-50vw + 50%);
      background: linear-gradient(to bottom,
              rgba(236, 236, 234, 0) 0%,
-             rgba(236, 236, 234, 0) 15%,
-             rgba(236, 236, 234, 0.3) 35%,
-             rgba(236, 236, 234, 0.6) 50%,
-             rgba(236, 236, 234, 0.85) 65%,
-             rgba(236, 236, 234, 1) 80%,
+             rgba(236, 236, 234, 0) 40%,
+             rgba(236, 236, 234, 0.3) 55%,
+             rgba(236, 236, 234, 0.6) 68%,
+             rgba(236, 236, 234, 0.85) 80%,
+             rgba(236, 236, 234, 1) 90%,
              rgba(236, 236, 234, 1) 100%);
      -webkit-backdrop-filter: blur(25px);
      backdrop-filter: blur(25px);
@@ -37,11 +37,11 @@
  body.dark-mode #cv-ft::before {
      background: linear-gradient(to bottom,
              rgba(18, 21, 33, 0) 0%,
-             rgba(18, 21, 33, 0) 15%,
-             rgba(18, 21, 33, 0.3) 35%,
-             rgba(18, 21, 33, 0.6) 50%,
-             rgba(18, 21, 33, 0.85) 65%,
-             rgba(18, 21, 33, 1) 80%,
+             rgba(18, 21, 33, 0) 40%,
+             rgba(18, 21, 33, 0.3) 55%,
+             rgba(18, 21, 33, 0.6) 68%,
+             rgba(18, 21, 33, 0.85) 80%,
+             rgba(18, 21, 33, 1) 90%,
              rgba(18, 21, 33, 1) 100%);
  }
 
@@ -103,7 +103,7 @@
      justify-content: center;
      gap: 8px;
      width: 100%;
-     padding: 0 16px;
+     padding: 0 0px;
      position: relative;
      overflow: visible;
      height: 60px;
@@ -112,9 +112,9 @@
 
  .month-tabs-container {
      display: flex;
-     gap: 16px;
+     gap: 8px;
      margin-bottom: 0;
-     padding: 20px;
+     padding: 12px;
      overflow-x: auto;
      overflow-y: hidden;
      scroll-behavior: smooth;
@@ -179,13 +179,13 @@
  }
 
  .month-btn {
-     padding: 12px 20px;
+     padding: 9px 24px;
      border: none;
      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
      background: #fff;
      cursor: pointer;
      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-     font-size: 0.95rem;
+     font-size: 0.875rem;
      font-weight: 500;
      color: #000;
      white-space: nowrap;
@@ -227,7 +227,7 @@
 
  /* Main content card section (overlaps cover like Buszy .pinned) */
  .ft-main {
-     margin-top: 4rem;
+     margin-top: 0rem;
      position: relative;
      z-index: 10;
  }
@@ -1067,12 +1067,12 @@
      display: inline-flex;
      align-items: center;
      gap: 6px;
-     background-color: #393e53de;
+     background-color: #ffffffb4;
      border: 1px solid #2b2b2b33;
      color: #111111;
      border-radius: 99px;
      padding: 6px 16px;
-     font-size: 1rem;
+     font-size: 20px;
      font-weight: 600;
      cursor: pointer;
      margin-bottom: 10px;
@@ -1082,7 +1082,7 @@
  }
 
  .acct-switcher-btn:hover {
-     background: #52718d;
+     background: #c7e3fb;
  }
 
  .acct-switcher-btn:active {
@@ -1112,13 +1112,20 @@
      background: #f0f9ff;
  }
 
+ body.dark-mode .acct-switcher-btn {
+     background-color: #393e53de;
+     border: 1px solid #2b2b2b33;
+     color: #fff;
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+ }
+
  body.dark-mode .acct-item {
      background: #1e2236;
      border-color: #2e3455;
  }
 
  body.dark-mode .acct-item:hover {
-     background: #1a2440;
+     background: #52718d;
      border-color: #4a7fa0;
  }
 
@@ -1599,4 +1606,12 @@
     font-size: 18px;
     margin-bottom: 0px;
     font-weight: bolder;
+}
+
+.fa-chevron-down {
+    color: #000;
+}
+
+body.dark-mode .fa-chevron-down {
+    color: #fff;
 }

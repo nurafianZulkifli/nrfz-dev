@@ -84,7 +84,7 @@
     </nav>
 
     <!-- Cover Section -->
-    <section class="breadcrumb-area-eicw-cover bg-img" id="cv-ft">
+    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-ft">
         <div class="container">
             <div class="row h-100 align-items-center justify-content-center">
 
@@ -295,6 +295,34 @@
             </div>
         </div>
     </div>
+
+    <script src="../js/pwa-config.js"></script>
+
+    <script>
+        if (window.PWAConfig) {
+            const basePath = window.PWAConfig.basePath;
+            const bgElement = document.getElementById('cv-ft');
+
+            const _themePreference = localStorage.getItem('theme-preference') || 'system';
+            const _prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let isDarkMode = false;
+
+            if (_themePreference === 'dark') {
+                isDarkMode = true;
+            } else if (_themePreference === 'light') {
+                isDarkMode = false;
+            } else if (_themePreference === 'system') {
+                isDarkMode = _prefersDark;
+            }
+
+            const imageName = isDarkMode ? 'hero-bg-dark.png' : 'hero-bg.png';
+            const imageUrl = basePath + 'img/bg-img/' + imageName;
+
+            if (bgElement) {
+                bgElement.style.backgroundImage = `url('${imageUrl}')`;
+            }
+        }
+    </script>
 
     <script src="js/finTrack.js"></script>
 
