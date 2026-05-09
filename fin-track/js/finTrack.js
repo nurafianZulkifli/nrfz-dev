@@ -56,7 +56,7 @@
     const txns = acct.transactions;
     const totalDebits = txns.filter(t => t.type !== 'credit').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
     const totalCredits = txns.filter(t => t.type === 'credit' && t.cat !== 'Transfer').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
-    const totalSpent = Math.max(0, totalDebits - totalCredits);
+    const totalSpent = Math.max(0, totalDebits - totalCredits - (acct.resetOffset || 0));
     return { totalSpent, remaining: acct.allocated - totalSpent };
   }
 
@@ -392,8 +392,8 @@
     const acct = activeAccount();
     if (!confirm('Reset balance for "' + acct.name + '"? Transactions are kept but the balance will restart from today with SGD ' + acct.allocated.toFixed(2) + ' allocated.')) return;
     const txns = acct.transactions;
-    const totalDebits = txns.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
-    const totalCredits = txns.filter(t => t.type === 'credit').reduce((s,t) => s + t.amount, 0);
+    const totalDebits = txns.filter(t => t.type !== 'credit').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
+    const totalCredits = txns.filter(t => t.type === 'credit' && t.cat !== 'Transfer').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
     acct.resetOffset = Math.max(0, totalDebits - totalCredits);
     save();
     renderAll();
