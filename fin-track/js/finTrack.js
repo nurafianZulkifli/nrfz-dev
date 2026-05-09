@@ -50,13 +50,12 @@
     });
   }
 
-  // Balance counts transactions from cycleStartDate onwards (or all if no reset done)
+  // Balance counts ALL transactions, offset by any previous reset snapshot
   function calcBalance() {
     const acct = activeAccount();
-    const since = acct.cycleStartDate || null;
-    const txns = since ? acct.transactions.filter(t => t.date >= since) : acct.transactions;
-    const totalDebits = txns.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
-    const totalCredits = txns.filter(t => t.type === 'credit').reduce((s,t) => s + t.amount, 0);
+    const txns = acct.transactions;
+    const totalDebits = txns.filter(t => t.type !== 'credit').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
+    const totalCredits = txns.filter(t => t.type === 'credit' && t.cat !== 'Transfer').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
     const totalSpent = Math.max(0, totalDebits - totalCredits);
     return { totalSpent, remaining: acct.allocated - totalSpent };
   }
@@ -291,6 +290,8 @@
     document.getElementById('settingsMonth').value = state.activeMonth;
     document.getElementById('settingsYear').value = state.activeYear;
     document.getElementById('deleteAccountBtn').style.display = '';
+    const isFirstTime = acct.allocated === 0 && acct.transactions.length === 0;
+    document.getElementById('firstTimeImpex').style.display = isFirstTime ? '' : 'none';
     openOverlay('settingsOverlay');
   }
 
@@ -358,10 +359,9 @@
   function renderAccountList() {
     const list = document.getElementById('acctList');
     list.innerHTML = state.accounts.map(a => {
-      const since = a.cycleStartDate || null;
-      const txns = since ? a.transactions.filter(t => t.date >= since) : a.transactions;
-      const totalDebits = txns.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
-      const totalCredits = txns.filter(t => t.type === 'credit').reduce((s,t) => s + t.amount, 0);
+      const txns = a.transactions;
+      const totalDebits = txns.filter(t => t.type !== 'credit').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
+      const totalCredits = txns.filter(t => t.type === 'credit' && t.cat !== 'Transfer').reduce((s,t) => s + (parseFloat(t.amount) || 0), 0);
       const totalSpent = Math.max(0, totalDebits - totalCredits);
       const rem = a.allocated - totalSpent;
       const active = a.id === state.activeAccountId;
@@ -391,7 +391,10 @@
   function resetMonth() {
     const acct = activeAccount();
     if (!confirm('Reset balance for "' + acct.name + '"? Transactions are kept but the balance will restart from today with SGD ' + acct.allocated.toFixed(2) + ' allocated.')) return;
-    acct.cycleStartDate = new Date().toISOString().slice(0, 10);
+    const txns = acct.transactions;
+    const totalDebits = txns.filter(t => t.type === 'debit').reduce((s,t) => s + t.amount, 0);
+    const totalCredits = txns.filter(t => t.type === 'credit').reduce((s,t) => s + t.amount, 0);
+    acct.resetOffset = Math.max(0, totalDebits - totalCredits);
     save();
     renderAll();
     showToast('Balance reset! History preserved.');
@@ -419,7 +422,7 @@
   renderAll();
   if (window.location.hash === '#addAccount') {
     history.replaceState(null, '', window.location.pathname);
-    openAddAccount();
+    setTimeout(openAddAccount, 100);
   }
 
   // ── Month Tabs Scroll Indicator ─────────────────────────────────────────
