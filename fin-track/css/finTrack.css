@@ -1186,8 +1186,10 @@ body.dark-mode li.breadcrumb-item a {
 }
 
 body.dark-mode .settings-page-section {
-    background: #1e2236;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    background-color: #1c1f2b;
+    color: #fff !important;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .settings-section-title {
@@ -1487,8 +1489,15 @@ body.dark-mode .guide-sheet {
 }
 
 @keyframes guideFadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .guide-icon-wrap {
@@ -1503,13 +1512,35 @@ body.dark-mode .guide-sheet {
     flex-shrink: 0;
 }
 
-.guide-icon-green  { background: #d1fae5; color: #059669; }
-.guide-icon-blue   { background: #dbeafe; color: #2563eb; }
-.guide-icon-teal   { background: #ccfbf1; color: #0d9488; }
+.guide-icon-green {
+    background: #d1fae5;
+    color: #059669;
+}
 
-body.dark-mode .guide-icon-green  { background: #064e3b; color: #34d399; }
-body.dark-mode .guide-icon-blue   { background: #1e3a5f; color: #60a5fa; }
-body.dark-mode .guide-icon-teal   { background: #134e4a; color: #2dd4bf; }
+.guide-icon-blue {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.guide-icon-teal {
+    background: #ccfbf1;
+    color: #0d9488;
+}
+
+body.dark-mode .guide-icon-green {
+    background: #064e3b;
+    color: #34d399;
+}
+
+body.dark-mode .guide-icon-blue {
+    background: #1e3a5f;
+    color: #60a5fa;
+}
+
+body.dark-mode .guide-icon-teal {
+    background: #134e4a;
+    color: #2dd4bf;
+}
 
 .guide-step-label {
     font-size: 0.75rem;
@@ -1584,8 +1615,13 @@ body.dark-mode .guide-tip {
     border-radius: 4px;
 }
 
-body.dark-mode .guide-dot         { background: #374151; }
-body.dark-mode .guide-dot.active  { background: #34d399; }
+body.dark-mode .guide-dot {
+    background: #374151;
+}
+
+body.dark-mode .guide-dot.active {
+    background: #34d399;
+}
 
 .guide-actions {
     display: flex;
