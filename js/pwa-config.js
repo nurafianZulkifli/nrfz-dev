@@ -34,6 +34,14 @@ window.PWAConfig = (() => {
       cacheName: 'rail-buddy-cache-v1'
     },
 
+    finTrack: {
+      appName: 'Fin Track',
+      swPath: basePath + 'fin-track/service-worker.js',
+      scope: basePath + 'fin-track/',
+      manifestPath: basePath + 'fin-track/manifest.json',
+      cacheName: 'fintrack-cache-v1'
+    },
+
     main: {
       appName: 'Works by NRFZ',
       swPath: basePath + 'service-worker.js',
@@ -45,6 +53,7 @@ window.PWAConfig = (() => {
     getConfig: function(app) {
       if (app === 'buszy') return this.buszy;
       if (app === 'rail-buddy') return this.railBuddy;
+      if (app === 'fin-track') return this.finTrack;
       if (app === 'main') return this.main;
       return null;
     }

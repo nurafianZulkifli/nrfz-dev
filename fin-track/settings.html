@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="../css/style-breakpoints.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
 
+    <link rel="apple-touch-startup-image" href="../img/bg-img/hero-bg-dark.png">
+    <link rel="manifest" href="./manifest.json">
+
 </head>
 <body>
     <!-- Apply dark mode before render to avoid flash -->
@@ -37,7 +40,7 @@
                     <a href="index.html"><i class="fa-regular fa-house"></i></a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="index.html"><i class="fa-regular fa-bars"></i></a>
+                    <a href="menu.html"><i class="fa-regular fa-bars"></i></a>
                 </li>
                 <li class="breadcrumb-item">
                     <a href="#"><i class="fa-regular fa-gear"></i></a>
@@ -370,5 +373,18 @@
 
     <script src="../js/cookies-theme-sync.js"></script>
     <script src="../js/mob-navtabs.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js', { scope: './' })
+                .then(reg => {
+                    console.log('Fin Track Service Worker registered', reg);
+                })
+                .catch(err => {
+                    console.warn('Fin Track Service Worker registration failed:', err);
+                });
+        }
+    </script>
 </body>
 </html>
