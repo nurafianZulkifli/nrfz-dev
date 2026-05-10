@@ -6,9 +6,7 @@
 }
  
  #cv-ft {
-     background-color: #107d9c;
-     background-size: cover;
-     background-position: center;
+     background: linear-gradient(135deg, #287c51 0%, #10504d 100%);
      height: 46vh;
      position: relative;
      display: flex;
@@ -641,6 +639,26 @@
      transition: opacity 0.22s;
  }
 
+ .popup-overlay {
+     align-items: center;
+     justify-content: center;
+ }
+
+ .popup-overlay .popup {
+     border-radius: 20px;
+     transform: scale(0.95) translateY(8px);
+     transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.22s;
+     opacity: 0;
+     max-width: 480px;
+     width: calc(100% - 32px);
+     margin: 0;
+ }
+
+ .popup-overlay.open .popup {
+     transform: scale(1) translateY(0);
+     opacity: 1;
+ }
+
  .overlay.open {
      opacity: 1;
      pointer-events: all;
@@ -1070,6 +1088,42 @@
  }
 
  /* ===== Account Switcher ===== */
+ .acct-switcher-wrap {
+     position: relative;
+     display: inline-block;
+ }
+
+ .acct-dropdown {
+     display: none;
+     position: absolute;
+     top: calc(100% + 6px);
+     left: 50%;
+     transform: translateX(-50%);
+     background: #fff;
+     border: 1px solid #e5e7eb;
+     border-radius: 16px;
+     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+     padding: 10px;
+     min-width: 260px;
+     max-width: 340px;
+     z-index: 1000;
+ }
+
+ .acct-dropdown.open {
+     display: block;
+ }
+
+ .acct-dropdown-footer {
+     padding-top: 8px;
+     display: flex;
+     justify-content: center;
+ }
+
+ body.dark-mode .acct-dropdown {
+     background: #1e2236;
+     border-color: #2e3455;
+ }
+
  .acct-switcher-btn {
      display: inline-flex;
      align-items: center;

@@ -352,8 +352,17 @@
   }
 
   function openAccountSwitcher() {
+    const dropdown = document.getElementById('acctDropdown');
+    if (dropdown.classList.contains('open')) {
+      dropdown.classList.remove('open');
+      return;
+    }
     renderAccountList();
-    openOverlay('acctSwitcherOverlay');
+    dropdown.classList.add('open');
+  }
+
+  function closeAccountDropdown() {
+    document.getElementById('acctDropdown').classList.remove('open');
   }
 
   function renderAccountList() {
@@ -384,7 +393,7 @@
     if (!state.accounts.find(a => a.id === id)) return;
     state.activeAccountId = id;
     save();
-    closeOverlay('acctSwitcherOverlay');
+    closeAccountDropdown();
     renderAll();
   }
 
@@ -413,12 +422,17 @@
     }
     save();
     closeOverlay('settingsOverlay');
-    closeOverlay('acctSwitcherOverlay');
+    closeAccountDropdown();
     renderAll();
     showToast('Account deleted');
   }
 
   // ── Init ───────────────────────────────────────────────────────────────
+  document.addEventListener('click', function(e) {
+    const wrap = document.getElementById('acctSwitcherBtn')?.closest('.acct-switcher-wrap');
+    if (wrap && !wrap.contains(e.target)) closeAccountDropdown();
+  });
+
   renderAll();
   if (window.location.hash === '#addAccount') {
     history.replaceState(null, '', window.location.pathname);
