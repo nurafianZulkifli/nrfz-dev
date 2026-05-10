@@ -288,8 +288,18 @@
         }
 
         function saveSettings() {
-            const state = load();
-            if (!state) { showToast('Error: No data found'); return; }
+            let state = load();
+            if (!state || !state.accounts || state.accounts.length === 0) {
+                // First-time user: create a default state
+                const id = Date.now().toString(36) + Math.random().toString(36).slice(2);
+                const now = new Date();
+                state = {
+                    activeAccountId: id,
+                    activeMonth: now.getMonth(),
+                    activeYear: now.getFullYear(),
+                    accounts: [{ id, name: 'Commitments', allocated: 0, transactions: [] }]
+                };
+            }
             const name = document.getElementById('settingsAcctName').value.trim();
             const alloc = parseFloat(document.getElementById('settingsAllocated').value);
             const month = parseInt(document.getElementById('settingsMonth').value);
@@ -308,7 +318,7 @@
 
         function deleteAccount() {
             const state = load();
-            if (!state) { showToast('Error: No data found'); return; }
+            if (!state || !state.accounts || state.accounts.length === 0) { showToast('No account to delete'); return; }
             const acct = activeAccount(state);
             if (!confirm('Delete "' + acct.name + '" and all its transactions?')) return;
             state.accounts = state.accounts.filter(a => a.id !== state.activeAccountId);
