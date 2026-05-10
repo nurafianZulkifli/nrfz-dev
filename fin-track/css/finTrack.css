@@ -691,6 +691,21 @@
      opacity: 1;
  }
 
+ /* Add/Edit Transaction Modal (Bootstrap) */
+ .ft-modal-content {
+     border: none;
+     border-radius: 20px;
+     box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+ }
+
+ .ft-modal-content .modal-body {
+     padding: 24px 20px 20px;
+ }
+
+ body.dark-mode .ft-modal-content {
+     background: #1c1f2b;
+ }
+
  .overlay.open {
      opacity: 1;
      pointer-events: all;

@@ -227,6 +227,10 @@
   let editingId = null;
   let currentType = 'debit';
 
+  function _getTxnModal() {
+    return bootstrap.Modal.getOrCreateInstance(document.getElementById('addModal'));
+  }
+
   function openAdd() {
     editingId = null;
     currentType = 'debit';
@@ -238,7 +242,7 @@
     document.getElementById('txnDate').value = today.toISOString().slice(0,10);
     document.getElementById('deleteBtn').style.display = 'none';
     setType('debit');
-    openOverlay('addOverlay');
+    _getTxnModal().show();
     setTimeout(() => document.getElementById('txnName').focus(), 300);
   }
 
@@ -254,7 +258,11 @@
     document.getElementById('txnDate').value = t.date;
     document.getElementById('deleteBtn').style.display = '';
     setType(t.type);
-    openOverlay('addOverlay');
+    _getTxnModal().show();
+  }
+
+  function closeTxnModal() {
+    _getTxnModal().hide();
   }
 
   function setType(type) {
@@ -284,7 +292,7 @@
       showToast('Transaction added');
     }
     save();
-    closeOverlay('addOverlay');
+    closeTxnModal();
     renderAll();
   }
 
@@ -294,7 +302,7 @@
     const acct = activeAccount();
     acct.transactions = acct.transactions.filter(x => x.id !== editingId);
     save();
-    closeOverlay('addOverlay');
+    closeTxnModal();
     renderAll();
     showToast('Transaction deleted');
   }
@@ -334,22 +342,20 @@
   // ── Scroll lock ─────────────────────────────────────────────────────────
   let _lockScrollY = 0;
   let _scrollLocked = false;
-  function _blockScroll(e) {
-    const allowed = e.target.closest('.sheet, .acct-dropdown, .popup');
-    if (!allowed) e.preventDefault();
-  }
+  function _blockScroll(e) { e.preventDefault(); }
   function _blockScrollKeys(e) {
-    if (e.target.closest('.sheet, .acct-dropdown, .popup')) return;
-    const keys = [32, 33, 34, 35, 36, 37, 38, 39, 40];
+    const keys = [32, 33, 34, 35, 36, 38, 40];
     if (keys.includes(e.keyCode)) e.preventDefault();
   }
   function _resetScroll() {
-    if (_scrollLocked) window.scrollTo({ top: _lockScrollY, behavior: 'instant' });
+    if (_scrollLocked) window.scrollTo(0, _lockScrollY);
   }
   function lockScroll() {
     if (_scrollLocked) return;
     _lockScrollY = window.scrollY;
     _scrollLocked = true;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
     window.addEventListener('wheel', _blockScroll, { passive: false, capture: true });
     window.addEventListener('touchmove', _blockScroll, { passive: false, capture: true });
     window.addEventListener('keydown', _blockScrollKeys, { capture: true });
@@ -358,6 +364,8 @@
   function unlockScroll() {
     if (!_scrollLocked) return;
     _scrollLocked = false;
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
     window.removeEventListener('wheel', _blockScroll, { capture: true });
     window.removeEventListener('touchmove', _blockScroll, { capture: true });
     window.removeEventListener('keydown', _blockScrollKeys, { capture: true });
@@ -486,6 +494,18 @@
     renderAll();
     showToast('Account deleted');
   }
+
+  // ── Bootstrap modal: lock <html> scroll (style.css sets overflow-x:hidden on html which breaks Bootstrap's own lock) ──
+  (function () {
+    const el = document.getElementById('addModal');
+    if (!el) return;
+    el.addEventListener('show.bs.modal', function () {
+      document.documentElement.style.overflow = 'hidden';
+    });
+    el.addEventListener('hidden.bs.modal', function () {
+      document.documentElement.style.overflow = '';
+    });
+  })();
 
   // ── Init ───────────────────────────────────────────────────────────────
   document.addEventListener('click', function(e) {

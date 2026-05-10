@@ -12,6 +12,7 @@
 
     <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/finTrack.css">
     <link rel="stylesheet" href="../css/pwa-styles.css">
@@ -154,53 +155,57 @@
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
-    <!-- Add/Edit Popup -->
-    <div class="overlay popup-overlay" id="addOverlay" onclick="closeOnBackdrop(event,'addOverlay')">
-        <div class="sheet popup">
-            <div class="sheet-title" id="sheetTitle">Add Transaction</div>
-            <div class="type-toggle">
-                <button class="type-btn active-debit" id="typeDebit" onclick="setType('debit')">
-                    <i class="fa-regular fa-arrow-down"></i> Spending
-                </button>
-                <button class="type-btn" id="typeCredit" onclick="setType('credit')">
-                    <i class="fa-regular fa-arrow-up"></i> Income
-                </button>
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <input type="text" id="txnName" placeholder="e.g. NTUC groceries" autocomplete="off" />
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Amount (SGD)</label>
-                    <input type="number" id="txnAmount" placeholder="0.00" min="0" step="0.01" />
+    <!-- Add/Edit Transaction Modal (Bootstrap) -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ft-modal-content">
+                <div class="modal-body">
+                    <div class="sheet-title" id="sheetTitle">Add Transaction</div>
+                    <div class="type-toggle">
+                        <button class="type-btn active-debit" id="typeDebit" onclick="setType('debit')">
+                            <i class="fa-regular fa-arrow-down"></i> Spending
+                        </button>
+                        <button class="type-btn" id="typeCredit" onclick="setType('credit')">
+                            <i class="fa-regular fa-arrow-up"></i> Income
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="txnName" placeholder="e.g. NTUC groceries" autocomplete="off" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Amount (SGD)</label>
+                            <input type="number" id="txnAmount" placeholder="0.00" min="0" step="0.01" />
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="txnCat">
+                                <option value="Point-of-Sale">Point-of-Sale</option>
+                                <option value="ATM">ATM</option>
+                                <option value="Transfer">Transfer</option>
+                                <option value="Bills">Bills</option>
+                                <option value="Food">Food</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="txnDate" />
+                    </div>
+                    <div class="sheet-actions">
+                        <button class="sht-btn sht-btn-danger" id="deleteBtn"
+                            style="display:none; flex:0 0 auto; padding: 12px 18px;" onclick="deleteCurrentTxn()">
+                            <i class="fa-regular fa-trash"></i>
+                        </button>
+                        <button class="sht-btn sht-btn-ghost" onclick="closeTxnModal()">Cancel</button>
+                        <button class="sht-btn sht-btn-primary" onclick="saveTxn()">
+                            <i class="fa-regular fa-check"></i> Save
+                        </button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Category</label>
-                    <select id="txnCat">
-                        <option value="Point-of-Sale">Point-of-Sale</option>
-                        <option value="ATM">ATM</option>
-                        <option value="Transfer">Transfer</option>
-                        <option value="Bills">Bills</option>
-                        <option value="Food">Food</option>
-                        <option value="Transport">Transport</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Date</label>
-                <input type="date" id="txnDate" />
-            </div>
-            <div class="sheet-actions">
-                <button class="sht-btn sht-btn-danger" id="deleteBtn"
-                    style="display:none; flex:0 0 auto; padding: 12px 18px;" onclick="deleteCurrentTxn()">
-                    <i class="fa-regular fa-trash"></i>
-                </button>
-                <button class="sht-btn sht-btn-ghost" onclick="closeOverlay('addOverlay')">Cancel</button>
-                <button class="sht-btn sht-btn-primary" onclick="saveTxn()">
-                    <i class="fa-regular fa-check"></i> Save
-                </button>
             </div>
         </div>
     </div>
@@ -284,6 +289,7 @@
         </div>
     </div>
 
+    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/pwa-config.js"></script>
 
     <script>
