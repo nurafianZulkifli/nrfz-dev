@@ -6,13 +6,45 @@
 }
  
  #cv-ft {
-     background: linear-gradient(135deg, #287c51 0%, #10504d 100%);
+     background:
+         linear-gradient(135deg, rgba(40, 124, 81, 0.82) 0%, rgba(16, 80, 77, 0.82) 100%),
+         url('../assets/hero-bg.png') center center / cover no-repeat;
      height: 46vh;
      position: relative;
      display: flex;
      align-items: center;
      justify-content: center;
      overflow: hidden;
+ }
+
+  body.dark-mode #cv-ft {
+     background:
+         linear-gradient(135deg, rgba(40, 124, 81, 0.82) 0%, rgba(16, 80, 77, 0.82) 100%),
+         url('../assets/hero-bg-dark.png') center center / cover no-repeat;
+ }
+
+ /* Greeting */
+ .ft-greeting {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 2px;
+     margin-bottom: 14px;
+ }
+
+ .ft-greeting-text {
+     color: rgba(255, 255, 255, 0.9);
+     font-size: 20px;
+     font-weight: 500;
+     letter-spacing: 0.08em;
+     text-transform: uppercase;
+ }
+
+ .ft-greeting-date {
+     color: rgba(255, 255, 255, 0.65);
+     font-size: 15px;
+     font-weight: 400;
+     letter-spacing: 0.04em;
  }
 
  #cv-ft::before {
@@ -232,7 +264,7 @@
 
  /* Main content card section (overlaps cover like Buszy .pinned) */
  .ft-main {
-     margin-top: 0rem;
+     margin-top: -2rem;
      position: relative;
      z-index: 10;
  }
@@ -944,7 +976,7 @@
      }
 
      .ft-main {
-         margin-top: -6rem;
+         margin-top: -2rem;
      }
 
      .navbar,
@@ -1075,11 +1107,11 @@
 
  @media (max-width: 545px) {
      #cv-ft {
-         height: 36vh;
+         height: 32vh;
      }
 
      .ft-main {
-         margin-top: 2rem;
+         margin-top: 0rem;
      }
 
      .balance-amount {
@@ -1095,18 +1127,19 @@
 
  .acct-dropdown {
      display: none;
-     position: absolute;
-     top: calc(100% + 6px);
+     position: fixed;
+     top: 35%;
      left: 50%;
-     transform: translateX(-50%);
+     transform: translate(-50%, -50%);
      background: #fff;
      border: 1px solid #e5e7eb;
      border-radius: 16px;
-     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
      padding: 10px;
      min-width: 260px;
      max-width: 340px;
-     z-index: 1000;
+     width: 90vw;
+     z-index: 9999;
  }
 
  .acct-dropdown.open {
@@ -1534,7 +1567,7 @@
  }
 
  .settings-btn-danger {
-     background: #fef2f2;
+     background: #fad8d8;
      color: #dc2626;
      border: 1.5px solid #fca5a5;
  }

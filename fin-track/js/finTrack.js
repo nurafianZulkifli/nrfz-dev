@@ -62,10 +62,27 @@
 
   // ── Render ─────────────────────────────────────────────────────────────
   function renderAll() {
+    renderGreeting();
     renderAccountSwitcher();
     renderMonthTabs();
     renderBalance();
     renderTxns();
+  }
+
+  function renderGreeting() {
+    const el = document.getElementById('ftGreeting');
+    if (!el) return;
+    const now = new Date();
+    const h = now.getHours();
+    let greet;
+    if (h >= 5 && h < 12) greet = 'Good Morning!';
+    else if (h >= 12 && h < 18) greet = 'Good Afternoon!';
+    else if (h >= 18 && h < 22) greet = 'Good Evening!';
+    else greet = 'Good Night!';
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const dateStr = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
+    el.innerHTML = `<span class="ft-greeting-text">${greet}</span><span class="ft-greeting-date">${dateStr}</span>`;
   }
 
   function renderAccountSwitcher() {
@@ -314,9 +331,49 @@
     showToast('Settings saved');
   }
 
+  // ── Scroll lock ─────────────────────────────────────────────────────────
+  let _lockScrollY = 0;
+  let _scrollLocked = false;
+  function _blockScroll(e) {
+    const allowed = e.target.closest('.sheet, .acct-dropdown, .popup');
+    if (!allowed) e.preventDefault();
+  }
+  function _blockScrollKeys(e) {
+    if (e.target.closest('.sheet, .acct-dropdown, .popup')) return;
+    const keys = [32, 33, 34, 35, 36, 37, 38, 39, 40];
+    if (keys.includes(e.keyCode)) e.preventDefault();
+  }
+  function _resetScroll() {
+    if (_scrollLocked) window.scrollTo({ top: _lockScrollY, behavior: 'instant' });
+  }
+  function lockScroll() {
+    if (_scrollLocked) return;
+    _lockScrollY = window.scrollY;
+    _scrollLocked = true;
+    window.addEventListener('wheel', _blockScroll, { passive: false, capture: true });
+    window.addEventListener('touchmove', _blockScroll, { passive: false, capture: true });
+    window.addEventListener('keydown', _blockScrollKeys, { capture: true });
+    window.addEventListener('scroll', _resetScroll, { capture: true });
+  }
+  function unlockScroll() {
+    if (!_scrollLocked) return;
+    _scrollLocked = false;
+    window.removeEventListener('wheel', _blockScroll, { capture: true });
+    window.removeEventListener('touchmove', _blockScroll, { capture: true });
+    window.removeEventListener('keydown', _blockScrollKeys, { capture: true });
+    window.removeEventListener('scroll', _resetScroll, { capture: true });
+    window.scrollTo(0, _lockScrollY);
+  }
+
   // ── Overlay ────────────────────────────────────────────────────────────
-  function openOverlay(id) { document.getElementById(id).classList.add('open'); }
-  function closeOverlay(id) { document.getElementById(id).classList.remove('open'); }
+  function openOverlay(id) { 
+    document.getElementById(id).classList.add('open');
+    lockScroll();
+  }
+  function closeOverlay(id) { 
+    document.getElementById(id).classList.remove('open');
+    unlockScroll();
+  }
   function closeOnBackdrop(e, id) { if (e.target === document.getElementById(id)) closeOverlay(id); }
 
   // ── Toast ──────────────────────────────────────────────────────────────
@@ -355,14 +412,17 @@
     const dropdown = document.getElementById('acctDropdown');
     if (dropdown.classList.contains('open')) {
       dropdown.classList.remove('open');
+      unlockScroll();
       return;
     }
     renderAccountList();
     dropdown.classList.add('open');
+    lockScroll();
   }
 
   function closeAccountDropdown() {
     document.getElementById('acctDropdown').classList.remove('open');
+    unlockScroll();
   }
 
   function renderAccountList() {
@@ -429,8 +489,9 @@
 
   // ── Init ───────────────────────────────────────────────────────────────
   document.addEventListener('click', function(e) {
-    const wrap = document.getElementById('acctSwitcherBtn')?.closest('.acct-switcher-wrap');
-    if (wrap && !wrap.contains(e.target)) closeAccountDropdown();
+    const btn = document.getElementById('acctSwitcherBtn');
+    const dropdown = document.getElementById('acctDropdown');
+    if (btn && !btn.contains(e.target) && dropdown && !dropdown.contains(e.target)) closeAccountDropdown();
   });
 
   renderAll();

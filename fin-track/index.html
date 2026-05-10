@@ -90,19 +90,12 @@
             <div class="row h-100 align-items-center justify-content-center">
 
                     <div class="ft-cover-wrapper">
+                        <div class="ft-greeting" id="ftGreeting"></div>
                         <div class="acct-switcher-wrap">
                             <button class="acct-switcher-btn" id="acctSwitcherBtn" onclick="openAccountSwitcher()">
                                 <span id="acctSwitcherName">Account</span>
                                 <i class="fa-regular fa-chevron-down" style="font-size:0.75em; opacity:0.7;"></i>
                             </button>
-                            <div class="acct-dropdown" id="acctDropdown">
-                                <div id="acctList"></div>
-                                <div class="acct-dropdown-footer">
-                                    <button class="sht-btn sht-btn-primary" onclick="closeAccountDropdown(); openAddAccount();">
-                                        <i class="fa-regular fa-plus"></i>&nbsp;New Account
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                         <div class="month-tabs-wrapper">
                             <div class="month-tabs-container" id="monthTabs"></div>
@@ -311,6 +304,16 @@
             }
         }
     </script>
+
+    <!-- Account Switcher Dropdown (body-level to escape stacking contexts) -->
+    <div class="acct-dropdown" id="acctDropdown">
+        <div id="acctList"></div>
+        <div class="acct-dropdown-footer">
+            <button class="sht-btn sht-btn-primary" onclick="closeAccountDropdown(); openAddAccount();">
+                <i class="fa-regular fa-plus"></i>&nbsp;New Account
+            </button>
+        </div>
+    </div>
 
     <script src="js/finTrack.js"></script>
 

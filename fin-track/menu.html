@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <title>Menu | RailBuddy</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -333,6 +333,11 @@
         color: #e8e8e8;
     }
 
+    body.dark-mode .about-me-summ {
+        background-color: #121521;
+        transition: all 0.5s ease;
+    }
+
     @media (max-width: 480px) {
         .other-apps-heading {
             font-size: 0.95rem;
@@ -404,7 +409,7 @@
         </nav>
     </div>
 
-   <!-- Desktop Navbar -->
+    <!-- Desktop Navbar -->
     <nav class="navbar-container">
         <div class="navbar">
             <a href="../index.html">
@@ -504,7 +509,9 @@
                 <h3 class="other-apps-heading">Other Apps</h3>
                 <div class="other-apps-grid">
                     <div class="other-apps-card" id="randomAppCard">
-                        <a href="" style="display: flex; align-items: center; gap: 16px; flex: 1; text-decoration: none; color: inherit;" id="appLink">
+                        <a href=""
+                            style="display: flex; align-items: center; gap: 16px; flex: 1; text-decoration: none; color: inherit;"
+                            id="appLink">
                             <div class="other-apps-icon">
                                 <img id="appIcon" src="" alt="" width="48" height="48">
                             </div>
@@ -520,15 +527,15 @@
             <hr ">
 
             <!-- Main Menu List -->
-            <div class="list-group">
-                <a href="settings.html" class="list-group-item list-group-item-action">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="lg-menu"><i class="fa-regular fa-gear"></i> Settings</h5>
-                        </div>
+            <div class=" list-group">
+            <a href="settings.html" class="list-group-item list-group-item-action">
+                <div class="d-flex">
+                    <div>
+                        <h5 class="lg-menu"><i class="fa-regular fa-gear"></i> Settings</h5>
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
+        </div>
 
         </div>
     </section>
@@ -542,7 +549,7 @@
         </script>
 
     <script src="../js/cookies-theme-sync.js"></script>
-    
+
     <script>
         function displayVersion() {
             const versionEl = document.getElementById('app-version-display');
@@ -550,13 +557,13 @@
                 versionEl.textContent = `Version ${window.APP_VERSIONS['fin-track']}`;
             }
         }
-        
+
         // Listen for version loading event from app-version.js
         window.addEventListener('versionsLoaded', displayVersion);
-        
+
         // Also try on DOMContentLoaded in case event already fired
         document.addEventListener('DOMContentLoaded', displayVersion);
-        
+
         // Fallback: check after a short delay
         setTimeout(displayVersion, 500);
     </script>
@@ -591,7 +598,7 @@
 
     <script>
         // Randomize Other Apps section
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const apps = [
                 {
                     name: 'Buszy',
@@ -604,13 +611,13 @@
                     icon: '../rail-buddy/assets/icon-512.png'
                 }
             ];
-            
+
             const randomApp = apps[Math.floor(Math.random() * apps.length)];
-            
+
             const appLink = document.getElementById('appLink');
             const appIcon = document.getElementById('appIcon');
             const appName = document.getElementById('appName');
-            
+
             if (appLink && appIcon && appName) {
                 appLink.href = randomApp.href;
                 appIcon.src = randomApp.icon;
