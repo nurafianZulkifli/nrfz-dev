@@ -35,7 +35,7 @@ window.PWAConfig = (() => {
     },
 
     finTrack: {
-      appName: 'Fin Track',
+      appName: 'FinTrack',
       swPath: basePath + 'fin-track/service-worker.js',
       scope: basePath + 'fin-track/',
       manifestPath: basePath + 'fin-track/manifest.json',
