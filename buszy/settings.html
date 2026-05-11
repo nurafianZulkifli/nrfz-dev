@@ -52,7 +52,7 @@
         position: relative;
         z-index: 1;
         min-width: 50px;
-        width: auto;
+        width: 170px;
         height: 46px;
         line-height: 46px;
         font-size: 14px;
@@ -353,15 +353,15 @@
             <h2 class="text-center" style="padding-top: 1em;">Data</h2>
             <ul class="list-group">
                 <li class="list-group-item" id="refetch-stops">
-                    <button id="clear-cache-btn" class="btn btn-rfetch"><i class="fa-regular fa-arrows-rotate"></i>&nbsp; Re-fetch Data</button><br>
+                    <button id="clear-cache-btn" class="btn btn-rfetch">Re-fetch data</button><br>
                     <p class="fetch">Clear cached bus stop data to ensure you have the latest information.</p>
                 </li>
                 <li class="list-group-item">
-                    <button id="export-data-btn" class="btn btn-install"><i class="fa-regular fa-download"></i>&nbsp; Export Data</button><br>
+                    <button id="export-data-btn" class="btn btn-install">Export Data</button><br>
                     <p class="fetch">Download a backup of your pinned stops and preferences.</p>
                 </li>
                 <li class="list-group-item">
-                    <button id="import-data-btn" class="btn btn-install"><i class="fa-regular fa-upload"></i>&nbsp; Import Data</button><br>
+                    <button id="import-data-btn" class="btn btn-install">Import Data</button><br>
                     <p class="fetch">Restore your previously exported data or migrate from another device.</p>
                     <input type="file" id="import-file-input" accept=".json" style="display: none;">
                     <div id="import-message"
@@ -382,6 +382,20 @@
                 </li>
             </ul>
         </div>
+
+        <!-- <div class="container">
+            <h2 class="text-center" style="padding-top: 1em;">Install</h2>
+            <ul class="list-group">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button id="install-btn" class="btn btn-install">Install App</button>
+                        </div>
+                        <p class="fetch">Install this web app on your device for a better experience.</p>
+                    </li>
+                </ul>
+        </div> -->
+
     </section>
 
     <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"

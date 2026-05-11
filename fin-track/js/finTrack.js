@@ -82,7 +82,7 @@
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const dateStr = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
-    el.innerHTML = `<span class="ft-greeting-text">${greet}</span><span class="ft-greeting-date">${dateStr}</span>`;
+    el.innerHTML = `<span class="ft-greeting-text">${greet}</span>`;
   }
 
   function renderAccountSwitcher() {
@@ -106,7 +106,8 @@
     const container = document.getElementById('monthTabs');
     container.innerHTML = tabs.reverse().map(({m, y}) => {
       const active = m === state.activeMonth && y === state.activeYear;
-      return `<button class="month-btn${active?' active':''}" onclick="setMonth(${m},${y})">${MONTHS[m]}</button>`;
+      const label = y !== curY ? `${MONTHS[m]} '${String(y).slice(2)}` : MONTHS[m];
+      return `<button class="month-btn${active?' active':''}" onclick="setMonth(${m},${y})">${label}</button>`;
     }).join('');
     // Scroll active tab into view
     const activeBtn = container.querySelector('.month-btn.active');
@@ -196,21 +197,21 @@
   }
   function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function iconClass(cat) {
-    if (cat === 'ATM') return 'atm';
+    if (cat === 'Memberships') return 'atm';
     if (cat === 'Transfer') return 'income';
     if (cat === 'Bills') return 'bills';
-    if (['Point-of-Sale','Food','Transport'].includes(cat)) return 'pos';
+    if (['Subscriptions','Memberships','Food','Transport'].includes(cat)) return 'pos';
     return 'other';
   }
   function iconEmoji(cat) {
     const map = {
-      'Point-of-Sale': '<i class="fa-regular fa-bag-shopping"></i>',
-      'ATM':           '<i class="fa-regular fa-building-columns"></i>',
+      'Subscriptions': '<i class="fa-regular fa-credit-card"></i>',
+      'Memberships':   '<i class="fa-regular fa-user"></i>',
       'Transfer':      '<i class="fa-regular fa-money-bill-transfer"></i>',
       'Bills':         '<i class="fa-regular fa-file-invoice"></i>',
       'Food':          '<i class="fa-regular fa-utensils"></i>',
       'Transport':     '<i class="fa-regular fa-bus"></i>',
-      'Others':        '<i class="fa-regular fa-credit-card"></i>'
+      'Others':        '<i class="fa-regular fa-money-bill"></i>'
     };
     return map[cat] || '<i class="fa-regular fa-credit-card"></i>';
   }
@@ -418,18 +419,22 @@
 
   function openAccountSwitcher() {
     const dropdown = document.getElementById('acctDropdown');
+    const overlay = document.getElementById('acctDropdownOverlay');
     if (dropdown.classList.contains('open')) {
       dropdown.classList.remove('open');
+      overlay.classList.remove('open');
       unlockScroll();
       return;
     }
     renderAccountList();
     dropdown.classList.add('open');
+    overlay.classList.add('open');
     lockScroll();
   }
 
   function closeAccountDropdown() {
     document.getElementById('acctDropdown').classList.remove('open');
+    document.getElementById('acctDropdownOverlay').classList.remove('open');
     unlockScroll();
   }
 
@@ -542,7 +547,7 @@
     if (prevBtn) prevBtn.style.display = step > 1 ? '' : 'none';
     if (nextBtn) {
       if (step === total) {
-        nextBtn.innerHTML = '<i class="fa-regular fa-check"></i> Get Started';
+        nextBtn.innerHTML = '<i class="fa-regular fa-check"></i> Done';
         nextBtn.onclick = guideFinish;
       } else {
         nextBtn.innerHTML = 'Next <i class="fa-regular fa-chevron-right"></i>';
@@ -563,13 +568,6 @@
   function guideFinish() {
     localStorage.setItem(GUIDE_KEY, '1');
     closeOverlay('guideOverlay');
-    // Move install banner to bottom now that guide is done
-    const banner = document.getElementById('fintrack-install-banner');
-    if (banner) {
-      banner.style.transition = 'top 0.4s ease, bottom 0.4s ease';
-      banner.style.top = 'auto';
-      banner.style.bottom = '0';
-    }
   }
 
   // Show guide only on first visit
