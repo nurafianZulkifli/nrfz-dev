@@ -5,10 +5,30 @@ const path = require('path');
 const http = require('http');
 const https = require('https');
 const compression = require('compression');
+const webpush = require('web-push');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const LTA_API_KEY = process.env.LTA_API_KEY;
+
+// ── Web Push (VAPID) Setup ───────────────────────────────────────────
+// Generate keys once with: npx web-push generate-vapid-keys
+// Then set VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY env vars on Heroku.
+const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
+const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
+let pushEnabled = false;
+if (VAPID_PUBLIC_KEY && VAPID_PRIVATE_KEY) {
+  webpush.setVapidDetails('mailto:admin@buszy.app', VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
+  pushEnabled = true;
+  console.log('[Push] Web Push enabled');
+} else {
+  console.warn('[Push] VAPID keys not set — push notifications disabled');
+}
+
+// In-memory subscription store.
+// Each key is "busStopCode:serviceNo", value is an array of watcher objects.
+// NOTE: This resets on server restart. Use a database for persistence in production.
+const pushWatchers = new Map(); // Map<"stopCode:svcNo", [{subscription, threshold, notifiedUntil}]>
 
 // Reuse TCP connections to DataMall (avoids TLS handshake on every request)
 const ltaApi = axios.create({
@@ -234,6 +254,120 @@ app.get('/bus-services', async (req, res) => {
     res.status(500).send('Error connecting to LTA DataMall');
   }
 });
+
+// ── Push Notification Endpoints ─────────────────────────────────────
+
+// Expose the VAPID public key so the frontend can subscribe
+app.get('/push/vapid-public-key', (req, res) => {
+  if (!pushEnabled) return res.status(503).json({ error: 'Push notifications not configured' });
+  res.set('Cache-Control', 'public, max-age=86400');
+  res.send(VAPID_PUBLIC_KEY);
+});
+
+// Subscribe: save a push subscription for a bus stop + service
+app.post('/push/subscribe', express.json(), (req, res) => {
+  if (!pushEnabled) return res.status(503).json({ error: 'Push notifications not configured' });
+
+  const { subscription, busStopCode, serviceNo, threshold } = req.body;
+  if (!subscription || !subscription.endpoint || !busStopCode || !serviceNo) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // Validate threshold (1–10 minutes)
+  const mins = Math.min(10, Math.max(1, parseInt(threshold, 10) || 3));
+  const key = `${busStopCode}:${serviceNo}`;
+
+  if (!pushWatchers.has(key)) pushWatchers.set(key, []);
+  const watchers = pushWatchers.get(key);
+
+  // Replace existing subscription from the same endpoint (re-subscribe)
+  const idx = watchers.findIndex(w => w.subscription.endpoint === subscription.endpoint);
+  const entry = { subscription, threshold: mins, notifiedUntil: 0 };
+  if (idx >= 0) {
+    watchers[idx] = entry;
+  } else {
+    watchers.push(entry);
+  }
+
+  console.log(`[Push] Subscribed: stop=${busStopCode} svc=${serviceNo} threshold=${mins}min (total watchers: ${watchers.length})`);
+  res.status(201).json({ ok: true });
+});
+
+// Unsubscribe: remove a push subscription
+app.post('/push/unsubscribe', express.json(), (req, res) => {
+  const { subscription, busStopCode, serviceNo } = req.body;
+  if (!subscription || !subscription.endpoint || !busStopCode || !serviceNo) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const key = `${busStopCode}:${serviceNo}`;
+  const watchers = pushWatchers.get(key);
+  if (watchers) {
+    const filtered = watchers.filter(w => w.subscription.endpoint !== subscription.endpoint);
+    if (filtered.length === 0) {
+      pushWatchers.delete(key);
+    } else {
+      pushWatchers.set(key, filtered);
+    }
+  }
+
+  console.log(`[Push] Unsubscribed: stop=${busStopCode} svc=${serviceNo}`);
+  res.json({ ok: true });
+});
+
+// ── Bus Arrival Polling Job ──────────────────────────────────────────
+// Checks every 30 seconds; sends a push when the next bus is within threshold.
+// A 3-minute cooldown prevents repeated notifications for the same arrival.
+if (pushEnabled) {
+  setInterval(async () => {
+    if (pushWatchers.size === 0) return;
+    const now = Date.now();
+
+    for (const [key, watchers] of pushWatchers.entries()) {
+      if (watchers.length === 0) continue;
+      const [busStopCode, serviceNo] = key.split(':');
+
+      let etaMinutes;
+      try {
+        const resp = await ltaApi.get(`/v3/BusArrival?BusStopCode=${busStopCode}&ServiceNo=${serviceNo}`);
+        const service = resp.data.Services?.[0];
+        if (!service || !service.NextBus?.EstimatedArrival) continue;
+        etaMinutes = Math.max(0, Math.round((new Date(service.NextBus.EstimatedArrival) - now) / 60000));
+      } catch {
+        continue; // skip on API error
+      }
+
+      for (const watcher of watchers) {
+        if (etaMinutes > watcher.threshold) {
+          // Bus not close yet — reset cooldown so next approach triggers a notification
+          watcher.notifiedUntil = 0;
+          continue;
+        }
+        if (now < watcher.notifiedUntil) continue; // still within cooldown
+
+        const payload = JSON.stringify({
+          title: `Bus ${serviceNo} arriving in ${etaMinutes === 0 ? 'less than 1' : etaMinutes} min`,
+          body: `Stop ${busStopCode}`,
+          data: { busStopCode, serviceNo }
+        });
+
+        try {
+          await webpush.sendNotification(watcher.subscription, payload);
+          watcher.notifiedUntil = now + 3 * 60 * 1000; // 3-minute cooldown
+          console.log(`[Push] Notified: stop=${busStopCode} svc=${serviceNo} eta=${etaMinutes}min`);
+        } catch (err) {
+          if (err.statusCode === 410 || err.statusCode === 404) {
+            // Subscription expired — remove it
+            const idx = watchers.indexOf(watcher);
+            if (idx >= 0) watchers.splice(idx, 1);
+            if (watchers.length === 0) pushWatchers.delete(key);
+            console.log(`[Push] Removed stale subscription: stop=${busStopCode} svc=${serviceNo}`);
+          }
+        }
+      }
+    }
+  }, 30_000);
+}
 
 // Serve static files (after all API routes to prevent conflicts)
 app.use(express.static(path.join(__dirname))); // Serve all static files from root

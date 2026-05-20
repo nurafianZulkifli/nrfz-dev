@@ -176,7 +176,54 @@ function shouldCache(url) {
   return cacheableExtensions.some(ext => url.endsWith(ext)) || url.endsWith('/');
 }
 
-// Message handler
+// ── Push Notification Handlers ───────────────────────────────────────
+
+// Receive a push from the server and show a notification
+self.addEventListener('push', event => {
+  let data = { title: 'Bus arriving soon', body: '', data: {} };
+  try {
+    data = event.data ? event.data.json() : data;
+  } catch {
+    data.body = event.data ? event.data.text() : '';
+  }
+
+  const options = {
+    body: data.body,
+    icon: self.registration.scope + 'assets/icon-192.png',
+    badge: self.registration.scope + 'assets/icon-192.png',
+    tag: `buszy-arrival-${data.data?.serviceNo}-${data.data?.busStopCode}`,
+    renotify: true,
+    data: data.data || {}
+  };
+
+  event.waitUntil(self.registration.showNotification(data.title, options));
+});
+
+// Handle notification tap — open or focus the arrivals page
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  const { busStopCode, serviceNo } = event.notification.data || {};
+  const scope = self.registration.scope; // e.g. "/buszy/" or "/nrfz-dev/buszy/"
+  const url = busStopCode
+    ? scope + 'art.html?BusStopCode=' + busStopCode
+    : scope;
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
+      // Focus an existing tab if already open
+      for (const client of windowClients) {
+        if (client.url.includes(busStopCode || 'buszy') && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      return clients.openWindow(url);
+    })
+  );
+});
+
+// ────────────────────────────────────────────────────────────────────
+
+// Message handler (original)
 self.addEventListener('message', event => {
   if (!event.data) return;
   

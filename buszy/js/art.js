@@ -794,6 +794,9 @@ async function fetchBusArrivals() {
                                 ${!serviceExists(service.ServiceNo) ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
                                 <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;Route
                             </button>
+                            <button class="btn btn-busloc btn-sm notif-toggle-btn" data-service="${service.ServiceNo}" data-stop="${busStopCode}" title="Notify me when this bus is arriving">
+                                <i class="fa-regular fa-bell"></i>&nbsp;<span class="notif-label">Notify</span>
+                            </button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -1158,6 +1161,19 @@ async function fetchBusArrivals() {
                     window.location.href = url;
                 });
             });
+
+            // Add event listeners to "Notify" buttons
+            if (window.BuszyPushNotify) {
+                const notifButtons = document.querySelectorAll('.notif-toggle-btn');
+                notifButtons.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const stopCode = btn.getAttribute('data-stop');
+                        const serviceNo = btn.getAttribute('data-service');
+                        BuszyPushNotify.toggle(stopCode, serviceNo, btn);
+                    });
+                });
+                BuszyPushNotify.restoreButtonStates();
+            }
 
         }
 
