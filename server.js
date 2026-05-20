@@ -356,7 +356,7 @@ if (pushEnabled) {
         const resp = await ltaApi.get(`/v3/BusArrival?BusStopCode=${busStopCode}&ServiceNo=${serviceNo}`);
         const service = resp.data.Services?.[0];
         if (!service || !service.NextBus?.EstimatedArrival) continue;
-        etaMinutes = Math.max(0, Math.round((new Date(service.NextBus.EstimatedArrival) - now) / 60000));
+        etaMinutes = Math.max(0, Math.floor((new Date(service.NextBus.EstimatedArrival) - now) / 60000));
       } catch {
         continue; // skip on API error
       }
