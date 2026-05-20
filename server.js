@@ -290,13 +290,15 @@ app.get('/push/vapid-public-key', (req, res) => {
 app.post('/push/subscribe', express.json(), (req, res) => {
   if (!pushEnabled) return res.status(503).json({ error: 'Push notifications not configured' });
 
-  const { subscription, busStopCode, serviceNo, threshold } = req.body;
+  const { subscription, busStopCode, serviceNo, threshold, notifyMode } = req.body;
   if (!subscription || !subscription.endpoint || !busStopCode || !serviceNo) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
   // Validate threshold (1–10 minutes)
   const mins = Math.min(10, Math.max(1, parseInt(threshold, 10) || 1));
+  const mode = ['once', 'day', 'always'].includes(notifyMode) ? notifyMode : 'once';
+  const expiresAt = mode === 'day' ? Date.now() + 24 * 60 * 60 * 1000 : null;
   const key = `${busStopCode}:${serviceNo}`;
 
   if (!pushWatchers.has(key)) pushWatchers.set(key, []);
@@ -304,7 +306,7 @@ app.post('/push/subscribe', express.json(), (req, res) => {
 
   // Replace existing subscription from the same endpoint (re-subscribe)
   const idx = watchers.findIndex(w => w.subscription.endpoint === subscription.endpoint);
-  const entry = { subscription, threshold: mins, notifiedUntil: 0, arrivedNotifiedUntil: 0 };
+  const entry = { subscription, threshold: mins, notifyMode: mode, expiresAt, notifiedUntil: 0, arrivedNotifiedUntil: 0 };
   if (idx >= 0) {
     watchers[idx] = entry;
   } else {
@@ -347,9 +349,17 @@ if (pushEnabled) {
     if (pushWatchers.size === 0) return;
     const now = Date.now();
 
-    for (const [key, watchers] of pushWatchers.entries()) {
-      if (watchers.length === 0) continue;
-      const [busStopCode, serviceNo] = key.split(':');
+for (const [key, watchers] of [...pushWatchers.entries()]) {
+        if (watchers.length === 0) continue;
+        const [busStopCode, serviceNo] = key.split(':');
+
+        // Remove expired 'day' mode watchers
+        const activeWatchers = watchers.filter(w => !(w.notifyMode === 'day' && w.expiresAt && now > w.expiresAt));
+        if (activeWatchers.length !== watchers.length) {
+          if (activeWatchers.length === 0) { pushWatchers.delete(key); saveWatchers(); continue; }
+          pushWatchers.set(key, activeWatchers);
+          saveWatchers();
+        }
 
       let etaMinutes;
       try {
@@ -361,7 +371,7 @@ if (pushEnabled) {
         continue; // skip on API error
       }
 
-      for (const watcher of watchers) {
+        for (const watcher of activeWatchers) {
         if (etaMinutes > watcher.threshold) {
           // Bus not close yet — reset cooldowns so next approach triggers notifications
           watcher.notifiedUntil = 0;
@@ -374,21 +384,30 @@ if (pushEnabled) {
 
         // ── "Approaching" notification (within threshold but not yet at stop) ──
         if (etaMinutes > 0 && now >= watcher.notifiedUntil) {
-          const etaText = etaMinutes === 1 ? 'arriving soon' : `arriving in ${etaMinutes} mins`;
           const payload = JSON.stringify({
-            title: `Bus ${serviceNo} ${etaText}`,
-            body: `Stop ${busStopCode}`,
-            data: { busStopCode, serviceNo, type: 'approaching' }
+            title: `Bus ${serviceNo} arriving soon`,
+            body: `Stop ${busStopCode} — arriving in ${etaMinutes} min`,
+            data: { busStopCode, serviceNo, type: 'approaching', notifyMode: watcher.notifyMode || 'once' }
           });
           try {
             await webpush.sendNotification(watcher.subscription, payload);
             watcher.notifiedUntil = now + 3 * 60 * 1000; // 3-minute cooldown
-            console.log(`[Push] Notified approaching: stop=${busStopCode} svc=${serviceNo} eta=${etaMinutes}min`);
+            console.log(`[Push] Notified approaching: stop=${busStopCode} svc=${serviceNo} eta=${etaMinutes}min mode=${watcher.notifyMode}`);
+            // 'once' mode: remove this watcher after first notification
+            if ((watcher.notifyMode || 'once') === 'once') {
+              const idx = activeWatchers.indexOf(watcher);
+              if (idx >= 0) activeWatchers.splice(idx, 1);
+              if (activeWatchers.length === 0) pushWatchers.delete(key);
+              else pushWatchers.set(key, activeWatchers);
+              saveWatchers();
+            }
           } catch (err) {
             if (err.statusCode === 410 || err.statusCode === 404) {
-              const idx = watchers.indexOf(watcher);
-              if (idx >= 0) watchers.splice(idx, 1);
-              if (watchers.length === 0) pushWatchers.delete(key);
+              const idx = activeWatchers.indexOf(watcher);
+              if (idx >= 0) activeWatchers.splice(idx, 1);
+              if (activeWatchers.length === 0) pushWatchers.delete(key);
+              else pushWatchers.set(key, activeWatchers);
+              saveWatchers();
               console.log(`[Push] Removed stale subscription: stop=${busStopCode} svc=${serviceNo}`);
             }
           }
@@ -399,7 +418,7 @@ if (pushEnabled) {
           const payload = JSON.stringify({
             title: `Bus ${serviceNo} has arrived!`,
             body: `Stop ${busStopCode} — your bus is here`,
-            data: { busStopCode, serviceNo, type: 'arrived' }
+            data: { busStopCode, serviceNo, type: 'arrived', notifyMode: watcher.notifyMode || 'once' }
           });
           try {
             await webpush.sendNotification(watcher.subscription, payload);
@@ -407,9 +426,11 @@ if (pushEnabled) {
             console.log(`[Push] Notified arrived: stop=${busStopCode} svc=${serviceNo}`);
           } catch (err) {
             if (err.statusCode === 410 || err.statusCode === 404) {
-              const idx = watchers.indexOf(watcher);
-              if (idx >= 0) watchers.splice(idx, 1);
-              if (watchers.length === 0) pushWatchers.delete(key);
+              const idx = activeWatchers.indexOf(watcher);
+              if (idx >= 0) activeWatchers.splice(idx, 1);
+              if (activeWatchers.length === 0) pushWatchers.delete(key);
+              else pushWatchers.set(key, activeWatchers);
+              saveWatchers();
               console.log(`[Push] Removed stale subscription: stop=${busStopCode} svc=${serviceNo}`);
             }
           }
