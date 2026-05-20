@@ -274,7 +274,7 @@ app.post('/push/subscribe', express.json(), (req, res) => {
   }
 
   // Validate threshold (1–10 minutes)
-  const mins = Math.min(10, Math.max(1, parseInt(threshold, 10) || 3));
+  const mins = Math.min(10, Math.max(1, parseInt(threshold, 10) || 1));
   const key = `${busStopCode}:${serviceNo}`;
 
   if (!pushWatchers.has(key)) pushWatchers.set(key, []);

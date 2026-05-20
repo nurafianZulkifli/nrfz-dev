@@ -54,7 +54,7 @@
 
   // ── Subscribe ──────────────────────────────────────────────────────
 
-  async function subscribe(stopCode, serviceNo, thresholdMinutes) {
+  async function subscribe(stopCode, serviceNo, thresholdMinutes = 1) {
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
       alert('Push notifications are not supported on this browser.\n\niOS users: add Buszy to your Home Screen first.');
       return false;
@@ -156,7 +156,7 @@
       await unsubscribe(stopCode, serviceNo);
       setButtonInactive(btn);
     } else {
-      const ok = await subscribe(stopCode, serviceNo, 3);
+      const ok = await subscribe(stopCode, serviceNo, 1);
       if (ok) {
         setButtonActive(btn);
       } else {
