@@ -89,6 +89,7 @@ let busStopsPromise = null;
 let currentLocationMarker = null; // Track the current location marker across button clicks
 let currentLocationCircle = null; // Track the current location accuracy circle
 let activeMapServiceNo = null; // Track which service is currently shown on the map
+let scrollToServiceNo = new URLSearchParams(window.location.search).get('ServiceNo') || null; // Scroll to this service on first render
 let busMarkers = []; // [{marker, lat, lng, estimatedArrival, busLabel}] for live position updates
 let mapRefreshIntervalId = null; // Dedicated fast interval for map position updates
 
@@ -852,6 +853,19 @@ async function fetchBusArrivals() {
             didUpdate = true;
             renderedBusStopCode = searchInput;
             showBottomTimingsBtn(searchInput);
+
+            // If opened from a notification, scroll to and briefly highlight the notified service
+            if (scrollToServiceNo) {
+                const targetCard = container.querySelector(`.card-bt[data-service="${scrollToServiceNo}"]`);
+                if (targetCard) {
+                    setTimeout(() => {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        targetCard.classList.add('notif-highlight');
+                        setTimeout(() => targetCard.classList.remove('notif-highlight'), 2000);
+                    }, 150);
+                }
+                scrollToServiceNo = null; // Only do this once
+            }
 
             // Restore expanded state without animation
             expandedServices.forEach(serviceNo => {

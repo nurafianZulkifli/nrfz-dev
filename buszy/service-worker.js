@@ -206,16 +206,18 @@ self.addEventListener('notificationclick', event => {
   event.notification.close();
   const { busStopCode, serviceNo } = event.notification.data || {};
   const scope = self.registration.scope; // e.g. "/buszy/" or "/nrfz-dev/buszy/"
-  const url = busStopCode
-    ? scope + 'art.html?BusStopCode=' + busStopCode
-    : scope;
+  let url = scope;
+  if (busStopCode) {
+    url = scope + 'art.html?BusStopCode=' + encodeURIComponent(busStopCode);
+    if (serviceNo) url += '&ServiceNo=' + encodeURIComponent(serviceNo);
+  }
 
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
-      // Focus an existing tab if already open
+      // Navigate an existing buszy tab to the right stop
       for (const client of windowClients) {
-        if (client.url.includes(busStopCode || 'buszy') && 'focus' in client) {
-          return client.focus();
+        if (client.url.includes('buszy') && 'navigate' in client) {
+          return client.navigate(url).then(c => c && c.focus());
         }
       }
       return clients.openWindow(url);
