@@ -374,8 +374,9 @@ if (pushEnabled) {
 
         // ── "Approaching" notification (within threshold but not yet at stop) ──
         if (etaMinutes > 0 && now >= watcher.notifiedUntil) {
+          const etaText = etaMinutes === 1 ? 'arriving soon' : `arriving in ${etaMinutes} mins`;
           const payload = JSON.stringify({
-            title: `Bus ${serviceNo} arriving in ${etaMinutes} min`,
+            title: `Bus ${serviceNo} ${etaText}`,
             body: `Stop ${busStopCode}`,
             data: { busStopCode, serviceNo, type: 'approaching' }
           });
