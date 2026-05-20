@@ -196,8 +196,87 @@
     });
   }
 
+  // ── Notification permission banners ───────────────────────────────
+
+  const PROMPTED_KEY = 'buszy_notif_prompted';
+
+  function checkAndShowPermissionBanner() {
+    if (!('Notification' in window)) return;
+    const permission = Notification.permission;
+    if (permission === 'denied') {
+      const el = document.getElementById('notif-blocked-banner');
+      if (el) el.style.display = 'flex';
+    } else if (permission === 'default') {
+      if (!localStorage.getItem(PROMPTED_KEY)) {
+        const el = document.getElementById('notif-prompt-banner');
+        if (el) el.style.display = 'flex';
+      }
+    }
+  }
+
+  async function enableFromBanner() {
+    localStorage.setItem(PROMPTED_KEY, '1');
+    const promptBanner = document.getElementById('notif-prompt-banner');
+    if (promptBanner) promptBanner.style.display = 'none';
+    const permission = await Notification.requestPermission();
+    if (permission === 'denied') {
+      const blockedBanner = document.getElementById('notif-blocked-banner');
+      if (blockedBanner) blockedBanner.style.display = 'flex';
+    }
+  }
+
+  function dismissPromptBanner() {
+    localStorage.setItem(PROMPTED_KEY, '1');
+    const el = document.getElementById('notif-prompt-banner');
+    if (el) el.style.display = 'none';
+  }
+
+  function dismissBlockedBanner() {
+    const el = document.getElementById('notif-blocked-banner');
+    if (el) el.style.display = 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', checkAndShowPermissionBanner);
+
+  // ── Re-register all tracked subscriptions with the server ──────────
+  // Called on every page load to restore subscriptions lost after a
+  // server restart or Heroku dyno wake-up (in-memory state is gone).
+
+  async function reRegisterAll() {
+    const subs = getSubs();
+    if (subs.size === 0) return;
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+
+    let subscription;
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      subscription = await reg.pushManager.getSubscription();
+    } catch { return; }
+
+    if (!subscription) return; // not subscribed at browser level — nothing to restore
+
+    for (const key of subs) {
+      const [stopCode, serviceNo] = key.split(':');
+      try {
+        await fetch(PUSH_SERVER + '/push/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            subscription: subscription.toJSON(),
+            busStopCode: stopCode,
+            serviceNo: serviceNo,
+            threshold: 1
+          })
+        });
+      } catch { /* network unavailable — will retry on next load */ }
+    }
+  }
+
   // ── Public API ─────────────────────────────────────────────────────
 
-  window.BuszyPushNotify = { toggle, restoreButtonStates, isTracked };
+  window.BuszyPushNotify = {
+    toggle, restoreButtonStates, isTracked, reRegisterAll,
+    enableFromBanner, dismissPromptBanner, dismissBlockedBanner
+  };
 
 })();

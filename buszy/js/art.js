@@ -244,6 +244,9 @@ function getBusStops() {
 // :: Bus Arrivals Fetching and Display
 // ****************************
 document.addEventListener('DOMContentLoaded', async () => {
+    // Re-register active push subscriptions with the server (restores after server restart/dyno wake)
+    if (window.BuszyPushNotify) BuszyPushNotify.reRegisterAll();
+
     // Apply fleet legend visibility setting
     function applyFleetLegendVisibility() {
         const showFleetLegend = localStorage.getItem('showFleetLegend') !== 'disabled';
@@ -430,6 +433,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Start the refresh interval on page load
     startRefreshInterval();
     startMapRefreshInterval();
+
+    // Re-fetch immediately when the tab becomes visible again after being backgrounded.
+    // Browsers throttle setInterval heavily in background tabs, so the data can go stale.
+    // Restarting the interval also resets the timer so the next tick is a full interval away.
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            hideOfflineBanner();
+            fetchBusArrivals();
+            startRefreshInterval();
+        }
+    });
 
     // Listen for refresh interval changes from settings
     window.addEventListener('refreshIntervalChanged', (event) => {

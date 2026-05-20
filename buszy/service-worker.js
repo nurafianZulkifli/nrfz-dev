@@ -187,12 +187,14 @@ self.addEventListener('push', event => {
     data.body = event.data ? event.data.text() : '';
   }
 
+  const isArrived = data.data?.type === 'arrived';
   const options = {
     body: data.body,
     icon: self.registration.scope + 'assets/icon-192.png',
     badge: self.registration.scope + 'assets/icon-192.png',
     tag: `buszy-arrival-${data.data?.serviceNo}-${data.data?.busStopCode}`,
     renotify: true,
+    vibrate: isArrived ? [200, 100, 200, 100, 200] : [200, 100, 200],
     data: data.data || {}
   };
 
