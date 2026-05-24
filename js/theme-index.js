@@ -56,16 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateThemeIcon('light');
             }
         }
-        
-        // Update cookies banner theme if the function is available
-        if (typeof window.updateCookiesBannerTheme === 'function') {
-            window.updateCookiesBannerTheme();
-        }
-        
-        // Adjust install banner position if the function is available
-        if (typeof window.adjustInstallBannerPosition === 'function') {
-            window.adjustInstallBannerPosition();
-        }
     }
     
     if (themeToggleDesktop) {
@@ -93,16 +83,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
         } else {
             document.body.classList.remove('dark-mode');
             updateThemeIcon('light');
-        }
-        
-        // Update cookies banner theme if the function is available
-        if (typeof window.updateCookiesBannerTheme === 'function') {
-            window.updateCookiesBannerTheme();
-        }
-        
-        // Adjust install banner position if the function is available
-        if (typeof window.adjustInstallBannerPosition === 'function') {
-            window.adjustInstallBannerPosition();
         }
     }
 });
@@ -145,7 +125,7 @@ function updateThemeIcon(theme) {
     }
     
     // Update display text
-    let displayText = 'Theme: ';
+    let displayText = 'Display: ';
     if (preference === 'light') {
         displayText += 'Light';
     } else if (preference === 'dark') {
@@ -163,3 +143,14 @@ function updateThemeIcon(theme) {
         if (themeIconMobile) themeIconMobile.classList.remove('animate');
     }, 300); // Match the duration of the CSS transition
 }
+
+// Set blurred background image on floating cards
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.querySelectorAll('.wbnrfz-works.floating-cards .card').forEach(function (card) {
+//         var img = card.querySelector('img');
+//         if (img) {
+//             card.style.setProperty('--card-bg', 'url(' + img.src + ')');
+//         }
+//     });
+// });
+
