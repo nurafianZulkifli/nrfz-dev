@@ -215,7 +215,7 @@ function updateHrefForDarkMode() {
 
     } else {
         /* Banners */
-        coverSect.style.backgroundImage = "url('./img/cover-eicw-4-light.png')";
+        coverSect.style.backgroundImage = "url('./img/cover-ui-ux-light.png')";
 
         /* Images */
         bcrcrc_link.href = './img-2/bcr-compare-light.png';
