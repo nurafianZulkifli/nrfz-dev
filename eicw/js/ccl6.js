@@ -25,6 +25,11 @@ function shouldBeDark() {
     return window._prefersDark; // Default to system preference
 }
 
+function getActiveWfVariant() {
+    const activeTab = document.querySelector('.wf-variant-tab.is-active');
+    return activeTab ? activeTab.getAttribute('data-wf-variant') : 'A';
+}
+
 // Apply theme on page load
 if (shouldBeDark()) {
     document.body.classList.add('dark-mode');
@@ -66,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateThemeIcon('light');
             }
         }
+
+        updateHrefForDarkMode();
     }
     
     if (themeToggleDesktop) {
@@ -94,6 +101,8 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
             document.body.classList.remove('dark-mode');
             updateThemeIcon('light');
         }
+
+        updateHrefForDarkMode();
     }
 });
 
@@ -178,6 +187,20 @@ function updateHrefForDarkMode() {
     const evo3_link = document.getElementById('evo3');
     const evo3_img = document.getElementById('evo3-img');
 
+    const wf_link = document.getElementById('wf');
+    const wf_img = document.getElementById('wf-img');
+    const activeWfVariant = getActiveWfVariant();
+    const wfImageMap = {
+        dark: {
+            A: './img/wflow1-dark.png',
+            B: './img/wflow-dark.png'
+        },
+        light: {
+            A: './img/wflow1-light.png',
+            B: './img/wflow-light.png'
+        }
+    };
+
 
     /* Videos */
 
@@ -209,6 +232,9 @@ function updateHrefForDarkMode() {
         if (evo3_link) evo3_link.href = './img/ccl6-overview-dark.png';
         if (evo3_img) evo3_img.src = './img/ccl6-overview-dark.png';
 
+        if (wf_link) wf_link.href = wfImageMap.dark[activeWfVariant] || wfImageMap.dark.A;
+        if (wf_img) wf_img.src = wfImageMap.dark[activeWfVariant] || wfImageMap.dark.A;
+
         /* Videos */
 
 
@@ -236,6 +262,9 @@ function updateHrefForDarkMode() {
         if (evo3_link) evo3_link.href = './img/ccl6-overview-light.png';
         if (evo3_img) evo3_img.src = './img/ccl6-overview-light.png';
 
+        if (wf_link) wf_link.href = wfImageMap.light[activeWfVariant] || wfImageMap.light.A;
+        if (wf_img) wf_img.src = wfImageMap.light[activeWfVariant] || wfImageMap.light.A;
+
 
         /* Videos */
 
@@ -245,6 +274,106 @@ function updateHrefForDarkMode() {
 
 
 }
+
+// Wayfinding flow variant tabs
+document.addEventListener('DOMContentLoaded', function () {
+    var variantTabs = Array.from(document.querySelectorAll('.wf-variant-tab'));
+    var wfPanel = document.getElementById('wf-image-wrap');
+    var wfCaption = document.getElementById('wf-caption');
+
+    if (variantTabs.length === 0) return;
+
+    function setWayfindingVariant(variant) {
+        variantTabs.forEach(function (tab) {
+            var isActive = tab.getAttribute('data-wf-variant') === variant;
+            tab.classList.toggle('is-active', isActive);
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        if (wfPanel) {
+            wfPanel.setAttribute('aria-labelledby', variant === 'B' ? 'wf-variant-b' : 'wf-variant-a');
+        }
+
+        if (wfCaption) {
+            wfCaption.textContent = 'My Redesigned Version - Variant ' + variant;
+        }
+
+        updateHrefForDarkMode();
+    }
+
+    variantTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            setWayfindingVariant(tab.getAttribute('data-wf-variant'));
+        });
+    });
+
+    setWayfindingVariant(getActiveWfVariant());
+});
+
+// Section jump links: scroll to anchors just below fixed nav elements
+document.addEventListener('DOMContentLoaded', function () {
+    var jumpLinks = Array.from(document.querySelectorAll('.portfolio-filter-sub a[href^="#"]'));
+    var sectionIds = ['#ent', '#conc', '#plat'];
+    if (jumpLinks.length === 0) return;
+
+    function getFixedOffset() {
+        var offset = 12;
+        var navbar = document.querySelector('.navbar-container');
+        var stickySectionNav = document.querySelector('.sticky-nav-wrap');
+
+        if (navbar) {
+            offset += navbar.getBoundingClientRect().height;
+            offset += 12;
+        }
+
+        if (stickySectionNav && stickySectionNav.classList.contains('is-sticky')) {
+            offset += stickySectionNav.getBoundingClientRect().height;
+            offset += 8;
+        }
+
+        return offset;
+    }
+
+    function openTargetCollapsible(hash) {
+        if (sectionIds.indexOf(hash) === -1) return;
+
+        sectionIds.forEach(function (sectionId) {
+            var section = document.querySelector(sectionId);
+            if (!section) return;
+
+            var details = section.querySelector('details.eicw-collapsible');
+            if (!details) return;
+
+            details.open = sectionId === hash;
+        });
+    }
+
+    jumpLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            var hash = link.getAttribute('href');
+            if (!hash || hash.length < 2) return;
+
+            var target = document.querySelector(hash);
+            if (!target) return;
+
+            event.preventDefault();
+
+            openTargetCollapsible(hash);
+
+            var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+            var top = Math.max(0, targetTop - getFixedOffset());
+
+            window.scrollTo({
+                top: top,
+                behavior: 'smooth'
+            });
+
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, '', hash);
+            }
+        });
+    });
+});
 
 // Autoplay videos row by row when scrolled into view
 document.addEventListener('DOMContentLoaded', function () {
