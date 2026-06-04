@@ -1,4 +1,10 @@
 
+// Suppress context menu on the bus stops container
+// (prevents native long-press menu from interfering with touch interactions)
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('.list-group')) e.preventDefault();
+});
+
 // *****************************
 // :: Service Parameter Redirect
 // *****************************
@@ -281,27 +287,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             link.style.textDecoration = 'none';
             link.style.color = 'inherit';
 
-            // Pinned button
-            const bookmarkButton = document.createElement('button');
-            const isPinned = bookmarks.some((b) => b.BusStopCode === busStop.BusStopCode);
-
-            if (isPinned) {
-                // If already bookmarked, show as bookmarked
-                bookmarkButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>'
-                bookmarkButton.className = 'btn btn-unpin btn-sm';
-            } else {
-                // If not bookmarked, show as a regular bookmark button
-                bookmarkButton.innerHTML = '<i class="fa-sharp fa-regular fa-thumbtack-angle"></i>';
-                bookmarkButton.className = 'btn btn-toPin btn-sm';
-            }
-
-            // Add event listener to toggle bookmark
-            bookmarkButton.addEventListener('click', (event) => {
-                event.stopPropagation(); // Prevent the click from triggering the link
-                event.preventDefault(); // Prevent default link behavior
-                togglePinned(busStop, bookmarkButton);
-            });
-
             const actionsToggleBtn = document.createElement('button');
             actionsToggleBtn.className = 'btn btn-busloc btn-sm bus-stop-collapsible-btn';
             actionsToggleBtn.title = 'Show options';
@@ -344,13 +329,68 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const controls = document.createElement('div');
             controls.className = 'bus-stop-actions-controls';
-            controls.appendChild(bookmarkButton);
             controls.appendChild(actionsToggleBtn);
 
             const mainRow = document.createElement('div');
             mainRow.className = 'bus-stop-main-row';
             mainRow.appendChild(link);
             mainRow.appendChild(controls);
+
+            // Long press variables for bookmark button
+            let longPressTimer = null;
+            let bookmarkButton = null;
+            const isPinned = bookmarks.some((b) => b.BusStopCode === busStop.BusStopCode);
+
+            // Add long press listener for bookmark button
+            listItem.addEventListener('touchstart', (event) => {
+                longPressTimer = setTimeout(() => {
+                    if (!bookmarkButton) {
+                        bookmarkButton = document.createElement('button');
+                        bookmarkButton.innerHTML = isPinned ? '<i class="fa-regular fa-thumbtack-angle-slash"></i>' : '<i class="fa-sharp fa-regular fa-thumbtack-angle"></i>';
+                        bookmarkButton.className = (isPinned ? 'btn btn-unpin btn-sm' : 'btn btn-toPin btn-sm') + ' pin-btn-fade-in';
+                        bookmarkButton.style.order = '-1'; // Position before the expand button
+                        
+                        bookmarkButton.addEventListener('click', (event) => {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            togglePinned(busStop, bookmarkButton);
+                            // Remove the button after action with fade out animation
+                            bookmarkButton.classList.remove('pin-btn-fade-in');
+                            bookmarkButton.classList.add('pin-btn-fade-out');
+                            setTimeout(() => {
+                                if (bookmarkButton && bookmarkButton.parentNode) {
+                                    bookmarkButton.remove();
+                                }
+                                bookmarkButton = null;
+                            }, 300);
+                        });
+                        
+                        controls.insertBefore(bookmarkButton, controls.firstChild);
+                    }
+                }, 500);
+            }, { passive: true });
+
+            listItem.addEventListener('touchend', () => {
+                clearTimeout(longPressTimer);
+                if (bookmarkButton) {
+                    setTimeout(() => {
+                        if (bookmarkButton && bookmarkButton.parentNode) {
+                            bookmarkButton.classList.remove('pin-btn-fade-in');
+                            bookmarkButton.classList.add('pin-btn-fade-out');
+                            setTimeout(() => {
+                                if (bookmarkButton && bookmarkButton.parentNode) {
+                                    bookmarkButton.remove();
+                                }
+                                bookmarkButton = null;
+                            }, 300);
+                        }
+                    }, 2000);
+                }
+            });
+
+            listItem.addEventListener('touchmove', () => {
+                clearTimeout(longPressTimer);
+            });
 
             const actionCollapse = document.createElement('div');
             actionCollapse.className = 'bus-stop-options-collapse';

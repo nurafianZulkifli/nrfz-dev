@@ -306,7 +306,7 @@ async function fetchNearbyBusStops(latitude, longitude, onError) {
 
 
 // Function to toggle pin/unpin for a bus stop
-function togglePinBusStop(busStop, pinButton) {
+function togglePinBusStop(busStop, button) {
     // Retrieve existing pinned bus stops from localStorage
     let pinnedBusStops = JSON.parse(localStorage.getItem('bookmarkedBusStops')) || [];
 
@@ -322,8 +322,8 @@ function togglePinBusStop(busStop, pinButton) {
             alert(`Bus Stop Unpinned.`);
 
             // Update the button class and icon to "unpin"
-            pinButton.className = 'btn btn-toPin btn-2';
-            pinButton.innerHTML = '<i class="fa-sharp fa-regular fa-thumbtack-angle"></i>';
+            button.className = 'btn btn-toPin btn-2';
+            button.innerHTML = '<i class="fa-sharp fa-regular fa-thumbtack-angle"></i>';
         }
     } else {
         // Pin the bus stop
@@ -332,8 +332,8 @@ function togglePinBusStop(busStop, pinButton) {
         alert(`Bus Stop Pinned.`);
 
         // Update the button class and icon to "pin"
-        pinButton.className = 'btn btn-unpin btn-2';
-        pinButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
+        button.className = 'btn btn-unpin btn-2';
+        button.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
     }
 }
 
@@ -399,9 +399,6 @@ function displayBusStops(busStops, isCached = true) {
                     </div>
                 </div>
                 <div class="bus-stop-actions-controls">
-                    <button class="${isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2'} pin-button">
-                        <i class="${isPinned ? 'fa-regular fa-thumbtack-angle-slash' : 'fa-sharp fa-regular fa-thumbtack-angle'}"></i>
-                    </button>
                     <button class="btn btn-busloc btn-sm bus-stop-collapsible-btn" title="Show options">
                         <i class="fa-regular fa-chevron-down"></i>
                     </button>
@@ -419,18 +416,61 @@ function displayBusStops(busStops, isCached = true) {
             </div>
         `;
 
+        // Long press variables
+        let longPressTimer = null;
+        let pinButton = null;
+
+        // Add long press listener for pin/unpin button
+        busStopElement.addEventListener('touchstart', (event) => {
+            longPressTimer = setTimeout(() => {
+                if (!pinButton) {
+                    const controlsDiv = busStopElement.querySelector('.bus-stop-actions-controls');
+                    pinButton = document.createElement('button');
+                    pinButton.className = (isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2') + ' pin-btn-fade-in';
+                    pinButton.innerHTML = `<i class="${isPinned ? 'fa-regular fa-thumbtack-angle-slash' : 'fa-sharp fa-regular fa-thumbtack-angle'}"></i>`;
+                    pinButton.style.order = '-1'; // Position before the expand button
+                    
+                    pinButton.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        event.preventDefault();
+                        togglePinBusStop(busStop, pinButton);
+                        // Remove the button after toggling with fade out animation
+                        pinButton.classList.remove('pin-btn-fade-in');
+                        pinButton.classList.add('pin-btn-fade-out');
+                        setTimeout(() => {
+                            if (pinButton && pinButton.parentNode) {
+                                pinButton.remove();
+                            }
+                            pinButton = null;
+                        }, 300);
+                    });
+                    
+                    controlsDiv.insertBefore(pinButton, controlsDiv.firstChild);
+                }
+            }, 500);
+        }, { passive: true });
+
+        busStopElement.addEventListener('touchend', () => {
+            clearTimeout(longPressTimer);
+            if (pinButton) {
+                setTimeout(() => {
+                    if (pinButton && pinButton.parentNode) {
+                                    pinButton.classList.remove('pin-btn-fade-in');
+                                    pinButton.classList.add('pin-btn-fade-out');
+                                    setTimeout(() => {
+                                        if (pinButton && pinButton.parentNode) {
+                                            pinButton.remove();
+                                        }
+                                        pinButton = null;
+                                    }, 300);
+        busStopElement.addEventListener('touchmove', () => {
+            clearTimeout(longPressTimer);
+        });
+
         // Add click event listener to the entire div
         busStopElement.addEventListener('click', () => {
             // Navigate to buszy.html with the BusStopCode as a query parameter
             window.location.href = `art.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
-        });
-
-
-        // Add click event listener to the "Pin" button
-        const pinButton = busStopElement.querySelector('.pin-button');
-        pinButton.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent triggering the parent div's click event
-            togglePinBusStop(busStop, pinButton); // Toggle pin/unpin
         });
 
         const collapseButton = busStopElement.querySelector('.bus-stop-collapsible-btn');
@@ -622,4 +662,10 @@ document.addEventListener('DOMContentLoaded', () => {
             searchInput.value = busStopCode; // Populate the search bar with the BusStopCode
         }
     }
+});
+
+// Suppress context menu on the bus-stops container
+// (prevents native long-press menu from interfering with touch interactions)
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('#bus-stops')) e.preventDefault();
 });

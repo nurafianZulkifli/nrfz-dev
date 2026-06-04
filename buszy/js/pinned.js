@@ -561,17 +561,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         if (dragModeActive || draggableItem === listItem) e.preventDefault(); 
                     });
 
-                    // Remove Bookmark button
-                    const removeButton = document.createElement('button');
-                    removeButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
-                    removeButton.className = 'btn btn-unpin btn-2';
-                    removeButton.style.flexShrink = '0';
-                    removeButton.addEventListener('click', (event) => {
-                        event.stopPropagation();
-                        event.preventDefault();
-                        confirmAndRemoveBookmark(bookmark.BusStopCode);
-                    });
-
                     const actionsToggleBtn = document.createElement('button');
                     actionsToggleBtn.className = 'btn btn-busloc btn-sm bus-stop-collapsible-btn';
                     actionsToggleBtn.title = 'Show options';
@@ -614,7 +603,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     const controls = document.createElement('div');
                     controls.className = 'bus-stop-actions-controls';
-                    controls.appendChild(removeButton);
                     controls.appendChild(actionsToggleBtn);
 
                     const mainRow = document.createElement('div');
@@ -622,6 +610,62 @@ document.addEventListener('DOMContentLoaded', async () => {
                     mainRow.appendChild(dragHandle);
                     mainRow.appendChild(link);
                     mainRow.appendChild(controls);
+
+                    // Long press variables for pin button
+                    let longPressTimer = null;
+                    let pinButton = null;
+
+                    // Add long press listener for remove button
+                    listItem.addEventListener('touchstart', (event) => {
+                        longPressTimer = setTimeout(() => {
+                            if (!pinButton) {
+                                pinButton = document.createElement('button');
+                                pinButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
+                                pinButton.className = 'btn btn-unpin btn-2 pin-btn-fade-in';
+                                pinButton.style.order = '-1'; // Position before the expand button
+                                pinButton.style.flexShrink = '0';
+                                
+                                pinButton.addEventListener('click', (event) => {
+                                    event.stopPropagation();
+                                    event.preventDefault();
+                                    confirmAndRemoveBookmark(bookmark.BusStopCode);
+                                    // Remove the button after action with fade out animation
+                                    pinButton.classList.remove('pin-btn-fade-in');
+                                    pinButton.classList.add('pin-btn-fade-out');
+                                    setTimeout(() => {
+                                        if (pinButton && pinButton.parentNode) {
+                                            pinButton.remove();
+                                        }
+                                        pinButton = null;
+                                    }, 300);
+                                });
+                                
+                                controls.insertBefore(pinButton, controls.firstChild);
+                            }
+                        }, 500);
+                    }, { passive: true });
+
+                    listItem.addEventListener('touchend', () => {
+                        clearTimeout(longPressTimer);
+                        if (pinButton) {
+                            setTimeout(() => {
+                                if (pinButton && pinButton.parentNode) {
+                                    pinButton.classList.remove('pin-btn-fade-in');
+                                    pinButton.classList.add('pin-btn-fade-out');
+                                    setTimeout(() => {
+                                        if (pinButton && pinButton.parentNode) {
+                                            pinButton.remove();
+                                        }
+                                        pinButton = null;
+                                    }, 300);
+                                }
+                            }, 2000);
+                        }
+                    });
+
+                    listItem.addEventListener('touchmove', () => {
+                        clearTimeout(longPressTimer);
+                    });
 
                     const actionCollapse = document.createElement('div');
                     actionCollapse.className = 'bus-stop-options-collapse';
