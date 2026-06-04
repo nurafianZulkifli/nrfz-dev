@@ -367,6 +367,13 @@ function displayBusStops(busStops, isCached = true) {
         busStopElement.className = 'bus-stop' + (idx === 0 ? ' nearest-stop' : '');
         busStopElement.dataset.busStopCode = busStop.BusStopCode;
         
+        // If this is the nearest stop, remove the highlight after 4 seconds
+        if (idx === 0) {
+            setTimeout(() => {
+                busStopElement.classList.remove('nearest-stop');
+            }, 4000);
+        }
+        
         // Build correct image path for GitHub Pages and Heroku
         const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
         const busIconPath = basePath + 'buszy/assets/bus-icon.png';
