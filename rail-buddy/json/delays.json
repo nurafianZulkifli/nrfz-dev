@@ -1,0 +1,102 @@
+[
+    {
+        "type": "Disruption",
+        "title": "BP Major Delay - Senja  - Bukit Panjang",
+        "line": "BP",
+        "from": "Senja",
+        "to": "Bukit Panjang",
+        "start": "2026-05-18",
+        "end": "2026-05-18",
+        "status": "Resolved",
+        "tags": [
+            "Disruption",
+            "Track Intrusion"
+        ]
+    },
+    {
+        "type": "Disruption",
+        "title": "TEL Major Delay - Woodlands North to Bayshore",
+        "line": "TEL",
+        "from": "Woodlands North",
+        "to": "Bayshore",
+        "start": "2026-05-03",
+        "end": "2026-05-03",
+        "status": "Resolved",
+        "tags": [
+            "Disruption",
+            "Signalling Fault"
+        ]
+    },
+    {
+        "type": "Delay",
+        "title": "SK Minor Delay - Inner Loop",
+        "line": "SK",
+        "from": "Renjong",
+        "to": "Cheng Lim",
+        "start": "2026-03-16",
+        "end": "2026-03-16",
+        "status": "Resolved",
+        "tags": [
+            "Delay"
+        ]
+    },
+    {
+        "type": "Delay",
+        "title": "DTL Minor Delay - Bukit Panjang - Botanic Gardens",
+        "line": "DTL",
+        "from": "Bukit Panjang",
+        "to": "Botanic Gardens",
+        "start": "2026-03-13",
+        "end": "2026-03-13",
+        "status": "Resolved",
+        "tags": [
+            "Delay"
+        ]
+    },
+    {
+        "type": "Delay",
+        "title": "CCL Minor Delay - Bishan to Buona Vista",
+        "line": "CCL",
+        "from": "Bishan",
+        "to": "Buona Vista",
+        "start": "2026-01-13",
+        "end": "2026-01-14",
+        "status": "Resolved",
+        "tags": [
+            "Delay"
+        ]
+    },
+    {
+        "type": "Delay",
+        "title": "NSL Minor delay - Ang Mo Kio to Woodlands",
+        "line": "NSL",
+        "from": "Ang Mo Kio",
+        "to": "Woodlands",
+        "start": "2025-12-26",
+        "end": "2025-12-26",
+        "status": "Resolved",
+        "tags": [
+            "Delay",
+            "Train Fault"
+        ]
+    },
+    {
+        "type": "Delay",
+        "title": "CCL Minor Delay - HarbourFront to Paya Lebar (Public Report)",
+        "line": "CCL",
+        "from": [
+            "Marina Bay",
+            "Dhoby Ghaut"
+        ],
+        "to": [
+            "HarbourFront",
+            "HarbourFront"
+        ],
+        "start": "2025-12-08",
+        "end": "2025-12-08",
+        "status": "Resolved",
+        "tags": [
+            "Delay"
+        ]
+    }
+]

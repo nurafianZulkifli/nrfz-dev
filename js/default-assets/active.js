@@ -197,12 +197,12 @@
         pw_window.scrollUp({
             scrollSpeed: 1000,
             scrollText: '<i class="fa-solid fa-arrow-up-to-line"></i>',
-            scrollDistance: 9999999, // Disable the plugin's own show/hide; we control it manually
+            scrollDistance: 9999999, // Disable plugin's own show/hide; we control manually
             animation: 'none',
             animationSpeed: 0
         });
 
-        // Custom visibility: show when scrolling up (past threshold), hide when scrolling down
+        // Show on scroll-up past threshold, hide on scroll-down
         (function () {
             var lastScrollY = window.scrollY;
             var btn = document.getElementById('scrollUp');
@@ -227,10 +227,8 @@
                         if (currentScrollY < THRESHOLD) {
                             visible = false;
                         } else if (currentScrollY < lastScrollY - 4) {
-                            // Scrolling up
                             visible = true;
                         } else if (currentScrollY > lastScrollY + 4) {
-                            // Scrolling down
                             visible = false;
                         }
                         lastScrollY = currentScrollY;
@@ -271,39 +269,22 @@ function calculateAge(birthday) {
 // :: 16.0 Align Paragraphs
 // *********************************
 
-var alignParagraphsConfig = {
-  // CSS selector for elements to process
-  selector: "p",
-  // Class that opts an element out of auto-alignment
-  excludeClass: "no-align",
-  // Number of lines at or below which the "few" alignment is applied
-  lineThreshold: 1,
-  // Alignment for paragraphs at or below lineThreshold lines
-  fewLinesAlign: "center",
-  // Alignment for paragraphs above lineThreshold lines
-  manyLinesAlign: "left",
-};
-
 function alignParagraphs() {
-  var cfg = alignParagraphsConfig;
-  document.querySelectorAll(cfg.selector).forEach(function (p) {
-    // Skip excluded elements
-    if (p.classList.contains(cfg.excludeClass)) return;
+  document.querySelectorAll("p").forEach(function (p) {
+    // Skip paragraphs with the class 'no-align'
+    if (p.classList.contains("no-align")) {
+      return;
+    }
 
-    // Per-element overrides via data attributes:
-    //   data-align-few="left"   → overrides fewLinesAlign
-    //   data-align-many="left"  → overrides manyLinesAlign
-    //   data-align-threshold="2" → overrides lineThreshold
-    var few       = p.dataset.alignFew       || cfg.fewLinesAlign;
-    var many      = p.dataset.alignMany      || cfg.manyLinesAlign;
-    var threshold = p.dataset.alignThreshold != null
-                      ? parseInt(p.dataset.alignThreshold, 10)
-                      : cfg.lineThreshold;
+    const lineHeight = parseFloat(window.getComputedStyle(p).lineHeight);
+    const height = p.offsetHeight;
+    const lines = Math.round(height / lineHeight);
 
-    var lineHeight = parseFloat(window.getComputedStyle(p).lineHeight);
-    var lines = lineHeight > 0 ? Math.round(p.offsetHeight / lineHeight) : 1;
-
-    p.style.textAlign = lines <= threshold ? few : many;
+    if (lines <= 1) {
+      p.style.textAlign = "center";
+    } else {
+      p.style.textAlign = "justify";
+    }
   });
 }
 

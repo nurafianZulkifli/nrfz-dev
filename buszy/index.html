@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <title>Pinned Bus Stops | Buszy</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
+    <meta name="description" content="Real-time bus timings, alerts, and pinned bus stops for Singapore buses">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Buszy">
+
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./assets/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="./assets/icon-192.png">
+    <!-- iOS PWA Startup Image -->
+    <link rel="apple-touch-startup-image" href="../img/bg-img/hero-buszy-dark.png">
+
+
+    <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pwa-styles.css">
+    <link rel="stylesheet" href="./css/style-buszy.css">
+    <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WN76281P3Q');
+    </script>
+
+</head>
+
+<style>
+    #cv-bat {
+        background-size: cover;
+        background-position: center;
+        height: 70vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    #cv-bat::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        background: linear-gradient(to bottom,
+                rgba(236, 236, 234, 0) 0%,
+                rgba(236, 236, 234, 0) 15%,
+                rgba(236, 236, 234, 0.3) 35%,
+                rgba(236, 236, 234, 0.6) 50%,
+                rgba(236, 236, 234, 0.85) 65%,
+                rgba(236, 236, 234, 1) 80%,
+                rgba(236, 236, 234, 1) 100%);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        -webkit-mask-image: linear-gradient(to top,
+                black 0%,
+                black 40%,
+                rgba(0, 0, 0, 0.6) 60%,
+                rgba(0, 0, 0, 0.2) 80%,
+                transparent 100%);
+        mask-image: linear-gradient(to top,
+                black 0%,
+                black 53%,
+                rgba(0, 0, 0, 0.6) 60%,
+                rgba(0, 0, 0, 0.2) 80%,
+                transparent 100%);
+        z-index: -1;
+    }
+
+    body.dark-mode #cv-bat::before {
+        background: linear-gradient(to bottom,
+                rgba(18, 21, 33, 0) 0%,
+                rgba(18, 21, 33, 0) 15%,
+                rgba(18, 21, 33, 0.3) 35%,
+                rgba(18, 21, 33, 0.6) 50%,
+                rgba(18, 21, 33, 0.85) 65%,
+                rgba(18, 21, 33, 1) 80%,
+                rgba(18, 21, 33, 1) 100%);
+    }
+
+    #cv-bat .container {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+    }
+
+    .alerts-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        color: #acacac;
+        background-color: #ffffff86;
+        border: 2px solid #acacac;
+    }
+
+    .alerts-btn:has(.ann-indicator-dot.show) {
+        border-color: #e63946;
+        color: #e63946;
+        animation: pulse-ann-btn 2s infinite;
+    }
+
+    @keyframes pulse-ann-btn {
+        0%, 100% { border-color: #ff6b35; }
+        50% { border-color: rgba(255, 107, 53, 0.4); }
+    }
+
+    .alerts-btn .ann-indicator-dot,
+    .alerts-btn .ann-indicator-dot.show {
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        margin: 0 !important;
+    }
+
+    body.dark-mode .alerts-btn:has(.ann-indicator-dot.show) {
+        border-color: #ff6b35;
+        color: #ff6b35;
+    }
+
+    .alerts-btn:active {
+        transform: scale(0.95);
+    }
+
+    body.dark-mode .alerts-btn {
+        color: #606062;
+        background-color: #1c1f2b6e;
+        border: 2px solid #525872;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .bus-stop-code {
+        display: inline-flex;
+        align-items: center;
+        background-color: #94d40b;
+        color: #000;
+        font-weight: bold;
+        font-size: 15px;
+        padding: 5px 4px;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: pointer;
+    }
+
+    body.dark-mode .bus-stop-code {
+        display: inline-flex;
+        align-items: center;
+        background-color: #7db603;
+        color: #000;
+        font-weight: bold;
+        font-size: 15px;
+        padding: 5px 4px;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: pointer;
+    }
+
+    .bus-stop-code img {
+        width: 25px;
+        height: auto;
+        cursor: pointer;
+    }
+
+    .bus-stop-code-text,
+    body.dark-mode .bus-stop-code-text {
+        font-size: 15px;
+        font-weight: bold;
+        color: #000;
+        background-color: #fff;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 2px 6px;
+        cursor: pointer;
+    }
+
+    .bus-stop-description,
+    body.dark-mode .bus-stop-description {
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 12px;
+        cursor: pointer;
+    }
+
+    .bus-stop-info {
+        display: flex;
+        align-items: center;
+    }
+
+    #did-you-mean {
+        margin-top: 1.0em;
+        margin-bottom: 2em;
+        font-size: 17px;
+        color: #ccc;
+        padding: 0 0.25rem;
+    }
+
+    #did-you-mean a {
+        color: #94d40b;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #did-you-mean a:hover {
+        text-decoration: underline;
+    }
+
+    body.dark-mode #did-you-mean {
+        color: #aaa;
+    }
+
+    body.dark-mode #did-you-mean a {
+        color: #a8e63a;
+    }
+
+    /* Cover Search Wrapper */
+    .cover-search-wrapper {
+        background: transparent;
+        padding: 0;
+        padding-top: 40px;
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body.dark-mode .cover-search-wrapper {
+        background: transparent;
+    }
+
+    .cover-title {
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        display: none;
+    }
+
+    /* Search Bar Styles */
+    .search-container {
+        width: 100%;
+        margin-bottom: 0;
+        margin-top: 0;
+        max-width: 600px;
+        padding: 30px 40px 20px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .search-wrapper {
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input-wrapper {
+        position: relative;
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 12px;
+        color: #888;
+        font-size: 0.95rem;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .search-box {
+        width: 100%;
+        padding: 8px 40px 8px 40px;
+        font-size: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.85);
+        transition: all 0.3s ease;
+        color: #333;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .search-box::placeholder {
+        color: #999;
+    }
+
+    .search-box:focus {
+        outline: none;
+        border-color: #107d9c;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+        background-color: #fff;
+    }
+
+    .search-clear {
+        position: absolute;
+        right: 8px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: #d0d0d0;
+        color: #555;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.2s;
+        z-index: 2;
+    }
+
+    .search-clear:hover {
+        background: #d0d0d0;
+    }
+
+    body.dark-mode .search-box {
+        background-color: #1c1f2b6e;
+        border: 2px solid #525872;
+        color: #e0e0e0;
+    }
+
+    body.dark-mode .search-box::placeholder {
+        color: #888;
+    }
+
+    body.dark-mode .search-icon {
+        color: #666;
+    }
+
+    body.dark-mode .search-clear {
+        background: #2e3244;
+        color: #aaa;
+    }
+
+    body.dark-mode .search-clear:hover {
+        background: #3a3f58;
+    }
+
+    /* Category Tabs Styles */
+    .category-tabs {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 0;
+        padding: 15px 40px 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        flex-shrink: 1;
+        mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .category-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .category-tabs-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .scroll-indicator {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: transparent;
+        color: #107d9c;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 8px 12px;
+        flex-shrink: 0;
+        transition: color 0.2s;
+    }
+
+    .scroll-indicator:hover {
+        color: #0056b3;
+    }
+
+    .scroll-indicator.visible {
+        display: flex;
+    }
+
+    .category-tab {
+        padding: 12px 20px;
+        border: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #000;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        border-radius: 24px;
+        flex-shrink: 0;
+    }
+
+    .category-tab:hover {
+        color: #000;
+        transform: translateY(-2px);
+        background-color: #c7e3fb;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-tab.active {
+        background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%) !important;
+        color: #fff;
+    }
+
+    body.dark-mode .category-tab {
+        background-color: #393e53;
+        color: #ffffff;
+    }
+
+    body.dark-mode .category-tab:hover {
+        color: #fff;
+        transform: translateY(-2px);
+        background-color: #52718d;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark-mode .category-tab.active {
+        color: #fff;
+    }
+
+    /* Bus Service Tab Styles */
+    .bus-service-tab {
+        background-color: #94d40b !important;
+        color: #000 !important;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .bus-service-tab:hover {
+        background-color: #c7e3fb !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    body.dark-mode .bus-service-tab {
+        background-color: #7db603 !important;
+        color: #000 !important;
+    }
+
+    body.dark-mode .bus-service-tab:hover {
+        background-color: #94d40b !important;
+    }
+
+    body.dark-mode .scroll-indicator {
+        color: #51a7be;
+    }
+
+    body.dark-mode .scroll-indicator:hover {
+        color: #6fb8d4;
+    }
+
+    .category-tab i {
+        font-size: 1rem;
+    }
+
+    .pinned {
+        /* margin-top: 2em; */
+        margin-top: -9rem;
+        margin-bottom: 2em;
+        position: relative;
+        z-index: 10;
+    }
+
+    .pinned .about-me-summ {
+        padding-top: 0rem;
+        margin-top: 1em;
+    }
+
+    .no-results {
+        text-align: center;
+        padding: 40px 20px;
+        color: #666;
+    }
+
+    body.dark-mode .no-results {
+        color: #a0a0a0;
+    }
+
+    /* Nearby Bus Stops Styles */
+    .bus-stop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        background-color: #fff;
+        padding-top: 0.96em;
+        padding-bottom: 0.96em;
+    }
+
+    body.dark-mode .bus-stop {
+        background-color: #1c1f2b;
+        border: 1px solid #2b2b2b33;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .bus-stop-details {
+        padding-right: 1em;
+    }
+
+    .road-name {
+        font-size: 18px;
+    }
+
+    .distance {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    body.dark-mode .distance,
+    body.dark-mode .road-name {
+        color: #e0e0e0;
+    }
+
+    .btn-rfetch {
+        position: relative;
+        z-index: 1;
+        min-width: 50px;
+        width: auto;
+        height: auto;
+        line-height: 40px;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-block;
+        padding: 0 30px;
+        text-align: center;
+        text-transform: capitalize;
+        color: #fff;
+        border-radius: 60px;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #bb2d3b;
+    }
+
+    .btn-rfetch:focus,
+    .btn-rfetch:hover {
+        font-weight: 500;
+        background-color: #6d99c0 !important;
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    /* Tab switching */
+    .tabs-switcher {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .tab-button {
+        padding: 12px 24px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #666;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .tab-button:hover {
+        color: #107d9c;
+    }
+
+    .tab-button.active {
+        color: #107d9c;
+        border-bottom-color: #107d9c;
+    }
+
+    body.dark-mode .tab-button {
+        color: #a0a0a0;
+    }
+
+    body.dark-mode .tab-button:hover,
+    body.dark-mode .tab-button.active {
+        color: #4a90e2;
+    }
+
+    body.dark-mode .tabs-switcher {
+        border-bottom-color: #444;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .list-group-item:first-child {
+        transition-duration: 800ms;
+        border-radius: 20px;
+        /* margin-top: 2em; */
+        font-size: 20px;
+    }
+
+    .list-group-item:last-child {
+        transition-duration: 800ms;
+        border-radius: 20px;
+        margin-bottom: 2em;
+        font-size: 20px;
+    }
+
+    @media (max-width: 768px) {
+        #cv-bat {
+            height: 50vh;
+        }
+
+        .cover-search-wrapper {
+            padding: 0;
+        }
+
+        .search-container {
+            padding: 20px 20px 15px;
+            max-width: 100%;
+        }
+
+        .search-box {
+            max-width: 100%;
+            padding: 10px 16px;
+            padding-left: 36px;
+            padding-right: 36px;
+            font-size: 0.9rem;
+        }
+
+        .category-tabs {
+            padding: 10px 12px 10px;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .category-tabs-container {
+            padding-right: 12px;
+        }
+
+        .scroll-indicator {
+            padding: 6px 8px;
+            font-size: 1.2rem;
+        }
+
+        .category-tab {
+            padding: 8px 12px;
+            font-size: 0.95rem;
+        }
+
+        /* Balanced padding between tab and cards */
+        [data-refresh-header] {
+            margin-bottom: 15px;
+            padding-right: 10px;
+        }
+
+        .pin-msg {
+            flex-direction: row;
+        }
+
+        .bus-stop-info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .bus-stop-details {
+            padding-right: 1em;
+            padding-top: 0.5em;
+        }
+
+        .bus-stop-description,
+        body.dark-mode .bus-stop-description {
+            margin-left: 0px;
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        .bus-stop-description span,
+        body.dark-mode .bus-stop-description span {
+            margin-left: 0px;
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        body.dark-mode .distance,
+        .distance {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        body.dark-mode .road-name,
+        .road-name {
+            font-size: 15px;
+        }
+
+        .tab-button {
+            padding: 10px 16px;
+            font-size: 0.9rem;
+        }
+
+        .pinned {
+            margin-top: -7rem;
+            margin-bottom: 2em;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container {
+            padding: 0 15px;
+
+        }
+
+    }
+
+    @media (max-width: 545px) {
+        #cv-bat {
+            height: 45vh;
+        }
+
+        .cover-search-wrapper {
+            padding: 0;
+        }
+
+        .search-container {
+            padding: 15px 0px 12px;
+            max-width: 100%;
+        }
+
+        .search-box {
+            max-width: 100%;
+            padding: 9px 14px;
+            padding-left: 32px;
+            padding-right: 32px;
+            font-size: 0.85rem;
+            background-color: #ffffff86;
+            border: 2px solid #acacac;
+        }
+
+        .category-tabs {
+            padding: 10px 10px 10px;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .scroll-indicator {
+            padding: 6px 8px;
+            font-size: 1.1rem;
+        }
+
+        #scroll-indicator {
+            height: 100%;
+            width: 0;
+            background: none;
+            color: #fff;
+            transition: width 0.1s ease;
+        }
+
+
+        .category-tab {
+            padding: 8px 12px;
+            font-size: 0.75rem;
+        }
+
+        /* Balanced padding between tab and cards */
+        [data-refresh-header] {
+            margin-top: 25px;
+            margin-bottom: 0px;
+            padding-right: 10px;
+        }
+
+        .bus-stop-info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .bus-stop-description,
+        body.dark-mode .bus-stop-description {
+            margin-left: 0px;
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        .pinned h2 {
+            font-size: 25px;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: bolder;
+            color: #3b3b3b;
+            text-align: left;
+        }
+
+        .bus-stop-code-text,
+        body.dark-mode .bus-stop-code-text {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 344px) {
+        .pinned {
+            margin-top: -5rem;
+            margin-bottom: 2em;
+            position: relative;
+            z-index: 10;
+        }
+    }
+</style>
+
+<body>
+    <!-- Apply dark mode before splash renders to avoid flash -->
+    <script>
+        (function () {
+            var pref = localStorage.getItem('theme-preference') || 'system';
+            var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) document.body.classList.add('dark-mode');
+        })();
+    </script>
+
+    <!-- PWA Splash Screen: only show on fresh launch -->
+    <script>
+        if (sessionStorage.getItem('splashShown')) {
+            document.documentElement.style.setProperty('--splash-display', 'none');
+        }
+    </script>
+    <div id="pwa-splash" style="display: var(--splash-display, flex);">
+        <div class="splash-content">
+            <img src="./assets/icon-512.png" alt="Buszy" class="splash-icon">
+            <span class="splash-name">Buszy</span>
+        </div>
+        <div class="splash-hero"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="./"><img src="./assets/logo.png" alt="logo" class="logo" /></a>
+
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fa-sharp fa-regular fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./first-last.html" class="nav-link">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Timings</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./alerts.html" class="nav-link" id="ann-nav-desktop">
+                        <i class="fa-regular fa-triangle-exclamation"></i>
+                        <span>Alerts</span>
+                        <span class="alerts-indicator-dot"></span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="./menu.html" class="nav-link">
+                        <i class="fa-regular fa-bars"></i>
+                        <span>Menu</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li class="active">
+                <a href="#">
+                    <span class="icon">
+                        <i class="fa-sharp fa-regular fa-house"></i>
+                    </span>
+                    <span class="label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="./first-last.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </span>
+                    <span class="label">Timings</span>
+                </a>
+            </li>
+            <li>
+                <a href="./alerts.html" id="ann-nav-mobile">
+                    <span class="icon">
+                        <i class="fa-regular fa-triangle-exclamation"></i>
+                        <span class="alerts-indicator-dot"></span>
+                    </span>
+                    <span class="label">Alerts</span>
+                </a>
+            </li>
+            <li>
+                <a href="./menu.html">
+                    <span class="icon">
+                        <i class="fa-regular fa-bars"></i>
+                    </span>
+                    <span class="label">Menu</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
+
+    <!-- Cover Header -->
+    <section class="breadcrumb-area-eicw-cover bg-img bg-overlay" id="cv-bat">
+        <div class="container">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-12" style="padding-left: 0em; padding-right: 0em;">
+                    <div class="cover-search-wrapper">
+                        <h2><i class="fa-regular fa-location-pin"></i>&nbsp;Bus Stops</h2>
+
+                        <div class="search-container">
+                            <div class="search-wrapper">
+                                <div class="search-input-wrapper">
+                                    <i class="fa-regular fa-magnifying-glass search-icon"></i>
+                                    <input type="text" class="search-box" id="bus-stop-search"
+                                        placeholder="Search bus stops by name or code">
+                                    <button class="search-clear" id="search-clear" aria-label="Clear search">
+                                        <i class="fa-regular fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <a href="./ann.html" class="alerts-btn" aria-label="Announcements" title="Announcements"
+                                    style="position: relative; top: auto; right: auto; width: 46px; height: 46px; font-size: 18px; margin-left: 12px;">
+                                    <i class="fa-regular fa-bullhorn"></i>
+                                    <span class="ann-indicator-dot"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="category-tabs-container">
+                            <div class="category-tabs" id="category-tabs">
+                                <button class="category-tab active" data-category="pinned">
+                                    <i class="fa-sharp fa-regular fa-thumbtack-angle"></i>&nbsp;
+                                    Pinned
+                                </button>
+                                <button class="category-tab" data-category="nearby">
+                                    <i class="fa-kit fa-lta-location"></i>&nbsp;
+                                    Nearby
+                                </button>
+                                <button class="category-tab" data-category="all">
+                                    <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;
+                                    All
+                                </button>
+                                <button class="category-tab bus-service-tab" id="bus-service-tab"
+                                    style="display: none; background-color: #94d40b; color: #000;">
+                                    <i class="fa-kit fa-lta-bus"></i>&nbsp;
+                                    Bus Service
+                                </button>
+                            </div>
+                            <button class="scroll-indicator" id="scroll-indicator" aria-label="Scroll tabs">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div id="did-you-mean" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pinned" id="pinned">
+        <div class="container">
+            <!-- All Tab (Search all bus stops) -->
+            <div id="all-content" class="tab-content">
+                <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+                    <div class="list-group">
+                        <p class="pin-msg" id="loading-message"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="status"
+                                style="margin-right: 1em;">
+                                <circle cx="50" cy="50" r="45" stroke-dasharray="0% 314.159%">
+                                    <animateTransform attributeName="transform" type="rotate" values="-90;810"
+                                        keyTimes="0;1" dur="2s" repeatCount="indefinite" />
+                                    <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%"
+                                        calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0"
+                                        keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" />
+                                    <animate attributeName="stroke-dasharray"
+                                        values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline"
+                                        keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                            </svg>Loading Data...
+                        </p>
+                    </div>
+                    <div class="pagination-buttons"
+                        style="display: flex; gap: 3em; justify-content: center; margin-top: 2em; flex-wrap: nowrap;">
+                        <button id="prev-button" class="btn pw-btn-prev btn-2 mt-15" style="display: none;"><i
+                                class="fa-solid fa-arrow-left"></i></button>
+                        <button id="next-button" class="btn pw-btn-next btn-2 mt-15" style="display: none;"><i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Pinned Tab -->
+            <div id="pinned-content" class="tab-content active">
+                <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+                    <div id="bookmarks-container" class="list-group"></div>
+                </section>
+            </div>
+
+            <!-- Nearby Tab -->
+            <div id="nearby-content" class="tab-content">
+                <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
+
+                    <div id="bus-stops"></div>
+
+                </section>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- First-Time Guide Overlay -->
+    <div class="overlay" id="guideOverlay">
+        <div class="guide-sheet">
+            <div class="guide-steps-wrap" id="guideStepsWrap">
+
+                <!-- Step 1: Pin a Bus Stop -->
+                <div class="guide-step active" id="guideStep1">
+                    <div class="guide-icon-wrap guide-icon-green">
+                        <i class="fa-sharp fa-regular fa-thumbtack-angle"></i>
+                    </div>
+                    <div class="guide-step-label">Step 1 of 5</div>
+                    <div class="guide-step-title">Pin a Bus Stop</div>
+                    <div class="guide-step-body">
+                        Use the <strong>search bar</strong> to find any bus stop by name or code, then tap the
+                        <strong>pin icon</strong> on a result to save it here for quick access.
+                        <div class="guide-tip">
+                            <i class="fa-regular fa-lightbulb"></i>
+                            Switch to the <strong>Nearby</strong> tab to discover stops around your current location without typing anything.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Check Live Timings -->
+                <div class="guide-step" id="guideStep2">
+                    <div class="guide-icon-wrap guide-icon-blue">
+                        <i class="fa-regular fa-bus-simple"></i>
+                    </div>
+                    <div class="guide-step-label">Step 2 of 5</div>
+                    <div class="guide-step-title">Check Live Timings</div>
+                    <div class="guide-step-body">
+                        Tap any pinned bus stop to view <strong>real-time arrival timings</strong>, including
+                        the next few buses and their seat load status.
+                        <div class="guide-tip">
+                            <i class="fa-regular fa-lightbulb"></i>
+                            Timings auto-refresh every 2 seconds by default. You can adjust this interval in the Settings page.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Alerts & First/Last Bus -->
+                <div class="guide-step" id="guideStep3">
+                    <div class="guide-icon-wrap guide-icon-orange">
+                        <i class="fa-regular fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="guide-step-label">Step 3 of 5</div>
+                    <div class="guide-step-title">Alerts &amp; More</div>
+                    <div class="guide-step-body">
+                        Tap the <strong>Alerts</strong> tab for bus service disruptions and route changes. Use
+                        <strong>Timings</strong> in the menu to look up first and last bus times for any stop.
+                        <div class="guide-tip">
+                            <i class="fa-regular fa-lightbulb"></i>
+                            The announcements icon on this screen will pulse when there's a new service notice.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Settings -->
+                <div class="guide-step" id="guideStep4">
+                    <div class="guide-icon-wrap guide-icon-teal">
+                        <i class="fa-regular fa-gear"></i>
+                    </div>
+                    <div class="guide-step-label">Step 4 of 5</div>
+                    <div class="guide-step-title">Customise Settings</div>
+                    <div class="guide-step-body">
+                        Head to <strong>Menu &gt; Settings</strong> to change the time format, toggle display
+                        options like fleet legend and incoming buses, and control notification behaviour.
+                        <div class="guide-tip">
+                            <i class="fa-regular fa-lightbulb"></i>
+                            You can adjust what you want to see and the way Bus Service information is displayed, and export your pinned stops as a backup from the Settings page.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Bus Arrival Notifications -->
+                <div class="guide-step" id="guideStep5">
+                    <div class="guide-icon-wrap guide-icon-blue">
+                        <i class="fa-regular fa-bell"></i>
+                    </div>
+                    <div class="guide-step-label">Step 5 of 5</div>
+                    <div class="guide-step-title">Bus Arrival Notifications</div>
+                    <div class="guide-step-body">
+                        On any bus arrival timings page, tap the <strong>Notify button</strong>
+                        to get notified when that bus is approaching your stop.
+                        <div class="guide-tip">
+                            <i class="fa-regular fa-lightbulb"></i>
+                            Control how long Buszy watches for your bus under <strong>Menu &gt; Settings &gt; Notify Mode</strong> &mdash; choose once, 24 hours, or always-on.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dots -->
+            <div class="guide-dots">
+                <span class="guide-dot active" id="guideDot1"></span>
+                <span class="guide-dot" id="guideDot2"></span>
+                <span class="guide-dot" id="guideDot3"></span>
+                <span class="guide-dot" id="guideDot4"></span>
+                <span class="guide-dot" id="guideDot5"></span>
+            </div>
+
+            <!-- Actions -->
+            <div class="guide-actions">
+                <button class="sht-btn sht-btn-ghost" id="guidePrevBtn" onclick="guidePrev()" style="display:none;">
+                    <i class="fa-regular fa-chevron-left"></i> Back
+                </button>
+                <button class="sht-btn sht-btn-ghost guide-skip-btn" onclick="guideFinish()"><i class="fa-regular fa-x"></i> Skip</button>
+                <button class="sht-btn sht-btn-primary" id="guideNextBtn" onclick="guideNext()">
+                    Next <i class="fa-regular fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" id="cookiebanner" src="../js/cookies-banner.js" data-position="bottom"
+        data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
+        data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
+        </script>
+
+    <script src="../js/cookies-theme-sync.js"></script>
+
+    <script src="./js/mob-navtabs.js"></script>
+
+    <script src="./js/mob-navtabs-tooltip.js"></script>
+
+    <script src="./js/haptic.js"></script>
+
+    <script src="./buszy-subp.js"></script>
+
+    <script src="../js/jquery.min.js"></script>
+
+    <script src="../js/popper.min.js"></script>
+
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/pw.bundle.js"></script>
+
+    <script src="../js/default-assets/active.js"></script>
+
+    <script src="../js/isotope.pkgd.min.js"></script>
+
+    <script src="../js/dstabs.js"></script>
+
+    <script src="../js/utils.js"></script>
+
+    <script src="../js/pwa-config.js"></script>
+
+    <script src="./js/nbs.js"></script>
+
+    <script>
+        if (window.PWAConfig) {
+            const basePath = window.PWAConfig.basePath;
+            const bgElement = document.getElementById('cv-bat');
+
+            // Check dark mode preference using the same logic as buszy.js
+            const _themePreference = localStorage.getItem('theme-preference') || 'system';
+            const _prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let isDarkMode = false;
+
+            if (_themePreference === 'dark') {
+                isDarkMode = true;
+            } else if (_themePreference === 'light') {
+                isDarkMode = false;
+            } else if (_themePreference === 'system') {
+                isDarkMode = _prefersDark;
+            }
+
+            const imageName = isDarkMode ? 'hero-buszy-dark.png' : 'hero-buszy.png';
+            const imageUrl = basePath + 'img/bg-img/' + imageName;
+
+            if (bgElement) {
+                bgElement.style.backgroundImage = `url('${imageUrl}')`;
+            }
+        }
+    </script>
+
+    <script src="../js/pwa-helper.js"></script>
+
+    <script src="../js/pwa-migration.js"></script>
+
+    <script src="./js/pwa-init.js"></script>
+
+    <script src="./js/bus-stops-preloader.js"></script>
+
+    <script src="./js/buszy-main.js"></script>
+
+    <script src="./js/ann-indicator.js"></script>
+    <script src="./js/alerts-indicator.js"></script>
+
+    <script>
+        // Bus Service Search Detection and Button Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('bus-stop-search');
+            const busServiceTab = document.getElementById('bus-service-tab');
+            const didYouMeanEl = document.getElementById('did-you-mean');
+
+            if (!searchInput || !busServiceTab) return;
+
+            // Load service numbers from JSON for exact-case lookup
+            let serviceNumbers = [];
+            const basePath = (window.PWAConfig && window.PWAConfig.basePath) ? window.PWAConfig.basePath : '/';
+            fetch(basePath + 'buszy/json/bus-service-data.json')
+                .then(r => r.json())
+                .then(data => {
+                    serviceNumbers = data.map(s => s.n);
+                    // Re-run after data loads in case input was already restored
+                    if (searchInput.value) updateDidYouMean(searchInput.value);
+                })
+                .catch(() => { });
+
+            // Restore service number from sessionStorage if it exists (for back navigation)
+            const savedService = sessionStorage.getItem('lastServiceSearch');
+            if (savedService) {
+                searchInput.value = savedService;
+                busServiceTab.style.display = 'inline-flex';
+                sessionStorage.removeItem('lastServiceSearch');
+                // Grey out button if suggestion needed — re-evaluated once JSON loads too
+                updateDidYouMean(savedService);
+            }
+
+            // Detect if input looks like a service number
+            function isServiceNumber(text) {
+                const cleaned = text.trim();
+                return /^\d{1,4}[a-zA-Z]?$/.test(cleaned);
+            }
+
+            // Find exact or suggested service number from loaded data
+            function resolveServiceNumber(typed) {
+                const trimmed = typed.trim();
+                if (serviceNumbers.includes(trimmed)) return { exact: trimmed, suggestion: null };
+                const lower = trimmed.toLowerCase();
+                const match = serviceNumbers.find(n => n.toLowerCase() === lower);
+                if (match) return { exact: null, suggestion: match };
+                return { exact: null, suggestion: null };
+            }
+
+            function navigateToService(serviceNo) {
+                sessionStorage.setItem('lastServiceSearch', serviceNo);
+                searchInput.select();
+                setTimeout(() => {
+                    window.location.href = `${basePath}buszy/bus-service.html?service=${encodeURIComponent(serviceNo)}`;
+                }, 100);
+            }
+
+            function updateDidYouMean(val) {
+                if (!didYouMeanEl || serviceNumbers.length === 0) return;
+                const { exact, suggestion } = resolveServiceNumber(val);
+                if (suggestion) {
+                    didYouMeanEl.style.display = 'block';
+                    didYouMeanEl.innerHTML = `Did you mean Bus Service <a id="dym-link">${suggestion}</a>?`;
+                    document.getElementById('dym-link').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        navigateToService(suggestion);
+                    });
+                    busServiceTab.disabled = true;
+                    busServiceTab.style.opacity = '0.4';
+                    busServiceTab.style.cursor = 'not-allowed';
+                } else {
+                    didYouMeanEl.style.display = 'none';
+                    busServiceTab.disabled = false;
+                    busServiceTab.style.opacity = '';
+                    busServiceTab.style.cursor = '';
+                }
+            }
+
+            // Update button and did-you-mean on input change
+            searchInput.addEventListener('input', () => {
+                const val = searchInput.value;
+                if (!isServiceNumber(val)) {
+                    busServiceTab.style.display = 'none';
+                    if (didYouMeanEl) didYouMeanEl.style.display = 'none';
+                    return;
+                }
+                busServiceTab.style.display = 'inline-flex';
+                updateDidYouMean(val);
+            });
+
+            // Handle Bus Service button click — use exact or suggested casing, never force uppercase
+            busServiceTab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const val = searchInput.value.trim();
+                if (!isServiceNumber(val)) return;
+                const { exact, suggestion } = resolveServiceNumber(val);
+                navigateToService(exact || suggestion || val);
+            });
+        });
+
+        // Scroll indicator for category tabs
+        const categoryTabsContainer = document.getElementById('category-tabs');
+        const scrollIndicator = document.getElementById('scroll-indicator');
+
+        function updateScrollIndicator() {
+            if (categoryTabsContainer) {
+                const hasScroll = categoryTabsContainer.scrollWidth > categoryTabsContainer.clientWidth;
+                const isAtEnd = categoryTabsContainer.scrollLeft >=
+                    categoryTabsContainer.scrollWidth - categoryTabsContainer.clientWidth - 10;
+
+                if (hasScroll && !isAtEnd) {
+                    scrollIndicator.classList.add('visible');
+                } else {
+                    scrollIndicator.classList.remove('visible');
+                }
+            }
+        }
+
+        // Expose to window for cross-script access
+        window.updateScrollIndicator = updateScrollIndicator;
+
+        if (scrollIndicator && categoryTabsContainer) {
+            // Check on load
+            setTimeout(updateScrollIndicator, 100);
+
+            // Check on window resize
+            window.addEventListener('resize', updateScrollIndicator);
+
+            // Check on scroll
+            categoryTabsContainer.addEventListener('scroll', updateScrollIndicator);
+
+            // Handle scroll indicator click
+            scrollIndicator.addEventListener('click', () => {
+                categoryTabsContainer.scrollBy({
+                    left: 150,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Category tab switching functionality
+        const categoryTabs = document.querySelectorAll('.category-tab:not(.bus-service-tab)');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.getAttribute('data-category');
+
+                // Remove active class from all tabs and contents
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const contentElement = document.getElementById(category + '-content');
+                if (contentElement) {
+                    contentElement.classList.add('active');
+                }
+            });
+        });
+
+        // Add hidden class styling for filtered items
+        const style = document.createElement('style');
+        style.textContent = '.list-group-item.hidden { display: none; }';
+        document.head.appendChild(style);
+    </script>
+
+
+    <!-- Import pinned bus stops from URL parameter if present (TEMP) -->
+    <script>
+        // Check for importPinned parameter and restore data to localStorage
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const importedPinned = params.get('importPinned');
+
+            if (importedPinned) {
+                try {
+                    // Decode the base64 data
+                    const decodedData = atob(importedPinned);
+
+                    // Restore to localStorage - this will overwrite existing data
+                    localStorage.setItem('bookmarkedBusStops', decodedData);
+
+                    // Clean up the URL parameter to avoid re-importing on page refresh
+                    window.history.replaceState({}, document.title, window.location.pathname);
+
+                    console.log('Pinned bus stops successfully imported from menu');
+                } catch (error) {
+                    console.error('Error importing pinned bus stops:', error);
+                }
+            }
+        })();
+    </script>
+
+    <!-- Include scripts for all three functionalities -->
+    <script src="./js/abs.js"></script>
+    <script src="./js/pinned.js"></script>
+
+    <script>
+        // Dismiss PWA splash screen after page load
+        (function () {
+            function hideSplash() {
+                var splash = document.getElementById('pwa-splash');
+                if (!splash) return;
+                sessionStorage.setItem('splashShown', '1');
+                splash.classList.add('hide');
+                setTimeout(function () {
+                    if (splash.parentNode) splash.parentNode.removeChild(splash);
+                }, 500);
+            }
+            if (sessionStorage.getItem('splashShown')) return;
+            if (document.readyState === 'complete') {
+                setTimeout(hideSplash, 600);
+            } else {
+                window.addEventListener('load', function () {
+                    setTimeout(hideSplash, 600);
+                });
+            }
+        })();
+    </script>
+
+    <script src="../js/back-to-top.js"></script>
+
+    <script>
+        // ── First-Time Guide ─────────────────────────────────────────────────────
+        (function () {
+            var _guideStep = 1;
+            var GUIDE_KEY = 'buszy-guide-done';
+            var TOTAL_STEPS = 5;
+
+            function lockScroll() {
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function unlockScroll() {
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
+            }
+
+            function openGuideOverlay() {
+                document.getElementById('guideOverlay').classList.add('open');
+                lockScroll();
+            }
+
+            function closeGuideOverlay() {
+                document.getElementById('guideOverlay').classList.remove('open');
+                unlockScroll();
+            }
+
+            window.guideTo = function (step) {
+                _guideStep = step;
+                for (var i = 1; i <= TOTAL_STEPS; i++) {
+                    var s = document.getElementById('guideStep' + i);
+                    var d = document.getElementById('guideDot' + i);
+                    if (s) s.classList.toggle('active', i === step);
+                    if (d) d.classList.toggle('active', i === step);
+                }
+                var prevBtn = document.getElementById('guidePrevBtn');
+                var nextBtn = document.getElementById('guideNextBtn');
+                if (prevBtn) prevBtn.style.display = step > 1 ? '' : 'none';
+                if (nextBtn) {
+                    if (step === TOTAL_STEPS) {
+                        nextBtn.innerHTML = '<i class="fa-regular fa-check"></i> Done';
+                        nextBtn.onclick = window.guideFinish;
+                    } else {
+                        nextBtn.innerHTML = 'Next <i class="fa-regular fa-chevron-right"></i>';
+                        nextBtn.onclick = window.guideNext;
+                    }
+                }
+            };
+
+            window.guideNext = function () {
+                if (_guideStep < TOTAL_STEPS) window.guideTo(_guideStep + 1);
+                else window.guideFinish();
+            };
+
+            window.guidePrev = function () {
+                if (_guideStep > 1) window.guideTo(_guideStep - 1);
+            };
+
+            window.guideFinish = function () {
+                localStorage.setItem(GUIDE_KEY, '1');
+                closeGuideOverlay();
+            };
+
+            if (!localStorage.getItem(GUIDE_KEY)) {
+                window.guideTo(1);
+                setTimeout(openGuideOverlay, 800);
+            }
+        })();
+    </script>
+
+</body>
+
+</html>
