@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let items = [];
     let prevRect = {};
     let autoScrollLoop = null;
-    let longPressTimer = null;
+    let dragLongPressTimer = null;
     let longPressItem = null;
     let justFinishedDragging = false;
     let dragModeActive = false;
@@ -79,17 +79,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         return timeString;
     }
 
-    function renderArrivalSummary(summary) {
-        return `
+    function renderArrivalSummary(arrivals) {
+        if (!arrivals?.length) {
+            return `
+                <div class="busNo-card d-flex justify-content-between">
+                    <span class="arrival-svc-no">--</span>
+                    <span class="bus-time"></span>
+                    <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+                </div>
+                <div class="busNo-card d-flex justify-content-between">
+                    <span class="arrival-svc-no">--</span>
+                    <span class="bus-time"></span>
+                    <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+                </div>
+            `;
+        }
+        return arrivals.map(a => `
             <div class="busNo-card d-flex justify-content-between">
-                <span class="bus-time">${summary?.next ? formatArrivalTimeStyled(summary.next.eta) : '--'}</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.next ? getLoadIcon(summary.next.load, summary.next.type) : getLoadIcon('sea', 'SD')}</span>
+                <span class="arrival-svc-no">${a.serviceNo}</span>
+                <span class="bus-time">${formatArrivalTimeStyled(a.eta)}</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon(a.load, a.type)}</span>
             </div>
-            <div class="busNo-card d-flex justify-content-between">
-                <span class="bus-time">${summary?.subsequent ? formatArrivalTimeStyled(summary.subsequent.eta) : '--'}</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.subsequent ? getLoadIcon(summary.subsequent.load, summary.subsequent.type) : getLoadIcon('sea', 'SD')}</span>
-            </div>
-        `;
+        `).join('');
     }
 
     async function getArrivalSummaryForStop(busStopCode) {
@@ -114,28 +125,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                         type: service.NextBus.Type
                     });
                 }
-                if (service.NextBus2?.EstimatedArrival) {
-                    arrivals.push({
-                        serviceNo: service.ServiceNo,
-                        eta: service.NextBus2.EstimatedArrival,
-                        load: service.NextBus2.Load,
-                        type: service.NextBus2.Type
-                    });
-                }
             });
 
             arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
-            const summary = {
-                next: arrivals[0] || null,
-                subsequent: arrivals[1] || null
-            };
-            arrivalsSummaryCache.set(busStopCode, summary);
-            return summary;
+            arrivalsSummaryCache.set(busStopCode, arrivals);
+            return arrivals;
         } catch (error) {
             console.warn('[pinned.js] Failed to load arrival summary:', error);
-            const fallback = { next: null, subsequent: null };
-            arrivalsSummaryCache.set(busStopCode, fallback);
-            return fallback;
+            arrivalsSummaryCache.set(busStopCode, []);
+            return [];
         }
     }
 
@@ -607,10 +605,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                     let longPressTimer = null;
                     let pinButton = null;
 
+                    let itemTouchStartX = 0;
+                    let itemTouchStartY = 0;
+
                     // Add long press listener for remove button
                     listItem.addEventListener('touchstart', (event) => {
+                        itemTouchStartX = event.touches[0].clientX;
+                        itemTouchStartY = event.touches[0].clientY;
                         longPressTimer = setTimeout(() => {
                             if (!pinButton) {
+                                longPressTriggered = true;
+                                // Cancel drag-mode timer so entering drag mode doesn't override the pin button
+                                if (dragLongPressTimer) { clearTimeout(dragLongPressTimer); dragLongPressTimer = null; }
+                                longPressItem = null;
                                 pinButton = document.createElement('button');
                                 pinButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
                                 pinButton.className = 'btn btn-unpin btn-2 pin-btn-fade-in';
@@ -637,9 +644,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                         }, 500);
                     }, { passive: true });
 
-                    listItem.addEventListener('touchend', () => {
+                    listItem.addEventListener('touchend', (event) => {
                         clearTimeout(longPressTimer);
                         if (pinButton) {
+                            // Block synthetic click so it doesn't navigate or dismiss UI
+                            const blockClick = (e) => { e.stopImmediatePropagation(); e.preventDefault(); };
+                            listItem.addEventListener('click', blockClick, { capture: true, once: true });
                             setTimeout(() => {
                                 if (pinButton && pinButton.parentNode) {
                                     pinButton.classList.remove('pin-btn-fade-in');
@@ -655,7 +665,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                         }
                     });
 
-                    listItem.addEventListener('touchmove', () => {
+                    listItem.addEventListener('touchmove', (event) => {
+                        const dx = event.touches[0].clientX - itemTouchStartX;
+                        const dy = event.touches[0].clientY - itemTouchStartY;
+                        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+                            clearTimeout(longPressTimer);
+                        }
+                    });
+
+                    listItem.addEventListener('touchcancel', () => {
                         clearTimeout(longPressTimer);
                     });
 
@@ -665,7 +683,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     actionCollapse.innerHTML = `
                         <div class="bus-stop-options-inner">
                             <div class="bus-stop-arrivals-summary card-content-art">
-                                ${renderArrivalSummary({ next: null, subsequent: null })}
+                                ${renderArrivalSummary([])}
                             </div>
                             <a href="${actionBasePath}buszy/art.html?BusStopCode=${encodeURIComponent(bookmark.BusStopCode)}" class="btn btn-busloc btn-sm open-art-btn" title="Open arrival timings page">
                                 <i class="fa-solid fa-arrow-right"></i>
@@ -784,7 +802,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!item) return;
 
         longPressItem = item;
-        longPressTimer = setTimeout(() => {
+        dragLongPressTimer = setTimeout(() => {
             if (longPressItem) {
                 enterDragMode(longPressItem);
                 longPressItem = null;
@@ -793,9 +811,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function handleMouseEnd(e) {
-        if (longPressTimer) {
-            clearTimeout(longPressTimer);
-            longPressTimer = null;
+        if (dragLongPressTimer) {
+            clearTimeout(dragLongPressTimer);
+            dragLongPressTimer = null;
         }
         longPressItem = null;
     }
@@ -807,27 +825,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (dragModeActive) return;
 
         longPressItem = item;
-        longPressTimer = setTimeout(() => {
+        dragLongPressTimer = setTimeout(() => {
             if (longPressItem) {
                 enterDragMode(longPressItem);
                 longPressItem = null;
             }
-        }, 500);
+        }, 900);
     }
 
     function handleTouchEnd(e) {
-        if (longPressTimer) {
-            clearTimeout(longPressTimer);
-            longPressTimer = null;
+        if (dragLongPressTimer) {
+            clearTimeout(dragLongPressTimer);
+            dragLongPressTimer = null;
         }
         longPressItem = null;
     }
 
     function handleTouchMove(e) {
         // Cancel long-press if user moves
-        if (longPressTimer) {
-            clearTimeout(longPressTimer);
-            longPressTimer = null;
+        if (dragLongPressTimer) {
+            clearTimeout(dragLongPressTimer);
+            dragLongPressTimer = null;
         }
     }
 

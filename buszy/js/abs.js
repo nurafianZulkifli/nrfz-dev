@@ -118,17 +118,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         return timeString;
     }
 
-    function renderArrivalSummary(summary) {
-        return `
+    function renderArrivalSummary(arrivals) {
+        if (!arrivals?.length) {
+            return `
+                <div class="busNo-card d-flex justify-content-between">
+                    <span class="arrival-svc-no">--</span>
+                    <span class="bus-time"></span>
+                    <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+                </div>
+                <div class="busNo-card d-flex justify-content-between">
+                    <span class="arrival-svc-no">--</span>
+                    <span class="bus-time"></span>
+                    <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+                </div>
+            `;
+        }
+        return arrivals.map(a => `
             <div class="busNo-card d-flex justify-content-between">
-                <span class="bus-time">${summary?.next ? formatArrivalTimeStyled(summary.next.eta) : '--'}</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.next ? getLoadIcon(summary.next.load, summary.next.type) : getLoadIcon('sea', 'SD')}</span>
+                <span class="arrival-svc-no">${a.serviceNo}</span>
+                <span class="bus-time">${formatArrivalTimeStyled(a.eta)}</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon(a.load, a.type)}</span>
             </div>
-            <div class="busNo-card d-flex justify-content-between">
-                <span class="bus-time">${summary?.subsequent ? formatArrivalTimeStyled(summary.subsequent.eta) : '--'}</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.subsequent ? getLoadIcon(summary.subsequent.load, summary.subsequent.type) : getLoadIcon('sea', 'SD')}</span>
-            </div>
-        `;
+        `).join('');
     }
 
     async function getArrivalSummaryForStop(busStopCode) {
@@ -153,28 +164,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                         type: service.NextBus.Type
                     });
                 }
-                if (service.NextBus2?.EstimatedArrival) {
-                    arrivals.push({
-                        serviceNo: service.ServiceNo,
-                        eta: service.NextBus2.EstimatedArrival,
-                        load: service.NextBus2.Load,
-                        type: service.NextBus2.Type
-                    });
-                }
             });
 
             arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
-            const summary = {
-                next: arrivals[0] || null,
-                subsequent: arrivals[1] || null
-            };
-            arrivalsSummaryCache.set(busStopCode, summary);
-            return summary;
+            arrivalsSummaryCache.set(busStopCode, arrivals);
+            return arrivals;
         } catch (error) {
             console.warn('[abs.js] Failed to load arrival summary:', error);
-            const fallback = { next: null, subsequent: null };
-            arrivalsSummaryCache.set(busStopCode, fallback);
-            return fallback;
+            arrivalsSummaryCache.set(busStopCode, []);
+            return [];
         }
     }
 
@@ -332,14 +330,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Long press variables for bookmark button
             let longPressTimer = null;
             let bookmarkButton = null;
+            let longPressTriggered = false;
+            let touchStartX = 0;
+            let touchStartY = 0;
             const isPinned = bookmarks.some((b) => b.BusStopCode === busStop.BusStopCode);
 
             // Add long press listener for bookmark button
             listItem.addEventListener('touchstart', (event) => {
+                longPressTriggered = false;
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
                 longPressTimer = setTimeout(() => {
                     if (!bookmarkButton) {
+                        longPressTriggered = true;
                         bookmarkButton = document.createElement('button');
-                        bookmarkButton.innerHTML = isPinned ? '<i class="fa-regular fa-thumbtack-angle-slash"></i>' : '<i class="fa-sharp fa-regular fa-thumbtack-angle"></i>';
+                        bookmarkButton.innerHTML = isPinned ? '<i class="fa-regular fa-thumbtack-angle-slash"></i>' : '<i class="fa-regular fa-thumbtack-angle"></i>';
                         bookmarkButton.className = (isPinned ? 'btn btn-unpin btn-sm' : 'btn btn-toPin btn-sm') + ' pin-btn-fade-in';
                         bookmarkButton.style.order = '-1'; // Position before the expand button
                         
@@ -363,8 +368,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }, 500);
             }, { passive: true });
 
-            listItem.addEventListener('touchend', () => {
+            listItem.addEventListener('touchend', (event) => {
                 clearTimeout(longPressTimer);
+                if (longPressTriggered) {
+                    // Block the synthetic click that fires after long press touchend
+                    const blockClick = (e) => { e.stopImmediatePropagation(); e.preventDefault(); };
+                    listItem.addEventListener('click', blockClick, { capture: true, once: true });
+                    longPressTriggered = false;
+                }
                 if (bookmarkButton) {
                     setTimeout(() => {
                         if (bookmarkButton && bookmarkButton.parentNode) {
@@ -381,7 +392,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
-            listItem.addEventListener('touchmove', () => {
+            listItem.addEventListener('touchmove', (event) => {
+                const dx = event.touches[0].clientX - touchStartX;
+                const dy = event.touches[0].clientY - touchStartY;
+                if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+                    clearTimeout(longPressTimer);
+                }
+            });
+
+            listItem.addEventListener('touchcancel', () => {
                 clearTimeout(longPressTimer);
             });
 
@@ -391,7 +410,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             actionCollapse.innerHTML = `
                 <div class="bus-stop-options-inner">
                     <div class="bus-stop-arrivals-summary card-content-art">
-                        ${renderArrivalSummary({ next: null, subsequent: null })}
+                        ${renderArrivalSummary([])}
                     </div>
                     <a href="${actionBasePath}buszy/art.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}" class="btn btn-busloc btn-sm open-art-btn" title="Open arrival timings page">
                         <i class="fa-solid fa-arrow-right"></i>
