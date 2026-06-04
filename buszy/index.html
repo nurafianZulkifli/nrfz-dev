@@ -632,14 +632,23 @@
         width: 100%;
     }
 
-    .bus-stop-arrivals-summary.card-content-art {
-        min-width: 230px;
+    .bus-stop-options-footer {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: flex-start;
         align-items: center;
+        justify-content: space-between;
+        margin-top: 0.4rem;
+        min-height: 32px;
+    }
+
+    .arrival-filter-reset-slot {
+        flex: 1;
+    }
+
+    .bus-stop-arrivals-summary.card-content-art {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+        gap: 0.45rem 0.6rem;
+        width: 100%;
         padding: 0.2rem 0.3rem;
     }
 
@@ -650,8 +659,10 @@
     }
 
     .busNo-card {
-        gap: 0.5rem;
+        display: flex;
         align-items: center;
+        gap: 0.4rem;
+        min-width: 0;
     }
 
     .arrival-svc-no {
@@ -664,6 +675,111 @@
         border-radius: 6px;
         padding: 2px 6px;
         flex-shrink: 0;
+    }
+
+    .arrival-svc-toggle {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .arrival-svc-toggle:active {
+        opacity: 0.6;
+    }
+
+    .arrival-filter-reset {
+        font-size: 0.72em;
+        color: #3294ac;
+        cursor: pointer;
+        text-decoration: underline;
+        user-select: none;
+    }
+
+    .arrival-all-hidden {
+        font-size: 0.8em;
+        color: #888;
+        font-style: italic;
+    }
+
+    /* Hide stop button */
+    .btn-hide-stop {
+        background: rgba(60, 60, 80, 0.85);
+        color: #ccc;
+        border: 1px solid rgba(150,150,180,0.25);
+        margin-left: 4px;
+    }
+    .btn-hide-stop:hover { color: #fff; }
+
+    /* Hide stop confirmation popup */
+    .pin-hide-popup {
+        position: relative;
+        margin-top: 0.5rem;
+        background: #1e2535;
+        border: 1px solid rgba(100,140,180,0.3);
+        border-radius: 10px;
+        padding: 0.6rem 0.8rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 10;
+    }
+    .pin-hide-popup-msg { font-size: 0.9em; }
+    .pin-hide-popup-actions { display: flex; gap: 0.5rem; }
+    .pin-hide-confirm {
+        background: #c0392b; color: #fff;
+        border: none; border-radius: 6px;
+        padding: 4px 14px; font-size: 0.85em; cursor: pointer;
+    }
+    .pin-hide-cancel {
+        background: rgba(255,255,255,0.08); color: #ccc;
+        border: none; border-radius: 6px;
+        padding: 4px 14px; font-size: 0.85em; cursor: pointer;
+    }
+
+    /* Hidden stops toggle row */
+    .pin-hidden-toggle-row {
+        padding: 0.4rem 0.8rem;
+        text-align: center;
+        width: 100%;
+    }
+    .pin-hidden-toggle { font-size: 0.8em; color: #888; }
+    .pin-hidden-show-link {
+        color: #3294ac; cursor: pointer; text-decoration: underline; font-size: 0.8em;
+    }
+
+    /* Hidden stops panel */
+    .pin-hidden-panel {
+        margin: 0.5rem 0;
+        background: #1e2535;
+        border: 1px solid rgba(100,140,180,0.3);
+        border-radius: 10px;
+        padding: 0.7rem 0.9rem;
+    }
+    .pin-hidden-panel-header {
+        display: flex; justify-content: space-between; align-items: center;
+        font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9em;
+    }
+    .pin-hidden-panel-close {
+        background: none; border: none; color: #aaa;
+        font-size: 1.2em; cursor: pointer; padding: 0 4px;
+    }
+    .pin-hidden-panel-list {
+        list-style: none; padding: 0; margin: 0;
+        display: flex; flex-direction: column; gap: 0.35rem;
+    }
+    .pin-hidden-panel-list li {
+        display: flex; align-items: center; gap: 0.5rem;
+        font-size: 0.85em; color: #ccc;
+    }
+    .pin-hidden-code {
+        background: #1f84a2; color: #fff;
+        border-radius: 5px; padding: 1px 6px;
+        font-size: 0.85em; font-weight: 700;
+    }
+    .pin-hidden-unhide-btn {
+        margin-left: auto;
+        background: rgba(50,148,172,0.15); color: #3294ac;
+        border: 1px solid rgba(50,148,172,0.3); border-radius: 6px;
+        padding: 2px 10px; font-size: 0.8em; cursor: pointer;
     }
 
     .bus-time {

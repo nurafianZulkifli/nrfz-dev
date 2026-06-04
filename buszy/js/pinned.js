@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return timeString;
     }
 
-    function renderArrivalSummary(arrivals) {
+    function renderArrivalSummary(arrivals, hiddenServices = []) {
         if (!arrivals?.length) {
             return `
                 <div class="busNo-card d-flex justify-content-between">
@@ -94,15 +94,69 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             `;
         }
-        return arrivals.map(a => `
-            <div class="busNo-card d-flex justify-content-between">
-                <span class="arrival-svc-no">${a.serviceNo}</span>
-                <span class="bus-time">${formatArrivalTimeStyled(a.eta)}</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon(a.load, a.type)}</span>
-            </div>
-        `).join('');
+        const visible = arrivals.filter(a => !hiddenServices.includes(a.serviceNo));
+        const hiddenCount = hiddenServices.filter(s => arrivals.some(a => a.serviceNo === s)).length;
+        const rows = visible.length
+            ? visible.map(a => `
+                <div class="busNo-card d-flex justify-content-between">
+                    <span class="arrival-svc-no arrival-svc-toggle" data-svc="${a.serviceNo}" title="Tap to hide">${a.serviceNo}</span>
+                    <span class="bus-time">${formatArrivalTimeStyled(a.eta)}</span>
+                    <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon(a.load, a.type)}</span>
+                </div>
+            `).join('')
+            : `<div class="busNo-card"><span class="arrival-all-hidden">All hidden</span></div>`;
+        return rows;
     }
 
+    function applyArrivalFilter(summaryEl, allArrivals, busStopCode, actionCollapse) {
+        const hiddenKey = `pinnedHiddenServices_${busStopCode}`;
+        const hidden = JSON.parse(localStorage.getItem(hiddenKey) || '[]');
+        summaryEl.innerHTML = renderArrivalSummary(allArrivals, hidden);
+
+        // Update footer reset slot
+        const resetSlot = actionCollapse.querySelector('.arrival-filter-reset-slot');
+        if (resetSlot) {
+            const hiddenCount = hidden.filter(s => allArrivals.some(a => a.serviceNo === s)).length;
+            if (hiddenCount > 0) {
+                resetSlot.innerHTML = `<span class="arrival-filter-reset">${hiddenCount} hidden &middot; Show all</span>`;
+                resetSlot.querySelector('.arrival-filter-reset').addEventListener('click', e => {
+                    e.stopPropagation();
+                    localStorage.removeItem(hiddenKey);
+                    applyArrivalFilter(summaryEl, allArrivals, busStopCode, actionCollapse);
+                    if (actionCollapse.classList.contains('show')) {
+                        actionCollapse.style.maxHeight = actionCollapse.scrollHeight + 'px';
+                    }
+                });
+            } else {
+                resetSlot.innerHTML = '';
+            }
+        }
+        summaryEl.querySelectorAll('.arrival-svc-toggle').forEach(badge => {
+            badge.addEventListener('click', e => {
+                e.stopPropagation();
+                const svc = badge.dataset.svc;
+                if (!confirm(`Hide service ${svc} from this stop?`)) return;
+                const cur = JSON.parse(localStorage.getItem(hiddenKey) || '[]');
+                if (!cur.includes(svc)) cur.push(svc);
+                localStorage.setItem(hiddenKey, JSON.stringify(cur));
+                applyArrivalFilter(summaryEl, allArrivals, busStopCode, actionCollapse);
+                if (actionCollapse.classList.contains('show')) {
+                    actionCollapse.style.maxHeight = actionCollapse.scrollHeight + 'px';
+                }
+            });
+        });
+        const resetBtn = summaryEl.querySelector('.arrival-filter-reset');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                localStorage.removeItem(hiddenKey);
+                applyArrivalFilter(summaryEl, allArrivals, busStopCode, actionCollapse);
+                if (actionCollapse.classList.contains('show')) {
+                    actionCollapse.style.maxHeight = actionCollapse.scrollHeight + 'px';
+                }
+            });
+        }
+    }
     async function getArrivalSummaryForStop(busStopCode) {
         if (arrivalsSummaryCache.has(busStopCode)) {
             return arrivalsSummaryCache.get(busStopCode);
@@ -507,6 +561,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             bookmarksContainer.innerHTML = '';
 
             if (bookmarks.length > 0) {
+                const hiddenStops = getHiddenStops();
                 bookmarks.forEach((bookmark, index) => {
                     const busStop = Array.isArray(busStops) ? busStops.find(stop => stop.BusStopCode === bookmark.BusStopCode) : null;
                     
@@ -515,6 +570,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                         console.warn('Bus stop not found:', bookmark.BusStopCode);
                         return;
                     }
+
+                    // Skip hidden stops
+                    if (hiddenStops.includes(bookmark.BusStopCode)) return;
 
                     const listItem = document.createElement('div');
                     listItem.className = 'list-group-item is-idle';
@@ -586,8 +644,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                             const summaryEl = actionCollapse.querySelector('.bus-stop-arrivals-summary');
                             summaryEl.innerHTML = '<div class="busNo-card d-flex justify-content-between"><span class="bus-time">--</span><span style="display: flex; align-items: center; gap: 0.3rem;">' + getLoadIcon('sea', 'SD') + '</span></div>';
-                            getArrivalSummaryForStop(bookmark.BusStopCode).then((summary) => {
-                                summaryEl.innerHTML = renderArrivalSummary(summary);
+                            getArrivalSummaryForStop(bookmark.BusStopCode).then((arrivals) => {
+                                applyArrivalFilter(summaryEl, arrivals, bookmark.BusStopCode, actionCollapse);
                                 if (actionCollapse.classList.contains('show')) {
                                     actionCollapse.style.maxHeight = actionCollapse.scrollHeight + 'px';
                                 }
@@ -622,6 +680,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 longPressTriggered = true;
                                 if (dragLongPressTimer) { clearTimeout(dragLongPressTimer); dragLongPressTimer = null; }
                                 longPressItem = null;
+
+                                // Unpin button
                                 pinButton = document.createElement('button');
                                 pinButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
                                 pinButton.className = 'btn btn-unpin btn-2 pin-btn-fade-in';
@@ -671,6 +731,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <div class="bus-stop-arrivals-summary card-content-art">
                                 ${renderArrivalSummary([])}
                             </div>
+                        </div>
+                        <div class="bus-stop-options-footer">
+                            <div class="arrival-filter-reset-slot"></div>
                             <a href="${actionBasePath}buszy/art.html?BusStopCode=${encodeURIComponent(bookmark.BusStopCode)}" class="btn btn-busloc btn-sm open-art-btn" title="Open arrival timings page">
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -687,11 +750,97 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // If no bookmarks exist after re-fetching, show the message
                 bookmarksContainer.appendChild(createEmptyMessage());
             }
+            renderHiddenStopsToggle();
             applyPinnedSearchFilter();
         } catch (error) {
             console.error('Error fetching bus stops:', error);
             bookmarksContainer.innerHTML = '<p class="error-msg">Error loading bus stop data.</p>';
         }
+    }
+
+    // ── Hide/Show stop helpers ────────────────────────────────
+    function getHiddenStops() {
+        return JSON.parse(localStorage.getItem('pinnedHiddenStops') || '[]');
+    }
+    function hideStop(busStopCode) {
+        const hidden = getHiddenStops();
+        if (!hidden.includes(busStopCode)) hidden.push(busStopCode);
+        localStorage.setItem('pinnedHiddenStops', JSON.stringify(hidden));
+    }
+    function unhideStop(busStopCode) {
+        const hidden = getHiddenStops().filter(c => c !== busStopCode);
+        localStorage.setItem('pinnedHiddenStops', JSON.stringify(hidden));
+    }
+
+    function showHidePopup(listItem, busStopCode, description) {
+        // Remove any existing popup
+        document.querySelectorAll('.pin-hide-popup').forEach(p => p.remove());
+        const popup = document.createElement('div');
+        popup.className = 'pin-hide-popup pin-btn-fade-in';
+        popup.innerHTML = `
+            <span class="pin-hide-popup-msg">Hide <strong>${description}</strong>?</span>
+            <div class="pin-hide-popup-actions">
+                <button class="btn pin-hide-confirm">Hide</button>
+                <button class="btn pin-hide-cancel">Cancel</button>
+            </div>
+        `;
+        popup.querySelector('.pin-hide-confirm').addEventListener('click', e => {
+            e.stopPropagation();
+            hideStop(busStopCode);
+            popup.remove();
+            loadBookmarks();
+        });
+        popup.querySelector('.pin-hide-cancel').addEventListener('click', e => {
+            e.stopPropagation();
+            popup.remove();
+        });
+        listItem.appendChild(popup);
+        // Auto-dismiss after 6s
+        setTimeout(() => { if (popup.parentNode) popup.remove(); }, 6000);
+    }
+
+    function renderHiddenStopsToggle() {
+        const hidden = getHiddenStops();
+        const existing = bookmarksContainer.querySelector('.pin-hidden-toggle-row');
+        if (existing) existing.remove();
+        if (hidden.length === 0) return;
+        const row = document.createElement('div');
+        row.className = 'pin-hidden-toggle-row';
+        row.innerHTML = `<span class="pin-hidden-toggle">${hidden.length} hidden &middot; <span class="pin-hidden-show-link">Show all</span></span>`;
+        row.querySelector('.pin-hidden-show-link').addEventListener('click', () => {
+            showHiddenPanel();
+        });
+        bookmarksContainer.appendChild(row);
+    }
+
+    function showHiddenPanel() {
+        document.querySelectorAll('.pin-hidden-panel').forEach(p => p.remove());
+        const hidden = getHiddenStops();
+        if (hidden.length === 0) return;
+        const panel = document.createElement('div');
+        panel.className = 'pin-hidden-panel pin-btn-fade-in';
+        let busStops = [];
+        try { busStops = JSON.parse(localStorage.getItem('allBusStops') || '[]'); } catch (e) {/* */}
+        panel.innerHTML = `
+            <div class="pin-hidden-panel-header">Hidden bus stops <button class="pin-hidden-panel-close">&times;</button></div>
+            <ul class="pin-hidden-panel-list">
+                ${hidden.map(code => {
+                    const stop = Array.isArray(busStops) ? busStops.find(s => s.BusStopCode === code) : null;
+                    const desc = stop ? stop.Description : code;
+                    return `<li data-code="${code}"><span class="pin-hidden-code">${code}</span> ${desc} <button class="pin-hidden-unhide-btn" data-code="${code}">Unhide</button></li>`;
+                }).join('')}
+            </ul>
+        `;
+        panel.querySelector('.pin-hidden-panel-close').addEventListener('click', () => panel.remove());
+        panel.querySelectorAll('.pin-hidden-unhide-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                unhideStop(btn.dataset.code);
+                loadBookmarks();
+                panel.remove();
+            });
+        });
+        bookmarksContainer.appendChild(panel);
     }
 
     // Function to confirm and remove a bookmark
