@@ -399,7 +399,7 @@ function displayBusStops(busStops, isCached = true) {
                     </div>
                 </div>
                 <div class="bus-stop-actions-controls">
-                    <button class="btn btn-busloc btn-sm bus-stop-collapsible-btn" title="Show options">
+                    <button class="bus-stop-collapsible-btn" title="Show options">
                         <i class="fa-regular fa-chevron-down"></i>
                     </button>
                 </div>
@@ -410,7 +410,7 @@ function displayBusStops(busStops, isCached = true) {
                         ${renderArrivalSummary({ next: null, subsequent: null })}
                     </div>
                     <a href="${basePath}buszy/art.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}" class="btn btn-busloc btn-sm open-art-btn" title="Open arrival timings page">
-                        <i class="fa-regular fa-arrow-up-right-from-square"></i>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -463,14 +463,18 @@ function displayBusStops(busStops, isCached = true) {
                                         }
                                         pinButton = null;
                                     }, 300);
+                    }
+                }, 3000);
+            }
+        });
+
         busStopElement.addEventListener('touchmove', () => {
             clearTimeout(longPressTimer);
         });
 
-        // Add click event listener to the entire div
+        // Tap anywhere on the card to expand/collapse
         busStopElement.addEventListener('click', () => {
-            // Navigate to buszy.html with the BusStopCode as a query parameter
-            window.location.href = `art.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}`;
+            collapseButton.click();
         });
 
         const collapseButton = busStopElement.querySelector('.bus-stop-collapsible-btn');
@@ -486,15 +490,7 @@ function displayBusStops(busStops, isCached = true) {
                 collapseSection.style.opacity = '0';
                 collapseSection.classList.remove('show');
                 collapseButton.classList.remove('active');
-                setTimeout(() => {
-                    if (!collapseSection.classList.contains('show')) {
-                        collapseSection.style.display = 'none';
-                    }
-                }, 280);
             } else {
-                collapseSection.style.display = 'block';
-                collapseSection.style.maxHeight = '0';
-                collapseSection.style.opacity = '0';
                 collapseSection.getBoundingClientRect();
                 collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
                 collapseSection.style.opacity = '1';

@@ -573,7 +573,29 @@
         flex-shrink: 0;
     }
 
+    .bus-stop-actions-controls .btn-unpin,
+    .bus-stop-actions-controls .btn-toPin {
+        margin-left: 0;
+        padding: 0 12px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 16px;
+        min-width: unset;
+    }
+
+    .bus-stop-collapsible-btn {
+        background: none;
+        border: none;
+        padding: 4px 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: inherit;
+        transition: all 0.3s ease;
+    }
+
     .bus-stop-collapsible-btn i {
+        display: inline-block;
         transition: transform 0.25s ease;
     }
 
@@ -582,19 +604,23 @@
     }
 
     .bus-stop-options-collapse {
-        display: none;
         max-height: 0;
         opacity: 0;
         overflow: hidden;
+        pointer-events: none;
         transition: max-height 0.3s ease, opacity 0.25s ease;
         width: 100%;
-        margin-top: 0.6rem;
-        padding-top: 0.45rem;
-        border-top: 1px solid rgba(96, 125, 150, 0.25);
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 1px solid transparent;
     }
 
     .bus-stop-options-collapse.show {
+        margin-top: 0.6rem;
+        padding-top: 0.45rem;
+        border-top: 1px solid rgba(96, 125, 150, 0.25);
         opacity: 1;
+        pointer-events: auto;
     }
 
     .bus-stop-options-inner {

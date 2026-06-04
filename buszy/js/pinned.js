@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     // Make the bus stop details clickable
                     const link = document.createElement('a');
-                    link.href = `art.html?BusStopCode=${encodeURIComponent(bookmark.BusStopCode)}`;
+                    link.href = 'javascript:void(0)';
                     
                     // Build correct image path for GitHub Pages and Heroku
                     const basePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
@@ -558,11 +558,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     link.style.color = 'inherit';
 
                     link.addEventListener('click', (e) => { 
-                        if (dragModeActive || draggableItem === listItem) e.preventDefault(); 
+                        e.preventDefault(); 
                     });
 
                     const actionsToggleBtn = document.createElement('button');
-                    actionsToggleBtn.className = 'btn btn-busloc btn-sm bus-stop-collapsible-btn';
+                    actionsToggleBtn.className = 'bus-stop-collapsible-btn';
                     actionsToggleBtn.title = 'Show options';
                     actionsToggleBtn.innerHTML = '<i class="fa-regular fa-chevron-down"></i>';
                     actionsToggleBtn.addEventListener('click', (event) => {
@@ -575,15 +575,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             actionCollapse.style.opacity = '0';
                             actionCollapse.classList.remove('show');
                             actionsToggleBtn.classList.remove('active');
-                            setTimeout(() => {
-                                if (!actionCollapse.classList.contains('show')) {
-                                    actionCollapse.style.display = 'none';
-                                }
-                            }, 280);
                         } else {
-                            actionCollapse.style.display = 'block';
-                            actionCollapse.style.maxHeight = '0';
-                            actionCollapse.style.opacity = '0';
                             actionCollapse.getBoundingClientRect();
                             actionCollapse.style.maxHeight = actionCollapse.scrollHeight + 'px';
                             actionCollapse.style.opacity = '1';
@@ -676,13 +668,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 ${renderArrivalSummary({ next: null, subsequent: null })}
                             </div>
                             <a href="${actionBasePath}buszy/art.html?BusStopCode=${encodeURIComponent(bookmark.BusStopCode)}" class="btn btn-busloc btn-sm open-art-btn" title="Open arrival timings page">
-                                <i class="fa-regular fa-arrow-up-right-from-square"></i>
+                                <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                     `;
 
+                    actionCollapse.addEventListener('click', e => e.stopPropagation());
                     listItem.appendChild(mainRow);
                     listItem.appendChild(actionCollapse);
+                    listItem.addEventListener('click', () => actionsToggleBtn.click());
                     bookmarksContainer.appendChild(listItem);
                 });
             } else {
