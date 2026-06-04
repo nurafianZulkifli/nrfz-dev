@@ -128,6 +128,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+            const sortByArrival = localStorage.getItem('sortByArrival') !== 'disabled';
+            if (sortByArrival) {
+                arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+            }
             arrivalsSummaryCache.set(busStopCode, arrivals);
             return arrivals;
         } catch (error) {
@@ -604,78 +608,60 @@ document.addEventListener('DOMContentLoaded', async () => {
                     // Long press variables for pin button
                     let longPressTimer = null;
                     let pinButton = null;
+                    let longPressTriggered = false;
 
                     let itemTouchStartX = 0;
                     let itemTouchStartY = 0;
 
-                    // Add long press listener for remove button
-                    listItem.addEventListener('touchstart', (event) => {
-                        itemTouchStartX = event.touches[0].clientX;
-                        itemTouchStartY = event.touches[0].clientY;
+                    // Add long press listener for pin button
+                    function startPinLongPress(x, y) {
+                        itemTouchStartX = x;
+                        itemTouchStartY = y;
                         longPressTimer = setTimeout(() => {
                             if (!pinButton) {
                                 longPressTriggered = true;
-                                // Cancel drag-mode timer so entering drag mode doesn't override the pin button
                                 if (dragLongPressTimer) { clearTimeout(dragLongPressTimer); dragLongPressTimer = null; }
                                 longPressItem = null;
                                 pinButton = document.createElement('button');
                                 pinButton.innerHTML = '<i class="fa-regular fa-thumbtack-angle-slash"></i>';
                                 pinButton.className = 'btn btn-unpin btn-2 pin-btn-fade-in';
-                                pinButton.style.order = '-1'; // Position before the expand button
+                                pinButton.style.order = '-1';
                                 pinButton.style.flexShrink = '0';
-                                
                                 pinButton.addEventListener('click', (event) => {
                                     event.stopPropagation();
                                     event.preventDefault();
                                     confirmAndRemoveBookmark(bookmark.BusStopCode);
-                                    // Remove the button after action with fade out animation
                                     pinButton.classList.remove('pin-btn-fade-in');
                                     pinButton.classList.add('pin-btn-fade-out');
-                                    setTimeout(() => {
-                                        if (pinButton && pinButton.parentNode) {
-                                            pinButton.remove();
-                                        }
-                                        pinButton = null;
-                                    }, 300);
+                                    setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
                                 });
-                                
                                 controls.insertBefore(pinButton, controls.firstChild);
                             }
                         }, 500);
-                    }, { passive: true });
-
-                    listItem.addEventListener('touchend', (event) => {
+                    }
+                    function endPinLongPress() {
                         clearTimeout(longPressTimer);
                         if (pinButton) {
-                            // Block synthetic click so it doesn't navigate or dismiss UI
-                            const blockClick = (e) => { e.stopImmediatePropagation(); e.preventDefault(); };
-                            listItem.addEventListener('click', blockClick, { capture: true, once: true });
                             setTimeout(() => {
                                 if (pinButton && pinButton.parentNode) {
                                     pinButton.classList.remove('pin-btn-fade-in');
                                     pinButton.classList.add('pin-btn-fade-out');
-                                    setTimeout(() => {
-                                        if (pinButton && pinButton.parentNode) {
-                                            pinButton.remove();
-                                        }
-                                        pinButton = null;
-                                    }, 300);
+                                    setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
                                 }
                             }, 2000);
                         }
-                    });
-
+                    }
+                    listItem.addEventListener('touchstart', (event) => { startPinLongPress(event.touches[0].clientX, event.touches[0].clientY); }, { passive: true });
+                    listItem.addEventListener('touchend', () => { endPinLongPress(); });
                     listItem.addEventListener('touchmove', (event) => {
                         const dx = event.touches[0].clientX - itemTouchStartX;
                         const dy = event.touches[0].clientY - itemTouchStartY;
-                        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
-                            clearTimeout(longPressTimer);
-                        }
+                        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) clearTimeout(longPressTimer);
                     });
-
-                    listItem.addEventListener('touchcancel', () => {
-                        clearTimeout(longPressTimer);
-                    });
+                    listItem.addEventListener('touchcancel', () => { clearTimeout(longPressTimer); });
+                    listItem.addEventListener('mousedown', (event) => { if (event.button === 0) startPinLongPress(event.clientX, event.clientY); });
+                    listItem.addEventListener('mouseup', () => { endPinLongPress(); });
+                    listItem.addEventListener('mouseleave', () => { clearTimeout(longPressTimer); });
 
                     const actionCollapse = document.createElement('div');
                     actionCollapse.className = 'bus-stop-options-collapse';
@@ -694,7 +680,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     actionCollapse.addEventListener('click', e => e.stopPropagation());
                     listItem.appendChild(mainRow);
                     listItem.appendChild(actionCollapse);
-                    listItem.addEventListener('click', () => actionsToggleBtn.click());
+                    listItem.addEventListener('click', () => { if (longPressTriggered) { longPressTriggered = false; return; } actionsToggleBtn.click(); });
                     bookmarksContainer.appendChild(listItem);
                 });
             } else {

@@ -111,7 +111,10 @@ async function getArrivalSummaryForStop(busStopCode) {
             }
         });
 
-        arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+        const sortByArrival = localStorage.getItem('sortByArrival') !== 'disabled';
+        if (sortByArrival) {
+            arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+        }
         arrivalsSummaryCache.set(busStopCode, arrivals);
         return arrivals;
     } catch (error) {
@@ -422,10 +425,10 @@ function displayBusStops(busStops, isCached = true) {
         let touchStartY = 0;
 
         // Add long press listener for pin/unpin button
-        busStopElement.addEventListener('touchstart', (event) => {
+        function startPinLongPress(x, y) {
             longPressTriggered = false;
-            touchStartX = event.touches[0].clientX;
-            touchStartY = event.touches[0].clientY;
+            touchStartX = x;
+            touchStartY = y;
             longPressTimer = setTimeout(() => {
                 if (!pinButton) {
                     longPressTriggered = true;
@@ -433,62 +436,47 @@ function displayBusStops(busStops, isCached = true) {
                     pinButton = document.createElement('button');
                     pinButton.className = (isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2') + ' pin-btn-fade-in';
                     pinButton.innerHTML = isPinned ? '<i class="fa-regular fa-thumbtack-angle-slash"></i>' : '<i class="fa-regular fa-thumbtack-angle"></i>';
-                    pinButton.style.order = '-1'; // Position before the expand button
-                    
+                    pinButton.style.order = '-1';
                     pinButton.addEventListener('click', (event) => {
                         event.stopPropagation();
                         event.preventDefault();
                         togglePinBusStop(busStop, pinButton);
-                        // Remove the button after toggling with fade out animation
                         pinButton.classList.remove('pin-btn-fade-in');
                         pinButton.classList.add('pin-btn-fade-out');
-                        setTimeout(() => {
-                            if (pinButton && pinButton.parentNode) {
-                                pinButton.remove();
-                            }
-                            pinButton = null;
-                        }, 300);
+                        setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
                     });
-                    
                     controlsDiv.insertBefore(pinButton, controlsDiv.firstChild);
                 }
             }, 500);
-        }, { passive: true });
-
-        busStopElement.addEventListener('touchend', () => {
+        }
+        function endPinLongPress() {
             clearTimeout(longPressTimer);
+            if (longPressTriggered) { longPressTriggered = false; return; }
             if (pinButton) {
-                const blockClick = (e) => { e.stopImmediatePropagation(); e.preventDefault(); };
-                busStopElement.addEventListener('click', blockClick, { capture: true, once: true });
                 setTimeout(() => {
                     if (pinButton && pinButton.parentNode) {
                         pinButton.classList.remove('pin-btn-fade-in');
                         pinButton.classList.add('pin-btn-fade-out');
-                        setTimeout(() => {
-                            if (pinButton && pinButton.parentNode) {
-                                pinButton.remove();
-                            }
-                            pinButton = null;
-                        }, 300);
+                        setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
                     }
                 }, 3000);
             }
-        });
-
+        }
+        busStopElement.addEventListener('touchstart', (event) => { startPinLongPress(event.touches[0].clientX, event.touches[0].clientY); }, { passive: true });
+        busStopElement.addEventListener('touchend', () => { endPinLongPress(); });
         busStopElement.addEventListener('touchmove', (event) => {
             const dx = event.touches[0].clientX - touchStartX;
             const dy = event.touches[0].clientY - touchStartY;
-            if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
-                clearTimeout(longPressTimer);
-            }
+            if (Math.abs(dx) > 10 || Math.abs(dy) > 10) clearTimeout(longPressTimer);
         });
-
-        busStopElement.addEventListener('touchcancel', () => {
-            clearTimeout(longPressTimer);
-        });
+        busStopElement.addEventListener('touchcancel', () => { clearTimeout(longPressTimer); });
+        busStopElement.addEventListener('mousedown', (event) => { if (event.button === 0) startPinLongPress(event.clientX, event.clientY); });
+        busStopElement.addEventListener('mouseup', () => { endPinLongPress(); });
+        busStopElement.addEventListener('mouseleave', () => { clearTimeout(longPressTimer); });
 
         // Tap anywhere on the card to expand/collapse
         busStopElement.addEventListener('click', () => {
+            if (longPressTriggered) { longPressTriggered = false; return; }
             collapseButton.click();
         });
 

@@ -166,7 +166,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
-            arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+            const sortByArrival = localStorage.getItem('sortByArrival') !== 'disabled';
+            if (sortByArrival) {
+                arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+            }
             arrivalsSummaryCache.set(busStopCode, arrivals);
             return arrivals;
         } catch (error) {
@@ -336,73 +339,52 @@ document.addEventListener('DOMContentLoaded', async () => {
             const isPinned = bookmarks.some((b) => b.BusStopCode === busStop.BusStopCode);
 
             // Add long press listener for bookmark button
-            listItem.addEventListener('touchstart', (event) => {
+            function startBookmarkLongPress(x, y) {
                 longPressTriggered = false;
-                touchStartX = event.touches[0].clientX;
-                touchStartY = event.touches[0].clientY;
+                touchStartX = x;
+                touchStartY = y;
                 longPressTimer = setTimeout(() => {
                     if (!bookmarkButton) {
                         longPressTriggered = true;
                         bookmarkButton = document.createElement('button');
                         bookmarkButton.innerHTML = isPinned ? '<i class="fa-regular fa-thumbtack-angle-slash"></i>' : '<i class="fa-regular fa-thumbtack-angle"></i>';
                         bookmarkButton.className = (isPinned ? 'btn btn-unpin btn-sm' : 'btn btn-toPin btn-sm') + ' pin-btn-fade-in';
-                        bookmarkButton.style.order = '-1'; // Position before the expand button
-                        
+                        bookmarkButton.style.order = '-1';
                         bookmarkButton.addEventListener('click', (event) => {
                             event.stopPropagation();
                             event.preventDefault();
                             togglePinned(busStop, bookmarkButton);
-                            // Remove the button after action with fade out animation
                             bookmarkButton.classList.remove('pin-btn-fade-in');
                             bookmarkButton.classList.add('pin-btn-fade-out');
-                            setTimeout(() => {
-                                if (bookmarkButton && bookmarkButton.parentNode) {
-                                    bookmarkButton.remove();
-                                }
-                                bookmarkButton = null;
-                            }, 300);
+                            setTimeout(() => { if (bookmarkButton && bookmarkButton.parentNode) { bookmarkButton.remove(); } bookmarkButton = null; }, 300);
                         });
-                        
                         controls.insertBefore(bookmarkButton, controls.firstChild);
                     }
                 }, 500);
-            }, { passive: true });
-
-            listItem.addEventListener('touchend', (event) => {
+            }
+            function endBookmarkLongPress() {
                 clearTimeout(longPressTimer);
-                if (longPressTriggered) {
-                    // Block the synthetic click that fires after long press touchend
-                    const blockClick = (e) => { e.stopImmediatePropagation(); e.preventDefault(); };
-                    listItem.addEventListener('click', blockClick, { capture: true, once: true });
-                    longPressTriggered = false;
-                }
                 if (bookmarkButton) {
                     setTimeout(() => {
                         if (bookmarkButton && bookmarkButton.parentNode) {
                             bookmarkButton.classList.remove('pin-btn-fade-in');
                             bookmarkButton.classList.add('pin-btn-fade-out');
-                            setTimeout(() => {
-                                if (bookmarkButton && bookmarkButton.parentNode) {
-                                    bookmarkButton.remove();
-                                }
-                                bookmarkButton = null;
-                            }, 300);
+                            setTimeout(() => { if (bookmarkButton && bookmarkButton.parentNode) { bookmarkButton.remove(); } bookmarkButton = null; }, 300);
                         }
                     }, 2000);
                 }
-            });
-
+            }
+            listItem.addEventListener('touchstart', (event) => { startBookmarkLongPress(event.touches[0].clientX, event.touches[0].clientY); }, { passive: true });
+            listItem.addEventListener('touchend', () => { endBookmarkLongPress(); });
             listItem.addEventListener('touchmove', (event) => {
                 const dx = event.touches[0].clientX - touchStartX;
                 const dy = event.touches[0].clientY - touchStartY;
-                if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
-                    clearTimeout(longPressTimer);
-                }
+                if (Math.abs(dx) > 10 || Math.abs(dy) > 10) clearTimeout(longPressTimer);
             });
-
-            listItem.addEventListener('touchcancel', () => {
-                clearTimeout(longPressTimer);
-            });
+            listItem.addEventListener('touchcancel', () => { clearTimeout(longPressTimer); });
+            listItem.addEventListener('mousedown', (event) => { if (event.button === 0) startBookmarkLongPress(event.clientX, event.clientY); });
+            listItem.addEventListener('mouseup', () => { endBookmarkLongPress(); });
+            listItem.addEventListener('mouseleave', () => { clearTimeout(longPressTimer); });
 
             const actionCollapse = document.createElement('div');
             actionCollapse.className = 'bus-stop-options-collapse';
