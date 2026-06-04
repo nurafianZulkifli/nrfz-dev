@@ -130,8 +130,15 @@
     }
 
     @keyframes pulse-ann-btn {
-        0%, 100% { border-color: #ff6b35; }
-        50% { border-color: rgba(255, 107, 53, 0.4); }
+
+        0%,
+        100% {
+            border-color: #ff6b35;
+        }
+
+        50% {
+            border-color: rgba(255, 107, 53, 0.4);
+        }
     }
 
     .alerts-btn .ann-indicator-dot,
@@ -536,8 +543,8 @@
     /* Nearby Bus Stops Styles */
     .bus-stop {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        align-items: stretch;
         border: 1px solid #ddd;
         border-radius: 25px;
         background-color: #fff;
@@ -549,6 +556,171 @@
         background-color: #1c1f2b;
         border: 1px solid #2b2b2b33;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .bus-stop-main-row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .bus-stop-actions-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+
+    .bus-stop-collapsible-btn i {
+        transition: transform 0.25s ease;
+    }
+
+    .bus-stop-collapsible-btn.active i {
+        transform: rotate(180deg);
+    }
+
+    .bus-stop-options-collapse {
+        display: none;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.25s ease;
+        width: 100%;
+        margin-top: 0.6rem;
+        padding-top: 0.45rem;
+        border-top: 1px solid rgba(96, 125, 150, 0.25);
+    }
+
+    .bus-stop-options-collapse.show {
+        opacity: 1;
+    }
+
+    .bus-stop-options-inner {
+        display: flex;
+        gap: 0.7rem;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .bus-stop-arrivals-summary.card-content-art {
+        min-width: 230px;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0.2rem 0.3rem;
+    }
+
+    .bus-stop-arrivals-summary.card-content-art span {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5px;
+    }
+
+    .busNo-card {
+        gap: 0.5rem;
+    }
+
+    .bus-time {
+        display: inline-flex;
+        width: 85px;
+        text-align: center;
+        margin-right: 2px;
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        cursor: default;
+    }
+
+    .mins {
+        font-size: 0.6em;
+        font-weight: 700;
+        margin-left: 3px;
+    }
+
+    .arrival-now {
+        color: #7db603;
+        font-weight: 700;
+    }
+
+    .load-indicator {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+        line-height: 1;
+        color: #7db603;
+    }
+
+    .load-indicator.sea {
+        color: #7db603;
+    }
+
+    .load-indicator.sda {
+        color: #f5a623;
+    }
+
+    .load-indicator.lsd {
+        color: #e74c3c;
+    }
+
+    .open-art-btn {
+        min-width: 44px;
+        flex-shrink: 0;
+        align-self: center;
+        margin-left: auto;
+    }
+
+    body.dark-mode .load-indicator {
+        color: #8be66f;
+    }
+
+    body.dark-mode .load-indicator.sea {
+        color: #8be66f;
+    }
+
+    body.dark-mode .load-indicator.sda {
+        color: #ffbe55;
+    }
+
+    body.dark-mode .load-indicator.lsd {
+        color: #ff7f73;
+    }
+
+    body.dark-mode .bus-time {
+        color: #e7edf5;
+    }
+
+    body.dark-mode .mins {
+        color: #e7edf5;
+    }
+
+    @media (max-width: 545px) {
+        .bus-time {
+            font-size: 20px;
+            width: 70px;
+        }
+
+        .bus-stop-arrivals-summary.card-content-art {
+            min-width: 200px;
+            gap: 0.9rem;
+        }
+    }
+
+    .arrival-value {
+        font-weight: 700;
+        color: #2b2b2b;
+        text-align: right;
+    }
+
+    body.dark-mode .arrival-value {
+        color: #e7edf5;
     }
 
     .bus-stop-details {
@@ -994,13 +1166,13 @@
 
                         <div class="category-tabs-container">
                             <div class="category-tabs" id="category-tabs">
-                                <button class="category-tab active" data-category="pinned">
-                                    <i class="fa-sharp fa-regular fa-thumbtack-angle"></i>&nbsp;
-                                    Pinned
-                                </button>
-                                <button class="category-tab" data-category="nearby">
+                                <button class="category-tab active" data-category="nearby">
                                     <i class="fa-kit fa-lta-location"></i>&nbsp;
                                     Nearby
+                                </button>
+                                <button class="category-tab" data-category="pinned">
+                                    <i class="fa-sharp fa-regular fa-thumbtack-angle"></i>&nbsp;
+                                    Pinned
                                 </button>
                                 <button class="category-tab" data-category="all">
                                     <i class="fa-kit fa-lta-bus-stop"></i>&nbsp;
@@ -1058,14 +1230,14 @@
             </div>
 
             <!-- Pinned Tab -->
-            <div id="pinned-content" class="tab-content active">
+            <div id="pinned-content" class="tab-content">
                 <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
                     <div id="bookmarks-container" class="list-group"></div>
                 </section>
             </div>
 
             <!-- Nearby Tab -->
-            <div id="nearby-content" class="tab-content">
+            <div id="nearby-content" class="tab-content active">
                 <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
 
                     <div id="bus-stops"></div>
@@ -1093,7 +1265,8 @@
                         <strong>pin icon</strong> on a result to save it here for quick access.
                         <div class="guide-tip">
                             <i class="fa-regular fa-lightbulb"></i>
-                            Switch to the <strong>Nearby</strong> tab to discover stops around your current location without typing anything.
+                            Switch to the <strong>Nearby</strong> tab to discover stops around your current location
+                            without typing anything.
                         </div>
                     </div>
                 </div>
@@ -1110,7 +1283,8 @@
                         the next few buses and their seat load status.
                         <div class="guide-tip">
                             <i class="fa-regular fa-lightbulb"></i>
-                            Timings auto-refresh every 2 seconds by default. You can adjust this interval in the Settings page.
+                            Timings auto-refresh every 2 seconds by default. You can adjust this interval in the
+                            Settings page.
                         </div>
                     </div>
                 </div>
@@ -1144,7 +1318,8 @@
                         options like fleet legend and incoming buses, and control notification behaviour.
                         <div class="guide-tip">
                             <i class="fa-regular fa-lightbulb"></i>
-                            You can adjust what you want to see and the way Bus Service information is displayed, and export your pinned stops as a backup from the Settings page.
+                            You can adjust what you want to see and the way Bus Service information is displayed, and
+                            export your pinned stops as a backup from the Settings page.
                         </div>
                     </div>
                 </div>
@@ -1161,7 +1336,8 @@
                         to get notified when that bus is approaching your stop.
                         <div class="guide-tip">
                             <i class="fa-regular fa-lightbulb"></i>
-                            Control how long Buszy watches for your bus under <strong>Menu &gt; Settings &gt; Notify Mode</strong> &mdash; choose once, 24 hours, or always-on.
+                            Control how long Buszy watches for your bus under <strong>Menu &gt; Settings &gt; Notify
+                                Mode</strong> &mdash; choose once, 24 hours, or always-on.
                         </div>
                     </div>
                 </div>
@@ -1182,7 +1358,8 @@
                 <button class="sht-btn sht-btn-ghost" id="guidePrevBtn" onclick="guidePrev()" style="display:none;">
                     <i class="fa-regular fa-chevron-left"></i> Back
                 </button>
-                <button class="sht-btn sht-btn-ghost guide-skip-btn" onclick="guideFinish()"><i class="fa-regular fa-x"></i> Skip</button>
+                <button class="sht-btn sht-btn-ghost guide-skip-btn" onclick="guideFinish()"><i
+                        class="fa-regular fa-x"></i> Skip</button>
                 <button class="sht-btn sht-btn-primary" id="guideNextBtn" onclick="guideNext()">
                     Next <i class="fa-regular fa-chevron-right"></i>
                 </button>

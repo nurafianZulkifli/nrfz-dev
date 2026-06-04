@@ -16,6 +16,128 @@ document.addEventListener('DOMContentLoaded', async () => {
     let longPressItem = null;
     let justFinishedDragging = false;
     let dragModeActive = false;
+    const arrivalsSummaryCache = new Map();
+
+    function getLoadIcon(load, type) {
+        let fleetIcon = '';
+        if (type) {
+            switch (String(type).toUpperCase()) {
+                case 'SD':
+                case 'SINGLE DECK':
+                    fleetIcon = '<i class="fa-kit fa-lta-bus" title="Single Deck"></i>';
+                    break;
+                case 'DD':
+                case 'DOUBLE DECK':
+                    fleetIcon = '<i class="fa-kit fa-lta-dd" title="Double Deck"></i>';
+                    break;
+                case 'BD':
+                case 'BENDY':
+                case 'BENDY BUS':
+                    fleetIcon = '<i class="fa-kit fa-lta-bb" title="Bendy Bus"></i>';
+                    break;
+                default:
+                    fleetIcon = '<i class="fa-kit fa-lta-bus" title="Bus"></i>';
+            }
+        }
+
+        const loadClass = load ? String(load).toLowerCase() : 'sea';
+        return `<span class="load-indicator ${loadClass}">${fleetIcon || '<i class="fa-kit fa-lta-bus" title="Bus"></i>'}</span>`;
+    }
+
+    function formatArrivalTimeStyled(isoString) {
+        if (!isoString) return '--';
+        const arrivalTime = new Date(isoString);
+        if (Number.isNaN(arrivalTime.getTime())) return '--';
+
+        const now = new Date();
+        const timeDifference = arrivalTime - now;
+        if (timeDifference <= 0) {
+            return '<span class="arrival-now">Arr</span>';
+        }
+
+        const savedFormat = localStorage.getItem('timeFormat') || '12-hour';
+        if (savedFormat === 'mins') {
+            const minutes = Math.floor(timeDifference / (1000 * 60));
+            if (minutes <= 0) {
+                return '<span class="arrival-now">Arr</span>';
+            }
+            const minText = minutes === 1 ? 'min' : 'mins';
+            return `${minutes}<span class="mins"> ${minText}</span>`;
+        }
+
+        const options = savedFormat === '24-hour'
+            ? { hour: '2-digit', minute: '2-digit', hour12: false }
+            : { hour: '2-digit', minute: '2-digit', hour12: true };
+
+        const timeString = arrivalTime.toLocaleTimeString('en-US', options);
+        if (savedFormat === '12-hour') {
+            const parts = timeString.split(' ');
+            if (parts.length === 2) {
+                return `${parts[0]}<span style="font-size: 0.5em; margin-left: 1.5px; position: relative; display: inline-block;">${parts[1]}</span>`;
+            }
+        }
+        return timeString;
+    }
+
+    function renderArrivalSummary(summary) {
+        return `
+            <div class="busNo-card d-flex justify-content-between">
+                <span class="bus-time">${summary?.next ? formatArrivalTimeStyled(summary.next.eta) : '--'}</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.next ? getLoadIcon(summary.next.load, summary.next.type) : getLoadIcon('sea', 'SD')}</span>
+            </div>
+            <div class="busNo-card d-flex justify-content-between">
+                <span class="bus-time">${summary?.subsequent ? formatArrivalTimeStyled(summary.subsequent.eta) : '--'}</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.subsequent ? getLoadIcon(summary.subsequent.load, summary.subsequent.type) : getLoadIcon('sea', 'SD')}</span>
+            </div>
+        `;
+    }
+
+    async function getArrivalSummaryForStop(busStopCode) {
+        if (arrivalsSummaryCache.has(busStopCode)) {
+            return arrivalsSummaryCache.get(busStopCode);
+        }
+
+        try {
+            const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
+            url.searchParams.append('BusStopCode', busStopCode);
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const data = await response.json();
+            const arrivals = [];
+            (data.Services || []).forEach((service) => {
+                if (service.NextBus?.EstimatedArrival) {
+                    arrivals.push({
+                        serviceNo: service.ServiceNo,
+                        eta: service.NextBus.EstimatedArrival,
+                        load: service.NextBus.Load,
+                        type: service.NextBus.Type
+                    });
+                }
+                if (service.NextBus2?.EstimatedArrival) {
+                    arrivals.push({
+                        serviceNo: service.ServiceNo,
+                        eta: service.NextBus2.EstimatedArrival,
+                        load: service.NextBus2.Load,
+                        type: service.NextBus2.Type
+                    });
+                }
+            });
+
+            arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+            const summary = {
+                next: arrivals[0] || null,
+                subsequent: arrivals[1] || null
+            };
+            arrivalsSummaryCache.set(busStopCode, summary);
+            return summary;
+        } catch (error) {
+            console.warn('[pinned.js] Failed to load arrival summary:', error);
+            const fallback = { next: null, subsequent: null };
+            arrivalsSummaryCache.set(busStopCode, fallback);
+            return fallback;
+        }
+    }
 
     // ── Helper Functions ─────────────────────────────────────────
     function getAllItems() {
@@ -396,8 +518,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     listItem.className = 'list-group-item is-idle';
                     listItem.dataset.bmIndex = String(index);
                     listItem.style.display = 'flex';
-                    listItem.style.justifyContent = 'space-between';
-                    listItem.style.alignItems = 'center';
+                    listItem.style.flexDirection = 'column';
+                    listItem.style.alignItems = 'stretch';
                     listItem.style.userSelect = 'none';
                     listItem.style.touchAction = 'pan-y';
 
@@ -450,9 +572,73 @@ document.addEventListener('DOMContentLoaded', async () => {
                         confirmAndRemoveBookmark(bookmark.BusStopCode);
                     });
 
-                    listItem.appendChild(dragHandle);
-                    listItem.appendChild(link);
-                    listItem.appendChild(removeButton);
+                    const actionsToggleBtn = document.createElement('button');
+                    actionsToggleBtn.className = 'btn btn-busloc btn-sm bus-stop-collapsible-btn';
+                    actionsToggleBtn.title = 'Show options';
+                    actionsToggleBtn.innerHTML = '<i class="fa-regular fa-chevron-down"></i>';
+                    actionsToggleBtn.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        const isOpen = actionCollapse.classList.contains('show');
+                        if (isOpen) {
+                            actionCollapse.style.maxHeight = '0';
+                            actionCollapse.style.opacity = '0';
+                            actionCollapse.classList.remove('show');
+                            actionsToggleBtn.classList.remove('active');
+                            setTimeout(() => {
+                                if (!actionCollapse.classList.contains('show')) {
+                                    actionCollapse.style.display = 'none';
+                                }
+                            }, 280);
+                        } else {
+                            actionCollapse.style.display = 'block';
+                            actionCollapse.style.maxHeight = '0';
+                            actionCollapse.style.opacity = '0';
+                            actionCollapse.getBoundingClientRect();
+                            actionCollapse.style.maxHeight = actionCollapse.scrollHeight + 'px';
+                            actionCollapse.style.opacity = '1';
+                            actionCollapse.classList.add('show');
+                            actionsToggleBtn.classList.add('active');
+
+                            const summaryEl = actionCollapse.querySelector('.bus-stop-arrivals-summary');
+                            summaryEl.innerHTML = '<div class="busNo-card d-flex justify-content-between"><span class="bus-time">--</span><span style="display: flex; align-items: center; gap: 0.3rem;">' + getLoadIcon('sea', 'SD') + '</span></div>';
+                            getArrivalSummaryForStop(bookmark.BusStopCode).then((summary) => {
+                                summaryEl.innerHTML = renderArrivalSummary(summary);
+                                if (actionCollapse.classList.contains('show')) {
+                                    actionCollapse.style.maxHeight = actionCollapse.scrollHeight + 'px';
+                                }
+                            });
+                        }
+                    });
+
+                    const controls = document.createElement('div');
+                    controls.className = 'bus-stop-actions-controls';
+                    controls.appendChild(removeButton);
+                    controls.appendChild(actionsToggleBtn);
+
+                    const mainRow = document.createElement('div');
+                    mainRow.className = 'bus-stop-main-row';
+                    mainRow.appendChild(dragHandle);
+                    mainRow.appendChild(link);
+                    mainRow.appendChild(controls);
+
+                    const actionCollapse = document.createElement('div');
+                    actionCollapse.className = 'bus-stop-options-collapse';
+                    const actionBasePath = (window.PWAConfig ? window.PWAConfig.basePath : '/');
+                    actionCollapse.innerHTML = `
+                        <div class="bus-stop-options-inner">
+                            <div class="bus-stop-arrivals-summary card-content-art">
+                                ${renderArrivalSummary({ next: null, subsequent: null })}
+                            </div>
+                            <a href="${actionBasePath}buszy/art.html?BusStopCode=${encodeURIComponent(bookmark.BusStopCode)}" class="btn btn-busloc btn-sm open-art-btn" title="Open arrival timings page">
+                                <i class="fa-regular fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    `;
+
+                    listItem.appendChild(mainRow);
+                    listItem.appendChild(actionCollapse);
                     bookmarksContainer.appendChild(listItem);
                 });
             } else {

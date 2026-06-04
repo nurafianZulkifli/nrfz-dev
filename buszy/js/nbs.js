@@ -1,4 +1,127 @@
 const apiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/nearby-bus-stops';
+const arrivalsApiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals';
+const arrivalsSummaryCache = new Map();
+
+function getLoadIcon(load, type) {
+    let fleetIcon = '';
+    if (type) {
+        switch (String(type).toUpperCase()) {
+            case 'SD':
+            case 'SINGLE DECK':
+                fleetIcon = '<i class="fa-kit fa-lta-bus" title="Single Deck"></i>';
+                break;
+            case 'DD':
+            case 'DOUBLE DECK':
+                fleetIcon = '<i class="fa-kit fa-lta-dd" title="Double Deck"></i>';
+                break;
+            case 'BD':
+            case 'BENDY':
+            case 'BENDY BUS':
+                fleetIcon = '<i class="fa-kit fa-lta-bb" title="Bendy Bus"></i>';
+                break;
+            default:
+                fleetIcon = '<i class="fa-kit fa-lta-bus" title="Bus"></i>';
+        }
+    }
+
+    const loadClass = load ? String(load).toLowerCase() : 'sea';
+    return `<span class="load-indicator ${loadClass}">${fleetIcon || '<i class="fa-kit fa-lta-bus" title="Bus"></i>'}</span>`;
+}
+
+function formatArrivalTimeStyled(isoString) {
+    if (!isoString) return '--';
+    const arrivalTime = new Date(isoString);
+    if (Number.isNaN(arrivalTime.getTime())) return '--';
+
+    const now = new Date();
+    const timeDifference = arrivalTime - now;
+    if (timeDifference <= 0) {
+        return '<span class="arrival-now">Arr</span>';
+    }
+
+    const savedFormat = localStorage.getItem('timeFormat') || '12-hour';
+    if (savedFormat === 'mins') {
+        const minutes = Math.floor(timeDifference / (1000 * 60));
+        if (minutes <= 0) {
+            return '<span class="arrival-now">Arr</span>';
+        }
+        const minText = minutes === 1 ? 'min' : 'mins';
+        return `${minutes}<span class="mins"> ${minText}</span>`;
+    }
+
+    const options = savedFormat === '24-hour'
+        ? { hour: '2-digit', minute: '2-digit', hour12: false }
+        : { hour: '2-digit', minute: '2-digit', hour12: true };
+
+    const timeString = arrivalTime.toLocaleTimeString('en-US', options);
+    if (savedFormat === '12-hour') {
+        const parts = timeString.split(' ');
+        if (parts.length === 2) {
+            return `${parts[0]}<span style="font-size: 0.5em; margin-left: 1.5px; position: relative; display: inline-block;">${parts[1]}</span>`;
+        }
+    }
+    return timeString;
+}
+
+function renderArrivalSummary(summary) {
+    return `
+        <div class="busNo-card d-flex justify-content-between">
+            <span class="bus-time">${summary?.next ? formatArrivalTimeStyled(summary.next.eta) : '--'}</span>
+            <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.next ? getLoadIcon(summary.next.load, summary.next.type) : getLoadIcon('sea', 'SD')}</span>
+        </div>
+        <div class="busNo-card d-flex justify-content-between">
+            <span class="bus-time">${summary?.subsequent ? formatArrivalTimeStyled(summary.subsequent.eta) : '--'}</span>
+            <span style="display: flex; align-items: center; gap: 0.3rem;">${summary?.subsequent ? getLoadIcon(summary.subsequent.load, summary.subsequent.type) : getLoadIcon('sea', 'SD')}</span>
+        </div>
+    `;
+}
+
+async function getArrivalSummaryForStop(busStopCode) {
+    if (arrivalsSummaryCache.has(busStopCode)) {
+        return arrivalsSummaryCache.get(busStopCode);
+    }
+
+    try {
+        const url = new URL(arrivalsApiUrl);
+        url.searchParams.append('BusStopCode', busStopCode);
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data = await response.json();
+        const arrivals = [];
+        (data.Services || []).forEach((service) => {
+            if (service.NextBus?.EstimatedArrival) {
+                arrivals.push({
+                    serviceNo: service.ServiceNo,
+                    eta: service.NextBus.EstimatedArrival,
+                    load: service.NextBus.Load,
+                    type: service.NextBus.Type
+                });
+            }
+            if (service.NextBus2?.EstimatedArrival) {
+                arrivals.push({
+                    serviceNo: service.ServiceNo,
+                    eta: service.NextBus2.EstimatedArrival,
+                    load: service.NextBus2.Load,
+                    type: service.NextBus2.Type
+                });
+            }
+        });
+
+        arrivals.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+        const summary = {
+            next: arrivals[0] || null,
+            subsequent: arrivals[1] || null
+        };
+        arrivalsSummaryCache.set(busStopCode, summary);
+        return summary;
+    } catch (error) {
+        console.warn('[nbs.js] Failed to load arrival summary:', error);
+        const fallback = { next: null, subsequent: null };
+        arrivalsSummaryCache.set(busStopCode, fallback);
+        return fallback;
+    }
+}
 
 // Helper function to detect Instagram in-app browser
 function isInstagramInAppBrowser() {
@@ -253,23 +376,40 @@ function displayBusStops(busStops, isCached = true) {
             : `<span class="distance-badge"><i class="fa-kit fa-lta-location"></i> ${distance}</span>`;
 
         busStopElement.innerHTML = `
-            <div class="bus-stop-info">
-                <div class="bus-stop-code-row">
-                    <div class="bus-stop-code">
-                        <img src="${busIconPath}" alt="Bus Icon">
-                        <span class="bus-stop-code-text">${busStop.BusStopCode}</span>
+            <div class="bus-stop-main-row">
+                <div class="bus-stop-info">
+                    <div class="bus-stop-code-row">
+                        <div class="bus-stop-code">
+                            <img src="${busIconPath}" alt="Bus Icon">
+                            <span class="bus-stop-code-text">${busStop.BusStopCode}</span>
+                        </div>
+                        <span class="distance-mobile">${distanceBadgeHtml}</span>
                     </div>
-                    <span class="distance-mobile">${distanceBadgeHtml}</span>
+                    <div class="bus-stop-details">
+                    <span class="bus-stop-description">${busStop.Description}</span>&nbsp;&nbsp;|&nbsp;
+                    <span class="road-name">${busStop.RoadName}</span>
+                    &nbsp;&nbsp;&nbsp;<span class="distance-desktop">${distanceBadgeHtml}</span>
+                    </div>
                 </div>
-                <div class="bus-stop-details">
-                <span class="bus-stop-description">${busStop.Description}</span>&nbsp;&nbsp;|&nbsp;
-                <span class="road-name">${busStop.RoadName}</span>
-                &nbsp;&nbsp;&nbsp;<span class="distance-desktop">${distanceBadgeHtml}</span>
+                <div class="bus-stop-actions-controls">
+                    <button class="${isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2'} pin-button">
+                        <i class="${isPinned ? 'fa-regular fa-thumbtack-angle-slash' : 'fa-sharp fa-regular fa-thumbtack-angle'}"></i>
+                    </button>
+                    <button class="btn btn-busloc btn-sm bus-stop-collapsible-btn" title="Show options">
+                        <i class="fa-regular fa-chevron-down"></i>
+                    </button>
                 </div>
             </div>
-            <button class="${isPinned ? 'btn btn-unpin btn-2' : 'btn btn-toPin btn-2'} pin-button">
-                <i class="${isPinned ? 'fa-regular fa-thumbtack-angle-slash' : 'fa-sharp fa-regular fa-thumbtack-angle'}"></i>
-            </button>
+            <div class="bus-stop-options-collapse">
+                <div class="bus-stop-options-inner">
+                    <div class="bus-stop-arrivals-summary card-content-art">
+                        ${renderArrivalSummary({ next: null, subsequent: null })}
+                    </div>
+                    <a href="${basePath}buszy/art.html?BusStopCode=${encodeURIComponent(busStop.BusStopCode)}" class="btn btn-busloc btn-sm open-art-btn" title="Open arrival timings page">
+                        <i class="fa-regular fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
         `;
 
         // Add click event listener to the entire div
@@ -284,6 +424,50 @@ function displayBusStops(busStops, isCached = true) {
         pinButton.addEventListener('click', (event) => {
             event.stopPropagation(); // Prevent triggering the parent div's click event
             togglePinBusStop(busStop, pinButton); // Toggle pin/unpin
+        });
+
+        const collapseButton = busStopElement.querySelector('.bus-stop-collapsible-btn');
+        const collapseSection = busStopElement.querySelector('.bus-stop-options-collapse');
+        const summaryEl = busStopElement.querySelector('.bus-stop-arrivals-summary');
+        collapseButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isOpen = collapseSection.classList.contains('show');
+            if (isOpen) {
+                collapseSection.style.maxHeight = '0';
+                collapseSection.style.opacity = '0';
+                collapseSection.classList.remove('show');
+                collapseButton.classList.remove('active');
+                setTimeout(() => {
+                    if (!collapseSection.classList.contains('show')) {
+                        collapseSection.style.display = 'none';
+                    }
+                }, 280);
+            } else {
+                collapseSection.style.display = 'block';
+                collapseSection.style.maxHeight = '0';
+                collapseSection.style.opacity = '0';
+                collapseSection.getBoundingClientRect();
+                collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
+                collapseSection.style.opacity = '1';
+                collapseSection.classList.add('show');
+                collapseButton.classList.add('active');
+
+                summaryEl.innerHTML = '<div class="busNo-card d-flex justify-content-between"><span class="bus-time">--</span><span style="display: flex; align-items: center; gap: 0.3rem;">' + getLoadIcon('sea', 'SD') + '</span></div>';
+                getArrivalSummaryForStop(busStop.BusStopCode).then((summary) => {
+                    summaryEl.innerHTML = renderArrivalSummary(summary);
+                    if (collapseSection.classList.contains('show')) {
+                        collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
+                    }
+                });
+            }
+        });
+
+        collapseSection.querySelectorAll('a').forEach((anchor) => {
+            anchor.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
         });
 
         busStopsContainer.appendChild(busStopElement);
