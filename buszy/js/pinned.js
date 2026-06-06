@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const arrivalsSummaryCache = new Map();
 
     function getLoadIcon(load, type) {
+        if (window.SharedArrivals && typeof window.SharedArrivals.getLoadIcon === 'function') {
+            return window.SharedArrivals.getLoadIcon(load, type);
+        }
         let fleetIcon = '';
         if (type) {
             switch (String(type).toUpperCase()) {
@@ -45,6 +48,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function formatArrivalTimeStyled(isoString) {
+        if (window.SharedArrivals && typeof window.SharedArrivals.formatArrivalTimeOrArr === 'function') {
+            try {
+                return window.SharedArrivals.formatArrivalTimeOrArr(isoString, new Date(), false);
+            } catch (e) {
+                // fallback to local implementation
+            }
+        }
         if (!isoString) return '--';
         const arrivalTime = new Date(isoString);
         if (Number.isNaN(arrivalTime.getTime())) return '--';
@@ -163,17 +173,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         try {
-            const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
-            url.searchParams.append('BusStopCode', busStopCode);
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            let data;
+            if (window.SharedArrivals && typeof window.SharedArrivals.fetchArrivals === 'function') {
+                data = await window.SharedArrivals.fetchArrivals(busStopCode);
+            } else {
+                const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
+                url.searchParams.append('BusStopCode', busStopCode);
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                data = await response.json();
+            }
 
-            const data = await response.json();
             const arrivals = [];
             (data.Services || []).forEach((service) => {
                 if (service.NextBus?.EstimatedArrival) {
                     arrivals.push({
-                        serviceNo: service.ServiceNo,
+                        serviceNo: service.ServiceNo || service.ServiceNo,
                         eta: service.NextBus.EstimatedArrival,
                         load: service.NextBus.Load,
                         type: service.NextBus.Type

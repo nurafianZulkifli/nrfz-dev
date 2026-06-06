@@ -173,19 +173,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Fetch destination codes from live API (like art.js does)
     async function fetchDestinationCodesForStop(busStopCode) {
         try {
+            if (window.SharedArrivals && typeof window.SharedArrivals.fetchArrivals === 'function') {
+                const data = await window.SharedArrivals.fetchArrivals(busStopCode);
+                return window.SharedArrivals.getDestinationMapFromArrivals(data);
+            }
+            // Fallback to inline fetch
             const url = new URL('https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals');
             url.searchParams.append('BusStopCode', busStopCode);
             const response = await fetch(url);
             if (!response.ok) return {};
-
             const data = await response.json();
-            const destinationCodeMap = {}; // Map service number to destination code
-
+            const destinationCodeMap = {};
             if (data.Services && Array.isArray(data.Services)) {
                 data.Services.forEach(service => {
-                    if (service.NextBus?.DestinationCode) {
-                        destinationCodeMap[service.ServiceNo] = service.NextBus.DestinationCode;
-                    }
+                    if (service.NextBus?.DestinationCode) destinationCodeMap[service.ServiceNo] = service.NextBus.DestinationCode;
                 });
             }
             return destinationCodeMap;

@@ -3,6 +3,9 @@ const arrivalsApiUrl = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/bus-arrivals'
 const arrivalsSummaryCache = new Map();
 
 function getLoadIcon(load, type) {
+    if (window.SharedArrivals && typeof window.SharedArrivals.getLoadIcon === 'function') {
+        return window.SharedArrivals.getLoadIcon(load, type);
+    }
     let fleetIcon = '';
     if (type) {
         switch (String(type).toUpperCase()) {
@@ -29,6 +32,9 @@ function getLoadIcon(load, type) {
 }
 
 function formatArrivalTimeStyled(isoString) {
+    if (window.SharedArrivals && typeof window.SharedArrivals.formatArrivalTimeOrArr === 'function') {
+        try { return window.SharedArrivals.formatArrivalTimeOrArr(isoString, new Date(), false); } catch(e) {}
+    }
     if (!isoString) return '--';
     const arrivalTime = new Date(isoString);
     if (Number.isNaN(arrivalTime.getTime())) return '--';
@@ -93,12 +99,16 @@ async function getArrivalSummaryForStop(busStopCode) {
     }
 
     try {
-        const url = new URL(arrivalsApiUrl);
-        url.searchParams.append('BusStopCode', busStopCode);
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-        const data = await response.json();
+        let data;
+        if (window.SharedArrivals && typeof window.SharedArrivals.fetchArrivals === 'function') {
+            data = await window.SharedArrivals.fetchArrivals(busStopCode);
+        } else {
+            const url = new URL(arrivalsApiUrl);
+            url.searchParams.append('BusStopCode', busStopCode);
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            data = await response.json();
+        }
         const arrivals = [];
         (data.Services || []).forEach((service) => {
             if (service.NextBus?.EstimatedArrival) {
