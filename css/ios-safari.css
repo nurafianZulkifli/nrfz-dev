@@ -1,6 +1,9 @@
 /* iOS Safari Specific Stylesheet */
 /* Targets Safari on iOS devices */
 
+/* Apply only to Apple devices (iOS, macOS Safari) */
+@supports (-webkit-appearance: none) {
+
 /* Prevent font size adjustment on landscape orientation */
 body {
   -webkit-text-size-adjust: 100%;
@@ -310,3 +313,5 @@ body:has(#ios-pwa-warning-banner) {
     padding-top: calc(75px + env(safe-area-inset-top));
   }
 }
+
+} /* Close Apple devices @supports block */
