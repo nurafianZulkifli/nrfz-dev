@@ -357,7 +357,7 @@
 
   @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
     .pinned {
-        margin-top: -20rem;
+        margin-top: -30rem;
         margin-bottom: 2em;
         position: relative;
         z-index: 10;
