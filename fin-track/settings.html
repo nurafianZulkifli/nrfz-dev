@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
     <title>Settings | FinTrack</title>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,6 +21,7 @@
     <link rel="stylesheet" href="../css/pwa-styles.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/ios-safari.css">
 
     <link rel="apple-touch-startup-image" href="../img/bg-img/hero-bg-dark.png">
     <link rel="manifest" href="./manifest.json">
@@ -148,8 +151,8 @@
                             </ol>
                         </nav>
                         <div class="page-title-wrapper">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;" title="Click once for Chime A, thrice for Chime B">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;"
+                                title="Click once for Chime A, thrice for Chime B">
                                 <div>
                                     <h1 class="page-title" id="filter-title">Settings</h1>
                                 </div>
@@ -226,9 +229,11 @@
                     <i class="fa-regular fa-display"></i>
                     Display Options
                 </div>
-                <a href="" class="settings-switch-row" id="theme-toggle-desktop" style="text-decoration: none; color: inherit;">
+                <a href="" class="settings-switch-row" id="theme-toggle-desktop"
+                    style="text-decoration: none; color: inherit;">
                     <span class="settings-switch-label">
-                        <i class="fa-regular fa-sun-bright" id="theme-icon-desktop"></i>&nbsp;<span id="theme-text-desktop">Theme: Light</span>
+                        <i class="fa-regular fa-sun-bright" id="theme-icon-desktop"></i>&nbsp;<span
+                            id="theme-text-desktop">Theme: Light</span>
                     </span>
                     <i class="fa-regular fa-chevron-right" style="color: #9ca3af;"></i>
                 </a>
@@ -264,7 +269,8 @@
                     Cloud Sync
                 </div>
                 <div class="settings-info-box">
-                    <i class="fa-regular fa-circle-info"></i>&nbsp;Sync your accounts and transactions across devices using a sync code. No account required.
+                    <i class="fa-regular fa-circle-info"></i>&nbsp;Sync your accounts and transactions across devices
+                    using a sync code. No account required.
                 </div>
                 <div id="sync-no-code">
                     <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px;">
@@ -273,17 +279,20 @@
                             <span>Generate Sync Code</span>
                         </button>
                     </div>
-                    <p style="margin: 0.75rem 0 0.5rem; font-size: 13px; color: #888; text-align: center;">â€” or enter an existing code â€”</p>
+                    <p style="margin: 0.75rem 0 0.5rem; font-size: 13px; color: #888; text-align: center;">â€” or enter
+                        an existing code â€”</p>
                     <div style="display: flex; gap: 0.5rem;">
                         <input type="text" id="sync-code-input" placeholder="e.g. abc12-def34" autocomplete="off"
-                               style="flex: 1; padding: 0.55rem 0.75rem; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; font-family: monospace; letter-spacing: 1px;">
-                        <button class="import-export-btn" id="sync-connect-btn" style="min-width: unset; padding: 0 1rem; flex-shrink: 0;">Connect</button>
+                            style="flex: 1; padding: 0.55rem 0.75rem; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; font-family: monospace; letter-spacing: 1px;">
+                        <button class="import-export-btn" id="sync-connect-btn"
+                            style="min-width: unset; padding: 0 1rem; flex-shrink: 0;">Connect</button>
                     </div>
                 </div>
                 <div id="sync-has-code" style="display: none;">
                     <p style="font-size: 14px; font-weight: 600; margin-bottom: 0.5rem;">Your sync code</p>
                     <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
-                        <code id="sync-code-display" style="flex: 1; text-align: center; font-size: 1.1em; letter-spacing: 3px; padding: 0.45rem 0.75rem; border: 1px solid #ccc; border-radius: 8px; display: block;"></code>
+                        <code id="sync-code-display"
+                            style="flex: 1; text-align: center; font-size: 1.1em; letter-spacing: 3px; padding: 0.45rem 0.75rem; border: 1px solid #ccc; border-radius: 8px; display: block;"></code>
                         <button id="sync-copy-btn">
                             <i class="fa-regular fa-copy"></i>
                         </button>
@@ -432,31 +441,31 @@
             reader.onload = function (e) {
                 try {
                     const imported = JSON.parse(e.target.result);
-                    
+
                     // Handle both old format (direct state) and new format (backup object)
                     const state = imported.fintrack || imported;
                     const repayments = imported['fintrack-repayments'];
-                    
+
                     if (!state.accounts || !Array.isArray(state.accounts)) {
                         showToast('Invalid file format');
                         return;
                     }
                     if (!confirm('This will replace all your current accounts and repayments. Continue?')) return;
-                    
+
                     // Strip archived flags, cycleStartDate and resetOffset so all transactions count
-                    state.accounts.forEach(function(a) {
+                    state.accounts.forEach(function (a) {
                         delete a.cycleStartDate;
                         delete a.resetOffset;
-                        if (a.transactions) a.transactions.forEach(function(t) { delete t.archived; });
+                        if (a.transactions) a.transactions.forEach(function (t) { delete t.archived; });
                     });
                     state._migrated = true;
                     save(state);
-                    
+
                     // Import repayments data if present
                     if (repayments) {
                         localStorage.setItem('fintrack-repayments', JSON.stringify(repayments));
                     }
-                    
+
                     showToast('Data imported successfully');
                     setTimeout(() => { window.location.href = 'index.html'; }, 500);
                 } catch (err) {
@@ -488,10 +497,10 @@
                 });
         }
     </script>
-    
+
     <script src="./js/pull-to-refresh.js"></script>
     <script src="../js/ios-pwa-pull-to-refresh-init.js"></script>
-    
-    <script src="../js/ios-pwa-warning.js"></script></body>
-</html>
 
+    <script src="../js/ios-pwa-warning.js"></script>
+</body>
+</html>

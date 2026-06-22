@@ -78,11 +78,6 @@ body.dark-mode .page-header-section {
     background: linear-gradient(58deg, rgb(172, 55, 42) 0%, rgb(163, 110, 17) 100%) !important;
 }
 
-.mobile-bottom-nav,
-body.dark-mode .mobile-bottom-nav {
-    display: none;
-}
-
 .nav-link {
     color: #000;
 }
@@ -539,11 +534,17 @@ body.dark-mode .ann-header-btn {
         margin: 20px 20px;
         padding: 0 4px;
         width: 100%;
-        max-width: 340px;
+        max-width: 440px;
         justify-content: space-between;
         pointer-events: auto;
+        transition: transform 0.3s ease;
+        transform-origin: bottom center;
     }
 
+    .mobile-bottom-nav.shrunk ul {
+        transform: scale(0.9);
+        padding: 2px 1px !important;
+    }
 
     body.dark-mode .mobile-bottom-nav ul {
         background: #1f243bc9;

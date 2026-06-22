@@ -1300,11 +1300,6 @@ body.dark-mode .cmt-summary {
 }
 
 /* ===== Mobile Bottom Nav ===== */
-.mobile-bottom-nav,
-body.dark-mode .mobile-bottom-nav {
-    display: none;
-}
-
 .mobile-bottom-nav li:active {
     transform: scale(0.88);
     transition: transform 0.1s ease;
@@ -2185,9 +2180,16 @@ img[src*="favicon"] {
         margin: 20px 20px;
         padding: 0 4px;
         width: 100%;
-        max-width: 340px;
+        max-width: 440px;
         justify-content: space-between;
         pointer-events: auto;
+        transition: transform 0.3s ease;
+        transform-origin: bottom center;
+    }
+
+    .mobile-bottom-nav.shrunk ul {
+        transform: scale(0.9);
+        padding: 2px 1px !important;
     }
 
     body.dark-mode .mobile-bottom-nav ul {
@@ -2312,6 +2314,13 @@ img[src*="favicon"] {
         max-width: 340px;
         justify-content: space-between;
         pointer-events: auto;
+        transition: transform 0.3s ease;
+        transform-origin: bottom center;
+    }
+
+    .mobile-bottom-nav.shrunk ul {
+        transform: scale(0.7);
+        padding: 2px 1px !important;
     }
 
     body.dark-mode .mobile-bottom-nav ul {
