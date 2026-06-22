@@ -258,7 +258,8 @@ body.dark-mode .list-group-item:hover {
     }
 
     .mobile-bottom-nav.shrunk ul {
-        transform: scaleY(0.85);
+        transform: scale(0.9);
+        padding: 2px 1px !important;
     }
 
     .mobile-bottom-nav::before {

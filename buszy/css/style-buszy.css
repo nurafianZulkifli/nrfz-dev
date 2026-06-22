@@ -1624,6 +1624,13 @@ body.dark-mode .alerts-indicator-dot {
         max-width: 340px;
         justify-content: space-between;
         pointer-events: auto;
+        transition: transform 0.3s ease;
+        transform-origin: bottom center;
+    }
+
+    .mobile-bottom-nav.shrunk ul {
+        transform: scale(0.7);
+        padding: 2px 1px !important;
     }
 
     body.dark-mode .mobile-bottom-nav ul {
