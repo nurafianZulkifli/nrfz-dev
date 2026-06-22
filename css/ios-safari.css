@@ -5,6 +5,7 @@
 body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  padding-top: env(safe-area-inset-top);
 }
 
 /* Remove default tap highlight color */
@@ -278,4 +279,34 @@ textarea,
 [role="button"] {
   -webkit-user-select: text;
   user-select: text;
+}
+
+/* iOS PWA Warning Banner Positioning */
+#ios-pwa-warning-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Add safe area inset support for notched devices */
+@supports (padding: max(0px)) {
+  #ios-pwa-warning-banner {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Adjust body padding to prevent content overlap with banner */
+body:has(#ios-pwa-warning-banner) {
+  padding-top: 75px; /* Approximate height of banner with padding */
+}
+
+/* Safe area support for body padding */
+@supports (padding: max(0px)) {
+  body:has(#ios-pwa-warning-banner) {
+    padding-top: calc(75px + env(safe-area-inset-top));
+  }
 }
