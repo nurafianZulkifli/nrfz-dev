@@ -1970,7 +1970,44 @@
     <script src="./js/pull-to-refresh.js"></script>
     <script src="../js/ios-pwa-pull-to-refresh-init.js"></script>
     
-    <script src="../js/ios-pwa-warning.js"></script></body>
+    <script src="../js/ios-pwa-warning.js"></script>
+
+    <!-- Mobile Bottom Nav Scroll Shrink Animation -->
+    <script>
+        (function () {
+            const mobileNav = document.querySelector('.mobile-bottom-nav');
+            if (!mobileNav) return;
+
+            let lastScrollTop = 0;
+            let isShrunken = false;
+
+            // Initially show the nav
+            mobileNav.classList.add('show-nav');
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                // Scrolling down - shrink nav
+                if (currentScroll > lastScrollTop && currentScroll > 100) {
+                    if (!isShrunken) {
+                        mobileNav.classList.remove('show-nav');
+                        mobileNav.classList.add('hide-nav');
+                        isShrunken = true;
+                    }
+                }
+                // Scrolling up - expand nav
+                else if (currentScroll < lastScrollTop) {
+                    if (isShrunken) {
+                        mobileNav.classList.remove('hide-nav');
+                        mobileNav.classList.add('show-nav');
+                        isShrunken = false;
+                    }
+                }
+
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, false);
+        })();
+    </script></body>
 
 </html>
 

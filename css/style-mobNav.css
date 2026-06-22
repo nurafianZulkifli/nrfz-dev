@@ -244,6 +244,20 @@ body.dark-mode .list-group-item:hover {
         display: flex !important;
         justify-content: center;
         pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform-origin: bottom center;
+    }
+
+    .mobile-bottom-nav.hide-nav {
+        transform: scaleY(0.4);
+        opacity: 0.6;
+        pointer-events: auto;
+    }
+
+    .mobile-bottom-nav.show-nav {
+        transform: scaleY(1);
+        opacity: 1;
+        pointer-events: auto;
     }
 
     .mobile-bottom-nav::before {
