@@ -78,6 +78,11 @@ body.dark-mode .page-header-section {
     background: linear-gradient(58deg, rgb(172, 55, 42) 0%, rgb(163, 110, 17) 100%) !important;
 }
 
+.mobile-bottom-nav,
+body.dark-mode .mobile-bottom-nav {
+    display: none;
+}
+
 .nav-link {
     color: #000;
 }
