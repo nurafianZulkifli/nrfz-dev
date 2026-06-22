@@ -330,14 +330,14 @@
 
   /* Adjust body padding to prevent content overlap with banner */
   body:has(#ios-pwa-warning-banner) {
-    padding-top: 55px;
+    padding-top: 35px;
     /* Approximate height of banner with padding */
   }
 
   /* Safe area support for body padding */
   @supports (padding: max(0px)) {
     body:has(#ios-pwa-warning-banner) {
-      padding-top: calc(55px + env(safe-area-inset-top));
+      padding-top: calc(35px + env(safe-area-inset-top));
     }
   }
 
@@ -347,7 +347,7 @@
     }
 
     .breadcrumb.breadcrumb-fixed.at-top {
-      top: calc(55px + env(safe-area-inset-top));
+      top: calc(35px + env(safe-area-inset-top));
       background: none;
       box-shadow: none;
       padding-top: 1.5em;
