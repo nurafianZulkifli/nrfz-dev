@@ -330,24 +330,24 @@
 
   /* Adjust body padding to prevent content overlap with banner */
   body:has(#ios-pwa-warning-banner) {
-    padding-top: 35px;
+    padding-top: 15px;
     /* Approximate height of banner with padding */
   }
 
   /* Safe area support for body padding */
   @supports (padding: max(0px)) {
     body:has(#ios-pwa-warning-banner) {
-      padding-top: calc(35px + env(safe-area-inset-top));
+      padding-top: calc(15px + env(safe-area-inset-top));
     }
   }
 
   @media (max-width: 994px) and (hover: none) and (pointer: coarse) {
     .breadcrumb-fixed-placeholder {
-      padding-top: 1em;
+      padding-top: 3em;
     }
 
     .breadcrumb.breadcrumb-fixed.at-top {
-      top: calc(35px + env(safe-area-inset-top));
+      top: calc(15px + env(safe-area-inset-top));
       background: none;
       box-shadow: none;
       padding-top: 1.5em;
