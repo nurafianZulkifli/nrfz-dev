@@ -33,13 +33,22 @@ function getLoadIcon(load, type) {
 
 function formatArrivalTimeStyled(isoString) {
     if (window.SharedArrivals && typeof window.SharedArrivals.formatArrivalTimeOrArr === 'function') {
-        try { return window.SharedArrivals.formatArrivalTimeOrArr(isoString, new Date(), false); } catch(e) {}
+        try {
+            // Use synchronized time if available
+            const now = (window.SharedArrivals && typeof window.SharedArrivals.getSynchronizedNow === 'function')
+                ? window.SharedArrivals.getSynchronizedNow()
+                : new Date();
+            return window.SharedArrivals.formatArrivalTimeOrArr(isoString, now, false);
+        } catch(e) {}
     }
     if (!isoString) return '--';
     const arrivalTime = new Date(isoString);
     if (Number.isNaN(arrivalTime.getTime())) return '--';
 
-    const now = new Date();
+    // Use synchronized time if available
+    const now = (window.SharedArrivals && typeof window.SharedArrivals.getSynchronizedNow === 'function')
+        ? window.SharedArrivals.getSynchronizedNow()
+        : new Date();
     const timeDifference = arrivalTime - now;
     if (timeDifference <= 0) {
         return '<span class="arrival-now">Arr</span>';
@@ -433,6 +442,29 @@ function displayBusStops(busStops, isCached = true) {
         let longPressTriggered = false;
         let touchStartX = 0;
         let touchStartY = 0;
+        let buttonJustCreated = false;
+
+        // Function to remove the pin button
+        function removePinButton() {
+            if (pinButton && pinButton.parentNode) {
+                pinButton.classList.remove('pin-btn-fade-in');
+                pinButton.classList.add('pin-btn-fade-out');
+                setTimeout(() => {
+                    if (pinButton && pinButton.parentNode) {
+                        pinButton.remove();
+                    }
+                    pinButton = null;
+                    document.removeEventListener('click', dismissPinButton);
+                }, 300);
+            }
+        }
+
+        // Function to dismiss the button when clicking outside
+        function dismissPinButton(event) {
+            if (!buttonJustCreated && pinButton && event.target !== pinButton && !pinButton.contains(event.target) && !busStopElement.contains(event.target)) {
+                removePinButton();
+            }
+        }
 
         // Add long press listener for pin/unpin button
         function startPinLongPress(x, y) {
@@ -451,26 +483,19 @@ function displayBusStops(busStops, isCached = true) {
                         event.stopPropagation();
                         event.preventDefault();
                         togglePinBusStop(busStop, pinButton);
-                        pinButton.classList.remove('pin-btn-fade-in');
-                        pinButton.classList.add('pin-btn-fade-out');
-                        setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
+                        removePinButton();
                     });
                     controlsDiv.insertBefore(pinButton, controlsDiv.firstChild);
+                    // Add global click listener to dismiss when clicking outside
+                    buttonJustCreated = true;
+                    setTimeout(() => { buttonJustCreated = false; }, 300);
+                    document.addEventListener('click', dismissPinButton);
                 }
             }, 500);
         }
         function endPinLongPress() {
             clearTimeout(longPressTimer);
             if (longPressTriggered) { longPressTriggered = false; return; }
-            if (pinButton) {
-                setTimeout(() => {
-                    if (pinButton && pinButton.parentNode) {
-                        pinButton.classList.remove('pin-btn-fade-in');
-                        pinButton.classList.add('pin-btn-fade-out');
-                        setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
-                    }
-                }, 3000);
-            }
         }
         busStopElement.addEventListener('touchstart', (event) => { startPinLongPress(event.touches[0].clientX, event.touches[0].clientY); }, { passive: true });
         busStopElement.addEventListener('touchend', () => { endPinLongPress(); });
@@ -620,6 +645,67 @@ function handleRefreshClick() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize default refresh interval if not already set (in seconds)
+    if (!localStorage.getItem('refreshInterval')) {
+        localStorage.setItem('refreshInterval', '2');
+    }
+
+    // Setup dynamic refresh interval for arrival times in nearby bus stops
+    let refreshIntervalId = null;
+
+    function startRefreshInterval() {
+        // Clear existing interval if any
+        if (refreshIntervalId !== null) {
+            clearInterval(refreshIntervalId);
+        }
+
+        // Get refresh interval from localStorage (in seconds), default to 2 seconds
+        const refreshSeconds = parseFloat(localStorage.getItem('refreshInterval') || '2');
+        const refreshMs = refreshSeconds * 1000;
+
+        // Start new interval - refresh only the arrival summaries in open sections
+        refreshIntervalId = setInterval(() => {
+            // Only refresh visible arrival summary cards
+            document.querySelectorAll('.bus-stop-arrivals-summary.card-content-art').forEach((summaryEl) => {
+                const busStopElement = summaryEl.closest('.bus-stop');
+                if (busStopElement) {
+                    const collapseSection = busStopElement.querySelector('.bus-stop-options-collapse');
+                    const busStopCode = busStopElement.querySelector('.bus-stop-code-text')?.textContent;
+                    if (busStopCode && collapseSection && collapseSection.classList.contains('show')) {
+                        getArrivalSummaryForStop(busStopCode).then((arrivals) => {
+                            summaryEl.innerHTML = renderArrivalSummary(arrivals);
+                            if (collapseSection.classList.contains('show')) {
+                                collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
+                            }
+                        });
+                    }
+                }
+            });
+        }, refreshMs);
+    }
+
+    // Re-fetch when the tab becomes visible again after being backgrounded
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            startRefreshInterval();
+        }
+    });
+
+    // Listen for refresh interval changes from settings
+    window.addEventListener('refreshIntervalChanged', (event) => {
+        startRefreshInterval();
+    });
+
+    // Listen for storage changes from other tabs
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'refreshInterval') {
+            startRefreshInterval();
+        }
+    });
+
+    // Start the refresh interval
+    startRefreshInterval();
+
     // Select the "Search Bus Stop" button - look for links to index or ./
     const searchBusStopButton = document.querySelector('a[href="./"], a[href="index.html"]'); // Select the "Search Bus Stop" button
     const searchInput = document.getElementById('bus-stop-search'); // Select the search input field

@@ -50,7 +50,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     function formatArrivalTimeStyled(isoString) {
         if (window.SharedArrivals && typeof window.SharedArrivals.formatArrivalTimeOrArr === 'function') {
             try {
-                return window.SharedArrivals.formatArrivalTimeOrArr(isoString, new Date(), false);
+                // Use synchronized time if available
+                const now = (window.SharedArrivals && typeof window.SharedArrivals.getSynchronizedNow === 'function')
+                    ? window.SharedArrivals.getSynchronizedNow()
+                    : new Date();
+                return window.SharedArrivals.formatArrivalTimeOrArr(isoString, now, false);
             } catch (e) {
                 // fallback to local implementation
             }
@@ -59,7 +63,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const arrivalTime = new Date(isoString);
         if (Number.isNaN(arrivalTime.getTime())) return '--';
 
-        const now = new Date();
+        // Use synchronized time if available
+        const now = (window.SharedArrivals && typeof window.SharedArrivals.getSynchronizedNow === 'function')
+            ? window.SharedArrivals.getSynchronizedNow()
+            : new Date();
         const timeDifference = arrivalTime - now;
         if (timeDifference <= 0) {
             return '<span class="arrival-now">Arr</span>';
@@ -682,9 +689,32 @@ document.addEventListener('DOMContentLoaded', async () => {
                     let longPressTimer = null;
                     let pinButton = null;
                     let longPressTriggered = false;
+                    let buttonJustCreated = false;
 
                     let itemTouchStartX = 0;
                     let itemTouchStartY = 0;
+
+                    // Function to remove the pin button
+                    function removePinButton() {
+                        if (pinButton && pinButton.parentNode) {
+                            pinButton.classList.remove('pin-btn-fade-in');
+                            pinButton.classList.add('pin-btn-fade-out');
+                            setTimeout(() => {
+                                if (pinButton && pinButton.parentNode) {
+                                    pinButton.remove();
+                                }
+                                pinButton = null;
+                                document.removeEventListener('click', dismissPinButton);
+                            }, 300);
+                        }
+                    }
+
+                    // Function to dismiss the button when clicking outside
+                    function dismissPinButton(event) {
+                        if (!buttonJustCreated && pinButton && event.target !== pinButton && !pinButton.contains(event.target) && !listItem.contains(event.target)) {
+                            removePinButton();
+                        }
+                    }
 
                     // Add long press listener for pin button
                     function startPinLongPress(x, y) {
@@ -706,25 +736,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     event.stopPropagation();
                                     event.preventDefault();
                                     confirmAndRemoveBookmark(bookmark.BusStopCode);
-                                    pinButton.classList.remove('pin-btn-fade-in');
-                                    pinButton.classList.add('pin-btn-fade-out');
-                                    setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
+                                    removePinButton();
                                 });
                                 controls.insertBefore(pinButton, controls.firstChild);
+                                // Add global click listener to dismiss when clicking outside
+                                buttonJustCreated = true;
+                                setTimeout(() => { buttonJustCreated = false; }, 300);
+                                document.addEventListener('click', dismissPinButton);
                             }
                         }, 500);
                     }
                     function endPinLongPress() {
                         clearTimeout(longPressTimer);
-                        if (pinButton) {
-                            setTimeout(() => {
-                                if (pinButton && pinButton.parentNode) {
-                                    pinButton.classList.remove('pin-btn-fade-in');
-                                    pinButton.classList.add('pin-btn-fade-out');
-                                    setTimeout(() => { if (pinButton && pinButton.parentNode) { pinButton.remove(); } pinButton = null; }, 300);
-                                }
-                            }, 2000);
-                        }
                     }
                     listItem.addEventListener('touchstart', (event) => { startPinLongPress(event.touches[0].clientX, event.touches[0].clientY); }, { passive: true });
                     listItem.addEventListener('touchend', () => { endPinLongPress(); });
@@ -1045,9 +1068,61 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    // Initialize default refresh interval if not already set (in seconds)
+    if (!localStorage.getItem('refreshInterval')) {
+        localStorage.setItem('refreshInterval', '2');
+    }
+
+    // Setup dynamic refresh interval for arrival times
+    let refreshIntervalId = null;
+
+    function startRefreshInterval() {
+        // Clear existing interval if any
+        if (refreshIntervalId !== null) {
+            clearInterval(refreshIntervalId);
+        }
+
+        // Get refresh interval from localStorage (in seconds), default to 2 seconds
+        const refreshSeconds = parseFloat(localStorage.getItem('refreshInterval') || '2');
+        const refreshMs = refreshSeconds * 1000;
+
+        // Start new interval - refresh only the arrival summaries in open sections
+        refreshIntervalId = setInterval(() => {
+            // Only refresh visible arrival summary cards
+            document.querySelectorAll('.bus-stop-arrivals-summary.card-content-art').forEach((summaryEl) => {
+                const busStopCode = summaryEl.closest('.bus-stop-options-collapse')?.parentElement?.querySelector('.bus-stop-code-text')?.textContent;
+                if (busStopCode && summaryEl.parentElement.parentElement.classList.contains('show')) {
+                    getArrivalSummaryForStop(busStopCode).then((arrivals) => {
+                        applyArrivalFilter(summaryEl, arrivals, busStopCode, summaryEl.closest('.bus-stop-options-collapse'));
+                    });
+                }
+            });
+        }, refreshMs);
+    }
+
+    // Re-fetch when the tab becomes visible again after being backgrounded
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            startRefreshInterval();
+        }
+    });
+
+    // Listen for refresh interval changes from settings
+    window.addEventListener('refreshIntervalChanged', (event) => {
+        startRefreshInterval();
+    });
+
+    // Listen for storage changes from other tabs
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'refreshInterval') {
+            startRefreshInterval();
+        }
+    });
+
     // Load bookmarks and setup listeners
     loadBookmarks().then(() => {
         items = [];
         setupDragListeners();
+        startRefreshInterval();
     });
 });

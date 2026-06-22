@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,8 +18,10 @@
     <meta name="apple-mobile-web-app-title" content="Buszy">
 
     <link rel="manifest" href="./manifest.json">
-    <link rel="icon" href="./assets/icon-192.png" type="image/png">
-    <link rel="apple-touch-icon" href="./assets/icon-192.png">
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+
+    <link rel="apple-touch-icon" href="./assets/logo.png">
+    
     <!-- iOS PWA Startup Image -->
     <link rel="apple-touch-startup-image" href="../img/bg-img/hero-buszy-dark.png">
 
@@ -31,6 +33,7 @@
     <link rel="stylesheet" href="./css/style-buszy.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/ios-safari.css">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
@@ -1699,7 +1702,7 @@
                 searchInput.value = savedService;
                 busServiceTab.style.display = 'inline-flex';
                 sessionStorage.removeItem('lastServiceSearch');
-                // Grey out button if suggestion needed — re-evaluated once JSON loads too
+                // Grey out button if suggestion needed â€” re-evaluated once JSON loads too
                 updateDidYouMean(savedService);
             }
 
@@ -1760,7 +1763,7 @@
                 updateDidYouMean(val);
             });
 
-            // Handle Bus Service button click — use exact or suggested casing, never force uppercase
+            // Handle Bus Service button click â€” use exact or suggested casing, never force uppercase
             busServiceTab.addEventListener('click', (e) => {
                 e.preventDefault();
                 const val = searchInput.value.trim();
@@ -1894,7 +1897,7 @@
     <script src="../js/back-to-top.js"></script>
 
     <script>
-        // ── First-Time Guide ─────────────────────────────────────────────────────
+        // â”€â”€ First-Time Guide â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         (function () {
             var _guideStep = 1;
             var GUIDE_KEY = 'buszy-guide-done';
@@ -1963,6 +1966,11 @@
         })();
     </script>
 
-</body>
+    
+    <script src="./js/pull-to-refresh.js"></script>
+    <script src="../js/ios-pwa-pull-to-refresh-init.js"></script>
+    
+    <script src="../js/ios-pwa-warning.js"></script></body>
 
 </html>
+
