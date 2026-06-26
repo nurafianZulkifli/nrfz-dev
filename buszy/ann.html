@@ -142,10 +142,6 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="menu.html"><i class="fa-regular fa-bars"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
                                     <a href="#"><i class="fa-regular fa-arrows-rotate"></i>
                                     </a>
                                 </li>
@@ -454,20 +450,6 @@
             content.innerHTML = `<div class="error-message"><i class="fa-regular fa-exclamation-circle"></i> ${message}</div>`;
         }
 
-        function updateAlertsLastUpdated() {
-            const updatedDiv = document.querySelector('#alerts-last-updated-top');
-            if (updatedDiv) {
-                const now = new Date();
-                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                let hours = now.getHours();
-                const ampm = hours >= 12 ? 'PM' : 'AM';
-                hours = hours % 12;
-                hours = hours ? hours : 12;
-                const mins = now.getMinutes().toString().padStart(2, '0');
-                updatedDiv.textContent = `Last updated: ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} ${hours}:${mins} ${ampm}`;
-            }
-        }
-
         // Function to fetch and populate alerts
         function loadAlerts() {
             const alertsContent = document.getElementById('alerts-content');
@@ -515,8 +497,6 @@
                     } else {
                         displayAlerts(busAlerts);
                     }
-
-                    updateAlertsLastUpdated();
                 })
                 .catch(err => {
                     console.error('Error fetching alerts:', err);
