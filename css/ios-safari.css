@@ -362,6 +362,24 @@
         position: relative;
         z-index: 10;
     }
+
+    /* Fix page title wrapper flexbox layout on iOS */
+    .page-title-wrapper > div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .page-title-wrapper h1 {
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .ann-alerts-tabs {
+      width: 100%;
+      margin-top: 12px !important;
+    }
 }
 
 }
