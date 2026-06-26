@@ -21,46 +21,18 @@
 
     <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
 
+    <!-- Core Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/style-buszy.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/pwa-styles.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/ios-safari.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-WN76281P3Q');
-    </script>
+    <!-- Page Specific Stylesheet -->
+    <link rel="stylesheet" href="./css/style-buszy.css">
+    <link rel="stylesheet" href="./css/settings.css">
 
 </head>
-
-<style>
-    .settings-switch-desc,
-    .settings-notify-desc {
-        text-align: left !important;
-        margin-bottom: 0rem;
-    }
-
-    #sync-copy-btn {
-        background: none;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 0.45rem 0.65rem;
-        cursor: pointer;
-        font-size: 14px;
-        flex-shrink: 0;
-        color: #000;
-    }
-
-    body.dark-mode #sync-copy-btn {
-        border-color: #555;
-        color: #fff;
-    }
-</style>
 
 
 <body>
@@ -106,9 +78,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="./alerts.html" class="nav-link">
-                        <i class="fa-regular fa-triangle-exclamation"></i>
-                        <span>Alerts</span>
+                    <a href="./ann.html" class="nav-link">
+                        <i class="fa-regular fa-arrows-rotate"></i>
+                        <span>Updates</span>
                         <span class="alerts-indicator-dot"></span>
                     </a>
                 </li>
@@ -131,7 +103,7 @@
                     <span class="icon">
                         <i class="fa-sharp fa-regular fa-house"></i>
                     </span>
-                    <span class="label">Home</span>
+                    <!-- <span class="label">Home</span> -->
                 </a>
             </li>
             <li>
@@ -139,16 +111,16 @@
                     <span class="icon">
                         <i class="fa-regular fa-clock"></i>
                     </span>
-                    <span class="label">Timings</span>
+                    <!-- <span class="label">Timings</span> -->
                 </a>
             </li>
             <li>
-                <a href="./alerts.html">
+                <a href="./ann.html">
                     <span class="icon">
-                        <i class="fa-regular fa-triangle-exclamation"></i>
+                        <i class="fa-regular fa-arrows-rotate"></i>
                         <span class="alerts-indicator-dot"></span>
                     </span>
-                    <span class="label">Alerts</span>
+                    <!-- <span class="label">Updates</span> -->
                 </a>
             </li>
             <li class="active">
@@ -156,7 +128,7 @@
                     <span class="icon">
                         <i class="fa-regular fa-bars"></i>
                     </span>
-                    <span class="label">Menu</span>
+                    <!-- <span class="label">Menu</span> -->
                 </a>
             </li>
         </ul>

@@ -6,10 +6,10 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
-    <title>Announcements | Buszy</title>
+    <title>Updates | Buszy</title>
     <meta content="Stay updated with the latest announcements from LTA" name="description">
     <meta content="announcements, updates, news" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
@@ -18,320 +18,18 @@
 
     <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
 
+    <!-- Core Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/style-buszy.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/pwa-styles.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
     <link rel="stylesheet" href="../css/ios-safari.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN76281P3Q"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-WN76281P3Q');
-    </script>
+    <!-- Page Specific Stylesheet -->
+    <link rel="stylesheet" href="./css/style-buszy.css">
+    <link rel="stylesheet" href="./css/updates.css">
 
 </head>
-
-<style>
-    #cv-bat-subp {
-        height: 10vh;
-        position: relative;
-    }
-
-    .badges-btn {
-        background-color: #1f84a2;
-    }
-
-    p.mb-1 {
-        text-align: left !important;
-    }
-
-    .alert-warning p {
-        color: #000;
-        font-size: 16px;
-        overflow-wrap: break-word;
-        line-height: 1.7;
-        margin-bottom: 0rem !important;
-    }
-
-    .alert-warning a {
-        color: #000;
-        text-decoration: underline;
-        font-weight: bold;
-    }
-
-    .list-group-item {
-        transition-duration: 800ms;
-        border-radius: 20px;
-        margin-top: 1em;
-        font-size: 20px;
-        border: 1px solid #2b2b2b33;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding-top: 1em;
-        padding-bottom: 1em;
-    }
-
-    body.dark-mode .alert-warning p {
-        color: #ffda6a;
-        font-size: 16px;
-        overflow-wrap: break-word;
-        line-height: 1.7;
-        margin-bottom: 0rem !important;
-        text-align: left;
-    }
-
-    body.dark-mode .alert-warning a {
-        color: #ffda6a;
-        text-decoration: underline;
-        font-weight: bold;
-    }
-
-    body.dark-mode .no-alerts {
-        background-color: #1c1f2b;
-        color: #fff;
-        border: 1px solid #2b2b2b33;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    body.dark-mode .error-message {
-    background-color: #1c1f2b;
-    color: #fff;
-    border: 1px solid #2b2b2b33;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-    .no-alerts,
-    .error-message {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border-radius: 25px;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 2em;
-        padding-left: 1em;
-        cursor: default !important;
-    }
-
-    @media (max-width: 450px) {
-        .btn-mar {
-            width: auto;
-        }
-    }
-
-    .footer {
-        display: none;
-    }
-
-    /* Tab Styles */
-    .ann-alerts-tabs {
-        display: flex;
-        gap: 8px;
-        margin-top: 12px;
-    }
-
-    .tab-button {
-        padding: 8px 16px;
-        background: transparent;
-        cursor: pointer;
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #666;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        white-space: nowrap;
-    }
-
-    .tab-button:hover {
-        color: #107d9c;
-        background-color: rgba(16, 125, 156, 0.1);
-    }
-
-    .tab-button.active {
-        background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%);
-        color: #fff;
-        border-color: transparent;
-    }
-
-    body.dark-mode .tab-button {
-        color: #aaa;
-    }
-
-    body.dark-mode .tab-button:hover {
-        color: #4a90e2;
-        background-color: rgba(74, 144, 226, 0.1);
-    }
-
-    body.dark-mode .tab-button.active {
-        background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%);
-        color: #fff;
-    }
-
-    .tab-content-section {
-        display: none;
-        text-align: left;
-    }
-
-    .tab-content-section.active {
-        display: block;
-    }
-
-    .list-group {
-        text-align: left !;
-    }
-
-    /* Alert Item Styles */
-    .alert-item-content {
-        color: #000;
-        font-size: 16px;
-        overflow-wrap: break-word;
-        line-height: 1.7;
-        margin-bottom: 0rem !important;
-    }
-
-    .alert-item-content a {
-        color: #000;
-        text-decoration: underline;
-        font-weight: bold;
-    }
-
-    body.dark-mode .alert-item-content {
-        color: #fff;
-        font-size: 14px;
-        overflow-wrap: break-word;
-        line-height: 1.7;
-        margin-bottom: 0rem !important;
-        text-align: left;
-    }
-
-    body.dark-mode .alert-item-content a {
-        color: #fff;
-        text-decoration: underline;
-        font-weight: bold;
-    }
-
-    .lg-ann {
-        font-size: 18px;
-        margin-bottom: 0.5em;
-    }
-
-    .lg-date {
-        font-size: 14px;
-        color: #000;
-    }
-
-    body.dark-mode .lg-date {
-        color: #fff;
-    }
-
-    /* Notification Banner Styles */
-    #notif-blocked-banner,
-    #notif-prompt-banner {
-        display: none;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 14px 12px 16px;
-        border-radius: 15px;
-        background: #f9f9f9;
-        border: 1px solid #e0e0e0;
-        margin-top: 0.75em;
-        margin-bottom: 0.5em;
-        font-size: 0.88rem;
-    }
-
-    body.dark-mode #notif-blocked-banner,
-    body.dark-mode #notif-prompt-banner {
-        background-color: #1c1f2b;
-        border: 1px solid rgba(27, 27, 27, 0.2);
-        color: #e0e0e0;
-    }
-
-    .notif-banner-text {
-        flex: 1;
-    }
-
-    .notif-banner-actions {
-        display: flex;
-        gap: 8px;
-        flex-shrink: 0;
-    }
-
-    .notif-dismiss-btn {
-        background: transparent;
-        border: 1px solid #bbb;
-        border-radius: 10px;
-        color: #555;
-    }
-
-    body.dark-mode .notif-dismiss-btn {
-        border-color: #555;
-        color: #9a9a9a;
-    }
-
-    /* Bus Service Code Styles */
-    .bus-service-code {
-        display: inline-flex;
-        align-items: center;
-        background-color: #94d40b;
-        color: #000;
-        font-weight: bold;
-        font-size: 15px;
-        padding: 5px 4px;
-        border-radius: 5px;
-        gap: 10px;
-        margin-right: 0.5em;
-        margin-bottom: 0.5em;
-    }
-
-    body.dark-mode .bus-service-code {
-        display: inline-flex;
-        align-items: center;
-        background-color: #7db603;
-        color: #000;
-        font-weight: bold;
-        font-size: 15px;
-        padding: 5px 4px;
-        border-radius: 5px;
-        gap: 10px;
-        margin-right: 0.5em;
-        margin-bottom: 0.5em;
-    }
-
-    .bus-service-code-text {
-        font-size: 15px;
-        font-weight: bold;
-        color: #000;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        padding: 2px 6px;
-    }
-
-    body.dark-mode .bus-service-code-text {
-        color: #000;
-    }
-
-    .bus-codes-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5em;
-        margin-bottom: 0em;
-    }
-</style>
 
 
 <body>
@@ -345,7 +43,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="#"><i class="fa-regular fa-bullhorn"></i>
+                    <a href="#"><i class="fa-regular fa-arrows-rotate"></i>
                     </a>
                 </li>
             </ol>
@@ -373,9 +71,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa-regular fa-triangle-exclamation"></i>
-                        <span>Alerts</span>
+                    <a href="#" class="nav-link active">
+                        <i class="fa-regular fa-arrows-rotate"></i>
+                        <span>Updates</span>
                     </a>
                 </li>
                 <li class="nav-item ">
@@ -396,7 +94,7 @@
                     <span class="icon">
                         <i class="fa-sharp fa-regular fa-house"></i>
                     </span>
-                    <span class="label">Home</span>
+                    <!-- <span class="label">Home</span> -->
                 </a>
             </li>
             <li>
@@ -404,16 +102,15 @@
                     <span class="icon">
                         <i class="fa-regular fa-clock"></i>
                     </span>
-                    <span class="label">Timings</span>
+                    <!-- <span class="label">Timings</span> -->
                 </a>
             </li>
-            <li>
-                <a href="./alerts.html" id="ann-nav-mobile">
+            <li class="active">
+                <a href="#" id="ann-nav-mobile">
                     <span class="icon">
-                        <i class="fa-regular fa-triangle-exclamation"></i>
-                        <span class="alerts-indicator-dot"></span>
+                        <i class="fa-regular fa-arrows-rotate"></i>
                     </span>
-                    <span class="label">Updates</span>
+                    <!-- <span class="label">Updates</span> -->
                 </a>
             </li>
             <li>
@@ -421,7 +118,7 @@
                     <span class="icon">
                         <i class="fa-regular fa-bars"></i>
                     </span>
-                    <span class="label">Menu</span>
+                    <!-- <span class="label">Menu</span> -->
                 </a>
             </li>
         </ul>
@@ -872,8 +569,6 @@
             loadAlerts();
         });
     </script>
-
-    <script src="../js/ios-pwa-warning.js"></script>
 </body>
 
 </html>
