@@ -7,7 +7,7 @@
             if (!nav) return;
             var ticking = false;
             var isShrunken = false;
-            var scrollThreshold = 8;
+            var scrollThreshold = 0;
 
             function onScroll() {
                 var currentScrollY = window.scrollY;

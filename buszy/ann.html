@@ -49,6 +49,10 @@
         background-color: #1f84a2;
     }
 
+    p.mb-1 {
+        text-align: left !important;
+    }
+
     .alert-warning p {
         color: #000;
         font-size: 16px;
@@ -95,6 +99,13 @@
         border: 1px solid #2b2b2b33;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+
+    body.dark-mode .error-message {
+    background-color: #1c1f2b;
+    color: #fff;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
     .no-alerts,
     .error-message {
@@ -173,10 +184,15 @@
 
     .tab-content-section {
         display: none;
+        text-align: left;
     }
 
     .tab-content-section.active {
         display: block;
+    }
+
+    .list-group {
+        text-align: left !;
     }
 
     /* Alert Item Styles */
@@ -196,7 +212,7 @@
 
     body.dark-mode .alert-item-content {
         color: #fff;
-        font-size: 16px;
+        font-size: 14px;
         overflow-wrap: break-word;
         line-height: 1.7;
         margin-bottom: 0rem !important;
@@ -221,36 +237,6 @@
 
     body.dark-mode .lg-date {
         color: #fff;
-    }
-
-    .no-alerts {
-        text-align: center;
-        padding: 2em 1em;
-        color: #666;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5em;
-    }
-
-    body.dark-mode .no-alerts {
-        color: #aaa;
-    }
-
-    .error-message {
-        text-align: center;
-        padding: 2em 1em;
-        color: #d9534f;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5em;
-    }
-
-    body.dark-mode .error-message {
-        color: #ff6b6b;
     }
 
     /* Notification Banner Styles */
@@ -427,7 +413,7 @@
                         <i class="fa-regular fa-triangle-exclamation"></i>
                         <span class="alerts-indicator-dot"></span>
                     </span>
-                    <span class="label">Alerts</span>
+                    <span class="label">Updates</span>
                 </a>
             </li>
             <li>
@@ -472,22 +458,22 @@
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; align-items: flex-start;">
                                 <div>
-                                    <h1 class="page-title" id="filter-title">Announcements</h1>
+                                    <h1 class="page-title" id="filter-title">Bus Service Alerts</h1>
                                     <!-- Tab buttons -->
                                     <div class="ann-alerts-tabs" style="display: flex; gap: 10px; margin-top: 12px;">
-                                        <button class="tab-button active" data-tab="announcements">
-                                            <i class="fa-regular fa-bullhorn"></i> Announcements
-                                        </button>
-                                        <button class="tab-button" data-tab="alerts">
+                                        <button class="tab-button active" data-tab="alerts">
                                             <i class="fa-regular fa-triangle-exclamation"></i> Alerts
+                                        </button>
+                                        <button class="tab-button" data-tab="announcements">
+                                            <i class="fa-regular fa-bullhorn"></i> Announcements
                                         </button>
                                     </div>
                                 </div>
-                                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem;">
+                                <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
                                     <div id="alerts-last-updated-top"
-                                        style="font-size: 0.85rem; color: #666; display: none;"></div>
+                                        style="font-size: 0.85rem; color: #666;"></div>
                                     <button id="mark-as-read-btn" class="btn btn-mar badges-btn"
-                                        style="margin: 0; cursor: pointer;">
+                                        style="margin: 0; cursor: pointer; display: none;">
                                         <i class="fa-regular fa-check"></i> Mark as Read
                                     </button>
                                 </div>
@@ -504,7 +490,7 @@
     <section class="about-me-summ clearfix" style="padding-bottom: 5em;">
         <div class="container">
             <!-- Announcements Tab Content -->
-            <div id="announcements-content" class="tab-content-section active">
+            <div id="announcements-content" class="tab-content-section">
                 <div class="list-group">
                     <a href="settings.html#refetch-stops" data-ann-id="bus-stop-description-2026-04"
                         data-ann-date="2026-04-12"
@@ -589,7 +575,7 @@
             </div>
 
             <!-- Alerts Tab Content -->
-            <div id="alerts-content-section" class="tab-content-section">
+            <div id="alerts-content-section" class="tab-content-section active">
 
                 <div id="notif-blocked-banner">
                     <i class="fa-regular fa-bell" style="font-size:1.3rem; flex-shrink:0;"></i>

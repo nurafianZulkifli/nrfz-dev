@@ -1443,7 +1443,7 @@ body.dark-mode .alerts-indicator-dot {
 .mobile-bottom-nav .alerts-indicator-dot.show {
     position: absolute;
     top: -2px;
-    right: -4px;
+    right: -11px;
     width: 8px;
     height: 8px;
     margin-left: 0;
