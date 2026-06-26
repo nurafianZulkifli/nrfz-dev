@@ -343,7 +343,7 @@
 
   @media (max-width: 994px) and (hover: none) and (pointer: coarse) {
     .breadcrumb-fixed-placeholder {
-      padding-top: 4em;
+      padding-top: 6em;
     }
 
     .breadcrumb.breadcrumb-fixed.at-top {
@@ -361,6 +361,10 @@
         margin-bottom: 2em;
         position: relative;
         z-index: 10;
+    }
+
+    .page-header-section {
+        margin-top: 3em !important;
     }
 
     /* Fix page title wrapper flexbox layout on iOS */
