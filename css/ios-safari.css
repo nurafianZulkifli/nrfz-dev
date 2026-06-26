@@ -1,11 +1,12 @@
 /* iOS Safari Specific Stylesheet */
-/* Targets Safari on iOS devices */
+/* Targets Safari on iOS devices - PWA only */
 
-/* Apply only to Apple devices (iOS, macOS Safari) */
-@supports (-webkit-appearance: none) {
+/* Apply only to Apple devices in PWA standalone mode */
+@media (display-mode: standalone) {
+  @supports (-webkit-appearance: none) {
 
-  /* Prevent font size adjustment on landscape orientation */
-  body {
+    /* Prevent font size adjustment on landscape orientation */
+    body {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     padding-top: env(safe-area-inset-top);
@@ -386,6 +387,9 @@
     }
 }
 
+  }
+
+  /* Close Apple devices @supports block */
 }
 
-/* Close Apple devices @supports block */
+/* Close PWA standalone media query block */
