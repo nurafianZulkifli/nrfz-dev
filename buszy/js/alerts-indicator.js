@@ -4,8 +4,9 @@
 
 const ALERTS_HAS_ACTIVE_KEY = 'buszy_alerts_has_active';
 const ALERTS_CACHE_KEY = 'buszy_alerts_cache';
-const ALERTS_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const ALERTS_CACHE_TTL = 30 * 60 * 1000; // 30 minutes (increased from 5 to reduce API calls)
 const ALERTS_API_URL = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts';
+let _alertsFetchInProgress = false; // Debounce flag to prevent simultaneous requests
 
 function applyAlertsDots(hasActive) {
     const dots = document.querySelectorAll('.alerts-indicator-dot');
@@ -33,6 +34,10 @@ function hasBusAlerts(data) {
 }
 
 async function fetchAndCacheAlerts() {
+    // Debounce: prevent multiple simultaneous requests
+    if (_alertsFetchInProgress) return;
+    
+    _alertsFetchInProgress = true;
     try {
         const response = await fetch(ALERTS_API_URL);
         const data = await response.json();
@@ -44,6 +49,9 @@ async function fetchAndCacheAlerts() {
         applyAlertsDots(hasActive);
     } catch (e) {
         // Network error — keep showing whatever was cached
+        console.debug('Alerts fetch error:', e);
+    } finally {
+        _alertsFetchInProgress = false;
     }
 }
 
