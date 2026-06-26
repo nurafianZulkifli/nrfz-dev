@@ -405,6 +405,7 @@
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
         scrollbar-width: none;
         -ms-overflow-style: none;
+        z-index: 20;
     }
 
     .category-tabs::-webkit-scrollbar {
@@ -417,7 +418,8 @@
         justify-content: center;
         width: 100%;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
+        z-index: 30;
     }
 
     .scroll-indicator {
@@ -527,7 +529,15 @@
         margin-top: -14rem;
         margin-bottom: 2em;
         position: relative;
-        z-index: 10;
+        z-index: 5;
+        pointer-events: none;
+    }
+
+    .pinned .bus-stop,
+    .pinned button,
+    .pinned a,
+    .pinned .list-group {
+        pointer-events: auto;
     }
 
     .pinned .about-me-summ {
@@ -1454,7 +1464,7 @@
                         </p>
                     </div>
                     <div class="pagination-buttons"
-                        style="display: flex; gap: 3em; justify-content: center; margin-top: 2em; flex-wrap: nowrap;">
+                        style="display: none; gap: 3em; justify-content: center; margin-top: 2em; flex-wrap: nowrap;">
                         <button id="prev-button" class="btn pw-btn-prev btn-2 mt-15" style="display: none;"><i
                                 class="fa-solid fa-arrow-left"></i></button>
                         <button id="next-button" class="btn pw-btn-next btn-2 mt-15" style="display: none;"><i
@@ -1832,6 +1842,11 @@
                 const contentElement = document.getElementById(category + '-content');
                 if (contentElement) {
                     contentElement.classList.add('active');
+                }
+
+                // Auto-refresh nearby bus stops when nearby tab is clicked
+                if (category === 'nearby' && typeof refreshNearbyBusStops === 'function') {
+                    refreshNearbyBusStops();
                 }
             });
         });
