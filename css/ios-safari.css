@@ -463,6 +463,19 @@
       padding-top: max(20px, env(safe-area-inset-top));
     }
 
+    /* Inner content wrappers - ensure they don't overlap Dynamic Island */
+    .ft-cover-wrapper {
+      padding-top: max(24px, calc(24px + env(safe-area-inset-top))) !important;
+    }
+
+    .cover-search-wrapper {
+      padding-top: max(48px, calc(48px + env(safe-area-inset-top))) !important;
+    }
+
+    .page-header-section {
+      padding-top: calc(2em + max(16px, env(safe-area-inset-top))) !important;
+    }
+
 
   }
 
