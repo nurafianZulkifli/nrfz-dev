@@ -1,18 +1,18 @@
 /* iOS Safari Specific Stylesheet */
 /* Targets Safari on iOS devices - PWA only */
 
-/* Support color-scheme for Safari address bar in all modes */
-@supports (color-scheme: dark) {
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
+/* Support color-scheme for Safari address bar - applies to all modes */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    color-scheme: dark;
   }
+}
 
-  @media (prefers-color-scheme: light) {
-    html {
-      color-scheme: light;
-    }
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    color-scheme: light;
   }
 }
 
@@ -188,11 +188,16 @@
       html {
         background-color: #000000;
         color: #ffffff;
+        color-scheme: dark;
       }
 
-      /* Force proper color scheme for Safari UI elements */
-      color-scheme: dark;
-      -webkit-appearance: none;
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        -webkit-appearance: none;
+      }
     }
 
     /* Light mode address bar support */
@@ -202,9 +207,8 @@
       html {
         background-color: #ffffff;
         color: #000000;
+        color-scheme: light;
       }
-
-      color-scheme: light;
     }
 
     /* Fix range input styling */
