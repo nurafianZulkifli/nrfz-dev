@@ -386,7 +386,7 @@
     .filter-title {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         margin: 0;
         cursor: pointer;
     }

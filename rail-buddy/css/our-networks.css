@@ -10,39 +10,39 @@
 }
 
 .line-nsl {
-    background-image: url("assets/caplets/NSLCap.png");
+    background-image: url("../assets/caplets/NSLCap.png");
 }
 
 .line-ewl {
-    background-image: url("assets/caplets/EWLCap.png");
+    background-image: url("../assets/caplets/EWLCap.png");
 }
 
 .line-nel {
-    background-image: url("assets/caplets/NELCap.png");
+    background-image: url("../assets/caplets/NELCap.png");
 }
 
 .line-ccl {
-    background-image: url("assets/caplets/CCLCap.png");
+    background-image: url("../assets/caplets/CCLCap.png");
 }
 
 .line-dtl {
-    background-image: url("assets/caplets/DTLCap.png");
+    background-image: url("../assets/caplets/DTLCap.png");
 }
 
 .line-tel {
-    background-image: url("assets/caplets/TELCap.png");
+    background-image: url("../assets/caplets/TELCap.png");
 }
 
 .line-bp {
-    background-image: url("assets/caplets/BPCap.png");
+    background-image: url("../assets/caplets/BPCap.png");
 }
 
 .line-sk {
-    background-image: url("assets/caplets/SKCap.png");
+    background-image: url("../assets/caplets/SKCap.png");
 }
 
 .line-pg {
-    background-image: url("assets/caplets/PGCap.png");
+    background-image: url("../assets/caplets/PGCap.png");
 }
 
 .single-post-area .post-thumbnail {
