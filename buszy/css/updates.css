@@ -100,50 +100,50 @@ body.dark-mode .error-message {
     margin-top: 12px;
 }
 
-  .tab-button {
-      padding: 12px 20px;
-      border: none;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
-      background: #fff;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #000;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      border-radius: 24px;
-      flex-shrink: 0;
-  }
+.tab-button {
+    padding: 12px 20px;
+    border: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #000;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    border-radius: 24px;
+    flex-shrink: 0;
+}
 
-  .tab-button:hover {
-      color: #000;
-      transform: translateY(-2px);
-      background-color: #c7e3fb;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
+.tab-button:hover {
+    color: #000;
+    transform: translateY(-2px);
+    background-color: #c7e3fb;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
 
-  .tab-button.active {
-      background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%) !important;
-      color: #fff;
-  }
+.tab-button.active {
+    background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%) !important;
+    color: #fff;
+}
 
-  body.dark-mode .tab-button {
-      background-color: #393e53;
-      color: #ffffff;
-  }
+body.dark-mode .tab-button {
+    background-color: #393e53;
+    color: #ffffff;
+}
 
-  body.dark-mode .tab-button:hover {
-      color: #fff;
-      transform: translateY(-2px);
-      background-color: #52718d;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
+body.dark-mode .tab-button:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    background-color: #52718d;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
 
-  body.dark-mode .tab-button.active {
-      color: #fff;
-  }
+body.dark-mode .tab-button.active {
+    color: #fff;
+}
 
 
 .tab-content-section {
@@ -201,6 +201,10 @@ body.dark-mode .alert-item-content a {
 
 body.dark-mode .lg-date {
     color: #fff;
+}
+
+body.dark-mode .alerts-loading {
+    color: #fff !important;
 }
 
 /* Notification Banner Styles */
