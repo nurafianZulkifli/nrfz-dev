@@ -478,6 +478,11 @@
       padding-top: calc(0em + max(16px, env(safe-area-inset-top))) !important;
     }
 
+    /* RailBuddy: Fix excessive margin on our-networks page */
+    .about-me-sum .page-header-section {
+      margin-top: -1.5em !important;
+    }
+
     /* Adjust ft-main negative margin to prevent overlap with increased padding */
     .ft-main {
       margin-top: 2rem !important;
