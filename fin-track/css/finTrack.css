@@ -2,6 +2,7 @@
 
 /* Mobile: hide navbar */
 @media (max-width: 994px) {
+
     .navbar-container,
     body.dark-mode .navbar-container,
     .navbar,
@@ -1539,9 +1540,9 @@ body.dark-mode .acct-delete-btn:hover {
 .page-header-section {
     padding-top: 7em;
     background: #ececea;
-}calc(7em + max(0px, env(safe-area-inset-top, 0px)))
+}
 
-body.dark-mode .page-header-section {
+calc(7em + max(0px, env(safe-area-inset-top, 0px))) body.dark-mode .page-header-section {
     background: #121521 !important;
 }
 
@@ -2434,20 +2435,9 @@ img[src*="favicon"] {
     .page-header-section {
         padding-top: 7em;
     }
-calc(7em + max(0px, env(safe-area-inset-top, 0px)))
-    .toast {
-        bottom: 32px;
-    }
 }
 
 @media (min-width: 995px) {
-    .navbar-container,
-    body.dark-mode .navbar-container,
-    .navbar,
-    body.dark-mode .navbar {
-        display: block !important;
-    }
-
     .mobile-bottom-nav {
         display: none !important;
     }
@@ -2461,7 +2451,7 @@ calc(7em + max(0px, env(safe-area-inset-top, 0px)))
     .page-header-section {
         padding-top: 0em;
     }
-max(0px, env(safe-area-inset-top, 0px))
+
     /* Floating breadcrumb only on mobile/tablet */
     .breadcrumb-fixed-placeholder {
         padding-top: 4em;
