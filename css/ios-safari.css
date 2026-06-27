@@ -478,7 +478,7 @@
 
     /* Adjust ft-main negative margin to prevent overlap with increased padding */
     .ft-main {
-      margin-top: -2rem !important;
+      margin-top: 2rem !important;
     }
 
 
