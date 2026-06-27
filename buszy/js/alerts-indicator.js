@@ -60,14 +60,13 @@ function updateAlertsIndicatorDots() {
     const cached = JSON.parse(localStorage.getItem(ALERTS_CACHE_KEY) || 'null');
     if (cached !== null) {
         applyAlertsDots(cached.hasActive);
-
-        // Only refetch if cache is stale
-        if (Date.now() - cached.ts < ALERTS_CACHE_TTL) return;
     } else {
         // No cache yet — default to hidden until we know
         applyAlertsDots(false);
     }
 
+    // ALWAYS fetch fresh data to detect changes
+    // This prevents showing stale indicator state if alerts have actually changed
     fetchAndCacheAlerts();
 }
 

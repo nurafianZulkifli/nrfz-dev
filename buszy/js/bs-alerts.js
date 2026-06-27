@@ -31,29 +31,39 @@ document.addEventListener('DOMContentLoaded', function () {
     const updatedDiv = document.querySelector('#alerts-last-updated');
     if (updatedDiv) updatedDiv.textContent = formatted;
 
-    // Check cache before fetching
+    // Show cached data first (for speed)
     const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-    if (cached !== null && (Date.now() - cached.ts < CACHE_TTL)) {
-        // Cache is fresh, use it
+    const cacheIsFresh = cached !== null && (Date.now() - cached.ts < CACHE_TTL);
+    
+    if (cacheIsFresh) {
         const cachedData = JSON.parse(localStorage.getItem(API_DATA_KEY) || 'null');
         if (cachedData) {
             processAlertsData(cachedData);
-            return;
         }
     }
 
-    // Fetch alerts from API
+    // ALWAYS fetch fresh data, even if cache is fresh
+    // This ensures we don't show stale data that has actually changed
     fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts')
         .then(r => r.json())
         .then(data => {
-            // Cache the raw data for reuse
+            // Compare with cached data to detect changes
+            const cachedData = JSON.parse(localStorage.getItem(API_DATA_KEY) || 'null');
+            const isSameData = JSON.stringify(cachedData) === JSON.stringify(data);
+            
+            // Always update cache and display with fresh data
             localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now() }));
             localStorage.setItem(API_DATA_KEY, JSON.stringify(data));
+            
+            // Always refresh display to ensure accuracy (don't skip if cache was shown)
             processAlertsData(data);
         })
         .catch(err => {
             console.error('Error fetching alerts:', err);
-            showErrorMessage('Failed to load alerts. Please try again later.');
+            // Only show error if we didn't have cached data to fall back on
+            if (!cacheIsFresh || !JSON.parse(localStorage.getItem(API_DATA_KEY) || 'null')) {
+                showErrorMessage('Failed to load alerts. Please try again later.');
+            }
         });
 
     function extractBusServiceCodes(text) {
