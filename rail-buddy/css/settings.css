@@ -13,3 +13,11 @@ body.dark-mode #sync-copy-btn {
     border-color: #555;
     color: #fff;
 }
+
+/* iOS PWA specific - ensure settings page header margin matches statistics */
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+    .about-me-sum .page-header-section {
+        margin-top: -0.5em !important;
+        padding-top: 0 !important;
+    }
+}
