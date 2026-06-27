@@ -7,8 +7,6 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      margin-top: calc(-1 * env(safe-area-inset-top));
-      padding-top: max(20px, env(safe-area-inset-top));
   }
 
   #cv-bat::before {

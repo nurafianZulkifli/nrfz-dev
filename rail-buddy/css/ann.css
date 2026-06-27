@@ -1,7 +1,5 @@
 #cv-bat-subp {
     height: 10vh;
-    margin-top: calc(-1 * env(safe-area-inset-top));
-    padding-top: max(20px, env(safe-area-inset-top));
 }
 
 .alert-warning p {

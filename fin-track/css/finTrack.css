@@ -32,8 +32,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-top: calc(-1 * env(safe-area-inset-top));
-    padding-top: max(20px, env(safe-area-inset-top));
 }
 
 body.dark-mode #cv-ft,
@@ -106,7 +104,7 @@ body.dark-mode #cv-rp::before {
 
 /* Cover inner wrapper */
 .ft-cover-wrapper {
-    padding-top: max(16px, env(safe-area-inset-top, 16px));
+    padding-top: max(12px, calc(12px + env(safe-area-inset-top, 0px)));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1539,9 +1537,9 @@ body.dark-mode .acct-delete-btn:hover {
 
 /* Page Header Section (matches Buszy) */
 .page-header-section {
-    padding-top: calc(7em + max(0px, env(safe-area-inset-top, 0px)));
+    padding-top: 7em;
     background: #ececea;
-}
+}calc(7em + max(0px, env(safe-area-inset-top, 0px)))
 
 body.dark-mode .page-header-section {
     background: #121521 !important;
@@ -2080,7 +2078,7 @@ body.dark-mode .about-me-summ {
 
 @media (max-width: 994px) {
     .ft-cover-wrapper {
-        padding: max(12px, env(safe-area-inset-top, 12px)) 16px 12px 16px;
+        padding: 12px 16px;
     }
 
     .breadcrumb.breadcrumb-fixed {
@@ -2434,9 +2432,9 @@ img[src*="favicon"] {
     }
 
     .page-header-section {
-        padding-top: calc(7em + max(0px, env(safe-area-inset-top, 0px)));
+        padding-top: 7em;
     }
-
+calc(7em + max(0px, env(safe-area-inset-top, 0px)))
     .toast {
         bottom: 32px;
     }
@@ -2461,9 +2459,9 @@ img[src*="favicon"] {
     }
 
     .page-header-section {
-        padding-top: max(0px, env(safe-area-inset-top, 0px));
+        padding-top: 0em;
     }
-
+max(0px, env(safe-area-inset-top, 0px))
     /* Floating breadcrumb only on mobile/tablet */
     .breadcrumb-fixed-placeholder {
         padding-top: 4em;

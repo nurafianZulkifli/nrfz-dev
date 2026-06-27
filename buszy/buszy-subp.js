@@ -8,19 +8,6 @@ if (typeof window._prefersDark === 'undefined') {
     window._prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-// Function to update Safari's theme-color meta tag for address bar color
-function updateThemeColorMeta(isDark) {
-    // Remove all existing theme-color meta tags (both with and without media queries)
-    const existingMetas = document.querySelectorAll('meta[name="theme-color"]');
-    existingMetas.forEach(meta => meta.remove());
-    
-    // Create a new meta tag without media queries that we can update dynamically
-    const newMeta = document.createElement('meta');
-    newMeta.setAttribute('name', 'theme-color');
-    newMeta.setAttribute('content', isDark ? '#0f1419' : '#ffffff');
-    document.head.insertBefore(newMeta, document.head.firstChild);
-}
-
 // Determine if dark mode should be active
 function shouldBeDark() {
     if (window._themePreference === 'dark') return true;
@@ -32,10 +19,8 @@ function shouldBeDark() {
 // Apply theme on page load
 if (shouldBeDark()) {
     document.body.classList.add('dark-mode');
-    updateThemeColorMeta(true);
     updateThemeIcon('dark');
 } else {
-    updateThemeColorMeta(false);
     updateThemeIcon('light');
 }
 
@@ -58,20 +43,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (preference === 'dark') {
             document.body.classList.add('dark-mode');
-            updateThemeColorMeta(true);
             updateThemeIcon('dark');
         } else if (preference === 'light') {
             document.body.classList.remove('dark-mode');
-            updateThemeColorMeta(false);
             updateThemeIcon('light');
         } else if (preference === 'system') {
             if (window._prefersDark) {
                 document.body.classList.add('dark-mode');
-                updateThemeColorMeta(true);
                 updateThemeIcon('dark');
             } else {
                 document.body.classList.remove('dark-mode');
-                updateThemeColorMeta(false);
                 updateThemeIcon('light');
             }
         }
@@ -98,11 +79,9 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
     if (localStorage.getItem('theme-preference') === 'system' || localStorage.getItem('theme-preference') === null) {
         if (e.matches) {
             document.body.classList.add('dark-mode');
-            updateThemeColorMeta(true);
             updateThemeIcon('dark');
         } else {
             document.body.classList.remove('dark-mode');
-            updateThemeColorMeta(false);
             updateThemeIcon('light');
         }
     }
