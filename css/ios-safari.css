@@ -488,10 +488,7 @@
     }
 
     .tsu {
-      padding-top: 5em;
-      padding-right: 1em;
-      padding-bottom: 7em;
-      padding-left: 1em;
+      margin-top: 2rem !important;
     }
 
 
