@@ -562,7 +562,7 @@ body.dark-mode .ann-header-btn {
 
     .breadcrumb.breadcrumb-fixed.at-top {
         top: env(safe-area-inset-top, 0);
-        background: none;
+        background: transparent;
         box-shadow: none;
         padding-top: 1.5em;
         padding-left: 0em;
@@ -570,7 +570,7 @@ body.dark-mode .ann-header-btn {
 
     body.dark-mode .breadcrumb.breadcrumb-fixed.at-top {
         top: env(safe-area-inset-top, 0);
-        background: none;
+        background: transparent;
         box-shadow: none;
         padding-top: 1.5em;
         padding-left: 0em;
