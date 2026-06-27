@@ -414,7 +414,7 @@
       }
 
       /* RailBuddy: Fix excessive margin on pages with about-me-sum wrapper */
-      .about-me-sum .page-header-section, .wbnrfz_eicw .page-header-section {
+      .wbnrfz_eicw .page-header-section {
         margin-top: -0.5em !important;
         padding-top: 0 !important;
       }
