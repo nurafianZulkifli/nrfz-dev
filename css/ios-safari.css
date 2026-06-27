@@ -476,6 +476,11 @@
       padding-top: calc(2em + max(16px, env(safe-area-inset-top))) !important;
     }
 
+    /* Adjust ft-main negative margin to prevent overlap with increased padding */
+    .ft-main {
+      margin-top: -2rem !important;
+    }
+
 
   }
 
