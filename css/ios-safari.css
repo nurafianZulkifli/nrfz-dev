@@ -1,6 +1,21 @@
 /* iOS Safari Specific Stylesheet */
 /* Targets Safari on iOS devices - PWA only */
 
+/* Support color-scheme for Safari address bar in all modes */
+@supports (color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    html {
+      color-scheme: light;
+    }
+  }
+}
+
 /* Apply only to Apple devices in PWA standalone mode */
 @media (display-mode: standalone) {
   @supports (-webkit-appearance: none) {
