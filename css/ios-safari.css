@@ -474,13 +474,17 @@
       padding-top: max(48px, calc(48px + env(safe-area-inset-top))) !important;
     }
 
+    .page-header-section {
+      padding-top: calc(0em + max(16px, env(safe-area-inset-top))) !important;
+    }
+
     /* Adjust ft-main negative margin to prevent overlap with increased padding */
     .ft-main {
       margin-top: 2rem !important;
     }
 
     .pinned {
-      margin-top: -5rem !important;
+      margin-top: -7rem !important;
     }
 
 
