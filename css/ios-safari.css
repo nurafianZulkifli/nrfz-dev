@@ -3,6 +3,7 @@
 
 /* Support color-scheme for Safari address bar - applies to all modes */
 @media (prefers-color-scheme: dark) {
+
   html,
   body {
     color-scheme: dark;
@@ -10,6 +11,7 @@
 }
 
 @media (prefers-color-scheme: light) {
+
   html,
   body {
     color-scheme: light;
@@ -407,7 +409,7 @@
       }
 
       .page-header-section {
-        margin-top: 4.2em !important;
+        margin-top: 2.2em !important;
       }
 
       /* Fix page title wrapper flexbox layout on iOS */
@@ -480,6 +482,11 @@
     .ft-main {
       margin-top: 2rem !important;
     }
+
+    .pinned {
+      margin-top: 2rem !important;
+    }
+
 
 
   }
