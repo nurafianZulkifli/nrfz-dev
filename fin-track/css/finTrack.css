@@ -1,3 +1,9 @@
+/* Default navigation display state */
+.navbar-container,
+body.dark-mode .navbar-container {
+    display: block;
+}
+
 #scrollUp {
     background-color: #41b28f;
 }
@@ -2127,6 +2133,11 @@ img[src*="favicon"] {
         height: 40vh;
     }
 
+    .navbar-container,
+    body.dark-mode .navbar-container {
+        display: none !important;
+    }
+
     .ft-cover-wrapper {
         padding-top: 0px;
     }
@@ -2420,6 +2431,17 @@ img[src*="favicon"] {
 
     .toast {
         bottom: 32px;
+    }
+}
+
+@media (min-width: 995px) {
+    .navbar-container,
+    body.dark-mode .navbar-container {
+        display: block !important;
+    }
+
+    .mobile-bottom-nav {
+        display: none !important;
     }
 }
 
