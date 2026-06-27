@@ -1,7 +1,13 @@
-/* Default navigation display state */
-.navbar-container,
-body.dark-mode .navbar-container {
-    display: block;
+/* ------------------------------------------*/
+
+/* Mobile: hide navbar */
+@media (max-width: 994px) {
+    .navbar-container,
+    body.dark-mode .navbar-container,
+    .navbar,
+    body.dark-mode .navbar {
+        display: none !important;
+    }
 }
 
 #scrollUp {
@@ -2436,7 +2442,9 @@ img[src*="favicon"] {
 
 @media (min-width: 995px) {
     .navbar-container,
-    body.dark-mode .navbar-container {
+    body.dark-mode .navbar-container,
+    .navbar,
+    body.dark-mode .navbar {
         display: block !important;
     }
 
@@ -2451,7 +2459,7 @@ img[src*="favicon"] {
     }
 
     .page-header-section {
-        padding-top: max(0em, calc(4.5em + env(safe-area-inset-top, 0)));
+        padding-top: 0em;
     }
 
     /* Floating breadcrumb only on mobile/tablet */
