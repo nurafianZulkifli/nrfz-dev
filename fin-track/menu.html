@@ -6,6 +6,7 @@
     <meta name="description" content="Personal finance tracking with account management, budget monitoring, and transaction history">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">
+    <meta name="color-scheme" content="light dark">
     <title>Menu | FinTrack</title>
     <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
     <meta name="mobile-web-app-capable" content="yes">
@@ -34,6 +35,90 @@
     <link rel="stylesheet" href="css/finTrack.css">
 
 </head>
+
+<body>
+    <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
+    <div class="breadcrumb-fixed-placeholder">
+        <nav aria-label="breadcrumb" style="margin-bottom:0;">
+            <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html">
+                        <i class="fa-regular fa-house"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="menu.html"><i class="fa-regular fa-bars"></i>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <a href="index.html"><img src="assets/logo.png" alt="logo" class="logo" /></a>
+
+            <!-- Navigation Links -->
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-sharp fa-regular fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="repayments.html" class="nav-link">
+                        <i class="fa-regular fa-cash-register"></i>
+                        <span>Repayments</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="group-split.html" class="nav-link">
+                        <i class="fa-regular fa-people-line"></i>
+                        <span>Group Split</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fa-sharp fa-regular fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile bottom navigation -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fa-regular fa-home"></i>
+                    <span class="label">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="repayments.html" class="nav-link">
+                    <i class="fa-regular fa-cash-register"></i>
+                    <span class="label">Repayments</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="group-split.html" class="nav-link">
+                    <i class="fa-regular fa-people-line"></i>
+                    <span class="label">Split</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="menu.html" class="nav-link active">
+                    <i class="fa-regular fa-bars"></i>
+                    <span class="label">Menu</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
 <style>
     .about-me-summ.clearfix {

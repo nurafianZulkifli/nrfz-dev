@@ -167,6 +167,28 @@
     textarea::placeholder {
       color: #999;
     }
+
+    /* Prevent Safari address bar from showing white in dark mode */
+    body,
+    html {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    /* Force proper color scheme for Safari UI elements */
+    color-scheme: dark;
+    -webkit-appearance: none;
+  }
+
+  /* Light mode address bar support */
+  @media (prefers-color-scheme: light) {
+    body,
+    html {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    color-scheme: light;
   }
 
   /* Fix range input styling */
@@ -384,6 +406,20 @@
     .ann-alerts-tabs {
       width: 100%;
       margin-top: 12px !important;
+    }
+
+    /* Fix mobile nav shrink effect on iOS PWA */
+    .mobile-bottom-nav ul {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-transform-origin: bottom center;
+      transform-origin: bottom center;
+      transition: -webkit-transform 0.3s ease, transform 0.3s ease;
+    }
+
+    .mobile-bottom-nav.shrunk ul {
+      -webkit-transform: scale(0.9) translateZ(0);
+      transform: scale(0.9) translateZ(0);
     }
 }
 
