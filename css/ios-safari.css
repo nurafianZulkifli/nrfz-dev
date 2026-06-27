@@ -432,10 +432,6 @@
       padding-top: max(12px, env(safe-area-inset-top));
     }
 
-    .ft-cover-wrapper {
-      padding-top: 2em;
-    }
-
 
   }
 
