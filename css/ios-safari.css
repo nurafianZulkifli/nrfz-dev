@@ -412,6 +412,11 @@
         margin-top: 0.2em !important;
       }
 
+      /* RailBuddy: Fix excessive margin on pages with about-me-sum wrapper */
+      .about-me-sum .page-header-section {
+        margin-top: -0.5em !important;
+      }
+
       /* Fix page title wrapper flexbox layout on iOS */
       .page-title-wrapper>div {
         display: flex;
@@ -476,12 +481,6 @@
 
     .page-header-section {
       padding-top: calc(0em + max(16px, env(safe-area-inset-top))) !important;
-    }
-
-    /* RailBuddy: Fix excessive margin on pages with about-me-sum wrapper (our-networks, statistics, system-map, settings) */
-    .about-me-sum .page-header-section {
-      padding-top: calc(0em + max(16px, env(safe-area-inset-top))) !important;
-      margin-top: -0.5em !important;
     }
 
     /* Adjust ft-main negative margin to prevent overlap with increased padding */
