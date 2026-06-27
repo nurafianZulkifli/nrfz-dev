@@ -427,7 +427,7 @@
     #cv-ft,
     #cv-rp,
     #cv-gr {
-      margin-top: calc(-1 * env(safe-area-inset-top));
+      margin-top: calc(1 * env(safe-area-inset-top));
       padding-top: max(12px, env(safe-area-inset-top));
     }
 
