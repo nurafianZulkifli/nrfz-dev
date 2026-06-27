@@ -414,17 +414,17 @@
 
       /* RailBuddy: Fix excessive margin on pages with about-me-sum wrapper */
       .about-me-sum .page-header-section {
-        margin-top: -0.5em !important;
+        margin-top: -1.5em !important;
       }
 
       /* RailBuddy: Fix excessive margin on statistics page */
       .stats {
-        margin-top: -0.5em !important;
+        margin-top: -1.5em !important;
       }
 
       /* RailBuddy: Fix excessive margin on settings page */
       .about-me-summ {
-        margin-top: -0.5em !important;
+        margin-top: -1.5em !important;
       }
 
       /* Fix page title wrapper flexbox layout on iOS */
