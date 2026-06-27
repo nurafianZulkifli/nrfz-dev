@@ -409,7 +409,7 @@
       }
 
       .page-header-section {
-        margin-top: 2.2em !important;
+        margin-top: 0.2em !important;
       }
 
       /* Fix page title wrapper flexbox layout on iOS */
@@ -484,7 +484,7 @@
     }
 
     .pinned {
-      margin-top: 2rem !important;
+      margin-top: 0rem !important;
     }
 
 
