@@ -10,11 +10,15 @@ if (typeof window._prefersDark === 'undefined') {
 
 // Function to update Safari's theme-color meta tag for address bar color
 function updateThemeColorMeta(isDark) {
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-        // Update both light and dark meta tags to ensure Safari picks up the change
-        metaThemeColor.setAttribute('content', isDark ? '#0f1419' : '#ffffff');
-    }
+    // Remove all existing theme-color meta tags (both with and without media queries)
+    const existingMetas = document.querySelectorAll('meta[name="theme-color"]');
+    existingMetas.forEach(meta => meta.remove());
+    
+    // Create a new meta tag without media queries that we can update dynamically
+    const newMeta = document.createElement('meta');
+    newMeta.setAttribute('name', 'theme-color');
+    newMeta.setAttribute('content', isDark ? '#0f1419' : '#ffffff');
+    document.head.insertBefore(newMeta, document.head.firstChild);
 }
 
 // Determine if dark mode should be active
