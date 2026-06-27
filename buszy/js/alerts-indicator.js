@@ -65,9 +65,12 @@ function updateAlertsIndicatorDots() {
         applyAlertsDots(false);
     }
 
-    // ALWAYS fetch fresh data to detect changes
-    // This prevents showing stale indicator state if alerts have actually changed
-    fetchAndCacheAlerts();
+    // Only fetch if cache is stale (not within TTL)
+    // This prevents excessive API calls while allowing periodic refreshes
+    const isCacheStale = cached === null || (Date.now() - cached.ts >= ALERTS_CACHE_TTL);
+    if (isCacheStale) {
+        fetchAndCacheAlerts();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {

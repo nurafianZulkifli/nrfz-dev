@@ -8,8 +8,8 @@
     <meta name="google-site-verification" content="57TuruPNu5wqSSia_cUehl5t9Gh1AbxrHNPcMiFx-aQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#94d40b" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#7db603" media="(prefers-color-scheme: dark)">
     <title>Updates | Buszy</title>
     <meta content="Stay updated with the latest announcements from LTA" name="description">
     <meta content="announcements, updates, news" name="keywords">
@@ -456,52 +456,77 @@
             const alertsContent = document.getElementById('alerts-content');
             if (!alertsContent) return;
 
-            // Fetch alerts from the API
+            const CACHE_KEY = 'buszy_ann_alerts_cache';
+            const DATA_KEY = 'buszy_ann_alerts_data';
+            const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
+
+            function processAlerts(data) {
+                if (!data || !data.value) {
+                    showNoAlerts();
+                    updateAlertsLastUpdated();
+                    return;
+                }
+
+                // Support both array and object for value
+                let alerts = [];
+                if (Array.isArray(data.value)) {
+                    alerts = data.value;
+                } else if (typeof data.value === 'object') {
+                    alerts = [data.value];
+                }
+
+                // Filter for bus service alerts only
+                let busAlerts = [];
+                alerts.forEach(alert => {
+                    if (alert.Message && Array.isArray(alert.Message)) {
+                        alert.Message.forEach(messageObj => {
+                            const msg = messageObj.Content || '';
+                            const msgLower = msg.toLowerCase();
+                            if (msgLower.includes('bus service') && (msgLower.includes('affected') || msgLower.includes('diverted') || msgLower.includes('delayed'))) {
+                                busAlerts.push({
+                                    content: msg,
+                                    status: alert.Status,
+                                    createdDate: messageObj.CreatedDate
+                                });
+                            }
+                        });
+                    }
+                });
+
+                if (busAlerts.length === 0) {
+                    showNoAlerts();
+                } else {
+                    displayAlerts(busAlerts);
+                }
+            }
+
+            // Check cache
+            const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+            const cacheIsFresh = cached !== null && (Date.now() - cached.ts < CACHE_TTL);
+
+            // Show cached data if available
+            if (cacheIsFresh) {
+                const cachedData = JSON.parse(localStorage.getItem(DATA_KEY) || 'null');
+                if (cachedData) {
+                    processAlerts(cachedData);
+                    return; // Don't fetch again if cache is fresh
+                }
+            }
+
+            // Fetch only if cache is stale
             fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts')
                 .then(r => r.json())
                 .then(data => {
-                    if (!data || !data.value) {
-                        showNoAlerts();
-                        updateAlertsLastUpdated();
-                        return;
-                    }
-
-                    // Support both array and object for value
-                    let alerts = [];
-                    if (Array.isArray(data.value)) {
-                        alerts = data.value;
-                    } else if (typeof data.value === 'object') {
-                        alerts = [data.value];
-                    }
-
-                    // Filter for bus service alerts only (those containing "Due to... bus services... are affected")
-                    let busAlerts = [];
-                    alerts.forEach(alert => {
-                        if (alert.Message && Array.isArray(alert.Message)) {
-                            alert.Message.forEach(messageObj => {
-                                const msg = messageObj.Content || '';
-                                // Check if message contains "bus services" or "bus service" and mentions being affected
-                                const msgLower = msg.toLowerCase();
-                                if (msgLower.includes('bus service') && (msgLower.includes('affected') || msgLower.includes('diverted') || msgLower.includes('delayed'))) {
-                                    busAlerts.push({
-                                        content: msg,
-                                        status: alert.Status,
-                                        createdDate: messageObj.CreatedDate
-                                    });
-                                }
-                            });
-                        }
-                    });
-
-                    if (busAlerts.length === 0) {
-                        showNoAlerts();
-                    } else {
-                        displayAlerts(busAlerts);
-                    }
+                    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now() }));
+                    localStorage.setItem(DATA_KEY, JSON.stringify(data));
+                    processAlerts(data);
                 })
                 .catch(err => {
                     console.error('Error fetching alerts:', err);
-                    showErrorMessage('Failed to load alerts. Please try again later.');
+                    // Show error only if we have no cached fallback
+                    if (!cacheIsFresh && !JSON.parse(localStorage.getItem(DATA_KEY) || 'null')) {
+                        showErrorMessage('Failed to load alerts. Please try again later.');
+                    }
                 });
         }
 

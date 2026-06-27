@@ -42,8 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ALWAYS fetch fresh data, even if cache is fresh
-    // This ensures we don't show stale data that has actually changed
+    // Only fetch if cache is stale
+    // This reduces API calls while still allowing periodic refreshes
+    if (!cacheIsFresh) {
     fetch('https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts')
         .then(r => r.json())
         .then(data => {
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 showErrorMessage('Failed to load alerts. Please try again later.');
             }
         });
+    }
 
     function extractBusServiceCodes(text) {
         // Extract only the portion mentioning "bus services"
