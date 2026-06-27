@@ -481,6 +481,7 @@
     /* RailBuddy: Fix excessive margin on pages with about-me-sum wrapper (our-networks, statistics, system-map, settings) */
     .about-me-sum .page-header-section {
       padding-top: calc(0em + max(16px, env(safe-area-inset-top))) !important;
+      margin-top: -1.5em !important;
     }
 
     /* Adjust ft-main negative margin to prevent overlap with increased padding */
