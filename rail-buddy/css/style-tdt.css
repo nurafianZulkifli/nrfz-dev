@@ -164,13 +164,90 @@ body.dark-mode li.breadcrumb-item a {
 
 /* Install Banner Styles */
 .pwa-install-banner {
-    background: linear-gradient(58deg, rgba(172, 55, 42, 0.60) 0%, rgba(163, 110, 17, 0.60) 100%);
-    backdrop-filter: blur(25px);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(58deg, rgba(172, 55, 42, 0.85) 0%, rgba(163, 110, 17, 0.85) 100%);
+  color: white;
+  padding: 16px;
+  z-index: 9999;
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+  border-radius: 24px;
+  margin: 1em;
+  backdrop-filter: blur(25px);
+  transition: bottom 0.3s ease;
+}
+
+.pwa-banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pwa-banner-text h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.pwa-banner-text p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.95;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.pwa-banner-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pwa-banner-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .pwa-install-btn {
-    background: white;
-    color: #8f2d22;
+  background: white;
+  color: #8f2d22;
+}
+
+.pwa-install-btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.pwa-install-btn:active {
+  transform: translateY(0);
+}
+
+.pwa-cancel-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.pwa-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.pwa-cancel-btn:active {
+  transform: translateY(0);
 }
 
 body.dark-mode .about-me-summ {
