@@ -3,117 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Real-time train line status, delays, and schedules for Singapore MRT and LRT networks">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">
+    <title>Our Networks | RailBuddy</title>
+    <meta property="og:image" content="https://i.imgur.com/i8n9KYs.png" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RailBuddy">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
-    <title>Our Networks | TDT</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
 
+    <link rel="manifest" href="./manifest.json">
     <link rel="icon" href="./assets/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="./assets/icon-512.png">
+    <link rel="apple-touch-startup-image" href="../img/bg-img/hero-railbuddy-dark.png">
 
     <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
     <link rel='stylesheet' href='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.css'>
 
-
+    <!-- Core Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/style-tdt.css">
     <link rel="stylesheet" href="../css/style-breakpoints.css">
+    <link rel="stylesheet" href="../css/pwa-styles.css">
     <link rel="stylesheet" href="../css/dark-mode.css">
     <link rel="stylesheet" href="../css/ios-safari.css">
 
+    <!-- Page Specific Stylesheet -->
+    <link rel="stylesheet" href="./css/style-tdt.css">
+    <link rel="stylesheet" href="./css/our-networks.css">
 
 </head>
-
-<style>
-    .line {
-        font-size: 25px;
-        padding-left: 46px !important;
-        padding-top: 1px;
-        color: #fff;
-        cursor: default;
-        background-size: 1.5em;
-        background-repeat: no-repeat;
-        background-position: left center;
-    }
-
-    .line-nsl {
-        background-image: url("assets/caplets/NSLCap.png");
-    }
-
-    .line-ewl {
-        background-image: url("assets/caplets/EWLCap.png");
-    }
-
-    .line-nel {
-        background-image: url("assets/caplets/NELCap.png");
-    }
-
-    .line-ccl {
-        background-image: url("assets/caplets/CCLCap.png");
-    }
-
-    .line-dtl {
-        background-image: url("assets/caplets/DTLCap.png");
-    }
-
-    .line-tel {
-        background-image: url("assets/caplets/TELCap.png");
-    }
-
-    .line-bp {
-        background-image: url("assets/caplets/BPCap.png");
-    }
-
-    .line-sk {
-        background-image: url("assets/caplets/SKCap.png");
-    }
-
-    .line-pg {
-        background-image: url("assets/caplets/PGCap.png");
-    }
-
-    .single-post-area .post-thumbnail {
-        display: block;
-        overflow: hidden;
-        border-radius: 20px;
-    }
-
-    .single-post-area .post-thumbnail img {
-        width: 100%;
-        transition-duration: 800ms;
-    }
-
-    .single-post-area {
-        position: relative;
-        z-index: 1;
-        margin-bottom: 10px;
-        transition-duration: 500ms;
-        border-radius: 20px;
-    }
-
-    .single-post-area .post-content {
-        position: absolute;
-        left: 30px;
-        bottom: 15px;
-        right: 30px;
-        z-index: 100;
-    }
-
-
-    .single-post-area .post-content .post-title {
-        font-size: 20px;
-        color: #ffffff;
-        margin-top: 1px;
-        display: -webkit-box;
-        max-width: 14em;
-        line-clamp: 2;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-</style>
 
 <body>
 
@@ -182,7 +103,7 @@
                     <span class="icon">
                         <i class="fa-sharp fa-regular fa-home"></i>
                     </span>
-                    <span class="label">Home</span>
+                    <!-- <span class="label">Home</span> -->
                 </a>
             </li>
             <li>
@@ -190,7 +111,7 @@
                     <span class="icon">
                         <i class="fa-regular fa-clock-rotate-left"></i>
                     </span>
-                    <span class="label">History</span>
+                    <!-- <span class="label">History</span> -->
                 </a>
             </li>
             <li>
@@ -198,7 +119,7 @@
                     <span class="icon">
                         <i class="fa-regular fa-clock"></i>
                     </span>
-                    <span class="label">Timings</span>
+                    <!-- <span class="label">Timings</span> -->
                 </a>
             </li>
             <li class="active">
@@ -206,7 +127,7 @@
                     <span class="icon">
                         <i class="fa-regular fa-bars"></i>
                     </span>
-                    <span class="label">Menu</span>
+                    <!-- <span class="label">Menu</span> -->
                 </a>
             </li>
         </ul>
