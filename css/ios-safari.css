@@ -23,15 +23,10 @@
   @supports (-webkit-appearance: none) {
 
     /* Prevent font size adjustment on landscape orientation */
-    html {
-      padding-bottom: calc(100px + env(safe-area-inset-bottom));
-    }
-
     body {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: calc(100px + env(safe-area-inset-bottom));
+      padding-top: calc(2em + env(safe-area-inset-top));
     }
 
     /* Remove default tap highlight color */
@@ -453,11 +448,6 @@
       .mobile-bottom-nav.shrunk ul {
         -webkit-transform: scale(0.9) translateZ(0);
         transform: scale(0.9) translateZ(0);
-      }
-
-      /* Ensure main content has proper bottom spacing for fixed nav */
-      .main-content {
-        padding-bottom: calc(100px + env(safe-area-inset-bottom)) !important;
       }
     }
 
