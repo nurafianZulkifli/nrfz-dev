@@ -357,13 +357,7 @@
 
     /* iOS PWA Warning Banner Positioning */
     #ios-pwa-warning-banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 9999;
-      width: 100%;
-      box-sizing: border-box;
+      display: none;
     }
 
     /* Add safe area inset support for notched devices */
