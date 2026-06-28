@@ -462,3 +462,10 @@ body.dark-mode p.no-incidents-reported {
         width: 48px;
     }
 }
+
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+    .about-me-sum .page-header-section {
+        margin-top: -0.5em !important;
+        padding-top: 0 !important;
+    }
+}
