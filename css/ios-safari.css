@@ -358,9 +358,6 @@
     /* iOS PWA Warning Banner Positioning */
     #ios-pwa-warning-banner {
       display: none !important;
-      visibility: hidden !important;
-      height: 0 !important;
-      overflow: hidden !important;
     }
 
     /* Hide PWA migration/uninstall banner */
@@ -369,6 +366,38 @@
     }
 
     /* Add safe area inset support for notched devices */
+    @supports (padding: max(0px)) {
+      #ios-pwa-warning-banner {
+        padding-top: env(safe-area-inset-top);
+      }
+    }
+
+    /* Adjust body padding to prevent content overlap with banner */
+    body:has(#ios-pwa-warning-banner) {
+      padding-top: 5px;
+      /* Approximate height of banner with padding */
+    }
+
+    /* Safe area support for body padding */
+    @supports (padding: max(0px)) {
+      body:has(#ios-pwa-warning-banner) {
+        padding-top: calc(5px + env(safe-area-inset-top));
+      }
+    }
+
+    @media (max-width: 994px) and (hover: none) and (pointer: coarse) {
+      .breadcrumb-fixed-placeholder {
+        padding-top: 6em;
+      }
+
+      .breadcrumb.breadcrumb-fixed.at-top {
+        top: calc(5px + env(safe-area-inset-top));
+        background: none;
+        box-shadow: none;
+        padding-top: 1.5em;
+        padding-left: 0em;
+      }
+    }
 
     @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
       .pinned {
