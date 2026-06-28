@@ -26,7 +26,8 @@
     body {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      padding-top: calc(2em + env(safe-area-inset-top));
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: calc(100px + env(safe-area-inset-bottom));
     }
 
     /* Remove default tap highlight color */
