@@ -453,7 +453,7 @@
 
       /* Ensure main content has proper bottom spacing for fixed nav */
       .main-content {
-        padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(5em + env(safe-area-inset-bottom)) !important;
       }
     }
 
