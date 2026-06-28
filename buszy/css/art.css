@@ -347,7 +347,7 @@ body.dark-mode .ib-time.arrived {
 }
 
 body.dark-mode .ib-svc {
-    color: #000;
+    color: #000 !important;
     cursor: default;
 }
 
@@ -440,7 +440,11 @@ body.dark-mode .card .card-header {
     border-radius: 10px;
     white-space: nowrap;
     width: max-content !important;
-    font-size: 15px;
+    font-size: 17px;
+}
+
+.notbtn {
+    font-size: 14px;
 }
 
 body.dark-mode .card .card-header .destination-code {

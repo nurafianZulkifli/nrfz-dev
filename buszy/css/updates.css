@@ -249,6 +249,7 @@ body.dark-mode #notif-prompt-banner {
 body.dark-mode .notif-dismiss-btn {
     border-color: #555;
     color: #9a9a9a;
+    font-size: 15px;
 }
 
 /* Bus Service Code Styles */
@@ -298,4 +299,16 @@ body.dark-mode .bus-service-code-text {
     flex-wrap: wrap;
     gap: 0.5em;
     margin-bottom: 0em;
+}
+
+.btn-busloc {
+    background-color: #1f84a2;
+    color: #fff;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid #cccccc;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    white-space: nowrap;
+    width: max-content !important;
+    font-size: 14px;
 }
