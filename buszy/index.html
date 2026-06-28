@@ -471,7 +471,7 @@
                 searchInput.value = savedService;
                 busServiceTab.style.display = 'inline-flex';
                 sessionStorage.removeItem('lastServiceSearch');
-                // Grey out button if suggestion needed â€” re-evaluated once JSON loads too
+                // Grey out button if suggestion needed - re-evaluated once JSON loads too
                 updateDidYouMean(savedService);
             }
 
@@ -532,7 +532,7 @@
                 updateDidYouMean(val);
             });
 
-            // Handle Bus Service button click â€” use exact or suggested casing, never force uppercase
+            // Handle Bus Service button click - use exact or suggested casing, never force uppercase
             busServiceTab.addEventListener('click', (e) => {
                 e.preventDefault();
                 const val = searchInput.value.trim();

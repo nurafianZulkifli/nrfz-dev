@@ -49,7 +49,7 @@ body.dark-mode .loan-date-label {
     color: #a0a0b0;
 }
 
-/* Repayment progress bar â€” use green always for repayment context */
+/* Repayment progress bar - use green always for repayment context */
 .rp-progress-bar-wrap {
     background: #f3f4f6;
     border-radius: 99px;

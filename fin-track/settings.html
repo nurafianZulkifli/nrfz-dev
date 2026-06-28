@@ -34,26 +34,9 @@
 
     <!-- Page Specific Stylesheet -->
     <link rel="stylesheet" href="css/finTrack.css">
+    <link rel="stylesheet" href="css/settings.css">
 
 </head>
-
-<style>
-    #sync-copy-btn {
-        background: none;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 0.45rem 0.65rem;
-        cursor: pointer;
-        font-size: 14px;
-        flex-shrink: 0;
-        color: #000;
-    }
-
-    body.dark-mode #sync-copy-btn {
-        border-color: #555;
-        color: #fff;
-    }
-</style>
 
 <body>
     <!-- Apply dark mode before render to avoid flash -->
@@ -288,8 +271,8 @@
                             <span>Generate Sync Code</span>
                         </button>
                     </div>
-                    <p style="margin: 0.75rem 0 0.5rem; font-size: 13px; color: #888; text-align: center;">â€” or enter
-                        an existing code â€”</p>
+                    <p style="margin: 0.75rem 0 0.5rem; font-size: 13px; color: #888; text-align: center;">- or enter
+                        an existing code -</p>
                     <div style="display: flex; gap: 0.5rem;">
                         <input type="text" id="sync-code-input" placeholder="e.g. abc12-def34" autocomplete="off"
                             style="flex: 1; padding: 0.55rem 0.75rem; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; font-family: monospace; letter-spacing: 1px;">
