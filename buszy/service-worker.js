@@ -282,6 +282,13 @@ self.addEventListener('pushsubscriptionchange', event => {
       windowClients.forEach(c =>
         c.postMessage({ type: 'PUSH_SUBSCRIPTION_CHANGED', subscription: newSub.toJSON() })
       );
+
+      // Also try to notify any controlled clients (including service worker itself can't access,
+      // but leaving this for clarity). The key is that pages will pick up the change on next load
+      // and call reRegisterAll() via art.js DOMContentLoaded event.
+      // This ensures bus timing subscriptions stay in sync even during long app inactivity.
+      console.log('[Buszy SW] Push subscription rotated and re-registered for alerts. ' +
+        'Bus subscriptions will re-sync on next app open.');
     } catch (e) {
       console.error('[Buszy SW] pushsubscriptionchange error:', e);
     }
@@ -299,7 +306,7 @@ self.addEventListener('notificationclick', event => {
   const scope = self.registration.scope; // e.g. "/buszy/" or "/nrfz-dev/buszy/"
   let targetUrl = scope;
   if (type === 'service-alert') {
-    targetUrl = scope + 'alerts.html';
+    targetUrl = scope + 'ann.html';
   } else if (busStopCode) {
     targetUrl = scope + 'art.html?BusStopCode=' + encodeURIComponent(busStopCode);
     if (serviceNo) targetUrl += '&ServiceNo=' + encodeURIComponent(serviceNo);

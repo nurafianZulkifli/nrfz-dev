@@ -81,23 +81,30 @@ function formatArrivalTimeStyled(isoString) {
 function renderArrivalSummary(arrivals) {
     if (!arrivals?.length) {
         return `
-            <div class="busNo-card d-flex justify-content-between">
-                <span class="arrival-svc-no">--</span>
-                <span class="bus-time"></span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.3rem;">
+                <div class="busNo-card d-flex justify-content-between">
+                    <span class="arrival-svc-no">--</span>
+                    <span class="bus-time"></span>
+                    <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+                </div>
             </div>
-            <div class="busNo-card d-flex justify-content-between">
-                <span class="arrival-svc-no">--</span>
-                <span class="bus-time"></span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.3rem;">
+                <div class="busNo-card d-flex justify-content-between">
+                    <span class="arrival-svc-no">--</span>
+                    <span class="bus-time"></span>
+                    <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon('sea', 'SD')}</span>
+                </div>
             </div>
         `;
     }
     return arrivals.map(a => `
-        <div class="busNo-card d-flex justify-content-between">
-            <span class="arrival-svc-no">${a.serviceNo}</span>
-            <span class="bus-time">${formatArrivalTimeStyled(a.eta)}</span>
-            <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon(a.load, a.type)}</span>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 0.3rem;">
+            <div class="busNo-card d-flex justify-content-between">
+                <span class="arrival-svc-no">${a.serviceNo}</span>
+                <span class="bus-time" data-arrival="${a.eta || ''}">${formatArrivalTimeStyled(a.eta)}</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">${getLoadIcon(a.load, a.type)}</span>
+            </div>
+            ${a.eta ? `<div class="countdown-bar-container" data-arrival="${a.eta}"><div class="countdown-bar"></div></div>` : ''}
         </div>
     `).join('');
 }
@@ -210,19 +217,8 @@ function initializeGeolocationSearch() {
 
     // Helper to show error only if nothing can be loaded
     function showLocationError() {
-        busStopsContainer.innerHTML = `
-            <p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Unable to retrieve your location.</p>
-            <button id="retry-location-btn" class="btn btn-rfetch" style="display: block; margin: 15px auto;">
-                <i class="fa-regular fa-rotate"></i> Retry
-            </button>
-        `;
+        busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Unable to retrieve your location. Please enable location permissions.</p>';
         enableNavigation();
-        const retryBtn = document.getElementById('retry-location-btn');
-        if (retryBtn) {
-            retryBtn.addEventListener('click', () => {
-                requestLocation(true); // Force location prompt
-            });
-        }
     }
 
     function requestLocation(force = false) {
@@ -268,14 +264,43 @@ function initializeGeolocationSearch() {
         navigator.geolocation.getCurrentPosition((position) => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
+            console.log('Location obtained:', latitude, longitude);
             sessionStorage.setItem('userLocation', JSON.stringify({ latitude, longitude }));
             fetchNearbyBusStops(latitude, longitude, showLocationError);
         }, (error) => {
-            console.error('Geolocation error:', error);
-            showLocationError();
+            const errorMessages = {
+                1: 'Permission denied - please enable location in browser settings',
+                2: 'Position unavailable - geolocation service error',
+                3: 'Request timeout - please check your connection'
+            };
+            console.error('Geolocation error code:', error.code, 'message:', errorMessages[error.code] || error.message);
+            
+            // Auto-retry with lower accuracy and longer timeout
+            console.log('Retrying geolocation with lower accuracy settings...');
+            setTimeout(() => {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    console.log('Location obtained on retry:', latitude, longitude);
+                    sessionStorage.setItem('userLocation', JSON.stringify({ latitude, longitude }));
+                    fetchNearbyBusStops(latitude, longitude, showLocationError);
+                }, (retryError) => {
+                    const retryMessages = {
+                        1: 'Permission denied - please enable location in browser settings',
+                        2: 'Position unavailable - geolocation service error',
+                        3: 'Request timeout - please check your connection'
+                    };
+                    console.error('Geolocation retry failed code:', retryError.code, 'message:', retryMessages[retryError.code] || retryError.message);
+                    showLocationError();
+                }, {
+                    enableHighAccuracy: false,
+                    timeout: 15000,
+                    maximumAge: 60000
+                });
+            }, 2000);
         }, {
             enableHighAccuracy: true,
-            timeout: 10000,
+            timeout: 15000,
             maximumAge: 0
         });
     }
@@ -301,7 +326,7 @@ async function fetchNearbyBusStops(latitude, longitude, onError) {
     const busStopsContainer = document.getElementById('bus-stops');
     try {
         console.log('Fetching nearby bus stops for:', latitude, longitude);
-        const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=2`);
+        const response = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=5`);
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
@@ -312,15 +337,34 @@ async function fetchNearbyBusStops(latitude, longitude, onError) {
             sessionStorage.setItem('nearbyBusStops', JSON.stringify(busStops));
             displayBusStops(busStops, false);
         } else {
-            busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-circle-info"></i>No Bus Stops found nearby.</p>';
+            // No stops found in 5km, auto-retry with 10km radius
+            console.log('No stops in 5km radius, auto-retrying with 10km...');
+            busStopsContainer.innerHTML = '<p class="pin-msg"><svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45"><animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s" repeatCount="indefinite" /><animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" /><animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%" calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s" repeatCount="indefinite" /></circle></svg>Searching wider area...</p>';
+            try {
+                const expandResponse = await fetch(`${apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=10`);
+                if (expandResponse.ok) {
+                    const expandedStops = await expandResponse.json();
+                    if (expandedStops && expandedStops.length > 0) {
+                        sessionStorage.setItem('nearbyBusStops', JSON.stringify(expandedStops));
+                        displayBusStops(expandedStops, false);
+                    } else {
+                        busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-circle-info"></i>No Bus Stops found nearby.</p>';
+                        enableNavigation();
+                    }
+                } else {
+                    busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-circle-info"></i>No Bus Stops found nearby.</p>';
+                    enableNavigation();
+                }
+            } catch (expandError) {
+                console.error('Error during expanded search:', expandError);
+                busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-circle-info"></i>No Bus Stops found nearby.</p>';
+                enableNavigation();
+            }
         }
     } catch (error) {
         console.error('Error fetching nearby bus stops:', error);
-        if (typeof onError === 'function') {
-            onError();
-        } else {
-            busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Failed to fetch nearby bus stops. Please try again later.<br><small style="font-size: 12px; opacity: 0.7;">Error: ' + error.message + '</small></p>';
-        }
+        busStopsContainer.innerHTML = '<p class="pin-msg"><i class="fa-regular fa-triangle-exclamation"></i>Unable to fetch bus stops. Please check your connection and try again.</p>';
+        enableNavigation();
     }
 }
 
@@ -639,6 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Setup dynamic refresh interval for arrival times in nearby bus stops
     let refreshIntervalId = null;
+    let countdownBarIntervalId = null;
 
     function startRefreshInterval() {
         // Clear existing interval if any
@@ -664,11 +709,28 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (collapseSection.classList.contains('show')) {
                                 collapseSection.style.maxHeight = collapseSection.scrollHeight + 'px';
                             }
+                            // Update countdown bars after rendering
+                            if (window.SharedArrivals && typeof window.SharedArrivals.updateCountdownBars === 'function') {
+                                window.SharedArrivals.updateCountdownBars();
+                            }
                         });
                     }
                 }
             });
         }, refreshMs);
+    }
+
+    function startCountdownBarInterval() {
+        // Clear existing interval if any
+        if (countdownBarIntervalId !== null) {
+            clearInterval(countdownBarIntervalId);
+        }
+        // Update countdown bars every 500ms for smooth animation
+        countdownBarIntervalId = setInterval(() => {
+            if (window.SharedArrivals && typeof window.SharedArrivals.updateCountdownBars === 'function') {
+                window.SharedArrivals.updateCountdownBars();
+            }
+        }, 500);
     }
 
     // Re-fetch when the tab becomes visible again after being backgrounded
@@ -690,8 +752,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Start the refresh interval
+    // Start the refresh interval and countdown bar interval
     startRefreshInterval();
+    startCountdownBarInterval();
 
     // Select the "Search Bus Stop" button - look for links to index or ./
     const searchBusStopButton = document.querySelector('a[href="./"], a[href="index.html"]'); // Select the "Search Bus Stop" button

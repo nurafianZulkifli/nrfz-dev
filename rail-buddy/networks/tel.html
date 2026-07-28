@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="description" content>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">    <meta name="color-scheme" content="light dark">    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
     <title>Thomson-East Coast Line | RailBuddy</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <meta property="og:image" content="https://i.imgur.com/aNQTQtO.png" />
 
-    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <link rel="icon" href="../assets/logo.png" type="image/png">
 
     <script src="https://kit.fontawesome.com/965e82ac01.js" crossorigin="anonymous"></script>
     <link rel='stylesheet' href='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.css'>
@@ -154,7 +157,7 @@
                         </nav>
                         <div class="page-title-wrapper">
                             <div
-                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;" >
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                                 <div>
                                     <h1 class="filter-title" id="chimes"><img src="../assets/caplets/TELCap.png"
                                             alt="DTL" class="caplet"> Thomson-East Coast Line</h1></a>
@@ -254,381 +257,47 @@
                 </div>
                 <!-- Line Diagram -->
                 <div class="line-diagram">
-                    <div class="line-container show" id="main">
-                        <!-- TE 1 Woodlands North -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 1</span>
-                                </div>
-                                <div class="station-name">Woodlands North</div>
-                            </div>
-                        </div>
-
-                        <!-- TE 2 Woodlands -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 2</span>
-                                    <span class="interchange-badge mrt-nsl">NS 9</span>
-                                </div>
-                                <div class="station-name">Woodlands</div>
-                            </div>
-                        </div>
-
-                        <!-- TE 3 Woodlands South -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 3</span>
-                                </div>
-                                <div class="station-name">Woodlands South</div>
-                            </div>
-                        </div>
-
-                        <!-- TE 4 Springleaf -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 4</span>
-                                </div>
-                                <div class="station-name">Springleaf</div>
-                            </div>
-                        </div>
-
-                        <!-- TE 5 Lentor -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 5</span>
-                                </div>
-                                <div class="station-name">Lentor</div>
-                            </div>
-                        </div>
-
-                        <!-- TE 6 Mayflower -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 6</span>
-                                </div>
-                                <div class="station-name">Mayflower</div>
-                            </div>
-                        </div>
-
-
-                        <!-- TE 7 Bright Hill -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 7</span>
-                                </div>
-                                <div class="station-name">Bright Hill</div>
-                            </div>
-                        </div>
-
-                        <!-- TE 8 Upper Thomson -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 8</span>
-                                </div>
-                                <div class="station-name">Upper Thomson</div>
-                            </div>
-                        </div>
-
-                        <!--TE 9 Caldecott -->
-                        <div class="station">
-                            <div class="station-dot"></div>
-                            <div class="station-content">
-                                <div class="station-codes">
-                                    <span class="station-code">TE 9</span>
-                                    <span class="interchange-badge mrt-ccl" style="color: #000;">CC 17</span>
-                                </div>
-                                <div class="station-name">Caldecott</div>
-                            </div>
-                        </div>
-
-                        <div id="hidden-stations">
-                            <!-- TE 11 Stevens -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 11</span>
-                                        <span class="interchange-badge mrt-dtl">DT 10</span>
-                                    </div>
-                                    <div class="station-name">Stevens</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 12 Napier -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 12</span>
-                                    </div>
-                                    <div class="station-name">Napier</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 13 Orchard Boulevard -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 13</span>
-                                    </div>
-                                    <div class="station-name">Orchard Boulevard</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 14 Orchard -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 14</span>
-                                        <span class="interchange-badge mrt-nsl">NS 20</span>
-                                    </div>
-                                    <div class="station-name">Orchard</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 15 Great World -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 15</span>
-                                    </div>
-                                    <div class="station-name">Great World</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 16 Havelock -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 16</span>
-                                    </div>
-                                    <div class="station-name">Havelock</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 17 Outram Park -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 17</span>
-                                        <span class="interchange-badge mrt-nel">NE 3</span>
-                                        <span class="interchange-badge mrt-ewl">EW 16</span>
-                                    </div>
-                                    <div class="station-name">Outram Park</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 18 Maxwell -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 18</span>
-                                    </div>
-                                    <div class="station-name">Maxwell</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 19 Shenton Way -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 19</span>
-                                    </div>
-                                    <div class="station-name">Shenton Way</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 20 Marina Bay -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 20</span>
-                                        <span class="interchange-badge mrt-ccl" style="color: #000;">CE 2</span>
-                                        <span class="interchange-badge mrt-nsl">NS 27</span>
-                                    </div>
-                                    <div class="station-name">Marina Bay</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 22 Gardens by the Bay -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 22</span>
-                                    </div>
-                                    <div class="station-name">Gardens by the Bay</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 23 Tanjong Rhu -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 23</span>
-                                    </div>
-                                    <div class="station-name">Tanjong Rhu</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 24 Katong Park -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 24</span>
-                                    </div>
-                                    <div class="station-name">Katong Park</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 25 Tanjong Katong -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 25</span>
-                                    </div>
-                                    <div class="station-name">Tanjong Katong</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 26 Marine Parade -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 26</span>
-                                    </div>
-                                    <div class="station-name">Marine Parade</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 27 Marine Terrace -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 27</span>
-                                    </div>
-                                    <div class="station-name">Marine Terrace</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 28 Siglap -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 28</span>
-                                    </div>
-                                    <div class="station-name">Siglap</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 29 Bayshore -->
-                            <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 29</span>
-                                    </div>
-                                    <div class="station-name">Bayshore</div>
-                                </div>
-                            </div>
-
-                            <!-- TE 30 Bedok South -->
-                            <!-- <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 30</span>
-                                    </div>
-                                    <div class="station-name">Bedok South</div>
-                                </div>
-                            </div> -->
-
-                            <!-- TE 31 Sungei Bedok -->
-                            <!-- <div class="station">
-                                <div class="station-dot"></div>
-                                <div class="station-content">
-                                    <div class="station-codes">
-                                        <span class="station-code">TE 31</span>
-                                        <span class="interchange-badge mrt-dtl">DT 37</span>
-                                    </div>
-                                    <div class="station-name">Sungei Bedok</div>
-                                </div>
-                            </div> -->
-
-                        </div>
-
-                        <div class="show-more-button">
-                            <button id="toggleBtn" onclick="toggleStations()">Show More</button>
-                        </div>
-                    </div>
+                    <div class="line-container show" id="main"></div>
+                    <div id="hidden-stations"></div>
                 </div>
             </div>
+        </div>
 
 
     </section>
 
-    <script type="text/javascript" id="cookiebanner" src="../../js/cookies-banner.js" data-position="bottom"
+    <<script type="text/javascript" id="cookiebanner" src="../../js/cookies-banner.js" data-position="bottom"
         data-bg="#f2f3e5" data-fg="#000" data-font-family="Onest, sans-serif" data-zindex="12345111111"
         data-message="This website uses cookies to provide necessary site functionality and to improve your experience. By using this website, you agree to our use of cookies.">
         </script>
 
 
-    <script src="../js/mob-navtabs.js"></script>
+        <script src="../js/mob-navtabs.js"></script>
 
-    <script src="../js/mob-navtabs-tooltip.js"></script>
+        <script src="../js/mob-navtabs-tooltip.js"></script>
 
-    <script src="../tdt-subp.js"></script>
+        <script src="../tdt-subp.js"></script>
 
-    <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
 
-    <script src='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.js'></script>
+        <script src='https://unpkg.com/swiper@6.8.1/swiper-bundle.min.js'></script>
 
-    <script src="../../js/dstabs.js"></script>
+        <script src="../../js/dstabs.js"></script>
 
-    <script src="../../js/popper.min.js"></script>
+        <script src="../../js/popper.min.js"></script>
 
-    <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
 
-    <script src="../../js/pw.bundle.js"></script>
+        <script src="../../js/pw.bundle.js"></script>
 
-    <script src="../../js/default-assets/active.js"></script>
+        <script src="../../js/default-assets/active.js"></script>
 
-    <script>
-        function renderStation(station) {
-            const interchangesHTML = station.interchanges
-                .map(i => `<span class="interchange-badge ${i.lineClass}">${i.code}</span>`)
-                .join('');
-            return `<div class="station">
+        <script>
+            function renderStation(station) {
+                const interchangesHTML = station.interchanges
+                    .map(i => `<span class="interchange-badge ${i.lineClass}">${i.code}</span>`)
+                    .join('');
+                return `<div class="station">
                         <div class="station-dot"></div>
                         <div class="station-content">
                             <div class="station-codes">
@@ -638,54 +307,56 @@
                             <div class="station-name">${station.name}</div>
                         </div>
                     </div>`;
-        }
-
-        const branchSplits = { main: 'TE 9' };
-
-        fetch('../json/tel.json')
-            .then(res => res.json())
-            .then(data => {
-                data.branches.forEach(branch => {
-                    const container = document.getElementById(branch.id);
-                    if (!container) return;
-                    const splitCode = branchSplits[branch.id];
-                    if (splitCode) {
-                        const splitIdx = branch.stations.findIndex(s => s.code === splitCode);
-                        const visibleCount = splitIdx >= 0 ? splitIdx + 1 : branch.stations.length;
-                        const visible = branch.stations.slice(0, visibleCount);
-                        const hidden = branch.stations.slice(visibleCount);
-                        container.innerHTML = visible.map(renderStation).join('');
-                        if (hidden.length > 0) {
-                            const hiddenDiv = document.createElement('div');
-                            hiddenDiv.className = 'branch-hidden-stations';
-                            hiddenDiv.dataset.forBranch = branch.id;
-                            hiddenDiv.innerHTML = hidden.map(renderStation).join('');
-                            container.insertAdjacentElement('afterend', hiddenDiv);
-                            const btnDiv = document.createElement('div');
-                            btnDiv.className = 'show-more-button';
-                            btnDiv.dataset.forBranch = branch.id;
-                            btnDiv.innerHTML = `<button onclick="toggleBranchStations('${branch.id}')"><i class="fa-regular fa-chevron-down"></i> Show More</button>`;
-                            hiddenDiv.insertAdjacentElement('afterend', btnDiv);
-                        }
-                    } else {
-                        container.innerHTML = branch.stations.map(renderStation).join('');
-                    }
-                });
-            })
-            .catch(err => console.error('Failed to load line data:', err));
-
-        function toggleBranchStations(branchId) {
-            const hiddenDiv = document.querySelector(`.branch-hidden-stations[data-for-branch="${branchId}"]`);
-            const btn = document.querySelector(`.show-more-button[data-for-branch="${branchId}"] button`);
-            if (hiddenDiv.classList.contains('show')) {
-                hiddenDiv.classList.remove('show');
-                btn.innerHTML = '<i class="fa-regular fa-chevron-down"></i> Show More';
-            } else {
-                hiddenDiv.classList.add('show');
-                btn.innerHTML = '<i class="fa-regular fa-chevron-up"></i> Show Less';
             }
-        }
-    </script>
+
+            const branchSplits = { main: 'TE 9' };
+
+            fetch('../json/tel.json')
+                .then(res => res.json())
+                .then(data => {
+                    data.branches.forEach(branch => {
+                        const container = document.getElementById(branch.id);
+                        if (!container) return;
+                        const splitCode = branchSplits[branch.id];
+                        if (splitCode) {
+                            const splitIdx = branch.stations.findIndex(s => s.code === splitCode);
+                            const visibleCount = splitIdx >= 0 ? splitIdx + 1 : branch.stations.length;
+                            const visible = branch.stations.slice(0, visibleCount);
+                            const hidden = branch.stations.slice(visibleCount);
+                            container.innerHTML = visible.map(renderStation).join('');
+                            if (hidden.length > 0) {
+                                const hiddenDiv = document.createElement('div');
+                                hiddenDiv.className = 'branch-hidden-stations';
+                                hiddenDiv.dataset.forBranch = branch.id;
+                                hiddenDiv.innerHTML = hidden.map(renderStation).join('');
+                                container.insertAdjacentElement('afterend', hiddenDiv);
+                                const btnDiv = document.createElement('div');
+                                btnDiv.className = 'show-more-button';
+                                btnDiv.dataset.forBranch = branch.id;
+                                btnDiv.innerHTML = `<button onclick="toggleBranchStations('${branch.id}')"><i class="fa-regular fa-chevron-down"></i> Show More</button>`;
+                                hiddenDiv.insertAdjacentElement('afterend', btnDiv);
+                            }
+                        } else {
+                            container.innerHTML = branch.stations.map(renderStation).join('');
+                        }
+                    });
+                })
+                .catch(err => console.error('Failed to load line data:', err));
+
+            function toggleBranchStations(branchId) {
+                const hiddenDiv = document.querySelector(`.branch-hidden-stations[data-for-branch="${branchId}"]`);
+                const btn = document.querySelector(`.show-more-button[data-for-branch="${branchId}"] button`);
+                if (hiddenDiv.classList.contains('show')) {
+                    hiddenDiv.classList.remove('show');
+                    btn.innerHTML = '<i class="fa-regular fa-chevron-down"></i> Show More';
+                } else {
+                    hiddenDiv.classList.add('show');
+                    btn.innerHTML = '<i class="fa-regular fa-chevron-up"></i> Show Less';
+                }
+            }
+        </script>
+
+        <script src="../../js/ios-pwa-warning.js"></script>
 
 </body>
 
