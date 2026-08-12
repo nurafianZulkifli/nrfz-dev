@@ -1002,6 +1002,14 @@ async function fetchBusArrivals() {
                         }
                     }
                 });
+                // Update countdown bar data-arrival attributes to prevent visual resets
+                const countdownContainers = cardBt.querySelectorAll('.countdown-bar-container');
+                if (hasNextBus && countdownContainers[0] && service.NextBus?.EstimatedArrival) {
+                    countdownContainers[0].setAttribute('data-arrival', service.NextBus.EstimatedArrival);
+                }
+                if (hasNextBus2 && countdownContainers[1] && service.NextBus2?.EstimatedArrival) {
+                    countdownContainers[1].setAttribute('data-arrival', service.NextBus2.EstimatedArrival);
+                }
             });
             // Update countdown bars
             updateCountdownBars();
