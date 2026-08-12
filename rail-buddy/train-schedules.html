@@ -35,6 +35,7 @@
     <!-- Page Specific Stylesheet -->
     <link rel="stylesheet" href="./css/style-tdt.css">
     <link rel="stylesheet" href="./css/main-page.css">
+    <link rel="stylesheet" href="./css/fl-train.css">
 
 </head>
 
@@ -185,17 +186,32 @@
                     <div class="search-input-wrapper">
                         <i class="fa-regular fa-search"
                             style="position: absolute; left: 12px; top: 65%; transform: translateY(-65%); color: #cccccc; z-index: 1;"></i>
-                        <input type="text" id="trainSearch" class="search-input"
-                            placeholder="Enter trip ID or line" autocomplete="on">
-                        <button class="clear-search" id="clearSearch" title="Clear search">&times;</button>
+                        <input type="text" id="stationSearch" class="search-input"
+                            placeholder="Enter station name or code" autocomplete="on">
+                        <button class="clear-search" id="clearStationSearch" title="Clear search">&times;</button>
                     </div>
-                    <div class="search-results-count" id="resultsCount"></div>
                 </div>
 
-                <div class="filter-buttons">
-                    <button class="filter-btn" id="refreshBtn">
-                        <i class="fa-regular fa-arrows-rotate"></i> Refresh
-                    </button>
+                <label for="stationDropdown">Station:</label>
+                <select id="stationDropdown">
+                    <option value="">Loading stations...</option>
+                </select>
+            </div>
+
+            <div class="content-section" id="stationPanel" style="display: none;">
+                <div class="station-title" id="stationTitle">--</div>
+                <div class="station-subtitle" id="stationSubtitle"></div>
+                <div id="stationLiveStatus"></div>
+                <div id="stationDirections"></div>
+                <button class="filter-btn" id="backToAllBtn" style="margin-top: 1em;">
+                    <i class="fa-regular fa-arrow-left"></i> Back to all live updates
+                </button>
+            </div>
+
+            <div class="selector-section" id="allUpdatesHeader">
+                <div class="search-container">
+                    <div class="search-results-count" id="resultsCount"></div>
+                    <span id="lastUpdateTime" style="margin-left: auto; font-size: 0.85em; color: #999;"></span>
                 </div>
             </div>
 
