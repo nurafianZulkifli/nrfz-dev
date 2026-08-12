@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Polling state
   let pollingInterval = 30000; // 30 seconds default
   let pollingTimer = null;
+  let etaUpdateTimer = null;
   let isPolling = false;
   let lastUpdateTime = null;
 
@@ -309,6 +310,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // For "running" status, show next 3-4 trains as time cards
     let upcomingTrainsHtml = '';
+    let nextTrainLabel = estimate.label; // Default to computed estimate
+    
     if (estimate.status === 'running' && headwayData && lineKeys && lineKeys.length > 0) {
       const period = getCurrentHeadwayPeriod(headwayData.periods);
       const keyMap = { peak: 'peak', offPeak: 'offPeak', night: 'night' };
@@ -317,31 +320,76 @@ document.addEventListener('DOMContentLoaded', function() {
         const headwayMin = line[keyMap[period]];
         const now = new Date();
         const nowMin = now.getHours() * 60 + now.getMinutes();
+        
+        // Get first/last train times for filtering
         const dayKey = getTodayDayKey();
+        const firstTrainStr = direction.first_train?.[dayKey];
+        const lastTrainStr = direction.last_train?.[dayKey];
+        const firstTrainMin = firstTrainStr && firstTrainStr !== '--' ? parseHHMMToMinutes(firstTrainStr) : null;
+        const lastTrainMin = lastTrainStr && lastTrainStr !== '--' ? parseHHMMToMinutes(lastTrainStr) : null;
         
-        // Get first and last train times for this direction
-        const firstMin = parseHHMMToMinutes(direction.first_train?.[dayKey]);
-        let lastMin = parseHHMMToMinutes(direction.last_train?.[dayKey]);
-        
-        // Adjust last train time if it's past midnight
-        if (lastMin !== null && firstMin !== null && lastMin < firstMin) {
-          lastMin += 24 * 60;
-        }
-        
-        // Compute next 3-4 trains (filtered by service window)
+        // Compute next 3-4 trains
         const upcomingTrains = [];
-        for (let i = 0; i < 4 && upcomingTrains.length < 4; i++) {
-          const etaMin = nowMin + (i + 1) * headwayMin - (nowMin % Math.round(headwayMin));
+        for (let i = 0; i < 4; i++) {
+          let etaMin = nowMin + (i + 1) * headwayMin - (nowMin % Math.round(headwayMin));
           
-          // Check if this time is within the service window
-          if (firstMin !== null && etaMin < firstMin) continue; // Before first train
-          if (lastMin !== null && etaMin > lastMin) continue;   // After last train
+          // Handle day wraparound
+          let etaHour = Math.floor(etaMin / 60);
+          let etaMinute = etaMin % 60;
+          let isNextDay = false;
           
-          const etaHour = Math.floor(etaMin / 60) % 24;
-          const etaMinute = etaMin % 60;
+          if (etaHour >= 24) {
+            etaHour = etaHour % 24;
+            isNextDay = true;
+          }
+          
           const etaStr = `${String(etaHour).padStart(2, '0')}:${String(Math.round(etaMinute)).padStart(2, '0')}`;
-          upcomingTrains.push(etaStr);
+          const etaMinForComparison = etaHour * 60 + etaMinute;
+          
+          // Filter: only show if within operating hours
+          let isWithinHours = true;
+          
+          if (isNextDay) {
+            // Train is after midnight - check against first train only (next day's start)
+            if (firstTrainMin !== null && etaMinForComparison < firstTrainMin) isWithinHours = false;
+          } else {
+            // Train is today - check first train (if after service ends, it won't show)
+            if (firstTrainMin !== null && etaMinForComparison < firstTrainMin) isWithinHours = false;
+            
+            // Check against last train - but if last train is early morning (< 5:00), it's tomorrow's
+            if (lastTrainMin !== null) {
+              if (lastTrainMin < 300) {  // 5:00 AM = 300 minutes - early morning time is next day
+                // Last train is tomorrow, so today's trains up to 23:59 are OK
+                isWithinHours = true;
+              } else {
+                // Last train is today, check if this train time is before it
+                if (etaMinForComparison > lastTrainMin) isWithinHours = false;
+              }
+            }
+          }
+          
+          if (isWithinHours) {
+            upcomingTrains.push(etaStr);
+          }
         }
+        
+        // Calculate "Arriving in" based on first upcoming train
+        if (upcomingTrains.length > 0) {
+          const firstTrain = upcomingTrains[0];
+          const [trainHour, trainMinute] = firstTrain.split(':').map(Number);
+          const trainTotalMin = trainHour * 60 + trainMinute;
+          let minutesUntil = trainTotalMin - nowMin;
+          
+          // Handle midnight wraparound
+          if (minutesUntil < 0) {
+            minutesUntil += 24 * 60;
+          }
+          
+          const roundedMinutes = Math.round(minutesUntil);
+          const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
+          nextTrainLabel = `Arriving in: ${roundedMinutes} ${minLabel}`;
+        }
+        
         upcomingTrainsHtml = `<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div style="background: #f0f0f0; color: #333; padding: 6px 12px; border-radius: 6px; font-size: 0.9em; font-weight: 600; border: 1px solid #ddd;">${time}</div>`).join('')}</div>`;
       }
     }
@@ -350,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
         <span style="font-size: 0.8em; color: var(--text-secondary, #999);">Estimated arrival</span>
         <span style="font-size: 0.85em; font-weight: 700; color: ${chipColor}; background: ${chipColor}20; padding: 3px 10px; border-radius: 12px;">
-          ${estimate.label}
+          ${nextTrainLabel}
         </span>
       </div>
       ${upcomingTrainsHtml}
@@ -759,6 +807,40 @@ document.addEventListener('DOMContentLoaded', function() {
     displaySchedules();
   }
 
+  // Real-time ETA updater - updates "Arriving in" every second
+  function updateETALabels() {
+    const now = new Date();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    
+    // Find all ETA label spans (they contain "Arriving in:")
+    document.querySelectorAll('span').forEach(span => {
+      const text = span.textContent;
+      if (text && text.startsWith('Arriving in:')) {
+        // Extract the time from the previous sibling (the time card div)
+        // We need to find the first time card in the parent
+        const parent = span.closest('[style*="border"]');
+        if (parent) {
+          const timeCards = parent.querySelectorAll('[style*="background: #f0f0f0"]');
+          if (timeCards.length > 0) {
+            const firstTimeStr = timeCards[0].textContent.trim();
+            const [trainHour, trainMinute] = firstTimeStr.split(':').map(Number);
+            const trainTotalMin = trainHour * 60 + trainMinute;
+            let minutesUntil = trainTotalMin - nowMin;
+            
+            // Handle midnight wraparound
+            if (minutesUntil < 0) {
+              minutesUntil += 24 * 60;
+            }
+            
+            const roundedMinutes = Math.round(minutesUntil);
+            const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
+            span.textContent = `Arriving in: ${roundedMinutes} ${minLabel}`;
+          }
+        }
+      }
+    });
+  }
+
   // Polling functions
   function startPolling() {
     if (isPolling) return; // Already polling
@@ -770,6 +852,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Poll immediately, then set up interval
     loadTrainSchedules();
     pollingTimer = setInterval(loadTrainSchedules, pollingInterval);
+    
+    // Start ETA updater (updates every second)
+    if (!etaUpdateTimer) {
+      updateETALabels(); // Update immediately
+      etaUpdateTimer = setInterval(updateETALabels, 1000);
+    }
   }
 
   function stopPolling() {
@@ -779,6 +867,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (pollingTimer) {
       clearInterval(pollingTimer);
       pollingTimer = null;
+    }
+    
+    // Stop ETA updater
+    if (etaUpdateTimer) {
+      clearInterval(etaUpdateTimer);
+      etaUpdateTimer = null;
     }
     updateRefreshButtonState();
     console.log('[Polling] Stopped');
