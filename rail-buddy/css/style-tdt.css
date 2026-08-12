@@ -64,6 +64,17 @@ body.dark-mode #pwa-splash .splash-hero {
 
 body.dark-mode {
     background: #121521 !important;
+    --card-bg: #1a1f35;
+    --card-bg-alt: #232a45;
+    --border-color: #333b5c;
+    --text-primary: #e8eaf2;
+    --text-secondary: #a0a8c0;
+}
+
+body.dark-mode #stationLiveStatus,
+body.dark-mode #stationDirections,
+body.dark-mode #schedulesList {
+    color: var(--text-primary);
 }
 
 body.dark-mode .navbar {

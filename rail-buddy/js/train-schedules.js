@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
           nextTrainLabel = `Arriving in: ${roundedMinutes} ${minLabel}`;
         }
         
-        upcomingTrainsHtml = `<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div style="background: #f0f0f0; color: #333; padding: 6px 12px; border-radius: 6px; font-size: 0.9em; font-weight: 600; border: 1px solid #ddd;">${time}</div>`).join('')}</div>`;
+        upcomingTrainsHtml = `<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div style="background: var(--card-bg-alt, #f0f0f0); color: var(--text-primary, #333); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; font-weight: 600; border: 1px solid var(--border-color, #ddd);">${time}</div>`).join('')}</div>`;
       }
     }
 
