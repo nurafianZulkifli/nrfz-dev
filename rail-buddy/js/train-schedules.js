@@ -1,19 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Detect API server based on current location
+  const API_SERVER = (() => {
+    const currentUrl = new URL(window.location.href);
+    // If on localhost with non-standard port (like 5500), use Express port 3000
+    if (currentUrl.hostname === 'localhost' && currentUrl.port && currentUrl.port !== '3000') {
+      return 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
+    }
+    // Otherwise use current origin (works for production/deployed apps)
+    return currentUrl.origin;
+  })();
+
   const TRAIN_SCHEDULES_CACHE_KEY = 'railbuddy_train_schedules_cache';
   const TRAIN_SCHEDULES_DATA_KEY = 'railbuddy_train_schedules_data';
   const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
-  
-  // Determine API server URL (handles different dev/prod environments)
-  const API_SERVER = (() => {
-    const currentUrl = new URL(window.location.href);
-    // If running on localhost with a non-standard port (like 5500 from Live Server),
-    // fallback to Express server on port 3000
-    if (currentUrl.hostname === 'localhost' && currentUrl.port && currentUrl.port !== '3000') {
-      return 'http://localhost:3000';
-    }
-    // Otherwise, use the current origin
-    return currentUrl.origin;
-  })();
   
   let allSchedules = [];
   let filteredSchedules = [];

@@ -1,0 +1,32 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: bat-lta
+        run: |
+          cat > ~/.netrc <<EOF
+          machine api.heroku.com
+            login $HEROKU_APP_NAME
+            password $HEROKU_API_KEY
+          machine git.heroku.com
+            login $HEROKU_APP_NAME
+            password $HEROKU_API_KEY
+          EOF
+          chmod 600 ~/.netrc
+          git remote add heroku https://git.heroku.com/$HEROKU_APP_NAME.git
+          git push heroku HEAD:refs/heads/main --force
