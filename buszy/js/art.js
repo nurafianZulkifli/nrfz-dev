@@ -195,29 +195,52 @@ function updateBottomTimingsBtn(code) {
 function updateCountdownBars() {
     const now = new Date();
     const countdownBars = document.querySelectorAll('.countdown-bar-container');
+    let hasImminent = false; // Track if any bus is within 10 seconds of arrival
+    const BLINK_WINDOW = 30000; // Only blink for 30 seconds after arrival, then bus has departed
     
     countdownBars.forEach(container => {
         const arrivalTimeStr = container.getAttribute('data-arrival');
+        const barElement = container.querySelector('.countdown-bar');
+        
+        if (!barElement) return;
+        
         if (!arrivalTimeStr) {
-            // If no arrival time, stop blinking
-            const barElement = container.querySelector('.countdown-bar');
-            if (barElement) barElement.classList.remove('arrived');
+            // If no arrival time, clear all states
+            barElement.classList.remove('arrived');
+            barElement.style.width = '0%';
             return;
         }
         
         const arrivalTime = new Date(arrivalTimeStr);
         const timeDifference = arrivalTime - now; // milliseconds until arrival
-        const barElement = container.querySelector('.countdown-bar');
         
-        // If already arrived, set to 100% and add blinking animation
-        if (timeDifference <= 0) {
+        // Always start by removing the blinking class, then conditionally re-add
+        barElement.classList.remove('arrived');
+        
+        // Check if the corresponding bus-time span shows "Arr" (same logic as ib-time.arrived)
+        // Look for the bus-time span in the parent container
+        const parentDiv = container.parentElement;
+        const busTimeSpan = parentDiv ? parentDiv.querySelector('.bus-time') : null;
+        const isArrived = busTimeSpan && busTimeSpan.textContent.includes('Arr');
+        
+        // Only show blinking if bus is within the arrival window (0 to -30 seconds after arrival)
+        // OR if the bus-time span explicitly shows "Arr"
+        if ((timeDifference <= 0 && timeDifference > -BLINK_WINDOW) || isArrived) {
             barElement.style.width = '100%';
             barElement.classList.add('arrived');
             return;
         }
         
-        // Remove blinking animation if bus hasn't arrived yet or has passed
-        barElement.classList.remove('arrived');
+        // If bus is more than 30 seconds in the past, hide the bar
+        if (timeDifference <= -BLINK_WINDOW) {
+            barElement.style.width = '0%';
+            return;
+        }
+        
+        // Check if bus is imminent (within 10 seconds)
+        if (timeDifference <= 10000) {
+            hasImminent = true;
+        }
         
         // Define a window for countdown display
         // Use 20 minutes as the "full" countdown duration
@@ -233,6 +256,13 @@ function updateCountdownBars() {
         
         barElement.style.width = percentage + '%';
     });
+    
+    // If any bus is imminent, trigger next update faster for responsiveness
+    if (hasImminent && window._countdownIntervalMode !== 'fast') {
+        window._countdownIntervalMode = 'fast';
+        // Schedule a very fast follow-up update (10ms) for ultra-responsive feedback
+        setTimeout(updateCountdownBars, 10);
+    }
 }
 
 
@@ -592,8 +622,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (countdownBarIntervalId !== null) {
             clearInterval(countdownBarIntervalId);
         }
-        // Update countdown bars every 500ms for smooth animation
-        countdownBarIntervalId = setInterval(updateCountdownBars, 500);
+        // Update countdown bars every 100ms for precise timing, especially for "Arr" display
+        // This ensures immediate visual feedback when buses reach arrival status
+        countdownBarIntervalId = setInterval(updateCountdownBars, 100);
     }
 
     // Start the refresh interval on page load

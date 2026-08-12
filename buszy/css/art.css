@@ -1036,12 +1036,12 @@ body.dark-mode .notif-toggle-btn.notif-active {
 
 /* Countdown Bar Styling */
 .countdown-bar-container {
-    width: 100%;
+    width: 150%;
     height: 6px;
     background-color: #e0e0e0;
     border-radius: 3px;
     overflow: hidden;
-    margin-top: 0.3rem;
+    margin-top: 0.6rem;
 }
 
 .countdown-bar {
@@ -1052,19 +1052,20 @@ body.dark-mode .notif-toggle-btn.notif-active {
     border-radius: 3px;
 }
 
-/* Blinking animation for arrived buses */
-@keyframes barBlink {
-    0%, 49%, 100% {
-        opacity: 1;
+/* Blinking animation for arrived buses - matches ib-time.arrived pulse */
+@keyframes barPulseIndicator {
+    0%,
+    100% {
+        background: linear-gradient(90deg, #94d40b 0%, #7db603 100%);
     }
-    50%, 99% {
-        opacity: 0.3;
+
+    50% {
+        background: linear-gradient(90deg, rgb(104, 151, 2) 0%, rgb(93, 138, 1) 100%);
     }
 }
 
 .countdown-bar.arrived {
-    animation: barBlink 1.0s infinite;
-    background: linear-gradient(90deg, #94d40b 0%, #7db603 100%) !important;
+    animation: barPulseIndicator 1s infinite;
 }
 
 body.dark-mode .countdown-bar-container {

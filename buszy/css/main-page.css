@@ -475,8 +475,7 @@
   }
 
   .pinned {
-      /* margin-top: 2em; */
-      margin-top: calc(-30vh);
+      margin-top: -180px;
       margin-bottom: 2em;
       position: relative;
       z-index: 5;
@@ -1052,6 +1051,45 @@
           padding-right: 36px;
           font-size: 0.9rem;
       }
+  }
+
+  /* Countdown bar styling */
+  .countdown-bar-container {
+      width: 100%;
+      height: 6px;
+      background-color: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 0.6rem;
+  }
+
+.countdown-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #fcfcfb 0%, #d6d6d6 100%);
+    width: 0%;
+    transition: width 0.5s linear;
+    border-radius: 3px;
+}
+
+  /* Blinking animation for arrived buses - matches ib-time.arrived pulse */
+  @keyframes barPulseIndicator {
+      0%,
+      100% {
+          background: linear-gradient(90deg, #94d40b 0%, #7db603 100%);
+      }
+
+      50% {
+          background: linear-gradient(90deg, rgb(104, 151, 2) 0%, rgb(93, 138, 1) 100%);
+      }
+  }
+
+  .countdown-bar.arrived {
+      animation: barPulseIndicator 1s infinite;
+  }
+
+  body.dark-mode .countdown-bar-container {
+      background-color: #333;
+  }
 
       .category-tabs {
           padding: 10px 12px 10px;
