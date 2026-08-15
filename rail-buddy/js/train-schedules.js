@@ -309,6 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chipColor = { running: '#4CAF50', before: '#FF9800', after: '#999999', unknown: '#999999' }[estimate.status];
     
     // For "running" status, show next 3-4 trains as time cards
+    let upcomingTrains = []; // Initialize before the if block
     let upcomingTrainsHtml = '';
     let nextTrainLabel = estimate.label; // Default to computed estimate
     

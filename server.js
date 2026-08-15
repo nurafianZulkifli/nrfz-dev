@@ -27,6 +27,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const LTA_API_KEY = process.env.LTA_API_KEY;
 
+// Warn if critical env vars are missing
+if (!LTA_API_KEY) {
+  console.warn('⚠️  [CRITICAL] LTA_API_KEY environment variable not set!');
+  console.warn('   Set it on Heroku with: heroku config:set LTA_API_KEY=your_api_key');
+}
+
 // ── Web Push (VAPID) Setup ───────────────────────────────────────────
 // Generate keys once with: npx web-push generate-vapid-keys
 // Then set VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY env vars on Heroku.
@@ -445,6 +451,17 @@ function parseStopTimes(csvContent) {
 // Define the /train-schedules route (GTFSScheduleTrain - parses stop_times.txt from zip)
 app.get('/train-schedules', async (req, res) => {
   try {
+    // Check if LTA_API_KEY is set
+    if (!LTA_API_KEY) {
+      console.error('[GTFS] LTA_API_KEY not set in environment');
+      return res.status(503).json({
+        error: 'Service unavailable: LTA API credentials not configured',
+        details: 'LTA_API_KEY environment variable is not set on the server',
+        timestamp: new Date().toISOString(),
+        success: false
+      });
+    }
+
     // Check cache first
     const now = Date.now();
     if (cachedTrainData && (now - trainDataCacheTime) < TRAIN_DATA_TTL) {
@@ -474,7 +491,7 @@ app.get('/train-schedules', async (req, res) => {
       console.warn('[GTFS] adm-zip not installed. Install with: npm install adm-zip');
       return res.status(503).json({
         error: 'GTFS parsing not available',
-        note: 'Install adm-zip: npm install adm-zip',
+        note: 'Install adm-zip on server: npm install adm-zip',
         dataSize: zipResponse.data.length,
         success: false,
         timestamp: new Date().toISOString()
@@ -536,7 +553,8 @@ app.get('/train-schedules', async (req, res) => {
     
     if (error.response?.status === 401) {
       statusCode = 401;
-      errorDetails = 'LTA API Key is invalid or expired. Please set a valid LTA_API_KEY environment variable.';
+      errorDetails = 'LTA API Key is invalid or expired. Set a valid LTA_API_KEY on Heroku.';
+      console.error('[GTFS] 401 Unauthorized - check LTA_API_KEY');
     } else if (error.response?.status === 404) {
       errorDetails = 'LTA endpoint not found. Check server configuration.';
     } else if (error.code === 'ECONNREFUSED') {
