@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Calculate "Arriving in X mins" label based on estimated arrival time (HH:MM format)
   // and current time. Handles midnight wraparound.
-  // Examples: "Arriving in 3 mins", "Arriving in 1 min", "Arrived"
+  // Examples: "Arriving in 3 mins", "Arriving in 1 min", "Arriving now"
   function calculateArrivingLabel(arrivalTimeHHMM) {
     if (!arrivalTimeHHMM || !arrivalTimeHHMM.includes(':')) {
       return 'No ETA';
@@ -342,16 +342,13 @@ document.addEventListener('DOMContentLoaded', function() {
         secondsUntil += 24 * 3600;
       }
 
-      // Train time has genuinely passed (more than 1 minute ago, no wraparound)
-      if (secondsUntil <= -60) {
-        return 'Arrived';
-      }
-      // Due right now (within a minute either side), but not yet past
-      if (secondsUntil <= 60) {
+      // Train has reached the platform — updateETALabels() drops it and jumps to the
+      // next upcoming train on the very next tick, so this is only ever shown momentarily.
+      if (secondsUntil <= 0) {
         return 'Arriving now';
       }
-      // Train is upcoming
-      const roundedMinutes = Math.ceil(secondsUntil / 60);
+      // Train is upcoming — always round up to at least 1 min (never shows "Arriving now" early)
+      const roundedMinutes = Math.max(1, Math.ceil(secondsUntil / 60));
       const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
       return `Arriving in ${roundedMinutes} ${minLabel}`;
     } catch (e) {
@@ -505,9 +502,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Debug logging
         if (upcomingTrains.length === 0) {
-          console.warn(`[Train Calc] No trains found for ${direction.name}. headway=${headwayMin}min, now=${nowMin}min, boundary=${intervalBoundary}, interval=${headwayMin}`);
+          console.warn(`[Train Calc] No trains found for ${direction.description}. headway=${headwayMin}min, now=${nowMin}min, boundary=${intervalBoundary}, interval=${headwayMin}`);
         } else {
-          console.log(`[Train Calc] Trains for ${direction.name}: ${upcomingTrains.join(', ')} (headway=${headwayMin}, now=${nowMin})`);
+          console.log(`[Train Calc] Trains ${direction.description}: ${upcomingTrains.join(', ')} (headway=${headwayMin}, now=${nowMin})`);
         }
         
         // Calculate "Arriving in" based on first upcoming train
@@ -976,9 +973,8 @@ document.addEventListener('DOMContentLoaded', function() {
     displaySchedules();
   }
 
-  // A train time is considered fully passed (and safe to drop) once it has been
-  // in the "Arrived" state for at least a minute — matches calculateArrivingLabel's
-  // own "Arrived" threshold (secondsUntil <= -60).
+  // A train time is considered passed — and safe to drop — the instant it reaches
+  // 0 seconds, so the ETA label jumps straight to the next upcoming train.
   function hasTrainTimePassed(trainTimeHHMM) {
     const now = new Date();
     const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
@@ -986,7 +982,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (Number.isNaN(h) || Number.isNaN(m)) return false;
     let secondsUntil = (h * 3600 + m * 60) - nowSeconds;
     if (secondsUntil < -43200) secondsUntil += 24 * 3600; // midnight wraparound
-    return secondsUntil <= -60;
+    return secondsUntil <= 0;
   }
 
   // Real-time ETA updater - runs every second. Removes train times that have
