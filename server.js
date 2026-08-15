@@ -479,9 +479,22 @@ app.get('/train-schedules', async (req, res) => {
       return res.json(cachedTrainData);
     }
 
-    // Download zip file from GTFSScheduleTrain endpoint
-    console.log('[GTFS] Fetching GTFS Schedule (ZIP) from LTA...');
-    const zipResponse = await ltaApi.get('/GTFSScheduleTrain', {
+    // GTFSScheduleTrain returns JSON with a Link to the actual zip file, not the zip itself
+    console.log('[GTFS] Fetching GTFS Schedule download link from LTA...');
+    const linkResponse = await ltaApi.get('/GTFSScheduleTrain');
+    const downloadLink = linkResponse.data?.value?.[0]?.Link;
+
+    if (!downloadLink) {
+      console.error('[GTFS] No download Link found in LTA response:', JSON.stringify(linkResponse.data));
+      return res.status(502).json({
+        error: 'LTA did not return a GTFS download link',
+        timestamp: new Date().toISOString(),
+        success: false
+      });
+    }
+
+    console.log(`[GTFS] Downloading GTFS zip from ${downloadLink}`);
+    const zipResponse = await axios.get(downloadLink, {
       responseType: 'arraybuffer',
       timeout: 30000
     });
