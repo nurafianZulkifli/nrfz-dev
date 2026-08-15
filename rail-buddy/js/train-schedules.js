@@ -630,6 +630,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       filteredSchedules = [...allSchedules];
       displaySchedules();
+      
+      // If a station is currently selected, refresh its panel with new data
+      if (selectedStation) {
+        renderStationPanel(selectedStation);
+      }
+      
       updateLastUpdateDisplay();
     } catch (error) {
       console.error('Error loading train schedules:', error);
@@ -823,19 +829,23 @@ document.addEventListener('DOMContentLoaded', function() {
           const trainTotalSeconds = trainHour * 3600 + trainMinute * 60;
           let secondsUntil = trainTotalSeconds - nowSeconds;
           
-          // Handle midnight wraparound
-          if (secondsUntil < 0) {
+          // Handle midnight wraparound: only wrap if significantly negative (more than 12 hours)
+          // This avoids wrapping when the train time is just in the past (within same day)
+          if (secondsUntil < -43200) { // -12 hours = -43200 seconds
             secondsUntil += 24 * 3600;
           }
           
-          // If train has arrived (within 60 seconds past arrival time, or approaching within threshold)
-          if (secondsUntil <= 60) {
+          // If train has arrived or is arriving (within 1 minute = 60 seconds)
+          if (secondsUntil <= 60 && secondsUntil > -60) {
             span.textContent = 'Arrived';
-          } else {
+          } else if (secondsUntil > 60) {
             // Round up to nearest minute for display (round up if >= 30 seconds)
             const roundedMinutes = Math.ceil(secondsUntil / 60);
             const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
             span.textContent = `Arriving in: ${roundedMinutes} ${minLabel}`;
+          } else {
+            // Train time has passed (more than 1 minute ago) and no wraparound
+            span.textContent = 'Arrived';
           }
         } catch (e) {
           console.warn('[ETA Update] Failed to parse train time:', trainTimeStr, e);
