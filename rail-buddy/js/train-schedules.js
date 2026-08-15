@@ -605,8 +605,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function hideStationPanel() {
     stationPanel.style.display = 'none';
-    allUpdatesHeader.style.display = 'block';
-    contentSection.style.display = 'block';
+    // No station selected — nothing to show, so keep the generic all-schedules panel hidden too
+    allUpdatesHeader.style.display = 'none';
+    contentSection.style.display = 'none';
     selectedStation = null;
     stationDropdown.value = '';
     localStorage.removeItem(SELECTED_STATION_KEY);
