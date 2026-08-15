@@ -27,12 +27,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const LTA_API_KEY = process.env.LTA_API_KEY;
 
-// Warn if critical env vars are missing
-if (!LTA_API_KEY) {
-  console.warn('⚠️  [CRITICAL] LTA_API_KEY environment variable not set!');
-  console.warn('   Set it on Heroku with: heroku config:set LTA_API_KEY=your_api_key');
-}
-
 // ── Web Push (VAPID) Setup ───────────────────────────────────────────
 // Generate keys once with: npx web-push generate-vapid-keys
 // Then set VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY env vars on Heroku.
@@ -416,52 +410,66 @@ function parseGTFSRealtimeData(protoBuffer) {
 
 // Helper: Parse stop_times.txt CSV and return structured data
 function parseStopTimes(csvContent) {
-  const lines = csvContent.toString().split('\n');
-  if (lines.length < 2) return [];
+  const text = csvContent.toString();
+  const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  
+  if (lines.length < 2) {
+    console.warn('[GTFS] stop_times.txt has fewer than 2 lines');
+    return [];
+  }
 
-  // Parse header
-  const header = lines[0].trim().split(',').map(h => h.trim());
-  const stopTimeIndex = header.indexOf('stop_times');
+  // Parse header (handle quoted fields)
+  const headerLine = lines[0];
+  const header = headerLine.split(',').map(h => h.trim().toLowerCase().replace(/^"|"$/g, ''));
+  
   const tripIdIndex = header.indexOf('trip_id');
   const stopIdIndex = header.indexOf('stop_id');
   const arrivalTimeIndex = header.indexOf('arrival_time');
   const departureTimeIndex = header.indexOf('departure_time');
   const stopSequenceIndex = header.indexOf('stop_sequence');
 
-  const stopTimes = [];
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-
-    const fields = line.split(',').map(f => f.trim());
-    if (fields.length <= Math.max(tripIdIndex, stopIdIndex, arrivalTimeIndex, departureTimeIndex)) continue;
-
-    stopTimes.push({
-      trip_id: tripIdIndex >= 0 ? fields[tripIdIndex] : null,
-      stop_id: stopIdIndex >= 0 ? fields[stopIdIndex] : null,
-      arrival_time: arrivalTimeIndex >= 0 ? fields[arrivalTimeIndex] : null,
-      departure_time: departureTimeIndex >= 0 ? fields[departureTimeIndex] : null,
-      stop_sequence: stopSequenceIndex >= 0 ? parseInt(fields[stopSequenceIndex], 10) : null
-    });
+  if (tripIdIndex < 0 || stopIdIndex < 0 || arrivalTimeIndex < 0 || departureTimeIndex < 0) {
+    console.error('[GTFS] Missing required columns. Found:', header);
+    return [];
   }
 
+  console.log('[GTFS] CSV Headers:', header);
+  console.log('[GTFS] Column indices:', { tripIdIndex, stopIdIndex, arrivalTimeIndex, departureTimeIndex, stopSequenceIndex });
+
+  const stopTimes = [];
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line) continue;
+
+    try {
+      // Simple CSV parsing (handles basic quoted fields)
+      const fields = line.split(',').map(f => f.trim().replace(/^"|"$/g, ''));
+      
+      if (fields.length <= Math.max(tripIdIndex, stopIdIndex, arrivalTimeIndex, departureTimeIndex)) {
+        console.warn(`[GTFS] Line ${i} has insufficient fields (${fields.length})`);
+        continue;
+      }
+
+      stopTimes.push({
+        trip_id: fields[tripIdIndex] || null,
+        stop_id: fields[stopIdIndex] || null,
+        arrival_time: fields[arrivalTimeIndex] || null,
+        departure_time: fields[departureTimeIndex] || null,
+        stop_sequence: stopSequenceIndex >= 0 ? parseInt(fields[stopSequenceIndex], 10) : null
+      });
+    } catch (e) {
+      console.warn(`[GTFS] Error parsing line ${i}:`, e.message);
+      continue;
+    }
+  }
+
+  console.log(`[GTFS] Successfully parsed ${stopTimes.length} stop time entries`);
   return stopTimes;
 }
 
 // Define the /train-schedules route (GTFSScheduleTrain - parses stop_times.txt from zip)
 app.get('/train-schedules', async (req, res) => {
   try {
-    // Check if LTA_API_KEY is set
-    if (!LTA_API_KEY) {
-      console.error('[GTFS] LTA_API_KEY not set in environment');
-      return res.status(503).json({
-        error: 'Service unavailable: LTA API credentials not configured',
-        details: 'LTA_API_KEY environment variable is not set on the server',
-        timestamp: new Date().toISOString(),
-        success: false
-      });
-    }
-
     // Check cache first
     const now = Date.now();
     if (cachedTrainData && (now - trainDataCacheTime) < TRAIN_DATA_TTL) {
@@ -491,7 +499,7 @@ app.get('/train-schedules', async (req, res) => {
       console.warn('[GTFS] adm-zip not installed. Install with: npm install adm-zip');
       return res.status(503).json({
         error: 'GTFS parsing not available',
-        note: 'Install adm-zip on server: npm install adm-zip',
+        note: 'Install adm-zip: npm install adm-zip',
         dataSize: zipResponse.data.length,
         success: false,
         timestamp: new Date().toISOString()
@@ -553,8 +561,7 @@ app.get('/train-schedules', async (req, res) => {
     
     if (error.response?.status === 401) {
       statusCode = 401;
-      errorDetails = 'LTA API Key is invalid or expired. Set a valid LTA_API_KEY on Heroku.';
-      console.error('[GTFS] 401 Unauthorized - check LTA_API_KEY');
+      errorDetails = 'LTA API Key is invalid or expired. Please set a valid LTA_API_KEY environment variable.';
     } else if (error.response?.status === 404) {
       errorDetails = 'LTA endpoint not found. Check server configuration.';
     } else if (error.code === 'ECONNREFUSED') {

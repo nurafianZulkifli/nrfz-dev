@@ -828,10 +828,15 @@ document.addEventListener('DOMContentLoaded', function() {
             secondsUntil += 24 * 3600;
           }
           
-          // Round up to nearest minute for display (round up if >= 30 seconds)
-          const roundedMinutes = Math.ceil(secondsUntil / 60);
-          const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
-          span.textContent = `Arriving in: ${roundedMinutes} ${minLabel}`;
+          // If train has arrived (within 60 seconds past arrival time, or approaching within threshold)
+          if (secondsUntil <= 60) {
+            span.textContent = 'Arrived';
+          } else {
+            // Round up to nearest minute for display (round up if >= 30 seconds)
+            const roundedMinutes = Math.ceil(secondsUntil / 60);
+            const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
+            span.textContent = `Arriving in: ${roundedMinutes} ${minLabel}`;
+          }
         } catch (e) {
           console.warn('[ETA Update] Failed to parse train time:', trainTimeStr, e);
         }
