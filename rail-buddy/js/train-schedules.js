@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextTrainChip = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
         <span style="font-size: 0.8em; color: var(--text-secondary, #999);">Estimated arrival</span>
-        <span style="font-size: 0.85em; font-weight: 700; color: ${chipColor}; background: ${chipColor}20; padding: 3px 10px; border-radius: 12px;">
+        <span class="eta-label" data-train-time="${upcomingTrains.length > 0 ? upcomingTrains[0] : ''}" style="font-size: 0.85em; font-weight: 700; color: ${chipColor}; background: ${chipColor}20; padding: 3px 10px; border-radius: 12px;">
           ${nextTrainLabel}
         </span>
       </div>
@@ -810,32 +810,29 @@ document.addEventListener('DOMContentLoaded', function() {
   // Real-time ETA updater - updates "Arriving in" every second
   function updateETALabels() {
     const now = new Date();
-    const nowMin = now.getHours() * 60 + now.getMinutes();
+    // Use total seconds since midnight for more accurate calculation
+    const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
     
-    // Find all ETA label spans (they contain "Arriving in:")
-    document.querySelectorAll('span').forEach(span => {
-      const text = span.textContent;
-      if (text && text.startsWith('Arriving in:')) {
-        // Extract the time from the previous sibling (the time card div)
-        // We need to find the first time card in the parent
-        const parent = span.closest('[style*="border"]');
-        if (parent) {
-          const timeCards = parent.querySelectorAll('[style*="background: #f0f0f0"]');
-          if (timeCards.length > 0) {
-            const firstTimeStr = timeCards[0].textContent.trim();
-            const [trainHour, trainMinute] = firstTimeStr.split(':').map(Number);
-            const trainTotalMin = trainHour * 60 + trainMinute;
-            let minutesUntil = trainTotalMin - nowMin;
-            
-            // Handle midnight wraparound
-            if (minutesUntil < 0) {
-              minutesUntil += 24 * 60;
-            }
-            
-            const roundedMinutes = Math.round(minutesUntil);
-            const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
-            span.textContent = `Arriving in: ${roundedMinutes} ${minLabel}`;
+    // Find all ETA labels with data-train-time attribute
+    document.querySelectorAll('.eta-label[data-train-time]').forEach(span => {
+      const trainTimeStr = span.getAttribute('data-train-time');
+      if (trainTimeStr && trainTimeStr.includes(':')) {
+        try {
+          const [trainHour, trainMinute] = trainTimeStr.split(':').map(Number);
+          const trainTotalSeconds = trainHour * 3600 + trainMinute * 60;
+          let secondsUntil = trainTotalSeconds - nowSeconds;
+          
+          // Handle midnight wraparound
+          if (secondsUntil < 0) {
+            secondsUntil += 24 * 3600;
           }
+          
+          // Round up to nearest minute for display (round up if >= 30 seconds)
+          const roundedMinutes = Math.ceil(secondsUntil / 60);
+          const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
+          span.textContent = `Arriving in: ${roundedMinutes} ${minLabel}`;
+        } catch (e) {
+          console.warn('[ETA Update] Failed to parse train time:', trainTimeStr, e);
         }
       }
     });

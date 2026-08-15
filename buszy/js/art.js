@@ -166,7 +166,8 @@ let busStopsPromise = null;
 let currentLocationMarker = null; // Track the current location marker across button clicks
 let currentLocationCircle = null; // Track the current location accuracy circle
 let activeMapServiceNo = null; // Track which service is currently shown on the map
-let scrollToServiceNo = new URLSearchParams(window.location.search).get('ServiceNo') || null; // Scroll to this service on first render
+// let scrollToServiceNo = new URLSearchParams(window.location.search).get('ServiceNo') || null; // Scroll to this service on first render
+let scrollToServiceNo = null; // Scroll to this service on first render (disabled - notify feature removed)
 let busMarkers = []; // [{marker, lat, lng, estimatedArrival, busLabel}] for live position updates
 let mapRefreshIntervalId = null; // Dedicated fast interval for map position updates
 
@@ -325,38 +326,38 @@ function getBusStops() {
 // :: Bus Arrivals Fetching and Display
 // ****************************
 
-// Handle NOTIF_NAVIGATE message from service worker notificationclick
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.addEventListener('message', event => {
-        if (event.data?.type === 'NOTIF_NAVIGATE' && event.data.url) {
-            window.location.href = event.data.url;
-        }
-    });
-}
+// // Handle NOTIF_NAVIGATE message from service worker notificationclick (DISABLED - notify feature removed)
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.addEventListener('message', event => {
+//         if (event.data?.type === 'NOTIF_NAVIGATE' && event.data.url) {
+//             window.location.href = event.data.url;
+//         }
+//     });
+// }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Re-register active push subscriptions with the server (restores after server restart/dyno wake)
-    if (window.BuszyPushNotify) BuszyPushNotify.reRegisterAll();
+    // // Re-register active push subscriptions with the server (restores after server restart/dyno wake) (DISABLED - notify feature removed)
+    // if (window.BuszyPushNotify) BuszyPushNotify.reRegisterAll();
 
-    // Check for a pending notification navigation stored by the service worker.
-    // Needed when the browser navigated to this page without query params (e.g. after
-    // a client.navigate() that dropped params, or a postMessage redirect chain).
-    if ('caches' in window && !new URLSearchParams(window.location.search).get('BusStopCode')) {
-        try {
-            const cache = await caches.open('buszy-notif-pending');
-            const resp = await cache.match('pending-nav');
-            if (resp) {
-                const pending = await resp.json();
-                await cache.delete('pending-nav');
-                if (pending.busStopCode && Date.now() - pending.ts < 30000) {
-                    let dest = 'art.html?BusStopCode=' + encodeURIComponent(pending.busStopCode);
-                    if (pending.serviceNo) dest += '&ServiceNo=' + encodeURIComponent(pending.serviceNo);
-                    window.location.replace(dest);
-                    return;
-                }
-            }
-        } catch {}
-    }
+    // // Check for a pending notification navigation stored by the service worker. (DISABLED - notify feature removed)
+    // // Needed when the browser navigated to this page without query params (e.g. after
+    // // a client.navigate() that dropped params, or a postMessage redirect chain).
+    // if ('caches' in window && !new URLSearchParams(window.location.search).get('BusStopCode')) {
+    //     try {
+    //         const cache = await caches.open('buszy-notif-pending');
+    //         const resp = await cache.match('pending-nav');
+    //         if (resp) {
+    //             const pending = await resp.json();
+    //             await cache.delete('pending-nav');
+    //             if (pending.busStopCode && Date.now() - pending.ts < 30000) {
+    //                 let dest = 'art.html?BusStopCode=' + encodeURIComponent(pending.busStopCode);
+    //                 if (pending.serviceNo) dest += '&ServiceNo=' + encodeURIComponent(pending.serviceNo);
+    //                 window.location.replace(dest);
+    //                 return;
+    //             }
+    //         }
+    //     } catch {}
+    // }
 
     // Apply fleet legend visibility setting
     function applyFleetLegendVisibility() {
@@ -968,9 +969,11 @@ async function fetchBusArrivals() {
                                 ${!serviceExists(service.ServiceNo) ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
                                 <i class="fa-kit fa-lta-bus-stop"></i>
                             </button>
+                            <!-- DISABLED - notify feature removed
                             <button class="btn btn-busloc btn-sm notif-toggle-btn" data-service="${service.ServiceNo}" data-stop="${busStopCode}" title="Notify me when this bus is arriving">
                                 <i class="fa-regular fa-bell"></i>&nbsp;<span class="notif-label"></span>
                             </button>
+                            -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -1013,18 +1016,18 @@ async function fetchBusArrivals() {
             renderedBusStopCode = searchInput;
             showBottomTimingsBtn(searchInput);
 
-            // If opened from a notification, scroll to and briefly highlight the notified service
-            if (scrollToServiceNo) {
-                const targetCard = container.querySelector(`.card-bt[data-service="${scrollToServiceNo}"]`);
-                if (targetCard) {
-                    setTimeout(() => {
-                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        targetCard.classList.add('notif-highlight');
-                        setTimeout(() => targetCard.classList.remove('notif-highlight'), 2000);
-                    }, 150);
-                }
-                scrollToServiceNo = null; // Only do this once
-            }
+            // // If opened from a notification, scroll to and briefly highlight the notified service (DISABLED - notify feature removed)
+            // if (scrollToServiceNo) {
+            //     const targetCard = container.querySelector(`.card-bt[data-service="${scrollToServiceNo}"]`);
+            //     if (targetCard) {
+            //         setTimeout(() => {
+            //             targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            //             targetCard.classList.add('notif-highlight');
+            //             setTimeout(() => targetCard.classList.remove('notif-highlight'), 2000);
+            //         }, 150);
+            //     }
+            //     scrollToServiceNo = null; // Only do this once
+            // }
 
             // Restore expanded state without animation
             expandedServices.forEach(serviceNo => {
@@ -1349,19 +1352,19 @@ async function fetchBusArrivals() {
                 });
             });
 
-            // Add event listeners to "Notify" buttons
-            if (window.BuszyPushNotify) {
-                const notifButtons = document.querySelectorAll('.notif-toggle-btn');
-                notifButtons.forEach((btn) => {
-                    btn.addEventListener('click', () => {
-                        const stopCode = btn.getAttribute('data-stop');
-                        const serviceNo = btn.getAttribute('data-service');
-                        BuszyPushNotify.toggle(stopCode, serviceNo, btn);
-                    });
-                });
-
-                BuszyPushNotify.restoreButtonStates();
-            }
+            // // Add event listeners to "Notify" buttons (DISABLED - notify feature removed)
+            // if (window.BuszyPushNotify) {
+            //     const notifButtons = document.querySelectorAll('.notif-toggle-btn');
+            //     notifButtons.forEach((btn) => {
+            //         btn.addEventListener('click', () => {
+            //             const stopCode = btn.getAttribute('data-stop');
+            //             const serviceNo = btn.getAttribute('data-service');
+            //             BuszyPushNotify.toggle(stopCode, serviceNo, btn);
+            //         });
+            //     });
+            //
+            //     BuszyPushNotify.restoreButtonStates();
+            // }
 
         }
 
