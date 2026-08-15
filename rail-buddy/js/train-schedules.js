@@ -258,6 +258,50 @@ document.addEventListener('DOMContentLoaded', function() {
     return h * 60 + m;
   }
 
+  // Calculate "Arriving in X mins" label based on estimated arrival time (HH:MM format)
+  // and current time. Handles midnight wraparound.
+  // Examples: "Arriving in 3 mins", "Arriving in 1 min", "Arrived"
+  function calculateArrivingLabel(arrivalTimeHHMM) {
+    if (!arrivalTimeHHMM || !arrivalTimeHHMM.includes(':')) {
+      return 'No ETA';
+    }
+
+    try {
+      const now = new Date();
+      const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+      
+      const [arrivalHour, arrivalMinute] = arrivalTimeHHMM.split(':').map(Number);
+      if (Number.isNaN(arrivalHour) || Number.isNaN(arrivalMinute)) {
+        return 'No ETA';
+      }
+
+      const arrivalSeconds = arrivalHour * 3600 + arrivalMinute * 60;
+      let secondsUntil = arrivalSeconds - nowSeconds;
+
+      // Handle midnight wraparound: only wrap if significantly negative (more than 12 hours)
+      // This avoids wrapping when the train time is just in the past (same day)
+      if (secondsUntil < -43200) { // -12 hours = -43200 seconds
+        secondsUntil += 24 * 3600;
+      }
+
+      // Train time has genuinely passed (more than 1 minute ago, no wraparound)
+      if (secondsUntil <= -60) {
+        return 'Arrived';
+      }
+      // Due right now (within a minute either side), but not yet past
+      if (secondsUntil <= 60) {
+        return 'Arriving now';
+      }
+      // Train is upcoming
+      const roundedMinutes = Math.ceil(secondsUntil / 60);
+      const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
+      return `Arriving in ${roundedMinutes} ${minLabel}`;
+    } catch (e) {
+      console.warn('[ETA] Failed to parse arrival time:', arrivalTimeHHMM, e);
+      return 'No ETA';
+    }
+  }
+
   // Compare "now" against a direction's first/last train times for today,
   // and estimate the next train using the line's headway table.
   function computeNextTrainEstimate(direction, lineKeys) {
@@ -399,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
         
-        const upcomingTrains = Array.from(upcomingTrainSet);
+        upcomingTrains = Array.from(upcomingTrainSet);
         
         // Debug logging
         if (upcomingTrains.length === 0) {
@@ -411,22 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Calculate "Arriving in" based on first upcoming train
         if (upcomingTrains.length > 0) {
           const firstTrain = upcomingTrains[0];
-          console.log(`[Train Calc] Setting data-train-time to: ${firstTrain}`);
-        }
-        if (upcomingTrains.length > 0) {
-          const firstTrain = upcomingTrains[0];
-          const [trainHour, trainMinute] = firstTrain.split(':').map(Number);
-          const trainTotalMin = trainHour * 60 + trainMinute;
-          let minutesUntil = trainTotalMin - nowMin;
-          
-          // Handle midnight wraparound
-          if (minutesUntil < 0) {
-            minutesUntil += 24 * 60;
-          }
-          
-          const roundedMinutes = Math.round(minutesUntil);
-          const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
-          nextTrainLabel = `Arriving in: ${roundedMinutes} ${minLabel}`;
+          nextTrainLabel = calculateArrivingLabel(firstTrain);
         }
         
         upcomingTrainsHtml = `<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div style="background: var(--card-bg-alt, #f0f0f0); color: var(--text-primary, #333); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; font-weight: 600; border: 1px solid var(--border-color, #ddd);">${time}</div>`).join('')}</div>`;
@@ -858,10 +887,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Real-time ETA updater - updates "Arriving in" every second
   function updateETALabels() {
-    const now = new Date();
-    // Use total seconds since midnight for more accurate calculation
-    const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
-    
     // Find all ETA labels with non-empty data-train-time attribute
     const labels = document.querySelectorAll('.eta-label');
     if (labels.length === 0) {
@@ -872,32 +897,8 @@ document.addEventListener('DOMContentLoaded', function() {
     labels.forEach(span => {
       const trainTimeStr = span.getAttribute('data-train-time');
       if (trainTimeStr && trainTimeStr.trim() && trainTimeStr.includes(':')) {
-        try {
-          const [trainHour, trainMinute] = trainTimeStr.split(':').map(Number);
-          const trainTotalSeconds = trainHour * 3600 + trainMinute * 60;
-          let secondsUntil = trainTotalSeconds - nowSeconds;
-          
-          // Handle midnight wraparound: only wrap if significantly negative (more than 12 hours)
-          // This avoids wrapping when the train time is just in the past (within same day)
-          if (secondsUntil < -43200) { // -12 hours = -43200 seconds
-            secondsUntil += 24 * 3600;
-          }
-          
-          // If train has arrived or is arriving (within 1 minute = 60 seconds)
-          if (secondsUntil <= 60 && secondsUntil > -60) {
-            span.textContent = 'Arrived';
-          } else if (secondsUntil > 60) {
-            // Round up to nearest minute for display (round up if >= 30 seconds)
-            const roundedMinutes = Math.ceil(secondsUntil / 60);
-            const minLabel = roundedMinutes === 1 ? 'min' : 'mins';
-            span.textContent = `Arriving in: ${roundedMinutes} ${minLabel}`;
-          } else {
-            // Train time has passed (more than 1 minute ago) and no wraparound
-            span.textContent = 'Arrived';
-          }
-        } catch (e) {
-          console.warn('[ETA Update] Failed to parse train time:', trainTimeStr, e);
-        }
+        const label = calculateArrivingLabel(trainTimeStr);
+        span.textContent = label;
       }
     });
   }
