@@ -1862,8 +1862,8 @@
     ]
   },
   {
-    "station": "DT 31 TampiNE s West",
-    "station_slug": "dt31-tampiNE s-west",
+    "station": "DT 31 Tampines West",
+    "station_slug": "dt31-tampines-west",
     "directions": [
       {
         "description": "To DT 35 Expo",
@@ -1900,8 +1900,8 @@
     ]
   },
   {
-    "station": "DT 32 TampiNE s",
-    "station_slug": "dt32-tampiNE s",
+    "station": "DT 32 Tampines",
+    "station_slug": "dt32-tampines",
     "directions": [
       {
         "description": "To DT 35 Expo",
@@ -1938,8 +1938,8 @@
     ]
   },
   {
-    "station": "DT 33 TampiNE s East",
-    "station_slug": "dt33-tampiNE s-east",
+    "station": "DT 33 Tampines East",
+    "station_slug": "dt33-tampines-east",
     "directions": [
       {
         "description": "To DT 35 Expo",

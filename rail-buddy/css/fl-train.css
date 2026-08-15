@@ -80,6 +80,24 @@
     font-size: 0.9rem;
 }
 
+.station-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.station-header-row .station-title,
+.station-header-row .station-subtitle {
+    margin-bottom: 30px;
+}
+
+.station-subtitle .operator-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+
 .directions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

@@ -213,12 +213,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
       smrtFtLtData.forEach((s, i) => {
         const code = smrtStationCodes[s.station] || '';
+        // "To CG2 Changi Airport" only applies from Tanah Merah (EW4); the SMRT site
+        // erroneously repeats this section on other EWL station pages.
+        const directions = s.station === 'Tanah Merah'
+          ? s.directions
+          : s.directions.filter(d => !/changi airport/i.test(d.description));
         stationIndex.push({
           name: s.station,
           code,
           source: 'smrt',
           value: `smrt-${i}`,
-          directions: s.directions,
+          directions,
           lineKeys: extractLinePrefixes(code)
         });
       });
@@ -527,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     return `
       <div class="direction-card" data-upcoming-trains='${JSON.stringify(upcomingTrains)}' style="border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; background: var(--card-bg, #fff);">
-        <div style="font-weight: 700; margin-bottom: 8px;"><i class="fa-solid fa-train"></i> ${formatDirectionDescription(direction.description)}</div>
+        <div style="font-weight: 700; margin-bottom: 8px;"><i class="fa-kit fa-lta-to-right"></i> ${formatDirectionDescription(direction.description)}</div>
         ${nextTrainChip}
       </div>
     `;
@@ -563,7 +568,9 @@ document.addEventListener('DOMContentLoaded', function() {
     stationTitle.innerHTML = titleCodes.length > 0
       ? `${renderCodeCaplet(titleCodes)} ${station.name}`
       : station.name;
-    stationSubtitle.textContent = station.source === 'smrt' ? 'SMRT' : 'SBS Transit';
+    stationSubtitle.innerHTML = station.source === 'smrt'
+      ? '<img src="assets/stl.png" alt="SMRT" class="operator-logo">'
+      : '<img src="assets/sbstl.png" alt="SBS Transit" class="operator-logo">';
 
     // Live status: real delay/cancellation data takes priority over the estimate
     const liveMatches = getLiveStatusForStation(station);
@@ -899,7 +906,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div style="flex: 1;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
             <span style="font-weight: bold; font-size: 1.1em; color: ${statusColor};">
-              <i class="fa-solid fa-train"></i> Route ${schedule.routeId}
+              <i class="fa-kit fa-lta-to-right"></i> Route ${schedule.routeId}
             </span>
             <span style="font-size: 0.75em; background: ${statusColor}; color: white; padding: 2px 8px; border-radius: 12px;">
               ${statusLabel}
@@ -931,7 +938,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div style="padding-left: 12px;">
           <div style="width: 48px; height: 48px; border-radius: 50%; background: ${statusColor}20; display: flex; align-items: center; justify-content: center;">
-            <i class="fa-solid fa-train" style="font-size: 1.5em; color: ${statusColor};"></i>
+            <i class="fa-kit fa-lta-to-right" style="font-size: 1.5em; color: ${statusColor};"></i>
           </div>
         </div>
       </div>

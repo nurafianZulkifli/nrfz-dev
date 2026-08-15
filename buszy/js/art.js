@@ -166,8 +166,7 @@ let busStopsPromise = null;
 let currentLocationMarker = null; // Track the current location marker across button clicks
 let currentLocationCircle = null; // Track the current location accuracy circle
 let activeMapServiceNo = null; // Track which service is currently shown on the map
-// let scrollToServiceNo = new URLSearchParams(window.location.search).get('ServiceNo') || null; // Scroll to this service on first render
-let scrollToServiceNo = null; // Scroll to this service on first render (disabled - notify feature removed)
+let scrollToServiceNo = new URLSearchParams(window.location.search).get('ServiceNo') || null; // Scroll to this service on first render
 let busMarkers = []; // [{marker, lat, lng, estimatedArrival, busLabel}] for live position updates
 let mapRefreshIntervalId = null; // Dedicated fast interval for map position updates
 
@@ -191,6 +190,81 @@ function updateBottomTimingsBtn(code) {
         link.href = getBasePath() + 'buszy/first-last.html?BusStopCode=' + encodeURIComponent(code.trim());
     }
 }
+
+// Update countdown bar progress
+function updateCountdownBars() {
+    const now = new Date();
+    const countdownBars = document.querySelectorAll('.countdown-bar-container');
+    let hasImminent = false; // Track if any bus is within 10 seconds of arrival
+    const BLINK_WINDOW = 30000; // Only blink for 30 seconds after arrival, then bus has departed
+    
+    countdownBars.forEach(container => {
+        const arrivalTimeStr = container.getAttribute('data-arrival');
+        const barElement = container.querySelector('.countdown-bar');
+        
+        if (!barElement) return;
+        
+        if (!arrivalTimeStr) {
+            // If no arrival time, clear all states
+            barElement.classList.remove('arrived');
+            barElement.style.width = '0%';
+            return;
+        }
+        
+        const arrivalTime = new Date(arrivalTimeStr);
+        const timeDifference = arrivalTime - now; // milliseconds until arrival
+        
+        // Always start by removing the blinking class, then conditionally re-add
+        barElement.classList.remove('arrived');
+        
+        // Check if the corresponding bus-time span shows "Arr" (same logic as ib-time.arrived)
+        // Look for the bus-time span in the parent container
+        const parentDiv = container.parentElement;
+        const busTimeSpan = parentDiv ? parentDiv.querySelector('.bus-time') : null;
+        const isArrived = busTimeSpan && busTimeSpan.textContent.includes('Arr');
+        
+        // Only show blinking if bus is within the arrival window (0 to -30 seconds after arrival)
+        // OR if the bus-time span explicitly shows "Arr"
+        if ((timeDifference <= 0 && timeDifference > -BLINK_WINDOW) || isArrived) {
+            barElement.style.width = '100%';
+            barElement.classList.add('arrived');
+            return;
+        }
+        
+        // If bus is more than 30 seconds in the past, hide the bar
+        if (timeDifference <= -BLINK_WINDOW) {
+            barElement.style.width = '0%';
+            return;
+        }
+        
+        // Check if bus is imminent (within 10 seconds)
+        if (timeDifference <= 10000) {
+            hasImminent = true;
+        }
+        
+        // Define a window for countdown display
+        // Use 20 minutes as the "full" countdown duration
+        // This means the bar will be at 0% when 20+ min away, and 100% at arrival
+        const countdownWindow = 20 * 60 * 1000; // 20 minutes in milliseconds
+        
+        // Calculate percentage: how much time has passed since we were 20 minutes away
+        // Time passed = countdownWindow - timeDifference
+        const timePassed = countdownWindow - timeDifference;
+        
+        // Percentage: 0% when timeDifference >= countdownWindow, 100% when timeDifference <= 0
+        let percentage = Math.max(0, Math.min(100, (timePassed / countdownWindow) * 100));
+        
+        barElement.style.width = percentage + '%';
+    });
+    
+    // If any bus is imminent, trigger next update faster for responsiveness
+    if (hasImminent && window._countdownIntervalMode !== 'fast') {
+        window._countdownIntervalMode = 'fast';
+        // Schedule a very fast follow-up update (10ms) for ultra-responsive feedback
+        setTimeout(updateCountdownBars, 10);
+    }
+}
+
 
 // Fetch only bus locations for the active map service and update markers in-place
 async function refreshActiveMapMarkers() {
@@ -326,38 +400,38 @@ function getBusStops() {
 // :: Bus Arrivals Fetching and Display
 // ****************************
 
-// // Handle NOTIF_NAVIGATE message from service worker notificationclick (DISABLED - notify feature removed)
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.addEventListener('message', event => {
-//         if (event.data?.type === 'NOTIF_NAVIGATE' && event.data.url) {
-//             window.location.href = event.data.url;
-//         }
-//     });
-// }
+// Handle NOTIF_NAVIGATE message from service worker notificationclick
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.addEventListener('message', event => {
+        if (event.data?.type === 'NOTIF_NAVIGATE' && event.data.url) {
+            window.location.href = event.data.url;
+        }
+    });
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // // Re-register active push subscriptions with the server (restores after server restart/dyno wake) (DISABLED - notify feature removed)
-    // if (window.BuszyPushNotify) BuszyPushNotify.reRegisterAll();
+    // Re-register active push subscriptions with the server (restores after server restart/dyno wake)
+    if (window.BuszyPushNotify) BuszyPushNotify.reRegisterAll();
 
-    // // Check for a pending notification navigation stored by the service worker. (DISABLED - notify feature removed)
-    // // Needed when the browser navigated to this page without query params (e.g. after
-    // // a client.navigate() that dropped params, or a postMessage redirect chain).
-    // if ('caches' in window && !new URLSearchParams(window.location.search).get('BusStopCode')) {
-    //     try {
-    //         const cache = await caches.open('buszy-notif-pending');
-    //         const resp = await cache.match('pending-nav');
-    //         if (resp) {
-    //             const pending = await resp.json();
-    //             await cache.delete('pending-nav');
-    //             if (pending.busStopCode && Date.now() - pending.ts < 30000) {
-    //                 let dest = 'art.html?BusStopCode=' + encodeURIComponent(pending.busStopCode);
-    //                 if (pending.serviceNo) dest += '&ServiceNo=' + encodeURIComponent(pending.serviceNo);
-    //                 window.location.replace(dest);
-    //                 return;
-    //             }
-    //         }
-    //     } catch {}
-    // }
+    // Check for a pending notification navigation stored by the service worker.
+    // Needed when the browser navigated to this page without query params (e.g. after
+    // a client.navigate() that dropped params, or a postMessage redirect chain).
+    if ('caches' in window && !new URLSearchParams(window.location.search).get('BusStopCode')) {
+        try {
+            const cache = await caches.open('buszy-notif-pending');
+            const resp = await cache.match('pending-nav');
+            if (resp) {
+                const pending = await resp.json();
+                await cache.delete('pending-nav');
+                if (pending.busStopCode && Date.now() - pending.ts < 30000) {
+                    let dest = 'art.html?BusStopCode=' + encodeURIComponent(pending.busStopCode);
+                    if (pending.serviceNo) dest += '&ServiceNo=' + encodeURIComponent(pending.serviceNo);
+                    window.location.replace(dest);
+                    return;
+                }
+            }
+        } catch {}
+    }
 
     // Apply fleet legend visibility setting
     function applyFleetLegendVisibility() {
@@ -527,6 +601,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Setup dynamic refresh interval
     let refreshIntervalId = null;
+    let countdownBarIntervalId = null;
 
     function startRefreshInterval() {
         // Clear existing interval if any
@@ -542,8 +617,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         refreshIntervalId = setInterval(fetchBusArrivals, refreshMs);
     }
 
+    function startCountdownBarInterval() {
+        // Clear existing interval if any
+        if (countdownBarIntervalId !== null) {
+            clearInterval(countdownBarIntervalId);
+        }
+        // Update countdown bars every 100ms for precise timing, especially for "Arr" display
+        // This ensures immediate visual feedback when buses reach arrival status
+        countdownBarIntervalId = setInterval(updateCountdownBars, 100);
+    }
+
     // Start the refresh interval on page load
     startRefreshInterval();
+    startCountdownBarInterval();
     startMapRefreshInterval();
 
     // Re-fetch immediately when the tab becomes visible again after being backgrounded.
@@ -916,7 +1002,17 @@ async function fetchBusArrivals() {
                         }
                     }
                 });
+                // Update countdown bar data-arrival attributes to prevent visual resets
+                const countdownContainers = cardBt.querySelectorAll('.countdown-bar-container');
+                if (hasNextBus && countdownContainers[0] && service.NextBus?.EstimatedArrival) {
+                    countdownContainers[0].setAttribute('data-arrival', service.NextBus.EstimatedArrival);
+                }
+                if (hasNextBus2 && countdownContainers[1] && service.NextBus2?.EstimatedArrival) {
+                    countdownContainers[1].setAttribute('data-arrival', service.NextBus2.EstimatedArrival);
+                }
             });
+            // Update countdown bars
+            updateCountdownBars();
             return;
         }
 
@@ -969,29 +1065,33 @@ async function fetchBusArrivals() {
                                 ${!serviceExists(service.ServiceNo) ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
                                 <i class="fa-kit fa-lta-bus-stop"></i>
                             </button>
-                            <!-- DISABLED - notify feature removed
                             <button class="btn btn-busloc btn-sm notif-toggle-btn" data-service="${service.ServiceNo}" data-stop="${busStopCode}" title="Notify me when this bus is arriving">
                                 <i class="fa-regular fa-bell"></i>&nbsp;<span class="notif-label"></span>
                             </button>
-                            -->
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="card-content-art">
                             ${hasNextBus ? `
-                            <div class="busNo-card d-flex justify-content-between">
-                                <span class="bus-time">${service.NextBus?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '--'}</span>
-                                <span class="load-icon-container" data-bus="next" style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
-                                    ${getLoadIcon(service.NextBus?.Load, service.NextBus?.Type)}
-                                </span>
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.3rem;">
+                                <div class="busNo-card d-flex justify-content-between">
+                                    <span class="bus-time" data-arrival="${service.NextBus?.EstimatedArrival || ''}">${service.NextBus?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus.EstimatedArrival, now) : '--'}</span>
+                                    <span class="load-icon-container" data-bus="next" style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
+                                        ${getLoadIcon(service.NextBus?.Load, service.NextBus?.Type)}
+                                    </span>
+                                </div>
+                                ${service.NextBus?.EstimatedArrival ? `<div class="countdown-bar-container" data-arrival="${service.NextBus.EstimatedArrival}"><div class="countdown-bar"></div></div>` : ''}
                             </div>
                             ` : `<div style="padding: 0.5rem; color: #999; font-size: 0.9rem;">No arrival data</div>`}
                             ${hasNextBus2 ? `
-                            <div class="busNo-card d-flex justify-content-between">
-                                <span class="bus-time">${service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : '--'}</span>
-                                <span class="load-icon-container" data-bus="next2" style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
-                                    ${getLoadIcon(service.NextBus2?.Load, service.NextBus2?.Type)}
-                                </span>
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.3rem;">
+                                <div class="busNo-card d-flex justify-content-between">
+                                    <span class="bus-time" data-arrival="${service.NextBus2?.EstimatedArrival || ''}">${service.NextBus2?.EstimatedArrival ? formatArrivalTimeOrArr(service.NextBus2.EstimatedArrival, now) : '--'}</span>
+                                    <span class="load-icon-container" data-bus="next2" style="display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;">
+                                        ${getLoadIcon(service.NextBus2?.Load, service.NextBus2?.Type)}
+                                    </span>
+                                </div>
+                                ${service.NextBus2?.EstimatedArrival ? `<div class="countdown-bar-container" data-arrival="${service.NextBus2.EstimatedArrival}"><div class="countdown-bar"></div></div>` : ''}
                             </div>
                             ` : ''}
                         </div>
@@ -1016,18 +1116,18 @@ async function fetchBusArrivals() {
             renderedBusStopCode = searchInput;
             showBottomTimingsBtn(searchInput);
 
-            // // If opened from a notification, scroll to and briefly highlight the notified service (DISABLED - notify feature removed)
-            // if (scrollToServiceNo) {
-            //     const targetCard = container.querySelector(`.card-bt[data-service="${scrollToServiceNo}"]`);
-            //     if (targetCard) {
-            //         setTimeout(() => {
-            //             targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            //             targetCard.classList.add('notif-highlight');
-            //             setTimeout(() => targetCard.classList.remove('notif-highlight'), 2000);
-            //         }, 150);
-            //     }
-            //     scrollToServiceNo = null; // Only do this once
-            // }
+            // If opened from a notification, scroll to and briefly highlight the notified service
+            if (scrollToServiceNo) {
+                const targetCard = container.querySelector(`.card-bt[data-service="${scrollToServiceNo}"]`);
+                if (targetCard) {
+                    setTimeout(() => {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        targetCard.classList.add('notif-highlight');
+                        setTimeout(() => targetCard.classList.remove('notif-highlight'), 2000);
+                    }, 150);
+                }
+                scrollToServiceNo = null; // Only do this once
+            }
 
             // Restore expanded state without animation
             expandedServices.forEach(serviceNo => {
@@ -1044,6 +1144,9 @@ async function fetchBusArrivals() {
                 }
             });
         }
+
+        // Update countdown bars on both initial load and in-place updates
+        updateCountdownBars();
 
         // Only add event listeners if the DOM was updated
         if (didUpdate) {
@@ -1352,19 +1455,19 @@ async function fetchBusArrivals() {
                 });
             });
 
-            // // Add event listeners to "Notify" buttons (DISABLED - notify feature removed)
-            // if (window.BuszyPushNotify) {
-            //     const notifButtons = document.querySelectorAll('.notif-toggle-btn');
-            //     notifButtons.forEach((btn) => {
-            //         btn.addEventListener('click', () => {
-            //             const stopCode = btn.getAttribute('data-stop');
-            //             const serviceNo = btn.getAttribute('data-service');
-            //             BuszyPushNotify.toggle(stopCode, serviceNo, btn);
-            //         });
-            //     });
-            //
-            //     BuszyPushNotify.restoreButtonStates();
-            // }
+            // Add event listeners to "Notify" buttons
+            if (window.BuszyPushNotify) {
+                const notifButtons = document.querySelectorAll('.notif-toggle-btn');
+                notifButtons.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const stopCode = btn.getAttribute('data-stop');
+                        const serviceNo = btn.getAttribute('data-service');
+                        BuszyPushNotify.toggle(stopCode, serviceNo, btn);
+                    });
+                });
+
+                BuszyPushNotify.restoreButtonStates();
+            }
 
         }
 
