@@ -104,12 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
     return `
       <div style="margin-top: 1.5em; text-align: left; max-width: 420px; margin-left: auto; margin-right: auto; border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px; overflow: hidden;">
         <div style="padding: 10px 12px; background: var(--card-bg-alt, #f5f5f5); font-weight: 700; font-size: 0.85em; display: flex; justify-content: space-between;">
-          <span>Estimated Frequency</span>
+          <span>Period:</span>
           <span>${periodLabel}</span>
         </div>
         ${rows}
         <div style="padding: 8px 12px; font-size: 0.75em; color: var(--text-secondary, #999);">
-          ~ Estimated from typical service intervals, not live train positions.
+          ~ Timings provided are estimates and may vary.
         </div>
       </div>
     `;
@@ -579,10 +579,10 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     } else {
       stationLiveStatus.innerHTML = `
-        <div style="text-align: center; padding: 1em;">
-          <p style="color: #4CAF50;"><i class="fa-solid fa-circle-check"></i> <strong>No reported delays</strong></p>
-          ${renderHeadwayEstimates(station.lineKeys)}
+        <div class="alert alert-success" role="alert">
+          <i class="fa-solid fa-circle-check"></i> <strong>No reported delays</strong>
         </div>
+        ${renderHeadwayEstimates(station.lineKeys)}
       `;
     }
 
@@ -856,23 +856,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Create a schedule card
+  // Create a schedule card as a Bootstrap alert — variant mirrors the severity
+  // colours rail-buddy/index.html's tsa.js uses (major=danger, minor=warning, on-time=success).
   function createScheduleCard(schedule) {
-    const card = document.createElement('div');
-    card.className = 'schedule-card';
-    card.style.cssText = `
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 12px;
-      background: var(--card-bg, #ffffff);
-      transition: box-shadow 0.3s ease;
-    `;
-
-    const statusColors = {
-      1: '#4CAF50', // On-time - Green
-      2: '#FF9800', // Delayed (<5min) - Orange
-      3: '#f44336'  // Heavily Delayed (>5min) - Red
+    const statusVariants = {
+      1: 'success', // On-time
+      2: 'warning', // Delayed (<5min)
+      3: 'danger'   // Heavily Delayed (>5min)
     };
 
     const statusText = {
@@ -881,8 +871,12 @@ document.addEventListener('DOMContentLoaded', function() {
       3: 'Major Delay'
     };
 
-    const statusColor = statusColors[schedule.status] || '#999999';
+    const variant = statusVariants[schedule.status] || 'secondary';
     const statusLabel = statusText[schedule.status] || 'Unknown';
+
+    const card = document.createElement('div');
+    card.className = `alert alert-${variant}`;
+    card.setAttribute('role', 'alert');
 
     // Format times if available
     const arrivalStr = schedule.arrivalTime 
@@ -902,52 +896,42 @@ document.addEventListener('DOMContentLoaded', function() {
       <div style="display: flex; justify-content: space-between; align-items: start;">
         <div style="flex: 1;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-            <span style="font-weight: bold; font-size: 1.1em; color: ${statusColor};">
+            <span style="font-weight: bold; font-size: 1.1em;">
               <i class="fa-kit fa-lta-to-right"></i> Route ${schedule.routeId}
             </span>
-            <span style="font-size: 0.75em; background: ${statusColor}; color: white; padding: 2px 8px; border-radius: 12px;">
+            <span class="badge bg-${variant}">
               ${statusLabel}
             </span>
           </div>
-          <div style="font-size: 0.85em; color: var(--text-secondary, #666666); margin-bottom: 4px; font-family: monospace;">
+          <div style="font-size: 0.85em; margin-bottom: 4px; font-family: monospace;">
             Trip: ${schedule.tripId}
           </div>
-          <div style="font-size: 0.8em; color: var(--text-secondary, #999999); margin-bottom: 8px;">
+          <div style="font-size: 0.8em; margin-bottom: 8px;">
             🚉 Stop #${schedule.stopSequence} (${schedule.stopId})
           </div>
-          <div style="font-size: 0.8em; color: var(--text-secondary, #999999); margin-bottom: 8px;">
+          <div style="font-size: 0.8em; margin-bottom: 8px;">
             🚆 ${vehicleInfo}
           </div>
           <div style="display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap;">
             <div>
-              <div style="font-size: 0.8em; color: var(--text-secondary, #999999);">Arrival</div>
+              <div style="font-size: 0.8em;">Arrival</div>
               <div style="font-weight: bold; font-size: 1em;">${arrivalStr}</div>
             </div>
             <div>
-              <div style="font-size: 0.8em; color: var(--text-secondary, #999999);">Departure</div>
+              <div style="font-size: 0.8em;">Departure</div>
               <div style="font-weight: bold; font-size: 1em;">${departureStr}</div>
             </div>
             <div>
-              <div style="font-size: 0.8em; color: var(--text-secondary, #999999);">Delay</div>
-              <div style="font-weight: bold; font-size: 1em; color: ${statusColor};">${delayText}</div>
+              <div style="font-size: 0.8em;">Delay</div>
+              <div style="font-weight: bold; font-size: 1em;">${delayText}</div>
             </div>
           </div>
         </div>
         <div style="padding-left: 12px;">
-          <div style="width: 48px; height: 48px; border-radius: 50%; background: ${statusColor}20; display: flex; align-items: center; justify-content: center;">
-            <i class="fa-kit fa-lta-to-right" style="font-size: 1.5em; color: ${statusColor};"></i>
-          </div>
+          <i class="fa-kit fa-lta-to-right" style="font-size: 1.5em;"></i>
         </div>
       </div>
     `;
-
-    card.addEventListener('mouseenter', () => {
-      card.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.boxShadow = 'none';
-    });
 
     return card;
   }

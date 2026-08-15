@@ -440,6 +440,24 @@ body.dark-mode .no-data {
     color: #777;
 }
 
+/* Bootstrap 5.3 derives .alert/.badge colours from these custom properties —
+   swap in Bootstrap's own [data-bs-theme=dark] values since this app toggles
+   dark mode via .dark-mode instead of the data-bs-theme attribute. */
+body.dark-mode {
+    --bs-success-text-emphasis: #75b798;
+    --bs-success-bg-subtle: #051b11;
+    --bs-success-border-subtle: #0f5132;
+    --bs-warning-text-emphasis: #ffda6a;
+    --bs-warning-bg-subtle: #332701;
+    --bs-warning-border-subtle: #997404;
+    --bs-danger-text-emphasis: #ea868f;
+    --bs-danger-bg-subtle: #2c0b0e;
+    --bs-danger-border-subtle: #842029;
+    --bs-secondary-text-emphasis: #a7acb1;
+    --bs-secondary-bg-subtle: #161719;
+    --bs-secondary-border-subtle: #41464b;
+}
+
 body.dark-mode .loading {
     color: #91a5be;
 }
