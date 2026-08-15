@@ -129,6 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
     DT: 'DTL', TE: 'TEL', NE: 'NEL', BP: 'BP', SE: 'SK', SW: 'SK', PE: 'PG', PW: 'PG'
   };
 
+  // Official line colours, keyed the same way as LINE_PREFIX_MAP's values — used for the station-code caplets
+  const LINE_COLORS = {
+    NSL: '#c41e3a', EWL: '#009645', CCL: '#fa9e0d', DTL: '#005ec8',
+    TEL: '#926437', NEL: '#9d27b5', BP: '#708472', SK: '#708472', PG: '#708472'
+  };
+
   function extractLinePrefixes(codeString) {
     if (!codeString) return [];
     // e.g. "NS1/EW24" or "DT1 Bukit Panjang" -> ["NS", "EW"] / ["DT"]
@@ -137,6 +143,53 @@ document.addEventListener('DOMContentLoaded', function() {
     return [...new Set(prefixes)]
       .map(p => LINE_PREFIX_MAP[p])
       .filter(Boolean);
+  }
+
+  // Render one or more station codes (e.g. ["NS1", "EW24"]) as a joined caplet,
+  // matching the interchange badge style used on the network map pages.
+  // `labels` optionally overrides the displayed text per code (e.g. show "CCL" while colouring by "CC").
+  function renderCodeCaplet(codes, labels) {
+    if (!codes || codes.length === 0) return '';
+    return `<span style="display: inline-flex; margin-right: 6px; vertical-align: middle;">${codes.map((code, i) => {
+      const prefix = (code.match(/[A-Za-z]+/) || [''])[0].toUpperCase();
+      const lineKey = LINE_PREFIX_MAP[prefix];
+      const bg = LINE_COLORS[lineKey] || '#666666';
+      const color = lineKey === 'CCL' ? '#000' : '#fff';
+      const isFirst = i === 0;
+      const isLast = i === codes.length - 1;
+      const radius = codes.length === 1
+        ? '13.6px / 19.2px'
+        : isFirst ? '13.6px 0 0 13.6px / 19.2px 0 0 19.2px'
+        : isLast ? '0 13.6px 13.6px 0 / 0 19.2px 19.2px 0'
+        : '0';
+      const borderStyle = codes.length === 1
+        ? 'border: 2px solid #fff;'
+        : isFirst ? 'border: 2px solid #fff; border-right: none;'
+        : isLast ? 'border: 2px solid #fff; border-left: none;'
+        : 'border-top: 2px solid #fff; border-bottom: 2px solid #fff;';
+      // Always display with a space between the line prefix and number (e.g. "NE 1"),
+      // regardless of whether the source data has "NE1" or "NE 1" — display-only, safe across re-scrapes.
+      const label = (labels && labels[i]) || code.replace(/^([A-Za-z]+)\s*(\d+)$/, '$1 $2');
+      return `<span style="background: ${bg}; color: ${color}; font-weight: bold; border-radius: ${radius}; padding: 4px 7px; font-size: 0.7em; letter-spacing: 0.5px; ${borderStyle}">${label}</span>`;
+    }).join('')}</span>`;
+  }
+
+  // Extracts leading station codes from a direction description (e.g. "To NS1 EW24 Jurong East")
+  // and re-renders them as caplets, e.g. "To [NS1][EW24] Jurong East"
+  function formatDirectionDescription(description) {
+    // Circle Line loop directions have no station codes — use the CCL line caplet instead
+    const cwMatch = description.match(/^(CLOCKWISE|ANTICLOCKWISE)\b(.*)$/i);
+    if (cwMatch) {
+      const [, word, rest] = cwMatch;
+      const label = word[0].toUpperCase() + word.slice(1).toLowerCase();
+      return `${renderCodeCaplet(['CC'], ['CCL'])} ${label}${rest}`;
+    }
+
+    const match = description.match(/^(To\s+)((?:[A-Za-z]{2}\s*\d+\s*)+)(.+)$/);
+    if (!match) return description;
+    const [, prefix, codesStr, name] = match;
+    const codes = (codesStr.match(/[A-Za-z]{2}\s*\d+/g) || []).map(c => c.replace(/\s+/g, ''));
+    return `${prefix}${renderCodeCaplet(codes)}${name}`;
   }
 
   async function loadStationData() {
@@ -171,10 +224,10 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       sbsFtLtData.forEach((s, i) => {
-        // SBS station strings look like "DT1 Bukit Panjang" or "East Loop"
-        const codeMatch = s.station.match(/^([A-Za-z]{2}\d+)\s+(.+)$/);
-        const code = codeMatch ? codeMatch[1] : '';
-        const displayName = codeMatch ? codeMatch[2] : s.station;
+        // SBS station strings look like "DT1 Bukit Panjang", "DT 1 Bukit Panjang" or "East Loop"
+        const codeMatch = s.station.match(/^([A-Za-z]{2})\s*(\d+)\s+(.+)$/);
+        const code = codeMatch ? `${codeMatch[1]}${codeMatch[2]}` : '';
+        const displayName = codeMatch ? codeMatch[3] : s.station;
         stationIndex.push({
           name: displayName,
           code,
@@ -458,7 +511,7 @@ document.addEventListener('DOMContentLoaded', function() {
           nextTrainLabel = calculateArrivingLabel(firstTrain);
         }
         
-        upcomingTrainsHtml = `<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div style="background: var(--card-bg-alt, #f0f0f0); color: var(--text-primary, #333); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; font-weight: 600; border: 1px solid var(--border-color, #ddd);">${time}</div>`).join('')}</div>`;
+        upcomingTrainsHtml = `<div class="upcoming-trains-list" style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div class="train-time-chip" data-time="${time}" style="background: var(--card-bg-alt, #f0f0f0); color: var(--text-primary, #333); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; font-weight: 600; border: 1px solid var(--border-color, #ddd);">${time}</div>`).join('')}</div>`;
       }
     }
 
@@ -473,15 +526,43 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
 
     return `
-      <div style="border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; background: var(--card-bg, #fff);">
-        <div style="font-weight: 700; margin-bottom: 8px;"><i class="fa-solid fa-train"></i> ${direction.description}</div>
+      <div class="direction-card" data-upcoming-trains='${JSON.stringify(upcomingTrains)}' style="border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; background: var(--card-bg, #fff);">
+        <div style="font-weight: 700; margin-bottom: 8px;"><i class="fa-solid fa-train"></i> ${formatDirectionDescription(direction.description)}</div>
         ${nextTrainChip}
       </div>
     `;
   }
 
+  // North South Line schedule data includes short-turn/variant destinations (e.g. NS19, NS16, NS7) —
+  // only the two full-line termini render as primary direction cards, the rest as "Service Variants".
+  const NS_MAIN_TERMINI = new Set(['To NS1 EW24 Jurong East', 'To NS28 Marina South Pier']);
+  function isNSVariant(description) {
+    return /^To NS\d+/.test(description) && !NS_MAIN_TERMINI.has(description);
+  }
+
+  function renderServiceVariantsCard(variants) {
+    if (!variants || variants.length === 0) return '';
+    const rows = variants.map(d => `
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border-color, #eee);">
+        <span>${formatDirectionDescription(d.description)}</span>
+      </div>
+    `).join('');
+    return `
+      <div style="border: 1px dashed var(--border-color, #e0e0e0); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; background: var(--card-bg-alt, #f9f9f9);">
+        <div style="font-weight: 700; margin-bottom: 4px; font-size: 0.9em; color: var(--text-secondary, #666);"><i class="fa-solid fa-code-branch"></i> Service Variants</div>
+        <div style="font-size: 0.75em; color: var(--text-secondary, #999); margin-bottom: 8px;">
+          Short trips that only run during specific periods (e.g. late nights) — Refer to station display.
+        </div>
+        ${rows}
+      </div>
+    `;
+  }
+
   function renderStationPanel(station) {
-    stationTitle.textContent = station.code ? `${station.code} ${station.name}` : station.name;
+    const titleCodes = (station.code || '').split(/[\/\s]+/).filter(c => /^[A-Za-z]{2}\d+$/.test(c));
+    stationTitle.innerHTML = titleCodes.length > 0
+      ? `${renderCodeCaplet(titleCodes)} ${station.name}`
+      : station.name;
     stationSubtitle.textContent = station.source === 'smrt' ? 'SMRT' : 'SBS Transit';
 
     // Live status: real delay/cancellation data takes priority over the estimate
@@ -501,8 +582,11 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     }
 
+    const mainDirections = station.directions.filter(d => !isNSVariant(d.description));
+    const variantDirections = station.directions.filter(d => isNSVariant(d.description));
+
     stationDirections.innerHTML = station.directions.length > 0
-      ? station.directions.map(d => renderStationDirectionCard(d, station.lineKeys)).join('')
+      ? mainDirections.map(d => renderStationDirectionCard(d, station.lineKeys)).join('') + renderServiceVariantsCard(variantDirections)
       : '<p style="color: var(--text-secondary, #666);">No timing data available.</p>';
     
     // Update ETA labels immediately after rendering
@@ -885,20 +969,55 @@ document.addEventListener('DOMContentLoaded', function() {
     displaySchedules();
   }
 
-  // Real-time ETA updater - updates "Arriving in" every second
+  // A train time is considered fully passed (and safe to drop) once it has been
+  // in the "Arrived" state for at least a minute — matches calculateArrivingLabel's
+  // own "Arrived" threshold (secondsUntil <= -60).
+  function hasTrainTimePassed(trainTimeHHMM) {
+    const now = new Date();
+    const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const [h, m] = trainTimeHHMM.split(':').map(Number);
+    if (Number.isNaN(h) || Number.isNaN(m)) return false;
+    let secondsUntil = (h * 3600 + m * 60) - nowSeconds;
+    if (secondsUntil < -43200) secondsUntil += 24 * 3600; // midnight wraparound
+    return secondsUntil <= -60;
+  }
+
+  // Real-time ETA updater - runs every second. Removes train times that have
+  // passed (and been in "Arrived" state for a minute) and advances the ETA
+  // label to the next remaining upcoming train.
   function updateETALabels() {
-    // Find all ETA labels with non-empty data-train-time attribute
-    const labels = document.querySelectorAll('.eta-label');
-    if (labels.length === 0) {
-      console.log('[ETA Update] No eta-label elements found');
+    const cards = document.querySelectorAll('.direction-card');
+    if (cards.length === 0) {
+      console.log('[ETA Update] No direction-card elements found');
       return;
     }
-    
-    labels.forEach(span => {
-      const trainTimeStr = span.getAttribute('data-train-time');
-      if (trainTimeStr && trainTimeStr.trim() && trainTimeStr.includes(':')) {
-        const label = calculateArrivingLabel(trainTimeStr);
-        span.textContent = label;
+
+    cards.forEach(card => {
+      const etaLabel = card.querySelector('.eta-label');
+      let upcomingTrains = [];
+      try {
+        upcomingTrains = JSON.parse(card.getAttribute('data-upcoming-trains') || '[]');
+      } catch (e) {
+        upcomingTrains = [];
+      }
+
+      // Drop any times that have passed, removing their chip from the DOM too
+      const remaining = upcomingTrains.filter(time => !hasTrainTimePassed(time));
+      if (remaining.length !== upcomingTrains.length) {
+        const removed = upcomingTrains.filter(time => !remaining.includes(time));
+        removed.forEach(time => {
+          const chip = card.querySelector(`.train-time-chip[data-time="${time}"]`);
+          if (chip) chip.remove();
+        });
+        card.setAttribute('data-upcoming-trains', JSON.stringify(remaining));
+      }
+
+      if (etaLabel) {
+        const nextTime = remaining.length > 0 ? remaining[0] : '';
+        if (etaLabel.getAttribute('data-train-time') !== nextTime) {
+          etaLabel.setAttribute('data-train-time', nextTime);
+        }
+        etaLabel.textContent = nextTime ? calculateArrivingLabel(nextTime) : 'No ETA';
       }
     });
   }
