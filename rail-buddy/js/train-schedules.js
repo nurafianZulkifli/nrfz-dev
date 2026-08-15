@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const TRAIN_SCHEDULES_CACHE_KEY = 'railbuddy_train_schedules_cache';
   const TRAIN_SCHEDULES_DATA_KEY = 'railbuddy_train_schedules_data';
+  const SELECTED_STATION_KEY = 'railbuddy_selected_station';
   const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
   
   let allSchedules = [];
@@ -321,6 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const headwayMin = line[keyMap[period]];
         const now = new Date();
         const nowMin = now.getHours() * 60 + now.getMinutes();
+        const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
         
         // Get first/last train times for filtering
         const dayKey = getTodayDayKey();
@@ -330,9 +332,32 @@ document.addEventListener('DOMContentLoaded', function() {
         const lastTrainMin = lastTrainStr && lastTrainStr !== '--' ? parseHHMMToMinutes(lastTrainStr) : null;
         
         // Compute next 3-4 trains
-        const upcomingTrains = [];
-        for (let i = 0; i < 4; i++) {
-          let etaMin = nowMin + (i + 1) * headwayMin - (nowMin % Math.round(headwayMin));
+        const upcomingTrainSet = new Set();
+        
+        // First, check if a train is due right now (within 2 minutes before to 1 minute after the headway interval boundary)
+        const intervalBoundary = (Math.floor(nowMin / headwayMin)) * headwayMin;
+        const timeSinceBoundary = nowMin - intervalBoundary;
+        
+        // If we're close to a train interval (within the grace period), include it
+        let startIndex = 0;
+        if (timeSinceBoundary >= -2 && timeSinceBoundary <= 1) {
+          // Include the train at the current interval boundary
+          startIndex = 0;
+        } else if (timeSinceBoundary < -2) {
+          // Train is coming soon
+          startIndex = 0;
+        } else {
+          // Move to next interval
+          startIndex = 1;
+        }
+        
+        for (let i = startIndex; i < startIndex + 4; i++) {
+          let etaMin = intervalBoundary + i * headwayMin;
+          
+          // Ensure we don't go backwards
+          if (etaMin <= nowMin) {
+            etaMin += headwayMin;
+          }
           
           // Handle day wraparound
           let etaHour = Math.floor(etaMin / 60);
@@ -370,11 +395,24 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           
           if (isWithinHours) {
-            upcomingTrains.push(etaStr);
+            upcomingTrainSet.add(etaStr);
           }
         }
         
+        const upcomingTrains = Array.from(upcomingTrainSet);
+        
+        // Debug logging
+        if (upcomingTrains.length === 0) {
+          console.warn(`[Train Calc] No trains found for ${direction.name}. headway=${headwayMin}min, now=${nowMin}min, boundary=${intervalBoundary}, interval=${headwayMin}`);
+        } else {
+          console.log(`[Train Calc] Trains for ${direction.name}: ${upcomingTrains.join(', ')} (headway=${headwayMin}, now=${nowMin})`);
+        }
+        
         // Calculate "Arriving in" based on first upcoming train
+        if (upcomingTrains.length > 0) {
+          const firstTrain = upcomingTrains[0];
+          console.log(`[Train Calc] Setting data-train-time to: ${firstTrain}`);
+        }
         if (upcomingTrains.length > 0) {
           const firstTrain = upcomingTrains[0];
           const [trainHour, trainMinute] = firstTrain.split(':').map(Number);
@@ -437,6 +475,9 @@ document.addEventListener('DOMContentLoaded', function() {
     stationDirections.innerHTML = station.directions.length > 0
       ? station.directions.map(d => renderStationDirectionCard(d, station.lineKeys)).join('')
       : '<p style="color: var(--text-secondary, #666);">No timing data available.</p>';
+    
+    // Update ETA labels immediately after rendering
+    updateETALabels();
   }
 
   function showStationPanel() {
@@ -451,6 +492,7 @@ document.addEventListener('DOMContentLoaded', function() {
     contentSection.style.display = 'block';
     selectedStation = null;
     stationDropdown.value = '';
+    localStorage.removeItem(SELECTED_STATION_KEY);
   }
 
   // Parse train alerts into schedule format
@@ -820,10 +862,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Use total seconds since midnight for more accurate calculation
     const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
     
-    // Find all ETA labels with data-train-time attribute
-    document.querySelectorAll('.eta-label[data-train-time]').forEach(span => {
+    // Find all ETA labels with non-empty data-train-time attribute
+    const labels = document.querySelectorAll('.eta-label');
+    if (labels.length === 0) {
+      console.log('[ETA Update] No eta-label elements found');
+      return;
+    }
+    
+    labels.forEach(span => {
       const trainTimeStr = span.getAttribute('data-train-time');
-      if (trainTimeStr && trainTimeStr.includes(':')) {
+      if (trainTimeStr && trainTimeStr.trim() && trainTimeStr.includes(':')) {
         try {
           const [trainHour, trainMinute] = trainTimeStr.split(':').map(Number);
           const trainTotalSeconds = trainHour * 3600 + trainMinute * 60;
@@ -1004,6 +1052,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       selectedStation = stationIndex.find(s => s.value === value);
       if (selectedStation) {
+        localStorage.setItem(SELECTED_STATION_KEY, value);
         renderStationPanel(selectedStation);
         showStationPanel();
       }
@@ -1027,7 +1076,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Initial load
-  loadStationData();
+  loadStationData().then(() => {
+    // Restore previously selected station if available
+    const savedStationValue = localStorage.getItem(SELECTED_STATION_KEY);
+    if (savedStationValue) {
+      stationDropdown.value = savedStationValue;
+      selectedStation = stationIndex.find(s => s.value === savedStationValue);
+      if (selectedStation) {
+        renderStationPanel(selectedStation);
+        showStationPanel();
+      }
+    }
+  });
   loadHeadwayData().then(() => {
     // Re-render if the schedules already loaded before headway data arrived
     if (allTrainsOnSchedule) displaySchedules();
