@@ -337,6 +337,19 @@ body.dark-mode .spinner {
     color: #e74c3c;
 }
 
+.train-time-chip {
+    background: #fff;
+    padding: 7px 10px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+body.dark-mode .train-time-chip {
+    background: #1c1f2b;
+    border-radius: 15px;
+}
+
 body.dark-mode .selector-section {
     background: #1c1f2b;
     border: 1px solid #2b2b2b33;

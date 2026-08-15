@@ -1138,7 +1138,7 @@
         }
       },
       {
-        "description": "First train service terminating at NS13 Yishun",
+        "description": "To NS 13 Yishun",
         "first_train": {
           "monday_to_friday": "05:14",
           "saturday": "05:14",
@@ -1235,7 +1235,7 @@
         }
       },
       {
-        "description": "First train service terminating at NS13 Yishun",
+        "description": "To NS 13 Yishun",
         "first_train": {
           "monday_to_friday": "05:09",
           "saturday": "05:09",
@@ -1332,7 +1332,7 @@
         }
       },
       {
-        "description": "First train service terminating at NS13 Yishun",
+        "description": "To NS 13 Yishun",
         "first_train": {
           "monday_to_friday": "05:07",
           "saturday": "05:07",

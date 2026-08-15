@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
           nextTrainLabel = calculateArrivingLabel(firstTrain);
         }
         
-        upcomingTrainsHtml = `<div class="upcoming-trains-list" style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div class="train-time-chip" data-time="${time}" style="background: var(--card-bg-alt, #f0f0f0); color: var(--text-primary, #333); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; font-weight: 600; border: 1px solid var(--border-color, #ddd);">${time}</div>`).join('')}</div>`;
+        upcomingTrainsHtml = `<div class="upcoming-trains-list" style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">${upcomingTrains.map(time => `<div class="train-time-chip" data-time="${time}">${time}</div>`).join('')}</div>`;
       }
     }
 
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
 
     return `
-      <div class="direction-card" data-upcoming-trains='${JSON.stringify(upcomingTrains)}' style="border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; background: var(--card-bg, #fff);">
+      <div class="direction-card" data-upcoming-trains='${JSON.stringify(upcomingTrains)}'">
         <div style="font-weight: 700; margin-bottom: 8px;"><i class="fa-kit fa-lta-to-right"></i> ${formatDirectionDescription(direction.description)}</div>
         ${nextTrainChip}
       </div>
