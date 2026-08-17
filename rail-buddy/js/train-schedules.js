@@ -357,6 +357,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // A direction's own description carries its line code (e.g. "To EW33 Tuas Link"),
+  // which may differ from the station's other lines at interchanges — fall back to the
+  // station-level keys only when the description has none (e.g. Circle Line loop directions).
+  function getDirectionLineKeys(direction, fallbackLineKeys) {
+    const keys = extractLinePrefixes(direction.description);
+    return keys.length > 0 ? keys : (fallbackLineKeys || []);
+  }
+
   // Compare "now" against a direction's first/last train times for today,
   // and estimate the next train using the line's headway table.
   function computeNextTrainEstimate(direction, lineKeys) {
@@ -389,14 +397,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Running now — estimate next train using the headway table
-    if (headwayData && lineKeys && lineKeys.length > 0) {
+    const directionLineKeys = getDirectionLineKeys(direction, lineKeys);
+    if (headwayData && directionLineKeys.length > 0) {
       const period = getCurrentHeadwayPeriod(headwayData.periods);
       const keyMap = { peak: 'peak', offPeak: 'offPeak', night: 'night' };
-      const line = headwayData.lines[lineKeys[0]];
+      const line = headwayData.lines[directionLineKeys[0]];
       if (line) {
-        const headwayMin = line[keyMap[period]];
-        const etaMin = nowMin + headwayMin - (nowMin % Math.round(headwayMin));
-        const minutesUntilTrain = Math.round(etaMin - nowMin);
+        const headwayMin = Math.round(line[keyMap[period]]);
+        // Anchor the grid to this direction's first train, not midnight, so directions
+        // sharing a line but starting at different times don't land on the same slots.
+        const phaseOffset = firstMin !== null ? ((firstMin % headwayMin) + headwayMin) % headwayMin : 0;
+        const sinceOffset = ((nowMin - phaseOffset) % headwayMin + headwayMin) % headwayMin;
+        const minutesUntilTrain = sinceOffset === 0 ? headwayMin : headwayMin - sinceOffset;
         return { status: 'running', label: `Arriving in: ${minutesUntilTrain} mins`, etaMinutes: headwayMin };
       }
     }
@@ -407,18 +419,19 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderStationDirectionCard(direction, lineKeys) {
     const estimate = computeNextTrainEstimate(direction, lineKeys);
     const chipColor = { running: '#4CAF50', before: '#FF9800', after: '#999999', unknown: '#999999' }[estimate.status];
-    
+    const directionLineKeys = getDirectionLineKeys(direction, lineKeys);
+
     // For "running" status, show next 3-4 trains as time cards
     let upcomingTrains = []; // Initialize before the if block
     let upcomingTrainsHtml = '';
     let nextTrainLabel = estimate.label; // Default to computed estimate
     
-    if (estimate.status === 'running' && headwayData && lineKeys && lineKeys.length > 0) {
+    if (estimate.status === 'running' && headwayData && directionLineKeys.length > 0) {
       const period = getCurrentHeadwayPeriod(headwayData.periods);
       const keyMap = { peak: 'peak', offPeak: 'offPeak', night: 'night' };
-      const line = headwayData.lines[lineKeys[0]];
+      const line = headwayData.lines[directionLineKeys[0]];
       if (line) {
-        const headwayMin = line[keyMap[period]];
+        const headwayMin = Math.round(line[keyMap[period]]);
         const now = new Date();
         const nowMin = now.getHours() * 60 + now.getMinutes();
         const nowSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
@@ -433,8 +446,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Compute next 3-4 trains
         const upcomingTrainSet = new Set();
         
+        // Anchor the grid to this direction's first train, not midnight, so directions
+        // sharing a line but starting at different times don't land on the same slots.
+        const phaseOffset = firstTrainMin !== null ? ((firstTrainMin % headwayMin) + headwayMin) % headwayMin : 0;
+
         // First, check if a train is due right now (within 2 minutes before to 1 minute after the headway interval boundary)
-        const intervalBoundary = (Math.floor(nowMin / headwayMin)) * headwayMin;
+        const intervalBoundary = (Math.floor((nowMin - phaseOffset) / headwayMin)) * headwayMin + phaseOffset;
         const timeSinceBoundary = nowMin - intervalBoundary;
         
         // If we're close to a train interval (within the grace period), include it
