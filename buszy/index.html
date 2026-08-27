@@ -58,8 +58,6 @@
             var pref = localStorage.getItem('theme-preference') || 'system';
             var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
             if (isDark) document.body.classList.add('dark-mode');
-            var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-            if (isStandalone) document.documentElement.classList.add('pwa-standalone');
         })();
     </script>
 

@@ -538,15 +538,6 @@ body.dark-mode #search-filters .category-tab.active {
     color: #fff;
 }
 
-@media (max-width: 768px) {
-    .pinned {
-        margin-top: calc(-10vh);
-        margin-bottom: 2em;
-        position: relative;
-        z-index: 10;
-    }
-}
-
 @media (max-width: 545px) {
     .result-stop-item .result-info {
         flex-direction: column;

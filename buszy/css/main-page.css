@@ -475,8 +475,7 @@
   }
 
   .pinned {
-      /* margin-top: 2em; */
-      margin-top: calc(-28vh);
+      margin-top: -15em;
       margin-bottom: 2em;
       position: relative;
       z-index: 5;
@@ -1220,23 +1219,3 @@
       }
   }
 
-  @media (max-width: 344px) {
-      .pinned {
-          margin-top: calc(-22vh);
-          margin-bottom: 2em;
-          position: relative;
-          z-index: 10;
-      }
-  }
-
-  @media (display-mode: standalone) and (max-width: 545px) {
-      .pinned {
-          margin-top: calc(-15vh - 31px);
-      }
-  }
-
-  @media (max-width: 545px) {
-      .pwa-standalone .pinned {
-          margin-top: calc(-15vh - 31px) !important;
-      }
-  }
