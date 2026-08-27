@@ -1231,12 +1231,12 @@
 
   @media (display-mode: standalone) and (max-width: 545px) {
       .pinned {
-          margin-top: calc(-22vh - 31px);
+          margin-top: calc(-15vh - 31px);
       }
   }
 
   @media (max-width: 545px) {
       .pwa-standalone .pinned {
-          margin-top: calc(-22vh - 31px) !important;
+          margin-top: calc(-15vh - 31px) !important;
       }
   }

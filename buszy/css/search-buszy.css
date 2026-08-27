@@ -540,7 +540,7 @@ body.dark-mode #search-filters .category-tab.active {
 
 @media (max-width: 768px) {
     .pinned {
-        margin-top: calc(-20vh);
+        margin-top: calc(-10vh);
         margin-bottom: 2em;
         position: relative;
         z-index: 10;
