@@ -1,8 +1,8 @@
   #cv-bat {
       background-size: cover;
       background-position: center;
-      height: 70vh;
-      height: 70dvh;
+      height: auto;
+      min-height: 0;
       position: relative;
       display: flex;
       align-items: center;
@@ -59,6 +59,10 @@
       position: relative;
       z-index: 2;
       width: 100%;
+  }
+
+  #cv-bat .row.h-100 {
+      height: auto !important;
   }
 
   .alerts-btn {
@@ -476,7 +480,7 @@
   }
 
   .pinned {
-      margin-top: calc(-15em - env(safe-area-inset-top, 0px));
+      margin-top: 0;
       margin-bottom: 2em;
       position: relative;
       z-index: 5;
@@ -492,7 +496,7 @@
 
   .pinned .about-me-summ {
       padding-top: 0rem;
-      margin-top: 1em;
+      margin-top: 0;
   }
 
   .no-results {
@@ -1033,8 +1037,8 @@
 
   @media (max-width: 768px) {
       #cv-bat {
-          height: 50vh;
-          height: 50dvh;
+          height: auto;
+          min-height: 0;
       }
 
       .cover-search-wrapper {
@@ -1124,14 +1128,6 @@
           font-size: 0.9rem;
       }
 
-      .pinned {
-          margin-top: calc(-10em - env(safe-area-inset-top, 0px));
-          margin-bottom: 2em;
-          position: relative;
-          z-index: 5;
-          pointer-events: none;
-      }
-
       .container {
           padding: 0 15px;
 
@@ -1141,8 +1137,8 @@
 
   @media (max-width: 545px) {
       #cv-bat {
-          height: 45vh;
-          height: 45dvh;
+          height: auto;
+          min-height: 0;
       }
 
       .cover-search-wrapper {
