@@ -1,8 +1,8 @@
   #cv-bat {
       background-size: cover;
       background-position: center;
-      height: auto;
-      min-height: 0;
+      height: fit-content !important;
+      min-height: 0 !important;
       position: relative;
       display: flex;
       align-items: center;
@@ -63,6 +63,7 @@
 
   #cv-bat .row.h-100 {
       height: auto !important;
+      min-height: 0 !important;
   }
 
   .alerts-btn {
