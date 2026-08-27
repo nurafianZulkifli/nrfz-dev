@@ -1228,21 +1228,3 @@
           z-index: 10;
       }
   }
-
-  @media (display-mode: standalone) {
-      .pinned {
-          margin-top: calc(0vh);
-      }
-  }
-
-  @media (display-mode: standalone) and (max-width: 545px) {
-      .pinned {
-          margin-top: calc(0vh);
-      }
-  }
-
-  @media (display-mode: standalone) and (max-width: 344px) {
-      .pinned {
-          margin-top: calc(-12vh);
-      }
-  }
