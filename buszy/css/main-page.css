@@ -1123,10 +1123,11 @@
       }
 
       .pinned {
-          margin-top: calc(-22vh);
+          margin-top: -12em;
           margin-bottom: 2em;
           position: relative;
-          z-index: 10;
+          z-index: 5;
+          pointer-events: none;
       }
 
       .container {
@@ -1218,4 +1219,3 @@
           font-size: 14px;
       }
   }
-
