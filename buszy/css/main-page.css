@@ -1124,7 +1124,7 @@
       }
 
       .pinned {
-          margin-top: calc(-17vh);
+          margin-top: calc(-22vh);
           margin-bottom: 2em;
           position: relative;
           z-index: 10;
@@ -1231,13 +1231,13 @@
 
   @media (display-mode: standalone) {
       .pinned {
-          margin-top: calc(-15vh);
+          margin-top: calc(0vh);
       }
   }
 
   @media (display-mode: standalone) and (max-width: 545px) {
       .pinned {
-          margin-top: calc(-8vh);
+          margin-top: calc(0vh);
       }
   }
 
