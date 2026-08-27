@@ -539,13 +539,13 @@ body.dark-mode #search-filters .category-tab.active {
 }
 
 @media (max-width: 768px) {
-          .pinned {
-          margin-top: -11em;
-          margin-bottom: 2em;
-          position: relative;
-          z-index: 5;
-          pointer-events: none;
-      }
+    .pinned {
+        margin-top: -11em;
+        margin-bottom: 2em;
+        position: relative;
+        z-index: 5;
+        pointer-events: none;
+    }
 }
 
 @media (max-width: 545px) {
