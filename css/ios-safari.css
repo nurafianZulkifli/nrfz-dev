@@ -26,8 +26,11 @@
     body {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      padding-top: env(safe-area-inset-top);
       padding-bottom: calc(100px + env(safe-area-inset-bottom));
+    }
+
+    .navbar-container {
+      top: calc(10px + env(safe-area-inset-top, 0px));
     }
 
     /* Remove default tap highlight color */
