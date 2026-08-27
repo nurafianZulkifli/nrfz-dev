@@ -30,6 +30,23 @@
     <link rel="stylesheet" href="./css/main-page.css">
 
     <style>
+        #cv-bat {
+            background-image: none !important;
+        }
+
+        #cv-bat::after {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            background-image: var(--search-hero-image);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: blur(8px);
+            transform: scale(1.04);
+            z-index: -2;
+        }
+
         /* Result Items - Match bus-stop styling */
         .result-item {
             display: flex;
@@ -128,6 +145,66 @@
             color: #aaa;
         }
 
+        .service-result-item .result-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        .service-result-item .service-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .service-result-item .service-number {
+            display: inline-block;
+            background-color: #94d40b;
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .service-result-item .service-type {
+            display: inline-block;
+            background-color: #393e53;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .service-result-item .service-type-gas {
+            background-color: #e6a03c;
+            color: #000;
+        }
+
+        .service-result-item .service-type-sbst {
+            background-color: #8b168b;
+        }
+
+        .service-result-item .service-type-tts {
+            background-color: #45a049;
+        }
+
+        .service-result-item .service-type-smrt {
+            background-color: #da190b;
+        }
+
+        .service-result-item .service-routes {
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
         .result-stop-item {
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -166,7 +243,7 @@
         }
 
         .result-stop-item .result-code img {
-            width: 18px;
+            width: 25px;
             height: auto;
             flex-shrink: 0;
         }
@@ -182,8 +259,8 @@
 
         .result-stop-item .result-description {
             margin-top: 0;
-            font-size: 1rem;
-            color: #e5e7eb;
+            font-size: 20px;
+            color: #000;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
@@ -192,7 +269,7 @@
         }
 
         body.dark-mode .result-stop-item .result-description {
-            color: #e5e7eb;
+            color: #fff;
         }
 
         .result-stop-item .result-pin-btn {
@@ -259,17 +336,6 @@
 
         .result-pin-btn.result-pinned {
             background-color: #7db603;
-        }
-
-        .result-nav-arrow {
-            padding: 0.4rem 0.6rem;
-            color: #94d40b;
-            font-weight: 600;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
         }
 
         .no-results {
@@ -403,7 +469,7 @@
         }
 
         .recent-search-chip img {
-            width: 18px;
+            width: 25px;
             height: auto;
             flex-shrink: 0;
         }
@@ -683,6 +749,23 @@
     <script src="../js/utils.js"></script>
 
     <script>
+        if (window.PWAConfig) {
+            const basePath = window.PWAConfig.basePath;
+            const bgElement = document.getElementById('cv-bat');
+
+            const themePreference = localStorage.getItem('theme-preference') || 'system';
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDarkMode = themePreference === 'dark' || (themePreference === 'system' && prefersDark);
+            const imageName = isDarkMode ? 'hero-buszy-dark.png' : 'hero-buszy.png';
+            const imageUrl = `url('${basePath}img/bg-img/${imageName}')`;
+
+            if (bgElement) {
+                bgElement.style.setProperty('--search-hero-image', imageUrl);
+            }
+        }
+    </script>
+
+    <script>
         let allBusStops = [];
         let serviceNumbers = [];
         let currentFilter = 'all';
@@ -754,11 +837,10 @@
                 const basePath = getBasePath();
                 const response = await fetch(basePath + 'buszy/json/bus-service-data.json');
                 if (response.ok) {
-                    const data = await response.json();
-                    return data.map(s => s.n);
+                    return await response.json();
                 }
             } catch (e) {
-                console.warn('Failed to load service numbers:', e);
+                console.warn('Failed to load bus services:', e);
             }
             return [];
         }
@@ -893,11 +975,22 @@
             // Search in services
             if (currentFilter === 'all' || currentFilter === 'services') {
                 results = results.concat(serviceNumbers.filter(service => {
-                    return service.toLowerCase().includes(query);
+                    const serviceNumber = (service.n || '').toLowerCase();
+                    const serviceType = (service.t || '').toLowerCase();
+                    const startTerminal = (service.ts || '').toLowerCase();
+                    const endTerminal = (service.te || '').toLowerCase();
+                    const remarks = (service.r || '').toLowerCase();
+                    return serviceNumber.includes(query) ||
+                        serviceType.includes(query) ||
+                        startTerminal.includes(query) ||
+                        endTerminal.includes(query) ||
+                        remarks.includes(query);
                 }).map(service => ({
                     type: 'service',
-                    code: service,
-                    description: `Bus Service ${service}`
+                    code: service.n,
+                    description: `${service.ts || 'N/A'} → ${service.te || 'N/A'}${service.lp ? ` / Loop: ${service.lp}` : ''}`,
+                    serviceType: service.t || 'Regular',
+                    operator: service.op || 'Transit'
                 })));
             }
 
@@ -950,19 +1043,29 @@
                         </div>
                     `;
                 } else {
+                    const operator = result.operator || 'Transit';
+                    const operatorClass = {
+                        GAS: 'service-type-gas',
+                        SBST: 'service-type-sbst',
+                        TTS: 'service-type-tts',
+                        SMRT: 'service-type-smrt'
+                    }[operator.toUpperCase()] || '';
+
                     return `
                         <div class="result-item service-result-item">
                             <div class="result-main-row">
                                 <a class="result-link" href="javascript:void(0)" data-type="service" data-code="${escapeHtml(result.code)}" data-description="${escapeHtml(result.description)}" aria-label="Open service ${escapeHtml(result.code)}">
                                     <div class="result-info">
-                                        <div class="result-code">
-                                            <span class="bus-stop-code-text">${escapeHtml(result.code)}</span>
+                                        <div class="service-header">
+                                            <div class="service-number">${escapeHtml(result.code)}</div>
+                                            <div class="service-type">${escapeHtml(result.serviceType)}</div>
+                                            ${operator !== 'Transit' ? `<div class="service-type ${operatorClass}">${escapeHtml(operator)}</div>` : ''}
+                                        </div>
+                                        <div class="service-routes">
+                                            ${escapeHtml(result.description)}
                                         </div>
                                     </div>
                                 </a>
-                                <div class="result-nav-arrow" aria-hidden="true">
-                                    <i class="fa-regular fa-chevron-right"></i>
-                                </div>
                             </div>
                         </div>
                     `;
@@ -1075,6 +1178,9 @@
                 const existingIndex = bookmarks.findIndex(item => item && String(item.BusStopCode || '').trim() === normalizedCode);
 
                 if (existingIndex >= 0) {
+                    const confirmUnpin = confirm('Are you sure you want to unpin this bus stop?');
+                    if (!confirmUnpin) return;
+
                     bookmarks.splice(existingIndex, 1);
                     localStorage.setItem('bookmarkedBusStops', JSON.stringify(bookmarks));
                     updatePinButton(btn, false, code);
