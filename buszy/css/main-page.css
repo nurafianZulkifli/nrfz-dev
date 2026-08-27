@@ -1237,7 +1237,7 @@
 
   @media (display-mode: standalone) and (max-width: 545px) {
       .pinned {
-          margin-top: calc(-10vh);
+          margin-top: calc(-8vh);
       }
   }
 
