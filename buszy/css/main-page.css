@@ -476,7 +476,7 @@
 
   .pinned {
       /* margin-top: 2em; */
-      margin-top: calc(-30vh);
+      margin-top: calc(-28vh);
       margin-bottom: 2em;
       position: relative;
       z-index: 5;
@@ -1124,7 +1124,7 @@
       }
 
       .pinned {
-          margin-top: calc(-22vh);
+          margin-top: calc(-17vh);
           margin-bottom: 2em;
           position: relative;
           z-index: 10;
@@ -1226,5 +1226,23 @@
           margin-bottom: 2em;
           position: relative;
           z-index: 10;
+      }
+  }
+
+  @media (display-mode: standalone) {
+      .pinned {
+          margin-top: calc(-15vh);
+      }
+  }
+
+  @media (display-mode: standalone) and (max-width: 545px) {
+      .pinned {
+          margin-top: calc(-10vh);
+      }
+  }
+
+  @media (display-mode: standalone) and (max-width: 344px) {
+      .pinned {
+          margin-top: calc(-12vh);
       }
   }
