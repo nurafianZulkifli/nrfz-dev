@@ -476,7 +476,7 @@
   }
 
   .pinned {
-      margin-top: -15em;
+      margin-top: calc(-15em - env(safe-area-inset-top, 0px));
       margin-bottom: 2em;
       position: relative;
       z-index: 5;
@@ -1125,7 +1125,7 @@
       }
 
       .pinned {
-          margin-top: -10em;
+          margin-top: calc(-10em - env(safe-area-inset-top, 0px));
           margin-bottom: 2em;
           position: relative;
           z-index: 5;
