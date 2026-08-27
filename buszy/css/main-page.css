@@ -1228,3 +1228,9 @@
           z-index: 10;
       }
   }
+
+  @media (display-mode: standalone) and (max-width: 545px) {
+      .pinned {
+          margin-top: calc(-22vh - 31px);
+      }
+  }
