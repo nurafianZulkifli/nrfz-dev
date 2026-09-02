@@ -465,6 +465,39 @@
       margin-top: 0;
   }
 
+  .list-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+      color: #102e4c;
+      font-size: 1.45rem;
+      font-weight: 800;
+  }
+
+  #pinned {
+      scroll-margin-top: 24px;
+  }
+
+  @media (min-width: 769px) {
+      #pinned {
+          scroll-margin-top: 90px;
+      }
+  }
+
+  .list-section-heading i {
+      color: #2d96c6;
+      font-size: 35px;
+  }
+
+  body.dark-mode .list-section-heading i {
+      color: #fff;
+  }
+
+  body.dark-mode .list-section-heading {
+      color: #eef7fb;
+  }
+
   .no-results {
       text-align: center;
       padding: 40px 20px;
@@ -1203,6 +1236,17 @@
       overflow: visible;
   }
 
+  #cv-bat::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: #0f222c4f;
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      pointer-events: none;
+  }
+
   #cv-bat .container,
   #cv-bat .row,
   #cv-bat .col-12 {
@@ -1210,7 +1254,7 @@
   }
 
   #cv-bat .cover-search-wrapper {
-      padding: 7em 0 0;
+      padding: 8em 0 0;
       text-align: left;
       align-items: stretch;
   }
@@ -1248,7 +1292,7 @@
   #cv-bat .hero-intro h1 {
       margin: 0;
       color: #081d49;
-      font-size: clamp(2.5rem, 5vw, 4.4rem);
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
       line-height: 0.98;
       letter-spacing: 0;
       font-weight: 800;
@@ -1265,7 +1309,7 @@
   #cv-bat .search-container {
       width: calc(100% - 32px);
       max-width: 720px;
-      margin: 85px auto 0;
+      margin: 70px auto 0;
       padding: 18px 18px 12px;
       border-radius: 34px;
       background: rgba(255, 255, 255, 0.94);
@@ -1293,7 +1337,7 @@
 
   #cv-bat .search-box {
       min-height: 52px;
-      padding: 12px 58px 12px 44px;
+      padding: 12px 8px 12px 44px;
       border: 1px solid #d8e7ed;
       background: #f9fcfd;
       color: #18334a;
@@ -1339,7 +1383,7 @@
 
   #cv-bat .category-tabs {
       width: 100%;
-      padding: 8px 14px 2px;
+      padding: 20px 14px 2px;
       gap: 8px;
       mask-image: none;
       -webkit-mask-image: none;
@@ -1407,10 +1451,17 @@
       }
   }
 
+  @media (min-width: 995px) {
+      .inline-search-view {
+          top: 180px !important;
+      }
+
+  }
+
   .inline-search-view {
       display: block;
       position: absolute;
-      top: 218px;
+      top: 70px;
       right: 0;
       left: 0;
       z-index: 10;
@@ -1464,9 +1515,9 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      background: rgba(8, 25, 38, 0.22);
-      -webkit-backdrop-filter: blur(7px);
-      backdrop-filter: blur(7px);
+      background: rgba(8, 25, 38, 0.103);
+      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
       pointer-events: none;
   }
 
@@ -1492,9 +1543,10 @@
   }
 
   .inline-search-view.open>.container {
-      width: calc(100% - 24px);
-      max-width: 720px;
-      min-height: calc(100vh - 238px);
+      width: 720px;
+      max-width: calc(100vw - 24px);
+      height: 600px;
+      min-height: 600px;
       padding: 7px 0 24px;
       border-radius: 28px;
       background-color: #2b3e49;
@@ -1516,7 +1568,7 @@
 
   .inline-search-view.open #inline-search-input {
       min-height: 52px;
-      padding: 12px 58px 12px 44px;
+      padding: 12px 8px 12px 44px;
       border-color: #525872;
       border-radius: 25px;
       background: #1e2529;
@@ -1536,7 +1588,7 @@
   }
 
   .inline-search-view.open .inline-search-results {
-      max-height: calc(100vh - 360px);
+      max-height: 400px;
       overflow-y: auto;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
@@ -1754,18 +1806,22 @@
       }
 
       .inline-search-view.open {
-          top: 220px;
+          top: 70px;
           padding: 0;
       }
 
       .inline-search-view.open>.container {
-          width: calc(100% - 24px);
-          min-height: calc(100vh - 220px);
-          border-radius: 0 0 24px 24px;
+          width: calc(100vw - 32px);
+          max-width: 720px;
+          height: 600px;
+          min-height: 600px;
+          padding-right: 12px;
+          padding-left: 12px;
+          border-radius: 24px;
       }
 
       .inline-search-view.open .inline-search-results {
-          max-height: calc(100vh - 325px);
+          max-height: 400px;
       }
 
       .inline-search-exit {

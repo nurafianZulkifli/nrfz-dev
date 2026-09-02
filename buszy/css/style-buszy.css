@@ -166,7 +166,7 @@ body.dark-mode {
 }
 
 body.dark-mode .navbar {
-    background: #1a1f35be !important;
+    background: #0f222ccc !important;
 }
 
 body.dark-mode .page-header-section {
@@ -1159,7 +1159,7 @@ body.dark-mode .lg-date {
 }
 
 body.dark-mode .pin-msg {
-    background-color: #1c1f2b;
+    background-color: #2b3e49;
     color: #fff !important;
     border: 1px solid #2b2b2b33;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -1240,7 +1240,7 @@ body.dark-mode .about-me-summ {
 }
 
 body.dark-mode .list-group-item {
-    background-color: #1c1f2b;
+    background-color: #2b3e49;
 }
 
 #scrollUp {

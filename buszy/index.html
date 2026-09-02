@@ -240,6 +240,10 @@
 
     <section class="pinned" id="pinned">
         <div class="container">
+            <h2 class="list-section-heading" id="list-section-heading">
+                <i class="fa-kit fa-lta-location" aria-hidden="true"></i>
+                <span>Nearby</span>
+            </h2>
             <!-- All Tab (Search all bus stops) -->
             <div id="all-content" class="tab-content">
                 <section class="about-me-summ clearfix" style="padding-bottom: 9em;">
@@ -679,6 +683,7 @@
                 }
                 
                 const category = tab.getAttribute('data-category');
+                const sectionHeading = document.getElementById('list-section-heading');
 
                 // Remove active class from all tabs and contents
                 categoryTabs.forEach(t => t.classList.remove('active'));
@@ -693,9 +698,34 @@
                     contentElement.classList.add('active');
                 }
 
+                if (sectionHeading) {
+                    const headingIcon = sectionHeading.querySelector('i');
+                    const headingText = sectionHeading.querySelector('span');
+                    const tabDetails = {
+                        nearby: { label: 'Nearby', icon: 'fa-kit fa-lta-location' },
+                        pinned: { label: 'Pinned', icon: 'fa-sharp fa-regular fa-thumbtack-angle' },
+                        all: { label: 'All', icon: 'fa-kit fa-lta-bus-stop' }
+                    }[category];
+
+                    if (tabDetails && headingIcon && headingText) {
+                        headingIcon.className = tabDetails.icon;
+                        headingText.textContent = tabDetails.label;
+                    }
+                }
+
+                const paginationButtons = document.querySelector('.pagination-buttons');
+                if (paginationButtons) {
+                    paginationButtons.style.display = category === 'all' ? 'flex' : 'none';
+                }
+
                 // Auto-refresh nearby bus stops when nearby tab is clicked
                 if (category === 'nearby' && typeof refreshNearbyBusStops === 'function') {
                     refreshNearbyBusStops();
+                }
+
+                const listSection = document.getElementById('pinned');
+                if (listSection) {
+                    listSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
