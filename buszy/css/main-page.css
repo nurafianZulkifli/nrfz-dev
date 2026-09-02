@@ -1422,7 +1422,7 @@
 
   @media (max-width: 545px) {
       #cv-bat {
-          min-height: 70vh !important;
+          min-height: 100vh !important;
           background-size: cover !important;
       }
 
