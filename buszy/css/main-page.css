@@ -1249,7 +1249,7 @@
   #cv-bat .container,
   #cv-bat .row,
   #cv-bat .col-12 {
-      min-height: inherit;
+      min-height: 50vh;
   }
 
   #cv-bat .cover-search-wrapper {
