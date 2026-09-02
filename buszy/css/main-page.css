@@ -1249,7 +1249,7 @@
   #cv-bat .container,
   #cv-bat .row,
   #cv-bat .col-12 {
-      min-height: 50vh;
+      min-height: inherit;
   }
 
   #cv-bat .cover-search-wrapper {
@@ -1422,7 +1422,7 @@
 
   @media (max-width: 545px) {
       #cv-bat {
-          min-height: 610px !important;
+          min-height: 70vh !important;
           background-size: cover !important;
       }
 
