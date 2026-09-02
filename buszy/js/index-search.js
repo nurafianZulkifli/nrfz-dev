@@ -42,11 +42,16 @@
         if (!recents) return;
         const searches = getRecentSearches();
         recents.innerHTML = searches.length
-            ? `<span class="inline-search-section-label">Recent searches</span><div class="inline-search-recent-list">${searches.map(search => {
+            ? `<div class="inline-search-recent-header"><span class="inline-search-section-label">Recent searches</span><button type="button" class="clear-inline-recent-searches" id="clear-inline-recent-searches">Clear</button></div><div class="inline-search-recent-list">${searches.map(search => {
                 const value = getRecentSearchValue(search);
                 return `<button type="button" class="inline-search-recent" data-query="${escapeHtml(value)}">${escapeHtml(value)}</button>`;
             }).join('')}</div>`
             : '';
+        const clearRecentButton = document.getElementById('clear-inline-recent-searches');
+        clearRecentButton?.addEventListener('click', () => {
+            localStorage.removeItem(recentKey);
+            renderRecentSearches();
+        });
         recents.querySelectorAll('[data-query]').forEach(button => {
             button.addEventListener('click', () => {
                 searchInput.value = button.dataset.query;
@@ -91,7 +96,7 @@
         if (filter !== 'services') {
             busStops.filter(stop => `${stop.BusStopCode} ${stop.Description}`.toLowerCase().includes(query))
                 .slice(0, 30).forEach(stop => matches.push({
-                    type: 'stop', code: stop.BusStopCode, description: stop.Description, roadName: stop.RoadName
+                    type: 'stop', code: stop.BusStopCode, description: stop.Description
                 }));
         }
         if (filter !== 'stops') {
@@ -126,9 +131,7 @@
             </div>`;
         }
 
-        const description = result.type === 'stop'
-            ? `${escapeHtml(result.description)}${result.roadName ? ` | ${escapeHtml(result.roadName)}` : ''}`
-            : escapeHtml(result.description);
+        const description = escapeHtml(result.description);
         return `<div class="bus-stop inline-search-result" data-result-type="${result.type}" data-result-code="${escapeHtml(result.code)}">
             <div class="bus-stop-main-row">
                 <div class="bus-stop-info">

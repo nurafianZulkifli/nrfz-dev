@@ -137,7 +137,7 @@
   .bus-stop-description,
   body.dark-mode .bus-stop-description {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: normal;
       margin-left: 12px;
       cursor: pointer;
   }
@@ -1490,6 +1490,34 @@
       transition: opacity 220ms ease;
   }
 
+  @keyframes search-overlay-enter {
+      from {
+          opacity: 0;
+          transform: translateY(14px) scale(0.985);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+      }
+  }
+
+  .inline-search-view.open > .container {
+      animation: search-overlay-enter 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .inline-search-view.open::before {
+      animation: search-overlay-enter 220ms ease both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+      .inline-search-view,
+      .inline-search-view.open > .container,
+      .inline-search-view.open::before {
+          animation: none;
+          transition: none;
+      }
+  }
+
   .inline-search-view.closing {
       display: none;
   }
@@ -1614,6 +1642,28 @@
       font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+  }
+
+  .inline-search-recent-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+  }
+
+  .clear-inline-recent-searches {
+      border: 0;
+      background: transparent;
+      color: #9bc9dc;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 0;
+  }
+
+  .clear-inline-recent-searches:hover {
+      color: #fff;
+      text-decoration: underline;
   }
 
   .inline-search-header h2 {
@@ -1800,6 +1850,25 @@
   }
 
   @media (max-width: 545px) {
+      .service-search-result .bus-stop-info {
+          width: 100%;
+          min-width: 0;
+      }
+
+      .service-search-result .bus-stop-details {
+          min-width: 0;
+          flex: 1 1 auto;
+          overflow: hidden;
+      }
+
+      .service-search-result .bus-stop-description {
+          display: block;
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
       .inline-search-view {
           padding: 26px 12px 40px;
       }
