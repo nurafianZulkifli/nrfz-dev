@@ -1,32 +1,31 @@
 /**
- * Root Service Worker (DEPRECATED)
- * This service worker is no longer used.
- * Individual apps now use scoped service workers:
- * - /buszy/service-worker.js (scope: /buszy/)
- * - /rail-buddy/service-worker.js (scope: /rail-buddy/)
- * 
- * This file unregisters itself and cleans up old cache entries.
+ * Root service worker for the Works by NRFZ app.
+ * Child apps use their own scoped workers under /buszy/ and /rail-buddy/.
  */
+const CACHE_NAME = 'main-cache-v1';
+const BASE_PATH = new URL('./', self.registration.scope).pathname;
+const STATIC_ASSETS = [
+  './',
+  './index.html',
+  './manifest.json',
+  './css/style.css',
+  './css/pwa-styles.css',
+  './css/style-mobNav.css',
+  './css/style-breakpoints.css',
+  './css/dark-mode.css',
+  './js/pwa-config.js',
+  './js/pwa-helper.js',
+  './js/pwa-init-main.js',
+  './img/core-img/favicon.png',
+  './img/core-img/icon-192.png',
+  './img/core-img/icon-512.png'
+].map(path => new URL(path, self.registration.scope).pathname);
 
-// Unregister this service worker
-self.registration.unregister().then(() => {
-  console.log('[Root SW] Unregistered old root service worker');
-}).catch(err => {
-  console.error('[Root SW] Error unregistering:', err);
-});
-
-// Clean up old global cache
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.delete('nrfz-cache-v2').then(() => {
-      console.log('[Root SW] Deleted old nrfz-cache-v2');
-      return caches.delete('nrfz-cache-v1');
-    }).then(() => {
-      console.log('[Root SW] Deleted old nrfz-cache-v1');
-    }).catch(err => {
-      console.warn('[Root SW] Error cleaning cache:', err);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
   );
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
@@ -34,9 +33,8 @@ self.addEventListener('activate', event => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames
-          .filter(name => name.startsWith('nrfz-cache-'))
+          .filter(name => name.startsWith('main-cache-') && name !== CACHE_NAME)
           .map(name => {
-            console.log('[Root SW] Deleting old cache:', name);
             return caches.delete(name);
           })
       );
@@ -46,3 +44,23 @@ self.addEventListener('activate', event => {
 });
 
 self.skipWaiting();
+
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+
+  const requestUrl = new URL(event.request.url);
+  if (!requestUrl.pathname.startsWith(BASE_PATH)) return;
+
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) return cachedResponse;
+      return fetch(event.request).then(response => {
+        if (response.ok && response.type === 'basic') {
+          const responseCopy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseCopy));
+        }
+        return response;
+      });
+    })
+  );
+});

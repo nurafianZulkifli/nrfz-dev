@@ -2,8 +2,10 @@
   "name": "Works By NRFZ",
   "short_name": "NRFZ",
   "description": "Hub for Buszy and RailBuddy apps",
-  "start_url": "/",
-  "display": "minimal-ui",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#6a7596",
   "icons": [
