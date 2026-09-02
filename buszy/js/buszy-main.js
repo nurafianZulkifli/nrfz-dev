@@ -30,7 +30,7 @@ if ('caches' in window) {
 // :: Dynamic Greeting Based on Time of Day
 // ****************************
 document.addEventListener('DOMContentLoaded', () => {
-    const pinnedBusElement = document.querySelector('h2'); // Select the <h2> element
+    const greetingElement = document.getElementById('day-greeting');
 
     // Function to determine the all-apps based on the current time
     function getGreeting() {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update the <h2> element with the all-apps
-    pinnedBusElement.textContent = getGreeting();
+    if (greetingElement) greetingElement.textContent = getGreeting();
 });
 
 

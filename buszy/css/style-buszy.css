@@ -150,8 +150,6 @@ body.dark-mode #pwa-splash .splash-name {
     right: 0;
     height: 50%;
     background: url('../../img/bg-img/hero-buszy.png') center bottom / cover no-repeat;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 30%, black 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 30%, black 100%);
 }
 
 body.dark-mode #pwa-splash .splash-hero {
@@ -164,7 +162,7 @@ body.dark-mode #pwa-splash .splash-hero {
 }
 
 body.dark-mode {
-    background: #121521 !important;
+    background: #0f222c !important;
 }
 
 body.dark-mode .navbar {
