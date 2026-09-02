@@ -388,8 +388,8 @@ table th {
 /* GPS nearest stop highlight on NBS */
 .bus-stop.nearest-stop {
     background-color: #caf3ff;
-    border: 2px solid #1c748f;
-    box-shadow: 0 0 15px #1c748f, 0 2px 4px #0000004d;
+    border: 2px solid #24779e;
+    box-shadow: 0 0 15px #24779e, 0 2px 4px #0000004d;
 }
 
 /* .bus-stop.nearest-stop:hover {
