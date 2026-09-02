@@ -2,6 +2,7 @@
     const searchInput = document.getElementById('inline-search-input');
     const clearButton = document.getElementById('inline-search-clear');
     const filters = document.getElementById('inline-search-filters');
+    const recents = document.getElementById('inline-search-recents');
     const results = document.getElementById('inline-search-results');
     if (!searchInput || !results) return;
 
@@ -9,10 +10,50 @@
     let services = [];
     let filter = 'all';
     let loaded = false;
+    const recentKey = 'buszy-recent-searches';
 
     const escapeHtml = value => String(value || '')
         .replace(/&/g, '&amp;').replace(/</g, '&lt;')
         .replace(/>/g, '&gt;').replace(/\"/g, '&quot;').replace(/'/g, '&#039;');
+
+    function getRecentSearches() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(recentKey) || '[]');
+            return Array.isArray(saved) ? saved : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function getRecentSearchValue(search) {
+        if (typeof search === 'string') return search;
+        return search?.query || search?.code || '';
+    }
+
+    function saveRecentSearch(query) {
+        const value = String(query || '').trim();
+        if (value.length < 2) return;
+        const next = [value, ...getRecentSearches().filter(item => getRecentSearchValue(item).toLowerCase() !== value.toLowerCase())].slice(0, 8);
+        localStorage.setItem(recentKey, JSON.stringify(next));
+        renderRecentSearches();
+    }
+
+    function renderRecentSearches() {
+        if (!recents) return;
+        const searches = getRecentSearches();
+        recents.innerHTML = searches.length
+            ? `<span class="inline-search-section-label">Recent searches</span><div class="inline-search-recent-list">${searches.map(search => {
+                const value = getRecentSearchValue(search);
+                return `<button type="button" class="inline-search-recent" data-query="${escapeHtml(value)}">${escapeHtml(value)}</button>`;
+            }).join('')}</div>`
+            : '';
+        recents.querySelectorAll('[data-query]').forEach(button => {
+            button.addEventListener('click', () => {
+                searchInput.value = button.dataset.query;
+                performSearch();
+            });
+        });
+    }
 
     async function loadData() {
         if (loaded) return;
@@ -65,12 +106,26 @@
                 const path = result.dataset.resultType === 'service'
                     ? `bus-service.html?service=${encodeURIComponent(result.dataset.resultCode)}`
                     : `art.html?BusStopCode=${encodeURIComponent(result.dataset.resultCode)}`;
+                saveRecentSearch(result.dataset.resultCode);
                 window.location.href = path;
             });
         });
     }
 
     function renderResult(result) {
+        if (result.type === 'service') {
+            return `<div class="bus-stop inline-search-result service-search-result" data-result-type="service" data-result-code="${escapeHtml(result.code)}">
+                <div class="bus-stop-main-row">
+                    <div class="bus-stop-info">
+                        <div class="service-search-code">${escapeHtml(result.code)}</div>
+                        <div class="bus-stop-details">
+                            <span class="bus-stop-description">${escapeHtml(result.description)}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }
+
         const description = result.type === 'stop'
             ? `${escapeHtml(result.description)}${result.roadName ? ` | ${escapeHtml(result.roadName)}` : ''}`
             : escapeHtml(result.description);
@@ -109,4 +164,6 @@
             performSearch();
         });
     });
+
+    renderRecentSearches();
 })();
