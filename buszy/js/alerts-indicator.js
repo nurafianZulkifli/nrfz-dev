@@ -25,11 +25,9 @@ function hasBusAlerts(data) {
     let alerts = Array.isArray(data.value) ? data.value : [data.value];
 
     return alerts.some(alert => {
-        if (!alert.Message || !Array.isArray(alert.Message)) return false;
-        return alert.Message.some(msgObj => {
-            const msg = (msgObj.Content || '').toLowerCase();
-            return msg.includes('bus service') && (msg.includes('affected') || msg.includes('diverted') || msg.includes('delayed'));
-        });
+        if (!alert.Message) return false;
+        const messages = Array.isArray(alert.Message) ? alert.Message : [alert.Message];
+        return messages.some(msgObj => String(msgObj.Content || '').trim().length > 0);
     });
 }
 

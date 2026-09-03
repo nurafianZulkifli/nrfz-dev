@@ -23,5 +23,8 @@
  body.dark-mode #sync-code-input {
      background: #252840;
      color: #e0e0f0;
-     border-color: #3a3f58 !important;
+     border-color: #4b5b64 !important;
+     background-color: #1e2529;
+     border: 2px solid;
+     color: #e0e0e0;
  }

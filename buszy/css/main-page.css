@@ -136,7 +136,7 @@
 
   .bus-stop-description,
   body.dark-mode .bus-stop-description {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: normal;
       margin-left: 12px;
       cursor: pointer;
@@ -394,7 +394,7 @@
   }
 
   body.dark-mode .category-tab {
-      background-color: #1f2e37;
+      background-color: #344047;
       color: #ffffff;
   }
 
@@ -1363,7 +1363,7 @@
 
   #cv-bat .search-icon {
       left: 16px;
-      color: #2d96c6;
+      color: #566874;
       font-size: 1rem;
   }
 
@@ -1421,15 +1421,15 @@
       }
 
       body.dark-mode #cv-bat .search-container {
-          background-color: #2b3e49;
+          background-color: #202e36;
           border: 1px solid #25343d;
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
       }
 
       body.dark-mode #bus-stop-search {
           background-color: #1e2529;
-          border: 2px solid #525872;
-          color: #e0e0e0;
+          border: 2px solid #3f4e57;
+          color: #3f4e57;
       }
 
       @media (max-width: 545px) {
@@ -1586,8 +1586,9 @@
       .inline-search-view.open>.container {
           width: 720px;
           max-width: calc(100vw - 24px);
-          height: 600px;
-          min-height: 600px;
+        height: auto;
+        min-height: 0;
+        max-height: calc(100vh - 90px);
           padding: 7px 0 24px;
           border-radius: 28px;
           background-color: #2b3e49;
@@ -1629,8 +1630,11 @@
       }
 
       .inline-search-view.open .inline-search-results {
-          max-height: 400px;
+          max-height: min(400px, calc(100vh - 340px));
+          padding-top: 8px;
+          padding-bottom: 32px;
           overflow-y: auto;
+          scroll-padding-bottom: 24px;
           overscroll-behavior: contain;
           -webkit-overflow-scrolling: touch;
           touch-action: pan-y;
@@ -1895,15 +1899,16 @@
           .inline-search-view.open>.container {
               width: calc(100vw - 32px);
               max-width: 720px;
-              height: 600px;
-              min-height: 600px;
+              height: auto;
+              min-height: 0;
+              max-height: calc(100vh - 130px);
               padding-right: 12px;
               padding-left: 12px;
               border-radius: 24px;
           }
 
           .inline-search-view.open .inline-search-results {
-              max-height: 400px;
+              max-height: min(400px, calc(100vh - 380px));
           }
 
           .inline-search-exit {
