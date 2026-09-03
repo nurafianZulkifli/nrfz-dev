@@ -261,15 +261,25 @@ body.dark-mode .empty-state {
 }
 
 body.dark-mode .location-strip {
-    background: #293e4a;
-    border-color: #405761;
+    background: #20313a;
+    border-color: #354d58;
 }
 
 body.dark-mode .tracking-panel,
 body.dark-mode .stop-card {
-    background: #2b3e49;
-    border-color: #2b2b2b33;
+    background: #233640;
+    border-color: #354d58;
     color: #edf3f1;
+}
+
+body.dark-mode .stop-state {
+    background: #2a4656;
+    color: #c4e5f5;
+}
+
+body.dark-mode .arrived .stop-state {
+    background: #553b2b;
+    color: #ffd0ae;
 }
 
 body.dark-mode .service-chip {
@@ -285,8 +295,12 @@ body.dark-mode .service-chip.selected {
 }
 
 body.dark-mode .stop-service {
-    background: #354b55;
+    background: #304650;
     color: #edf3f1;
+}
+
+body.dark-mode .stop-service.selected {
+    background: #52718d;
 }
 
 @media (max-width: 480px) {
