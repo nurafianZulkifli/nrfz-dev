@@ -3,6 +3,12 @@
       padding-bottom: 5em;
   }
 
+  .menu-page .wbnrfz_eicw,
+  .menu-page .page-header-section,
+  .menu-page .app-branding-section {
+      box-shadow: none !important;
+  }
+
   @media (max-width: 768px) {
       .about-me-summ .container {
           max-width: 100%;
@@ -139,7 +145,7 @@
   }
 
   body.dark-mode .list-group-item {
-      background: #1c1f2b;
+      background: #2b3e49;
       border: 1px solid #2b2b2b33;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
   }
@@ -276,8 +282,8 @@
   }
 
   body.dark-mode .other-apps-card {
-      background: rgba(28, 31, 43, 0.5);
-      border: 2px solid #393e53;
+      background: #2b3e49;
+      border: 2px solid #465e6b;
   }
 
   body.dark-mode .other-apps-card:hover {

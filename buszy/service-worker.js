@@ -203,6 +203,7 @@ self.addEventListener('push', event => {
 
   const isArrived = data.data?.type === 'arrived';
   const isAlert   = data.data?.type === 'service-alert';
+  if (isAlert) return;
   const scope = self.registration.scope;
   const options = {
     body: data.body,
@@ -270,13 +271,6 @@ self.addEventListener('pushsubscriptionchange', event => {
         applicationServerKey: urlBase64ToUint8Array(vapidKey)
       });
 
-      // Always re-register for service alerts (safe to call multiple times)
-      await fetch(PUSH_SERVER + '/push/subscribe-alerts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subscription: newSub.toJSON() })
-      });
-
       // Tell open pages to re-register their bus timing subscriptions with the new endpoint
       const windowClients = await clients.matchAll({ type: 'window', includeUncontrolled: true });
       windowClients.forEach(c =>
@@ -305,9 +299,7 @@ self.addEventListener('notificationclick', event => {
   const { busStopCode, serviceNo, type } = event.notification.data || {};
   const scope = self.registration.scope; // e.g. "/buszy/" or "/nrfz-dev/buszy/"
   let targetUrl = scope;
-  if (type === 'service-alert') {
-    targetUrl = scope + 'ann.html';
-  } else if (busStopCode) {
+  if (busStopCode) {
     targetUrl = scope + 'art.html?BusStopCode=' + encodeURIComponent(busStopCode);
     if (serviceNo) targetUrl += '&ServiceNo=' + encodeURIComponent(serviceNo);
   }

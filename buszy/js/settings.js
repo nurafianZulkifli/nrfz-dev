@@ -37,18 +37,6 @@ function initializeDefaultPreferences() {
         localStorage.setItem('refreshInterval', '2');
     }
 
-    // Set default notification mode if not already set
-    if (!localStorage.getItem('buszy_notif_mode')) {
-        localStorage.setItem('buszy_notif_mode', 'once');
-    }
-
-    // Set default notify-when preferences if not already set
-    if (!localStorage.getItem('buszy_notif_when_arriving')) {
-        localStorage.setItem('buszy_notif_when_arriving', 'true');
-    }
-    if (!localStorage.getItem('buszy_notif_when_arrived')) {
-        localStorage.setItem('buszy_notif_when_arrived', 'true');
-    }
 }
 
 // Initialize defaults on page load
@@ -153,35 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Handle notification mode radio buttons
-    const notifModeRadios = document.querySelectorAll('input[name="notif-mode"]');
-    if (notifModeRadios.length) {
-        const savedMode = localStorage.getItem('buszy_notif_mode') || 'once';
-        const activeRadio = document.querySelector(`input[name="notif-mode"][value="${savedMode}"]`);
-        if (activeRadio) activeRadio.checked = true;
-        notifModeRadios.forEach(radio => {
-            radio.addEventListener('change', (event) => {
-                localStorage.setItem('buszy_notif_mode', event.target.value);
-            });
-        });
-    }
-
-    // Handle notify-when checkboxes
-    const notifWhenArriving = document.getElementById('notif-when-arriving');
-    if (notifWhenArriving) {
-        notifWhenArriving.checked = localStorage.getItem('buszy_notif_when_arriving') !== 'false';
-        notifWhenArriving.addEventListener('change', (event) => {
-            localStorage.setItem('buszy_notif_when_arriving', event.target.checked ? 'true' : 'false');
-        });
-    }
-
-    const notifWhenArrived = document.getElementById('notif-when-arrived');
-    if (notifWhenArrived) {
-        notifWhenArrived.checked = localStorage.getItem('buszy_notif_when_arrived') !== 'false';
-        notifWhenArrived.addEventListener('change', (event) => {
-            localStorage.setItem('buszy_notif_when_arrived', event.target.checked ? 'true' : 'false');
-        });
-    }
 });
 
 

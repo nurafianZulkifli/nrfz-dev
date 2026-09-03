@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Update the <h2> element with the all-apps
-    if (greetingElement) greetingElement.textContent = getGreeting();
+    // Keep the two-word greeting on two visual lines at every viewport size.
+    if (greetingElement) greetingElement.innerHTML = getGreeting().replace(' ', '<br>');
 });
 
 
