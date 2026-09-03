@@ -1556,9 +1556,9 @@
           position: fixed;
           inset: 0;
           z-index: -1;
-          background: rgba(8, 25, 38, 0.103);
-          -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
+          background: rgba(8, 25, 38, 0.315);
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
           pointer-events: none;
       }
 

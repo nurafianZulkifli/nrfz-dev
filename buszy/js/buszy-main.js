@@ -48,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Keep the two-word greeting on two visual lines at every viewport size.
-    if (greetingElement) greetingElement.innerHTML = getGreeting().replace(' ', '<br>');
+    if (greetingElement) greetingElement.textContent = getGreeting();
 });
 
 
