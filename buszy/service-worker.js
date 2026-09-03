@@ -45,10 +45,12 @@ const STATIC_ASSETS = [
   // Buszy entry
   buildPath('buszy/'),
   buildPath('buszy/index.html'),
+  buildPath('buszy/where-am-i.html'),
   buildPath('buszy/manifest.json'),
   
   // Buszy styles
   buildPath('buszy/css/style-buszy.css'),
+  buildPath('buszy/css/where-am-i.css'),
   
   // Buszy scripts
   buildPath('buszy/js/buszy-main.js'),
@@ -61,6 +63,7 @@ const STATIC_ASSETS = [
   buildPath('buszy/js/fl-bus.js'),
   buildPath('buszy/js/mob-navtabs.js'),
   buildPath('buszy/js/nbs.js'),
+  buildPath('buszy/js/where-am-i.js'),
   buildPath('buszy/js/pinned.js'),
   buildPath('buszy/js/scrape-bus-timings.js'),
   buildPath('buszy/js/tsa.js'),
