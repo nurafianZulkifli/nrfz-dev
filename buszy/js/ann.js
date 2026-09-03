@@ -84,7 +84,7 @@ function initAnnouncements() {
     localStorage.setItem(HAS_UNREAD_KEY, hasUnreadItems);
     
     // Update dots on current page
-    const dots = document.querySelectorAll('.ann-indicator-dot, .alerts-indicator-dot');
+    const dots = document.querySelectorAll('.ann-indicator-dot');
     dots.forEach(dot => {
         if (hasUnreadItems) {
             dot.classList.add('show');

@@ -40,7 +40,12 @@ function fetchAndUpdateAlerts() {
         .then(r => r.json())
         .then(data => {
             // Always update cache and display with fresh data
-            localStorage.setItem(ALERTS_CACHE_KEY, JSON.stringify({ ts: Date.now() }));
+            const alertRecords = Array.isArray(data.value) ? data.value : (data.value ? [data.value] : []);
+            const hasActive = alertRecords.some(alert => {
+                const messages = Array.isArray(alert.Message) ? alert.Message : [alert.Message];
+                return messages.some(message => String(message?.Content || '').trim().length > 0);
+            });
+            localStorage.setItem(ALERTS_CACHE_KEY, JSON.stringify({ ts: Date.now(), hasActive }));
             localStorage.setItem(ALERTS_API_DATA_KEY, JSON.stringify(data));
             
             // Always refresh display to ensure accuracy
@@ -120,7 +125,7 @@ document.addEventListener('visibilitychange', () => {
 
 function extractBusServiceCodes(text) {
     // Capture the service list between "bus service(s)" and the disruption status.
-    const busServicesRegex = /bus services?\s*[:\-]?\s*([\s\S]*?)(?=\s+(?:have|has|are|is)\s+(?:been\s+)?(?:affected|diverted|disrupted|delayed)\b|\s+(?:were|was)\s+(?:affected|diverted|disrupted|delayed)\b|[.;]|$)/i;
+    const busServicesRegex = /bus services?\s*[:\-]?\s*([\s\S]*?)(?=\s+(?:have|has|are|is)\s+(?:(?:been|expected\s+to\s+be)\s+)?(?:affected|diverted|disrupted|delayed)\b|\s+(?:were|was)\s+(?:affected|diverted|disrupted|delayed)\b|[.;]|$)/i;
     const match = text.match(busServicesRegex);
 
     if (!match) {
