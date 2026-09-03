@@ -399,6 +399,10 @@ body.dark-mode .card {
     align-items: center;
     flex: 0 0 auto;
     margin-top: 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(calc(-50% - 4px));
 }
 
 #all-timings-link {
@@ -413,7 +417,17 @@ body.dark-mode .card {
 }
 
 .page-title-wrapper > div:first-child {
+    position: relative;
     align-items: center !important;
+    flex-wrap: nowrap !important;
+    padding-right: 54px;
+}
+
+.page-title-wrapper > div:first-child > div:first-child {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 a.btn.btn-primary {
@@ -441,6 +455,9 @@ a.btn.btn-primary {
     .all-timings-section {
         margin-top: 0;
         flex: 0 0 auto;
+        top: auto;
+        bottom: 12px;
+        transform: none;
     }
 
     #all-timings-link {
