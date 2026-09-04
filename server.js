@@ -188,7 +188,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-// Define all API routes BEFORE static file serving
 // Define the /bus-arrivals route
 app.get('/bus-arrivals', async (req, res) => {
   try {
