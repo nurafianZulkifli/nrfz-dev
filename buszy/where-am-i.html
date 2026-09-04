@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../css/dark-mode.css">
     <link rel="stylesheet" href="./css/style-buszy.css">
     <link rel="stylesheet" href="./css/where-am-i.css">
+    <link crossorigin href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <script src="buszy-subp.js"></script>
@@ -44,6 +46,15 @@
     </div><hr></div></div></section>
 
     <main class="about-me-summ clearfix where-am-i-page"><div class="container">
+        <section id="live-map-section" class="live-map-section" aria-label="Live location map">
+            <div class="live-map-controls">
+                <button class="btn btn-busloc btn-sm" id="collapse-map-btn" type="button" title="Collapse map" aria-label="Collapse map"><i class="fa-regular fa-close"></i></button>
+                <button class="btn btn-busloc btn-sm" id="current-location-btn" type="button" title="Go to current location" aria-label="Go to current location"><i class="fa-kit fa-lta-location"></i></button>
+                <button class="btn btn-busloc btn-sm" id="recenter-map-btn" type="button" title="Recenter map" aria-label="Recenter map"><i class="fa-regular fa-expand"></i></button>
+            </div>
+            <div id="live-map" aria-label="Map showing your live location"></div>
+        </section>
+
         <section class="where-intro">
             <div><p class="where-eyebrow">LIVE JOURNEY</p><h2>Your location</h2></div>
             <button id="locate-button" class="location-button btn btn-busloc btn-sm" type="button" title="Refresh my location" aria-label="Refresh my location"><i class="fa-regular fa-location-crosshairs"></i></button>
@@ -57,13 +68,10 @@
 
         <section class="tracking-panel" aria-labelledby="tracking-heading">
             <div class="panel-heading"><div><p class="section-kicker">ONBOARD TRACKING</p><h2 id="tracking-heading">Which bus are you on?</h2></div><button id="clear-service" class="clear-button" type="button" hidden>Clear</button></div>
+            <div id="current-stop-control" class="current-stop-control" aria-live="polite"></div>
             <p id="tracking-copy" class="tracking-copy">Tap a nearby service to follow its next nearby stop.</p>
             <div id="service-picker" class="service-picker" aria-live="polite"></div>
-        </section>
-
-        <section class="stops-section" aria-labelledby="stops-heading">
-            <div class="panel-heading"><div><p class="section-kicker">NEARBY</p><h2 id="stops-heading">Bus stops around you</h2></div><span id="stops-count" class="stops-count"></span></div>
-            <div id="stops-list" class="stops-list" aria-live="polite"><p class="loading-state"><i class="fa-regular fa-spinner fa-spin"></i> Finding nearby stops...</p></div>
+            <div id="next-stops" class="next-stops" aria-live="polite"></div>
         </section>
     </div></main>
 
@@ -75,7 +83,7 @@
     </ul></nav>
 
     <script src="js/mob-navtabs.js"></script>
-    <script src="js/where-am-i.js"></script>
+    <script src="js/where-am-i.js?v=6.0.1"></script>
     <script src="js/ann-indicator.js"></script>
     <script src="js/alerts-indicator.js"></script>
 </body>
