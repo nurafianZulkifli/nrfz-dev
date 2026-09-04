@@ -187,10 +187,15 @@
 
 .next-stops-title,
 .next-stops-loading {
-    margin: .9rem 0 .55rem;
+    margin: .9rem 0 1.55rem;
     color: #5c6a70;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 800;
+    line-height: var(--current-stop-line-height, 1.25);
+}
+
+.next-stops-title br {
+    display: none;
 }
 
 .current-stop-label {
@@ -222,7 +227,7 @@
 .onboard-stops-list li {
     position: relative;
     color: #1d313b;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.15;
 }
@@ -233,7 +238,7 @@
     left: -2.35rem;
     width: 1.7rem;
     height: 1.7rem;
-    border: 2px solid #1f84a2;
+    border: 4px solid #1f84a2;
     border-radius: 50%;
     background: #f8fcff;
     content: '';
@@ -253,7 +258,7 @@
     display: inline-flex;
     align-items: center;
     gap: .4rem;
-    margin-top: 1.25rem;
+    margin-top: 2.25rem;
     color: #1f84a2;
     font-size: .9rem;
     font-weight: 800;
@@ -559,5 +564,19 @@ body.dark-mode .stop-service.selected {
 
     #live-map {
         height: 230px;
+    }
+
+    .next-stops-title,
+    .next-stops-loading {
+        font-size: 20px;
+        --current-stop-line-height: 1.3;
+    }
+
+    .next-stops-title br {
+        display: initial;
+    }
+
+    .onboard-stops-list li {
+        font-size: 18px;
     }
 }
