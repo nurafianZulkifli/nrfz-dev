@@ -20,6 +20,7 @@ let livePositionMarker = null;
 let liveAccuracyCircle = null;
 let currentStopMarker = null;
 let mapFollowsLocation = true;
+let pronunciationRulesPromise = null;
 
 const elements = {
     status: document.getElementById('location-status'), coordinates: document.getElementById('coordinates'),
@@ -256,6 +257,43 @@ async function stepRoute(step) {
     if (selectedService && activeRouteStops[nextIndex] === stopCode) loadNextStops(selectedService, stop);
 }
 
+async function getPronunciationRules() {
+    if (!pronunciationRulesPromise) {
+        pronunciationRulesPromise = fetch('json/pronunciation-rules.json')
+            .then(response => response.ok ? response.json() : { replacements: {} })
+            .catch(() => ({ replacements: {} }));
+    }
+    return pronunciationRulesPromise;
+}
+
+function pronunciationFor(stopName, replacements, digits = {}) {
+    const expandedName = Object.entries(replacements).reduce((spokenName, [written, spoken]) => {
+        const escapedWritten = written.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return spokenName.replace(new RegExp(`\\b${escapedWritten}\\b`, 'gi'), spoken);
+    }, stopName);
+    return expandedName.replace(/\d+([A-Za-z])?/g, (matchedValue, suffix) => {
+        const number = matchedValue.replace(/[A-Za-z]$/, '');
+        const spokenNumber = [...number].map(digit => digits[digit] || digit).join(' ');
+        return suffix ? `${spokenNumber} ${suffix.toUpperCase()}` : spokenNumber;
+    });
+}
+
+async function announceStop(stopName) {
+    if (!('speechSynthesis' in window)) {
+        elements.trackingCopy.textContent = 'Voice announcements are not available in this browser.';
+        return;
+    }
+
+    const { replacements = {}, digits = {} } = await getPronunciationRules();
+    window.speechSynthesis.cancel();
+    const announcement = new SpeechSynthesisUtterance(`${pronunciationFor(stopName, replacements, digits)}.`);
+    const singaporeVoice = window.speechSynthesis.getVoices().find(voice => voice.lang.toLowerCase() === 'en-sg');
+    if (singaporeVoice) announcement.voice = singaporeVoice;
+    announcement.lang = singaporeVoice?.lang || 'en-SG';
+    announcement.rate = .9;
+    window.speechSynthesis.speak(announcement);
+}
+
 function render() {
     const currentNearbyStop = getCurrentNearbyStop();
     const services = (currentNearbyStop?.services || []).sort((first, second) => first.localeCompare(second, undefined, { numeric: true }));
@@ -270,7 +308,7 @@ function render() {
     elements.trackingCopy.textContent = selectedService ? (targetCode ? (hasArrived ? `You have arrived at the nearest stop served by ${selectedService}.` : `Following ${selectedService}. Select a different nearby stop if needed.`) : `No nearby stop is currently serving ${selectedService}.`) : 'Tap a nearby service to follow its next nearby stop.';
     const hasPreviousStop = activeRouteIndex > 0;
     const hasFollowingStop = activeRouteIndex >= 0 && activeRouteIndex < activeRouteStops.length - 1;
-    elements.nextStops.innerHTML = !selectedService ? '' : nextStops === null ? '<p class="next-stops-loading"><i class="fa-regular fa-spinner fa-spin"></i> Loading route...</p>' : nextStops.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Stop:<br><strong> ${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}</strong></p><div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous stop" aria-label="Previous stop"${hasPreviousStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-up"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next stop" aria-label="Next stop"${hasFollowingStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-down"></i></button></div></div><ul class="onboard-stops-list">${nextStops.map(stop => `<li>${escapeHtml(stop.name)}</li>`).join('')}</ul><a class="full-route-link" href="bus-service.html?service=${encodeURIComponent(selectedService)}&highlightStop=${encodeURIComponent(routeCurrentStop?.code || '')}">View full route <i class="fa-regular fa-arrow-right" aria-hidden="true"></i></a>` : '<p class="next-stops-loading">No following stops found for this route.</p>';
+    elements.nextStops.innerHTML = !selectedService ? '' : nextStops === null ? '<p class="next-stops-loading"><i class="fa-regular fa-spinner fa-spin"></i> Loading route...</p>' : nextStops.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Stop:<br><strong> ${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}</strong></p><div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous stop" aria-label="Previous stop"${hasPreviousStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-up"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next stop" aria-label="Next stop"${hasFollowingStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-down"></i></button></div></div><ul class="onboard-stops-list">${nextStops.map(stop => `<li><button type="button" class="stop-announcement-button" data-stop-announcement="${escapeHtml(stop.name)}" aria-label="Announce next stop, ${escapeHtml(stop.name)}">${escapeHtml(stop.name)}</button></li>`).join('')}</ul><a class="full-route-link" href="bus-service.html?service=${encodeURIComponent(selectedService)}&highlightStop=${encodeURIComponent(routeCurrentStop?.code || '')}">View full route <i class="fa-regular fa-arrow-right" aria-hidden="true"></i></a>` : '<p class="next-stops-loading">No following stops found for this route.</p>';
 }
 
 function startLocationTracking() {
@@ -307,6 +345,10 @@ document.addEventListener('click', event => { const button = event.target.closes
 document.addEventListener('click', event => {
     const button = event.target.closest('[data-route-step]');
     if (button) stepRoute(Number(button.dataset.routeStep));
+});
+document.addEventListener('click', event => {
+    const button = event.target.closest('[data-stop-announcement]');
+    if (button) announceStop(button.dataset.stopAnnouncement);
 });
 document.addEventListener('change', event => {
     if (event.target.matches('#current-stop-picker')) selectCurrentStop(event.target.value);

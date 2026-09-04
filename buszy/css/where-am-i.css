@@ -232,6 +232,25 @@
     line-height: 1.15;
 }
 
+.stop-announcement-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+}
+
+.stop-announcement-button:not(:disabled) {
+    cursor: pointer;
+}
+
+.stop-announcement-button:hover,
+.stop-announcement-button:focus-visible {
+    color: #1f84a2;
+    text-decoration: underline;
+}
+
 .onboard-stops-list li::before {
     position: absolute;
     top: .05rem;
