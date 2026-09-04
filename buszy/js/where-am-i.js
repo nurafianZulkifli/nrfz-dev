@@ -273,9 +273,19 @@ function pronunciationFor(stopName, replacements, digits = {}) {
     }, stopName);
     return expandedName.replace(/\d+([A-Za-z])?/g, (matchedValue, suffix) => {
         const number = matchedValue.replace(/[A-Za-z]$/, '');
-        const spokenNumber = [...number].map(digit => digits[digit] || digit).join(' ');
+        const spokenNumber = number.length === 2 && number[0] !== '0'
+            ? speakTwoDigitNumber(Number(number))
+            : [...number].map(digit => digits[digit] || digit).join(' ');
         return suffix ? `${spokenNumber} ${suffix.toUpperCase()}` : spokenNumber;
     });
+}
+
+function speakTwoDigitNumber(number) {
+    const underTwenty = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+    const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+    if (number < 20) return underTwenty[number - 10];
+    const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+    return number % 10 ? `${tens[Math.floor(number / 10)]} ${ones[number % 10]}` : tens[number / 10];
 }
 
 async function announceStop(stopName) {
