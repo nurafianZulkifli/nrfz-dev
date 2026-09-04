@@ -112,6 +112,10 @@
     opacity: .6;
 }
 
+.location-button.location-refresh-pulse {
+    animation: location-refresh-pulse 1.4s ease-in-out infinite;
+}
+
 .location-strip {
     padding: 1rem;
     border: 1px solid #d5e4f1;
@@ -249,6 +253,16 @@
 .stop-announcement-button:focus-visible {
     color: #1f84a2;
     text-decoration: underline;
+}
+
+.current-stop-announcement-button {
+    font-weight: 800;
+    color: #000;
+}
+
+body.dark-mode .current-stop-announcement-button {
+    font-weight: 800;
+    color: #fff;
 }
 
 .onboard-stops-list li::before {
@@ -597,5 +611,17 @@ body.dark-mode .stop-service.selected {
 
     .onboard-stops-list li {
         font-size: 18px;
+    }
+}
+
+@keyframes location-refresh-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(31, 132, 162, .55);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(31, 132, 162, 0);
     }
 }

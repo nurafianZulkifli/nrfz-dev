@@ -21,6 +21,7 @@ let liveAccuracyCircle = null;
 let currentStopMarker = null;
 let mapFollowsLocation = true;
 let pronunciationRulesPromise = null;
+let locationTrackingPaused = false;
 
 const elements = {
     status: document.getElementById('location-status'), coordinates: document.getElementById('coordinates'),
@@ -90,6 +91,7 @@ function updateLiveMapStop() {
 }
 
 function updatePosition(position) {
+    if (locationTrackingPaused) return;
     currentPosition = { latitude: position.coords.latitude, longitude: position.coords.longitude, accuracy: position.coords.accuracy };
     elements.coordinates.textContent = `${currentPosition.latitude.toFixed(5)}, ${currentPosition.longitude.toFixed(5)}`;
     elements.accuracy.textContent = currentPosition.accuracy ? `within ${Math.round(currentPosition.accuracy)} m` : '';
@@ -112,6 +114,7 @@ async function loadNearbyStops() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const stops = await response.json();
         nearbyStops = await Promise.all(stops.map(async stop => ({ ...stop, services: await loadArrivals(stop.BusStopCode) })));
+        if (locationTrackingPaused) return;
         if (nearbyStops[0]) {
             elements.coordinates.textContent = `Near ${nearbyStops[0].Description} · ${currentPosition.latitude.toFixed(5)}, ${currentPosition.longitude.toFixed(5)}`;
         }
@@ -252,9 +255,20 @@ function selectCurrentStop(stopCode) {
 async function stepRoute(step) {
     const nextIndex = activeRouteIndex + step;
     if (!selectedService || nextIndex < 0 || nextIndex >= activeRouteStops.length) return;
+    pauseLocationTracking();
     const stopCode = activeRouteStops[nextIndex];
     const stop = await getStopDetails(stopCode);
     if (selectedService && activeRouteStops[nextIndex] === stopCode) loadNextStops(selectedService, stop);
+}
+
+function pauseLocationTracking() {
+    if (watchId !== null) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+    }
+    locationTrackingPaused = true;
+    elements.locate.classList.add('location-refresh-pulse');
+    elements.status.textContent = 'Location tracking paused while you simulate the route.';
 }
 
 async function getPronunciationRules() {
@@ -318,11 +332,13 @@ function render() {
     elements.trackingCopy.textContent = selectedService ? (targetCode ? (hasArrived ? `You have arrived at the nearest stop served by ${selectedService}.` : `Following ${selectedService}. Select a different nearby stop if needed.`) : `No nearby stop is currently serving ${selectedService}.`) : 'Tap a nearby service to follow its next nearby stop.';
     const hasPreviousStop = activeRouteIndex > 0;
     const hasFollowingStop = activeRouteIndex >= 0 && activeRouteIndex < activeRouteStops.length - 1;
-    elements.nextStops.innerHTML = !selectedService ? '' : nextStops === null ? '<p class="next-stops-loading"><i class="fa-regular fa-spinner fa-spin"></i> Loading route...</p>' : nextStops.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Stop:<br><strong> ${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}</strong></p><div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous stop" aria-label="Previous stop"${hasPreviousStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-up"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next stop" aria-label="Next stop"${hasFollowingStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-down"></i></button></div></div><ul class="onboard-stops-list">${nextStops.map(stop => `<li><button type="button" class="stop-announcement-button" data-stop-announcement="${escapeHtml(stop.name)}" aria-label="Announce next stop, ${escapeHtml(stop.name)}">${escapeHtml(stop.name)}</button></li>`).join('')}</ul><a class="full-route-link" href="bus-service.html?service=${encodeURIComponent(selectedService)}&highlightStop=${encodeURIComponent(routeCurrentStop?.code || '')}">View full route <i class="fa-regular fa-arrow-right" aria-hidden="true"></i></a>` : '<p class="next-stops-loading">No following stops found for this route.</p>';
+    elements.nextStops.innerHTML = !selectedService ? '' : nextStops === null ? '<p class="next-stops-loading"><i class="fa-regular fa-spinner fa-spin"></i> Loading route...</p>' : nextStops.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Stop:<br> <button type="button" class="stop-announcement-button current-stop-announcement-button" data-stop-announcement="${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}" aria-label="Announce current stop, ${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}">${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}</button></p><div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous stop" aria-label="Previous stop"${hasPreviousStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-up"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next stop" aria-label="Next stop"${hasFollowingStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-down"></i></button></div></div><ul class="onboard-stops-list">${nextStops.map(stop => `<li><button type="button" class="stop-announcement-button" data-stop-announcement="${escapeHtml(stop.name)}" aria-label="Announce next stop, ${escapeHtml(stop.name)}">${escapeHtml(stop.name)}</button></li>`).join('')}</ul><a class="full-route-link" href="bus-service.html?service=${encodeURIComponent(selectedService)}&highlightStop=${encodeURIComponent(routeCurrentStop?.code || '')}">View full route <i class="fa-regular fa-arrow-right" aria-hidden="true"></i></a>` : '<p class="next-stops-loading">No following stops found for this route.</p>';
 }
 
 function startLocationTracking() {
     if (!navigator.geolocation) { elements.status.textContent = 'This browser does not support location services.'; return; }
+    locationTrackingPaused = false;
+    elements.locate.classList.remove('location-refresh-pulse');
     elements.status.textContent = 'Requesting your location...';
     navigator.geolocation.getCurrentPosition(updatePosition, handleLocationError, { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 });
     if (watchId !== null) navigator.geolocation.clearWatch(watchId);
