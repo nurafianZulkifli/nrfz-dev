@@ -249,6 +249,23 @@
     content: '';
 }
 
+.full-route-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: 1.25rem;
+    color: #1f84a2;
+    font-size: .9rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.full-route-link:hover,
+.full-route-link:focus-visible {
+    color: #0f7f6c;
+    text-decoration: underline;
+}
+
 .route-step-controls {
     display: flex;
     flex: 0 0 auto;
@@ -488,6 +505,15 @@ body.dark-mode .onboard-stops-list li {
 
 body.dark-mode .onboard-stops-list li::before {
     background: #233640;
+}
+
+body.dark-mode .full-route-link {
+    color: #8ed4eb;
+}
+
+body.dark-mode .full-route-link:hover,
+body.dark-mode .full-route-link:focus-visible {
+    color: #c4e5f5;
 }
 
 body.dark-mode .stop-state {
