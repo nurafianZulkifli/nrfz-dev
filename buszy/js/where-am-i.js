@@ -1,8 +1,11 @@
 const WHERE_AM_I_API = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
 const ARRIVAL_REFRESH_MS = 30000;
 const ARRIVAL_DISTANCE_METRES = 60;
+const DIRECTIONAL_TIE_DISTANCE_METRES = 35;
+const MIN_HEADING_MOVEMENT_METRES = 20;
 
 let currentPosition = null;
+let travelHeading = null;
 let nearbyStops = [];
 let selectedService = null;
 let watchId = null;
@@ -15,12 +18,12 @@ let routeCurrentStop = null;
 let activeRouteStops = [];
 let activeRouteIndex = -1;
 let selectedNearbyStopCode = null;
+let selectedStopIsRouteCommit = false;
 let liveMap = null;
 let livePositionMarker = null;
 let liveAccuracyCircle = null;
 let currentStopMarker = null;
 let mapFollowsLocation = true;
-let pronunciationRulesPromise = null;
 let locationTrackingPaused = false;
 
 const elements = {
@@ -45,6 +48,35 @@ function distanceMetres(first, second) {
 }
 
 function formatDistance(distance) { return distance < 1000 ? `${Math.round(distance)} m` : `${(distance / 1000).toFixed(1)} km`; }
+
+function bearingDegrees(first, second) {
+    const radians = value => value * Math.PI / 180;
+    const degrees = value => value * 180 / Math.PI;
+    const deltaLongitude = radians(second.longitude - first.longitude);
+    const y = Math.sin(deltaLongitude) * Math.cos(radians(second.latitude));
+    const x = Math.cos(radians(first.latitude)) * Math.sin(radians(second.latitude)) - Math.sin(radians(first.latitude)) * Math.cos(radians(second.latitude)) * Math.cos(deltaLongitude);
+    return (degrees(Math.atan2(y, x)) + 360) % 360;
+}
+
+function headingDifference(first, second) { return Math.abs((first - second + 540) % 360 - 180); }
+
+function rankNearbyStops(stops) {
+    const rankedStops = stops.map(stop => ({
+        ...stop,
+        liveDistance: currentPosition ? distanceMetres(currentPosition, { latitude: Number(stop.Latitude), longitude: Number(stop.Longitude) }) : stop.distance * 1000
+    })).sort((first, second) => first.liveDistance - second.liveDistance);
+    if (travelHeading === null || rankedStops.length < 2) return rankedStops;
+
+    const nearestDistance = rankedStops[0].liveDistance;
+    const ambiguousStops = rankedStops.filter(stop => stop.liveDistance <= nearestDistance + DIRECTIONAL_TIE_DISTANCE_METRES);
+    const otherStops = rankedStops.filter(stop => stop.liveDistance > nearestDistance + DIRECTIONAL_TIE_DISTANCE_METRES);
+    ambiguousStops.sort((first, second) => {
+        const firstDifference = headingDifference(travelHeading, bearingDegrees(currentPosition, { latitude: Number(first.Latitude), longitude: Number(first.Longitude) }));
+        const secondDifference = headingDifference(travelHeading, bearingDegrees(currentPosition, { latitude: Number(second.Latitude), longitude: Number(second.Longitude) }));
+        return firstDifference - secondDifference || first.liveDistance - second.liveDistance;
+    });
+    return [...ambiguousStops, ...otherStops];
+}
 
 function initializeLiveMap() {
     const mapContainer = document.getElementById('live-map');
@@ -92,7 +124,11 @@ function updateLiveMapStop() {
 
 function updatePosition(position) {
     if (locationTrackingPaused) return;
-    currentPosition = { latitude: position.coords.latitude, longitude: position.coords.longitude, accuracy: position.coords.accuracy };
+    const nextPosition = { latitude: position.coords.latitude, longitude: position.coords.longitude, accuracy: position.coords.accuracy };
+    if (currentPosition && distanceMetres(currentPosition, nextPosition) >= MIN_HEADING_MOVEMENT_METRES) {
+        travelHeading = Number.isFinite(position.coords.heading) ? position.coords.heading : bearingDegrees(currentPosition, nextPosition);
+    }
+    currentPosition = nextPosition;
     elements.coordinates.textContent = `${currentPosition.latitude.toFixed(5)}, ${currentPosition.longitude.toFixed(5)}`;
     elements.accuracy.textContent = currentPosition.accuracy ? `within ${Math.round(currentPosition.accuracy)} m` : '';
     elements.status.textContent = 'Location updating as you move.';
@@ -115,12 +151,13 @@ async function loadNearbyStops() {
         const stops = await response.json();
         nearbyStops = await Promise.all(stops.map(async stop => ({ ...stop, services: await loadArrivals(stop.BusStopCode) })));
         if (locationTrackingPaused) return;
-        if (nearbyStops[0]) {
-            elements.coordinates.textContent = `Near ${nearbyStops[0].Description} · ${currentPosition.latitude.toFixed(5)}, ${currentPosition.longitude.toFixed(5)}`;
+        const currentNearbyStop = getCurrentNearbyStop();
+        if (currentNearbyStop) {
+            elements.coordinates.textContent = `Near ${currentNearbyStop.Description} · ${currentPosition.latitude.toFixed(5)}, ${currentPosition.longitude.toFixed(5)}`;
         }
         lastFetchPosition = { ...currentPosition };
         lastArrivalFetch = Date.now();
-        if (selectedService) loadNextStops(selectedService);
+        advanceRouteAtNextStop();
         render();
         updateLiveMapStop();
     } catch (error) {
@@ -143,19 +180,13 @@ async function loadArrivals(busStopCode) {
 function getCurrentStopForService(service) {
     const selectedStop = nearbyStops.find(stop => String(stop.BusStopCode) === selectedNearbyStopCode && stop.services.includes(service));
     if (selectedStop) return selectedStop;
-    return nearbyStops.filter(stop => stop.services.includes(service)).map(stop => ({
-        ...stop,
-        liveDistance: currentPosition ? distanceMetres(currentPosition, { latitude: stop.Latitude, longitude: stop.Longitude }) : stop.distance * 1000
-    })).sort((first, second) => first.liveDistance - second.liveDistance)[0] || null;
+    return rankNearbyStops(nearbyStops.filter(stop => stop.services.includes(service)))[0] || null;
 }
 
 function getCurrentNearbyStop() {
     const selectedStop = nearbyStops.find(stop => String(stop.BusStopCode) === selectedNearbyStopCode);
     if (selectedStop) return selectedStop;
-    return nearbyStops.map(stop => ({
-        ...stop,
-        liveDistance: currentPosition ? distanceMetres(currentPosition, { latitude: stop.Latitude, longitude: stop.Longitude }) : stop.distance * 1000
-    })).sort((first, second) => first.liveDistance - second.liveDistance)[0] || null;
+    return rankNearbyStops(nearbyStops)[0] || null;
 }
 
 function parseRouteStops(serviceData) {
@@ -229,6 +260,18 @@ async function loadNextStops(service, currentStop = getCurrentStopForService(ser
     }
 }
 
+function advanceRouteAtNextStop() {
+    if (!selectedService || activeRouteIndex < 0) return;
+    const nextStopCode = activeRouteStops[activeRouteIndex + 1];
+    const reachedNextStop = nearbyStops.find(stop => String(stop.BusStopCode) === String(nextStopCode)
+        && distanceMetres(currentPosition, { latitude: Number(stop.Latitude), longitude: Number(stop.Longitude) }) <= ARRIVAL_DISTANCE_METRES);
+    if (!reachedNextStop) return;
+
+    selectedNearbyStopCode = String(reachedNextStop.BusStopCode);
+    selectedStopIsRouteCommit = true;
+    loadNextStops(selectedService, reachedNextStop);
+}
+
 function selectService(service) {
     selectedService = service;
     nextStops = null;
@@ -237,11 +280,23 @@ function selectService(service) {
     activeRouteIndex = -1;
     routeRequestId++;
     render();
-    if (service) loadNextStops(service);
+    if (service) {
+        const currentStop = getCurrentStopForService(service);
+        if (currentStop) {
+            selectedNearbyStopCode = String(currentStop.BusStopCode);
+            selectedStopIsRouteCommit = true;
+        }
+        loadNextStops(service, currentStop);
+    } else if (selectedStopIsRouteCommit) {
+        selectedNearbyStopCode = null;
+        selectedStopIsRouteCommit = false;
+        render();
+    }
 }
 
 function selectCurrentStop(stopCode) {
     selectedNearbyStopCode = String(stopCode);
+    selectedStopIsRouteCommit = false;
     selectedService = null;
     nextStops = null;
     routeCurrentStop = null;
@@ -271,53 +326,6 @@ function pauseLocationTracking() {
     elements.status.textContent = 'Location tracking paused while you simulate the route.';
 }
 
-async function getPronunciationRules() {
-    if (!pronunciationRulesPromise) {
-        pronunciationRulesPromise = fetch('json/pronunciation-rules.json')
-            .then(response => response.ok ? response.json() : { replacements: {} })
-            .catch(() => ({ replacements: {} }));
-    }
-    return pronunciationRulesPromise;
-}
-
-function pronunciationFor(stopName, replacements, digits = {}) {
-    const expandedName = Object.entries(replacements).reduce((spokenName, [written, spoken]) => {
-        const escapedWritten = written.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        return spokenName.replace(new RegExp(`\\b${escapedWritten}\\b`, 'gi'), spoken);
-    }, stopName);
-    return expandedName.replace(/\d+([A-Za-z])?/g, (matchedValue, suffix) => {
-        const number = matchedValue.replace(/[A-Za-z]$/, '');
-        const spokenNumber = number.length === 2 && number[0] !== '0'
-            ? speakTwoDigitNumber(Number(number))
-            : [...number].map(digit => digits[digit] || digit).join(' ');
-        return suffix ? `${spokenNumber} ${suffix.toUpperCase()}` : spokenNumber;
-    });
-}
-
-function speakTwoDigitNumber(number) {
-    const underTwenty = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
-    const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
-    if (number < 20) return underTwenty[number - 10];
-    const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
-    return number % 10 ? `${tens[Math.floor(number / 10)]} ${ones[number % 10]}` : tens[number / 10];
-}
-
-async function announceStop(stopName) {
-    if (!('speechSynthesis' in window)) {
-        elements.trackingCopy.textContent = 'Voice announcements are not available in this browser.';
-        return;
-    }
-
-    const { replacements = {}, digits = {} } = await getPronunciationRules();
-    window.speechSynthesis.cancel();
-    const announcement = new SpeechSynthesisUtterance(`${pronunciationFor(stopName, replacements, digits)}.`);
-    const singaporeVoice = window.speechSynthesis.getVoices().find(voice => voice.lang.toLowerCase() === 'en-sg');
-    if (singaporeVoice) announcement.voice = singaporeVoice;
-    announcement.lang = singaporeVoice?.lang || 'en-SG';
-    announcement.rate = .9;
-    window.speechSynthesis.speak(announcement);
-}
-
 function render() {
     const currentNearbyStop = getCurrentNearbyStop();
     const services = (currentNearbyStop?.services || []).sort((first, second) => first.localeCompare(second, undefined, { numeric: true }));
@@ -325,14 +333,14 @@ function render() {
     elements.picker.innerHTML = services.length ? services.map(service => `<button class="service-chip${service === selectedService ? ' selected' : ''}" type="button" data-service="${escapeHtml(service)}">${escapeHtml(service)}</button>`).join('') : '<span class="tracking-copy">Arrival services will appear here shortly.</span>';
     elements.clear.hidden = !selectedService;
 
-    let candidateStops = selectedService ? nearbyStops.filter(stop => stop.services.includes(selectedService)) : nearbyStops;
-    candidateStops = candidateStops.map(stop => ({ ...stop, liveDistance: currentPosition ? distanceMetres(currentPosition, { latitude: stop.Latitude, longitude: stop.Longitude }) : stop.distance * 1000 })).sort((first, second) => first.liveDistance - second.liveDistance);
-    const targetCode = candidateStops[0]?.BusStopCode;
-    const hasArrived = candidateStops[0]?.liveDistance <= ARRIVAL_DISTANCE_METRES;
-    elements.trackingCopy.textContent = selectedService ? (targetCode ? (hasArrived ? `You have arrived at the nearest stop served by ${selectedService}.` : `Following ${selectedService}. Select a different nearby stop if needed.`) : `No nearby stop is currently serving ${selectedService}.`) : 'Tap a nearby service to follow its next nearby stop.';
+    const nextRouteStopCode = activeRouteStops[activeRouteIndex + 1];
+    const nextRouteStop = nextStops?.[0];
+    elements.trackingCopy.textContent = selectedService
+        ? (nextRouteStopCode ? `Following ${selectedService}. Route advances when you reach ${nextRouteStop?.name || 'the next stop'}.` : `Following ${selectedService}.`)
+        : 'Tap a nearby service to follow its next nearby stop.';
     const hasPreviousStop = activeRouteIndex > 0;
     const hasFollowingStop = activeRouteIndex >= 0 && activeRouteIndex < activeRouteStops.length - 1;
-    elements.nextStops.innerHTML = !selectedService ? '' : nextStops === null ? '<p class="next-stops-loading"><i class="fa-regular fa-spinner fa-spin"></i> Loading route...</p>' : nextStops.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Stop:<br> <button type="button" class="stop-announcement-button current-stop-announcement-button" data-stop-announcement="${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}" aria-label="Announce current stop, ${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}">${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}</button></p><div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous stop" aria-label="Previous stop"${hasPreviousStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-up"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next stop" aria-label="Next stop"${hasFollowingStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-down"></i></button></div></div><ul class="onboard-stops-list">${nextStops.map(stop => `<li><button type="button" class="stop-announcement-button" data-stop-announcement="${escapeHtml(stop.name)}" aria-label="Announce next stop, ${escapeHtml(stop.name)}">${escapeHtml(stop.name)}</button></li>`).join('')}</ul><a class="full-route-link" href="bus-service.html?service=${encodeURIComponent(selectedService)}&highlightStop=${encodeURIComponent(routeCurrentStop?.code || '')}">View full route <i class="fa-regular fa-arrow-right" aria-hidden="true"></i></a>` : '<p class="next-stops-loading">No following stops found for this route.</p>';
+    elements.nextStops.innerHTML = !selectedService ? '' : nextStops === null ? '<p class="next-stops-loading"><i class="fa-regular fa-spinner fa-spin"></i> Loading route...</p>' : nextStops.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Stop:<br> <a class="stop-timings-link current-stop-timings-link" href="art.html?BusStopCode=${encodeURIComponent(routeCurrentStop?.code || '')}&ServiceNo=${encodeURIComponent(selectedService)}" aria-label="View arrival timings for current stop, ${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}">${escapeHtml(routeCurrentStop?.name || 'Unknown stop')}</a></p><div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous stop" aria-label="Previous stop"${hasPreviousStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-up"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next stop" aria-label="Next stop"${hasFollowingStop ? '' : ' disabled'}><i class="fa-solid fa-chevron-down"></i></button></div></div><ul class="onboard-stops-list">${nextStops.map(stop => `<li><a class="stop-timings-link" href="art.html?BusStopCode=${encodeURIComponent(stop.code)}&ServiceNo=${encodeURIComponent(selectedService)}" aria-label="View arrival timings for ${escapeHtml(stop.name)}">${escapeHtml(stop.name)}</a></li>`).join('')}</ul><a class="full-route-link" href="bus-service.html?service=${encodeURIComponent(selectedService)}&highlightStop=${encodeURIComponent(routeCurrentStop?.code || '')}">View full route <i class="fa-regular fa-arrow-right" aria-hidden="true"></i></a>` : '<p class="next-stops-loading">No following stops found for this route.</p>';
 }
 
 function startLocationTracking() {
@@ -371,10 +379,6 @@ document.addEventListener('click', event => { const button = event.target.closes
 document.addEventListener('click', event => {
     const button = event.target.closest('[data-route-step]');
     if (button) stepRoute(Number(button.dataset.routeStep));
-});
-document.addEventListener('click', event => {
-    const button = event.target.closest('[data-stop-announcement]');
-    if (button) announceStop(button.dataset.stopAnnouncement);
 });
 document.addEventListener('change', event => {
     if (event.target.matches('#current-stop-picker')) selectCurrentStop(event.target.value);
