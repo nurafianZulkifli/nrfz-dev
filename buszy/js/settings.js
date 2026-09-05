@@ -216,8 +216,6 @@ const EXPORT_KEYS = [
     'showIncomingBuses',   // Incoming buses visibility
     'bookmarkedBusStops',  // Saved bus stops
     'allBusStops',         // Bus stop data cache
-    'notif_monitoredServices',  // Monitored bus services (NotificationManager)
-    'notif_notifiedServices'     // Notification history (NotificationManager)
 ];
 
 // Additional keys to export that follow patterns (dynamically found)

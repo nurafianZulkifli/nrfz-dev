@@ -26,17 +26,6 @@ if (shouldBeDark()) {
 
 // Listen to theme toggle clicks
 document.addEventListener('DOMContentLoaded', function() {
-    const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
-    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-    
-    function cycleTheme() {
-        const themes = ['light', 'dark', 'system'];
-        const currentTheme = window._themePreference || 'system';
-        const currentIndex = themes.indexOf(currentTheme);
-        const nextTheme = themes[(currentIndex + 1) % themes.length];
-        applyTheme(nextTheme);
-    }
-    
     function applyTheme(preference) {
         localStorage.setItem('theme-preference', preference);
         window._themePreference = preference;
@@ -56,21 +45,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateThemeIcon('light');
             }
         }
+        updateThemeSelector();
     }
-    
-    if (themeToggleDesktop) {
-        themeToggleDesktop.addEventListener('click', (e) => {
-            e.preventDefault();
-            cycleTheme();
-        });
-    }
-    
-    if (themeToggleMobile) {
-        themeToggleMobile.addEventListener('click', (e) => {
-            e.preventDefault();
-            cycleTheme();
-        });
-    }
+
+    document.querySelectorAll('[data-theme-preference]').forEach(button => {
+        button.addEventListener('click', () => applyTheme(button.dataset.themePreference));
+    });
+    updateThemeSelector();
 });
 
 // Follow system theme changes when set to 'system' preference
@@ -142,4 +123,11 @@ function updateThemeIcon(theme) {
         if (themeIconDesktop) themeIconDesktop.classList.remove('animate');
         if (themeIconMobile) themeIconMobile.classList.remove('animate');
     }, 300); // Match the duration of the CSS transition
+}
+
+function updateThemeSelector() {
+    const preference = window._themePreference || 'system';
+    document.querySelectorAll('[data-theme-preference]').forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.themePreference === preference));
+    });
 }

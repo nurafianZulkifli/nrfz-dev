@@ -3,6 +3,23 @@
 /* ===== Prevent pinch-to-zoom on PWA ===== */
 body {
     touch-action: manipulation;
+    background-color: #f5faff;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: env(titlebar-area-height, 0px);
+    z-index: 3000;
+    background: #fff;
+    pointer-events: none;
+}
+
+body.dark-mode::before {
+    background: #0f222c;
 }
 
 /* ===== Native-feel: prevent text selection on interactive elements ===== */
@@ -159,6 +176,10 @@ body.dark-mode #pwa-splash .splash-hero {
 /* Scroll margin for anchor links */
 #refetch-stops {
     scroll-margin-top: 120px;
+}
+
+.navbar {
+    background-color: #f5faffa2;
 }
 
 body.dark-mode {
@@ -387,7 +408,7 @@ table th {
 
 /* GPS nearest stop highlight on NBS */
 .bus-stop.nearest-stop {
-    background-color: #caf3ff;
+    background-color: #c4dce8;
     border: 2px solid #24779e;
     box-shadow: 0 0 15px #24779e, 0 2px 4px #0000004d;
 }
@@ -448,7 +469,7 @@ table th {
 }
 
 .bus-stop-code:hover {
-    color: #52718d !important;
+    color: #627d8d !important;
 }
 
 .bs-name {
@@ -652,7 +673,7 @@ body.drag-mode .list-group-item:not(.drag-selected) {
 .pw-btn-next:not(:disabled):hover,
 .pw-btn-prev:not(:disabled):focus,
 .pw-btn-prev:not(:disabled):hover {
-    background-color: #52718d !important;
+    background-color: #627d8d !important;
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
@@ -857,7 +878,7 @@ body.drag-mode .list-group-item:not(.drag-selected) {
 .list-group-item.active {
     z-index: 2;
     color: #000;
-    background-color: #c7e3fb;
+    background-color: #ddebf4;
 }
 
 .lg-ann {
@@ -1151,7 +1172,7 @@ body.dark-mode .btn-flt:hover {
 body.dark-mode .list-group-item.active {
     z-index: 2;
     color: #000;
-    background-color: #52718d;
+    background-color: #627d8d;
 }
 
 body.dark-mode .lg-date {
@@ -1459,7 +1480,7 @@ body.dark-mode .alerts-indicator-dot {
 @media (min-width: 995px) {
     .page-header-section {
         padding-top: 7em;
-        background: #ececea;
+        background: #f5faff;
     }
 
     .navbar-nav {
@@ -2259,8 +2280,7 @@ body.dark-mode .import-export-btn {
 }
 
 body.dark-mode .import-export-btn:hover {
-    background: #2a2f45;
-    border-color: #51a7be;
+    background: #627d8d;
 }
 
 .settings-switch-row {

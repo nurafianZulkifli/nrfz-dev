@@ -123,11 +123,16 @@
     opacity: 1;
 }
 
-.card .service-options-collapse > div {
+.card .service-options-collapse>div {
     margin: 0.75rem 0 0;
     padding: 0.55rem 0.65rem !important;
     border-radius: 24px;
     background: #0000002c;
+}
+
+.card-header {
+    border-color: #1f84a22e;
+    background: #1f84a212;
 }
 
 .card .service-options-collapse .btn-busloc {
@@ -138,9 +143,9 @@
     box-shadow: none;
 }
 
-body:not(.dark-mode) .card .service-options-collapse > div {
-    border-color: rgba(31, 132, 162, 0.18);
-    background: rgba(31, 132, 162, 0.07);
+body:not(.dark-mode) .card .service-options-collapse>div {
+    border-color: #1f84a22e;
+    background: #1f84a212;
 }
 
 body.dark-mode a.ib-svc:hover {
@@ -286,11 +291,12 @@ body.dark-mode .bus-stop-description {
     color: #000;
     text-align: center;
     font-weight: bold;
-    border: #bfbfbf 1px solid;
     border-radius: 10px;
     width: 100%;
     cursor: default;
     transition: border-color 0.3s ease;
+    padding: 3px;
+    background-color: #1f84a212;
 }
 
 .ib-time.arrived {
@@ -361,6 +367,7 @@ body.dark-mode .btn-busloc2 {
 
 body.dark-mode .ib-time {
     color: #fff;
+    background-color: #0000002c;
 }
 
 body.dark-mode .ib-time.arrived {
@@ -413,17 +420,23 @@ body.dark-mode .card {
     height: 42px;
     padding: 0;
     border-radius: 10px;
-    background-color: #253742;
+    background-color: #fff;
+    color: #000;
 }
 
-.page-title-wrapper > div:first-child {
+body.dark-mode #all-timings-link {
+    background-color: #253742;
+    color: #fff;
+}
+
+.page-title-wrapper>div:first-child {
     position: relative;
     align-items: center !important;
     flex-wrap: nowrap !important;
     padding-right: 54px;
 }
 
-.page-title-wrapper > div:first-child > div:first-child {
+.page-title-wrapper>div:first-child>div:first-child {
     display: flex;
     align-items: center;
     flex: 1 1 auto;
@@ -439,11 +452,11 @@ a.btn.btn-primary {
         width: 100%;
     }
 
-    .page-title-wrapper > div:first-child {
+    .page-title-wrapper>div:first-child {
         gap: 12px;
     }
 
-    .page-title-wrapper > div:first-child > div:first-child {
+    .page-title-wrapper>div:first-child>div:first-child {
         min-width: 0;
         flex: 1 1 auto;
     }
@@ -709,7 +722,7 @@ body.dark-mode #incoming-buses-section p {
     margin-top: 1.5em;
     margin-bottom: 2em;
     padding: 1rem;
-    background-color: #f9f9f9;
+    background-color: #fff;
     border-radius: 34px;
     border: 1px solid #e0e0e0;
     flex-wrap: wrap;

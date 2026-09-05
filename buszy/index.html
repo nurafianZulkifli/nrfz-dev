@@ -467,12 +467,15 @@
                 isDarkMode = _prefersDark;
             }
 
-            const imageName = isDarkMode ? 'hero-buszy-dark.png' : 'hero-buszy.png';
-            const imageUrl = new URL('../img/bg-img/' + imageName, window.location.href).href;
-
-            if (bgElement) {
-                bgElement.style.backgroundImage = `url('${imageUrl}')`;
+            function updateHeroTheme() {
+                const imageName = document.body.classList.contains('dark-mode') ? 'hero-buszy-dark.png' : 'hero-buszy.png';
+                const imageUrl = new URL('../img/bg-img/' + imageName, window.location.href).href;
+                if (bgElement) bgElement.style.backgroundImage = `url('${imageUrl}')`;
             }
+
+            updateHeroTheme();
+            window.addEventListener('buszythemechange', updateHeroTheme);
+            new MutationObserver(updateHeroTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
         }
     </script>
 

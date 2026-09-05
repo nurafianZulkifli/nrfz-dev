@@ -106,7 +106,7 @@
       padding: 18px 24px;
       border-radius: 18px;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      background: #ffffff;
+      background: #fbfdff;
       display: flex;
       align-items: center;
       text-decoration: none;
@@ -118,6 +118,7 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       transform: translateY(-3px);
       border-color: rgba(0, 0, 0, 0.15);
+      background-color: #ddebf4;
   }
 
   .list-group-item .d-flex {
@@ -202,7 +203,7 @@
   }
 
   .other-apps-card {
-      background: rgb(255, 255, 255);
+      background: #fbfdff;
       border: 2px solid #d5d5d5;
       border-radius: 18px;
       padding: 16px 20px;

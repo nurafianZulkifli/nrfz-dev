@@ -4,7 +4,7 @@
 
 const ALERTS_HAS_ACTIVE_KEY = 'buszy_alerts_has_active';
 const ALERTS_CACHE_KEY = 'buszy_alerts_cache';
-const ALERTS_CACHE_TTL = 30 * 60 * 1000; // 30 minutes (increased from 5 to reduce API calls)
+const ALERTS_CACHE_TTL = 60 * 1000;
 const ALERTS_API_URL = 'https://bat-lta-9eb7bbf231a2.herokuapp.com/train-service-alerts';
 let _alertsFetchInProgress = false; // Debounce flag to prevent simultaneous requests
 
@@ -27,7 +27,10 @@ function hasBusAlerts(data) {
     return alerts.some(alert => {
         if (!alert.Message) return false;
         const messages = Array.isArray(alert.Message) ? alert.Message : [alert.Message];
-        return messages.some(msgObj => String(msgObj.Content || '').trim().length > 0);
+        return messages.some(message => {
+            const content = String(message?.Content || '').toLowerCase();
+            return content.includes('bus service') && (content.includes('affected') || content.includes('diverted') || content.includes('delayed'));
+        });
     });
 }
 
@@ -38,6 +41,7 @@ async function fetchAndCacheAlerts() {
     _alertsFetchInProgress = true;
     try {
         const response = await fetch(ALERTS_API_URL);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         const hasActive = hasBusAlerts(data);
 
