@@ -1298,7 +1298,7 @@
 
   #cv-bat .hero-intro h1 {
       margin: 0;
-      color: #081d49;
+      color: #000;
       font-size: clamp(2.5rem, 5vw, 3.8rem);
       line-height: 1.1;
       letter-spacing: 0;
@@ -1349,8 +1349,8 @@
   #cv-bat .search-box {
       min-height: 52px;
       padding: 12px 8px 12px 44px;
-      border: 1px solid #d8e7ed;
-      background: #f9fcfd;
+      border: 2px solid #bbc8ce;
+      background: #e8eff5;
       color: #18334a;
       box-shadow: none;
       font-size: 1rem;

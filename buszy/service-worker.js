@@ -46,7 +46,6 @@ const STATIC_ASSETS = [
   buildPath('buszy/'),
   buildPath('buszy/index.html'),
   buildPath('buszy/where-am-i.html'),
-  buildPath('buszy/manifest.json'),
   
   // Buszy styles
   buildPath('buszy/css/style-buszy.css'),
@@ -136,6 +135,11 @@ self.addEventListener('fetch', event => {
   
   // Only handle GET requests within Buszy scope
   if (request.method !== 'GET' || !url.pathname.startsWith(buszyScope)) {
+    return;
+  }
+
+  if (url.pathname === buildPath('buszy/manifest.json')) {
+    event.respondWith(fetch(request));
     return;
   }
   
