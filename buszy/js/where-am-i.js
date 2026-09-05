@@ -329,7 +329,10 @@ function pauseLocationTracking() {
 function render() {
     const currentNearbyStop = getCurrentNearbyStop();
     const services = (currentNearbyStop?.services || []).sort((first, second) => first.localeCompare(second, undefined, { numeric: true }));
-    elements.currentStop.innerHTML = currentNearbyStop ? `<label class="current-stop-label" for="current-stop-picker">Your Current Bus Stop</label><select id="current-stop-picker" class="current-stop-picker" aria-label="Your current bus stop">${nearbyStops.map(stop => `<option value="${escapeHtml(stop.BusStopCode)}"${String(stop.BusStopCode) === String(currentNearbyStop.BusStopCode) ? ' selected' : ''}>${escapeHtml(stop.Description)}</option>`).join('')}</select>` : '<p class="next-stops-loading">Finding your current bus stop...</p>';
+    const currentStopPickerIsFocused = document.activeElement?.id === 'current-stop-picker';
+    if (!currentStopPickerIsFocused) {
+        elements.currentStop.innerHTML = currentNearbyStop ? `<label class="current-stop-label" for="current-stop-picker">Your Current Bus Stop</label><select id="current-stop-picker" class="current-stop-picker" aria-label="Your current bus stop">${nearbyStops.map(stop => `<option value="${escapeHtml(stop.BusStopCode)}"${String(stop.BusStopCode) === String(currentNearbyStop.BusStopCode) ? ' selected' : ''}>${escapeHtml(stop.Description)}</option>`).join('')}</select>` : '<p class="next-stops-loading">Finding your current bus stop...</p>';
+    }
     elements.picker.innerHTML = services.length ? services.map(service => `<button class="service-chip${service === selectedService ? ' selected' : ''}" type="button" data-service="${escapeHtml(service)}">${escapeHtml(service)}</button>`).join('') : '<span class="tracking-copy">Arrival services will appear here shortly.</span>';
     elements.clear.hidden = !selectedService;
 

@@ -1052,7 +1052,7 @@ body.dark-mode .list-group-item:first-child {
 
 body.dark-mode .list-group-item:last-child {
     transition-duration: 800ms;
-    border-radius: 20px;
+    border-radius: 24px;
     margin-bottom: 1em;
     font-size: 20px;
 }

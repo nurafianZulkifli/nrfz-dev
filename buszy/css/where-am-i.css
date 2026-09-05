@@ -33,14 +33,14 @@
 .live-map-controls .btn {
     width: 36px;
     height: 36px;
-    padding: 0;
+    padding: 4px;
     border-radius: 4px;
 }
 
 #live-map {
     height: 280px;
     border: 1px solid #d5e4f1;
-    border-radius: 8px;
+    border-radius: 34px;
     background: #dfe8ed;
     overflow: hidden;
 }

@@ -27,7 +27,7 @@
 
 .card {
     border: 1px solid #ddd;
-    border-radius: 25px;
+    border-radius: 34px;
     padding: 1rem;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -126,7 +126,7 @@
 .card .service-options-collapse > div {
     margin: 0.75rem 0 0;
     padding: 0.55rem 0.65rem !important;
-    border-radius: 12px;
+    border-radius: 24px;
     background: #0000002c;
 }
 
@@ -205,7 +205,7 @@ body.dark-mode .bus-stop-code {
 
 #bus-map {
     margin-bottom: 2em;
-    border-radius: 25px;
+    border-radius: 34px;
     overflow: hidden;
     background: #dfe8ed;
 }
@@ -262,7 +262,7 @@ body.dark-mode .bus-stop-description {
 
 #incoming-buses-section {
     border: 1px solid #ddd;
-    border-radius: 25px;
+    border-radius: 34px;
     padding: 1rem;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -484,7 +484,7 @@ body.dark-mode a.btn.btn-primary:hover {
 
 body.dark-mode .card .card-header {
     background-color: #0000002c;
-    border-radius: 15px;
+    border-radius: 24px;
     color: #fff;
 }
 
@@ -710,7 +710,7 @@ body.dark-mode #incoming-buses-section p {
     margin-bottom: 2em;
     padding: 1rem;
     background-color: #f9f9f9;
-    border-radius: 15px;
+    border-radius: 34px;
     border: 1px solid #e0e0e0;
     flex-wrap: wrap;
 }

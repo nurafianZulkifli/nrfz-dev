@@ -311,7 +311,7 @@ body.dark-mode .bus-service-code {
     color: #000;
     font-weight: bold;
     font-size: 15px;
-    padding: 5px 4px;
+    padding: 6px 6px;
     border-radius: 5px;
     gap: 10px;
     margin-right: 0.5em;
@@ -321,23 +321,25 @@ body.dark-mode .bus-service-code {
 }
 
 body.dark-mode .bus-service-code:hover {
-    background-color: #94d40b;
+    background-color: #52718d;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #fff;
 }
 
-.bus-service-code-text {
+span.bus-service-code-text {
     font-size: 15px;
     font-weight: bold;
-    color: #000;
+    color: #000 !important;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 2px 6px;
 }
 
-body.dark-mode .bus-service-code-text {
-    color: #000;
+span.bus-service-code-text:hover {
+    color: #fff !important;
 }
+
 
 .bus-codes-container {
     display: flex;
