@@ -47,22 +47,22 @@ initializeDefaultPreferences();
 // ****************************
 // Function to handle time format change
 document.addEventListener('DOMContentLoaded', () => {
-    const timeFormatRadios = document.querySelectorAll('input[name="time-format"]');
+    const timeFormatButtons = document.querySelectorAll('[data-time-format]');
 
-    // Load the saved time format from localStorage
-    const savedFormat = localStorage.getItem('timeFormat');
-    if (savedFormat) {
-        document.querySelector(`input[value="${savedFormat}"]`).checked = true;
+    function updateTimeFormatSelector() {
+        const selectedFormat = localStorage.getItem('timeFormat') || '24-hour';
+        timeFormatButtons.forEach(button => {
+            button.setAttribute('aria-pressed', String(button.dataset.timeFormat === selectedFormat));
+        });
     }
 
-    // Add event listeners to update the time format
-    timeFormatRadios.forEach(radio => {
-        radio.addEventListener('change', (event) => {
-            const selectedFormat = event.target.value;
-            localStorage.setItem('timeFormat', selectedFormat);
-            alert(`Time format updated to ${selectedFormat}.`);
+    timeFormatButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            localStorage.setItem('timeFormat', button.dataset.timeFormat);
+            updateTimeFormatSelector();
         });
     });
+    updateTimeFormatSelector();
 
     // Handle fleet legend checkbox
     const showFleetLegendCheckbox = document.getElementById('show-fleet-legend');
