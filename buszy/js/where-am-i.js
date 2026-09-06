@@ -2,6 +2,7 @@ const WHERE_AM_I_API = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
 const ARRIVAL_REFRESH_MS = 30000;
 const ARRIVAL_DISTANCE_METRES = 60;
 const DIRECTIONAL_TIE_DISTANCE_METRES = 35;
+const SERVICE_HEADING_TOLERANCE = 100;
 const MIN_HEADING_MOVEMENT_METRES = 20;
 
 let currentPosition = null;
@@ -112,7 +113,7 @@ function updateLiveMapPosition() {
 }
 
 function updateLiveMapStop() {
-    const currentStop = getCurrentNearbyStop();
+    const currentStop = selectedService ? getCurrentStopForService(selectedService) : getCurrentNearbyStop();
     if (!liveMap || !currentStop) return;
     const latitude = Number(currentStop.Latitude);
     const longitude = Number(currentStop.Longitude);
@@ -184,7 +185,12 @@ async function loadArrivals(busStopCode) {
 function getCurrentStopForService(service) {
     const selectedStop = nearbyStops.find(stop => String(stop.BusStopCode) === selectedNearbyStopCode && stop.services.includes(service));
     if (selectedStop) return selectedStop;
-    return rankNearbyStops(nearbyStops.filter(stop => stop.services.includes(service)))[0] || null;
+    const serviceStops = nearbyStops.filter(stop => stop.services.includes(service));
+    if (travelHeading === null || !currentPosition) return rankNearbyStops(serviceStops)[0] || null;
+    const headingAlignedStops = serviceStops.filter(stop => headingDifference(travelHeading, bearingDegrees(currentPosition, {
+        latitude: Number(stop.Latitude), longitude: Number(stop.Longitude)
+    })) <= SERVICE_HEADING_TOLERANCE);
+    return rankNearbyStops(headingAlignedStops.length ? headingAlignedStops : serviceStops)[0] || null;
 }
 
 function getCurrentNearbyStop() {
@@ -331,11 +337,12 @@ function pauseLocationTracking() {
 }
 
 function render() {
-    const currentNearbyStop = getCurrentNearbyStop();
+    const currentNearbyStop = selectedService ? getCurrentStopForService(selectedService) : getCurrentNearbyStop();
+    const selectableStops = selectedService ? nearbyStops.filter(stop => stop.services.includes(selectedService)) : nearbyStops;
     const services = (currentNearbyStop?.services || []).sort((first, second) => first.localeCompare(second, undefined, { numeric: true }));
     const currentStopPickerIsFocused = document.activeElement?.id === 'current-stop-picker';
     if (!currentStopPickerIsFocused) {
-        elements.currentStop.innerHTML = currentNearbyStop ? `<label class="current-stop-label" for="current-stop-picker">Your Current Bus Stop</label><select id="current-stop-picker" class="current-stop-picker" aria-label="Your current bus stop">${nearbyStops.map(stop => `<option value="${escapeHtml(stop.BusStopCode)}"${String(stop.BusStopCode) === String(currentNearbyStop.BusStopCode) ? ' selected' : ''}>${escapeHtml(stop.Description)}</option>`).join('')}</select>` : '<p class="next-stops-loading">Finding your current bus stop...</p>';
+        elements.currentStop.innerHTML = currentNearbyStop ? `<label class="current-stop-label" for="current-stop-picker">Nearby Bus Stops Around You</label><select id="current-stop-picker" class="current-stop-picker" aria-label="Nearby bus stops around you">${selectableStops.map(stop => `<option value="${escapeHtml(stop.BusStopCode)}"${String(stop.BusStopCode) === String(currentNearbyStop.BusStopCode) ? ' selected' : ''}>${escapeHtml(stop.Description)}</option>`).join('')}</select>` : '<p class="next-stops-loading">Finding nearby bus stops...</p>';
     }
     elements.picker.innerHTML = services.length ? services.map(service => `<button class="service-chip${service === selectedService ? ' selected' : ''}" type="button" data-service="${escapeHtml(service)}">${escapeHtml(service)}</button>`).join('') : '<span class="tracking-copy">Arrival services will appear here shortly.</span>';
     elements.clear.hidden = !selectedService;
