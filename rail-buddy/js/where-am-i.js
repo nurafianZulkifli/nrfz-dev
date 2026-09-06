@@ -93,13 +93,17 @@ async function loadStationLocations() {
 
     const uniqueStations = [...new Map(stations.map(station => [station.name, station])).values()];
     const locations = [];
-    for (const station of uniqueStations) {
-        try {
-            const location = await findStationCoordinates(station);
-            if (location) locations.push(location);
-        } catch (error) {
-            console.warn(`[where-am-i] Location unavailable for ${station.name}:`, error);
-        }
+    const batchSize = 4;
+    for (let index = 0; index < uniqueStations.length; index += batchSize) {
+        const batch = uniqueStations.slice(index, index + batchSize);
+        const results = await Promise.allSettled(batch.map(station => findStationCoordinates(station)));
+        results.forEach((result, resultIndex) => {
+            if (result.status === 'fulfilled') {
+                if (result.value) locations.push(result.value);
+            } else {
+                console.warn(`[where-am-i] Location unavailable for ${batch[resultIndex].name}:`, result.reason);
+            }
+        });
     }
     if (!locations.length) throw new Error('No station coordinates were returned');
     localStorage.setItem(STATION_CACHE_KEY, JSON.stringify(locations));
