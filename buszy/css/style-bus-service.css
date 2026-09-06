@@ -68,7 +68,7 @@ body.dark-mode #breadcrumb-service h2 {
 body.dark-mode .service-header {
     background: #a1c248;
     background: linear-gradient(90deg, rgba(161, 194, 72, 1) 0%, rgba(132, 179, 23, 1) 52%, rgba(179, 199, 68, 1) 100%);
-    border-radius: 16px;
+    border-radius: 34px;
     color: #000;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
 }
@@ -312,10 +312,11 @@ body.dark-mode .port-summary h4 {
 
 .route-terminals {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1.5rem;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1.5rem 1.75rem;
     background: #fff;
     border-radius: 34px;
     border: 1px solid #1c1f2b33;
@@ -325,26 +326,36 @@ body.dark-mode .port-summary h4 {
 .terminal,
 .loop {
     text-align: center;
-    width: 100%;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .terminal-label {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: #666;
     text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .terminal-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     color: #333;
-    padding: 0.4rem;
+    padding: 0.55rem 0.75rem;
     background: #fcfcfc;
-    border-radius: 25px;
+    border-radius: 18px;
     border: 2px solid #d5d5d5;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .terminal-name a.terminal-link {
@@ -359,10 +370,15 @@ body.dark-mode .port-summary h4 {
 
 .route-arrow {
     color: #7cb000;
-    font-size: 1.5rem;
-    padding: 0.5rem 0;
+    font-size: 1.15rem;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
     cursor: default;
     transition: transform 0.18s ease, opacity 0.18s ease;
+    margin-top: 1.2rem;
 }
 
 .route-arrow.direction-switchable {
@@ -376,6 +392,14 @@ body.dark-mode .port-summary h4 {
 
 .route-arrow.direction-switchable:active {
     transform: scale(1.05);
+}
+
+.arrow-desktop {
+    display: inline-block;
+}
+
+.arrow-mobile {
+    display: none;
 }
 
 body.dark-mode .route-terminals {
@@ -410,10 +434,6 @@ body.dark-mode .terminal-name a.terminal-link {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.stops-section i {
-    color: #7cb000;
 }
 
 .stops-container {
@@ -551,6 +571,48 @@ body.dark-mode .stops-no-results {
 
 .stop-item.highlight-stop:hover {
     box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Where Am I Action on Highlighted Stop */
+.highlight-where-am-i-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-left: 0.75rem;
+    background-color: #1f84a2;
+    color: #ffffff !important;
+    border-radius: 14px;
+    font-size: 17px;
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.highlight-where-am-i-btn:hover {
+    background-color: #16657d;
+    transform: scale(1.12);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    color: #ffffff !important;
+}
+
+.highlight-where-am-i-btn:active {
+    transform: scale(0.95);
+}
+
+body.dark-mode .highlight-where-am-i-btn {
+    background-color: #1f84a2;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2)
+}
+
+body.dark-mode .highlight-where-am-i-btn:hover {
+    background-color: #269ec1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* GPS nearest stop highlight */
@@ -1126,7 +1188,54 @@ body.dark-mode .info-item {
     }
 
     .route-terminals {
-        gap: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.5rem;
+    }
+
+    .terminal,
+    .loop {
+        text-align: center;
+        width: 100%;
+        flex: unset;
+        min-width: unset;
+    }
+
+    .terminal-label {
+        font-size: 0.85rem;
+        color: #666;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    .terminal-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        padding: 0.4rem;
+        background: #fcfcfc;
+        border-radius: 25px;
+        border: 2px solid #d5d5d5;
+        width: 100%;
+        text-align: center;
+    }
+
+    .route-arrow {
+        color: #7cb000;
+        font-size: 1.5rem;
+        padding: 0.5rem 0;
+        margin-top: 0;
+    }
+
+    .arrow-desktop {
+        display: none;
+    }
+
+    .arrow-mobile {
+        display: inline-block;
     }
 
     .stop-item {
@@ -1205,6 +1314,13 @@ body.dark-mode .info-item {
 
     .bus-stop-inline {
         margin-left: 0px;
+    }
+
+    .highlight-where-am-i-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+        margin-left: 0.5rem;
     }
 
     /* Animation for loading */

@@ -931,6 +931,7 @@ function renderFilteredStops(stops) {
 
     const basePath = getBasePath();
     const busIconPath = basePath + 'buszy/assets/bus-icon.png';
+    const currentServiceNo = getServiceNumberFromURL();
 
     let highlightedElement = null;
 
@@ -940,10 +941,20 @@ function renderFilteredStops(stops) {
         stopElement.style.animationDelay = `${index * 0.05}s`;
 
         // Only highlight the first occurrence of the highlighted stop
-        if (currentHighlightStopForSearch && stop[0] === currentHighlightStopForSearch && !highlightedElement) {
+        const isHighlighted = currentHighlightStopForSearch && stop[0] === currentHighlightStopForSearch && !highlightedElement;
+        if (isHighlighted) {
             stopElement.classList.add('highlight-stop');
             highlightedElement = stopElement;
         }
+
+        const whereAmIHtml = isHighlighted ? `
+            <a href="${basePath}buszy/where-am-i.html?service=${encodeURIComponent(currentServiceNo)}&stop=${encodeURIComponent(stop[0])}" 
+               class="highlight-where-am-i-btn" 
+               title="Track on Where Am I" 
+               aria-label="Track on Where Am I">
+                <i class="fa-regular fa-location-crosshairs"></i>
+            </a>
+        ` : '';
 
         stopElement.innerHTML = `
             <div class="bus-stop-info">
@@ -956,12 +967,23 @@ function renderFilteredStops(stops) {
                     <span class="bus-stop-description">${stop[2]}</span>
                 </div>
             </div>
+            ${whereAmIHtml}
         `;
 
         stopElement.style.cursor = 'pointer';
-        stopElement.addEventListener('click', () => {
+        stopElement.addEventListener('click', (e) => {
+            if (e.target.closest('.highlight-where-am-i-btn')) {
+                return;
+            }
             window.location.href = getBasePath() + 'buszy/art.html?BusStopCode=' + stop[0];
         });
+
+        const whereAmIBtn = stopElement.querySelector('.highlight-where-am-i-btn');
+        if (whereAmIBtn) {
+            whereAmIBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
 
         container.appendChild(stopElement);
     });

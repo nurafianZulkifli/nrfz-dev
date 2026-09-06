@@ -390,5 +390,30 @@ document.addEventListener('click', event => {
 document.addEventListener('change', event => {
     if (event.target.matches('#current-stop-picker')) selectCurrentStop(event.target.value);
 });
+
+async function initFromUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get('service') || params.get('ServiceNo');
+    const stopParam = params.get('stop') || params.get('BusStopCode') || params.get('highlightStop');
+
+    if (stopParam) {
+        selectedNearbyStopCode = String(stopParam);
+        selectedStopIsRouteCommit = true;
+        const stop = await getStopDetails(stopParam);
+        if (stop) {
+            routeCurrentStop = { code: String(stop.code || stopParam), name: stop.name || stopParam };
+            if (serviceParam) {
+                selectedService = serviceParam;
+                loadNextStops(serviceParam, stop);
+            } else {
+                render();
+            }
+        }
+    } else if (serviceParam) {
+        selectService(serviceParam);
+    }
+}
+
 initializeLiveMap();
 startLocationTracking();
+initFromUrlParams();
