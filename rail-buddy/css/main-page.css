@@ -138,6 +138,10 @@
      font-weight: bold;
  }
 
+ .alert-message-box {
+    font-size: 16px;
+ }
+
  .pulse {
      animation: pulse-animation 2s infinite;
  }
