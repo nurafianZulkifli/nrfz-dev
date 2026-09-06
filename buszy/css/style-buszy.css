@@ -1532,7 +1532,7 @@ body.dark-mode .alerts-indicator-dot {
 
     .page-header-section {
         padding-top: 0em;
-        background: #ececea;
+        background: #f5faff;
     }
 
     /* Floating breadcrumb only on mobile/tablet */
@@ -1632,7 +1632,7 @@ body.dark-mode .alerts-indicator-dot {
     }
 
     body.dark-mode .mobile-bottom-nav::before {
-        background: linear-gradient(to top, rgba(20, 24, 41, 1.7) 35%, rgba(31, 36, 59, 0) 100%);
+        background: linear-gradient(to top, #0f222c 35%, #0f222c 100%);
     }
 
     .mobile-bottom-nav ul {

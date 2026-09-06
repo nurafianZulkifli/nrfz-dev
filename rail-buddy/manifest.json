@@ -36,6 +36,18 @@
           "sizes": "192x192"
         }
       ]
+    },
+    {
+      "name": "Where Am I",
+      "short_name": "Nearest Station",
+      "description": "Find the MRT or LRT station nearest to you",
+      "url": "./where-am-i.html",
+      "icons": [
+        {
+          "src": "./assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ],
   "share_target": {
