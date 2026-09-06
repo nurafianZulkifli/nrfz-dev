@@ -198,12 +198,17 @@ app.get('/station-location', async (req, res) => {
   if (stationLocationCache.has(cacheKey)) return res.json(stationLocationCache.get(cacheKey));
 
   try {
-    const response = await axios.get('https://www.onemap.gov.sg/api/common/elastic/search', {
-      params: { searchVal: `${stationName} MRT`, returnGeom: 'Y', getAddrDetails: 'N', pageNum: 1 },
-      timeout: 10000
-    });
-    const results = response.data?.results || [];
-    const match = results.find(result => /(?:MRT|LRT) STATION/i.test(result.SEARCHVAL || '')) || results[0];
+    const searchTerms = [`${stationName} MRT`, `${stationName} LRT`, stationName];
+    let results = [];
+    for (const searchVal of searchTerms) {
+      const response = await axios.get('https://www.onemap.gov.sg/api/common/elastic/search', {
+        params: { searchVal, returnGeom: 'Y', getAddrDetails: 'N', pageNum: 1 },
+        timeout: 10000
+      });
+      results = response.data?.results || [];
+      if (results.length) break;
+    }
+    const match = results.find(result => /(?:MRT|LRT) STATION(?: \(|$)/i.test(result.SEARCHVAL || '')) || results[0];
     const latitude = Number(match?.LATITUDE);
     const longitude = Number(match?.LONGITUDE);
     if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return res.status(404).send('Station location not found');
