@@ -63,7 +63,7 @@ body.dark-mode #pwa-splash .splash-hero {
 }
 
 body.dark-mode {
-    background: #0f0b01 !important;
+    background: #1d160f !important;
     --card-bg: #1a1f35;
     --card-bg-alt: #232a45;
     --border-color: #333b5c;
@@ -78,11 +78,11 @@ body.dark-mode #schedulesList {
 }
 
 body.dark-mode .navbar {
-    background: #69582986 !important;
+    background: #482b0094 !important;
 }
 
 body.dark-mode .page-header-section {
-    background: #0f0b01 !important;
+    background: #1d160f!important;
 }
 
 .nav-link.active {
@@ -266,7 +266,7 @@ body.dark-mode li.breadcrumb-item a {
 }
 
 body.dark-mode .about-me-summ {
-    background-color: #0f0b01 !important;
+    background-color: #1d160f!important;
     transition: all 0.5s ease;
 }
 
@@ -282,6 +282,13 @@ body.dark-mode .list-group-item {
 body.dark-mode .list-group-item:hover {
     background-color: #334250;
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .nav-link:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    background-color: #554a28;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -645,7 +652,7 @@ body.dark-mode .ann-header-btn {
     }
 
     body.dark-mode .mobile-bottom-nav ul {
-        background: #6958297a;
+        background: #482b0094;
         backdrop-filter: blur(25px);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }

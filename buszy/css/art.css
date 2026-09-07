@@ -151,13 +151,13 @@ body:not(.dark-mode) .card .service-options-collapse>div {
 body.dark-mode a.ib-svc:hover {
     transform: translateY(-3px) !important;
     color: #fff !important;
-    background-color: #52718d !important;
+    background-color: #1b5e72 !important;
 }
 
 body.dark-mode a.service-no:hover {
     transform: translateY(-3px);
     color: #fff !important;
-    background-color: #52718d;
+    background-color: #1b5e72;
 }
 
 .bus-time {
@@ -580,7 +580,7 @@ body.dark-mode .service-no-collapsible-btn {
 
 body.dark-mode .service-no-collapsible-btn:hover .service-no {
     transform: translateY(-3px);
-    background-color: #52718d;
+    background-color: #1b5e72;
     color: #fff !important;
 }
 

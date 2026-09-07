@@ -164,48 +164,26 @@
     </section>
 
     <div class="container-md main-content">
-        <!-- Service Header Section -->
-        <div class="service-header" id="service-header">
-            <div class="service-number-badge" id="service-number">---</div>
-            <div class="service-info">
-                <h1 id="service-title">Loading...</h1>
+        <!-- Service Header and Related Variants -->
+        <details class="service-details" id="service-details">
+            <!-- Service Header Section -->
+            <summary class="service-header" id="service-header">
+                <div class="service-number-badge" id="service-number">---</div>
+                <div class="service-info">
+                    <h1 id="service-title">Loading...</h1>
 
-                <!-- Remove when all svc done -->
-                <!-- <button class="open-route-info-btn" id="open-route-info-btn" aria-label="Open route information">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    Open Route Info
-                </button> -->
+                    <!-- Remove when all svc done -->
+                    <!-- <button class="open-route-info-btn" id="open-route-info-btn" aria-label="Open route information">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        Open Route Info
+                    </button> -->
 
-            </div>
-        </div>
-
-        <!-- Route Section -->
-        <section class="route-section">
-            <div class="route-terminals">
-                <div class="terminal">
-                    <div class="terminal-label">Starts At</div>
-                    <div class="terminal-name" id="terminal-start">---</div>
                 </div>
-                <div class="route-arrow">
-                    <i class="fa-solid fa-arrow-right arrow-desktop"></i>
-                    <i class="fa-kit fa-lta-to-down arrow-mobile"></i>
-                </div>
-
-                <div class="loop">
-                    <div class="terminal-label">Loops At</div>
-                    <div class="terminal-name" id="terminal-loop">---</div>
-                </div>
-
-                <div class="route-arrow">
-                    <i class="fa-solid fa-arrow-right arrow-desktop"></i>
-                    <i class="fa-kit fa-lta-to-down arrow-mobile"></i>
-                </div>
-                <div class="terminal">
-                    <div class="terminal-label">Ends At</div>
-                    <div class="terminal-name" id="terminal-end">---</div>
-                </div>
-            </div>
-        </section>
+                <span class="service-toggle" aria-label="Expand or collapse variants">
+                    <span class="service-variants-indicator" id="service-variants-indicator">Variants available</span>
+                    <i class="fa-regular fa-chevron-down"></i>
+                </span>
+            </summary>
 
         <!-- Short Bus Service -->
         <section class="short-bus-service" id="short-bus-section" style="display: none;">
@@ -236,6 +214,35 @@
             <h2><i class="fa-kit fa-lta-bus"></i> Route Variant</h2>
             <div class="service-links" id="route-variant-content">
                 ---
+            </div>
+        </section>
+        </details>
+
+        <!-- Route Section -->
+        <section class="route-section">
+            <div class="route-terminals">
+                <div class="terminal">
+                    <div class="terminal-label">Starts At</div>
+                    <div class="terminal-name" id="terminal-start">---</div>
+                </div>
+                <div class="route-arrow">
+                    <i class="fa-solid fa-arrow-right arrow-desktop"></i>
+                    <i class="fa-kit fa-lta-to-down arrow-mobile"></i>
+                </div>
+
+                <div class="loop">
+                    <div class="terminal-label">Loops At</div>
+                    <div class="terminal-name" id="terminal-loop">---</div>
+                </div>
+
+                <div class="route-arrow">
+                    <i class="fa-solid fa-arrow-right arrow-desktop"></i>
+                    <i class="fa-kit fa-lta-to-down arrow-mobile"></i>
+                </div>
+                <div class="terminal">
+                    <div class="terminal-label">Ends At</div>
+                    <div class="terminal-name" id="terminal-end">---</div>
+                </div>
             </div>
         </section>
 

@@ -137,7 +137,7 @@ body.dark-mode .tab-button {
 body.dark-mode .tab-button:hover {
     color: #fff;
     transform: translateY(-2px);
-    background-color: #52718d;
+    background-color: #1b5e72;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -321,7 +321,7 @@ body.dark-mode .bus-service-code {
 }
 
 body.dark-mode .bus-service-code:hover {
-    background-color: #52718d;
+    background-color: #1b5e72;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     color: #fff;

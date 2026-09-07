@@ -766,6 +766,16 @@ async function populateServiceData(serviceNumber, service) {
         document.getElementById('route-variant-section').style.display = 'block';
         populateRouteVariant(service.rv);
     }
+
+    const hasRelatedServices = Boolean(
+        (service.sb && service.sb.length > 0) ||
+        (service.pb && service.pb.length > 0) ||
+        (service.ev && service.ev.length > 0) ||
+        (service.rv && service.rv.length > 0)
+    );
+    if (hasRelatedServices) {
+        document.getElementById('service-details').classList.add('has-variants');
+    }
 }
 
 // Display frequency details by time period (collapsible)

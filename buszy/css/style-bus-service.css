@@ -65,6 +65,54 @@ body.dark-mode #breadcrumb-service h2 {
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
 }
 
+.service-details {
+    margin-bottom: 3rem;
+}
+
+.service-details > summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.service-details > summary::-webkit-details-marker {
+    display: none;
+}
+
+.service-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+    color: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.service-toggle i {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.service-details[open] .service-toggle i {
+    transform: rotate(180deg);
+}
+
+.service-variants-indicator {
+    display: inline-block;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+}
+
+.service-details:not(.has-variants) .service-toggle {
+    display: none;
+}
+
+.service-details.has-variants .service-header {
+    padding-right: 2rem;
+}
+
 body.dark-mode .service-header {
     background: #a1c248;
     background: linear-gradient(90deg, rgba(161, 194, 72, 1) 0%, rgba(132, 179, 23, 1) 52%, rgba(179, 199, 68, 1) 100%);
@@ -728,7 +776,7 @@ body.dark-mode .stop-item {
 }
 
 body.dark-mode .stop-item:hover {
-    background-color: #334250;
+    background-color: #1b5e72;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
