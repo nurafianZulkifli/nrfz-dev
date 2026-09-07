@@ -57,25 +57,27 @@ body.dark-mode #breadcrumb-service h2 {
     gap: 2rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    /* Default: Neutral (LTA) — green */
     background: #a1c248;
     background: linear-gradient(90deg, rgba(161, 194, 72, 1) 0%, rgba(132, 179, 23, 1) 52%, rgba(179, 199, 68, 1) 100%);
     border-radius: 34px;
     color: #000;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.service-header:hover {
+    transform: translateY(-2px);
 }
 
 .service-details {
     margin-bottom: 3rem;
+    border-radius: 34px;
+    overflow: hidden;
+    box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
 }
 
-.service-details > summary {
-    list-style: none;
+.service-details > .service-header {
     cursor: pointer;
-}
-
-.service-details > summary::-webkit-details-marker {
-    display: none;
 }
 
 .service-toggle {
@@ -94,15 +96,17 @@ body.dark-mode #breadcrumb-service h2 {
     transition: transform 0.2s ease;
 }
 
-.service-details[open] .service-toggle i {
+.service-details.expanded .service-toggle i {
     transform: rotate(180deg);
 }
 
 .service-variants-indicator {
     display: inline-block;
     padding: 0.35rem 0.65rem;
-    border: 1px solid currentColor;
-    border-radius: 999px;
+    border: 2px solid currentColor;
+    color: inherit;
+    border-radius: 34px;
+    transition: color 0.35s ease-out, border-color 0.35s ease-out;
 }
 
 .service-details:not(.has-variants) .service-toggle {
@@ -110,7 +114,65 @@ body.dark-mode #breadcrumb-service h2 {
 }
 
 .service-details.has-variants .service-header {
+    margin-bottom: 0;
     padding-right: 2rem;
+}
+
+.service-details.has-variants.expanded {
+    background: #2b3e49;
+}
+
+.service-variants-content {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-out, transform 0.4s ease-out;
+}
+
+.service-details.has-variants.expanded .service-variants-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-header.operator-gas .service-toggle,
+.service-header.operator-gas .service-variants-indicator {
+    color: #000;
+}
+
+.service-header.operator-sbst .service-toggle,
+.service-header.operator-sbst .service-variants-indicator,
+.service-header.operator-smrt .service-toggle,
+.service-header.operator-smrt .service-variants-indicator,
+.service-header.operator-tts .service-toggle,
+.service-header.operator-tts .service-variants-indicator {
+    color: #fff;
+}
+
+.service-details.has-variants.expanded .service-header {
+    margin-bottom: 0;
+    border-radius: 34px 34px 0 0;
+    box-shadow: none;
+}
+
+.service-details .service-header:hover {
+    transform: none;
+}
+
+.service-details.has-variants .service-variants-content > .service-variants-inner > section {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.service-details.has-variants .service-variants-content > .service-variants-inner > section:last-child {
+    border-radius: 0 0 34px 34px;
+}
+
+body.dark-mode .service-details.has-variants.expanded {
+    background: #2b3e49;
 }
 
 body.dark-mode .service-header {
@@ -369,6 +431,11 @@ body.dark-mode .port-summary h4 {
     border-radius: 34px;
     border: 1px solid #1c1f2b33;
     box-shadow: 3px 0 15px -1px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.route-terminals:hover {
+    transform: translateY(-2px);
 }
 
 .terminal,
@@ -1424,6 +1491,14 @@ body.dark-mode .info-item {
     stroke-width: 11;
     stroke-linecap: round;
     transform-origin: center;
+}
+
+.direction-button {
+    transition: all 0.3s ease-in-out;
+}
+
+.direction-button:hover {
+    transform: translateY(-2px);
 }
 
 body.dark-mode .loading-spinner {

@@ -162,7 +162,7 @@
                                             Alerts
                                         </button>
                                         <button class="tab-button" data-tab="announcements">
-                                            <i class="fa-regular fa-bell"></i>&nbsp;
+                                            <i class="fa-regular fa-bullhorn"></i>&nbsp;
                                             Announcements
                                         </button>
                                     </div>
@@ -189,54 +189,8 @@
         <div class="container">
             <!-- Announcements Tab Content -->
             <div id="announcements-content" class="tab-content-section">
-                <div class="list-group">
-                    <a href="settings.html#refetch-stops" data-ann-id="bus-stop-description-2026-07"
-                        data-ann-date="2026-07-12"
-                        class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex">
-                            <div>
-                                <h5 class="lg-ann"><i class="fa-regular fa-thumbtack"></i> Bus Stop Description Changes
-                                    -
-                                    July 2026<span class="ann-badge-container"></span></h5>
-                            </div>
-                        </div>
-                        <p class="mb-1" style="cursor: pointer;">
-                            A few Bus Stop Descriptions (Names) have been updated in July 2026. Do head over to
-                            Settings
-                            and re-fetch
-                            your bus stop data to get the most up to date information.</p>
-                    </a>
-                    <hr>
-                    <a href="https://landtransportguru.net/sklrt-west-single-loop-ops-apr-oct-2026/"
-                        data-ann-id="sklrt-closure-2026-04" data-ann-date="2026-02-20"
-                        class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex">
-                            <div>
-                                <h5 class="lg-ann"><i class="fa-kit fa-lta-lrt"></i> Service Adjustments - SKLRT<span
-                                        class="ann-badge-container"></span></h5>
-                                <small class="lg-date">20 Feb 2026</small>
-                            </div>
-                        </div>
-                        <p class="mb-1" style="cursor: pointer;">
-                            The West Inner Loop of the Sengkang LRT Line will be closed from 19 April 2026 to 18 October
-                            2026. This is to facilitate the track works needed to integrate the existing LRT line with
-                            the
-                            expanded Sengkang LRT Depot.</p>
-                    </a>
-                    <a href="https://www.ptc.gov.sg/newsroom/news-releases/newsroom-view/fare-review-exercise-2025"
-                        data-ann-id="fare-review-2025-10" data-ann-date="2025-10-14"
-                        class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex">
-                            <div>
-                                <h5 class="lg-ann"><i class="fa-kit fa-lta-map"></i> Fare Review Exercise<span
-                                        class="ann-badge-container"></span></h5>
-                                <small class="lg-date">14 Oct 2025</small>
-                            </div>
-                        </div>
-                        <p class="mb-1" style="cursor: pointer;">
-                            PTC grants overall fare adjustment of 5.0% - below the maximum allowable quantum of 14.4%;
-                            deferment of remaining quantum (9.4%) supported by additional Government subsidies...</p>
-                    </a>
+                <div class="list-group announcements-list">
+                    <div class="fetch">Loading announcements...</div>
                 </div>
             </div>
 
@@ -298,6 +252,8 @@
     <script src="../js/dstabs.js"></script>
 
     <script src="../js/utils.js"></script>
+
+    <script src="../js/announcements.js"></script>
 
     <script src="js/ann.js"></script>
 

@@ -490,17 +490,18 @@ table th {
     border-radius: 20px;
     margin-top: 1em;
     font-size: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
 .list-group-item:last-child {
-    transition-duration: 800ms;
+    transition: all 0.3s ease-in-out;
     border-radius: 20px;
     margin-bottom: 1em;
     font-size: 20px;
 }
 
 .list-group-item {
-    transition-duration: 800ms;
+    transition: all 0.3s ease-in-out;
     border-radius: 20px;
     margin-top: 1em;
     font-size: 20px;
@@ -513,12 +514,9 @@ table th {
     user-select: none;
 }
 
-/* .list-group-item:hover {
-    background-color: #d8e6f3;
+.list-group-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-} */
+}
 
 /* Drag to reorder states */
 .js-drag-handle {

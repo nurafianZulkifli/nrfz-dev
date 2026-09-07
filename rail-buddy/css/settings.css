@@ -20,7 +20,7 @@ body.dark-mode #sync-copy-btn {
     gap: 6px;
     margin-top: 1rem;
     padding: 6px;
-    border-radius: 8px;
+    border-radius: 24px;
     background: #e5e7eb;
 }
 
@@ -28,7 +28,7 @@ body.dark-mode #sync-copy-btn {
     min-height: 44px;
     padding: .65rem .5rem;
     border: 0;
-    border-radius: 6px;
+    border-radius: 24px;
     background: transparent;
     color: #667085;
     font: inherit;
@@ -48,14 +48,14 @@ body.dark-mode #sync-copy-btn {
 }
 
 body.dark-mode .theme-selector {
-    background: #303f48;
+    background: #57432f;
 }
 
 body.dark-mode .theme-selector-option {
-    color: #b8c4cc;
+    color: #fad8b6;
 }
 
 body.dark-mode .theme-selector-option[aria-pressed="true"] {
-    background: #f7f7f7;
-    color: #111;
+    background: #d4b799;
+    color: #000;
 }

@@ -273,6 +273,13 @@ function stationCodeClass(code) {
     return ({ NS: 'mrt-nsl', EW: 'mrt-ewl', CG: 'mrt-ewl', NE: 'mrt-nel', CC: 'mrt-ccl', CE: 'mrt-ccl', DT: 'mrt-dtl', TE: 'mrt-tel', BP: 'mrt-lrt', SE: 'mrt-lrt', SW: 'mrt-lrt', PE: 'mrt-lrt', PW: 'mrt-lrt' })[prefix] || 'mrt-lrt';
 }
 
+function lineChipTextColor(color) {
+    const hex = String(color || '').replace('#', '');
+    if (!/^[0-9a-f]{6}$/i.test(hex)) return '#000';
+    const [red, green, blue] = [0, 2, 4].map(index => parseInt(hex.slice(index, index + 2), 16));
+    return (red * 299 + green * 587 + blue * 114) / 1000 > 155 ? '#000' : '#fff';
+}
+
 function formatStationCode(code) {
     return String(code).replace(/^([A-Za-z]+)(\d+)$/, '$1 $2');
 }
@@ -311,7 +318,11 @@ function renderTracking() {
     if (!currentStationPickerIsFocused) {
         elements.currentStation.innerHTML = `<label class="current-station-label" for="current-station-picker">Nearby MRT &amp; LRT Stations Around You</label><select id="current-station-picker" class="current-station-picker" aria-label="Nearby MRT and LRT stations around you">${nearbyStations.map(station => `<option value="${escapeHtml(station.name)}"${station.name === currentStation.name ? ' selected' : ''}>${escapeHtml(station.name)} (${escapeHtml(station.code)})</option>`).join('')}</select>`;
     }
-    elements.picker.innerHTML = services.length ? services.map(line => `<button class="service-chip${line.code === selectedService ? ' selected' : ''}" type="button" data-service="${escapeHtml(line.code)}">${escapeHtml(line.code)}</button>`).join('') : '<span class="tracking-copy">No rail lines were found for this station.</span>';
+    elements.picker.innerHTML = services.length ? services.map(line => {
+        const lineColor = /^#[0-9a-f]{6}$/i.test(line.color || '') ? line.color : '#94d40b';
+        const textColor = lineChipTextColor(lineColor);
+        return `<button class="service-chip${line.code === selectedService ? ' selected' : ''}" type="button" data-service="${escapeHtml(line.code)}" style="--service-color: ${lineColor}; --service-text-color: ${textColor};">${escapeHtml(line.code)}</button>`;
+    }).join('') : '<span class="tracking-copy">No rail lines were found for this station.</span>';
     elements.clear.hidden = !selectedService;
     updateTrackingTabs();
 
@@ -330,7 +341,7 @@ function renderTracking() {
         renderPlatformTab(currentStation, currentCode);
         return;
     }
-    elements.nextStops.innerHTML = nextStations.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Station: <span class="current-station-name">${renderStationCodeCaplets([currentCode])}${escapeHtml(currentStation.name)}</span></p><div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous station" aria-label="Previous station"${hasPreviousStation ? '' : ' disabled'}><i class="fa-solid fa-chevron-up"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next station" aria-label="Next station"${hasFollowingStation ? '' : ' disabled'}><i class="fa-solid fa-chevron-down"></i></button></div></div><ul class="onboard-stops-list">${nextStations.map(station => `<li>${renderStationCodeCaplets([normaliseCode(station.code)])}<span>${escapeHtml(station.name)}</span></li>`).join('')}</ul>` : '<p class="next-stops-loading">No following stations found for this route.</p>';
+    elements.nextStops.innerHTML = nextStations.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Station: <span class="current-station-name">${renderStationCodeCaplets([currentCode])}${escapeHtml(currentStation.name)}</span></p></div><ul class="onboard-stops-list">${nextStations.map(station => `<li>${renderStationCodeCaplets([normaliseCode(station.code)])}<span>${escapeHtml(station.name)}</span></li>`).join('')}</ul>` : '<p class="next-stops-loading">No following stations found for this route.</p>';
 }
 
 function updatePosition(position) {

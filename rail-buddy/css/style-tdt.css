@@ -288,7 +288,7 @@ body.dark-mode .list-group-item:hover {
 body.dark-mode .nav-link:hover {
     color: #fff;
     transform: translateY(-2px);
-    background-color: #554a28;
+    background-color: #86725b;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -563,7 +563,7 @@ body.dark-mode .ann-header-btn {
     }
 
     body.dark-mode .breadcrumb.breadcrumb-fixed {
-        background: #1f243bc9;
+        background: #1d160f;
         backdrop-filter: blur(25px);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
         position: fixed;
@@ -1034,14 +1034,14 @@ body.dark-mode .sht-btn-ghost {
 
 .settings-page-section {
     background: #fff;
-    border-radius: 18px;
+    border-radius: 34px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 body.dark-mode .settings-page-section {
-    background-color: #1c1f2b;
+    background-color: #3a2d1f;
     color: #fff !important;
     border: 1px solid #2b2b2b33;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);

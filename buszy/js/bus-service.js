@@ -1169,6 +1169,49 @@ async function initializePage() {
 document.addEventListener('DOMContentLoaded', () => {
     initializePage();
 
+    const serviceDetails = document.getElementById('service-details');
+    const serviceHeader = serviceDetails?.querySelector(':scope > .service-header');
+    if (serviceDetails && serviceHeader) {
+        const toggleServiceVariants = () => {
+            if (!serviceDetails.classList.contains('has-variants')) return;
+            if (serviceDetails.classList.contains('animating')) return;
+
+            const isExpanded = serviceDetails.classList.toggle('expanded');
+            serviceHeader.setAttribute('aria-expanded', String(isExpanded));
+            const variantsContent = serviceDetails.querySelector('.service-variants-content');
+            if (!variantsContent) return;
+
+            serviceDetails.classList.add('animating');
+            const animationDuration = 400;
+
+            if (isExpanded) {
+                variantsContent.style.height = '0px';
+                requestAnimationFrame(() => {
+                    variantsContent.style.height = `${variantsContent.scrollHeight}px`;
+                });
+            } else {
+                variantsContent.style.height = `${variantsContent.scrollHeight}px`;
+                variantsContent.offsetHeight;
+                requestAnimationFrame(() => {
+                    variantsContent.style.height = '0px';
+                });
+            }
+
+            setTimeout(() => {
+                variantsContent.style.height = isExpanded ? 'auto' : '0px';
+                serviceDetails.classList.remove('animating');
+            }, animationDuration);
+        };
+
+        serviceHeader.addEventListener('click', toggleServiceVariants);
+        serviceHeader.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleServiceVariants();
+            }
+        });
+    }
+
     // Add scroll detection for frequency details scrollbar
     const frequencyDetails = document.querySelector('.frequency-details');
     if (frequencyDetails) {

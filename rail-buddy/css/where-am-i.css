@@ -62,7 +62,7 @@
     height: 40px;
     padding: 0;
     border: 1px solid #d7cbc4;
-    border-radius: 50%;
+    border-radius: 14px;
     background: #fff;
     color: #8f2d22;
 }
@@ -268,7 +268,7 @@ body.dark-mode .location-strip span {
     margin: .35rem 0 0;
     padding: .55rem 3rem .57rem 1rem;
     border: 1px solid #b8d2df;
-    border-radius: 4px;
+    border-radius: 34px;
     appearance: none;
     -webkit-appearance: none;
     background-color: #fff;
@@ -288,17 +288,24 @@ body.dark-mode .location-strip span {
     min-width: 44px;
     min-height: 36px;
     padding: .4rem .65rem;
-    border: 1px solid #94d40b;
+    border: 1px solid var(--service-color, #94d40b);
     border-radius: 5px;
-    background: #94d40b;
-    color: #000;
+    background: var(--service-color, #94d40b);
+    color: var(--service-text-color, #000);
     font-weight: 800;
+    transition: filter .2s ease, transform .2s ease;
 }
 
 .service-chip.selected {
-    border-color: #1f84a2;
-    background: #1f84a2;
-    color: #fff;
+    border-color: var(--service-color, #94d40b);
+    background: var(--service-color, #94d40b);
+    color: var(--service-text-color, #000);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--service-color, #94d40b) 45%, transparent);
+}
+
+.service-chip:hover {
+    filter: brightness(.9);
+    transform: translateY(-1px);
 }
 
 .next-stops {
@@ -415,7 +422,7 @@ body.dark-mode #live-map .leaflet-tile-pane {
 body.dark-mode .tracking-panel {
     border: 1px solid #2b2b2b33;
     border-radius: 34px;
-    background-color: #253742;
+    background-color: #3a2d1f;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, .233), 0 4px 12px rgba(0, 0, 0, .1);
 }
 
@@ -427,8 +434,8 @@ body.dark-mode .current-station-picker,
 body.dark-mode .route-step-button,
 body.dark-mode .live-map-controls .btn,
 body.dark-mode .location-button {
-    border-color: #52718d;
-    background: #304650;
+    border-color: #47391f;
+    background: #47391f;
     color: #edf3f1;
 }
 
@@ -442,15 +449,15 @@ body.dark-mode .onboard-stops-list li::before {
 }
 
 body.dark-mode .service-chip {
-    border-color: #7db603;
-    background: #7db603;
-    color: #000;
+    border-color: var(--service-color, #7db603);
+    background: var(--service-color, #7db603);
+    color: var(--service-text-color, #000);
 }
 
 body.dark-mode .service-chip.selected {
-    border-color: #52718d;
-    background: #52718d;
-    color: #fff;
+    border-color: var(--service-color, #7db603);
+    background: var(--service-color, #7db603);
+    color: var(--service-text-color, #000);
 }
 
 .tracking-tabs {

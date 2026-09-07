@@ -165,9 +165,9 @@
 
     <div class="container-md main-content">
         <!-- Service Header and Related Variants -->
-        <details class="service-details" id="service-details">
+        <div class="service-details" id="service-details">
             <!-- Service Header Section -->
-            <summary class="service-header" id="service-header">
+            <div class="service-header" id="service-header" role="button" tabindex="0" aria-expanded="false">
                 <div class="service-number-badge" id="service-number">---</div>
                 <div class="service-info">
                     <h1 id="service-title">Loading...</h1>
@@ -183,8 +183,10 @@
                     <span class="service-variants-indicator" id="service-variants-indicator">Variants available</span>
                     <i class="fa-regular fa-chevron-down"></i>
                 </span>
-            </summary>
+            </div>
 
+        <div class="service-variants-content">
+        <div class="service-variants-inner">
         <!-- Short Bus Service -->
         <section class="short-bus-service" id="short-bus-section" style="display: none;">
             <h2><i class="fa-kit fa-lta-bus"></i> Short Bus Service/Variants</h2>
@@ -216,7 +218,9 @@
                 ---
             </div>
         </section>
-        </details>
+        </div>
+        </div>
+        </div>
 
         <!-- Route Section -->
         <section class="route-section">

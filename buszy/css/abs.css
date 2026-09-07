@@ -127,7 +127,7 @@ body.dark-mode .bus-stop-description {
 }
 
 body.dark-mode .bus-service-card:hover {
-    background-color: #334250 !important;
+    background-color: #1b5e72 !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
 }
@@ -457,7 +457,7 @@ body.dark-mode .type-filter-btn {
 }
 
 body.dark-mode .type-filter-btn:hover {
-    background-color: #52718d;
+    background-color: #1b5e72;
     transform: translateY(-2px);
 }
 
