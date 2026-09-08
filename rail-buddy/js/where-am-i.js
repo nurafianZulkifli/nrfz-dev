@@ -4,10 +4,12 @@ const PLATFORM_SELECTIONS_KEY = 'railbuddy_platform_selections_v1';
 const MIN_STATION_MOVEMENT_METRES = 20;
 const NEARBY_STATION_RADIUS_METRES = 1000;
 const ROUTE_STATION_MATCH_RADIUS_METRES = 500;
-const API_SERVER = (() => {
+const API_SERVERS = (() => {
     const currentUrl = new URL(window.location.href);
-    if (currentUrl.hostname === 'localhost') return currentUrl.port && currentUrl.port !== '3000' ? 'http://localhost:3000' : currentUrl.origin;
-    return 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
+    const productionApi = 'https://bat-lta-9eb7bbf231a2.herokuapp.com';
+    if (currentUrl.hostname !== 'localhost') return [productionApi];
+    const localApi = currentUrl.port === '3000' ? currentUrl.origin : 'http://localhost:3000';
+    return [localApi, productionApi];
 })();
 
 let currentPosition = null;
@@ -75,12 +77,20 @@ async function loadStations() {
 }
 
 async function findStationCoordinates(station) {
-    const url = new URL(`${API_SERVER}/station-location`);
-    url.searchParams.set('name', station.name);
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Station location request failed: ${response.status}`);
-    const { latitude, longitude } = await response.json();
-    return Number.isFinite(latitude) && Number.isFinite(longitude) ? { ...station, latitude, longitude } : null;
+    let lastError = null;
+    for (const apiServer of API_SERVERS) {
+        try {
+            const url = new URL(`${apiServer}/station-location`);
+            url.searchParams.set('name', station.name);
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Station location request failed: ${response.status}`);
+            const { latitude, longitude } = await response.json();
+            return Number.isFinite(latitude) && Number.isFinite(longitude) ? { ...station, latitude, longitude } : null;
+        } catch (error) {
+            lastError = error;
+        }
+    }
+    throw lastError || new Error('Station location request failed');
 }
 
 async function loadStationLocations() {

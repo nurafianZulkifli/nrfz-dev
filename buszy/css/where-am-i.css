@@ -45,11 +45,7 @@
     overflow: hidden;
 }
 
-#live-map .leaflet-bar a {
-    border-bottom-color: #b8d2df;
-    background: #fff;
-    color: #1f84a2;
-}
+D
 
 #live-map .leaflet-bar a:hover,
 #live-map .leaflet-bar a:focus-visible {

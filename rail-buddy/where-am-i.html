@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
@@ -17,6 +18,7 @@
     <link crossorigin href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
     <script crossorigin src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
+
 <body>
     <script>
         (function () {
@@ -26,74 +28,118 @@
         })();
     </script>
     <div class="breadcrumb-fixed-placeholder">
-        <nav aria-label="breadcrumb"><ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
-            <li class="breadcrumb-item"><a href="./"><i class="fa-regular fa-house"></i></a></li>
-            <li class="breadcrumb-item"><a href="menu.html"><i class="fa-regular fa-bars"></i></a></li>
-            <li class="breadcrumb-item"><a href="#"><i class="fa-regular fa-location-crosshairs"></i></a></li>
-        </ol></nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+                <li class="breadcrumb-item"><a href="./"><i class="fa-regular fa-house"></i></a></li>
+                <li class="breadcrumb-item"><a href="menu.html"><i class="fa-regular fa-bars"></i></a></li>
+                <li class="breadcrumb-item"><a href="#"><i class="fa-regular fa-location-crosshairs"></i></a></li>
+            </ol>
+        </nav>
     </div>
 
-    <nav class="navbar-container"><div class="navbar">
-        <a href="./"><img src="assets/logo.png" alt="RailBuddy" class="logo"></a>
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="./" class="nav-link"><i class="fa-sharp fa-regular fa-house"></i><span>Home</span></a></li>
-            <li class="nav-item"><a href="history.html" class="nav-link"><i class="fa-regular fa-clock-rotate-left"></i><span>History</span></a></li>
-            <li class="nav-item"><a href="first-last.html" class="nav-link"><i class="fa-regular fa-clock"></i><span>Timings</span></a></li>
-            <li class="nav-item"><a href="menu.html" class="nav-link active"><i class="fa-regular fa-bars"></i><span>Menu</span></a></li>
+    <nav class="navbar-container">
+        <div class="navbar">
+            <a href="./"><img src="assets/logo.png" alt="RailBuddy" class="logo"></a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="./" class="nav-link"><i
+                            class="fa-sharp fa-regular fa-house"></i><span>Home</span></a></li>
+                <li class="nav-item"><a href="history.html" class="nav-link"><i
+                            class="fa-regular fa-clock-rotate-left"></i><span>History</span></a></li>
+                <li class="nav-item"><a href="first-last.html" class="nav-link"><i
+                            class="fa-regular fa-clock"></i><span>Timings</span></a></li>
+                <li class="nav-item"><a href="menu.html" class="nav-link active"><i
+                            class="fa-regular fa-bars"></i><span>Menu</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-me-sum clearfix">
+        <div class="wbnrfz_eicw">
+            <div class="page-header-section">
+                <div class="container container-xxl container-mobile container-mobile-header">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="menu.html"><i class="fa-regular fa-bars"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#"><i
+                                            class="fa-regular fa-location-crosshairs"></i></a></li>
+                            </ol>
+                        </nav>
+                        <div class="page-title-wrapper">
+                            <h1 class="page-title">Where Am I</h1>
+                            <p id="location-status" class="where-status" aria-live="polite">Find the MRT or LRT station
+                                nearest to you.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </section>
+
+    <main class="about-me-summ clearfix where-am-i-page">
+        <div class="container">
+            <section id="live-map-section" class="live-map-section" aria-label="Live location map">
+                <div class="live-map-controls">
+                    <button class="btn map-button" id="collapse-map-btn" type="button" title="Collapse map"
+                        aria-label="Collapse map"><i class="fa-regular fa-close"></i></button>
+                    <button class="btn map-button" id="recenter-map-btn" type="button" title="Recenter map"
+                        aria-label="Recenter map"><i class="fa-solid fa-crosshairs"></i></button>
+                </div>
+                <div id="live-map" aria-label="Map showing your live location and nearest station"></div>
+            </section>
+
+            <section class="where-intro">
+                <div>
+                    <p class="where-eyebrow">LIVE JOURNEY</p>
+                    <h2>Your nearest station</h2>
+                </div>
+                <button id="locate-button" class="location-button btn" type="button" title="Refresh my location"
+                    aria-label="Refresh my location"><i class="fa-regular fa-refresh"></i></button>
+            </section>
+
+            <section class="location-strip" aria-label="Current location">
+                <i class="fa-solid fa-location-dot"></i>
+                <div><strong>Your current location</strong><span id="coordinates">Waiting for location permission</span>
+                </div>
+                <span id="location-accuracy" class="accuracy-label"></span>
+            </section>
+
+            <section class="tracking-panel" aria-labelledby="tracking-heading">
+                <div class="panel-heading">
+                    <div>
+                        <p class="section-kicker">ONBOARD TRACKING</p>
+                        <h2 id="tracking-heading">Which train are you on?</h2>
+                    </div><button id="clear-service" class="clear-button" type="button" hidden>Clear</button>
+                </div>
+                <div id="current-station-control" class="current-station-control" aria-live="polite"></div>
+                <p id="tracking-copy" class="tracking-copy">Choose a line to follow its next stations.</p>
+                <div id="service-picker" class="service-picker" aria-live="polite"></div>
+                <div class="tracking-tabs" role="tablist" aria-label="Train tracking view">
+                    <button id="route-tab" class="tracking-tab active" type="button" role="tab" aria-selected="true"
+                        aria-controls="next-stops" data-tracking-tab="route">Route</button>
+                    <button id="platform-tab" class="tracking-tab" type="button" role="tab" aria-selected="false"
+                        aria-controls="next-stops" data-tracking-tab="platform">Platform</button>
+                </div>
+                <div id="next-stops" class="next-stops" aria-live="polite"></div>
+            </section>
+        </div>
+    </main>
+
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li><a href="history.html"><span class="icon"><i class="fa-regular fa-clock-rotate-left"></i></span></a>
+            </li>
+            <li><a href="first-last.html"><span class="icon"><i class="fa-regular fa-clock"></i></span></a></li>
+            <li class="active"><a href="menu.html"><span class="icon"><i class="fa-regular fa-bars"></i></span></a></li>
         </ul>
-    </div></nav>
-
-    <section class="about-me-sum clearfix"><div class="wbnrfz_eicw"><div class="page-header-section"><div class="container container-xxl container-mobile container-mobile-header">
-        <div class="breadcrumb-wrapper"><nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;"><ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./"><i class="fa-regular fa-house"></i></a></li>
-            <li class="breadcrumb-item"><a href="menu.html"><i class="fa-regular fa-bars"></i></a></li>
-            <li class="breadcrumb-item"><a href="#"><i class="fa-regular fa-location-crosshairs"></i></a></li>
-        </ol></nav><div class="page-title-wrapper"><h1 class="page-title">Where Am I</h1><p id="location-status" class="where-status" aria-live="polite">Find the MRT or LRT station nearest to you.</p></div></div>
-    </div><hr></div></div></section>
-
-    <main class="about-me-summ clearfix where-am-i-page"><div class="container">
-        <section id="live-map-section" class="live-map-section" aria-label="Live location map">
-            <div class="live-map-controls">
-                <button class="btn map-button" id="collapse-map-btn" type="button" title="Collapse map" aria-label="Collapse map"><i class="fa-regular fa-close"></i></button>
-                <button class="btn map-button" id="recenter-map-btn" type="button" title="Recenter map" aria-label="Recenter map"><i class="fa-solid fa-crosshairs"></i></button>
-            </div>
-            <div id="live-map" aria-label="Map showing your live location and nearest station"></div>
-        </section>
-
-        <section class="where-intro">
-            <div><p class="where-eyebrow">LIVE JOURNEY</p><h2>Your nearest station</h2></div>
-            <button id="locate-button" class="location-button btn" type="button" title="Refresh my location" aria-label="Refresh my location"><i class="fa-regular fa-refresh"></i></button>
-        </section>
-
-        <section class="location-strip" aria-label="Current location">
-            <i class="fa-solid fa-location-dot"></i>
-            <div><strong>Your current location</strong><span id="coordinates">Waiting for location permission</span></div>
-            <span id="location-accuracy" class="accuracy-label"></span>
-        </section>
-
-        <section class="tracking-panel" aria-labelledby="tracking-heading">
-            <div class="panel-heading"><div><p class="section-kicker">ONBOARD TRACKING</p><h2 id="tracking-heading">Which train are you on?</h2></div><button id="clear-service" class="clear-button" type="button" hidden>Clear</button></div>
-            <div id="current-station-control" class="current-station-control" aria-live="polite"></div>
-            <p id="tracking-copy" class="tracking-copy">Choose a line to follow its next stations.</p>
-            <div id="service-picker" class="service-picker" aria-live="polite"></div>
-            <div class="tracking-tabs" role="tablist" aria-label="Train tracking view">
-                <button id="route-tab" class="tracking-tab active" type="button" role="tab" aria-selected="true" aria-controls="next-stops" data-tracking-tab="route">Route</button>
-                <button id="platform-tab" class="tracking-tab" type="button" role="tab" aria-selected="false" aria-controls="next-stops" data-tracking-tab="platform">Platform</button>
-            </div>
-            <div id="next-stops" class="next-stops" aria-live="polite"></div>
-        </section>
-    </div></main>
-
-    <nav class="mobile-bottom-nav"><ul>
-        <li><a href="./"><span class="icon"><i class="fa-sharp fa-regular fa-house"></i></span></a></li>
-        <li><a href="history.html"><span class="icon"><i class="fa-regular fa-clock-rotate-left"></i></span></a></li>
-        <li><a href="first-last.html"><span class="icon"><i class="fa-regular fa-clock"></i></span></a></li>
-        <li class="active"><a href="menu.html"><span class="icon"><i class="fa-regular fa-bars"></i></span></a></li>
-    </ul></nav>
+    </nav>
 
     <script src="js/mob-navtabs.js"></script>
     <script src="tdt-subp.js"></script>
     <script src="js/where-am-i.js"></script>
     <script src="js/ann-indicator.js"></script>
 </body>
+
 </html>

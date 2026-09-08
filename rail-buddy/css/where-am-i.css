@@ -204,7 +204,7 @@ body.dark-mode .location-strip span {
     border: 0;
     border-radius: 4px;
     background: #fff;
-    color: #1f84a2;
+    color: #FFB95B;
 }
 
 #live-map {
@@ -216,13 +216,13 @@ body.dark-mode .location-strip span {
 #live-map .leaflet-bar a {
     border-bottom-color: #b8d2df;
     background: #fff;
-    color: #1f84a2;
+    color: #FFB95B;
 }
 
 .where-eyebrow,
 .section-kicker,
 .current-station-label {
-    color: #5c6a70;
+    color: #FFB95B;
 }
 
 .where-status,
@@ -236,7 +236,7 @@ body.dark-mode .location-strip span {
 .location-button {
     border: 0;
     background: #fff;
-    color: #1f84a2;
+    color: #FFB95B;
 }
 
 .tracking-panel {
@@ -250,7 +250,7 @@ body.dark-mode .location-strip span {
 .clear-button {
     border: 0;
     background: transparent;
-    color: #1f84a2;
+    color: #FFB95B;
     font-weight: 700;
 }
 
@@ -349,7 +349,7 @@ body.dark-mode .location-strip span {
     border: 1px solid #b8d2df;
     border-radius: 4px;
     background: #fff;
-    color: #1f84a2;
+    color: #FFB95B;
 }
 
 .route-step-button:disabled {
@@ -382,7 +382,7 @@ body.dark-mode .location-strip span {
     left: -2.35rem;
     width: 1.7rem;
     height: 1.7rem;
-    border: 4px solid #1f84a2;
+    border: 4px solid #FFB95B;
     border-radius: 50%;
     background: #f8fcff;
     content: '';
@@ -394,7 +394,7 @@ body.dark-mode .location-strip span {
     bottom: -1.8rem;
     left: -1.55rem;
     width: 4px;
-    background: #1f84a2;
+    background: #FFB95B;
     content: '';
 }
 
@@ -407,7 +407,7 @@ body.dark-mode .tracking-copy,
 body.dark-mode .next-stops-title,
 body.dark-mode .next-stops-loading,
 body.dark-mode .location-strip span {
-    color: #b9c8c8;
+    color: #f0d1a9;
 }
 
 body.dark-mode #live-map {
@@ -419,6 +419,18 @@ body.dark-mode #live-map .leaflet-tile-pane {
     filter: brightness(.62) contrast(1.12) saturate(.78);
 }
 
+body.dark-mode #live-map .leaflet-bar a {
+    border-bottom-color: #52718d;
+    background: #304650;
+    color: #c4e5f5;
+}
+
+body.dark-mode #live-map .leaflet-bar a:hover,
+body.dark-mode #live-map .leaflet-bar a:focus-visible {
+    background: #2a4656;
+    color: #fff;
+}
+
 body.dark-mode .tracking-panel {
     border: 1px solid #2b2b2b33;
     border-radius: 34px;
@@ -427,15 +439,16 @@ body.dark-mode .tracking-panel {
 }
 
 body.dark-mode .next-stops {
-    border-color: #354d58;
+    border-color: transparent;
 }
 
 body.dark-mode .current-station-picker,
 body.dark-mode .route-step-button,
 body.dark-mode .live-map-controls .btn,
 body.dark-mode .location-button {
-    border-color: #47391f;
-    background: #47391f;
+    border: 1px solid #2b2b2b33;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #726661;
     color: #edf3f1;
 }
 
@@ -445,19 +458,23 @@ body.dark-mode .onboard-stops-list li {
 }
 
 body.dark-mode .onboard-stops-list li::before {
-    background: #233640;
+    background: #3F3835;
 }
 
 body.dark-mode .service-chip {
     border-color: var(--service-color, #7db603);
     background: var(--service-color, #7db603);
     color: var(--service-text-color, #000);
+    border: 2px solid #fff;
+    border-radius: 13.6px / 19.2px;
 }
 
 body.dark-mode .service-chip.selected {
     border-color: var(--service-color, #7db603);
     background: var(--service-color, #7db603);
     color: var(--service-text-color, #000);
+    border: 2px solid #fff;
+    border-radius: 13.6px / 19.2px;
 }
 
 .tracking-tabs {
@@ -478,8 +495,8 @@ body.dark-mode .service-chip.selected {
 }
 
 .tracking-tab.active {
-    border-bottom-color: #1f84a2;
-    color: #1f84a2;
+    border-bottom-color: #FFB95B;
+    color: #FFB95B;
 }
 
 .tracking-tab:disabled {
@@ -590,8 +607,8 @@ body.dark-mode .service-chip.selected {
 }
 
 .platform-toggle-option.selected {
-    border-color: #1f84a2;
-    background: #1f84a2;
+    border-color: #FFB95B;
+    background: #FFB95B;
     color: #fff;
 }
 
@@ -600,21 +617,21 @@ body.dark-mode .service-chip.selected {
 }
 
 body.dark-mode .tracking-tabs {
-    border-color: #354d58;
+    border-color: transparent;
 }
 
 body.dark-mode .tracking-tab {
-    color: #b9c8c8;
+    color: #f0d1a9;
 }
 
 body.dark-mode .tracking-tab.active {
-    border-bottom-color: #8ed4eb;
-    color: #8ed4eb;
+    border-bottom-color: #FFB95B;
+    color: #FFB95B;
 }
 
 body.dark-mode .platform-context,
 body.dark-mode .platform-save-status {
-    color: #b9c8c8;
+    color: #f0d1a9;
 }
 
 body.dark-mode .platform-label {

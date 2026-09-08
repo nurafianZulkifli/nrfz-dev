@@ -71,6 +71,10 @@ body.dark-mode {
     --text-secondary: #a0a8c0;
 }
 
+html.dark-mode {
+    background: #201a18 !important;
+}
+
 body.dark-mode #stationLiveStatus,
 body.dark-mode #stationDirections,
 body.dark-mode #schedulesList {
@@ -288,7 +292,7 @@ body.dark-mode .list-group-item:hover {
 body.dark-mode .nav-link:hover {
     color: #fff;
     transform: translateY(-2px);
-    background-color: #86725b;
+    background-color: #643F00;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -1259,6 +1263,20 @@ body.dark-mode .form-check-input:checked {
 body.dark-mode .form-check-input {
     background-color: #313544;
     border-color: #ffffff3b;
+}
+
+body.dark-mode .port-summary:hover {
+    background-color: #643F00;
+    transform: translateY(-2px);
+}
+
+body.dark-mode li.breadcrumb-item a:hover {
+    padding: 10px;
+    border-radius: 25px;
+    color: #fff;
+    transform: translateY(-2px);
+    background-color: #643F00;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.082);
 }
 
 /* ===== Icon Rounding ===== */
