@@ -38,7 +38,7 @@ function initializeDefaultPreferences() {
     }
 
     if (!localStorage.getItem('buszyNewLook')) {
-        localStorage.setItem('buszyNewLook', 'disabled');
+        localStorage.setItem('buszyNewLook', 'enabled');
     }
 
 }
