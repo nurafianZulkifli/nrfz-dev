@@ -37,6 +37,10 @@ function initializeDefaultPreferences() {
         localStorage.setItem('refreshInterval', '2');
     }
 
+    if (!localStorage.getItem('buszyNewLook')) {
+        localStorage.setItem('buszyNewLook', 'disabled');
+    }
+
 }
 
 // Initialize defaults on page load
@@ -119,6 +123,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const isChecked = event.target.checked;
             localStorage.setItem('sortByArrival', isChecked ? 'enabled' : 'disabled');
             window.dispatchEvent(new CustomEvent('sortByArrivalChanged', { detail: { sortByArrival: isChecked } }));
+        });
+    }
+
+    // Handle the temporary Pinned Bus Stops experience toggle
+    const newLookCheckbox = document.getElementById('use-new-look');
+    if (newLookCheckbox) {
+        newLookCheckbox.checked = localStorage.getItem('buszyNewLook') === 'enabled';
+
+        newLookCheckbox.addEventListener('change', (event) => {
+            const isChecked = event.target.checked;
+            localStorage.setItem('buszyNewLook', isChecked ? 'enabled' : 'disabled');
+            window.location.href = isChecked ? './index.html' : 'https://worksbynrfz.com/buszy';
         });
     }
 
@@ -214,6 +230,7 @@ const EXPORT_KEYS = [
     'showFleetLegend',     // Fleet legend visibility
     'showMap',             // Map visibility
     'showIncomingBuses',   // Incoming buses visibility
+    'buszyNewLook',         // Temporary Pinned Bus Stops experience
     'bookmarkedBusStops',  // Saved bus stops
     'allBusStops',         // Bus stop data cache
 ];
