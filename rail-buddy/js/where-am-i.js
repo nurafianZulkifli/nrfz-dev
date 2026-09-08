@@ -1,8 +1,9 @@
 const STATION_DATA_FILES = ['nsl', 'ewl', 'nel', 'ccl', 'dtl', 'tel', 'bp', 'sk', 'pg'];
-const STATION_CACHE_KEY = 'railbuddy_station_locations_v1';
+const STATION_CACHE_KEY = 'railbuddy_station_locations_v2';
 const PLATFORM_SELECTIONS_KEY = 'railbuddy_platform_selections_v1';
 const MIN_STATION_MOVEMENT_METRES = 20;
 const NEARBY_STATION_RADIUS_METRES = 1000;
+const ROUTE_STATION_MATCH_RADIUS_METRES = 500;
 const API_SERVER = (() => {
     const currentUrl = new URL(window.location.href);
     if (currentUrl.hostname === 'localhost') return currentUrl.port && currentUrl.port !== '3000' ? 'http://localhost:3000' : currentUrl.origin;
@@ -207,7 +208,8 @@ function selectCurrentStation(name) {
 function advanceRouteAtNextStation() {
     if (!selectedService || activeRouteIndex < 0 || !nearestStation) return;
     const nextStation = activeRoute[activeRouteIndex + 1];
-    if (nextStation && nextStation.name === nearestStation.name && nearestStation.distance <= 180) {
+    const stationMatchRadius = Math.max(ROUTE_STATION_MATCH_RADIUS_METRES, (currentPosition?.accuracy || 0) + 100);
+    if (nextStation && nextStation.name === nearestStation.name && nearestStation.distance <= stationMatchRadius) {
         selectedStationName = nextStation.name;
         activeRouteIndex += 1;
     }

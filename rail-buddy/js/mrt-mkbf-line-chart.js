@@ -127,7 +127,7 @@ function renderMkbfLineChart() {
   }));
 
   const isDark = document.body.classList.contains('dark-mode');
-  const canvasBg = isDark ? '#3a2d1f' : '#fff';
+  const canvasBg = isDark ? '#3F3835' : '#fff';
 
   const chartContainer = document.getElementById('mkbf-line-chart-mrt');
 

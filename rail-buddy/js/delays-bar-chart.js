@@ -47,7 +47,7 @@ async function renderDelaysBarChart() {
 
     // Detect dark mode
     const isDark = document.body.classList.contains('dark-mode');
-    const canvasBg = isDark ? '#3a2d1f' : '#fff';
+    const canvasBg = isDark ? '#3F3835' : '#fff';
 
     // Create chart container with dynamic canvas background
     const chartContainer = document.getElementById('delays-bar-chart');
