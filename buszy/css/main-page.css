@@ -587,6 +587,7 @@
       align-items: flex-start;
       gap: 0.75rem;
       padding: 0 0em;
+      position: relative;
   }
 
   .bus-stop-actions-controls {
