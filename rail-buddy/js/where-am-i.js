@@ -103,19 +103,16 @@ async function loadStationLocations() {
     }
 
     const uniqueStations = [...new Map(stations.map(station => [station.name, station])).values()];
+    // Fetch all stations concurrently (server retries/backs off on rate limits) instead of small sequential batches.
+    const results = await Promise.allSettled(uniqueStations.map(station => findStationCoordinates(station)));
     const locations = [];
-    const batchSize = 4;
-    for (let index = 0; index < uniqueStations.length; index += batchSize) {
-        const batch = uniqueStations.slice(index, index + batchSize);
-        const results = await Promise.allSettled(batch.map(station => findStationCoordinates(station)));
-        results.forEach((result, resultIndex) => {
-            if (result.status === 'fulfilled') {
-                if (result.value) locations.push(result.value);
-            } else {
-                console.warn(`[where-am-i] Location unavailable for ${batch[resultIndex].name}:`, result.reason);
-            }
-        });
-    }
+    results.forEach((result, resultIndex) => {
+        if (result.status === 'fulfilled') {
+            if (result.value) locations.push(result.value);
+        } else {
+            console.warn(`[where-am-i] Location unavailable for ${uniqueStations[resultIndex].name}:`, result.reason);
+        }
+    });
     if (!locations.length) throw new Error('No station coordinates were returned');
     localStorage.setItem(STATION_CACHE_KEY, JSON.stringify(locations));
     return locations;
@@ -137,6 +134,7 @@ function initializeLiveMap() {
 function updateLiveMap() {
     if (!liveMap || !currentPosition) return;
     const location = [currentPosition.latitude, currentPosition.longitude];
+    const isFirstFix = !livePositionMarker;
     if (!livePositionMarker) livePositionMarker = L.circleMarker(location, { radius: 9, color: '#fff', weight: 3, fillColor: '#8f2d22', fillOpacity: 1 }).addTo(liveMap).bindPopup('Your live location');
     else livePositionMarker.setLatLng(location);
     if (!liveAccuracyCircle) liveAccuracyCircle = L.circle(location, { radius: currentPosition.accuracy || 0, color: '#8f2d22', weight: 1, fillColor: '#8f2d22', fillOpacity: .12 }).addTo(liveMap);
@@ -144,6 +142,8 @@ function updateLiveMap() {
         liveAccuracyCircle.setLatLng(location);
         liveAccuracyCircle.setRadius(currentPosition.accuracy || 0);
     }
+    // Follow the user in real time rather than waiting for the (slower) nearest station lookup to resolve.
+    if (mapFollowsLocation) liveMap.setView(location, isFirstFix ? 16 : liveMap.getZoom(), { animate: !isFirstFix });
 }
 
 function updateNearestStation() {
@@ -156,14 +156,9 @@ function updateNearestStation() {
     if (!stationMarker) stationMarker = L.circleMarker(stationLocation, { radius: 10, color: '#fff', weight: 3, fillColor: '#d17321', fillOpacity: 1 }).addTo(liveMap);
     else stationMarker.setLatLng(stationLocation);
     stationMarker.bindPopup(`<strong>${nearestStation.name} (${nearestStation.code})</strong><br>${formatDistance(nearestStation.distance)}`);
-    if (mapFollowsLocation) liveMap.setView(locationBetween(currentPosition, nearestStation), 15, { animate: true });
     if (!selectedService) selectedStationName = nearestStation.name;
     advanceRouteAtNextStation();
     renderTracking();
-}
-
-function locationBetween(position, station) {
-    return [(position.latitude + station.latitude) / 2, (position.longitude + station.longitude) / 2];
 }
 
 function escapeHtml(value) {
@@ -391,7 +386,7 @@ document.getElementById('locate-button').addEventListener('click', startLocation
 elements.clear.addEventListener('click', () => selectService(null));
 document.getElementById('recenter-map-btn').addEventListener('click', () => {
     mapFollowsLocation = true;
-    updateNearestStation();
+    updateLiveMap();
 });
 document.getElementById('collapse-map-btn').addEventListener('click', event => {
     const section = document.getElementById('live-map-section');

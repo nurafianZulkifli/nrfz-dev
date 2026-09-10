@@ -293,14 +293,19 @@
         <script src="../../js/default-assets/active.js"></script>
 
         <script>
+            // Stations whose interchange sits in a separate, connected station box rather than a co-located platform.
+            // Add a station name here to give it the connector caplet style.
+            const CONNECTOR_STATIONS = new Set(['Bukit Panjang']);
+
             function renderStation(station) {
                 const interchangesHTML = station.interchanges
                     .map(i => `<span class="interchange-badge ${i.lineClass}">${i.code}</span>`)
                     .join('');
+                const codesClass = CONNECTOR_STATIONS.has(station.name) ? 'station-codes station-connector' : 'station-codes';
                 return `<div class="station">
                         <div class="station-dot"></div>
                         <div class="station-content">
-                            <div class="station-codes">
+                            <div class="${codesClass}">
                                 <span class="station-code">${station.code}</span>
                                 ${interchangesHTML}
                             </div>
