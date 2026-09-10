@@ -267,7 +267,7 @@
   /* Animated overlay standing in for the native placeholder so rotating hints can fade in/out. */
   /* To change the rotating placeholder text color, edit --animated-placeholder-color below. */
   .animated-placeholder {
-      --animated-placeholder-color: #5d6c74;
+      --animated-placeholder-color: #acbbc2;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -280,7 +280,7 @@
 
   /* Beats the generic "body.dark-mode span { color: #fff }" rule in dark-mode.css. */
   body.dark-mode .animated-placeholder {
-      color: var(--animated-placeholder-color);
+      color: #5d6c74;
   }
 
   .animated-placeholder.placeholder-out {
