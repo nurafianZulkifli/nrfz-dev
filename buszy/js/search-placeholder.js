@@ -1,11 +1,11 @@
 (() => {
     const PLACEHOLDER_EXAMPLES = [
         'Where do you want to go?',
-        'Blk 681',
+        '188',
         'Blk 689A',
         'Ang Mo Kio Ave 3',
-        'Bedok North Ave 1',
-        'Yishun Ring Rd',
+        'Keppel',
+        '67',
         '83139'
     ];
     const ROTATE_INTERVAL_MS = 3000;

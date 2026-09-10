@@ -634,6 +634,12 @@ function displayBusStops(busStops, isCached = true) {
             });
         });
 
+        // Stop any click inside the expanded content (including a confirm()-dialog "ghost click" on mobile)
+        // from bubbling up to the card's tap-anywhere-to-toggle listener.
+        collapseSection.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+
         busStopsContainer.appendChild(busStopElement);
     });
 
