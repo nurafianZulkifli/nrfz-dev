@@ -58,6 +58,30 @@
     display: block;
 }
 
+.empty-state-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 60px 24px;
+    color: #8a97a3;
+    text-align: center;
+}
+
+.empty-state-placeholder i {
+    font-size: 3rem;
+    opacity: .5;
+}
+
+.empty-state-placeholder p {
+    margin: 0;
+    font-size: .95rem;
+}
+
+.content-section.active ~ .empty-state-placeholder {
+    display: none;
+}
+
 .bus-stop-title {
     font-size: 1.8rem;
     color: #333;
@@ -411,6 +435,11 @@ body.dark-mode .bus-stop-title {
 
 body.dark-mode .bus-stop-subtitle {
     color: #bbb;
+}
+
+body.dark-mode .empty-state-placeholder {
+    color: #91a5be;
+    opacity: .8;
 }
 
 body.dark-mode .service-card {
