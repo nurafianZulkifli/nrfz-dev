@@ -274,7 +274,8 @@
 
 /* Newton connector style - separate capsules with connector */
 .station-connector .station-code:has(~ .interchange-badge),
-.station-connector-2 .station-code:has(~ .interchange-badge) {
+.station-connector-2 .station-code:has(~ .interchange-badge),
+.station-connector-3 .station-code:has(~ .interchange-badge) {
     border-radius: 13.6px / 19.2px;
     border-right: 2px solid #fff;
     position: relative;
@@ -282,20 +283,9 @@
 }
 
 /* Right-side connector nub from station-code */
-.station-connector .station-code:has(~ .interchange-badge)::after {
-    content: '';
-    position: absolute;
-    right: -9px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    background: #005ec8;
-    border-radius: 2px;
-    z-index: -1;
-}
-
-.station-connector-2 .station-code:has(~ .interchange-badge)::after {
+.station-connector .station-code:has(~ .interchange-badge)::after,
+.station-connector-2 .station-code:has(~ .interchange-badge)::after,
+.station-connector-3 .station-code:has(~ .interchange-badge)::after {
     content: '';
     position: absolute;
     right: -9px;
@@ -309,7 +299,8 @@
 }
 
 .station-connector .interchange-badge,
-.station-connector-2 .interchange-badge {
+.station-connector-2 .interchange-badge,
+.station-connector-3 .interchange-badge {
     border-radius: 13.6px / 19.2px;
     border: 2px solid #fff;
     border-left: 2px solid #fff;
@@ -341,6 +332,19 @@
     width: 19px;
     height: 10px;
     background: #708472;
+    border-radius: 2px;
+    z-index: -1;
+}
+
+.station-connector-3 .interchange-badge::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 19px;
+    height: 10px;
+    background: #009645;
     border-radius: 2px;
     z-index: -1;
 }

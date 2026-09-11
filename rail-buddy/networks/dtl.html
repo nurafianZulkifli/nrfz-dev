@@ -9,7 +9,7 @@
         content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#201a18" media="(prefers-color-scheme: dark)">
     <title>Downtown Line | RailBuddy</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -288,7 +288,11 @@
             // Stations whose interchange sits in a separate, connected station box rather than a co-located platform.
             // Each variant has its own connector nub color matching that interchange's line, so stations with
             // differently-colored interchanges need different variants (-2, -3, ...). Add new station names here.
-            const CONNECTOR_STATION_VARIANTS = { Newton: 'station-connector', 'Bukit Panjang': 'station-connector-2' };
+            const CONNECTOR_STATION_VARIANTS = {
+                Newton: 'station-connector',
+                'Bukit Panjang': 'station-connector-2',
+                Tampines: 'station-connector-3'
+            };
 
             function renderStation(station) {
                 const interchangesHTML = station.interchanges
