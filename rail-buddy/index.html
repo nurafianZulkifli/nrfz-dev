@@ -47,9 +47,10 @@
             var mode = isDark ? 'dark' : 'light';
             document.documentElement.style.colorScheme = mode;
             document.body.style.colorScheme = mode;
+            document.documentElement.classList.toggle('dark-mode', isDark);
+            document.body.classList.toggle('dark-mode', isDark);
             var colorMeta = document.querySelector('meta[name="color-scheme"]');
             if (colorMeta) colorMeta.setAttribute('content', mode);
-            if (isDark) document.body.classList.add('dark-mode');
         })();
     </script>
 

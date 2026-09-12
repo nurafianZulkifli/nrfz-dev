@@ -38,6 +38,20 @@
 </head>
 
 <body>
+    <!-- Apply the saved theme before the settings page renders. -->
+    <script>
+        (function () {
+            var pref = localStorage.getItem('theme-preference') || 'system';
+            var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            var mode = isDark ? 'dark' : 'light';
+            document.documentElement.style.colorScheme = mode;
+            document.body.style.colorScheme = mode;
+            document.documentElement.classList.toggle('dark-mode', isDark);
+            document.body.classList.toggle('dark-mode', isDark);
+            var colorMeta = document.querySelector('meta[name="color-scheme"]');
+            if (colorMeta) colorMeta.setAttribute('content', mode);
+        })();
+    </script>
     <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
     <div class="breadcrumb-fixed-placeholder">
         <nav aria-label="breadcrumb" style="margin-bottom:0;">
