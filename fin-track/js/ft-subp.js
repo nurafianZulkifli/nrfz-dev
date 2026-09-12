@@ -16,6 +16,16 @@ function shouldBeDark() {
     return window._prefersDark; // Default to system preference
 }
 
+function syncColorScheme() {
+    const selectedDark = shouldBeDark();
+    const selectedMode = selectedDark ? 'dark' : 'light';
+    document.documentElement.style.colorScheme = selectedMode;
+    document.body.style.colorScheme = selectedMode;
+
+    const colorMeta = document.querySelector('meta[name="color-scheme"]');
+    if (colorMeta) colorMeta.setAttribute('content', selectedMode);
+}
+
 function syncPwaMetaTheme() {
     const selectedDark = shouldBeDark();
     const selectedColor = selectedDark ? '#0f1419' : '#ffffff';
@@ -40,6 +50,7 @@ if (shouldBeDark()) {
 } else {
     updateThemeIcon('light');
 }
+syncColorScheme();
 syncPwaMetaTheme();
 
 // Listen to theme toggle clicks
@@ -63,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateThemeIcon('light');
             }
         }
+        syncColorScheme();
         syncPwaMetaTheme();
         updateThemeSelector();
     }
@@ -85,6 +97,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
             updateThemeIcon('light');
         }
     }
+    syncColorScheme();
     syncPwaMetaTheme();
 });
 

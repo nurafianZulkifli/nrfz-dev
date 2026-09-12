@@ -1,15 +1,15 @@
 {
-  "id": "fin-track",
+  "id": "fintrack-v20260912",
   "name": "FinTrack",
   "short_name": "FinTrack",
   "description": "Personal finance tracking with account management, budget monitoring, and transaction history",
   "start_url": "./",
   "scope": "./",
-  "display_override": ["window-controls-overlay", "standalone"],
+  "display_override": ["standalone"],
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#ebebe8",
-  "theme_color": "#ebebe8",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "categories": ["finance", "productivity"],
   "icons": [
     {

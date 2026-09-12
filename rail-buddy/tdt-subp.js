@@ -16,6 +16,16 @@ function shouldBeDark() {
     return window._prefersDark; // Default to system preference
 }
 
+function syncColorScheme() {
+    const selectedDark = shouldBeDark();
+    const selectedMode = selectedDark ? 'dark' : 'light';
+    document.documentElement.style.colorScheme = selectedMode;
+    document.body.style.colorScheme = selectedMode;
+
+    const colorMeta = document.querySelector('meta[name="color-scheme"]');
+    if (colorMeta) colorMeta.setAttribute('content', selectedMode);
+}
+
 function syncPwaMetaTheme() {
     const selectedDark = shouldBeDark();
     const selectedColor = selectedDark ? '#201a18' : '#ffffff';

@@ -49,10 +49,7 @@
             document.body.style.colorScheme = mode;
             var colorMeta = document.querySelector('meta[name="color-scheme"]');
             if (colorMeta) colorMeta.setAttribute('content', mode);
-            if (isDark) {
-                document.documentElement.classList.add('dark-mode');
-                document.body.classList.add('dark-mode');
-            }
+            if (isDark) document.body.classList.add('dark-mode');
         })();
     </script>
 
