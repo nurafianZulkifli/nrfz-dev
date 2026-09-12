@@ -46,6 +46,7 @@ if (shouldBeDark()) {
     setDarkMode(false);
     updateThemeIcon('light');
 }
+syncColorScheme();
 syncPwaMetaTheme();
 
 // Listen to theme toggle clicks
@@ -69,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateThemeIcon('light');
             }
         }
+        syncColorScheme();
         syncPwaMetaTheme();
         updateThemeSelector();
     }
@@ -91,6 +93,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
             updateThemeIcon('light');
         }
     }
+    syncColorScheme();
     syncPwaMetaTheme();
 });
 
