@@ -16,6 +16,23 @@ function shouldBeDark() {
     return window._prefersDark; // Default to system preference
 }
 
+function syncPwaMetaTheme() {
+    const selectedDark = shouldBeDark();
+    const selectedColor = selectedDark ? '#201a18' : '#ffffff';
+
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+        meta.removeAttribute('media');
+        meta.setAttribute('content', selectedColor);
+    });
+
+    const statusMeta = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+    if (statusMeta) {
+        statusMeta.setAttribute('content', selectedDark ? 'black-translucent' : 'default');
+    }
+
+    document.documentElement.style.colorScheme = selectedDark ? 'dark' : 'light';
+}
+
 function setDarkMode(isDark) {
     document.documentElement.classList.toggle('dark-mode', isDark);
     document.body.classList.toggle('dark-mode', isDark);
@@ -29,6 +46,7 @@ if (shouldBeDark()) {
     setDarkMode(false);
     updateThemeIcon('light');
 }
+syncPwaMetaTheme();
 
 // Listen to theme toggle clicks
 document.addEventListener('DOMContentLoaded', function() {
@@ -51,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateThemeIcon('light');
             }
         }
+        syncPwaMetaTheme();
         updateThemeSelector();
     }
 
@@ -72,6 +91,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
             updateThemeIcon('light');
         }
     }
+    syncPwaMetaTheme();
 });
 
 // Get both toggle buttons (for backward compatibility with mobile views)

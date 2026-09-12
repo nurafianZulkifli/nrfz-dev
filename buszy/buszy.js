@@ -16,6 +16,23 @@ function shouldBeDark() {
     return window._prefersDark; // Default to system preference
 }
 
+function syncPwaMetaTheme() {
+    const selectedDark = shouldBeDark();
+    const selectedColor = selectedDark ? '#0f1419' : '#ffffff';
+
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+        meta.removeAttribute('media');
+        meta.setAttribute('content', selectedColor);
+    });
+
+    const statusMeta = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+    if (statusMeta) {
+        statusMeta.setAttribute('content', selectedDark ? 'black-translucent' : 'default');
+    }
+
+    document.documentElement.style.colorScheme = selectedDark ? 'dark' : 'light';
+}
+
 // Apply theme on page load
 if (shouldBeDark()) {
     document.body.classList.add('dark-mode');
@@ -24,6 +41,7 @@ if (shouldBeDark()) {
 } else {
     updateThemeIcon('light');
 }
+syncPwaMetaTheme();
 
 // Listen to theme toggle clicks
 document.addEventListener('DOMContentLoaded', function() {
@@ -61,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateHrefForDarkMode();
             }
         }
+        syncPwaMetaTheme();
     }
     
     if (themeToggleDesktop) {
@@ -92,6 +111,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
             updateHrefForDarkMode();
         }
     }
+    syncPwaMetaTheme();
 });
 
 // Get both toggle buttons (for backward compatibility with mobile views)
