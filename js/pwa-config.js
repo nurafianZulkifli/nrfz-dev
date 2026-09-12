@@ -3,6 +3,8 @@
  * Dynamically detects deployment environment and sets correct paths
  */
 
+const PWA_BUILD_VERSION = '20260912-1';
+
 window.PWAConfig = (() => {
   // Detect the base path from current URL
   const pathname = window.location.pathname;
@@ -22,7 +24,7 @@ window.PWAConfig = (() => {
       appName: 'Buszy',
       swPath: basePath + 'buszy/service-worker.js',
       scope: basePath + 'buszy/',
-      manifestPath: basePath + 'buszy/manifest.json',
+      manifestPath: `${basePath}buszy/manifest.json?v=${PWA_BUILD_VERSION}`,
       cacheName: 'buszy-cache-v1'
     },
     
@@ -30,7 +32,7 @@ window.PWAConfig = (() => {
       appName: 'RailBuddy',
       swPath: basePath + 'rail-buddy/service-worker.js',
       scope: basePath + 'rail-buddy/',
-      manifestPath: basePath + 'rail-buddy/manifest.json',
+      manifestPath: `${basePath}rail-buddy/manifest.json?v=${PWA_BUILD_VERSION}`,
       cacheName: 'rail-buddy-cache-v1'
     },
 
@@ -38,7 +40,7 @@ window.PWAConfig = (() => {
       appName: 'Works by NRFZ',
       swPath: basePath + 'service-worker.js',
       scope: basePath,
-      manifestPath: basePath + 'manifest.json',
+      manifestPath: `${basePath}manifest.json?v=${PWA_BUILD_VERSION}`,
       cacheName: 'main-cache-v1'
     },
     
