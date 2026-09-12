@@ -176,15 +176,30 @@ function getNearbyStations() {
     return nearbyStations.length ? nearbyStations : rankedStations.slice(0, 1);
 }
 
-function getServicesAtStation(stationName) {
+function getStationNetworks(stationName) {
     return railNetworks.filter(line => line.branches.some(branch => branch.stations.some(station => station.name === stationName)));
 }
 
-function getRouteForCurrentStation() {
+function getServicesAtStation(stationName) {
+    return getStationNetworks(stationName);
+}
+
+function getRouteForStationPlatform(stationName, platform = '') {
     const line = railNetworks.find(network => network.code === selectedService);
     if (!line) return [];
-    const branch = line.branches.find(item => item.stations.some(station => station.name === selectedStationName));
-    return branch?.stations || [];
+
+    if (line.code === 'CCL' && stationName === 'Promenade' && platform) {
+        const branchId = platform === 'a' ? 'anticlockwiseLoop' : 'clockwiseLoop';
+        return line.branches.find(branch => branch.id === branchId)?.stations || [];
+    }
+
+    const branch = line.branches.find(item => item.stations.some(station => station.name === stationName));
+    const route = branch?.stations || [];
+    return platform === 'a' ? [...route].reverse() : route;
+}
+
+function getRouteForCurrentStation() {
+    return getRouteForStationPlatform(selectedStationName, selectedPlatform);
 }
 
 function stationCodeOnLine(stationName, service = selectedService) {
@@ -246,8 +261,7 @@ function getPlatformSelection() {
 }
 
 function setActiveRouteDirection() {
-    const route = selectedService ? getRouteForCurrentStation() : [];
-    activeRoute = selectedPlatform === 'a' ? [...route].reverse() : route;
+    activeRoute = selectedService ? getRouteForCurrentStation() : [];
     activeRouteIndex = activeRoute.findIndex(station => station.name === selectedStationName);
 }
 
@@ -296,18 +310,24 @@ function renderStationCodeCaplets(codes) {
 }
 
 function renderPlatformTab(currentStation, currentCode) {
-    const route = getRouteForCurrentStation();
-    const routeIndex = route.findIndex(station => station.name === currentStation.name);
-    const previousStation = route[routeIndex - 1];
-    const nextStation = route[routeIndex + 1];
-    const platformACodes = [currentCode, previousStation && normaliseCode(previousStation.code)].filter(Boolean);
-    const platformBCodes = [currentCode, nextStation && normaliseCode(nextStation.code)].filter(Boolean);
-    const platformATerminalCode = normaliseCode(route[0]?.code || '');
-    const platformBTerminalCode = normaliseCode(route.at(-1)?.code || '');
+    const isPromenadeCircleLine = selectedService === 'CCL' && currentStation.name === 'Promenade';
+    const platformARoute = getRouteForStationPlatform(currentStation.name, 'a');
+    const platformBRoute = getRouteForStationPlatform(currentStation.name, 'b');
+    const platformANextStation = platformARoute[platformARoute.findIndex(station => station.name === currentStation.name) + 1];
+    const platformBNextStation = platformBRoute[platformBRoute.findIndex(station => station.name === currentStation.name) + 1];
+    const platformACodes = [currentCode, platformANextStation && normaliseCode(platformANextStation.code)].filter(Boolean);
+    const platformBCodes = [currentCode, platformBNextStation && normaliseCode(platformBNextStation.code)].filter(Boolean);
     const platformA = 'Platform A';
     const platformB = 'Platform B';
-    const platformOption = (platform, label, codes, terminalCode, terminalName) => `<button class="platform-toggle-option${selectedPlatform === platform ? ' selected' : ''}" type="button" role="radio" aria-checked="${selectedPlatform === platform}" data-platform="${platform}"><span class="platform-toggle-name">${label}</span><span class="platform-direction">${renderStationCodeCaplets(codes)}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>To</span>${renderStationCodeCaplets([terminalCode])}<span class="platform-terminal-name">${escapeHtml(terminalName)}</span></span></button>`;
-    elements.nextStops.innerHTML = `<section class="platform-panel" role="tabpanel" aria-labelledby="platform-tab"><p class="platform-context">${escapeHtml(currentStation.name)} (${escapeHtml(currentCode)}) · ${escapeHtml(selectedService)}</p><p class="platform-label">Choose your platform</p><div class="platform-toggle" role="radiogroup" aria-label="Platform at ${escapeHtml(currentStation.name)}">${platformOption('a', platformA, platformACodes, platformATerminalCode, route[0]?.name || '')}${platformOption('b', platformB, platformBCodes, platformBTerminalCode, route.at(-1)?.name || '')}</div><p class="platform-save-status" aria-live="polite">${selectedPlatform ? `${selectedPlatform === 'a' ? platformA : platformB} selected.` : 'Your choice is saved for this station and line.'}</p></section>`;
+    const platformOption = (platform, label, directions, directionLabel = '') => `<button class="platform-toggle-option${selectedPlatform === platform ? ' selected' : ''}" type="button" role="radio" aria-checked="${selectedPlatform === platform}" data-platform="${platform}"><span class="platform-toggle-name">${label}</span>${directions.map(direction => `<span class="platform-direction">${renderStationCodeCaplets(direction.codes)}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>To</span><span class="platform-terminal-name">${escapeHtml(direction.station?.name || '')}</span></span>`).join('')}${directionLabel ? `<span class="platform-terminal-name">${escapeHtml(directionLabel)}</span>` : ''}</button>`;
+    const platformADirections = [{ codes: platformACodes, station: platformANextStation }];
+    const platformBDirections = isPromenadeCircleLine
+        ? [
+            { codes: platformBCodes, station: platformBNextStation },
+            { codes: [currentCode, 'CC1'], station: { name: 'Dhoby Ghaut' } }
+        ]
+        : [{ codes: platformBCodes, station: platformBNextStation }];
+    elements.nextStops.innerHTML = `<section class="platform-panel" role="tabpanel" aria-labelledby="platform-tab"><p class="platform-context">${escapeHtml(currentStation.name)} (${escapeHtml(currentCode)}) · ${escapeHtml(selectedService)}</p><p class="platform-label">Choose your platform</p><div class="platform-toggle" role="radiogroup" aria-label="Platform at ${escapeHtml(currentStation.name)}">${platformOption('a', platformA, platformADirections, isPromenadeCircleLine ? 'Anticlockwise loop' : '')}${platformOption('b', platformB, platformBDirections, isPromenadeCircleLine ? 'Clockwise loop / clockwise spur' : '')}</div><p class="platform-save-status" aria-live="polite">${selectedPlatform ? `${selectedPlatform === 'a' ? platformA : platformB} selected.` : 'Your choice is saved for this station and line.'}</p></section>`;
 }
 
 function renderTracking() {

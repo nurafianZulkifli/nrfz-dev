@@ -548,7 +548,7 @@ body.dark-mode .service-chip.selected {
     gap: .55rem;
     padding: .55rem .75rem;
     border: 1px solid #b8d2df;
-    border-radius: 4px;
+    border-radius: 24px;
     background: #fff;
     color: #1d313b;
     font: inherit;
@@ -650,14 +650,14 @@ body.dark-mode .platform-label {
 }
 
 body.dark-mode .platform-toggle-option {
-    border-color: #52718d;
-    background: #304650;
+    border-color: #8b7b73;
+    background: #5a4f4a;
     color: #edf3f1;
 }
 
 body.dark-mode .platform-toggle-option.selected {
-    border-color: #52718d;
-    background: #52718d;
+    border-color: #a38f86;
+    background: #9e8c84;
 }
 
 @media (max-width: 480px) {
