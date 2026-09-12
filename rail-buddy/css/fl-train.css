@@ -94,9 +94,16 @@
 .empty-state-placeholder p {
     margin: 0;
     font-size: .95rem;
+    text-align: center !important;
+    color: #8a97a3;
 }
 
-.content-section.active ~ .empty-state-placeholder {
+body.dark-mode .empty-state-placeholder p {
+    color: #f0d1a9;
+    opacity: .75;
+}
+
+.content-section.active~.empty-state-placeholder {
     display: none;
 }
 

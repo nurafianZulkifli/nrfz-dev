@@ -48,7 +48,7 @@ body.dark-mode #sync-copy-btn {
 }
 
 body.dark-mode .theme-selector {
-    background: #57432f;
+    background: #6e5a53;
 }
 
 body.dark-mode .theme-selector-option {
@@ -56,6 +56,6 @@ body.dark-mode .theme-selector-option {
 }
 
 body.dark-mode .theme-selector-option[aria-pressed="true"] {
-    background: #d4b799;
+    background: #e0bca4;
     color: #000;
 }
