@@ -100,17 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Follow system theme changes when set to 'system' preference
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     window._prefersDark = e.matches;
-    if (localStorage.getItem('theme-preference') === 'system' || localStorage.getItem('theme-preference') === null) {
-        if (e.matches) {
-            document.body.classList.add('dark-mode');
-            updateThemeIcon('dark');
-            updateHrefForDarkMode();
-        } else {
-            document.body.classList.remove('dark-mode');
-            updateThemeIcon('light');
-            updateHrefForDarkMode();
-        }
-    }
+    const selectedDark = shouldBeDark();
+    document.documentElement.classList.toggle('dark-mode', selectedDark);
+    document.body.classList.toggle('dark-mode', selectedDark);
+    updateThemeIcon(selectedDark ? 'dark' : 'light');
+    updateHrefForDarkMode();
     syncPwaMetaTheme();
 });
 

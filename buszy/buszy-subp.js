@@ -89,18 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // Follow system theme changes when set to 'system' preference
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     window._prefersDark = e.matches;
-    if (localStorage.getItem('theme-preference') === 'system' || localStorage.getItem('theme-preference') === null) {
-        if (e.matches) {
-            document.body.classList.add('dark-mode');
-            updateThemeIcon('dark');
-        } else {
-            document.body.classList.remove('dark-mode');
-            updateThemeIcon('light');
-        }
-        syncColorScheme();
-        syncPwaMetaTheme();
-        window.dispatchEvent(new CustomEvent('buszythemechange'));
-    }
+    const selectedDark = shouldBeDark();
+    document.documentElement.classList.toggle('dark-mode', selectedDark);
+    document.body.classList.toggle('dark-mode', selectedDark);
+    updateThemeIcon(selectedDark ? 'dark' : 'light');
+    syncColorScheme();
+    syncPwaMetaTheme();
+    window.dispatchEvent(new CustomEvent('buszythemechange'));
 });
 
 // Get both toggle buttons (for backward compatibility with mobile views)

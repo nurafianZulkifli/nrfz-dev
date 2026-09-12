@@ -1,23 +1,6 @@
 /* iOS Safari Specific Stylesheet */
 /* Targets Safari on iOS devices - PWA only */
 
-/* Support color-scheme for Safari address bar - applies to all modes */
-@media (prefers-color-scheme: dark) {
-
-  html,
-  body {
-    color-scheme: dark;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  html,
-  body {
-    color-scheme: light;
-  }
-}
-
 /* Apply only to Apple devices in PWA standalone mode */
 @media (display-mode: standalone) {
   @supports (-webkit-appearance: none) {
@@ -171,50 +154,6 @@
     /* Prevent horizontal scroll on landscape */
     body {
       overflow-x: hidden;
-    }
-
-    /* Fix input color in dark mode */
-    @media (prefers-color-scheme: dark) {
-
-      input,
-      select,
-      textarea {
-        background-color: #1e1e1e;
-        color: #fff;
-        border-color: #404040;
-      }
-
-      input::placeholder,
-      textarea::placeholder {
-        color: #999;
-      }
-
-      /* Prevent Safari address bar from showing white in dark mode */
-      body,
-      html {
-        background-color: #000000;
-        color: #ffffff;
-        color-scheme: dark;
-      }
-
-      button,
-      a,
-      input,
-      select,
-      textarea {
-        -webkit-appearance: none;
-      }
-    }
-
-    /* Light mode address bar support */
-    @media (prefers-color-scheme: light) {
-
-      body,
-      html {
-        background-color: #ffffff;
-        color: #000000;
-        color-scheme: light;
-      }
     }
 
     /* Fix range input styling */

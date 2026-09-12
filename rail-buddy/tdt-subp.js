@@ -94,15 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // Follow system theme changes when set to 'system' preference
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     window._prefersDark = e.matches;
-    if (localStorage.getItem('theme-preference') === 'system' || localStorage.getItem('theme-preference') === null) {
-        if (e.matches) {
-            setDarkMode(true);
-            updateThemeIcon('dark');
-        } else {
-            setDarkMode(false);
-            updateThemeIcon('light');
-        }
-    }
+    const selectedDark = shouldBeDark();
+    setDarkMode(selectedDark);
+    updateThemeIcon(selectedDark ? 'dark' : 'light');
     syncColorScheme();
     syncPwaMetaTheme();
 });

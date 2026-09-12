@@ -118,26 +118,21 @@ document.addEventListener('DOMContentLoaded', function() {
 // Follow system theme changes when set to 'system' preference
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     window._prefersDark = e.matches;
-    if (localStorage.getItem('theme-preference') === 'system' || localStorage.getItem('theme-preference') === null) {
-        if (e.matches) {
-            document.body.classList.add('dark-mode');
-            updateThemeIcon('dark');
-        } else {
-            document.body.classList.remove('dark-mode');
-            updateThemeIcon('light');
-        }
-        syncColorScheme();
-        syncPwaMetaTheme();
-        
-        // Update cookies banner theme if the function is available
-        if (typeof window.updateCookiesBannerTheme === 'function') {
-            window.updateCookiesBannerTheme();
-        }
-        
-        // Adjust install banner position if the function is available
-        if (typeof window.adjustInstallBannerPosition === 'function') {
-            window.adjustInstallBannerPosition();
-        }
+    const selectedDark = shouldBeDark();
+    document.documentElement.classList.toggle('dark-mode', selectedDark);
+    document.body.classList.toggle('dark-mode', selectedDark);
+    updateThemeIcon(selectedDark ? 'dark' : 'light');
+    syncColorScheme();
+    syncPwaMetaTheme();
+
+    // Update cookies banner theme if the function is available
+    if (typeof window.updateCookiesBannerTheme === 'function') {
+        window.updateCookiesBannerTheme();
+    }
+
+    // Adjust install banner position if the function is available
+    if (typeof window.adjustInstallBannerPosition === 'function') {
+        window.adjustInstallBannerPosition();
     }
 });
 
