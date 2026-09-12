@@ -41,7 +41,7 @@ window.PWAConfig = (() => {
       swPath: basePath + 'service-worker.js',
       scope: basePath,
       manifestPath: `${basePath}manifest.json?v=${PWA_BUILD_VERSION}`,
-      cacheName: 'main-cache-v1'
+      cacheName: 'main-cache-v1.0.0'
     },
     
     getConfig: function(app) {
