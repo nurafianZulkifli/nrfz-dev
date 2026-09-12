@@ -45,7 +45,10 @@
         (function () {
             var pref = localStorage.getItem('theme-preference') || 'system';
             var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (isDark) document.body.classList.add('dark-mode');
+            if (isDark) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            }
         })();
     </script>
 

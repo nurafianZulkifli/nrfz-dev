@@ -57,7 +57,7 @@ body.dark-mode #pwa-splash .splash-name {
 }
 
 body.dark-mode #pwa-splash .splash-hero {
-    background-image: url('../../img/bg-img/hero-railbuddy-dark.png');
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0) 100%);
 }
 
 body.dark-mode {
