@@ -1,4 +1,3 @@
-const STATION_DATA_FILES = ['nsl', 'ewl', 'nel', 'ccl', 'dtl', 'tel', 'bp', 'sk', 'pg'];
 const STATION_CACHE_KEY = 'railbuddy_station_locations_v2';
 const PLATFORM_SELECTIONS_KEY = 'railbuddy_platform_selections_v1';
 const MIN_STATION_MOVEMENT_METRES = 20;
@@ -16,6 +15,7 @@ let currentPosition = null;
 let nearestStation = null;
 let stationLocations = [];
 let railNetworks = [];
+let lineDirections = [];
 let selectedStationName = null;
 let selectedService = null;
 let activeRoute = [];
@@ -69,7 +69,11 @@ function addStation(stations, station) {
 }
 
 async function loadStations() {
-    const lines = await Promise.all(STATION_DATA_FILES.map(file => fetch(`json/${file}.json`).then(response => response.json())));
+    const directionsResponse = await fetch('json/line-directions.json');
+    if (!directionsResponse.ok) throw new Error(`Line directions request failed: ${directionsResponse.status}`);
+    const directions = await directionsResponse.json();
+    lineDirections = Array.isArray(directions.lines) ? directions.lines : [];
+    const lines = await Promise.all(lineDirections.map(line => fetch(`json/${line.stationDataFile}`).then(response => response.json())));
     railNetworks = lines;
     const stations = [];
     lines.forEach(line => line.branches.forEach(branch => branch.stations.forEach(station => addStation(stations, station))));
@@ -156,6 +160,10 @@ function updateNearestStation() {
     if (!stationMarker) stationMarker = L.circleMarker(stationLocation, { radius: 10, color: '#fff', weight: 3, fillColor: '#d17321', fillOpacity: 1 }).addTo(liveMap);
     else stationMarker.setLatLng(stationLocation);
     stationMarker.bindPopup(`<strong>${nearestStation.name} (${nearestStation.code})</strong><br>${formatDistance(nearestStation.distance)}`);
+    if (selectedService && !getServicesAtStation(nearestStation.name).some(line => line.code === selectedService)) {
+        selectCurrentStation(nearestStation.name);
+        return;
+    }
     if (!selectedService) selectedStationName = nearestStation.name;
     advanceRouteAtNextStation();
     renderTracking();
@@ -200,6 +208,11 @@ function getRouteForStationPlatform(stationName, platform = '') {
 
 function getRouteForCurrentStation() {
     return getRouteForStationPlatform(selectedStationName, selectedPlatform);
+}
+
+function getPlatformDirection(stationName, platform) {
+    const line = lineDirections.find(item => item.code === selectedService);
+    return line?.stations?.[stationName]?.platforms?.[platform] || line?.platforms?.[platform] || {};
 }
 
 function stationCodeOnLine(stationName, service = selectedService) {
@@ -310,7 +323,6 @@ function renderStationCodeCaplets(codes) {
 }
 
 function renderPlatformTab(currentStation, currentCode) {
-    const isPromenadeCircleLine = selectedService === 'CCL' && currentStation.name === 'Promenade';
     const platformARoute = getRouteForStationPlatform(currentStation.name, 'a');
     const platformBRoute = getRouteForStationPlatform(currentStation.name, 'b');
     const platformANextStation = platformARoute[platformARoute.findIndex(station => station.name === currentStation.name) + 1];
@@ -319,15 +331,13 @@ function renderPlatformTab(currentStation, currentCode) {
     const platformBCodes = [currentCode, platformBNextStation && normaliseCode(platformBNextStation.code)].filter(Boolean);
     const platformA = 'Platform A';
     const platformB = 'Platform B';
-    const platformOption = (platform, label, directions, directionLabel = '') => `<button class="platform-toggle-option${selectedPlatform === platform ? ' selected' : ''}" type="button" role="radio" aria-checked="${selectedPlatform === platform}" data-platform="${platform}"><span class="platform-toggle-name">${label}</span>${directions.map(direction => `<span class="platform-direction">${renderStationCodeCaplets(direction.codes)}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>To</span><span class="platform-terminal-name">${escapeHtml(direction.station?.name || '')}</span></span>`).join('')}${directionLabel ? `<span class="platform-terminal-name">${escapeHtml(directionLabel)}</span>` : ''}</button>`;
-    const platformADirections = [{ codes: platformACodes, station: platformANextStation }];
-    const platformBDirections = isPromenadeCircleLine
-        ? [
-            { codes: platformBCodes, station: platformBNextStation },
-            { codes: [currentCode, 'CC1'], station: { name: 'Dhoby Ghaut' } }
-        ]
-        : [{ codes: platformBCodes, station: platformBNextStation }];
-    elements.nextStops.innerHTML = `<section class="platform-panel" role="tabpanel" aria-labelledby="platform-tab"><p class="platform-context">${escapeHtml(currentStation.name)} (${escapeHtml(currentCode)}) · ${escapeHtml(selectedService)}</p><p class="platform-label">Choose your platform</p><div class="platform-toggle" role="radiogroup" aria-label="Platform at ${escapeHtml(currentStation.name)}">${platformOption('a', platformA, platformADirections, isPromenadeCircleLine ? 'Anticlockwise loop' : '')}${platformOption('b', platformB, platformBDirections, isPromenadeCircleLine ? 'Clockwise loop / clockwise spur' : '')}</div><p class="platform-save-status" aria-live="polite">${selectedPlatform ? `${selectedPlatform === 'a' ? platformA : platformB} selected.` : 'Your choice is saved for this station and line.'}</p></section>`;
+    const platformOption = (platform, label, codes) => {
+        const { destination, direction } = getPlatformDirection(currentStation.name, platform);
+        const displayName = direction && destination ? `${direction} (to ${destination})` : direction || destination || '';
+        const prefix = direction ? '' : '<span>To</span>';
+        return `<button class="platform-toggle-option${selectedPlatform === platform ? ' selected' : ''}" type="button" role="radio" aria-checked="${selectedPlatform === platform}" data-platform="${platform}"><span class="platform-toggle-name">${label}</span><span class="platform-direction">${renderStationCodeCaplets(codes)}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i>${prefix}<span class="platform-terminal-name">${escapeHtml(displayName)}</span></span></button>`;
+    };
+    elements.nextStops.innerHTML = `<section class="platform-panel" role="tabpanel" aria-labelledby="platform-tab"><p class="platform-context">${escapeHtml(currentStation.name)} (${escapeHtml(currentCode)}) · ${escapeHtml(selectedService)}</p><p class="platform-label">Choose your platform</p><div class="platform-toggle" role="radiogroup" aria-label="Platform at ${escapeHtml(currentStation.name)}">${platformOption('a', platformA, platformACodes)}${platformOption('b', platformB, platformBCodes)}</div><p class="platform-save-status" aria-live="polite">${selectedPlatform ? `${selectedPlatform === 'a' ? platformA : platformB} selected.` : 'Your choice is saved for this station and line.'}</p></section>`;
 }
 
 function renderTracking() {
@@ -368,7 +378,8 @@ function renderTracking() {
         renderPlatformTab(currentStation, currentCode);
         return;
     }
-    elements.nextStops.innerHTML = nextStations.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Station: <span class="current-station-name">${renderStationCodeCaplets([currentCode])}${escapeHtml(currentStation.name)}</span></p></div><ul class="onboard-stops-list">${nextStations.map(station => `<li>${renderStationCodeCaplets([normaliseCode(station.code)])}<span>${escapeHtml(station.name)}</span></li>`).join('')}</ul>` : '<p class="next-stops-loading">No following stations found for this route.</p>';
+    const routeStepControls = `<div class="route-step-controls"><button type="button" class="route-step-button" data-route-step="-1" title="Previous station" aria-label="Previous station"${hasPreviousStation ? '' : ' disabled'}><i class="fa-solid fa-chevron-up" aria-hidden="true"></i></button><button type="button" class="route-step-button" data-route-step="1" title="Next station" aria-label="Next station"${hasFollowingStation ? '' : ' disabled'}><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button></div>`;
+    elements.nextStops.innerHTML = nextStations.length ? `<div class="next-stops-header"><p class="next-stops-title">Current Station: <span class="current-station-name">${renderStationCodeCaplets([currentCode])}${escapeHtml(currentStation.name)}</span></p>${routeStepControls}</div><ul class="onboard-stops-list">${nextStations.map(station => `<li>${renderStationCodeCaplets([normaliseCode(station.code)])}<span>${escapeHtml(station.name)}</span></li>`).join('')}</ul>` : '<p class="next-stops-loading">No following stations found for this route.</p>';
 }
 
 function updatePosition(position) {
