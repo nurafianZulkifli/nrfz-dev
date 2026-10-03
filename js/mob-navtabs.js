@@ -1,27 +1,39 @@
-      // Hide/show mobile bottom nav on scroll (mobile only)
+        // (part of Version 7 Redesign) Collapse desktop navigation labels on scroll down.
+        (function () {
+            var navbar = document.querySelector('.navbar-container');
+            if (!navbar) return;
+            var lastScrollY = window.scrollY;
+
+            function updateNavbar() {
+                var currentScrollY = window.scrollY;
+                if (currentScrollY <= 50 || currentScrollY < lastScrollY - 4) {
+                    navbar.classList.remove('scrolled');
+                } else if (currentScrollY > lastScrollY + 4) {
+                    navbar.classList.add('scrolled');
+                }
+                lastScrollY = currentScrollY;
+            }
+
+            updateNavbar();
+            window.addEventListener('scroll', updateNavbar, { passive: true });
+        })();
+
+      // (part of Version 7 Redesign) Collapse mobile navigation labels based on scroll direction.
         (function () {
             var lastScrollY = window.scrollY;
             var nav = document.querySelector('.mobile-bottom-nav');
             var ticking = false;
-            var isHidden = false;
 
             function onScroll() {
                 var currentScrollY = window.scrollY;
-                if (window.innerWidth > 600) return; // Only on mobile
+                if (!nav) return;
+                if (window.innerWidth > 994) return;
                 if (currentScrollY > lastScrollY + 4) {
                     // Scrolling down
-                    if (!isHidden) {
-                        nav.style.transform = 'translateY(100%)';
-                        nav.style.transition = 'transform 0.3s cubic-bezier(.4,0,.2,1)';
-                        isHidden = true;
-                    }
+                    nav.classList.add('labels-hidden');
                 } else if (currentScrollY < lastScrollY - 4) {
                     // Scrolling up
-                    if (isHidden) {
-                        nav.style.transform = 'translateY(0)';
-                        nav.style.transition = 'transform 0.3s cubic-bezier(.4,0,.2,1)';
-                        isHidden = false;
-                    }
+                    nav.classList.remove('labels-hidden');
                 }
                 lastScrollY = currentScrollY;
             }
@@ -38,9 +50,8 @@
 
             // Reset nav position on resize
             window.addEventListener('resize', function () {
-                if (window.innerWidth > 600) {
-                    nav.style.transform = '';
-                    isHidden = false;
+                if (window.innerWidth > 994 && nav) {
+                    nav.classList.remove('labels-hidden');
                 }
             });
         })();
@@ -57,3 +68,37 @@
         }
         window.addEventListener('scroll', updateBreadcrumbAtTop);
         window.addEventListener('DOMContentLoaded', updateBreadcrumbAtTop);
+
+// Haptic feedback on tap for interactive elements (mobile only)
+(function () {
+    if (!navigator.vibrate) return;
+
+    const HAPTIC_SHORT = 8;   // buttons, links
+    const HAPTIC_MEDIUM = 18; // nav items, dropdowns
+
+    const selector = [
+        'a',
+        'button',
+        '[role="button"]',
+        '.nav-link',
+        '.mobile-bottom-nav a',
+        '.eicw-nav-btn',
+        '.eicw-nav-menu a',
+        'summary',
+        '.list-group-item',
+        '.eicw-collapsible summary',
+    ].join(',');
+
+    document.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'touch') return;
+        const target = e.target.closest(selector);
+        if (!target) return;
+
+        const isMedium =
+            target.closest('.mobile-bottom-nav') ||
+            target.classList.contains('eicw-nav-btn') ||
+            target.tagName === 'SUMMARY';
+
+        navigator.vibrate(isMedium ? HAPTIC_MEDIUM : HAPTIC_SHORT);
+    }, { passive: true });
+})();

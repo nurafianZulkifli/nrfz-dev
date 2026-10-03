@@ -1,9 +1,12 @@
+/* (part of Version 7 Redesign) */
+@import url("./style-mobNav-scrolled.css");
+
 body.dark-mode {
     background: #121521 !important;
 }
 
 body.dark-mode .navbar {
-    background: #1a1f35be !important;
+    background: #1a1f353d !important;
 }
 
 body.dark-mode .page-header-section {
@@ -11,15 +14,36 @@ body.dark-mode .page-header-section {
 }
 
 .nav-link.active {
-    background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%);
+    background: linear-gradient(47deg, rgba(105, 132, 166, 1) 0%, rgba(51, 151, 161, 1) 100%) !important;
+}
+
+.mobile-bottom-nav,
+body.dark-mode .mobile-bottom-nav {
+    display: none;
 }
 
 .nav-link {
     color: #000;
 }
 
-.hyperlink {
-    color: #67a0bb !important;
+/* Portfolio page: title left, search right on desktop */
+.port-search-wrapper {
+    position: relative;
+}
+
+@media (min-width: 995px) {
+    .port-header-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    .port-search-wrapper {
+        max-width: 300px;
+        width: 100%;
+    }
 }
 
 .page-title-wrapper>div>div:first-child {
@@ -77,7 +101,7 @@ body.dark-mode li.breadcrumb-item a {
 }
 
 .lg-menu {
-    font-size: 18px;
+    font-size: 0.95rem;
     margin-bottom: 0px;
     font-weight: bolder;
 }
@@ -106,11 +130,6 @@ body.dark-mode .list-group-item:hover {
     background-color: #334250;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.mobile-bottom-nav,
-body.dark-mode .mobile-bottom-nav {
-    display: none;
 }
 
 @media (min-width: 995px) {
@@ -175,7 +194,7 @@ body.dark-mode .mobile-bottom-nav {
 
     /* Floating breadcrumb only on mobile/tablet */
     .breadcrumb-fixed-placeholder {
-        padding-top: 4em;
+        padding-top: 5em;
     }
 
     .breadcrumb.breadcrumb-fixed {
@@ -186,7 +205,7 @@ body.dark-mode .mobile-bottom-nav {
         width: auto;
         max-width: 90vw;
         z-index: 2000;
-        background: rgba(253, 253, 253, 0.635);
+        background: rgba(253, 253, 253, 0.068);
         backdrop-filter: blur(25px);
         margin: 0;
         border-radius: 50px;
@@ -199,7 +218,7 @@ body.dark-mode .mobile-bottom-nav {
     }
 
     body.dark-mode .breadcrumb.breadcrumb-fixed {
-        background: #1f243bc9;
+        background: #1f243b1c;
         backdrop-filter: blur(25px);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
         position: fixed;
@@ -218,21 +237,7 @@ body.dark-mode .mobile-bottom-nav {
         transition: background 0.2s, box-shadow 0.2s, top 0.2s;
     }
 
-    .breadcrumb.breadcrumb-fixed.at-top {
-        top: 0;
-        background: none;
-        box-shadow: none;
-        padding-top: 1.5em;
-        padding-left: 0em;
-    }
-
-    body.dark-mode .breadcrumb.breadcrumb-fixed.at-top {
-        top: 0;
-        background: none;
-        box-shadow: none;
-        padding-top: 1.5em;
-        padding-left: 0em;
-    }
+    /* (part of Version 7 Redesign) back-button pill stays visible at the top; styled in style.css */
 
     .mobile-bottom-nav {
         position: fixed;
@@ -244,27 +249,6 @@ body.dark-mode .mobile-bottom-nav {
         display: flex !important;
         justify-content: center;
         pointer-events: none;
-    }
-
-    .mobile-bottom-nav ul {
-        background: #f1f1f193;
-        backdrop-filter: blur(15px);
-        border-radius: 50px;
-        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-        display: flex;
-        margin: 20px 20px;
-        padding: 0 4px;
-        width: 100%;
-        max-width: 340px;
-        justify-content: space-between;
-        pointer-events: auto;
-        transition: transform 0.3s ease;
-        transform-origin: bottom center;
-    }
-
-    .mobile-bottom-nav.shrunk ul {
-        transform: scale(0.7);
-        padding: 2px 1px !important;
     }
 
     .mobile-bottom-nav::before {
@@ -286,9 +270,24 @@ body.dark-mode .mobile-bottom-nav {
         background: linear-gradient(to top, rgba(31, 36, 59, 0.7) 0%, rgba(31, 36, 59, 0) 100%);
     }
 
+    .mobile-bottom-nav ul {
+        background: #f1f1f133;
+        backdrop-filter: blur(15px);
+        border-radius: 50px;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+        display: flex;
+        margin: 20px 20px;
+        padding: 0 4px;
+        width: 100%;
+        max-width: 340px;
+        justify-content: space-between;
+        pointer-events: auto;
+    }
+
+
     body.dark-mode .mobile-bottom-nav ul {
-        background: #1f243bbe;
-        backdrop-filter: blur(25px);
+        background: #1f243b1c;
+        backdrop-filter: blur(15px);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.233), 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
@@ -299,7 +298,8 @@ body.dark-mode .mobile-bottom-nav {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 8px 0 6px 0;
+        position: relative; /* (part of Version 7 Redesign) */
+        padding: 0;
         margin: 4px 2px;
         border-radius: 50px;
         transition: background 0.2s;
@@ -307,15 +307,26 @@ body.dark-mode .mobile-bottom-nav {
     }
 
     .mobile-bottom-nav li.active {
-        background: linear-gradient(84deg, rgba(81, 167, 190, 1) 0%, rgba(53, 64, 117, 1) 100%);
+        background: linear-gradient(47deg, rgba(105, 132, 166, 1) 0%, rgba(51, 151, 161, 1) 100%);
+    }
+
+    .mobile-bottom-nav li a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 0 6px;
+        width: 100%;
+        text-decoration: none;
     }
 
     .mobile-bottom-nav .icon {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 2px;
+        margin-bottom: 5px;
         color: #000;
+        transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), color 0.2s; /* (part of Version 7 Redesign) */
     }
 
     .mobile-bottom-nav li.active .label {
@@ -329,10 +340,12 @@ body.dark-mode .mobile-bottom-nav {
 
     .mobile-bottom-nav .label {
         font-size: 11px;
+        line-height: 14px; /* (part of Version 7 Redesign) */
         color: #000;
         margin-top: 0px;
         letter-spacing: 0.01em;
-        transition: color 0.2s, font-weight 0.2s;
+        opacity: 1; /* (part of Version 7 Redesign) */
+        transition: opacity 0.2s ease, color 0.2s, font-weight 0.2s; /* (part of Version 7 Redesign) */
     }
 
     body.dark-mode .mobile-bottom-nav .label,
@@ -340,7 +353,12 @@ body.dark-mode .mobile-bottom-nav {
         color: #fff;
     }
 
-    .mobile-bottom-nav {
-        padding-bottom: env(safe-area-inset-bottom);
+    /* Safari safe area adjustment for address bar */
+    .mobile-bottom-nav ul {
+        padding-bottom: max(4px, env(safe-area-inset-bottom));
+    }
+
+    body {
+        padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
     }
 }
