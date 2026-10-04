@@ -39,7 +39,7 @@
     <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
     <div class="breadcrumb-fixed-placeholder">
         <nav aria-label="breadcrumb" style="margin-bottom:0;">
-            <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+            <ol class="breadcrumb breadcrumb-fixed" data-back-href="menu.html" id="floating-breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="./">
                         <i class="fa-regular fa-house"></i>
@@ -141,23 +141,7 @@
             <div class="page-header-section">
                 <div class="container container-xxl container-mobile container-mobile-header">
                     <div class="breadcrumb-wrapper">
-                        <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="./">
-                                        <i class="fa-regular fa-house"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="menu.html"><i class="fa-regular fa-bars"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="blog.html"><i class="fa-regular fa-comment-dots"></i>
-                                    </a>
-                                </li>
-                            </ol>
-                        </nav>
+                        <nav aria-label="Back" class="breadcrumb-desktop"><ol class="breadcrumb" data-back-href="menu.html"><li class="breadcrumb-item"><a href="#"></a></li></ol></nav>
                         <div class="page-title-wrapper">
                             <div>
                                 <h1 class="page-title-single" id="filter-title">All Posts</h1>
@@ -191,7 +175,7 @@
     <hr style="margin: 0;">
 
     <!-- Section Contents -->
-    <section class="about-me-summ clearfix">
+    <section class="about-me-summ clearfix" style="padding-top: 40px; padding-bottom: 20px;">
         <div class="container-xxl">
             <div class="row">
                 <div class="col-12">
@@ -208,7 +192,6 @@
                 </div>
             </div>
 
-            <div class="container">
                 <div class="wbnrfz-grid featured-cards">
                     <div class="card wbd" data-date="2025-06-01">
                         <img src="https://i.imgur.com/PD32Zwl.png" alt="Work 1" loading="lazy">
@@ -273,7 +256,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
     </section>
 

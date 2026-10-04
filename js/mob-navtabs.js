@@ -1,3 +1,57 @@
+// (part of Version 7 Redesign) Replace breadcrumb trails with a single back link.
+(function () {
+    function getBackTarget() {
+        var path = window.location.pathname.toLowerCase();
+
+        if (/\/blog\/[^/]+\.html$/.test(path)) {
+            return { href: '../blog.html', label: 'Back to blog' };
+        }
+        if (/\/worksbynrfz\/project\.html$/.test(path)) {
+            return { href: '../works-by-nrfz.html', label: 'Back to projects' };
+        }
+        if (/\/eicw\/(?!intro\.html$)[^/]+\.html$/.test(path)) {
+            return { href: 'intro.html', label: 'Back to EICW' };
+        }
+        if (/\/eicw\/intro\.html$/.test(path)) {
+            return { href: '../menu.html', label: 'Back to menu' };
+        }
+        if (/\/menu\.html$/.test(path)) {
+            return { href: './', label: 'Back home' };
+        }
+
+        return { href: 'menu.html', label: 'Back to menu' };
+    }
+
+    function replaceBreadcrumbs() {
+        var auto = getBackTarget();
+        document.querySelectorAll('ol.breadcrumb').forEach(function (list) {
+            if (list.dataset.backButtonApplied === 'true') return;
+
+            var target = {
+                href: list.dataset.backHref || auto.href,
+                label: list.dataset.backLabel || auto.label
+            };
+            var nav = list.closest('nav');
+            if (nav) nav.setAttribute('aria-label', target.label);
+            list.innerHTML =
+                '<li class="breadcrumb-item">' +
+                '<a href="' + target.href + '" aria-label="' + target.label + '">' +
+                '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i>' +
+                '</a></li>';
+            list.dataset.backButtonApplied = 'true';
+        });
+    }
+
+    replaceBreadcrumbs();
+
+    if (document.body) {
+        new MutationObserver(replaceBreadcrumbs).observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+})();
+
         // (part of Version 7 Redesign) Collapse desktop navigation labels on scroll down.
         (function () {
             var navbar = document.querySelector('.navbar-container');

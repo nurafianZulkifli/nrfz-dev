@@ -39,21 +39,13 @@
 </head>
 
 <body>
-  <!-- Fixed Breadcrumb at very top (mobile/tablet only) -->
+  <!-- Fixed back button at very top (mobile/tablet only) -->
   <div class="breadcrumb-fixed-placeholder">
-    <nav aria-label="breadcrumb" style="margin-bottom:0;">
-      <ol class="breadcrumb breadcrumb-fixed" id="floating-breadcrumb">
+    <nav aria-label="Back" style="margin-bottom:0;">
+      <ol class="breadcrumb breadcrumb-fixed" data-back-href="menu.html" id="floating-breadcrumb">
         <li class="breadcrumb-item">
-          <a href="./">
-            <i class="fa-regular fa-house"></i>
-          </a>
-        </li>
-        <li class="breadcrumb-item">
-          <a href="menu.html"><i class="fa-regular fa-bars"></i>
-          </a>
-        </li>
-        <li class="breadcrumb-item">
-          <a href="works-by-nrfz.html"><i class="fa-regular fa-pen-paintbrush"></i>
+          <a href="menu.html" aria-label="Back to menu">
+            <i class="fa-solid fa-arrow-left"></i>
           </a>
         </li>
       </ol>
@@ -137,25 +129,17 @@
 
 
   <!------------------------------------------------------------------------ Start of Sections ------------------------------------------------------------------------>
-  <!-- Breadcrumbs -->
+  <!-- Back button -->
   <section class="about-me-sum clearfix">
     <div class="wbnrfz_eicw">
       <div class="page-header-section">
         <div class="container container-xxl container-mobile container-mobile-header">
           <div class="breadcrumb-wrapper">
-            <nav aria-label="breadcrumb" class="breadcrumb-desktop" style="display:none;">
-              <ol class="breadcrumb">
+            <nav aria-label="Back" class="breadcrumb-desktop" style="display:none;">
+              <ol class="breadcrumb" data-back-href="menu.html">
                 <li class="breadcrumb-item">
-                  <a href="../index.html">
-                    <i class="fa-regular fa-house"></i>
-                  </a>
-                </li>
-                <li class="breadcrumb-item">
-                  <a href="menu.html"><i class="fa-regular fa-bars"></i>
-                  </a>
-                </li>
-                <li class="breadcrumb-item">
-                  <a href="works-by-nrfz.html"><i class="fa-regular fa-pen-paintbrush"></i>
+                  <a href="menu.html" aria-label="Back to menu">
+                    <i class="fa-solid fa-arrow-left"></i>
                   </a>
                 </li>
               </ol>
@@ -224,18 +208,18 @@
         </div>
       </div>
 
-      <div class="container">
+
         <div class="wbnrfz-grid featured-cards">
-          <div class="card in" data-date="2025-11-30">
-            <img src="https://i.imgur.com/ii25MFr.png" alt="buszy" loading="lazy">
+          <div class="card in" data-date="2026-09-25">
+            <img src="https://i.imgur.com/clFlMPt.png" alt="buszy" loading="lazy">
             <div class="card-content">
               <h3>SMRT STARiS 2 Redesign</h3>
               <a href="https://nurafianzulkifli.github.io/staris-2.0" class="pw-btn-small btn-2"><i
                   class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
-          <div class="card in" data-date="2025-11-30">
-            <img src="https://i.imgur.com/ii25MFr.png" alt="buszy" loading="lazy">
+          <div class="card in" data-date="2026-04-30">
+            <img src="https://i.imgur.com/dQHFpSs.png" alt="buszy" loading="lazy">
             <div class="card-content">
               <h3>LTA CDD-CLD Redesign</h3>
               <a href="https://nurafianzulkifli.github.io/cdd-cld/" class="pw-btn-small btn-2"><i
@@ -243,7 +227,7 @@
             </div>
           </div>
           <div class="card in" data-date="2025-11-30">
-            <img src="https://i.imgur.com/ii25MFr.png" alt="buszy" loading="lazy">
+            <img src="https://i.imgur.com/n4KAkrT.png" alt="buszy" loading="lazy">
             <div class="card-content">
               <h3>Buszy - Bus Arrival Timings</h3>
               <a href="https://worksbynrfz.com/buszy" class="pw-btn-small btn-2"><i
@@ -252,7 +236,7 @@
           </div>
 
           <div class="card in" data-date="2026-02-01">
-            <img src="https://i.imgur.com/3iBJ4YK.png" alt="rlb-v4" loading="lazy">
+            <img src="https://i.imgur.com/udHxdYE.png" alt="rlb-v4" loading="lazy">
             <div class="card-content">
               <h3>RailBuddy - Stay on track, always</h3>
               <a href="https://worksbynrfz.com/rail-buddy" class="pw-btn-small btn-2"><i
@@ -427,7 +411,7 @@
             </div>
           </div>
         </div>
-      </div>
+
     </div>
   </section>
 
