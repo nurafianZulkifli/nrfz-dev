@@ -35,7 +35,7 @@
       return (
         '<div class="carousel-cell">' +
         '<a href="' + url + '" class="portfolio-img" data-gallery="carousel" id="' + id + '">' +
-        '<img class="img-fluid" src="' + url + '" alt="' + id + '-img" draggable="false">' +
+        '<img class="img-fluid" src="' + url + '" alt="' + id + '-img" draggable="false" loading="lazy" decoding="async">' +
         '</a></div>'
       );
     }).join('');
@@ -62,7 +62,7 @@
         '<br>' +
         '<div class="banner text-center wow fadeIn" data-wow-delay="150ms">' +
         '<a href="' + bannerUrl + '" class="portfolio-img">' +
-        '<img src="' + bannerUrl + '" class="img-fluid" alt="cover-page">' +
+        '<img src="' + bannerUrl + '" class="img-fluid" alt="cover-page" loading="eager" fetchpriority="high" decoding="async">' +
         '</a></div>';
     } else if (d.contentType === 'carousel' && d.images && d.images.length) {
       imagesHtml =
